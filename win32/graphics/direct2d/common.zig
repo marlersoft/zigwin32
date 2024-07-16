@@ -328,38 +328,6 @@ pub const ID2D1SimplifiedGeometrySink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_SetFillMode(self: *const T, fillMode: D2D1_FILL_MODE) callconv(.Inline) void {
-            return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).SetFillMode(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)), fillMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_SetSegmentFlags(self: *const T, vertexFlags: D2D1_PATH_SEGMENT) callconv(.Inline) void {
-            return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).SetSegmentFlags(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)), vertexFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_BeginFigure(self: *const T, startPoint: D2D_POINT_2F, figureBegin: D2D1_FIGURE_BEGIN) callconv(.Inline) void {
-            return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).BeginFigure(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)), startPoint, figureBegin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_AddLines(self: *const T, points: [*]const D2D_POINT_2F, pointsCount: u32) callconv(.Inline) void {
-            return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).AddLines(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)), points, pointsCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_AddBeziers(self: *const T, beziers: [*]const D2D1_BEZIER_SEGMENT, beziersCount: u32) callconv(.Inline) void {
-            return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).AddBeziers(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)), beziers, beziersCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_EndFigure(self: *const T, figureEnd: D2D1_FIGURE_END) callconv(.Inline) void {
-            return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).EndFigure(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)), figureEnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).Close(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFillMode(self: *const ID2D1SimplifiedGeometrySink, fillMode: D2D1_FILL_MODE) callconv(.Inline) void {
         return self.vtable.SetFillMode(self, fillMode);
     }

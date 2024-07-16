@@ -96,22 +96,7 @@ pub const IProvideWinSATAssessmentInfo = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideWinSATAssessmentInfo_get_Score(self: *const T, score: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Score(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), score);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideWinSATAssessmentInfo_get_Title(self: *const T, title: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Title(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), title);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideWinSATAssessmentInfo_get_Description(self: *const T, description: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), description);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Score(self: *const IProvideWinSATAssessmentInfo, score: ?*f32) callconv(.Inline) HRESULT {
         return self.vtable.get_Score(self, score);
     }
@@ -157,30 +142,7 @@ pub const IProvideWinSATResultsInfo = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideWinSATResultsInfo_GetAssessmentInfo(self: *const T, assessment: WINSAT_ASSESSMENT_TYPE, ppinfo: ?*?*IProvideWinSATAssessmentInfo) callconv(.Inline) HRESULT {
-            return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).GetAssessmentInfo(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), assessment, ppinfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideWinSATResultsInfo_get_AssessmentState(self: *const T, state: ?*WINSAT_ASSESSMENT_STATE) callconv(.Inline) HRESULT {
-            return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_AssessmentState(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), state);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideWinSATResultsInfo_get_AssessmentDateTime(self: *const T, fileTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_AssessmentDateTime(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), fileTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideWinSATResultsInfo_get_SystemRating(self: *const T, level: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_SystemRating(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), level);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideWinSATResultsInfo_get_RatingStateDesc(self: *const T, description: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_RatingStateDesc(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), description);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetAssessmentInfo(self: *const IProvideWinSATResultsInfo, assessment: WINSAT_ASSESSMENT_TYPE, ppinfo: ?*?*IProvideWinSATAssessmentInfo) callconv(.Inline) HRESULT {
         return self.vtable.GetAssessmentInfo(self, assessment, ppinfo);
     }
@@ -218,18 +180,7 @@ pub const IQueryRecentWinSATAssessment = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueryRecentWinSATAssessment_get_XML(self: *const T, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
-            return @as(*const IQueryRecentWinSATAssessment.VTable, @ptrCast(self.vtable)).get_XML(@as(*const IQueryRecentWinSATAssessment, @ptrCast(self)), xPath, namespaces, ppDomNodeList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueryRecentWinSATAssessment_get_Info(self: *const T, ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo) callconv(.Inline) HRESULT {
-            return @as(*const IQueryRecentWinSATAssessment.VTable, @ptrCast(self.vtable)).get_Info(@as(*const IQueryRecentWinSATAssessment, @ptrCast(self)), ppWinSATAssessmentInfo);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_XML(self: *const IQueryRecentWinSATAssessment, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
         return self.vtable.get_XML(self, xPath, namespaces, ppDomNodeList);
     }
@@ -254,14 +205,6 @@ pub const IProvideWinSATVisuals = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideWinSATVisuals_get_Bitmap(self: *const T, bitmapSize: WINSAT_BITMAP_SIZE, state: WINSAT_ASSESSMENT_STATE, rating: f32, pBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
-            return @as(*const IProvideWinSATVisuals.VTable, @ptrCast(self.vtable)).get_Bitmap(@as(*const IProvideWinSATVisuals, @ptrCast(self)), bitmapSize, state, rating, pBitmap);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Bitmap(self: *const IProvideWinSATVisuals, bitmapSize: WINSAT_BITMAP_SIZE, state: WINSAT_ASSESSMENT_STATE, rating: f32, pBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
         return self.vtable.get_Bitmap(self, bitmapSize, state, rating, pBitmap);
     }
@@ -282,14 +225,7 @@ pub const IQueryAllWinSATAssessments = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueryAllWinSATAssessments_get_AllXML(self: *const T, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
-            return @as(*const IQueryAllWinSATAssessments.VTable, @ptrCast(self.vtable)).get_AllXML(@as(*const IQueryAllWinSATAssessments, @ptrCast(self)), xPath, namespaces, ppDomNodeList);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_AllXML(self: *const IQueryAllWinSATAssessments, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
         return self.vtable.get_AllXML(self, xPath, namespaces, ppDomNodeList);
     }
@@ -315,18 +251,6 @@ pub const IWinSATInitiateEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWinSATInitiateEvents_WinSATComplete(self: *const T, hresult: HRESULT, strDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWinSATInitiateEvents.VTable, @ptrCast(self.vtable)).WinSATComplete(@as(*const IWinSATInitiateEvents, @ptrCast(self)), hresult, strDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWinSATInitiateEvents_WinSATUpdate(self: *const T, uCurrentTick: u32, uTickTotal: u32, strCurrentState: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWinSATInitiateEvents.VTable, @ptrCast(self.vtable)).WinSATUpdate(@as(*const IWinSATInitiateEvents, @ptrCast(self)), uCurrentTick, uTickTotal, strCurrentState);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn WinSATComplete(self: *const IWinSATInitiateEvents, hresult: HRESULT, strDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.WinSATComplete(self, hresult, strDescription);
     }
@@ -358,22 +282,6 @@ pub const IInitiateWinSATAssessment = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInitiateWinSATAssessment_InitiateAssessment(self: *const T, cmdLine: ?[*:0]const u16, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).InitiateAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)), cmdLine, pCallbacks, callerHwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInitiateWinSATAssessment_InitiateFormalAssessment(self: *const T, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).InitiateFormalAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)), pCallbacks, callerHwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInitiateWinSATAssessment_CancelAssessment(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).CancelAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitiateAssessment(self: *const IInitiateWinSATAssessment, cmdLine: ?[*:0]const u16, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) callconv(.Inline) HRESULT {
         return self.vtable.InitiateAssessment(self, cmdLine, pCallbacks, callerHwnd);
     }
@@ -399,14 +307,8 @@ pub const IAccessibleWinSAT = extern union {
     };
     vtable: *const VTable,
     IAccessible: IAccessible,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAccessible.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibleWinSAT_SetAccessiblityData(self: *const T, wsName: ?[*:0]const u16, wsValue: ?[*:0]const u16, wsDesc: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IAccessibleWinSAT.VTable, @ptrCast(self.vtable)).SetAccessiblityData(@as(*const IAccessibleWinSAT, @ptrCast(self)), wsName, wsValue, wsDesc);
-        }
-    };}
-    pub usingnamespace IAccessible.MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
     pub fn SetAccessiblityData(self: *const IAccessibleWinSAT, wsName: ?[*:0]const u16, wsValue: ?[*:0]const u16, wsDesc: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.SetAccessiblityData(self, wsName, wsValue, wsDesc);
     }
@@ -424,14 +326,6 @@ pub const IQueryOEMWinSATCustomization = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueryOEMWinSATCustomization_GetOEMPrePopulationInfo(self: *const T, state: ?*WINSAT_OEM_DATA_TYPE) callconv(.Inline) HRESULT {
-            return @as(*const IQueryOEMWinSATCustomization.VTable, @ptrCast(self.vtable)).GetOEMPrePopulationInfo(@as(*const IQueryOEMWinSATCustomization, @ptrCast(self)), state);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOEMPrePopulationInfo(self: *const IQueryOEMWinSATCustomization, state: ?*WINSAT_OEM_DATA_TYPE) callconv(.Inline) HRESULT {
         return self.vtable.GetOEMPrePopulationInfo(self, state);
     }

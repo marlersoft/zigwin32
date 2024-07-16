@@ -172,22 +172,6 @@ pub const IItemEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IItemEnumerator_Current(self: *const T, Item: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IItemEnumerator.VTable, @ptrCast(self.vtable)).Current(@as(*const IItemEnumerator, @ptrCast(self)), Item);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IItemEnumerator_MoveNext(self: *const T, ItemValid: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IItemEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IItemEnumerator, @ptrCast(self)), ItemValid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IItemEnumerator_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IItemEnumerator.VTable, @ptrCast(self.vtable)).Reset(@as(*const IItemEnumerator, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Current(self: *const IItemEnumerator, Item: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.Current(self, Item);
     }
@@ -228,26 +212,6 @@ pub const ISettingsIdentity = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsIdentity_GetAttribute(self: *const T, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsIdentity.VTable, @ptrCast(self.vtable)).GetAttribute(@as(*const ISettingsIdentity, @ptrCast(self)), Reserved, Name, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsIdentity_SetAttribute(self: *const T, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsIdentity.VTable, @ptrCast(self.vtable)).SetAttribute(@as(*const ISettingsIdentity, @ptrCast(self)), Reserved, Name, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsIdentity_GetFlags(self: *const T, Flags: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsIdentity.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const ISettingsIdentity, @ptrCast(self)), Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsIdentity_SetFlags(self: *const T, Flags: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsIdentity.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const ISettingsIdentity, @ptrCast(self)), Flags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAttribute(self: *const ISettingsIdentity, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetAttribute(self, Reserved, Name, Value);
     }
@@ -368,94 +332,6 @@ pub const ITargetInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetTargetMode(self: *const T, TargetMode: ?*WcmTargetMode) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetTargetMode(@as(*const ITargetInfo, @ptrCast(self)), TargetMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetTargetMode(self: *const T, TargetMode: WcmTargetMode) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetTargetMode(@as(*const ITargetInfo, @ptrCast(self)), TargetMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetTemporaryStoreLocation(self: *const T, TemporaryStoreLocation: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetTemporaryStoreLocation(@as(*const ITargetInfo, @ptrCast(self)), TemporaryStoreLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetTemporaryStoreLocation(self: *const T, TemporaryStoreLocation: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetTemporaryStoreLocation(@as(*const ITargetInfo, @ptrCast(self)), TemporaryStoreLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetTargetID(self: *const T, TargetID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetTargetID(@as(*const ITargetInfo, @ptrCast(self)), TargetID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetTargetID(self: *const T, TargetID: Guid) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetTargetID(@as(*const ITargetInfo, @ptrCast(self)), TargetID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetTargetProcessorArchitecture(self: *const T, ProcessorArchitecture: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetTargetProcessorArchitecture(@as(*const ITargetInfo, @ptrCast(self)), ProcessorArchitecture);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetTargetProcessorArchitecture(self: *const T, ProcessorArchitecture: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetTargetProcessorArchitecture(@as(*const ITargetInfo, @ptrCast(self)), ProcessorArchitecture);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetProperty(self: *const T, Offline: BOOL, Property: ?[*:0]const u16, Value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ITargetInfo, @ptrCast(self)), Offline, Property, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetProperty(self: *const T, Offline: BOOL, Property: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const ITargetInfo, @ptrCast(self)), Offline, Property, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetEnumerator(self: *const T, Enumerator: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const ITargetInfo, @ptrCast(self)), Enumerator);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_ExpandTarget(self: *const T, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).ExpandTarget(@as(*const ITargetInfo, @ptrCast(self)), Offline, Location, ExpandedLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_ExpandTargetPath(self: *const T, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).ExpandTargetPath(@as(*const ITargetInfo, @ptrCast(self)), Offline, Location, ExpandedLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetModulePath(self: *const T, Module: ?[*:0]const u16, Path: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetModulePath(@as(*const ITargetInfo, @ptrCast(self)), Module, Path);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_LoadModule(self: *const T, Module: ?[*:0]const u16, ModuleHandle: ?*?HINSTANCE) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).LoadModule(@as(*const ITargetInfo, @ptrCast(self)), Module, ModuleHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetWow64Context(self: *const T, InstallerModule: ?[*:0]const u16, Wow64Context: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetWow64Context(@as(*const ITargetInfo, @ptrCast(self)), InstallerModule, Wow64Context);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_TranslateWow64(self: *const T, ClientArchitecture: ?[*:0]const u16, Value: ?[*:0]const u16, TranslatedValue: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).TranslateWow64(@as(*const ITargetInfo, @ptrCast(self)), ClientArchitecture, Value, TranslatedValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetSchemaHiveLocation(self: *const T, pwzHiveDir: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetSchemaHiveLocation(@as(*const ITargetInfo, @ptrCast(self)), pwzHiveDir);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetSchemaHiveLocation(self: *const T, pHiveLocation: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetSchemaHiveLocation(@as(*const ITargetInfo, @ptrCast(self)), pHiveLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetSchemaHiveMountName(self: *const T, pwzMountName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).SetSchemaHiveMountName(@as(*const ITargetInfo, @ptrCast(self)), pwzMountName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetSchemaHiveMountName(self: *const T, pMountName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ITargetInfo.VTable, @ptrCast(self.vtable)).GetSchemaHiveMountName(@as(*const ITargetInfo, @ptrCast(self)), pMountName);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTargetMode(self: *const ITargetInfo, TargetMode: ?*WcmTargetMode) callconv(.Inline) HRESULT {
         return self.vtable.GetTargetMode(self, TargetMode);
     }
@@ -609,74 +485,6 @@ pub const ISettingsEngine = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetNamespaces(self: *const T, Flags: WcmNamespaceEnumerationFlags, Reserved: ?*anyopaque, Namespaces: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetNamespaces(@as(*const ISettingsEngine, @ptrCast(self)), Flags, Reserved, Namespaces);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetNamespace(self: *const T, SettingsID: ?*ISettingsIdentity, Access: WcmNamespaceAccess, Reserved: ?*anyopaque, NamespaceItem: ?*?*ISettingsNamespace) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetNamespace(@as(*const ISettingsEngine, @ptrCast(self)), SettingsID, Access, Reserved, NamespaceItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetErrorDescription(self: *const T, HResult: i32, Message: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetErrorDescription(@as(*const ISettingsEngine, @ptrCast(self)), HResult, Message);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_CreateSettingsIdentity(self: *const T, SettingsID: ?*?*ISettingsIdentity) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).CreateSettingsIdentity(@as(*const ISettingsEngine, @ptrCast(self)), SettingsID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetStoreStatus(self: *const T, Reserved: ?*anyopaque, Status: ?*WcmUserStatus) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetStoreStatus(@as(*const ISettingsEngine, @ptrCast(self)), Reserved, Status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_LoadStore(self: *const T, Flags: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).LoadStore(@as(*const ISettingsEngine, @ptrCast(self)), Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_UnloadStore(self: *const T, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).UnloadStore(@as(*const ISettingsEngine, @ptrCast(self)), Reserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_RegisterNamespace(self: *const T, SettingsID: ?*ISettingsIdentity, Stream: ?*IStream, PushSettings: BOOL, Results: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).RegisterNamespace(@as(*const ISettingsEngine, @ptrCast(self)), SettingsID, Stream, PushSettings, Results);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_UnregisterNamespace(self: *const T, SettingsID: ?*ISettingsIdentity, RemoveSettings: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).UnregisterNamespace(@as(*const ISettingsEngine, @ptrCast(self)), SettingsID, RemoveSettings);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_CreateTargetInfo(self: *const T, Target: ?*?*ITargetInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).CreateTargetInfo(@as(*const ISettingsEngine, @ptrCast(self)), Target);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetTargetInfo(self: *const T, Target: ?*?*ITargetInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetTargetInfo(@as(*const ISettingsEngine, @ptrCast(self)), Target);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_SetTargetInfo(self: *const T, Target: ?*ITargetInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).SetTargetInfo(@as(*const ISettingsEngine, @ptrCast(self)), Target);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_CreateSettingsContext(self: *const T, Flags: u32, Reserved: ?*anyopaque, SettingsContext: ?*?*ISettingsContext) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).CreateSettingsContext(@as(*const ISettingsEngine, @ptrCast(self)), Flags, Reserved, SettingsContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_SetSettingsContext(self: *const T, SettingsContext: ?*ISettingsContext) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).SetSettingsContext(@as(*const ISettingsEngine, @ptrCast(self)), SettingsContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_ApplySettingsContext(self: *const T, SettingsContext: ?*ISettingsContext, pppwzIdentities: ?*?*?PWSTR, pcIdentities: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).ApplySettingsContext(@as(*const ISettingsEngine, @ptrCast(self)), SettingsContext, pppwzIdentities, pcIdentities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetSettingsContext(self: *const T, SettingsContext: ?*?*ISettingsContext) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsEngine.VTable, @ptrCast(self.vtable)).GetSettingsContext(@as(*const ISettingsEngine, @ptrCast(self)), SettingsContext);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNamespaces(self: *const ISettingsEngine, Flags: WcmNamespaceEnumerationFlags, Reserved: ?*anyopaque, Namespaces: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.GetNamespaces(self, Flags, Reserved, Namespaces);
     }
@@ -834,98 +642,6 @@ pub const ISettingsItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetName(self: *const T, Name: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetName(@as(*const ISettingsItem, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetValue(self: *const T, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ISettingsItem, @ptrCast(self)), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_SetValue(self: *const T, Value: ?*const VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ISettingsItem, @ptrCast(self)), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetSettingType(self: *const T, Type: ?*WcmSettingType) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetSettingType(@as(*const ISettingsItem, @ptrCast(self)), Type);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetDataType(self: *const T, Type: ?*WcmDataType) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetDataType(@as(*const ISettingsItem, @ptrCast(self)), Type);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetValueRaw(self: *const T, Data: [*]?*u8, DataSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetValueRaw(@as(*const ISettingsItem, @ptrCast(self)), Data, DataSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_SetValueRaw(self: *const T, DataType: i32, Data: [*:0]const u8, DataSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).SetValueRaw(@as(*const ISettingsItem, @ptrCast(self)), DataType, Data, DataSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_HasChild(self: *const T, ItemHasChild: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).HasChild(@as(*const ISettingsItem, @ptrCast(self)), ItemHasChild);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_Children(self: *const T, _param_Children: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).Children(@as(*const ISettingsItem, @ptrCast(self)), _param_Children);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetChild(self: *const T, Name: ?[*:0]const u16, Child: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetChild(@as(*const ISettingsItem, @ptrCast(self)), Name, Child);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetSettingByPath(self: *const T, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetSettingByPath(@as(*const ISettingsItem, @ptrCast(self)), Path, Setting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_CreateSettingByPath(self: *const T, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).CreateSettingByPath(@as(*const ISettingsItem, @ptrCast(self)), Path, Setting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_RemoveSettingByPath(self: *const T, Path: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).RemoveSettingByPath(@as(*const ISettingsItem, @ptrCast(self)), Path);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetListKeyInformation(self: *const T, KeyName: ?*?BSTR, DataType: ?*WcmDataType) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetListKeyInformation(@as(*const ISettingsItem, @ptrCast(self)), KeyName, DataType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_CreateListElement(self: *const T, KeyData: ?*const VARIANT, Child: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).CreateListElement(@as(*const ISettingsItem, @ptrCast(self)), KeyData, Child);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_RemoveListElement(self: *const T, ElementName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).RemoveListElement(@as(*const ISettingsItem, @ptrCast(self)), ElementName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_Attributes(self: *const T, _param_Attributes: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).Attributes(@as(*const ISettingsItem, @ptrCast(self)), _param_Attributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetAttribute(self: *const T, Name: ?[*:0]const u16, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetAttribute(@as(*const ISettingsItem, @ptrCast(self)), Name, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetPath(self: *const T, Path: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetPath(@as(*const ISettingsItem, @ptrCast(self)), Path);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetRestrictionFacets(self: *const T, RestrictionFacets: ?*WcmRestrictionFacets) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetRestrictionFacets(@as(*const ISettingsItem, @ptrCast(self)), RestrictionFacets);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetRestriction(self: *const T, RestrictionFacet: WcmRestrictionFacets, FacetData: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetRestriction(@as(*const ISettingsItem, @ptrCast(self)), RestrictionFacet, FacetData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetKeyValue(self: *const T, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsItem.VTable, @ptrCast(self.vtable)).GetKeyValue(@as(*const ISettingsItem, @ptrCast(self)), Value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetName(self: *const ISettingsItem, Name: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetName(self, Name);
     }
@@ -1035,38 +751,6 @@ pub const ISettingsNamespace = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_GetIdentity(self: *const T, SettingsID: ?*?*ISettingsIdentity) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).GetIdentity(@as(*const ISettingsNamespace, @ptrCast(self)), SettingsID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_Settings(self: *const T, _param_Settings: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).Settings(@as(*const ISettingsNamespace, @ptrCast(self)), _param_Settings);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_Save(self: *const T, PushSettings: BOOL, Result: ?*?*ISettingsResult) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).Save(@as(*const ISettingsNamespace, @ptrCast(self)), PushSettings, Result);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_GetSettingByPath(self: *const T, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).GetSettingByPath(@as(*const ISettingsNamespace, @ptrCast(self)), Path, Setting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_CreateSettingByPath(self: *const T, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).CreateSettingByPath(@as(*const ISettingsNamespace, @ptrCast(self)), Path, Setting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_RemoveSettingByPath(self: *const T, Path: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).RemoveSettingByPath(@as(*const ISettingsNamespace, @ptrCast(self)), Path);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_GetAttribute(self: *const T, Name: ?[*:0]const u16, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsNamespace.VTable, @ptrCast(self.vtable)).GetAttribute(@as(*const ISettingsNamespace, @ptrCast(self)), Name, Value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIdentity(self: *const ISettingsNamespace, SettingsID: ?*?*ISettingsIdentity) callconv(.Inline) HRESULT {
         return self.vtable.GetIdentity(self, SettingsID);
     }
@@ -1123,34 +807,6 @@ pub const ISettingsResult = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsResult_GetDescription(self: *const T, description: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ISettingsResult, @ptrCast(self)), description);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsResult_GetErrorCode(self: *const T, hrOut: ?*HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetErrorCode(@as(*const ISettingsResult, @ptrCast(self)), hrOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsResult_GetContextDescription(self: *const T, description: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetContextDescription(@as(*const ISettingsResult, @ptrCast(self)), description);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsResult_GetLine(self: *const T, dwLine: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetLine(@as(*const ISettingsResult, @ptrCast(self)), dwLine);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsResult_GetColumn(self: *const T, dwColumn: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetColumn(@as(*const ISettingsResult, @ptrCast(self)), dwColumn);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsResult_GetSource(self: *const T, file: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsResult.VTable, @ptrCast(self.vtable)).GetSource(@as(*const ISettingsResult, @ptrCast(self)), file);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDescription(self: *const ISettingsResult, description: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetDescription(self, description);
     }
@@ -1216,38 +872,6 @@ pub const ISettingsContext = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_Serialize(self: *const T, pStream: ?*IStream, pTarget: ?*ITargetInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISettingsContext, @ptrCast(self)), pStream, pTarget);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_Deserialize(self: *const T, pStream: ?*IStream, pTarget: ?*ITargetInfo, pppResults: [*]?*?*ISettingsResult, pcResultCount: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).Deserialize(@as(*const ISettingsContext, @ptrCast(self)), pStream, pTarget, pppResults, pcResultCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_SetUserData(self: *const T, pUserData: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).SetUserData(@as(*const ISettingsContext, @ptrCast(self)), pUserData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_GetUserData(self: *const T, pUserData: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).GetUserData(@as(*const ISettingsContext, @ptrCast(self)), pUserData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_GetNamespaces(self: *const T, ppNamespaceIds: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).GetNamespaces(@as(*const ISettingsContext, @ptrCast(self)), ppNamespaceIds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_GetStoredSettings(self: *const T, pIdentity: ?*ISettingsIdentity, ppAddedSettings: ?*?*IItemEnumerator, ppModifiedSettings: ?*?*IItemEnumerator, ppDeletedSettings: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).GetStoredSettings(@as(*const ISettingsContext, @ptrCast(self)), pIdentity, ppAddedSettings, ppModifiedSettings, ppDeletedSettings);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_RevertSetting(self: *const T, pIdentity: ?*ISettingsIdentity, pwzSetting: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ISettingsContext.VTable, @ptrCast(self.vtable)).RevertSetting(@as(*const ISettingsContext, @ptrCast(self)), pIdentity, pwzSetting);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Serialize(self: *const ISettingsContext, pStream: ?*IStream, pTarget: ?*ITargetInfo) callconv(.Inline) HRESULT {
         return self.vtable.Serialize(self, pStream, pTarget);
     }

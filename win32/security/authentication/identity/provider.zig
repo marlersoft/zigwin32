@@ -82,14 +82,6 @@ pub const IIdentityAdvise = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityAdvise_IdentityUpdated(self: *const T, dwIdentityUpdateEvents: IdentityUpdateEvent, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityAdvise.VTable, @ptrCast(self.vtable)).IdentityUpdated(@as(*const IIdentityAdvise, @ptrCast(self)), dwIdentityUpdateEvents, lpszUniqueID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IdentityUpdated(self: *const IIdentityAdvise, dwIdentityUpdateEvents: IdentityUpdateEvent, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.IdentityUpdated(self, dwIdentityUpdateEvents, lpszUniqueID);
     }
@@ -111,18 +103,6 @@ pub const AsyncIIdentityAdvise = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityAdvise_Begin_IdentityUpdated(self: *const T, dwIdentityUpdateEvents: u32, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityAdvise.VTable, @ptrCast(self.vtable)).Begin_IdentityUpdated(@as(*const AsyncIIdentityAdvise, @ptrCast(self)), dwIdentityUpdateEvents, lpszUniqueID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityAdvise_Finish_IdentityUpdated(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityAdvise.VTable, @ptrCast(self.vtable)).Finish_IdentityUpdated(@as(*const AsyncIIdentityAdvise, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_IdentityUpdated(self: *const AsyncIIdentityAdvise, dwIdentityUpdateEvents: u32, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.Begin_IdentityUpdated(self, dwIdentityUpdateEvents, lpszUniqueID);
     }
@@ -181,42 +161,6 @@ pub const IIdentityProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_GetIdentityEnum(self: *const T, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).GetIdentityEnum(@as(*const IIdentityProvider, @ptrCast(self)), eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_Create(self: *const T, lpszUserName: ?[*:0]const u16, ppPropertyStore: ?*?*IPropertyStore, pKeywordsToAdd: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).Create(@as(*const IIdentityProvider, @ptrCast(self)), lpszUserName, ppPropertyStore, pKeywordsToAdd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_Import(self: *const T, pPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).Import(@as(*const IIdentityProvider, @ptrCast(self)), pPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_Delete(self: *const T, lpszUniqueID: ?[*:0]const u16, pKeywordsToDelete: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).Delete(@as(*const IIdentityProvider, @ptrCast(self)), lpszUniqueID, pKeywordsToDelete);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_FindByUniqueID(self: *const T, lpszUniqueID: ?[*:0]const u16, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).FindByUniqueID(@as(*const IIdentityProvider, @ptrCast(self)), lpszUniqueID, ppPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_GetProviderPropertyStore(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).GetProviderPropertyStore(@as(*const IIdentityProvider, @ptrCast(self)), ppPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_Advise(self: *const T, pIdentityAdvise: ?*IIdentityAdvise, dwIdentityUpdateEvents: IdentityUpdateEvent, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).Advise(@as(*const IIdentityProvider, @ptrCast(self)), pIdentityAdvise, dwIdentityUpdateEvents, pdwCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_UnAdvise(self: *const T, dwCookie: u32) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).UnAdvise(@as(*const IIdentityProvider, @ptrCast(self)), dwCookie);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIdentityEnum(self: *const IIdentityProvider, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetIdentityEnum(self, eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
     }
@@ -316,74 +260,6 @@ pub const AsyncIIdentityProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Begin_GetIdentityEnum(self: *const T, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_GetIdentityEnum(@as(*const AsyncIIdentityProvider, @ptrCast(self)), eIdentityType, pFilterkey, pFilterPropVarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_GetIdentityEnum(self: *const T, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_GetIdentityEnum(@as(*const AsyncIIdentityProvider, @ptrCast(self)), ppIdentityEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Begin_Create(self: *const T, lpszUserName: ?[*:0]const u16, pKeywordsToAdd: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_Create(@as(*const AsyncIIdentityProvider, @ptrCast(self)), lpszUserName, pKeywordsToAdd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_Create(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_Create(@as(*const AsyncIIdentityProvider, @ptrCast(self)), ppPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Begin_Import(self: *const T, pPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_Import(@as(*const AsyncIIdentityProvider, @ptrCast(self)), pPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_Import(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_Import(@as(*const AsyncIIdentityProvider, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Begin_Delete(self: *const T, lpszUniqueID: ?[*:0]const u16, pKeywordsToDelete: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_Delete(@as(*const AsyncIIdentityProvider, @ptrCast(self)), lpszUniqueID, pKeywordsToDelete);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_Delete(@as(*const AsyncIIdentityProvider, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Begin_FindByUniqueID(self: *const T, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_FindByUniqueID(@as(*const AsyncIIdentityProvider, @ptrCast(self)), lpszUniqueID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_FindByUniqueID(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_FindByUniqueID(@as(*const AsyncIIdentityProvider, @ptrCast(self)), ppPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Begin_GetProviderPropertyStore(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_GetProviderPropertyStore(@as(*const AsyncIIdentityProvider, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_GetProviderPropertyStore(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_GetProviderPropertyStore(@as(*const AsyncIIdentityProvider, @ptrCast(self)), ppPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Begin_Advise(self: *const T, pIdentityAdvise: ?*IIdentityAdvise, dwIdentityUpdateEvents: u32) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_Advise(@as(*const AsyncIIdentityProvider, @ptrCast(self)), pIdentityAdvise, dwIdentityUpdateEvents);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_Advise(self: *const T, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_Advise(@as(*const AsyncIIdentityProvider, @ptrCast(self)), pdwCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Begin_UnAdvise(self: *const T, dwCookie: u32) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_UnAdvise(@as(*const AsyncIIdentityProvider, @ptrCast(self)), dwCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_UnAdvise(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_UnAdvise(@as(*const AsyncIIdentityProvider, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_GetIdentityEnum(self: *const AsyncIIdentityProvider, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
         return self.vtable.Begin_GetIdentityEnum(self, eIdentityType, pFilterkey, pFilterPropVarValue);
     }
@@ -458,22 +334,6 @@ pub const IAssociatedIdentityProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssociatedIdentityProvider_AssociateIdentity(self: *const T, hwndParent: ?HWND, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const IAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).AssociateIdentity(@as(*const IAssociatedIdentityProvider, @ptrCast(self)), hwndParent, ppPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssociatedIdentityProvider_DisassociateIdentity(self: *const T, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).DisassociateIdentity(@as(*const IAssociatedIdentityProvider, @ptrCast(self)), hwndParent, lpszUniqueID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssociatedIdentityProvider_ChangeCredential(self: *const T, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).ChangeCredential(@as(*const IAssociatedIdentityProvider, @ptrCast(self)), hwndParent, lpszUniqueID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AssociateIdentity(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
         return self.vtable.AssociateIdentity(self, hwndParent, ppPropertyStore);
     }
@@ -517,34 +377,6 @@ pub const AsyncIAssociatedIdentityProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIAssociatedIdentityProvider_Begin_AssociateIdentity(self: *const T, hwndParent: ?HWND) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_AssociateIdentity(@as(*const AsyncIAssociatedIdentityProvider, @ptrCast(self)), hwndParent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIAssociatedIdentityProvider_Finish_AssociateIdentity(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_AssociateIdentity(@as(*const AsyncIAssociatedIdentityProvider, @ptrCast(self)), ppPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIAssociatedIdentityProvider_Begin_DisassociateIdentity(self: *const T, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_DisassociateIdentity(@as(*const AsyncIAssociatedIdentityProvider, @ptrCast(self)), hwndParent, lpszUniqueID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIAssociatedIdentityProvider_Finish_DisassociateIdentity(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_DisassociateIdentity(@as(*const AsyncIAssociatedIdentityProvider, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIAssociatedIdentityProvider_Begin_ChangeCredential(self: *const T, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_ChangeCredential(@as(*const AsyncIAssociatedIdentityProvider, @ptrCast(self)), hwndParent, lpszUniqueID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIAssociatedIdentityProvider_Finish_ChangeCredential(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_ChangeCredential(@as(*const AsyncIAssociatedIdentityProvider, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_AssociateIdentity(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND) callconv(.Inline) HRESULT {
         return self.vtable.Begin_AssociateIdentity(self, hwndParent);
     }
@@ -623,30 +455,6 @@ pub const IConnectedIdentityProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnectedIdentityProvider_ConnectIdentity(self: *const T, AuthBuffer: [*:0]u8, AuthBufferSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const IConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).ConnectIdentity(@as(*const IConnectedIdentityProvider, @ptrCast(self)), AuthBuffer, AuthBufferSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnectedIdentityProvider_DisconnectIdentity(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).DisconnectIdentity(@as(*const IConnectedIdentityProvider, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnectedIdentityProvider_IsConnected(self: *const T, Connected: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).IsConnected(@as(*const IConnectedIdentityProvider, @ptrCast(self)), Connected);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnectedIdentityProvider_GetUrl(self: *const T, Identifier: IDENTITY_URL, Context: ?*IBindCtx, PostData: ?*VARIANT, Url: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).GetUrl(@as(*const IConnectedIdentityProvider, @ptrCast(self)), Identifier, Context, PostData, Url);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnectedIdentityProvider_GetAccountState(self: *const T, pState: ?*ACCOUNT_STATE) callconv(.Inline) HRESULT {
-            return @as(*const IConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).GetAccountState(@as(*const IConnectedIdentityProvider, @ptrCast(self)), pState);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ConnectIdentity(self: *const IConnectedIdentityProvider, AuthBuffer: [*:0]u8, AuthBufferSize: u32) callconv(.Inline) HRESULT {
         return self.vtable.ConnectIdentity(self, AuthBuffer, AuthBufferSize);
     }
@@ -710,50 +518,6 @@ pub const AsyncIConnectedIdentityProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIConnectedIdentityProvider_Begin_ConnectIdentity(self: *const T, AuthBuffer: [*:0]u8, AuthBufferSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_ConnectIdentity(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)), AuthBuffer, AuthBufferSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIConnectedIdentityProvider_Finish_ConnectIdentity(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_ConnectIdentity(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIConnectedIdentityProvider_Begin_DisconnectIdentity(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_DisconnectIdentity(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIConnectedIdentityProvider_Finish_DisconnectIdentity(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_DisconnectIdentity(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIConnectedIdentityProvider_Begin_IsConnected(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_IsConnected(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIConnectedIdentityProvider_Finish_IsConnected(self: *const T, Connected: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_IsConnected(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)), Connected);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIConnectedIdentityProvider_Begin_GetUrl(self: *const T, Identifier: IDENTITY_URL, Context: ?*IBindCtx) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_GetUrl(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)), Identifier, Context);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIConnectedIdentityProvider_Finish_GetUrl(self: *const T, PostData: ?*VARIANT, Url: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_GetUrl(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)), PostData, Url);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIConnectedIdentityProvider_Begin_GetAccountState(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_GetAccountState(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIConnectedIdentityProvider_Finish_GetAccountState(self: *const T, pState: ?*ACCOUNT_STATE) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_GetAccountState(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)), pState);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_ConnectIdentity(self: *const AsyncIConnectedIdentityProvider, AuthBuffer: [*:0]u8, AuthBufferSize: u32) callconv(.Inline) HRESULT {
         return self.vtable.Begin_ConnectIdentity(self, AuthBuffer, AuthBufferSize);
     }
@@ -805,18 +569,6 @@ pub const IIdentityAuthentication = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityAuthentication_SetIdentityCredential(self: *const T, CredBuffer: ?[*:0]u8, CredBufferLength: u32) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityAuthentication.VTable, @ptrCast(self.vtable)).SetIdentityCredential(@as(*const IIdentityAuthentication, @ptrCast(self)), CredBuffer, CredBufferLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityAuthentication_ValidateIdentityCredential(self: *const T, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityAuthentication.VTable, @ptrCast(self.vtable)).ValidateIdentityCredential(@as(*const IIdentityAuthentication, @ptrCast(self)), CredBuffer, CredBufferLength, ppIdentityProperties);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetIdentityCredential(self: *const IIdentityAuthentication, CredBuffer: ?[*:0]u8, CredBufferLength: u32) callconv(.Inline) HRESULT {
         return self.vtable.SetIdentityCredential(self, CredBuffer, CredBufferLength);
     }
@@ -851,26 +603,6 @@ pub const AsyncIIdentityAuthentication = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityAuthentication_Begin_SetIdentityCredential(self: *const T, CredBuffer: ?[*:0]u8, CredBufferLength: u32) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityAuthentication.VTable, @ptrCast(self.vtable)).Begin_SetIdentityCredential(@as(*const AsyncIIdentityAuthentication, @ptrCast(self)), CredBuffer, CredBufferLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityAuthentication_Finish_SetIdentityCredential(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityAuthentication.VTable, @ptrCast(self.vtable)).Finish_SetIdentityCredential(@as(*const AsyncIIdentityAuthentication, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityAuthentication_Begin_ValidateIdentityCredential(self: *const T, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityAuthentication.VTable, @ptrCast(self.vtable)).Begin_ValidateIdentityCredential(@as(*const AsyncIIdentityAuthentication, @ptrCast(self)), CredBuffer, CredBufferLength, ppIdentityProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityAuthentication_Finish_ValidateIdentityCredential(self: *const T, ppIdentityProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityAuthentication.VTable, @ptrCast(self.vtable)).Finish_ValidateIdentityCredential(@as(*const AsyncIIdentityAuthentication, @ptrCast(self)), ppIdentityProperties);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_SetIdentityCredential(self: *const AsyncIIdentityAuthentication, CredBuffer: ?[*:0]u8, CredBufferLength: u32) callconv(.Inline) HRESULT {
         return self.vtable.Begin_SetIdentityCredential(self, CredBuffer, CredBufferLength);
     }
@@ -933,34 +665,6 @@ pub const IIdentityStore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityStore_GetCount(self: *const T, pdwProviders: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityStore.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IIdentityStore, @ptrCast(self)), pdwProviders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityStore_GetAt(self: *const T, dwProvider: u32, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityStore.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IIdentityStore, @ptrCast(self)), dwProvider, pProvGuid, ppIdentityProvider);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityStore_AddToCache(self: *const T, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityStore.VTable, @ptrCast(self.vtable)).AddToCache(@as(*const IIdentityStore, @ptrCast(self)), lpszUniqueID, ProviderGUID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityStore_ConvertToSid(self: *const T, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid, cbSid: u16, pSid: ?[*:0]u8, pcbRequiredSid: ?*u16) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityStore.VTable, @ptrCast(self.vtable)).ConvertToSid(@as(*const IIdentityStore, @ptrCast(self)), lpszUniqueID, ProviderGUID, cbSid, pSid, pcbRequiredSid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityStore_EnumerateIdentities(self: *const T, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityStore.VTable, @ptrCast(self.vtable)).EnumerateIdentities(@as(*const IIdentityStore, @ptrCast(self)), eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityStore_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityStore.VTable, @ptrCast(self.vtable)).Reset(@as(*const IIdentityStore, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IIdentityStore, pdwProviders: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetCount(self, pdwProviders);
     }
@@ -1042,58 +746,6 @@ pub const AsyncIIdentityStore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Begin_GetCount(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Begin_GetCount(@as(*const AsyncIIdentityStore, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Finish_GetCount(self: *const T, pdwProviders: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Finish_GetCount(@as(*const AsyncIIdentityStore, @ptrCast(self)), pdwProviders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Begin_GetAt(self: *const T, dwProvider: u32, pProvGuid: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Begin_GetAt(@as(*const AsyncIIdentityStore, @ptrCast(self)), dwProvider, pProvGuid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Finish_GetAt(self: *const T, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Finish_GetAt(@as(*const AsyncIIdentityStore, @ptrCast(self)), pProvGuid, ppIdentityProvider);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Begin_AddToCache(self: *const T, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Begin_AddToCache(@as(*const AsyncIIdentityStore, @ptrCast(self)), lpszUniqueID, ProviderGUID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Finish_AddToCache(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Finish_AddToCache(@as(*const AsyncIIdentityStore, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Begin_ConvertToSid(self: *const T, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid, cbSid: u16, pSid: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Begin_ConvertToSid(@as(*const AsyncIIdentityStore, @ptrCast(self)), lpszUniqueID, ProviderGUID, cbSid, pSid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Finish_ConvertToSid(self: *const T, pSid: ?*u8, pcbRequiredSid: ?*u16) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Finish_ConvertToSid(@as(*const AsyncIIdentityStore, @ptrCast(self)), pSid, pcbRequiredSid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Begin_EnumerateIdentities(self: *const T, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Begin_EnumerateIdentities(@as(*const AsyncIIdentityStore, @ptrCast(self)), eIdentityType, pFilterkey, pFilterPropVarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Finish_EnumerateIdentities(self: *const T, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Finish_EnumerateIdentities(@as(*const AsyncIIdentityStore, @ptrCast(self)), ppIdentityEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Begin_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Begin_Reset(@as(*const AsyncIIdentityStore, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Finish_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Finish_Reset(@as(*const AsyncIIdentityStore, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_GetCount(self: *const AsyncIIdentityStore) callconv(.Inline) HRESULT {
         return self.vtable.Begin_GetCount(self);
     }
@@ -1151,18 +803,6 @@ pub const IIdentityStoreEx = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityStoreEx_CreateConnectedIdentity(self: *const T, LocalName: ?[*:0]const u16, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityStoreEx.VTable, @ptrCast(self.vtable)).CreateConnectedIdentity(@as(*const IIdentityStoreEx, @ptrCast(self)), LocalName, ConnectedName, ProviderGUID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityStoreEx_DeleteConnectedIdentity(self: *const T, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IIdentityStoreEx.VTable, @ptrCast(self.vtable)).DeleteConnectedIdentity(@as(*const IIdentityStoreEx, @ptrCast(self)), ConnectedName, ProviderGUID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateConnectedIdentity(self: *const IIdentityStoreEx, LocalName: ?[*:0]const u16, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
         return self.vtable.CreateConnectedIdentity(self, LocalName, ConnectedName, ProviderGUID);
     }
@@ -1196,26 +836,6 @@ pub const AsyncIIdentityStoreEx = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStoreEx_Begin_CreateConnectedIdentity(self: *const T, LocalName: ?[*:0]const u16, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStoreEx.VTable, @ptrCast(self.vtable)).Begin_CreateConnectedIdentity(@as(*const AsyncIIdentityStoreEx, @ptrCast(self)), LocalName, ConnectedName, ProviderGUID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStoreEx_Finish_CreateConnectedIdentity(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStoreEx.VTable, @ptrCast(self.vtable)).Finish_CreateConnectedIdentity(@as(*const AsyncIIdentityStoreEx, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStoreEx_Begin_DeleteConnectedIdentity(self: *const T, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStoreEx.VTable, @ptrCast(self.vtable)).Begin_DeleteConnectedIdentity(@as(*const AsyncIIdentityStoreEx, @ptrCast(self)), ConnectedName, ProviderGUID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStoreEx_Finish_DeleteConnectedIdentity(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const AsyncIIdentityStoreEx.VTable, @ptrCast(self.vtable)).Finish_DeleteConnectedIdentity(@as(*const AsyncIIdentityStoreEx, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_CreateConnectedIdentity(self: *const AsyncIIdentityStoreEx, LocalName: ?[*:0]const u16, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
         return self.vtable.Begin_CreateConnectedIdentity(self, LocalName, ConnectedName, ProviderGUID);
     }

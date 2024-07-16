@@ -40,18 +40,6 @@ pub const IPdfRendererNative = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPdfRendererNative_RenderPageToSurface(self: *const T, pdfPage: ?*IUnknown, pSurface: ?*IDXGISurface, offset: POINT, pRenderParams: ?*PDF_RENDER_PARAMS) callconv(.Inline) HRESULT {
-            return @as(*const IPdfRendererNative.VTable, @ptrCast(self.vtable)).RenderPageToSurface(@as(*const IPdfRendererNative, @ptrCast(self)), pdfPage, pSurface, offset, pRenderParams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPdfRendererNative_RenderPageToDeviceContext(self: *const T, pdfPage: ?*IUnknown, pD2DDeviceContext: ?*ID2D1DeviceContext, pRenderParams: ?*PDF_RENDER_PARAMS) callconv(.Inline) HRESULT {
-            return @as(*const IPdfRendererNative.VTable, @ptrCast(self.vtable)).RenderPageToDeviceContext(@as(*const IPdfRendererNative, @ptrCast(self)), pdfPage, pD2DDeviceContext, pRenderParams);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RenderPageToSurface(self: *const IPdfRendererNative, pdfPage: ?*IUnknown, pSurface: ?*IDXGISurface, offset: POINT, pRenderParams: ?*PDF_RENDER_PARAMS) callconv(.Inline) HRESULT {
         return self.vtable.RenderPageToSurface(self, pdfPage, pSurface, offset, pRenderParams);
     }

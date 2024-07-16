@@ -80,30 +80,6 @@ pub const IRendezvousSession = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRendezvousSession_get_State(self: *const T, pSessionState: ?*RENDEZVOUS_SESSION_STATE) callconv(.Inline) HRESULT {
-            return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRendezvousSession, @ptrCast(self)), pSessionState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRendezvousSession_get_RemoteUser(self: *const T, bstrUserName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).get_RemoteUser(@as(*const IRendezvousSession, @ptrCast(self)), bstrUserName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRendezvousSession_get_Flags(self: *const T, pFlags: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRendezvousSession, @ptrCast(self)), pFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRendezvousSession_SendContextData(self: *const T, bstrData: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).SendContextData(@as(*const IRendezvousSession, @ptrCast(self)), bstrData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRendezvousSession_Terminate(self: *const T, hr: HRESULT, bstrAppData: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IRendezvousSession, @ptrCast(self)), hr, bstrAppData);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_State(self: *const IRendezvousSession, pSessionState: ?*RENDEZVOUS_SESSION_STATE) callconv(.Inline) HRESULT {
         return self.vtable.get_State(self, pSessionState);
     }
@@ -130,10 +106,7 @@ pub const DRendezvousSessionEvents = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -149,14 +122,6 @@ pub const IRendezvousApplication = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRendezvousApplication_SetRendezvousSession(self: *const T, pRendezvousSession: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IRendezvousApplication.VTable, @ptrCast(self.vtable)).SetRendezvousSession(@as(*const IRendezvousApplication, @ptrCast(self)), pRendezvousSession);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetRendezvousSession(self: *const IRendezvousApplication, pRendezvousSession: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.SetRendezvousSession(self, pRendezvousSession);
     }

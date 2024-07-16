@@ -37,18 +37,7 @@ pub const IWindowsMediaLibrarySharingDeviceProperty = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingDeviceProperty_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingDeviceProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWindowsMediaLibrarySharingDeviceProperty, @ptrCast(self)), name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingDeviceProperty_get_Value(self: *const T, value: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingDeviceProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IWindowsMediaLibrarySharingDeviceProperty, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Name(self: *const IWindowsMediaLibrarySharingDeviceProperty, name: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Name(self, name);
     }
@@ -81,22 +70,7 @@ pub const IWindowsMediaLibrarySharingDeviceProperties = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingDeviceProperties_get_Item(self: *const T, index: i32, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingDeviceProperties.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IWindowsMediaLibrarySharingDeviceProperties, @ptrCast(self)), index, property);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingDeviceProperties_get_Count(self: *const T, count: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingDeviceProperties.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IWindowsMediaLibrarySharingDeviceProperties, @ptrCast(self)), count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingDeviceProperties_GetProperty(self: *const T, name: ?BSTR, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingDeviceProperties.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IWindowsMediaLibrarySharingDeviceProperties, @ptrCast(self)), name, property);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IWindowsMediaLibrarySharingDeviceProperties, index: i32, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, index, property);
     }
@@ -137,26 +111,7 @@ pub const IWindowsMediaLibrarySharingDevice = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingDevice_get_DeviceID(self: *const T, deviceID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingDevice.VTable, @ptrCast(self.vtable)).get_DeviceID(@as(*const IWindowsMediaLibrarySharingDevice, @ptrCast(self)), deviceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingDevice_get_Authorization(self: *const T, authorization: ?*WindowsMediaLibrarySharingDeviceAuthorizationStatus) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingDevice.VTable, @ptrCast(self.vtable)).get_Authorization(@as(*const IWindowsMediaLibrarySharingDevice, @ptrCast(self)), authorization);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingDevice_put_Authorization(self: *const T, authorization: WindowsMediaLibrarySharingDeviceAuthorizationStatus) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingDevice.VTable, @ptrCast(self.vtable)).put_Authorization(@as(*const IWindowsMediaLibrarySharingDevice, @ptrCast(self)), authorization);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingDevice_get_Properties(self: *const T, deviceProperties: ?*?*IWindowsMediaLibrarySharingDeviceProperties) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingDevice.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IWindowsMediaLibrarySharingDevice, @ptrCast(self)), deviceProperties);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_DeviceID(self: *const IWindowsMediaLibrarySharingDevice, deviceID: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_DeviceID(self, deviceID);
     }
@@ -195,22 +150,7 @@ pub const IWindowsMediaLibrarySharingDevices = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingDevices_get_Item(self: *const T, index: i32, device: ?*?*IWindowsMediaLibrarySharingDevice) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingDevices.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IWindowsMediaLibrarySharingDevices, @ptrCast(self)), index, device);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingDevices_get_Count(self: *const T, count: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingDevices.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IWindowsMediaLibrarySharingDevices, @ptrCast(self)), count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingDevices_GetDevice(self: *const T, deviceID: ?BSTR, device: ?*?*IWindowsMediaLibrarySharingDevice) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingDevices.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IWindowsMediaLibrarySharingDevices, @ptrCast(self)), deviceID, device);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_Item(self: *const IWindowsMediaLibrarySharingDevices, index: i32, device: ?*?*IWindowsMediaLibrarySharingDevice) callconv(.Inline) HRESULT {
         return self.vtable.get_Item(self, index, device);
     }
@@ -325,86 +265,7 @@ pub const IWindowsMediaLibrarySharingServices = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_showShareMediaCPL(self: *const T, device: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).showShareMediaCPL(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), device);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_get_userHomeMediaSharingState(self: *const T, sharingEnabled: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_userHomeMediaSharingState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_put_userHomeMediaSharingState(self: *const T, sharingEnabled: i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_userHomeMediaSharingState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_get_userHomeMediaSharingLibraryName(self: *const T, libraryName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_userHomeMediaSharingLibraryName(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), libraryName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_put_userHomeMediaSharingLibraryName(self: *const T, libraryName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_userHomeMediaSharingLibraryName(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), libraryName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_get_computerHomeMediaSharingAllowedState(self: *const T, sharingAllowed: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_computerHomeMediaSharingAllowedState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingAllowed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_put_computerHomeMediaSharingAllowedState(self: *const T, sharingAllowed: i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_computerHomeMediaSharingAllowedState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingAllowed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_get_userInternetMediaSharingState(self: *const T, sharingEnabled: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_userInternetMediaSharingState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_put_userInternetMediaSharingState(self: *const T, sharingEnabled: i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_userInternetMediaSharingState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_get_computerInternetMediaSharingAllowedState(self: *const T, sharingAllowed: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_computerInternetMediaSharingAllowedState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingAllowed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_put_computerInternetMediaSharingAllowedState(self: *const T, sharingAllowed: i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_computerInternetMediaSharingAllowedState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingAllowed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_get_internetMediaSharingSecurityGroup(self: *const T, securityGroup: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_internetMediaSharingSecurityGroup(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), securityGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_put_internetMediaSharingSecurityGroup(self: *const T, securityGroup: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_internetMediaSharingSecurityGroup(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), securityGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_get_allowSharingToAllDevices(self: *const T, sharingEnabled: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_allowSharingToAllDevices(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_put_allowSharingToAllDevices(self: *const T, sharingEnabled: i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).put_allowSharingToAllDevices(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), sharingEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_setDefaultAuthorization(self: *const T, MACAddresses: ?BSTR, friendlyName: ?BSTR, authorization: i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).setDefaultAuthorization(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), MACAddresses, friendlyName, authorization);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_setAuthorizationState(self: *const T, MACAddress: ?BSTR, authorizationState: i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).setAuthorizationState(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), MACAddress, authorizationState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_getAllDevices(self: *const T, devices: ?*?*IWindowsMediaLibrarySharingDevices) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).getAllDevices(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), devices);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsMediaLibrarySharingServices_get_customSettingsApplied(self: *const T, customSettingsApplied: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IWindowsMediaLibrarySharingServices.VTable, @ptrCast(self.vtable)).get_customSettingsApplied(@as(*const IWindowsMediaLibrarySharingServices, @ptrCast(self)), customSettingsApplied);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn showShareMediaCPL(self: *const IWindowsMediaLibrarySharingServices, device: ?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.showShareMediaCPL(self, device);
     }
@@ -483,12 +344,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
+const IUnknown = @import("../system/com.zig").IUnknown;
 const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {

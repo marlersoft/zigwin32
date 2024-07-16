@@ -28,18 +28,6 @@ pub const IDisplayDeviceInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDisplayDeviceInterop_CreateSharedHandle(self: *const T, pObject: ?*IInspectable, pSecurityAttributes: ?*const SECURITY_ATTRIBUTES, Access: u32, Name: ?HSTRING, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const IDisplayDeviceInterop.VTable, @ptrCast(self.vtable)).CreateSharedHandle(@as(*const IDisplayDeviceInterop, @ptrCast(self)), pObject, pSecurityAttributes, Access, Name, pHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDisplayDeviceInterop_OpenSharedHandle(self: *const T, NTHandle: ?HANDLE, riid: Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDisplayDeviceInterop.VTable, @ptrCast(self.vtable)).OpenSharedHandle(@as(*const IDisplayDeviceInterop, @ptrCast(self)), NTHandle, riid, ppvObj);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateSharedHandle(self: *const IDisplayDeviceInterop, pObject: ?*IInspectable, pSecurityAttributes: ?*const SECURITY_ATTRIBUTES, Access: u32, Name: ?HSTRING, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
         return self.vtable.CreateSharedHandle(self, pObject, pSecurityAttributes, Access, Name, pHandle);
     }
@@ -64,18 +52,6 @@ pub const IDisplayPathInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDisplayPathInterop_CreateSourcePresentationHandle(self: *const T, pValue: ?*?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const IDisplayPathInterop.VTable, @ptrCast(self.vtable)).CreateSourcePresentationHandle(@as(*const IDisplayPathInterop, @ptrCast(self)), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDisplayPathInterop_GetSourceId(self: *const T, pSourceId: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDisplayPathInterop.VTable, @ptrCast(self.vtable)).GetSourceId(@as(*const IDisplayPathInterop, @ptrCast(self)), pSourceId);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateSourcePresentationHandle(self: *const IDisplayPathInterop, pValue: ?*?HANDLE) callconv(.Inline) HRESULT {
         return self.vtable.CreateSourcePresentationHandle(self, pValue);
     }

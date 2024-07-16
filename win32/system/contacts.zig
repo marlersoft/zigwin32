@@ -153,34 +153,6 @@ pub const IContactManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactManager_Initialize(self: *const T, pszAppName: ?[*:0]const u16, pszAppVersion: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IContactManager, @ptrCast(self)), pszAppName, pszAppVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactManager_Load(self: *const T, pszContactID: ?[*:0]const u16, ppContact: ?*?*IContact) callconv(.Inline) HRESULT {
-            return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).Load(@as(*const IContactManager, @ptrCast(self)), pszContactID, ppContact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactManager_MergeContactIDs(self: *const T, pszNewContactID: ?[*:0]const u16, pszOldContactID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).MergeContactIDs(@as(*const IContactManager, @ptrCast(self)), pszNewContactID, pszOldContactID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactManager_GetMeContact(self: *const T, ppMeContact: ?*?*IContact) callconv(.Inline) HRESULT {
-            return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).GetMeContact(@as(*const IContactManager, @ptrCast(self)), ppMeContact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactManager_SetMeContact(self: *const T, pMeContact: ?*IContact) callconv(.Inline) HRESULT {
-            return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).SetMeContact(@as(*const IContactManager, @ptrCast(self)), pMeContact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactManager_GetContactCollection(self: *const T, ppContactCollection: ?*?*IContactCollection) callconv(.Inline) HRESULT {
-            return @as(*const IContactManager.VTable, @ptrCast(self.vtable)).GetContactCollection(@as(*const IContactManager, @ptrCast(self)), ppContactCollection);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IContactManager, pszAppName: ?[*:0]const u16, pszAppVersion: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, pszAppName, pszAppVersion);
     }
@@ -220,22 +192,6 @@ pub const IContactCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactCollection_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactCollection.VTable, @ptrCast(self.vtable)).Reset(@as(*const IContactCollection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactCollection_Next(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactCollection.VTable, @ptrCast(self.vtable)).Next(@as(*const IContactCollection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactCollection_GetCurrent(self: *const T, ppContact: ?*?*IContact) callconv(.Inline) HRESULT {
-            return @as(*const IContactCollection.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IContactCollection, @ptrCast(self)), ppContact);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Reset(self: *const IContactCollection) callconv(.Inline) HRESULT {
         return self.vtable.Reset(self);
     }
@@ -346,62 +302,6 @@ pub const IContactProperties = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_GetString(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: [*:0]u16, cchValue: u32, pdwcchPropertyValueRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).GetString(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags, pszValue, cchValue, pdwcchPropertyValueRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_GetDate(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pftDateTime: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).GetDate(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags, pftDateTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_GetBinary(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: [*:0]u16, cchContentType: u32, pdwcchContentTypeRequired: ?*u32, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).GetBinary(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags, pszContentType, cchContentType, pdwcchContentTypeRequired, ppStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_GetLabels(self: *const T, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, pszLabels: [*:0]u16, cchLabels: u32, pdwcchLabelsRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).GetLabels(@as(*const IContactProperties, @ptrCast(self)), pszArrayElementName, dwFlags, pszLabels, cchLabels, pdwcchLabelsRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_SetString(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).SetString(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags, pszValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_SetDate(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, ftDateTime: FILETIME) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).SetDate(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags, ftDateTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_SetBinary(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: ?[*:0]const u16, pStream: ?*IStream) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).SetBinary(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags, pszContentType, pStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_SetLabels(self: *const T, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, dwLabelCount: u32, ppszLabels: [*]?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).SetLabels(@as(*const IContactProperties, @ptrCast(self)), pszArrayElementName, dwFlags, dwLabelCount, ppszLabels);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_CreateArrayNode(self: *const T, pszArrayName: ?[*:0]const u16, dwFlags: u32, fAppend: BOOL, pszNewArrayElementName: [*:0]u16, cchNewArrayElementName: u32, pdwcchNewArrayElementNameRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).CreateArrayNode(@as(*const IContactProperties, @ptrCast(self)), pszArrayName, dwFlags, fAppend, pszNewArrayElementName, cchNewArrayElementName, pdwcchNewArrayElementNameRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_DeleteProperty(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).DeleteProperty(@as(*const IContactProperties, @ptrCast(self)), pszPropertyName, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_DeleteArrayNode(self: *const T, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).DeleteArrayNode(@as(*const IContactProperties, @ptrCast(self)), pszArrayElementName, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_DeleteLabels(self: *const T, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).DeleteLabels(@as(*const IContactProperties, @ptrCast(self)), pszArrayElementName, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_GetPropertyCollection(self: *const T, ppPropertyCollection: ?*?*IContactPropertyCollection, dwFlags: u32, pszMultiValueName: ?[*:0]const u16, dwLabelCount: u32, ppszLabels: [*]?PWSTR, fAnyLabelMatches: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IContactProperties.VTable, @ptrCast(self.vtable)).GetPropertyCollection(@as(*const IContactProperties, @ptrCast(self)), ppPropertyCollection, dwFlags, pszMultiValueName, dwLabelCount, ppszLabels, fAnyLabelMatches);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetString(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: [*:0]u16, cchValue: u32, pdwcchPropertyValueRequired: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetString(self, pszPropertyName, dwFlags, pszValue, cchValue, pdwcchPropertyValueRequired);
     }
@@ -468,22 +368,6 @@ pub const IContact = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContact_GetContactID(self: *const T, pszContactID: [*:0]u16, cchContactID: u32, pdwcchContactIDRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContact.VTable, @ptrCast(self.vtable)).GetContactID(@as(*const IContact, @ptrCast(self)), pszContactID, cchContactID, pdwcchContactIDRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContact_GetPath(self: *const T, pszPath: [*:0]u16, cchPath: u32, pdwcchPathRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContact.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IContact, @ptrCast(self)), pszPath, cchPath, pdwcchPathRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContact_CommitChanges(self: *const T, dwCommitFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IContact.VTable, @ptrCast(self.vtable)).CommitChanges(@as(*const IContact, @ptrCast(self)), dwCommitFlags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetContactID(self: *const IContact, pszContactID: [*:0]u16, cchContactID: u32, pdwcchContactIDRequired: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetContactID(self, pszContactID, cchContactID, pdwcchContactIDRequired);
     }
@@ -534,38 +418,6 @@ pub const IContactPropertyCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).Reset(@as(*const IContactPropertyCollection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_Next(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).Next(@as(*const IContactPropertyCollection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_GetPropertyName(self: *const T, pszPropertyName: [*:0]u16, cchPropertyName: u32, pdwcchPropertyNameRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).GetPropertyName(@as(*const IContactPropertyCollection, @ptrCast(self)), pszPropertyName, cchPropertyName, pdwcchPropertyNameRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_GetPropertyType(self: *const T, pdwType: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).GetPropertyType(@as(*const IContactPropertyCollection, @ptrCast(self)), pdwType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_GetPropertyVersion(self: *const T, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).GetPropertyVersion(@as(*const IContactPropertyCollection, @ptrCast(self)), pdwVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_GetPropertyModificationDate(self: *const T, pftModificationDate: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).GetPropertyModificationDate(@as(*const IContactPropertyCollection, @ptrCast(self)), pftModificationDate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_GetPropertyArrayElementID(self: *const T, pszArrayElementID: [*:0]u16, cchArrayElementID: u32, pdwcchArrayElementIDRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactPropertyCollection.VTable, @ptrCast(self.vtable)).GetPropertyArrayElementID(@as(*const IContactPropertyCollection, @ptrCast(self)), pszArrayElementID, cchArrayElementID, pdwcchArrayElementIDRequired);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Reset(self: *const IContactPropertyCollection) callconv(.Inline) HRESULT {
         return self.vtable.Reset(self);
     }
@@ -690,70 +542,6 @@ pub const IContactAggregationManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_GetVersionInfo(self: *const T, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).GetVersionInfo(@as(*const IContactAggregationManager, @ptrCast(self)), plMajorVersion, plMinorVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_CreateOrOpenGroup(self: *const T, pGroupName: ?[*:0]const u16, options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS, pCreatedGroup: ?*BOOL, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).CreateOrOpenGroup(@as(*const IContactAggregationManager, @ptrCast(self)), pGroupName, options, pCreatedGroup, ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_CreateExternalContact(self: *const T, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).CreateExternalContact(@as(*const IContactAggregationManager, @ptrCast(self)), ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_CreateServerPerson(self: *const T, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).CreateServerPerson(@as(*const IContactAggregationManager, @ptrCast(self)), ppServerPerson);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_CreateServerContactLink(self: *const T, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).CreateServerContactLink(@as(*const IContactAggregationManager, @ptrCast(self)), ppServerContactLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_Flush(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).Flush(@as(*const IContactAggregationManager, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_OpenAggregateContact(self: *const T, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).OpenAggregateContact(@as(*const IContactAggregationManager, @ptrCast(self)), pItemId, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_OpenContact(self: *const T, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).OpenContact(@as(*const IContactAggregationManager, @ptrCast(self)), pItemId, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_OpenServerContactLink(self: *const T, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).OpenServerContactLink(@as(*const IContactAggregationManager, @ptrCast(self)), pItemId, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_OpenServerPerson(self: *const T, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).OpenServerPerson(@as(*const IContactAggregationManager, @ptrCast(self)), pItemId, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_get_Contacts(self: *const T, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppItems: ?*?*IContactAggregationContactCollection) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).get_Contacts(@as(*const IContactAggregationManager, @ptrCast(self)), options, ppItems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_get_AggregateContacts(self: *const T, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppAggregates: ?*?*IContactAggregationAggregateCollection) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).get_AggregateContacts(@as(*const IContactAggregationManager, @ptrCast(self)), options, ppAggregates);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_get_Groups(self: *const T, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).get_Groups(@as(*const IContactAggregationManager, @ptrCast(self)), options, ppGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_get_ServerPersons(self: *const T, ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).get_ServerPersons(@as(*const IContactAggregationManager, @ptrCast(self)), ppServerPersonCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_get_ServerContactLinks(self: *const T, pPersonItemId: ?[*:0]const u16, ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationManager.VTable, @ptrCast(self.vtable)).get_ServerContactLinks(@as(*const IContactAggregationManager, @ptrCast(self)), pPersonItemId, ppServerContactLinkCollection);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetVersionInfo(self: *const IContactAggregationManager, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.GetVersionInfo(self, plMajorVersion, plMinorVersion);
     }
@@ -892,82 +680,6 @@ pub const IContactAggregationContact = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).Delete(@as(*const IContactAggregationContact, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_Save(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).Save(@as(*const IContactAggregationContact, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_MoveToAggregate(self: *const T, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).MoveToAggregate(@as(*const IContactAggregationContact, @ptrCast(self)), pAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_Unlink(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).Unlink(@as(*const IContactAggregationContact, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_AccountId(self: *const T, ppAccountId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_AccountId(@as(*const IContactAggregationContact, @ptrCast(self)), ppAccountId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_put_AccountId(self: *const T, pAccountId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).put_AccountId(@as(*const IContactAggregationContact, @ptrCast(self)), pAccountId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_AggregateId(self: *const T, ppAggregateId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_AggregateId(@as(*const IContactAggregationContact, @ptrCast(self)), ppAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_Id(self: *const T, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IContactAggregationContact, @ptrCast(self)), ppItemId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_IsMe(self: *const T, pIsMe: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_IsMe(@as(*const IContactAggregationContact, @ptrCast(self)), pIsMe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_IsExternal(self: *const T, pIsExternal: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_IsExternal(@as(*const IContactAggregationContact, @ptrCast(self)), pIsExternal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_NetworkSourceId(self: *const T, pNetworkSourceId: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_NetworkSourceId(@as(*const IContactAggregationContact, @ptrCast(self)), pNetworkSourceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_put_NetworkSourceId(self: *const T, networkSourceId: u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).put_NetworkSourceId(@as(*const IContactAggregationContact, @ptrCast(self)), networkSourceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_NetworkSourceIdString(self: *const T, ppNetworkSourceId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_NetworkSourceIdString(@as(*const IContactAggregationContact, @ptrCast(self)), ppNetworkSourceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_put_NetworkSourceIdString(self: *const T, pNetworkSourceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).put_NetworkSourceIdString(@as(*const IContactAggregationContact, @ptrCast(self)), pNetworkSourceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_RemoteObjectId(self: *const T, ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_RemoteObjectId(@as(*const IContactAggregationContact, @ptrCast(self)), ppRemoteObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_put_RemoteObjectId(self: *const T, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).put_RemoteObjectId(@as(*const IContactAggregationContact, @ptrCast(self)), pRemoteObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_SyncIdentityHash(self: *const T, ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).get_SyncIdentityHash(@as(*const IContactAggregationContact, @ptrCast(self)), ppSyncIdentityHash);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_put_SyncIdentityHash(self: *const T, pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContact.VTable, @ptrCast(self.vtable)).put_SyncIdentityHash(@as(*const IContactAggregationContact, @ptrCast(self)), pSyncIdentityHash);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Delete(self: *const IContactAggregationContact) callconv(.Inline) HRESULT {
         return self.vtable.Delete(self);
     }
@@ -1059,30 +771,6 @@ pub const IContactAggregationContactCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContactCollection_FindFirst(self: *const T, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContactCollection.VTable, @ptrCast(self.vtable)).FindFirst(@as(*const IContactAggregationContactCollection, @ptrCast(self)), ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContactCollection_FindNext(self: *const T, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContactCollection.VTable, @ptrCast(self.vtable)).FindNext(@as(*const IContactAggregationContactCollection, @ptrCast(self)), ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContactCollection_FindFirstByIdentityHash(self: *const T, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pIdentityHash: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContactCollection.VTable, @ptrCast(self.vtable)).FindFirstByIdentityHash(@as(*const IContactAggregationContactCollection, @ptrCast(self)), pSourceType, pAccountId, pIdentityHash, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContactCollection_get_Count(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContactCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationContactCollection, @ptrCast(self)), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContactCollection_FindFirstByRemoteId(self: *const T, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationContactCollection.VTable, @ptrCast(self.vtable)).FindFirstByRemoteId(@as(*const IContactAggregationContactCollection, @ptrCast(self)), pSourceType, pAccountId, pRemoteObjectId, ppItem);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FindFirst(self: *const IContactAggregationContactCollection, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
         return self.vtable.FindFirst(self, ppItem);
     }
@@ -1149,46 +837,6 @@ pub const IContactAggregationAggregate = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_Save(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).Save(@as(*const IContactAggregationAggregate, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_GetComponentItems(self: *const T, pComponentItems: ?*?*IContactAggregationContactCollection) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).GetComponentItems(@as(*const IContactAggregationAggregate, @ptrCast(self)), pComponentItems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_Link(self: *const T, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).Link(@as(*const IContactAggregationAggregate, @ptrCast(self)), pAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_get_Groups(self: *const T, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).get_Groups(@as(*const IContactAggregationAggregate, @ptrCast(self)), options, ppGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_get_AntiLink(self: *const T, ppAntiLink: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).get_AntiLink(@as(*const IContactAggregationAggregate, @ptrCast(self)), ppAntiLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_put_AntiLink(self: *const T, pAntiLink: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).put_AntiLink(@as(*const IContactAggregationAggregate, @ptrCast(self)), pAntiLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_get_FavoriteOrder(self: *const T, pFavoriteOrder: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).get_FavoriteOrder(@as(*const IContactAggregationAggregate, @ptrCast(self)), pFavoriteOrder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_put_FavoriteOrder(self: *const T, favoriteOrder: u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).put_FavoriteOrder(@as(*const IContactAggregationAggregate, @ptrCast(self)), favoriteOrder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_get_Id(self: *const T, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregate.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IContactAggregationAggregate, @ptrCast(self)), ppItemId);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Save(self: *const IContactAggregationAggregate) callconv(.Inline) HRESULT {
         return self.vtable.Save(self);
     }
@@ -1244,26 +892,6 @@ pub const IContactAggregationAggregateCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregateCollection_FindFirst(self: *const T, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregateCollection.VTable, @ptrCast(self.vtable)).FindFirst(@as(*const IContactAggregationAggregateCollection, @ptrCast(self)), ppAggregate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregateCollection_FindFirstByAntiLinkId(self: *const T, pAntiLinkId: ?[*:0]const u16, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregateCollection.VTable, @ptrCast(self.vtable)).FindFirstByAntiLinkId(@as(*const IContactAggregationAggregateCollection, @ptrCast(self)), pAntiLinkId, ppAggregate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregateCollection_FindNext(self: *const T, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregateCollection.VTable, @ptrCast(self.vtable)).FindNext(@as(*const IContactAggregationAggregateCollection, @ptrCast(self)), ppAggregate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregateCollection_get_Count(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationAggregateCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationAggregateCollection, @ptrCast(self)), pCount);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FindFirst(self: *const IContactAggregationAggregateCollection, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
         return self.vtable.FindFirst(self, ppAggregate);
     }
@@ -1330,50 +958,6 @@ pub const IContactAggregationGroup = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).Delete(@as(*const IContactAggregationGroup, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_Save(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).Save(@as(*const IContactAggregationGroup, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_Add(self: *const T, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).Add(@as(*const IContactAggregationGroup, @ptrCast(self)), pAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_Remove(self: *const T, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).Remove(@as(*const IContactAggregationGroup, @ptrCast(self)), pAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_get_Members(self: *const T, ppAggregateContactCollection: ?*?*IContactAggregationAggregateCollection) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).get_Members(@as(*const IContactAggregationGroup, @ptrCast(self)), ppAggregateContactCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_get_GlobalObjectId(self: *const T, pGlobalObjectId: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).get_GlobalObjectId(@as(*const IContactAggregationGroup, @ptrCast(self)), pGlobalObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_put_GlobalObjectId(self: *const T, pGlobalObjectId: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).put_GlobalObjectId(@as(*const IContactAggregationGroup, @ptrCast(self)), pGlobalObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_get_Id(self: *const T, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IContactAggregationGroup, @ptrCast(self)), ppItemId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_get_Name(self: *const T, ppName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IContactAggregationGroup, @ptrCast(self)), ppName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_put_Name(self: *const T, pName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroup.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IContactAggregationGroup, @ptrCast(self)), pName);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Delete(self: *const IContactAggregationGroup) callconv(.Inline) HRESULT {
         return self.vtable.Delete(self);
     }
@@ -1432,26 +1016,6 @@ pub const IContactAggregationGroupCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroupCollection_FindFirst(self: *const T, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroupCollection.VTable, @ptrCast(self.vtable)).FindFirst(@as(*const IContactAggregationGroupCollection, @ptrCast(self)), ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroupCollection_FindFirstByGlobalObjectId(self: *const T, pGlobalObjectId: ?*const Guid, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroupCollection.VTable, @ptrCast(self.vtable)).FindFirstByGlobalObjectId(@as(*const IContactAggregationGroupCollection, @ptrCast(self)), pGlobalObjectId, ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroupCollection_FindNext(self: *const T, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroupCollection.VTable, @ptrCast(self.vtable)).FindNext(@as(*const IContactAggregationGroupCollection, @ptrCast(self)), ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroupCollection_get_Count(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationGroupCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationGroupCollection, @ptrCast(self)), pCount);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FindFirst(self: *const IContactAggregationGroupCollection, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
         return self.vtable.FindFirst(self, ppGroup);
     }
@@ -1555,78 +1119,6 @@ pub const IContactAggregationLink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).Delete(@as(*const IContactAggregationLink, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_Save(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).Save(@as(*const IContactAggregationLink, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_AccountId(self: *const T, ppAccountId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_AccountId(@as(*const IContactAggregationLink, @ptrCast(self)), ppAccountId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_AccountId(self: *const T, pAccountId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_AccountId(@as(*const IContactAggregationLink, @ptrCast(self)), pAccountId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_Id(self: *const T, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IContactAggregationLink, @ptrCast(self)), ppItemId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_IsLinkResolved(self: *const T, pIsLinkResolved: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_IsLinkResolved(@as(*const IContactAggregationLink, @ptrCast(self)), pIsLinkResolved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_IsLinkResolved(self: *const T, isLinkResolved: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_IsLinkResolved(@as(*const IContactAggregationLink, @ptrCast(self)), isLinkResolved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_NetworkSourceIdString(self: *const T, ppNetworkSourceId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_NetworkSourceIdString(@as(*const IContactAggregationLink, @ptrCast(self)), ppNetworkSourceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_NetworkSourceIdString(self: *const T, pNetworkSourceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_NetworkSourceIdString(@as(*const IContactAggregationLink, @ptrCast(self)), pNetworkSourceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_RemoteObjectId(self: *const T, ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_RemoteObjectId(@as(*const IContactAggregationLink, @ptrCast(self)), ppRemoteObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_RemoteObjectId(self: *const T, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_RemoteObjectId(@as(*const IContactAggregationLink, @ptrCast(self)), pRemoteObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_ServerPerson(self: *const T, ppServerPersonId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_ServerPerson(@as(*const IContactAggregationLink, @ptrCast(self)), ppServerPersonId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_ServerPerson(self: *const T, pServerPersonId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_ServerPerson(@as(*const IContactAggregationLink, @ptrCast(self)), pServerPersonId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_ServerPersonBaseline(self: *const T, ppServerPersonId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_ServerPersonBaseline(@as(*const IContactAggregationLink, @ptrCast(self)), ppServerPersonId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_ServerPersonBaseline(self: *const T, pServerPersonId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_ServerPersonBaseline(@as(*const IContactAggregationLink, @ptrCast(self)), pServerPersonId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_SyncIdentityHash(self: *const T, ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).get_SyncIdentityHash(@as(*const IContactAggregationLink, @ptrCast(self)), ppSyncIdentityHash);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_SyncIdentityHash(self: *const T, pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLink.VTable, @ptrCast(self.vtable)).put_SyncIdentityHash(@as(*const IContactAggregationLink, @ptrCast(self)), pSyncIdentityHash);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Delete(self: *const IContactAggregationLink) callconv(.Inline) HRESULT {
         return self.vtable.Delete(self);
     }
@@ -1708,26 +1200,6 @@ pub const IContactAggregationLinkCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLinkCollection_FindFirst(self: *const T, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLinkCollection.VTable, @ptrCast(self.vtable)).FindFirst(@as(*const IContactAggregationLinkCollection, @ptrCast(self)), ppServerContactLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLinkCollection_FindFirstByRemoteId(self: *const T, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteId: ?*const CONTACT_AGGREGATION_BLOB, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLinkCollection.VTable, @ptrCast(self.vtable)).FindFirstByRemoteId(@as(*const IContactAggregationLinkCollection, @ptrCast(self)), pSourceType, pAccountId, pRemoteId, ppServerContactLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLinkCollection_FindNext(self: *const T, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLinkCollection.VTable, @ptrCast(self.vtable)).FindNext(@as(*const IContactAggregationLinkCollection, @ptrCast(self)), ppServerContactLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLinkCollection_get_Count(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationLinkCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationLinkCollection, @ptrCast(self)), pCount);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FindFirst(self: *const IContactAggregationLinkCollection, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
         return self.vtable.FindFirst(self, ppServerContactLink);
     }
@@ -1861,102 +1333,6 @@ pub const IContactAggregationServerPerson = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).Delete(@as(*const IContactAggregationServerPerson, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_Save(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).Save(@as(*const IContactAggregationServerPerson, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_AggregateId(self: *const T, ppAggregateId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_AggregateId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_AggregateId(self: *const T, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_AggregateId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_AntiLink(self: *const T, ppAntiLink: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_AntiLink(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppAntiLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_AntiLink(self: *const T, pAntiLink: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_AntiLink(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pAntiLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_AntiLinkBaseline(self: *const T, ppAntiLink: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_AntiLinkBaseline(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppAntiLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_AntiLinkBaseline(self: *const T, pAntiLink: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_AntiLinkBaseline(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pAntiLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_FavoriteOrder(self: *const T, pFavoriteOrder: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_FavoriteOrder(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pFavoriteOrder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_FavoriteOrder(self: *const T, favoriteOrder: u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_FavoriteOrder(@as(*const IContactAggregationServerPerson, @ptrCast(self)), favoriteOrder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_FavoriteOrderBaseline(self: *const T, pFavoriteOrder: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_FavoriteOrderBaseline(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pFavoriteOrder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_FavoriteOrderBaseline(self: *const T, favoriteOrder: u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_FavoriteOrderBaseline(@as(*const IContactAggregationServerPerson, @ptrCast(self)), favoriteOrder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_Groups(self: *const T, pGroups: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_Groups(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_Groups(self: *const T, pGroups: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_Groups(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_GroupsBaseline(self: *const T, ppGroups: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_GroupsBaseline(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_GroupsBaseline(self: *const T, pGroups: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_GroupsBaseline(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_Id(self: *const T, ppId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_IsTombstone(self: *const T, pIsTombstone: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_IsTombstone(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pIsTombstone);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_IsTombstone(self: *const T, isTombstone: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_IsTombstone(@as(*const IContactAggregationServerPerson, @ptrCast(self)), isTombstone);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_LinkedAggregateId(self: *const T, ppLinkedAggregateId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_LinkedAggregateId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppLinkedAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_LinkedAggregateId(self: *const T, pLinkedAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_LinkedAggregateId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pLinkedAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_ObjectId(self: *const T, ppObjectId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), ppObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_ObjectId(self: *const T, pObjectId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPerson.VTable, @ptrCast(self.vtable)).put_ObjectId(@as(*const IContactAggregationServerPerson, @ptrCast(self)), pObjectId);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Delete(self: *const IContactAggregationServerPerson) callconv(.Inline) HRESULT {
         return self.vtable.Delete(self);
     }
@@ -2064,34 +1440,6 @@ pub const IContactAggregationServerPersonCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPersonCollection_FindFirst(self: *const T, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).FindFirst(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), ppServerPerson);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPersonCollection_FindFirstByServerId(self: *const T, pServerId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).FindFirstByServerId(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), pServerId, ppServerPerson);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPersonCollection_FindFirstByAggregateId(self: *const T, pAggregateId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).FindFirstByAggregateId(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), pAggregateId, ppServerPerson);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPersonCollection_FindFirstByLinkedAggregateId(self: *const T, pAggregateId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).FindFirstByLinkedAggregateId(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), pAggregateId, ppServerPerson);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPersonCollection_FindNext(self: *const T, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).FindNext(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), ppServerPerson);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPersonCollection_get_Count(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IContactAggregationServerPersonCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IContactAggregationServerPersonCollection, @ptrCast(self)), pCount);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FindFirst(self: *const IContactAggregationServerPersonCollection, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
         return self.vtable.FindFirst(self, ppServerPerson);
     }

@@ -1284,102 +1284,6 @@ pub const ICreateTypeInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetGuid(self: *const T, guid: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetGuid(@as(*const ICreateTypeInfo, @ptrCast(self)), guid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetTypeFlags(self: *const T, uTypeFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetTypeFlags(@as(*const ICreateTypeInfo, @ptrCast(self)), uTypeFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetDocString(self: *const T, pStrDoc: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetDocString(@as(*const ICreateTypeInfo, @ptrCast(self)), pStrDoc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetHelpContext(self: *const T, dwHelpContext: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetHelpContext(@as(*const ICreateTypeInfo, @ptrCast(self)), dwHelpContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetVersion(self: *const T, wMajorVerNum: u16, wMinorVerNum: u16) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetVersion(@as(*const ICreateTypeInfo, @ptrCast(self)), wMajorVerNum, wMinorVerNum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_AddRefTypeInfo(self: *const T, pTInfo: ?*ITypeInfo, phRefType: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).AddRefTypeInfo(@as(*const ICreateTypeInfo, @ptrCast(self)), pTInfo, phRefType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_AddFuncDesc(self: *const T, index: u32, pFuncDesc: ?*FUNCDESC) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).AddFuncDesc(@as(*const ICreateTypeInfo, @ptrCast(self)), index, pFuncDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_AddImplType(self: *const T, index: u32, hRefType: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).AddImplType(@as(*const ICreateTypeInfo, @ptrCast(self)), index, hRefType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetImplTypeFlags(self: *const T, index: u32, implTypeFlags: i32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetImplTypeFlags(@as(*const ICreateTypeInfo, @ptrCast(self)), index, implTypeFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetAlignment(self: *const T, cbAlignment: u16) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetAlignment(@as(*const ICreateTypeInfo, @ptrCast(self)), cbAlignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetSchema(self: *const T, pStrSchema: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetSchema(@as(*const ICreateTypeInfo, @ptrCast(self)), pStrSchema);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_AddVarDesc(self: *const T, index: u32, pVarDesc: ?*VARDESC) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).AddVarDesc(@as(*const ICreateTypeInfo, @ptrCast(self)), index, pVarDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetFuncAndParamNames(self: *const T, index: u32, rgszNames: [*]?PWSTR, cNames: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetFuncAndParamNames(@as(*const ICreateTypeInfo, @ptrCast(self)), index, rgszNames, cNames);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetVarName(self: *const T, index: u32, szName: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetVarName(@as(*const ICreateTypeInfo, @ptrCast(self)), index, szName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetTypeDescAlias(self: *const T, pTDescAlias: ?*TYPEDESC) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetTypeDescAlias(@as(*const ICreateTypeInfo, @ptrCast(self)), pTDescAlias);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_DefineFuncAsDllEntry(self: *const T, index: u32, szDllName: ?PWSTR, szProcName: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).DefineFuncAsDllEntry(@as(*const ICreateTypeInfo, @ptrCast(self)), index, szDllName, szProcName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetFuncDocString(self: *const T, index: u32, szDocString: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetFuncDocString(@as(*const ICreateTypeInfo, @ptrCast(self)), index, szDocString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetVarDocString(self: *const T, index: u32, szDocString: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetVarDocString(@as(*const ICreateTypeInfo, @ptrCast(self)), index, szDocString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetFuncHelpContext(self: *const T, index: u32, dwHelpContext: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetFuncHelpContext(@as(*const ICreateTypeInfo, @ptrCast(self)), index, dwHelpContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetVarHelpContext(self: *const T, index: u32, dwHelpContext: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetVarHelpContext(@as(*const ICreateTypeInfo, @ptrCast(self)), index, dwHelpContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetMops(self: *const T, index: u32, bstrMops: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetMops(@as(*const ICreateTypeInfo, @ptrCast(self)), index, bstrMops);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetTypeIdldesc(self: *const T, pIdlDesc: ?*IDLDESC) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).SetTypeIdldesc(@as(*const ICreateTypeInfo, @ptrCast(self)), pIdlDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_LayOut(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo.VTable, @ptrCast(self.vtable)).LayOut(@as(*const ICreateTypeInfo, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetGuid(self: *const ICreateTypeInfo, guid: ?*const Guid) callconv(.Inline) HRESULT {
         return self.vtable.SetGuid(self, guid);
     }
@@ -1531,70 +1435,7 @@ pub const ICreateTypeInfo2 = extern union {
     };
     vtable: *const VTable,
     ICreateTypeInfo: ICreateTypeInfo,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ICreateTypeInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_DeleteFuncDesc(self: *const T, index: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).DeleteFuncDesc(@as(*const ICreateTypeInfo2, @ptrCast(self)), index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_DeleteFuncDescByMemId(self: *const T, memid: i32, invKind: INVOKEKIND) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).DeleteFuncDescByMemId(@as(*const ICreateTypeInfo2, @ptrCast(self)), memid, invKind);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_DeleteVarDesc(self: *const T, index: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).DeleteVarDesc(@as(*const ICreateTypeInfo2, @ptrCast(self)), index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_DeleteVarDescByMemId(self: *const T, memid: i32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).DeleteVarDescByMemId(@as(*const ICreateTypeInfo2, @ptrCast(self)), memid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_DeleteImplType(self: *const T, index: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).DeleteImplType(@as(*const ICreateTypeInfo2, @ptrCast(self)), index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetCustData(self: *const T, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetCustData(@as(*const ICreateTypeInfo2, @ptrCast(self)), guid, pVarVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetFuncCustData(self: *const T, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetFuncCustData(@as(*const ICreateTypeInfo2, @ptrCast(self)), index, guid, pVarVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetParamCustData(self: *const T, indexFunc: u32, indexParam: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetParamCustData(@as(*const ICreateTypeInfo2, @ptrCast(self)), indexFunc, indexParam, guid, pVarVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetVarCustData(self: *const T, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetVarCustData(@as(*const ICreateTypeInfo2, @ptrCast(self)), index, guid, pVarVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetImplTypeCustData(self: *const T, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetImplTypeCustData(@as(*const ICreateTypeInfo2, @ptrCast(self)), index, guid, pVarVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetHelpStringContext(self: *const T, dwHelpStringContext: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetHelpStringContext(@as(*const ICreateTypeInfo2, @ptrCast(self)), dwHelpStringContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetFuncHelpStringContext(self: *const T, index: u32, dwHelpStringContext: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetFuncHelpStringContext(@as(*const ICreateTypeInfo2, @ptrCast(self)), index, dwHelpStringContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetVarHelpStringContext(self: *const T, index: u32, dwHelpStringContext: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetVarHelpStringContext(@as(*const ICreateTypeInfo2, @ptrCast(self)), index, dwHelpStringContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_Invalidate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).Invalidate(@as(*const ICreateTypeInfo2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetName(self: *const T, szName: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeInfo2.VTable, @ptrCast(self.vtable)).SetName(@as(*const ICreateTypeInfo2, @ptrCast(self)), szName);
-        }
-    };}
-    pub usingnamespace ICreateTypeInfo.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn DeleteFuncDesc(self: *const ICreateTypeInfo2, index: u32) callconv(.Inline) HRESULT {
         return self.vtable.DeleteFuncDesc(self, index);
     }
@@ -1692,50 +1533,6 @@ pub const ICreateTypeLib = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_CreateTypeInfo(self: *const T, szName: ?PWSTR, tkind: TYPEKIND, ppCTInfo: ?*?*ICreateTypeInfo) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).CreateTypeInfo(@as(*const ICreateTypeLib, @ptrCast(self)), szName, tkind, ppCTInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SetName(self: *const T, szName: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetName(@as(*const ICreateTypeLib, @ptrCast(self)), szName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SetVersion(self: *const T, wMajorVerNum: u16, wMinorVerNum: u16) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetVersion(@as(*const ICreateTypeLib, @ptrCast(self)), wMajorVerNum, wMinorVerNum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SetGuid(self: *const T, guid: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetGuid(@as(*const ICreateTypeLib, @ptrCast(self)), guid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SetDocString(self: *const T, szDoc: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetDocString(@as(*const ICreateTypeLib, @ptrCast(self)), szDoc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SetHelpFileName(self: *const T, szHelpFileName: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetHelpFileName(@as(*const ICreateTypeLib, @ptrCast(self)), szHelpFileName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SetHelpContext(self: *const T, dwHelpContext: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetHelpContext(@as(*const ICreateTypeLib, @ptrCast(self)), dwHelpContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SetLcid(self: *const T, lcid: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetLcid(@as(*const ICreateTypeLib, @ptrCast(self)), lcid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SetLibFlags(self: *const T, uLibFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SetLibFlags(@as(*const ICreateTypeLib, @ptrCast(self)), uLibFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SaveAllChanges(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib.VTable, @ptrCast(self.vtable)).SaveAllChanges(@as(*const ICreateTypeLib, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateTypeInfo(self: *const ICreateTypeLib, szName: ?PWSTR, tkind: TYPEKIND, ppCTInfo: ?*?*ICreateTypeInfo) callconv(.Inline) HRESULT {
         return self.vtable.CreateTypeInfo(self, szName, tkind, ppCTInfo);
     }
@@ -1793,26 +1590,7 @@ pub const ICreateTypeLib2 = extern union {
     };
     vtable: *const VTable,
     ICreateTypeLib: ICreateTypeLib,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ICreateTypeLib.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib2_DeleteTypeInfo(self: *const T, szName: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib2.VTable, @ptrCast(self.vtable)).DeleteTypeInfo(@as(*const ICreateTypeLib2, @ptrCast(self)), szName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib2_SetCustData(self: *const T, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib2.VTable, @ptrCast(self.vtable)).SetCustData(@as(*const ICreateTypeLib2, @ptrCast(self)), guid, pVarVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib2_SetHelpStringContext(self: *const T, dwHelpStringContext: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib2.VTable, @ptrCast(self.vtable)).SetHelpStringContext(@as(*const ICreateTypeLib2, @ptrCast(self)), dwHelpStringContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib2_SetHelpStringDll(self: *const T, szFileName: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateTypeLib2.VTable, @ptrCast(self.vtable)).SetHelpStringDll(@as(*const ICreateTypeLib2, @ptrCast(self)), szFileName);
-        }
-    };}
-    pub usingnamespace ICreateTypeLib.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn DeleteTypeInfo(self: *const ICreateTypeLib2, szName: ?PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.DeleteTypeInfo(self, szName);
     }
@@ -1852,26 +1630,6 @@ pub const IEnumVARIANT = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumVARIANT_Next(self: *const T, celt: u32, rgVar: [*]VARIANT, pCeltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumVARIANT.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumVARIANT, @ptrCast(self)), celt, rgVar, pCeltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumVARIANT_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumVARIANT.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumVARIANT, @ptrCast(self)), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumVARIANT_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumVARIANT.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumVARIANT, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumVARIANT_Clone(self: *const T, ppEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IEnumVARIANT.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumVARIANT, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumVARIANT, celt: u32, rgVar: [*]VARIANT, pCeltFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, celt, rgVar, pCeltFetched);
     }
@@ -1937,18 +1695,6 @@ pub const ITypeChangeEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeChangeEvents_RequestTypeChange(self: *const T, changeKind: CHANGEKIND, pTInfoBefore: ?*ITypeInfo, pStrName: ?PWSTR, pfCancel: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const ITypeChangeEvents.VTable, @ptrCast(self.vtable)).RequestTypeChange(@as(*const ITypeChangeEvents, @ptrCast(self)), changeKind, pTInfoBefore, pStrName, pfCancel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeChangeEvents_AfterTypeChange(self: *const T, changeKind: CHANGEKIND, pTInfoAfter: ?*ITypeInfo, pStrName: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ITypeChangeEvents.VTable, @ptrCast(self.vtable)).AfterTypeChange(@as(*const ITypeChangeEvents, @ptrCast(self)), changeKind, pTInfoAfter, pStrName);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RequestTypeChange(self: *const ITypeChangeEvents, changeKind: CHANGEKIND, pTInfoBefore: ?*ITypeInfo, pStrName: ?PWSTR, pfCancel: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.RequestTypeChange(self, changeKind, pTInfoBefore, pStrName, pfCancel);
     }
@@ -1985,30 +1731,6 @@ pub const ICreateErrorInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateErrorInfo_SetGUID(self: *const T, rguid: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const ICreateErrorInfo.VTable, @ptrCast(self.vtable)).SetGUID(@as(*const ICreateErrorInfo, @ptrCast(self)), rguid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateErrorInfo_SetSource(self: *const T, szSource: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateErrorInfo.VTable, @ptrCast(self.vtable)).SetSource(@as(*const ICreateErrorInfo, @ptrCast(self)), szSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateErrorInfo_SetDescription(self: *const T, szDescription: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateErrorInfo.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const ICreateErrorInfo, @ptrCast(self)), szDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateErrorInfo_SetHelpFile(self: *const T, szHelpFile: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const ICreateErrorInfo.VTable, @ptrCast(self.vtable)).SetHelpFile(@as(*const ICreateErrorInfo, @ptrCast(self)), szHelpFile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateErrorInfo_SetHelpContext(self: *const T, dwHelpContext: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICreateErrorInfo.VTable, @ptrCast(self.vtable)).SetHelpContext(@as(*const ICreateErrorInfo, @ptrCast(self)), dwHelpContext);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetGUID(self: *const ICreateErrorInfo, rguid: ?*const Guid) callconv(.Inline) HRESULT {
         return self.vtable.SetGUID(self, rguid);
     }
@@ -2040,14 +1762,6 @@ pub const ITypeFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeFactory_CreateFromTypeInfo(self: *const T, pTypeInfo: ?*ITypeInfo, riid: ?*const Guid, ppv: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ITypeFactory.VTable, @ptrCast(self.vtable)).CreateFromTypeInfo(@as(*const ITypeFactory, @ptrCast(self)), pTypeInfo, riid, ppv);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateFromTypeInfo(self: *const ITypeFactory, pTypeInfo: ?*ITypeInfo, riid: ?*const Guid, ppv: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateFromTypeInfo(self, pTypeInfo, riid, ppv);
     }
@@ -2090,26 +1804,6 @@ pub const ITypeMarshal = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeMarshal_Size(self: *const T, pvType: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, pSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ITypeMarshal.VTable, @ptrCast(self.vtable)).Size(@as(*const ITypeMarshal, @ptrCast(self)), pvType, dwDestContext, pvDestContext, pSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeMarshal_Marshal(self: *const T, pvType: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, cbBufferLength: u32, pBuffer: ?*u8, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ITypeMarshal.VTable, @ptrCast(self.vtable)).Marshal(@as(*const ITypeMarshal, @ptrCast(self)), pvType, dwDestContext, pvDestContext, cbBufferLength, pBuffer, pcbWritten);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeMarshal_Unmarshal(self: *const T, pvType: ?*anyopaque, dwFlags: u32, cbBufferLength: u32, pBuffer: [*:0]u8, pcbRead: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ITypeMarshal.VTable, @ptrCast(self.vtable)).Unmarshal(@as(*const ITypeMarshal, @ptrCast(self)), pvType, dwFlags, cbBufferLength, pBuffer, pcbRead);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeMarshal_Free(self: *const T, pvType: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ITypeMarshal.VTable, @ptrCast(self.vtable)).Free(@as(*const ITypeMarshal, @ptrCast(self)), pvType);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Size(self: *const ITypeMarshal, pvType: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, pSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Size(self, pvType, dwDestContext, pvDestContext, pSize);
     }
@@ -2209,74 +1903,6 @@ pub const IRecordInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordInit(self: *const T, pvNew: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordInit(@as(*const IRecordInfo, @ptrCast(self)), pvNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordClear(self: *const T, pvExisting: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordClear(@as(*const IRecordInfo, @ptrCast(self)), pvExisting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordCopy(self: *const T, pvExisting: ?*anyopaque, pvNew: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordCopy(@as(*const IRecordInfo, @ptrCast(self)), pvExisting, pvNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetGuid(self: *const T, pguid: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetGuid(@as(*const IRecordInfo, @ptrCast(self)), pguid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetName(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetName(@as(*const IRecordInfo, @ptrCast(self)), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetSize(self: *const T, pcbSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IRecordInfo, @ptrCast(self)), pcbSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetTypeInfo(self: *const T, ppTypeInfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetTypeInfo(@as(*const IRecordInfo, @ptrCast(self)), ppTypeInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetField(self: *const T, pvData: ?*anyopaque, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetField(@as(*const IRecordInfo, @ptrCast(self)), pvData, szFieldName, pvarField);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetFieldNoCopy(self: *const T, pvData: ?*anyopaque, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT, ppvDataCArray: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetFieldNoCopy(@as(*const IRecordInfo, @ptrCast(self)), pvData, szFieldName, pvarField, ppvDataCArray);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_PutField(self: *const T, wFlags: u32, pvData: ?*anyopaque, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).PutField(@as(*const IRecordInfo, @ptrCast(self)), wFlags, pvData, szFieldName, pvarField);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_PutFieldNoCopy(self: *const T, wFlags: u32, pvData: ?*anyopaque, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).PutFieldNoCopy(@as(*const IRecordInfo, @ptrCast(self)), wFlags, pvData, szFieldName, pvarField);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetFieldNames(self: *const T, pcNames: ?*u32, rgBstrNames: [*]?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).GetFieldNames(@as(*const IRecordInfo, @ptrCast(self)), pcNames, rgBstrNames);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_IsMatchingType(self: *const T, pRecordInfo: ?*IRecordInfo) callconv(.Inline) BOOL {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).IsMatchingType(@as(*const IRecordInfo, @ptrCast(self)), pRecordInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordCreate(self: *const T) callconv(.Inline) ?*anyopaque {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordCreate(@as(*const IRecordInfo, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordCreateCopy(self: *const T, pvSource: ?*anyopaque, ppvDest: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordCreateCopy(@as(*const IRecordInfo, @ptrCast(self)), pvSource, ppvDest);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordDestroy(self: *const T, pvRecord: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IRecordInfo.VTable, @ptrCast(self.vtable)).RecordDestroy(@as(*const IRecordInfo, @ptrCast(self)), pvRecord);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RecordInit(self: *const IRecordInfo, pvNew: ?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.RecordInit(self, pvNew);
     }
@@ -2359,34 +1985,6 @@ pub const IOleAdviseHolder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleAdviseHolder_Advise(self: *const T, pAdvise: ?*IAdviseSink, pdwConnection: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).Advise(@as(*const IOleAdviseHolder, @ptrCast(self)), pAdvise, pdwConnection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleAdviseHolder_Unadvise(self: *const T, dwConnection: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IOleAdviseHolder, @ptrCast(self)), dwConnection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleAdviseHolder_EnumAdvise(self: *const T, ppenumAdvise: ?*?*IEnumSTATDATA) callconv(.Inline) HRESULT {
-            return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).EnumAdvise(@as(*const IOleAdviseHolder, @ptrCast(self)), ppenumAdvise);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleAdviseHolder_SendOnRename(self: *const T, pmk: ?*IMoniker) callconv(.Inline) HRESULT {
-            return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).SendOnRename(@as(*const IOleAdviseHolder, @ptrCast(self)), pmk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleAdviseHolder_SendOnSave(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).SendOnSave(@as(*const IOleAdviseHolder, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleAdviseHolder_SendOnClose(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleAdviseHolder.VTable, @ptrCast(self.vtable)).SendOnClose(@as(*const IOleAdviseHolder, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Advise(self: *const IOleAdviseHolder, pAdvise: ?*IAdviseSink, pdwConnection: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Advise(self, pAdvise, pdwConnection);
     }
@@ -2440,30 +2038,6 @@ pub const IOleCache = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleCache_Cache(self: *const T, pformatetc: ?*FORMATETC, advf: u32, pdwConnection: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleCache.VTable, @ptrCast(self.vtable)).Cache(@as(*const IOleCache, @ptrCast(self)), pformatetc, advf, pdwConnection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleCache_Uncache(self: *const T, dwConnection: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleCache.VTable, @ptrCast(self.vtable)).Uncache(@as(*const IOleCache, @ptrCast(self)), dwConnection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleCache_EnumCache(self: *const T, ppenumSTATDATA: ?*?*IEnumSTATDATA) callconv(.Inline) HRESULT {
-            return @as(*const IOleCache.VTable, @ptrCast(self.vtable)).EnumCache(@as(*const IOleCache, @ptrCast(self)), ppenumSTATDATA);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleCache_InitCache(self: *const T, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
-            return @as(*const IOleCache.VTable, @ptrCast(self.vtable)).InitCache(@as(*const IOleCache, @ptrCast(self)), pDataObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleCache_SetData(self: *const T, pformatetc: ?*FORMATETC, pmedium: ?*STGMEDIUM, fRelease: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleCache.VTable, @ptrCast(self.vtable)).SetData(@as(*const IOleCache, @ptrCast(self)), pformatetc, pmedium, fRelease);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Cache(self: *const IOleCache, pformatetc: ?*FORMATETC, advf: u32, pdwConnection: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Cache(self, pformatetc, advf, pdwConnection);
     }
@@ -2507,18 +2081,7 @@ pub const IOleCache2 = extern union {
     };
     vtable: *const VTable,
     IOleCache: IOleCache,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleCache.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleCache2_UpdateCache(self: *const T, pDataObject: ?*IDataObject, grfUpdf: UPDFCACHE_FLAGS, pReserved: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IOleCache2.VTable, @ptrCast(self.vtable)).UpdateCache(@as(*const IOleCache2, @ptrCast(self)), pDataObject, grfUpdf, pReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleCache2_DiscardCache(self: *const T, dwDiscardOptions: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleCache2.VTable, @ptrCast(self.vtable)).DiscardCache(@as(*const IOleCache2, @ptrCast(self)), dwDiscardOptions);
-        }
-    };}
-    pub usingnamespace IOleCache.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn UpdateCache(self: *const IOleCache2, pDataObject: ?*IDataObject, grfUpdf: UPDFCACHE_FLAGS, pReserved: ?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.UpdateCache(self, pDataObject, grfUpdf, pReserved);
     }
@@ -2543,18 +2106,6 @@ pub const IOleCacheControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleCacheControl_OnRun(self: *const T, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
-            return @as(*const IOleCacheControl.VTable, @ptrCast(self.vtable)).OnRun(@as(*const IOleCacheControl, @ptrCast(self)), pDataObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleCacheControl_OnStop(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleCacheControl.VTable, @ptrCast(self.vtable)).OnStop(@as(*const IOleCacheControl, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnRun(self: *const IOleCacheControl, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
         return self.vtable.OnRun(self, pDataObject);
     }
@@ -2579,14 +2130,6 @@ pub const IParseDisplayName = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IParseDisplayName_ParseDisplayName(self: *const T, pbc: ?*IBindCtx, pszDisplayName: ?PWSTR, pchEaten: ?*u32, ppmkOut: ?*?*IMoniker) callconv(.Inline) HRESULT {
-            return @as(*const IParseDisplayName.VTable, @ptrCast(self.vtable)).ParseDisplayName(@as(*const IParseDisplayName, @ptrCast(self)), pbc, pszDisplayName, pchEaten, ppmkOut);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ParseDisplayName(self: *const IParseDisplayName, pbc: ?*IBindCtx, pszDisplayName: ?PWSTR, pchEaten: ?*u32, ppmkOut: ?*?*IMoniker) callconv(.Inline) HRESULT {
         return self.vtable.ParseDisplayName(self, pbc, pszDisplayName, pchEaten, ppmkOut);
     }
@@ -2610,18 +2153,7 @@ pub const IOleContainer = extern union {
     };
     vtable: *const VTable,
     IParseDisplayName: IParseDisplayName,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IParseDisplayName.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleContainer_EnumObjects(self: *const T, grfFlags: u32, ppenum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IOleContainer.VTable, @ptrCast(self.vtable)).EnumObjects(@as(*const IOleContainer, @ptrCast(self)), grfFlags, ppenum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleContainer_LockContainer(self: *const T, fLock: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleContainer.VTable, @ptrCast(self.vtable)).LockContainer(@as(*const IOleContainer, @ptrCast(self)), fLock);
-        }
-    };}
-    pub usingnamespace IParseDisplayName.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn EnumObjects(self: *const IOleContainer, grfFlags: u32, ppenum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
         return self.vtable.EnumObjects(self, grfFlags, ppenum);
     }
@@ -2662,34 +2194,6 @@ pub const IOleClientSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleClientSite_SaveObject(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).SaveObject(@as(*const IOleClientSite, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleClientSite_GetMoniker(self: *const T, dwAssign: u32, dwWhichMoniker: u32, ppmk: ?*?*IMoniker) callconv(.Inline) HRESULT {
-            return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).GetMoniker(@as(*const IOleClientSite, @ptrCast(self)), dwAssign, dwWhichMoniker, ppmk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleClientSite_GetContainer(self: *const T, ppContainer: ?*?*IOleContainer) callconv(.Inline) HRESULT {
-            return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).GetContainer(@as(*const IOleClientSite, @ptrCast(self)), ppContainer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleClientSite_ShowObject(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).ShowObject(@as(*const IOleClientSite, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleClientSite_OnShowWindow(self: *const T, fShow: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).OnShowWindow(@as(*const IOleClientSite, @ptrCast(self)), fShow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleClientSite_RequestNewObjectLayout(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleClientSite.VTable, @ptrCast(self.vtable)).RequestNewObjectLayout(@as(*const IOleClientSite, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SaveObject(self: *const IOleClientSite) callconv(.Inline) HRESULT {
         return self.vtable.SaveObject(self);
     }
@@ -2882,94 +2386,6 @@ pub const IOleObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_SetClientSite(self: *const T, pClientSite: ?*IOleClientSite) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).SetClientSite(@as(*const IOleObject, @ptrCast(self)), pClientSite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_GetClientSite(self: *const T, ppClientSite: ?*?*IOleClientSite) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetClientSite(@as(*const IOleObject, @ptrCast(self)), ppClientSite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_SetHostNames(self: *const T, szContainerApp: ?[*:0]const u16, szContainerObj: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).SetHostNames(@as(*const IOleObject, @ptrCast(self)), szContainerApp, szContainerObj);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_Close(self: *const T, dwSaveOption: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).Close(@as(*const IOleObject, @ptrCast(self)), dwSaveOption);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_SetMoniker(self: *const T, dwWhichMoniker: u32, pmk: ?*IMoniker) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).SetMoniker(@as(*const IOleObject, @ptrCast(self)), dwWhichMoniker, pmk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_GetMoniker(self: *const T, dwAssign: u32, dwWhichMoniker: u32, ppmk: ?*?*IMoniker) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetMoniker(@as(*const IOleObject, @ptrCast(self)), dwAssign, dwWhichMoniker, ppmk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_InitFromData(self: *const T, pDataObject: ?*IDataObject, fCreation: BOOL, dwReserved: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).InitFromData(@as(*const IOleObject, @ptrCast(self)), pDataObject, fCreation, dwReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_GetClipboardData(self: *const T, dwReserved: u32, ppDataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetClipboardData(@as(*const IOleObject, @ptrCast(self)), dwReserved, ppDataObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_DoVerb(self: *const T, iVerb: i32, lpmsg: ?*MSG, pActiveSite: ?*IOleClientSite, lindex: i32, hwndParent: ?HWND, lprcPosRect: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).DoVerb(@as(*const IOleObject, @ptrCast(self)), iVerb, lpmsg, pActiveSite, lindex, hwndParent, lprcPosRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_EnumVerbs(self: *const T, ppEnumOleVerb: ?*?*IEnumOLEVERB) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).EnumVerbs(@as(*const IOleObject, @ptrCast(self)), ppEnumOleVerb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_Update(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).Update(@as(*const IOleObject, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_IsUpToDate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).IsUpToDate(@as(*const IOleObject, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_GetUserClassID(self: *const T, pClsid: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetUserClassID(@as(*const IOleObject, @ptrCast(self)), pClsid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_GetUserType(self: *const T, dwFormOfType: u32, pszUserType: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetUserType(@as(*const IOleObject, @ptrCast(self)), dwFormOfType, pszUserType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_SetExtent(self: *const T, dwDrawAspect: u32, psizel: ?*SIZE) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).SetExtent(@as(*const IOleObject, @ptrCast(self)), dwDrawAspect, psizel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_GetExtent(self: *const T, dwDrawAspect: u32, psizel: ?*SIZE) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetExtent(@as(*const IOleObject, @ptrCast(self)), dwDrawAspect, psizel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_Advise(self: *const T, pAdvSink: ?*IAdviseSink, pdwConnection: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).Advise(@as(*const IOleObject, @ptrCast(self)), pAdvSink, pdwConnection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_Unadvise(self: *const T, dwConnection: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IOleObject, @ptrCast(self)), dwConnection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_EnumAdvise(self: *const T, ppenumAdvise: ?*?*IEnumSTATDATA) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).EnumAdvise(@as(*const IOleObject, @ptrCast(self)), ppenumAdvise);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_GetMiscStatus(self: *const T, dwAspect: u32, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).GetMiscStatus(@as(*const IOleObject, @ptrCast(self)), dwAspect, pdwStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleObject_SetColorScheme(self: *const T, pLogpal: ?*LOGPALETTE) callconv(.Inline) HRESULT {
-            return @as(*const IOleObject.VTable, @ptrCast(self.vtable)).SetColorScheme(@as(*const IOleObject, @ptrCast(self)), pLogpal);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetClientSite(self: *const IOleObject, pClientSite: ?*IOleClientSite) callconv(.Inline) HRESULT {
         return self.vtable.SetClientSite(self, pClientSite);
     }
@@ -3074,18 +2490,6 @@ pub const IOleWindow = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleWindow_GetWindow(self: *const T, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IOleWindow.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const IOleWindow, @ptrCast(self)), phwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleWindow_ContextSensitiveHelp(self: *const T, fEnterMode: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleWindow.VTable, @ptrCast(self.vtable)).ContextSensitiveHelp(@as(*const IOleWindow, @ptrCast(self)), fEnterMode);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetWindow(self: *const IOleWindow, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
         return self.vtable.GetWindow(self, phwnd);
     }
@@ -3159,54 +2563,6 @@ pub const IOleLink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleLink_SetUpdateOptions(self: *const T, dwUpdateOpt: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).SetUpdateOptions(@as(*const IOleLink, @ptrCast(self)), dwUpdateOpt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleLink_GetUpdateOptions(self: *const T, pdwUpdateOpt: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).GetUpdateOptions(@as(*const IOleLink, @ptrCast(self)), pdwUpdateOpt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleLink_SetSourceMoniker(self: *const T, pmk: ?*IMoniker, rclsid: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).SetSourceMoniker(@as(*const IOleLink, @ptrCast(self)), pmk, rclsid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleLink_GetSourceMoniker(self: *const T, ppmk: ?*?*IMoniker) callconv(.Inline) HRESULT {
-            return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).GetSourceMoniker(@as(*const IOleLink, @ptrCast(self)), ppmk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleLink_SetSourceDisplayName(self: *const T, pszStatusText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).SetSourceDisplayName(@as(*const IOleLink, @ptrCast(self)), pszStatusText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleLink_GetSourceDisplayName(self: *const T, ppszDisplayName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).GetSourceDisplayName(@as(*const IOleLink, @ptrCast(self)), ppszDisplayName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleLink_BindToSource(self: *const T, bindflags: u32, pbc: ?*IBindCtx) callconv(.Inline) HRESULT {
-            return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).BindToSource(@as(*const IOleLink, @ptrCast(self)), bindflags, pbc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleLink_BindIfRunning(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).BindIfRunning(@as(*const IOleLink, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleLink_GetBoundSource(self: *const T, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).GetBoundSource(@as(*const IOleLink, @ptrCast(self)), ppunk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleLink_UnbindSource(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).UnbindSource(@as(*const IOleLink, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleLink_Update(self: *const T, pbc: ?*IBindCtx) callconv(.Inline) HRESULT {
-            return @as(*const IOleLink.VTable, @ptrCast(self.vtable)).Update(@as(*const IOleLink, @ptrCast(self)), pbc);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetUpdateOptions(self: *const IOleLink, dwUpdateOpt: u32) callconv(.Inline) HRESULT {
         return self.vtable.SetUpdateOptions(self, dwUpdateOpt);
     }
@@ -3292,22 +2648,8 @@ pub const IOleItemContainer = extern union {
     };
     vtable: *const VTable,
     IOleContainer: IOleContainer,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleContainer.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleItemContainer_GetObject(self: *const T, pszItem: ?PWSTR, dwSpeedNeeded: u32, pbc: ?*IBindCtx, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IOleItemContainer.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IOleItemContainer, @ptrCast(self)), pszItem, dwSpeedNeeded, pbc, riid, ppvObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleItemContainer_GetObjectStorage(self: *const T, pszItem: ?PWSTR, pbc: ?*IBindCtx, riid: ?*const Guid, ppvStorage: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IOleItemContainer.VTable, @ptrCast(self.vtable)).GetObjectStorage(@as(*const IOleItemContainer, @ptrCast(self)), pszItem, pbc, riid, ppvStorage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleItemContainer_IsRunning(self: *const T, pszItem: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IOleItemContainer.VTable, @ptrCast(self.vtable)).IsRunning(@as(*const IOleItemContainer, @ptrCast(self)), pszItem);
-        }
-    };}
-    pub usingnamespace IOleContainer.MethodMixin(@This());
+    IParseDisplayName: IParseDisplayName,
+    IUnknown: IUnknown,
     pub fn GetObject(self: *const IOleItemContainer, pszItem: ?PWSTR, dwSpeedNeeded: u32, pbc: ?*IBindCtx, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetObject(self, pszItem, dwSpeedNeeded, pbc, riid, ppvObject);
     }
@@ -3345,26 +2687,7 @@ pub const IOleInPlaceUIWindow = extern union {
     };
     vtable: *const VTable,
     IOleWindow: IOleWindow,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleWindow.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceUIWindow_GetBorder(self: *const T, lprectBorder: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceUIWindow.VTable, @ptrCast(self.vtable)).GetBorder(@as(*const IOleInPlaceUIWindow, @ptrCast(self)), lprectBorder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceUIWindow_RequestBorderSpace(self: *const T, pborderwidths: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceUIWindow.VTable, @ptrCast(self.vtable)).RequestBorderSpace(@as(*const IOleInPlaceUIWindow, @ptrCast(self)), pborderwidths);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceUIWindow_SetBorderSpace(self: *const T, pborderwidths: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceUIWindow.VTable, @ptrCast(self.vtable)).SetBorderSpace(@as(*const IOleInPlaceUIWindow, @ptrCast(self)), pborderwidths);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceUIWindow_SetActiveObject(self: *const T, pActiveObject: ?*IOleInPlaceActiveObject, pszObjName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceUIWindow.VTable, @ptrCast(self.vtable)).SetActiveObject(@as(*const IOleInPlaceUIWindow, @ptrCast(self)), pActiveObject, pszObjName);
-        }
-    };}
-    pub usingnamespace IOleWindow.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetBorder(self: *const IOleInPlaceUIWindow, lprectBorder: ?*RECT) callconv(.Inline) HRESULT {
         return self.vtable.GetBorder(self, lprectBorder);
     }
@@ -3410,30 +2733,7 @@ pub const IOleInPlaceActiveObject = extern union {
     };
     vtable: *const VTable,
     IOleWindow: IOleWindow,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleWindow.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceActiveObject_TranslateAccelerator(self: *const T, lpmsg: ?*MSG) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceActiveObject.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IOleInPlaceActiveObject, @ptrCast(self)), lpmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceActiveObject_OnFrameWindowActivate(self: *const T, fActivate: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceActiveObject.VTable, @ptrCast(self.vtable)).OnFrameWindowActivate(@as(*const IOleInPlaceActiveObject, @ptrCast(self)), fActivate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceActiveObject_OnDocWindowActivate(self: *const T, fActivate: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceActiveObject.VTable, @ptrCast(self.vtable)).OnDocWindowActivate(@as(*const IOleInPlaceActiveObject, @ptrCast(self)), fActivate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceActiveObject_ResizeBorder(self: *const T, prcBorder: ?*RECT, pUIWindow: ?*IOleInPlaceUIWindow, fFrameWindow: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceActiveObject.VTable, @ptrCast(self.vtable)).ResizeBorder(@as(*const IOleInPlaceActiveObject, @ptrCast(self)), prcBorder, pUIWindow, fFrameWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceActiveObject_EnableModeless(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceActiveObject.VTable, @ptrCast(self.vtable)).EnableModeless(@as(*const IOleInPlaceActiveObject, @ptrCast(self)), fEnable);
-        }
-    };}
-    pub usingnamespace IOleWindow.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn TranslateAccelerator(self: *const IOleInPlaceActiveObject, lpmsg: ?*MSG) callconv(.Inline) HRESULT {
         return self.vtable.TranslateAccelerator(self, lpmsg);
     }
@@ -3500,34 +2800,8 @@ pub const IOleInPlaceFrame = extern union {
     };
     vtable: *const VTable,
     IOleInPlaceUIWindow: IOleInPlaceUIWindow,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleInPlaceUIWindow.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceFrame_InsertMenus(self: *const T, hmenuShared: ?HMENU, lpMenuWidths: ?*OleMenuGroupWidths) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).InsertMenus(@as(*const IOleInPlaceFrame, @ptrCast(self)), hmenuShared, lpMenuWidths);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceFrame_SetMenu(self: *const T, hmenuShared: ?HMENU, holemenu: isize, hwndActiveObject: ?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).SetMenu(@as(*const IOleInPlaceFrame, @ptrCast(self)), hmenuShared, holemenu, hwndActiveObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceFrame_RemoveMenus(self: *const T, hmenuShared: ?HMENU) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).RemoveMenus(@as(*const IOleInPlaceFrame, @ptrCast(self)), hmenuShared);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceFrame_SetStatusText(self: *const T, pszStatusText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).SetStatusText(@as(*const IOleInPlaceFrame, @ptrCast(self)), pszStatusText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceFrame_EnableModeless(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).EnableModeless(@as(*const IOleInPlaceFrame, @ptrCast(self)), fEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceFrame_TranslateAccelerator(self: *const T, lpmsg: ?*MSG, wID: u16) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceFrame.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IOleInPlaceFrame, @ptrCast(self)), lpmsg, wID);
-        }
-    };}
-    pub usingnamespace IOleInPlaceUIWindow.MethodMixin(@This());
+    IOleWindow: IOleWindow,
+    IUnknown: IUnknown,
     pub fn InsertMenus(self: *const IOleInPlaceFrame, hmenuShared: ?HMENU, lpMenuWidths: ?*OleMenuGroupWidths) callconv(.Inline) HRESULT {
         return self.vtable.InsertMenus(self, hmenuShared, lpMenuWidths);
     }
@@ -3571,26 +2845,7 @@ pub const IOleInPlaceObject = extern union {
     };
     vtable: *const VTable,
     IOleWindow: IOleWindow,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleWindow.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceObject_InPlaceDeactivate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceObject.VTable, @ptrCast(self.vtable)).InPlaceDeactivate(@as(*const IOleInPlaceObject, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceObject_UIDeactivate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceObject.VTable, @ptrCast(self.vtable)).UIDeactivate(@as(*const IOleInPlaceObject, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceObject_SetObjectRects(self: *const T, lprcPosRect: ?*RECT, lprcClipRect: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceObject.VTable, @ptrCast(self.vtable)).SetObjectRects(@as(*const IOleInPlaceObject, @ptrCast(self)), lprcPosRect, lprcClipRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceObject_ReactivateAndUndo(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceObject.VTable, @ptrCast(self.vtable)).ReactivateAndUndo(@as(*const IOleInPlaceObject, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IOleWindow.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn InPlaceDeactivate(self: *const IOleInPlaceObject) callconv(.Inline) HRESULT {
         return self.vtable.InPlaceDeactivate(self);
     }
@@ -3652,50 +2907,7 @@ pub const IOleInPlaceSite = extern union {
     };
     vtable: *const VTable,
     IOleWindow: IOleWindow,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleWindow.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSite_CanInPlaceActivate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).CanInPlaceActivate(@as(*const IOleInPlaceSite, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSite_OnInPlaceActivate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).OnInPlaceActivate(@as(*const IOleInPlaceSite, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSite_OnUIActivate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).OnUIActivate(@as(*const IOleInPlaceSite, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSite_GetWindowContext(self: *const T, ppFrame: ?*?*IOleInPlaceFrame, ppDoc: ?*?*IOleInPlaceUIWindow, lprcPosRect: ?*RECT, lprcClipRect: ?*RECT, lpFrameInfo: ?*OIFI) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).GetWindowContext(@as(*const IOleInPlaceSite, @ptrCast(self)), ppFrame, ppDoc, lprcPosRect, lprcClipRect, lpFrameInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSite_Scroll(self: *const T, scrollExtant: SIZE) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).Scroll(@as(*const IOleInPlaceSite, @ptrCast(self)), scrollExtant);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSite_OnUIDeactivate(self: *const T, fUndoable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).OnUIDeactivate(@as(*const IOleInPlaceSite, @ptrCast(self)), fUndoable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSite_OnInPlaceDeactivate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).OnInPlaceDeactivate(@as(*const IOleInPlaceSite, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSite_DiscardUndoState(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).DiscardUndoState(@as(*const IOleInPlaceSite, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSite_DeactivateAndUndo(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).DeactivateAndUndo(@as(*const IOleInPlaceSite, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSite_OnPosRectChange(self: *const T, lprcPosRect: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSite.VTable, @ptrCast(self.vtable)).OnPosRectChange(@as(*const IOleInPlaceSite, @ptrCast(self)), lprcPosRect);
-        }
-    };}
-    pub usingnamespace IOleWindow.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CanInPlaceActivate(self: *const IOleInPlaceSite) callconv(.Inline) HRESULT {
         return self.vtable.CanInPlaceActivate(self);
     }
@@ -3739,14 +2951,6 @@ pub const IContinue = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContinue_FContinue(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContinue.VTable, @ptrCast(self.vtable)).FContinue(@as(*const IContinue, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FContinue(self: *const IContinue) callconv(.Inline) HRESULT {
         return self.vtable.FContinue(self);
     }
@@ -3806,34 +3010,6 @@ pub const IViewObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObject_Draw(self: *const T, dwDrawAspect: u32, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcTargetDev: ?HDC, hdcDraw: ?HDC, lprcBounds: ?*RECTL, lprcWBounds: ?*RECTL, pfnContinue: isize, dwContinue: usize) callconv(.Inline) HRESULT {
-            return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).Draw(@as(*const IViewObject, @ptrCast(self)), dwDrawAspect, lindex, pvAspect, ptd, hdcTargetDev, hdcDraw, lprcBounds, lprcWBounds, pfnContinue, dwContinue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObject_GetColorSet(self: *const T, dwDrawAspect: u32, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hicTargetDev: ?HDC, ppColorSet: ?*?*LOGPALETTE) callconv(.Inline) HRESULT {
-            return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).GetColorSet(@as(*const IViewObject, @ptrCast(self)), dwDrawAspect, lindex, pvAspect, ptd, hicTargetDev, ppColorSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObject_Freeze(self: *const T, dwDrawAspect: u32, lindex: i32, pvAspect: ?*anyopaque, pdwFreeze: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).Freeze(@as(*const IViewObject, @ptrCast(self)), dwDrawAspect, lindex, pvAspect, pdwFreeze);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObject_Unfreeze(self: *const T, dwFreeze: u32) callconv(.Inline) HRESULT {
-            return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).Unfreeze(@as(*const IViewObject, @ptrCast(self)), dwFreeze);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObject_SetAdvise(self: *const T, aspects: u32, advf: u32, pAdvSink: ?*IAdviseSink) callconv(.Inline) HRESULT {
-            return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).SetAdvise(@as(*const IViewObject, @ptrCast(self)), aspects, advf, pAdvSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObject_GetAdvise(self: *const T, pAspects: ?*u32, pAdvf: ?*u32, ppAdvSink: ?*?*IAdviseSink) callconv(.Inline) HRESULT {
-            return @as(*const IViewObject.VTable, @ptrCast(self.vtable)).GetAdvise(@as(*const IViewObject, @ptrCast(self)), pAspects, pAdvf, ppAdvSink);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Draw(self: *const IViewObject, dwDrawAspect: u32, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcTargetDev: ?HDC, hdcDraw: ?HDC, lprcBounds: ?*RECTL, lprcWBounds: ?*RECTL, pfnContinue: isize, dwContinue: usize) callconv(.Inline) HRESULT {
         return self.vtable.Draw(self, dwDrawAspect, lindex, pvAspect, ptd, hdcTargetDev, hdcDraw, lprcBounds, lprcWBounds, pfnContinue, dwContinue);
     }
@@ -3870,14 +3046,7 @@ pub const IViewObject2 = extern union {
     };
     vtable: *const VTable,
     IViewObject: IViewObject,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IViewObject.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObject2_GetExtent(self: *const T, dwDrawAspect: u32, lindex: i32, ptd: ?*DVTARGETDEVICE, lpsizel: ?*SIZE) callconv(.Inline) HRESULT {
-            return @as(*const IViewObject2.VTable, @ptrCast(self.vtable)).GetExtent(@as(*const IViewObject2, @ptrCast(self)), dwDrawAspect, lindex, ptd, lpsizel);
-        }
-    };}
-    pub usingnamespace IViewObject.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetExtent(self: *const IViewObject2, dwDrawAspect: u32, lindex: i32, ptd: ?*DVTARGETDEVICE, lpsizel: ?*SIZE) callconv(.Inline) HRESULT {
         return self.vtable.GetExtent(self, dwDrawAspect, lindex, ptd, lpsizel);
     }
@@ -3901,18 +3070,6 @@ pub const IDropSource = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDropSource_QueryContinueDrag(self: *const T, fEscapePressed: BOOL, grfKeyState: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDropSource.VTable, @ptrCast(self.vtable)).QueryContinueDrag(@as(*const IDropSource, @ptrCast(self)), fEscapePressed, grfKeyState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDropSource_GiveFeedback(self: *const T, dwEffect: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDropSource.VTable, @ptrCast(self.vtable)).GiveFeedback(@as(*const IDropSource, @ptrCast(self)), dwEffect);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryContinueDrag(self: *const IDropSource, fEscapePressed: BOOL, grfKeyState: u32) callconv(.Inline) HRESULT {
         return self.vtable.QueryContinueDrag(self, fEscapePressed, grfKeyState);
     }
@@ -3953,26 +3110,6 @@ pub const IDropTarget = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDropTarget_DragEnter(self: *const T, pDataObj: ?*IDataObject, grfKeyState: u32, pt: POINTL, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDropTarget.VTable, @ptrCast(self.vtable)).DragEnter(@as(*const IDropTarget, @ptrCast(self)), pDataObj, grfKeyState, pt, pdwEffect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDropTarget_DragOver(self: *const T, grfKeyState: u32, pt: POINTL, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDropTarget.VTable, @ptrCast(self.vtable)).DragOver(@as(*const IDropTarget, @ptrCast(self)), grfKeyState, pt, pdwEffect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDropTarget_DragLeave(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDropTarget.VTable, @ptrCast(self.vtable)).DragLeave(@as(*const IDropTarget, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDropTarget_Drop(self: *const T, pDataObj: ?*IDataObject, grfKeyState: u32, pt: POINTL, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDropTarget.VTable, @ptrCast(self.vtable)).Drop(@as(*const IDropTarget, @ptrCast(self)), pDataObj, grfKeyState, pt, pdwEffect);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DragEnter(self: *const IDropTarget, pDataObj: ?*IDataObject, grfKeyState: u32, pt: POINTL, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.DragEnter(self, pDataObj, grfKeyState, pt, pdwEffect);
     }
@@ -4003,18 +3140,6 @@ pub const IDropSourceNotify = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDropSourceNotify_DragEnterTarget(self: *const T, hwndTarget: ?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IDropSourceNotify.VTable, @ptrCast(self.vtable)).DragEnterTarget(@as(*const IDropSourceNotify, @ptrCast(self)), hwndTarget);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDropSourceNotify_DragLeaveTarget(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDropSourceNotify.VTable, @ptrCast(self.vtable)).DragLeaveTarget(@as(*const IDropSourceNotify, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DragEnterTarget(self: *const IDropSourceNotify, hwndTarget: ?HWND) callconv(.Inline) HRESULT {
         return self.vtable.DragEnterTarget(self, hwndTarget);
     }
@@ -4040,18 +3165,6 @@ pub const IEnterpriseDropTarget = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnterpriseDropTarget_SetDropSourceEnterpriseId(self: *const T, identity: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IEnterpriseDropTarget.VTable, @ptrCast(self.vtable)).SetDropSourceEnterpriseId(@as(*const IEnterpriseDropTarget, @ptrCast(self)), identity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnterpriseDropTarget_IsEvaluatingEdpPolicy(self: *const T, value: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IEnterpriseDropTarget.VTable, @ptrCast(self.vtable)).IsEvaluatingEdpPolicy(@as(*const IEnterpriseDropTarget, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetDropSourceEnterpriseId(self: *const IEnterpriseDropTarget, identity: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.SetDropSourceEnterpriseId(self, identity);
     }
@@ -4100,26 +3213,6 @@ pub const IEnumOLEVERB = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOLEVERB_Next(self: *const T, celt: u32, rgelt: [*]OLEVERB, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumOLEVERB.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumOLEVERB, @ptrCast(self)), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOLEVERB_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumOLEVERB.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumOLEVERB, @ptrCast(self)), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOLEVERB_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumOLEVERB.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumOLEVERB, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOLEVERB_Clone(self: *const T, ppenum: ?*?*IEnumOLEVERB) callconv(.Inline) HRESULT {
-            return @as(*const IEnumOLEVERB.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOLEVERB, @ptrCast(self)), ppenum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumOLEVERB, celt: u32, rgelt: [*]OLEVERB, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
@@ -4234,22 +3327,7 @@ pub const IClassFactory2 = extern union {
     };
     vtable: *const VTable,
     IClassFactory: IClassFactory,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IClassFactory.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClassFactory2_GetLicInfo(self: *const T, pLicInfo: ?*LICINFO) callconv(.Inline) HRESULT {
-            return @as(*const IClassFactory2.VTable, @ptrCast(self.vtable)).GetLicInfo(@as(*const IClassFactory2, @ptrCast(self)), pLicInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClassFactory2_RequestLicKey(self: *const T, dwReserved: u32, pBstrKey: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IClassFactory2.VTable, @ptrCast(self.vtable)).RequestLicKey(@as(*const IClassFactory2, @ptrCast(self)), dwReserved, pBstrKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClassFactory2_CreateInstanceLic(self: *const T, pUnkOuter: ?*IUnknown, pUnkReserved: ?*IUnknown, riid: ?*const Guid, bstrKey: ?BSTR, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IClassFactory2.VTable, @ptrCast(self.vtable)).CreateInstanceLic(@as(*const IClassFactory2, @ptrCast(self)), pUnkOuter, pUnkReserved, riid, bstrKey, ppvObj);
-        }
-    };}
-    pub usingnamespace IClassFactory.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetLicInfo(self: *const IClassFactory2, pLicInfo: ?*LICINFO) callconv(.Inline) HRESULT {
         return self.vtable.GetLicInfo(self, pLicInfo);
     }
@@ -4274,14 +3352,6 @@ pub const IProvideClassInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideClassInfo_GetClassInfo(self: *const T, ppTI: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
-            return @as(*const IProvideClassInfo.VTable, @ptrCast(self.vtable)).GetClassInfo(@as(*const IProvideClassInfo, @ptrCast(self)), ppTI);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetClassInfo(self: *const IProvideClassInfo, ppTI: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
         return self.vtable.GetClassInfo(self, ppTI);
     }
@@ -4306,14 +3376,7 @@ pub const IProvideClassInfo2 = extern union {
     };
     vtable: *const VTable,
     IProvideClassInfo: IProvideClassInfo,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IProvideClassInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideClassInfo2_GetGUID(self: *const T, dwGuidKind: u32, pGUID: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IProvideClassInfo2.VTable, @ptrCast(self.vtable)).GetGUID(@as(*const IProvideClassInfo2, @ptrCast(self)), dwGuidKind, pGUID);
-        }
-    };}
-    pub usingnamespace IProvideClassInfo.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetGUID(self: *const IProvideClassInfo2, dwGuidKind: u32, pGUID: ?*Guid) callconv(.Inline) HRESULT {
         return self.vtable.GetGUID(self, dwGuidKind, pGUID);
     }
@@ -4342,18 +3405,8 @@ pub const IProvideMultipleClassInfo = extern union {
     };
     vtable: *const VTable,
     IProvideClassInfo2: IProvideClassInfo2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IProvideClassInfo2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideMultipleClassInfo_GetMultiTypeInfoCount(self: *const T, pcti: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IProvideMultipleClassInfo.VTable, @ptrCast(self.vtable)).GetMultiTypeInfoCount(@as(*const IProvideMultipleClassInfo, @ptrCast(self)), pcti);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideMultipleClassInfo_GetInfoOfIndex(self: *const T, iti: u32, dwFlags: MULTICLASSINFO_FLAGS, pptiCoClass: ?*?*ITypeInfo, pdwTIFlags: ?*u32, pcdispidReserved: ?*u32, piidPrimary: ?*Guid, piidSource: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IProvideMultipleClassInfo.VTable, @ptrCast(self.vtable)).GetInfoOfIndex(@as(*const IProvideMultipleClassInfo, @ptrCast(self)), iti, dwFlags, pptiCoClass, pdwTIFlags, pcdispidReserved, piidPrimary, piidSource);
-        }
-    };}
-    pub usingnamespace IProvideClassInfo2.MethodMixin(@This());
+    IProvideClassInfo: IProvideClassInfo,
+    IUnknown: IUnknown,
     pub fn GetMultiTypeInfoCount(self: *const IProvideMultipleClassInfo, pcti: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetMultiTypeInfoCount(self, pcti);
     }
@@ -4401,26 +3454,6 @@ pub const IOleControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleControl_GetControlInfo(self: *const T, pCI: ?*CONTROLINFO) callconv(.Inline) HRESULT {
-            return @as(*const IOleControl.VTable, @ptrCast(self.vtable)).GetControlInfo(@as(*const IOleControl, @ptrCast(self)), pCI);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleControl_OnMnemonic(self: *const T, pMsg: ?*MSG) callconv(.Inline) HRESULT {
-            return @as(*const IOleControl.VTable, @ptrCast(self.vtable)).OnMnemonic(@as(*const IOleControl, @ptrCast(self)), pMsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleControl_OnAmbientPropertyChange(self: *const T, dispID: i32) callconv(.Inline) HRESULT {
-            return @as(*const IOleControl.VTable, @ptrCast(self.vtable)).OnAmbientPropertyChange(@as(*const IOleControl, @ptrCast(self)), dispID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleControl_FreezeEvents(self: *const T, bFreeze: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleControl.VTable, @ptrCast(self.vtable)).FreezeEvents(@as(*const IOleControl, @ptrCast(self)), bFreeze);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetControlInfo(self: *const IOleControl, pCI: ?*CONTROLINFO) callconv(.Inline) HRESULT {
         return self.vtable.GetControlInfo(self, pCI);
     }
@@ -4491,38 +3524,6 @@ pub const IOleControlSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleControlSite_OnControlInfoChanged(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).OnControlInfoChanged(@as(*const IOleControlSite, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleControlSite_LockInPlaceActive(self: *const T, fLock: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).LockInPlaceActive(@as(*const IOleControlSite, @ptrCast(self)), fLock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleControlSite_GetExtendedControl(self: *const T, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).GetExtendedControl(@as(*const IOleControlSite, @ptrCast(self)), ppDisp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleControlSite_TransformCoords(self: *const T, pPtlHimetric: ?*POINTL, pPtfContainer: ?*POINTF, dwFlags: XFORMCOORDS) callconv(.Inline) HRESULT {
-            return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).TransformCoords(@as(*const IOleControlSite, @ptrCast(self)), pPtlHimetric, pPtfContainer, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleControlSite_TranslateAccelerator(self: *const T, pMsg: ?*MSG, grfModifiers: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IOleControlSite, @ptrCast(self)), pMsg, grfModifiers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleControlSite_OnFocus(self: *const T, fGotFocus: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).OnFocus(@as(*const IOleControlSite, @ptrCast(self)), fGotFocus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleControlSite_ShowPropertyFrame(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleControlSite.VTable, @ptrCast(self.vtable)).ShowPropertyFrame(@as(*const IOleControlSite, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnControlInfoChanged(self: *const IOleControlSite) callconv(.Inline) HRESULT {
         return self.vtable.OnControlInfoChanged(self);
     }
@@ -4608,54 +3609,6 @@ pub const IPropertyPage = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPage_SetPageSite(self: *const T, pPageSite: ?*IPropertyPageSite) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).SetPageSite(@as(*const IPropertyPage, @ptrCast(self)), pPageSite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPage_Activate(self: *const T, hWndParent: ?HWND, pRect: ?*RECT, bModal: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).Activate(@as(*const IPropertyPage, @ptrCast(self)), hWndParent, pRect, bModal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPage_Deactivate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).Deactivate(@as(*const IPropertyPage, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPage_GetPageInfo(self: *const T, pPageInfo: ?*PROPPAGEINFO) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).GetPageInfo(@as(*const IPropertyPage, @ptrCast(self)), pPageInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPage_SetObjects(self: *const T, cObjects: u32, ppUnk: [*]?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).SetObjects(@as(*const IPropertyPage, @ptrCast(self)), cObjects, ppUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPage_Show(self: *const T, nCmdShow: u32) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).Show(@as(*const IPropertyPage, @ptrCast(self)), nCmdShow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPage_Move(self: *const T, pRect: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).Move(@as(*const IPropertyPage, @ptrCast(self)), pRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPage_IsPageDirty(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).IsPageDirty(@as(*const IPropertyPage, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPage_Apply(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).Apply(@as(*const IPropertyPage, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPage_Help(self: *const T, pszHelpDir: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).Help(@as(*const IPropertyPage, @ptrCast(self)), pszHelpDir);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPage_TranslateAccelerator(self: *const T, pMsg: ?*MSG) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPage.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IPropertyPage, @ptrCast(self)), pMsg);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetPageSite(self: *const IPropertyPage, pPageSite: ?*IPropertyPageSite) callconv(.Inline) HRESULT {
         return self.vtable.SetPageSite(self, pPageSite);
     }
@@ -4704,14 +3657,7 @@ pub const IPropertyPage2 = extern union {
     };
     vtable: *const VTable,
     IPropertyPage: IPropertyPage,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPropertyPage.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPage2_EditProperty(self: *const T, dispID: i32) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPage2.VTable, @ptrCast(self.vtable)).EditProperty(@as(*const IPropertyPage2, @ptrCast(self)), dispID);
-        }
-    };}
-    pub usingnamespace IPropertyPage.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn EditProperty(self: *const IPropertyPage2, dispID: i32) callconv(.Inline) HRESULT {
         return self.vtable.EditProperty(self, dispID);
     }
@@ -4751,26 +3697,6 @@ pub const IPropertyPageSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPageSite_OnStatusChange(self: *const T, dwFlags: PROPPAGESTATUS) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPageSite.VTable, @ptrCast(self.vtable)).OnStatusChange(@as(*const IPropertyPageSite, @ptrCast(self)), dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPageSite_GetLocaleID(self: *const T, pLocaleID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPageSite.VTable, @ptrCast(self.vtable)).GetLocaleID(@as(*const IPropertyPageSite, @ptrCast(self)), pLocaleID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPageSite_GetPageContainer(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPageSite.VTable, @ptrCast(self.vtable)).GetPageContainer(@as(*const IPropertyPageSite, @ptrCast(self)), ppUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyPageSite_TranslateAccelerator(self: *const T, pMsg: ?*MSG) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyPageSite.VTable, @ptrCast(self.vtable)).TranslateAccelerator(@as(*const IPropertyPageSite, @ptrCast(self)), pMsg);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnStatusChange(self: *const IPropertyPageSite, dwFlags: PROPPAGESTATUS) callconv(.Inline) HRESULT {
         return self.vtable.OnStatusChange(self, dwFlags);
     }
@@ -4802,18 +3728,6 @@ pub const IPropertyNotifySink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyNotifySink_OnChanged(self: *const T, dispID: i32) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyNotifySink.VTable, @ptrCast(self.vtable)).OnChanged(@as(*const IPropertyNotifySink, @ptrCast(self)), dispID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyNotifySink_OnRequestEdit(self: *const T, dispID: i32) callconv(.Inline) HRESULT {
-            return @as(*const IPropertyNotifySink.VTable, @ptrCast(self.vtable)).OnRequestEdit(@as(*const IPropertyNotifySink, @ptrCast(self)), dispID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnChanged(self: *const IPropertyNotifySink, dispID: i32) callconv(.Inline) HRESULT {
         return self.vtable.OnChanged(self, dispID);
     }
@@ -4840,14 +3754,6 @@ pub const ISpecifyPropertyPages = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpecifyPropertyPages_GetPages(self: *const T, pPages: ?*CAUUID) callconv(.Inline) HRESULT {
-            return @as(*const ISpecifyPropertyPages.VTable, @ptrCast(self.vtable)).GetPages(@as(*const ISpecifyPropertyPages, @ptrCast(self)), pPages);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPages(self: *const ISpecifyPropertyPages, pPages: ?*CAUUID) callconv(.Inline) HRESULT {
         return self.vtable.GetPages(self, pPages);
     }
@@ -4875,22 +3781,7 @@ pub const IPersistPropertyBag = extern union {
     };
     vtable: *const VTable,
     IPersist: IPersist,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPersist.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistPropertyBag_InitNew(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IPersistPropertyBag.VTable, @ptrCast(self.vtable)).InitNew(@as(*const IPersistPropertyBag, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistPropertyBag_Load(self: *const T, pPropBag: ?*IPropertyBag, pErrorLog: ?*IErrorLog) callconv(.Inline) HRESULT {
-            return @as(*const IPersistPropertyBag.VTable, @ptrCast(self.vtable)).Load(@as(*const IPersistPropertyBag, @ptrCast(self)), pPropBag, pErrorLog);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistPropertyBag_Save(self: *const T, pPropBag: ?*IPropertyBag, fClearDirty: BOOL, fSaveAllProperties: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IPersistPropertyBag.VTable, @ptrCast(self.vtable)).Save(@as(*const IPersistPropertyBag, @ptrCast(self)), pPropBag, fClearDirty, fSaveAllProperties);
-        }
-    };}
-    pub usingnamespace IPersist.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn InitNew(self: *const IPersistPropertyBag) callconv(.Inline) HRESULT {
         return self.vtable.InitNew(self);
     }
@@ -4929,18 +3820,6 @@ pub const ISimpleFrameSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimpleFrameSite_PreMessageFilter(self: *const T, hWnd: ?HWND, msg: u32, wp: WPARAM, lp: LPARAM, plResult: ?*LRESULT, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISimpleFrameSite.VTable, @ptrCast(self.vtable)).PreMessageFilter(@as(*const ISimpleFrameSite, @ptrCast(self)), hWnd, msg, wp, lp, plResult, pdwCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimpleFrameSite_PostMessageFilter(self: *const T, hWnd: ?HWND, msg: u32, wp: WPARAM, lp: LPARAM, plResult: ?*LRESULT, dwCookie: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISimpleFrameSite.VTable, @ptrCast(self.vtable)).PostMessageFilter(@as(*const ISimpleFrameSite, @ptrCast(self)), hWnd, msg, wp, lp, plResult, dwCookie);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn PreMessageFilter(self: *const ISimpleFrameSite, hWnd: ?HWND, msg: u32, wp: WPARAM, lp: LPARAM, plResult: ?*LRESULT, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.PreMessageFilter(self, hWnd, msg, wp, lp, plResult, pdwCookie);
     }
@@ -5072,106 +3951,6 @@ pub const IFont = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_get_Name(self: *const T, pName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFont, @ptrCast(self)), pName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFont, @ptrCast(self)), name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_get_Size(self: *const T, pSize: ?*CY) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFont, @ptrCast(self)), pSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_put_Size(self: *const T, size: CY) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Size(@as(*const IFont, @ptrCast(self)), size);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_get_Bold(self: *const T, pBold: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Bold(@as(*const IFont, @ptrCast(self)), pBold);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_put_Bold(self: *const T, bold: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Bold(@as(*const IFont, @ptrCast(self)), bold);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_get_Italic(self: *const T, pItalic: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Italic(@as(*const IFont, @ptrCast(self)), pItalic);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_put_Italic(self: *const T, italic: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Italic(@as(*const IFont, @ptrCast(self)), italic);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_get_Underline(self: *const T, pUnderline: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Underline(@as(*const IFont, @ptrCast(self)), pUnderline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_put_Underline(self: *const T, underline: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Underline(@as(*const IFont, @ptrCast(self)), underline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_get_Strikethrough(self: *const T, pStrikethrough: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Strikethrough(@as(*const IFont, @ptrCast(self)), pStrikethrough);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_put_Strikethrough(self: *const T, strikethrough: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Strikethrough(@as(*const IFont, @ptrCast(self)), strikethrough);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_get_Weight(self: *const T, pWeight: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Weight(@as(*const IFont, @ptrCast(self)), pWeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_put_Weight(self: *const T, weight: i16) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Weight(@as(*const IFont, @ptrCast(self)), weight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_get_Charset(self: *const T, pCharset: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_Charset(@as(*const IFont, @ptrCast(self)), pCharset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_put_Charset(self: *const T, charset: i16) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).put_Charset(@as(*const IFont, @ptrCast(self)), charset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_get_hFont(self: *const T, phFont: ?*?HFONT) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).get_hFont(@as(*const IFont, @ptrCast(self)), phFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_Clone(self: *const T, ppFont: ?*?*IFont) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).Clone(@as(*const IFont, @ptrCast(self)), ppFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_IsEqual(self: *const T, pFontOther: ?*IFont) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const IFont, @ptrCast(self)), pFontOther);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_SetRatio(self: *const T, cyLogical: i32, cyHimetric: i32) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).SetRatio(@as(*const IFont, @ptrCast(self)), cyLogical, cyHimetric);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_QueryTextMetrics(self: *const T, pTM: ?*TEXTMETRICW) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).QueryTextMetrics(@as(*const IFont, @ptrCast(self)), pTM);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_AddRefHfont(self: *const T, hFont: ?HFONT) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).AddRefHfont(@as(*const IFont, @ptrCast(self)), hFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_ReleaseHfont(self: *const T, hFont: ?HFONT) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).ReleaseHfont(@as(*const IFont, @ptrCast(self)), hFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFont_SetHdc(self: *const T, hDC: ?HDC) callconv(.Inline) HRESULT {
-            return @as(*const IFont.VTable, @ptrCast(self.vtable)).SetHdc(@as(*const IFont, @ptrCast(self)), hDC);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Name(self: *const IFont, pName: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_Name(self, pName);
     }
@@ -5339,66 +4118,6 @@ pub const IPicture = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_get_Handle(self: *const T, pHandle: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IPicture, @ptrCast(self)), pHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_get_hPal(self: *const T, phPal: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_hPal(@as(*const IPicture, @ptrCast(self)), phPal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_get_Type(self: *const T, pType: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IPicture, @ptrCast(self)), pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_get_Width(self: *const T, pWidth: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_Width(@as(*const IPicture, @ptrCast(self)), pWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_get_Height(self: *const T, pHeight: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_Height(@as(*const IPicture, @ptrCast(self)), pHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_Render(self: *const T, hDC: ?HDC, x: i32, y: i32, cx: i32, cy: i32, xSrc: i32, ySrc: i32, cxSrc: i32, cySrc: i32, pRcWBounds: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).Render(@as(*const IPicture, @ptrCast(self)), hDC, x, y, cx, cy, xSrc, ySrc, cxSrc, cySrc, pRcWBounds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_set_hPal(self: *const T, hPal: u32) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).set_hPal(@as(*const IPicture, @ptrCast(self)), hPal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_get_CurDC(self: *const T, phDC: ?*?HDC) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_CurDC(@as(*const IPicture, @ptrCast(self)), phDC);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_SelectPicture(self: *const T, hDCIn: ?HDC, phDCOut: ?*?HDC, phBmpOut: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).SelectPicture(@as(*const IPicture, @ptrCast(self)), hDCIn, phDCOut, phBmpOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_get_KeepOriginalFormat(self: *const T, pKeep: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_KeepOriginalFormat(@as(*const IPicture, @ptrCast(self)), pKeep);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_put_KeepOriginalFormat(self: *const T, keep: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).put_KeepOriginalFormat(@as(*const IPicture, @ptrCast(self)), keep);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_PictureChanged(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).PictureChanged(@as(*const IPicture, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_SaveAsFile(self: *const T, pStream: ?*IStream, fSaveMemCopy: BOOL, pCbSize: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).SaveAsFile(@as(*const IPicture, @ptrCast(self)), pStream, fSaveMemCopy, pCbSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture_get_Attributes(self: *const T, pDwAttr: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IPicture.VTable, @ptrCast(self.vtable)).get_Attributes(@as(*const IPicture, @ptrCast(self)), pDwAttr);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Handle(self: *const IPicture, pHandle: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.get_Handle(self, pHandle);
     }
@@ -5528,66 +4247,6 @@ pub const IPicture2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_get_Handle(self: *const T, pHandle: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IPicture2, @ptrCast(self)), pHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_get_hPal(self: *const T, phPal: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_hPal(@as(*const IPicture2, @ptrCast(self)), phPal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_get_Type(self: *const T, pType: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IPicture2, @ptrCast(self)), pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_get_Width(self: *const T, pWidth: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_Width(@as(*const IPicture2, @ptrCast(self)), pWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_get_Height(self: *const T, pHeight: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_Height(@as(*const IPicture2, @ptrCast(self)), pHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_Render(self: *const T, hDC: ?HDC, x: i32, y: i32, cx: i32, cy: i32, xSrc: i32, ySrc: i32, cxSrc: i32, cySrc: i32, pRcWBounds: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).Render(@as(*const IPicture2, @ptrCast(self)), hDC, x, y, cx, cy, xSrc, ySrc, cxSrc, cySrc, pRcWBounds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_set_hPal(self: *const T, hPal: usize) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).set_hPal(@as(*const IPicture2, @ptrCast(self)), hPal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_get_CurDC(self: *const T, phDC: ?*?HDC) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_CurDC(@as(*const IPicture2, @ptrCast(self)), phDC);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_SelectPicture(self: *const T, hDCIn: ?HDC, phDCOut: ?*?HDC, phBmpOut: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).SelectPicture(@as(*const IPicture2, @ptrCast(self)), hDCIn, phDCOut, phBmpOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_get_KeepOriginalFormat(self: *const T, pKeep: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_KeepOriginalFormat(@as(*const IPicture2, @ptrCast(self)), pKeep);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_put_KeepOriginalFormat(self: *const T, keep: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).put_KeepOriginalFormat(@as(*const IPicture2, @ptrCast(self)), keep);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_PictureChanged(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).PictureChanged(@as(*const IPicture2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_SaveAsFile(self: *const T, pStream: ?*IStream, fSaveMemCopy: BOOL, pCbSize: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).SaveAsFile(@as(*const IPicture2, @ptrCast(self)), pStream, fSaveMemCopy, pCbSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPicture2_get_Attributes(self: *const T, pDwAttr: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IPicture2.VTable, @ptrCast(self.vtable)).get_Attributes(@as(*const IPicture2, @ptrCast(self)), pDwAttr);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Handle(self: *const IPicture2, pHandle: ?*usize) callconv(.Inline) HRESULT {
         return self.vtable.get_Handle(self, pHandle);
     }
@@ -5640,10 +4299,7 @@ pub const IFontEventsDisp = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5655,10 +4311,7 @@ pub const IFontDisp = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5670,10 +4323,7 @@ pub const IPictureDisp = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5696,18 +4346,8 @@ pub const IOleInPlaceObjectWindowless = extern union {
     };
     vtable: *const VTable,
     IOleInPlaceObject: IOleInPlaceObject,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleInPlaceObject.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceObjectWindowless_OnWindowMessage(self: *const T, msg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceObjectWindowless.VTable, @ptrCast(self.vtable)).OnWindowMessage(@as(*const IOleInPlaceObjectWindowless, @ptrCast(self)), msg, wParam, lParam, plResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceObjectWindowless_GetDropTarget(self: *const T, ppDropTarget: ?*?*IDropTarget) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceObjectWindowless.VTable, @ptrCast(self.vtable)).GetDropTarget(@as(*const IOleInPlaceObjectWindowless, @ptrCast(self)), ppDropTarget);
-        }
-    };}
-    pub usingnamespace IOleInPlaceObject.MethodMixin(@This());
+    IOleWindow: IOleWindow,
+    IUnknown: IUnknown,
     pub fn OnWindowMessage(self: *const IOleInPlaceObjectWindowless, msg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
         return self.vtable.OnWindowMessage(self, msg, wParam, lParam, plResult);
     }
@@ -5742,22 +4382,8 @@ pub const IOleInPlaceSiteEx = extern union {
     };
     vtable: *const VTable,
     IOleInPlaceSite: IOleInPlaceSite,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleInPlaceSite.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteEx_OnInPlaceActivateEx(self: *const T, pfNoRedraw: ?*BOOL, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteEx.VTable, @ptrCast(self.vtable)).OnInPlaceActivateEx(@as(*const IOleInPlaceSiteEx, @ptrCast(self)), pfNoRedraw, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteEx_OnInPlaceDeactivateEx(self: *const T, fNoRedraw: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteEx.VTable, @ptrCast(self.vtable)).OnInPlaceDeactivateEx(@as(*const IOleInPlaceSiteEx, @ptrCast(self)), fNoRedraw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteEx_RequestUIActivate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteEx.VTable, @ptrCast(self.vtable)).RequestUIActivate(@as(*const IOleInPlaceSiteEx, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IOleInPlaceSite.MethodMixin(@This());
+    IOleWindow: IOleWindow,
+    IUnknown: IUnknown,
     pub fn OnInPlaceActivateEx(self: *const IOleInPlaceSiteEx, pfNoRedraw: ?*BOOL, dwFlags: u32) callconv(.Inline) HRESULT {
         return self.vtable.OnInPlaceActivateEx(self, pfNoRedraw, dwFlags);
     }
@@ -5842,58 +4468,9 @@ pub const IOleInPlaceSiteWindowless = extern union {
     };
     vtable: *const VTable,
     IOleInPlaceSiteEx: IOleInPlaceSiteEx,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleInPlaceSiteEx.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteWindowless_CanWindowlessActivate(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).CanWindowlessActivate(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteWindowless_GetCapture(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).GetCapture(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteWindowless_SetCapture(self: *const T, fCapture: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).SetCapture(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), fCapture);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteWindowless_GetFocus(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).GetFocus(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteWindowless_SetFocus(self: *const T, fFocus: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).SetFocus(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), fFocus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteWindowless_GetDC(self: *const T, pRect: ?*RECT, grfFlags: u32, phDC: ?*?HDC) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), pRect, grfFlags, phDC);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteWindowless_ReleaseDC(self: *const T, hDC: ?HDC) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), hDC);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteWindowless_InvalidateRect(self: *const T, pRect: ?*RECT, fErase: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).InvalidateRect(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), pRect, fErase);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteWindowless_InvalidateRgn(self: *const T, hRGN: ?HRGN, fErase: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).InvalidateRgn(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), hRGN, fErase);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteWindowless_ScrollRect(self: *const T, dx: i32, dy: i32, pRectScroll: ?*RECT, pRectClip: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).ScrollRect(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), dx, dy, pRectScroll, pRectClip);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteWindowless_AdjustRect(self: *const T, prc: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).AdjustRect(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), prc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleInPlaceSiteWindowless_OnDefWindowMessage(self: *const T, msg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IOleInPlaceSiteWindowless.VTable, @ptrCast(self.vtable)).OnDefWindowMessage(@as(*const IOleInPlaceSiteWindowless, @ptrCast(self)), msg, wParam, lParam, plResult);
-        }
-    };}
-    pub usingnamespace IOleInPlaceSiteEx.MethodMixin(@This());
+    IOleInPlaceSite: IOleInPlaceSite,
+    IOleWindow: IOleWindow,
+    IUnknown: IUnknown,
     pub fn CanWindowlessActivate(self: *const IOleInPlaceSiteWindowless) callconv(.Inline) HRESULT {
         return self.vtable.CanWindowlessActivate(self);
     }
@@ -6031,30 +4608,8 @@ pub const IViewObjectEx = extern union {
     };
     vtable: *const VTable,
     IViewObject2: IViewObject2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IViewObject2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObjectEx_GetRect(self: *const T, dwAspect: u32, pRect: ?*RECTL) callconv(.Inline) HRESULT {
-            return @as(*const IViewObjectEx.VTable, @ptrCast(self.vtable)).GetRect(@as(*const IViewObjectEx, @ptrCast(self)), dwAspect, pRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObjectEx_GetViewStatus(self: *const T, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IViewObjectEx.VTable, @ptrCast(self.vtable)).GetViewStatus(@as(*const IViewObjectEx, @ptrCast(self)), pdwStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObjectEx_QueryHitPoint(self: *const T, dwAspect: u32, pRectBounds: ?*RECT, ptlLoc: POINT, lCloseHint: i32, pHitResult: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IViewObjectEx.VTable, @ptrCast(self.vtable)).QueryHitPoint(@as(*const IViewObjectEx, @ptrCast(self)), dwAspect, pRectBounds, ptlLoc, lCloseHint, pHitResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObjectEx_QueryHitRect(self: *const T, dwAspect: u32, pRectBounds: ?*RECT, pRectLoc: ?*RECT, lCloseHint: i32, pHitResult: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IViewObjectEx.VTable, @ptrCast(self.vtable)).QueryHitRect(@as(*const IViewObjectEx, @ptrCast(self)), dwAspect, pRectBounds, pRectLoc, lCloseHint, pHitResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObjectEx_GetNaturalExtent(self: *const T, dwAspect: DVASPECT, lindex: i32, ptd: ?*DVTARGETDEVICE, hicTargetDev: ?HDC, pExtentInfo: ?*ExtentInfo, pSizel: ?*SIZE) callconv(.Inline) HRESULT {
-            return @as(*const IViewObjectEx.VTable, @ptrCast(self.vtable)).GetNaturalExtent(@as(*const IViewObjectEx, @ptrCast(self)), dwAspect, lindex, ptd, hicTargetDev, pExtentInfo, pSizel);
-        }
-    };}
-    pub usingnamespace IViewObject2.MethodMixin(@This());
+    IViewObject: IViewObject,
+    IUnknown: IUnknown,
     pub fn GetRect(self: *const IViewObjectEx, dwAspect: u32, pRect: ?*RECTL) callconv(.Inline) HRESULT {
         return self.vtable.GetRect(self, dwAspect, pRect);
     }
@@ -6097,26 +4652,6 @@ pub const IOleUndoUnit = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoUnit_Do(self: *const T, pUndoManager: ?*IOleUndoManager) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoUnit.VTable, @ptrCast(self.vtable)).Do(@as(*const IOleUndoUnit, @ptrCast(self)), pUndoManager);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoUnit_GetDescription(self: *const T, pBstr: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoUnit.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IOleUndoUnit, @ptrCast(self)), pBstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoUnit_GetUnitType(self: *const T, pClsid: ?*Guid, plID: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoUnit.VTable, @ptrCast(self.vtable)).GetUnitType(@as(*const IOleUndoUnit, @ptrCast(self)), pClsid, plID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoUnit_OnNextAdd(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoUnit.VTable, @ptrCast(self.vtable)).OnNextAdd(@as(*const IOleUndoUnit, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Do(self: *const IOleUndoUnit, pUndoManager: ?*IOleUndoManager) callconv(.Inline) HRESULT {
         return self.vtable.Do(self, pUndoManager);
     }
@@ -6161,30 +4696,7 @@ pub const IOleParentUndoUnit = extern union {
     };
     vtable: *const VTable,
     IOleUndoUnit: IOleUndoUnit,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleUndoUnit.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleParentUndoUnit_Open(self: *const T, pPUU: ?*IOleParentUndoUnit) callconv(.Inline) HRESULT {
-            return @as(*const IOleParentUndoUnit.VTable, @ptrCast(self.vtable)).Open(@as(*const IOleParentUndoUnit, @ptrCast(self)), pPUU);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleParentUndoUnit_Close(self: *const T, pPUU: ?*IOleParentUndoUnit, fCommit: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleParentUndoUnit.VTable, @ptrCast(self.vtable)).Close(@as(*const IOleParentUndoUnit, @ptrCast(self)), pPUU, fCommit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleParentUndoUnit_Add(self: *const T, pUU: ?*IOleUndoUnit) callconv(.Inline) HRESULT {
-            return @as(*const IOleParentUndoUnit.VTable, @ptrCast(self.vtable)).Add(@as(*const IOleParentUndoUnit, @ptrCast(self)), pUU);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleParentUndoUnit_FindUnit(self: *const T, pUU: ?*IOleUndoUnit) callconv(.Inline) HRESULT {
-            return @as(*const IOleParentUndoUnit.VTable, @ptrCast(self.vtable)).FindUnit(@as(*const IOleParentUndoUnit, @ptrCast(self)), pUU);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleParentUndoUnit_GetParentState(self: *const T, pdwState: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleParentUndoUnit.VTable, @ptrCast(self.vtable)).GetParentState(@as(*const IOleParentUndoUnit, @ptrCast(self)), pdwState);
-        }
-    };}
-    pub usingnamespace IOleUndoUnit.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn Open(self: *const IOleParentUndoUnit, pPUU: ?*IOleParentUndoUnit) callconv(.Inline) HRESULT {
         return self.vtable.Open(self, pPUU);
     }
@@ -6228,26 +4740,6 @@ pub const IEnumOleUndoUnits = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOleUndoUnits_Next(self: *const T, cElt: u32, rgElt: [*]?*IOleUndoUnit, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumOleUndoUnits.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumOleUndoUnits, @ptrCast(self)), cElt, rgElt, pcEltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOleUndoUnits_Skip(self: *const T, cElt: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumOleUndoUnits.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumOleUndoUnits, @ptrCast(self)), cElt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOleUndoUnits_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumOleUndoUnits.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumOleUndoUnits, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOleUndoUnits_Clone(self: *const T, ppEnum: ?*?*IEnumOleUndoUnits) callconv(.Inline) HRESULT {
-            return @as(*const IEnumOleUndoUnits.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOleUndoUnits, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumOleUndoUnits, cElt: u32, rgElt: [*]?*IOleUndoUnit, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cElt, rgElt, pcEltFetched);
     }
@@ -6320,58 +4812,6 @@ pub const IOleUndoManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoManager_Open(self: *const T, pPUU: ?*IOleParentUndoUnit) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).Open(@as(*const IOleUndoManager, @ptrCast(self)), pPUU);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoManager_Close(self: *const T, pPUU: ?*IOleParentUndoUnit, fCommit: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).Close(@as(*const IOleUndoManager, @ptrCast(self)), pPUU, fCommit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoManager_Add(self: *const T, pUU: ?*IOleUndoUnit) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).Add(@as(*const IOleUndoManager, @ptrCast(self)), pUU);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoManager_GetOpenParentState(self: *const T, pdwState: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).GetOpenParentState(@as(*const IOleUndoManager, @ptrCast(self)), pdwState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoManager_DiscardFrom(self: *const T, pUU: ?*IOleUndoUnit) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).DiscardFrom(@as(*const IOleUndoManager, @ptrCast(self)), pUU);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoManager_UndoTo(self: *const T, pUU: ?*IOleUndoUnit) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).UndoTo(@as(*const IOleUndoManager, @ptrCast(self)), pUU);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoManager_RedoTo(self: *const T, pUU: ?*IOleUndoUnit) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).RedoTo(@as(*const IOleUndoManager, @ptrCast(self)), pUU);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoManager_EnumUndoable(self: *const T, ppEnum: ?*?*IEnumOleUndoUnits) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).EnumUndoable(@as(*const IOleUndoManager, @ptrCast(self)), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoManager_EnumRedoable(self: *const T, ppEnum: ?*?*IEnumOleUndoUnits) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).EnumRedoable(@as(*const IOleUndoManager, @ptrCast(self)), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoManager_GetLastUndoDescription(self: *const T, pBstr: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).GetLastUndoDescription(@as(*const IOleUndoManager, @ptrCast(self)), pBstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoManager_GetLastRedoDescription(self: *const T, pBstr: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).GetLastRedoDescription(@as(*const IOleUndoManager, @ptrCast(self)), pBstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUndoManager_Enable(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleUndoManager.VTable, @ptrCast(self.vtable)).Enable(@as(*const IOleUndoManager, @ptrCast(self)), fEnable);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Open(self: *const IOleUndoManager, pPUU: ?*IOleParentUndoUnit) callconv(.Inline) HRESULT {
         return self.vtable.Open(self, pPUU);
     }
@@ -6447,22 +4887,6 @@ pub const IPointerInactive = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPointerInactive_GetActivationPolicy(self: *const T, pdwPolicy: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IPointerInactive.VTable, @ptrCast(self.vtable)).GetActivationPolicy(@as(*const IPointerInactive, @ptrCast(self)), pdwPolicy);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPointerInactive_OnInactiveMouseMove(self: *const T, pRectBounds: ?*RECT, x: i32, y: i32, grfKeyState: u32) callconv(.Inline) HRESULT {
-            return @as(*const IPointerInactive.VTable, @ptrCast(self.vtable)).OnInactiveMouseMove(@as(*const IPointerInactive, @ptrCast(self)), pRectBounds, x, y, grfKeyState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPointerInactive_OnInactiveSetCursor(self: *const T, pRectBounds: ?*RECT, x: i32, y: i32, dwMouseMsg: u32, fSetAlways: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IPointerInactive.VTable, @ptrCast(self.vtable)).OnInactiveSetCursor(@as(*const IPointerInactive, @ptrCast(self)), pRectBounds, x, y, dwMouseMsg, fSetAlways);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetActivationPolicy(self: *const IPointerInactive, pdwPolicy: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetActivationPolicy(self, pdwPolicy);
     }
@@ -6492,18 +4916,6 @@ pub const IObjectWithSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectWithSite_SetSite(self: *const T, pUnkSite: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IObjectWithSite.VTable, @ptrCast(self.vtable)).SetSite(@as(*const IObjectWithSite, @ptrCast(self)), pUnkSite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectWithSite_GetSite(self: *const T, riid: ?*const Guid, ppvSite: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IObjectWithSite.VTable, @ptrCast(self.vtable)).GetSite(@as(*const IObjectWithSite, @ptrCast(self)), riid, ppvSite);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetSite(self: *const IObjectWithSite, pUnkSite: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.SetSite(self, pUnkSite);
     }
@@ -6553,26 +4965,6 @@ pub const IPerPropertyBrowsing = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerPropertyBrowsing_GetDisplayString(self: *const T, dispID: i32, pBstr: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IPerPropertyBrowsing.VTable, @ptrCast(self.vtable)).GetDisplayString(@as(*const IPerPropertyBrowsing, @ptrCast(self)), dispID, pBstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerPropertyBrowsing_MapPropertyToPage(self: *const T, dispID: i32, pClsid: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IPerPropertyBrowsing.VTable, @ptrCast(self.vtable)).MapPropertyToPage(@as(*const IPerPropertyBrowsing, @ptrCast(self)), dispID, pClsid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerPropertyBrowsing_GetPredefinedStrings(self: *const T, dispID: i32, pCaStringsOut: ?*CALPOLESTR, pCaCookiesOut: ?*CADWORD) callconv(.Inline) HRESULT {
-            return @as(*const IPerPropertyBrowsing.VTable, @ptrCast(self.vtable)).GetPredefinedStrings(@as(*const IPerPropertyBrowsing, @ptrCast(self)), dispID, pCaStringsOut, pCaCookiesOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerPropertyBrowsing_GetPredefinedValue(self: *const T, dispID: i32, dwCookie: u32, pVarOut: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IPerPropertyBrowsing.VTable, @ptrCast(self.vtable)).GetPredefinedValue(@as(*const IPerPropertyBrowsing, @ptrCast(self)), dispID, dwCookie, pVarOut);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDisplayString(self: *const IPerPropertyBrowsing, dispID: i32, pBstr: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetDisplayString(self, dispID, pBstr);
     }
@@ -6629,26 +5021,7 @@ pub const IPersistPropertyBag2 = extern union {
     };
     vtable: *const VTable,
     IPersist: IPersist,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPersist.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistPropertyBag2_InitNew(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IPersistPropertyBag2.VTable, @ptrCast(self.vtable)).InitNew(@as(*const IPersistPropertyBag2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistPropertyBag2_Load(self: *const T, pPropBag: ?*IPropertyBag2, pErrLog: ?*IErrorLog) callconv(.Inline) HRESULT {
-            return @as(*const IPersistPropertyBag2.VTable, @ptrCast(self.vtable)).Load(@as(*const IPersistPropertyBag2, @ptrCast(self)), pPropBag, pErrLog);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistPropertyBag2_Save(self: *const T, pPropBag: ?*IPropertyBag2, fClearDirty: BOOL, fSaveAllProperties: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IPersistPropertyBag2.VTable, @ptrCast(self.vtable)).Save(@as(*const IPersistPropertyBag2, @ptrCast(self)), pPropBag, fClearDirty, fSaveAllProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistPropertyBag2_IsDirty(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IPersistPropertyBag2.VTable, @ptrCast(self.vtable)).IsDirty(@as(*const IPersistPropertyBag2, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IPersist.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn InitNew(self: *const IPersistPropertyBag2) callconv(.Inline) HRESULT {
         return self.vtable.InitNew(self);
     }
@@ -6676,14 +5049,7 @@ pub const IAdviseSinkEx = extern union {
     };
     vtable: *const VTable,
     IAdviseSink: IAdviseSink,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAdviseSink.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAdviseSinkEx_OnViewStatusChange(self: *const T, dwViewStatus: u32) callconv(.Inline) void {
-            return @as(*const IAdviseSinkEx.VTable, @ptrCast(self.vtable)).OnViewStatusChange(@as(*const IAdviseSinkEx, @ptrCast(self)), dwViewStatus);
-        }
-    };}
-    pub usingnamespace IAdviseSink.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn OnViewStatusChange(self: *const IAdviseSinkEx, dwViewStatus: u32) callconv(.Inline) void {
         return self.vtable.OnViewStatusChange(self, dwViewStatus);
     }
@@ -6758,22 +5124,6 @@ pub const IQuickActivate = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQuickActivate_QuickActivate(self: *const T, pQaContainer: ?*QACONTAINER, pQaControl: ?*QACONTROL) callconv(.Inline) HRESULT {
-            return @as(*const IQuickActivate.VTable, @ptrCast(self.vtable)).QuickActivate(@as(*const IQuickActivate, @ptrCast(self)), pQaContainer, pQaControl);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQuickActivate_SetContentExtent(self: *const T, pSizel: ?*SIZE) callconv(.Inline) HRESULT {
-            return @as(*const IQuickActivate.VTable, @ptrCast(self.vtable)).SetContentExtent(@as(*const IQuickActivate, @ptrCast(self)), pSizel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQuickActivate_GetContentExtent(self: *const T, pSizel: ?*SIZE) callconv(.Inline) HRESULT {
-            return @as(*const IQuickActivate.VTable, @ptrCast(self.vtable)).GetContentExtent(@as(*const IQuickActivate, @ptrCast(self)), pSizel);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QuickActivate(self: *const IQuickActivate, pQaContainer: ?*QACONTAINER, pQaControl: ?*QACONTROL) callconv(.Inline) HRESULT {
         return self.vtable.QuickActivate(self, pQaContainer, pQaControl);
     }
@@ -6855,14 +5205,6 @@ pub const IVBGetControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVBGetControl_EnumControls(self: *const T, dwOleContF: OLECONTF, dwWhich: ENUM_CONTROLS_WHICH_FLAGS, ppenumUnk: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IVBGetControl.VTable, @ptrCast(self.vtable)).EnumControls(@as(*const IVBGetControl, @ptrCast(self)), dwOleContF, dwWhich, ppenumUnk);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnumControls(self: *const IVBGetControl, dwOleContF: OLECONTF, dwWhich: ENUM_CONTROLS_WHICH_FLAGS, ppenumUnk: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
         return self.vtable.EnumControls(self, dwOleContF, dwWhich, ppenumUnk);
     }
@@ -6881,14 +5223,6 @@ pub const IGetOleObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetOleObject_GetOleObject(self: *const T, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IGetOleObject.VTable, @ptrCast(self.vtable)).GetOleObject(@as(*const IGetOleObject, @ptrCast(self)), riid, ppvObj);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOleObject(self: *const IGetOleObject, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetOleObject(self, riid, ppvObj);
     }
@@ -6913,14 +5247,6 @@ pub const IVBFormat = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVBFormat_Format(self: *const T, vData: ?*VARIANT, bstrFormat: ?BSTR, lpBuffer: ?*anyopaque, cb: u16, lcid: i32, sFirstDayOfWeek: i16, sFirstWeekOfYear: u16, rcb: ?*u16) callconv(.Inline) HRESULT {
-            return @as(*const IVBFormat.VTable, @ptrCast(self.vtable)).Format(@as(*const IVBFormat, @ptrCast(self)), vData, bstrFormat, lpBuffer, cb, lcid, sFirstDayOfWeek, sFirstWeekOfYear, rcb);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Format(self: *const IVBFormat, vData: ?*VARIANT, bstrFormat: ?BSTR, lpBuffer: ?*anyopaque, cb: u16, lcid: i32, sFirstDayOfWeek: i16, sFirstWeekOfYear: u16, rcb: ?*u16) callconv(.Inline) HRESULT {
         return self.vtable.Format(self, vData, bstrFormat, lpBuffer, cb, lcid, sFirstDayOfWeek, sFirstWeekOfYear, rcb);
     }
@@ -6940,14 +5266,6 @@ pub const IGetVBAObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetVBAObject_GetObject(self: *const T, riid: ?*const Guid, ppvObj: ?*?*anyopaque, dwReserved: u32) callconv(.Inline) HRESULT {
-            return @as(*const IGetVBAObject.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IGetVBAObject, @ptrCast(self)), riid, ppvObj, dwReserved);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetObject(self: *const IGetVBAObject, riid: ?*const Guid, ppvObj: ?*?*anyopaque, dwReserved: u32) callconv(.Inline) HRESULT {
         return self.vtable.GetObject(self, riid, ppvObj, dwReserved);
     }
@@ -6989,22 +5307,6 @@ pub const IOleDocument = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocument_CreateView(self: *const T, pIPSite: ?*IOleInPlaceSite, pstm: ?*IStream, dwReserved: u32, ppView: ?*?*IOleDocumentView) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocument.VTable, @ptrCast(self.vtable)).CreateView(@as(*const IOleDocument, @ptrCast(self)), pIPSite, pstm, dwReserved, ppView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocument_GetDocMiscStatus(self: *const T, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocument.VTable, @ptrCast(self.vtable)).GetDocMiscStatus(@as(*const IOleDocument, @ptrCast(self)), pdwStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocument_EnumViews(self: *const T, ppEnum: ?*?*IEnumOleDocumentViews, ppView: ?*?*IOleDocumentView) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocument.VTable, @ptrCast(self.vtable)).EnumViews(@as(*const IOleDocument, @ptrCast(self)), ppEnum, ppView);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateView(self: *const IOleDocument, pIPSite: ?*IOleInPlaceSite, pstm: ?*IStream, dwReserved: u32, ppView: ?*?*IOleDocumentView) callconv(.Inline) HRESULT {
         return self.vtable.CreateView(self, pIPSite, pstm, dwReserved, ppView);
     }
@@ -7029,14 +5331,6 @@ pub const IOleDocumentSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentSite_ActivateMe(self: *const T, pViewToActivate: ?*IOleDocumentView) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentSite.VTable, @ptrCast(self.vtable)).ActivateMe(@as(*const IOleDocumentSite, @ptrCast(self)), pViewToActivate);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ActivateMe(self: *const IOleDocumentSite, pViewToActivate: ?*IOleDocumentView) callconv(.Inline) HRESULT {
         return self.vtable.ActivateMe(self, pViewToActivate);
     }
@@ -7106,62 +5400,6 @@ pub const IOleDocumentView = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_SetInPlaceSite(self: *const T, pIPSite: ?*IOleInPlaceSite) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).SetInPlaceSite(@as(*const IOleDocumentView, @ptrCast(self)), pIPSite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_GetInPlaceSite(self: *const T, ppIPSite: ?*?*IOleInPlaceSite) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).GetInPlaceSite(@as(*const IOleDocumentView, @ptrCast(self)), ppIPSite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_GetDocument(self: *const T, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const IOleDocumentView, @ptrCast(self)), ppunk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_SetRect(self: *const T, prcView: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).SetRect(@as(*const IOleDocumentView, @ptrCast(self)), prcView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_GetRect(self: *const T, prcView: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).GetRect(@as(*const IOleDocumentView, @ptrCast(self)), prcView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_SetRectComplex(self: *const T, prcView: ?*RECT, prcHScroll: ?*RECT, prcVScroll: ?*RECT, prcSizeBox: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).SetRectComplex(@as(*const IOleDocumentView, @ptrCast(self)), prcView, prcHScroll, prcVScroll, prcSizeBox);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_Show(self: *const T, fShow: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).Show(@as(*const IOleDocumentView, @ptrCast(self)), fShow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_UIActivate(self: *const T, fUIActivate: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).UIActivate(@as(*const IOleDocumentView, @ptrCast(self)), fUIActivate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_Open(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).Open(@as(*const IOleDocumentView, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_CloseView(self: *const T, dwReserved: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).CloseView(@as(*const IOleDocumentView, @ptrCast(self)), dwReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_SaveViewState(self: *const T, pstm: ?*IStream) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).SaveViewState(@as(*const IOleDocumentView, @ptrCast(self)), pstm);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_ApplyViewState(self: *const T, pstm: ?*IStream) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).ApplyViewState(@as(*const IOleDocumentView, @ptrCast(self)), pstm);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleDocumentView_Clone(self: *const T, pIPSiteNew: ?*IOleInPlaceSite, ppViewNew: ?*?*IOleDocumentView) callconv(.Inline) HRESULT {
-            return @as(*const IOleDocumentView.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOleDocumentView, @ptrCast(self)), pIPSiteNew, ppViewNew);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetInPlaceSite(self: *const IOleDocumentView, pIPSite: ?*IOleInPlaceSite) callconv(.Inline) HRESULT {
         return self.vtable.SetInPlaceSite(self, pIPSite);
     }
@@ -7229,26 +5467,6 @@ pub const IEnumOleDocumentViews = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOleDocumentViews_Next(self: *const T, cViews: u32, rgpView: ?*?*IOleDocumentView, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumOleDocumentViews.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumOleDocumentViews, @ptrCast(self)), cViews, rgpView, pcFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOleDocumentViews_Skip(self: *const T, cViews: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumOleDocumentViews.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumOleDocumentViews, @ptrCast(self)), cViews);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOleDocumentViews_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumOleDocumentViews.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumOleDocumentViews, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOleDocumentViews_Clone(self: *const T, ppEnum: ?*?*IEnumOleDocumentViews) callconv(.Inline) HRESULT {
-            return @as(*const IEnumOleDocumentViews.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumOleDocumentViews, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumOleDocumentViews, cViews: u32, rgpView: ?*?*IOleDocumentView, pcFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cViews, rgpView, pcFetched);
     }
@@ -7281,18 +5499,6 @@ pub const IContinueCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContinueCallback_FContinue(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IContinueCallback.VTable, @ptrCast(self.vtable)).FContinue(@as(*const IContinueCallback, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContinueCallback_FContinuePrinting(self: *const T, nCntPrinted: i32, nCurPage: i32, pwszPrintStatus: ?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IContinueCallback.VTable, @ptrCast(self.vtable)).FContinuePrinting(@as(*const IContinueCallback, @ptrCast(self)), nCntPrinted, nCurPage, pwszPrintStatus);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FContinue(self: *const IContinueCallback) callconv(.Inline) HRESULT {
         return self.vtable.FContinue(self);
     }
@@ -7385,22 +5591,6 @@ pub const IPrint = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrint_SetInitialPageNum(self: *const T, nFirstPage: i32) callconv(.Inline) HRESULT {
-            return @as(*const IPrint.VTable, @ptrCast(self.vtable)).SetInitialPageNum(@as(*const IPrint, @ptrCast(self)), nFirstPage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrint_GetPageInfo(self: *const T, pnFirstPage: ?*i32, pcPages: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IPrint.VTable, @ptrCast(self.vtable)).GetPageInfo(@as(*const IPrint, @ptrCast(self)), pnFirstPage, pcPages);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrint_Print(self: *const T, grfFlags: u32, pptd: ?*?*DVTARGETDEVICE, ppPageSet: ?*?*PAGESET, pstgmOptions: ?*STGMEDIUM, pcallback: ?*IContinueCallback, nFirstPage: i32, pcPagesPrinted: ?*i32, pnLastPage: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IPrint.VTable, @ptrCast(self.vtable)).Print(@as(*const IPrint, @ptrCast(self)), grfFlags, pptd, ppPageSet, pstgmOptions, pcallback, nFirstPage, pcPagesPrinted, pnLastPage);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetInitialPageNum(self: *const IPrint, nFirstPage: i32) callconv(.Inline) HRESULT {
         return self.vtable.SetInitialPageNum(self, nFirstPage);
     }
@@ -7677,18 +5867,6 @@ pub const IOleCommandTarget = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleCommandTarget_QueryStatus(self: *const T, pguidCmdGroup: ?*const Guid, cCmds: u32, prgCmds: ?*OLECMD, pCmdText: ?*OLECMDTEXT) callconv(.Inline) HRESULT {
-            return @as(*const IOleCommandTarget.VTable, @ptrCast(self.vtable)).QueryStatus(@as(*const IOleCommandTarget, @ptrCast(self)), pguidCmdGroup, cCmds, prgCmds, pCmdText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleCommandTarget_Exec(self: *const T, pguidCmdGroup: ?*const Guid, nCmdID: u32, nCmdexecopt: u32, pvaIn: ?*VARIANT, pvaOut: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const IOleCommandTarget.VTable, @ptrCast(self.vtable)).Exec(@as(*const IOleCommandTarget, @ptrCast(self)), pguidCmdGroup, nCmdID, nCmdexecopt, pvaIn, pvaOut);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryStatus(self: *const IOleCommandTarget, pguidCmdGroup: ?*const Guid, cCmds: u32, prgCmds: ?*OLECMD, pCmdText: ?*OLECMDTEXT) callconv(.Inline) HRESULT {
         return self.vtable.QueryStatus(self, pguidCmdGroup, cCmds, prgCmds, pCmdText);
     }
@@ -7888,14 +6066,6 @@ pub const IZoomEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IZoomEvents_OnZoomPercentChanged(self: *const T, ulZoomPercent: u32) callconv(.Inline) HRESULT {
-            return @as(*const IZoomEvents.VTable, @ptrCast(self.vtable)).OnZoomPercentChanged(@as(*const IZoomEvents, @ptrCast(self)), ulZoomPercent);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnZoomPercentChanged(self: *const IZoomEvents, ulZoomPercent: u32) callconv(.Inline) HRESULT {
         return self.vtable.OnZoomPercentChanged(self, ulZoomPercent);
     }
@@ -7913,14 +6083,6 @@ pub const IProtectFocus = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectFocus_AllowFocusChange(self: *const T, pfAllow: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IProtectFocus.VTable, @ptrCast(self.vtable)).AllowFocusChange(@as(*const IProtectFocus, @ptrCast(self)), pfAllow);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AllowFocusChange(self: *const IProtectFocus, pfAllow: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.AllowFocusChange(self, pfAllow);
     }
@@ -7950,22 +6112,6 @@ pub const IProtectedModeMenuServices = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectedModeMenuServices_CreateMenu(self: *const T, phMenu: ?*?HMENU) callconv(.Inline) HRESULT {
-            return @as(*const IProtectedModeMenuServices.VTable, @ptrCast(self.vtable)).CreateMenu(@as(*const IProtectedModeMenuServices, @ptrCast(self)), phMenu);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectedModeMenuServices_LoadMenu(self: *const T, pszModuleName: ?[*:0]const u16, pszMenuName: ?[*:0]const u16, phMenu: ?*?HMENU) callconv(.Inline) HRESULT {
-            return @as(*const IProtectedModeMenuServices.VTable, @ptrCast(self.vtable)).LoadMenu(@as(*const IProtectedModeMenuServices, @ptrCast(self)), pszModuleName, pszMenuName, phMenu);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectedModeMenuServices_LoadMenuID(self: *const T, pszModuleName: ?[*:0]const u16, wResourceID: u16, phMenu: ?*?HMENU) callconv(.Inline) HRESULT {
-            return @as(*const IProtectedModeMenuServices.VTable, @ptrCast(self.vtable)).LoadMenuID(@as(*const IProtectedModeMenuServices, @ptrCast(self)), pszModuleName, wResourceID, phMenu);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateMenu(self: *const IProtectedModeMenuServices, phMenu: ?*?HMENU) callconv(.Inline) HRESULT {
         return self.vtable.CreateMenu(self, phMenu);
     }
@@ -8176,42 +6322,6 @@ pub const IOleUILinkContainerW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerW_GetNextLink(self: *const T, dwLink: u32) callconv(.Inline) u32 {
-            return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).GetNextLink(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerW_SetLinkUpdateOptions(self: *const T, dwLink: u32, dwUpdateOpt: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).SetLinkUpdateOptions(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink, dwUpdateOpt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerW_GetLinkUpdateOptions(self: *const T, dwLink: u32, lpdwUpdateOpt: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).GetLinkUpdateOptions(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink, lpdwUpdateOpt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerW_SetLinkSource(self: *const T, dwLink: u32, lpszDisplayName: ?PWSTR, lenFileName: u32, pchEaten: ?*u32, fValidateSource: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).SetLinkSource(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink, lpszDisplayName, lenFileName, pchEaten, fValidateSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerW_GetLinkSource(self: *const T, dwLink: u32, lplpszDisplayName: ?*?PWSTR, lplenFileName: ?*u32, lplpszFullLinkType: ?*?PWSTR, lplpszShortLinkType: ?*?PWSTR, lpfSourceAvailable: ?*BOOL, lpfIsSelected: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).GetLinkSource(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink, lplpszDisplayName, lplenFileName, lplpszFullLinkType, lplpszShortLinkType, lpfSourceAvailable, lpfIsSelected);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerW_OpenLinkSource(self: *const T, dwLink: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).OpenLinkSource(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerW_UpdateLink(self: *const T, dwLink: u32, fErrorMessage: BOOL, fReserved: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).UpdateLink(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink, fErrorMessage, fReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerW_CancelLink(self: *const T, dwLink: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerW.VTable, @ptrCast(self.vtable)).CancelLink(@as(*const IOleUILinkContainerW, @ptrCast(self)), dwLink);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNextLink(self: *const IOleUILinkContainerW, dwLink: u32) callconv(.Inline) u32 {
         return self.vtable.GetNextLink(self, dwLink);
     }
@@ -8291,42 +6401,6 @@ pub const IOleUILinkContainerA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerA_GetNextLink(self: *const T, dwLink: u32) callconv(.Inline) u32 {
-            return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).GetNextLink(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerA_SetLinkUpdateOptions(self: *const T, dwLink: u32, dwUpdateOpt: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).SetLinkUpdateOptions(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink, dwUpdateOpt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerA_GetLinkUpdateOptions(self: *const T, dwLink: u32, lpdwUpdateOpt: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).GetLinkUpdateOptions(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink, lpdwUpdateOpt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerA_SetLinkSource(self: *const T, dwLink: u32, lpszDisplayName: ?PSTR, lenFileName: u32, pchEaten: ?*u32, fValidateSource: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).SetLinkSource(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink, lpszDisplayName, lenFileName, pchEaten, fValidateSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerA_GetLinkSource(self: *const T, dwLink: u32, lplpszDisplayName: ?*?PSTR, lplenFileName: ?*u32, lplpszFullLinkType: ?*?PSTR, lplpszShortLinkType: ?*?PSTR, lpfSourceAvailable: ?*BOOL, lpfIsSelected: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).GetLinkSource(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink, lplpszDisplayName, lplenFileName, lplpszFullLinkType, lplpszShortLinkType, lpfSourceAvailable, lpfIsSelected);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerA_OpenLinkSource(self: *const T, dwLink: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).OpenLinkSource(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerA_UpdateLink(self: *const T, dwLink: u32, fErrorMessage: BOOL, fReserved: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).UpdateLink(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink, fErrorMessage, fReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkContainerA_CancelLink(self: *const T, dwLink: u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkContainerA.VTable, @ptrCast(self.vtable)).CancelLink(@as(*const IOleUILinkContainerA, @ptrCast(self)), dwLink);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNextLink(self: *const IOleUILinkContainerA, dwLink: u32) callconv(.Inline) u32 {
         return self.vtable.GetNextLink(self, dwLink);
     }
@@ -8574,30 +6648,6 @@ pub const IOleUIObjInfoW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUIObjInfoW_GetObjectInfo(self: *const T, dwObject: u32, lpdwObjSize: ?*u32, lplpszLabel: ?*?PWSTR, lplpszType: ?*?PWSTR, lplpszShortType: ?*?PWSTR, lplpszLocation: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IOleUIObjInfoW.VTable, @ptrCast(self.vtable)).GetObjectInfo(@as(*const IOleUIObjInfoW, @ptrCast(self)), dwObject, lpdwObjSize, lplpszLabel, lplpszType, lplpszShortType, lplpszLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUIObjInfoW_GetConvertInfo(self: *const T, dwObject: u32, lpClassID: ?*Guid, lpwFormat: ?*u16, lpConvertDefaultClassID: ?*Guid, lplpClsidExclude: ?*?*Guid, lpcClsidExclude: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUIObjInfoW.VTable, @ptrCast(self.vtable)).GetConvertInfo(@as(*const IOleUIObjInfoW, @ptrCast(self)), dwObject, lpClassID, lpwFormat, lpConvertDefaultClassID, lplpClsidExclude, lpcClsidExclude);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUIObjInfoW_ConvertObject(self: *const T, dwObject: u32, clsidNew: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IOleUIObjInfoW.VTable, @ptrCast(self.vtable)).ConvertObject(@as(*const IOleUIObjInfoW, @ptrCast(self)), dwObject, clsidNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUIObjInfoW_GetViewInfo(self: *const T, dwObject: u32, phMetaPict: ?*isize, pdvAspect: ?*u32, pnCurrentScale: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUIObjInfoW.VTable, @ptrCast(self.vtable)).GetViewInfo(@as(*const IOleUIObjInfoW, @ptrCast(self)), dwObject, phMetaPict, pdvAspect, pnCurrentScale);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUIObjInfoW_SetViewInfo(self: *const T, dwObject: u32, hMetaPict: isize, dvAspect: u32, nCurrentScale: i32, bRelativeToOrig: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleUIObjInfoW.VTable, @ptrCast(self.vtable)).SetViewInfo(@as(*const IOleUIObjInfoW, @ptrCast(self)), dwObject, hMetaPict, dvAspect, nCurrentScale, bRelativeToOrig);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetObjectInfo(self: *const IOleUIObjInfoW, dwObject: u32, lpdwObjSize: ?*u32, lplpszLabel: ?*?PWSTR, lplpszType: ?*?PWSTR, lplpszShortType: ?*?PWSTR, lplpszLocation: ?*?PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetObjectInfo(self, dwObject, lpdwObjSize, lplpszLabel, lplpszType, lplpszShortType, lplpszLocation);
     }
@@ -8660,30 +6710,6 @@ pub const IOleUIObjInfoA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUIObjInfoA_GetObjectInfo(self: *const T, dwObject: u32, lpdwObjSize: ?*u32, lplpszLabel: ?*?PSTR, lplpszType: ?*?PSTR, lplpszShortType: ?*?PSTR, lplpszLocation: ?*?PSTR) callconv(.Inline) HRESULT {
-            return @as(*const IOleUIObjInfoA.VTable, @ptrCast(self.vtable)).GetObjectInfo(@as(*const IOleUIObjInfoA, @ptrCast(self)), dwObject, lpdwObjSize, lplpszLabel, lplpszType, lplpszShortType, lplpszLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUIObjInfoA_GetConvertInfo(self: *const T, dwObject: u32, lpClassID: ?*Guid, lpwFormat: ?*u16, lpConvertDefaultClassID: ?*Guid, lplpClsidExclude: ?*?*Guid, lpcClsidExclude: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUIObjInfoA.VTable, @ptrCast(self.vtable)).GetConvertInfo(@as(*const IOleUIObjInfoA, @ptrCast(self)), dwObject, lpClassID, lpwFormat, lpConvertDefaultClassID, lplpClsidExclude, lpcClsidExclude);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUIObjInfoA_ConvertObject(self: *const T, dwObject: u32, clsidNew: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IOleUIObjInfoA.VTable, @ptrCast(self.vtable)).ConvertObject(@as(*const IOleUIObjInfoA, @ptrCast(self)), dwObject, clsidNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUIObjInfoA_GetViewInfo(self: *const T, dwObject: u32, phMetaPict: ?*isize, pdvAspect: ?*u32, pnCurrentScale: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IOleUIObjInfoA.VTable, @ptrCast(self.vtable)).GetViewInfo(@as(*const IOleUIObjInfoA, @ptrCast(self)), dwObject, phMetaPict, pdvAspect, pnCurrentScale);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUIObjInfoA_SetViewInfo(self: *const T, dwObject: u32, hMetaPict: isize, dvAspect: u32, nCurrentScale: i32, bRelativeToOrig: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IOleUIObjInfoA.VTable, @ptrCast(self.vtable)).SetViewInfo(@as(*const IOleUIObjInfoA, @ptrCast(self)), dwObject, hMetaPict, dvAspect, nCurrentScale, bRelativeToOrig);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetObjectInfo(self: *const IOleUIObjInfoA, dwObject: u32, lpdwObjSize: ?*u32, lplpszLabel: ?*?PSTR, lplpszType: ?*?PSTR, lplpszShortType: ?*?PSTR, lplpszLocation: ?*?PSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetObjectInfo(self, dwObject, lpdwObjSize, lplpszLabel, lplpszType, lplpszShortType, lplpszLocation);
     }
@@ -8713,14 +6739,7 @@ pub const IOleUILinkInfoW = extern union {
     };
     vtable: *const VTable,
     IOleUILinkContainerW: IOleUILinkContainerW,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleUILinkContainerW.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkInfoW_GetLastUpdate(self: *const T, dwLink: u32, lpLastUpdate: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkInfoW.VTable, @ptrCast(self.vtable)).GetLastUpdate(@as(*const IOleUILinkInfoW, @ptrCast(self)), dwLink, lpLastUpdate);
-        }
-    };}
-    pub usingnamespace IOleUILinkContainerW.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetLastUpdate(self: *const IOleUILinkInfoW, dwLink: u32, lpLastUpdate: ?*FILETIME) callconv(.Inline) HRESULT {
         return self.vtable.GetLastUpdate(self, dwLink, lpLastUpdate);
     }
@@ -8738,14 +6757,7 @@ pub const IOleUILinkInfoA = extern union {
     };
     vtable: *const VTable,
     IOleUILinkContainerA: IOleUILinkContainerA,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOleUILinkContainerA.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleUILinkInfoA_GetLastUpdate(self: *const T, dwLink: u32, lpLastUpdate: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @as(*const IOleUILinkInfoA.VTable, @ptrCast(self.vtable)).GetLastUpdate(@as(*const IOleUILinkInfoA, @ptrCast(self)), dwLink, lpLastUpdate);
-        }
-    };}
-    pub usingnamespace IOleUILinkContainerA.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetLastUpdate(self: *const IOleUILinkInfoA, dwLink: u32, lpLastUpdate: ?*FILETIME) callconv(.Inline) HRESULT {
         return self.vtable.GetLastUpdate(self, dwLink, lpLastUpdate);
     }
@@ -8895,42 +6907,7 @@ pub const IDispatchEx = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_GetDispID(self: *const T, bstrName: ?BSTR, grfdex: u32, pid: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).GetDispID(@as(*const IDispatchEx, @ptrCast(self)), bstrName, grfdex, pid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_InvokeEx(self: *const T, id: i32, lcid: u32, wFlags: u16, pdp: ?*DISPPARAMS, pvarRes: ?*VARIANT, pei: ?*EXCEPINFO, pspCaller: ?*IServiceProvider) callconv(.Inline) HRESULT {
-            return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).InvokeEx(@as(*const IDispatchEx, @ptrCast(self)), id, lcid, wFlags, pdp, pvarRes, pei, pspCaller);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_DeleteMemberByName(self: *const T, bstrName: ?BSTR, grfdex: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).DeleteMemberByName(@as(*const IDispatchEx, @ptrCast(self)), bstrName, grfdex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_DeleteMemberByDispID(self: *const T, id: i32) callconv(.Inline) HRESULT {
-            return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).DeleteMemberByDispID(@as(*const IDispatchEx, @ptrCast(self)), id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_GetMemberProperties(self: *const T, id: i32, grfdexFetch: u32, pgrfdex: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).GetMemberProperties(@as(*const IDispatchEx, @ptrCast(self)), id, grfdexFetch, pgrfdex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_GetMemberName(self: *const T, id: i32, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).GetMemberName(@as(*const IDispatchEx, @ptrCast(self)), id, pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_GetNextDispID(self: *const T, grfdex: u32, id: i32, pid: ?*i32) callconv(.Inline) HRESULT {
-            return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).GetNextDispID(@as(*const IDispatchEx, @ptrCast(self)), grfdex, id, pid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_GetNameSpaceParent(self: *const T, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDispatchEx.VTable, @ptrCast(self.vtable)).GetNameSpaceParent(@as(*const IDispatchEx, @ptrCast(self)), ppunk);
-        }
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetDispID(self: *const IDispatchEx, bstrName: ?BSTR, grfdex: u32, pid: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.GetDispID(self, bstrName, grfdex, pid);
     }
@@ -8991,34 +6968,6 @@ pub const IDispError = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispError_QueryErrorInfo(self: *const T, guidErrorType: Guid, ppde: ?*?*IDispError) callconv(.Inline) HRESULT {
-            return @as(*const IDispError.VTable, @ptrCast(self.vtable)).QueryErrorInfo(@as(*const IDispError, @ptrCast(self)), guidErrorType, ppde);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispError_GetNext(self: *const T, ppde: ?*?*IDispError) callconv(.Inline) HRESULT {
-            return @as(*const IDispError.VTable, @ptrCast(self.vtable)).GetNext(@as(*const IDispError, @ptrCast(self)), ppde);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispError_GetHresult(self: *const T, phr: ?*HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IDispError.VTable, @ptrCast(self.vtable)).GetHresult(@as(*const IDispError, @ptrCast(self)), phr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispError_GetSource(self: *const T, pbstrSource: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IDispError.VTable, @ptrCast(self.vtable)).GetSource(@as(*const IDispError, @ptrCast(self)), pbstrSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispError_GetHelpInfo(self: *const T, pbstrFileName: ?*?BSTR, pdwContext: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDispError.VTable, @ptrCast(self.vtable)).GetHelpInfo(@as(*const IDispError, @ptrCast(self)), pbstrFileName, pdwContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispError_GetDescription(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IDispError.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IDispError, @ptrCast(self)), pbstrDescription);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryErrorInfo(self: *const IDispError, guidErrorType: Guid, ppde: ?*?*IDispError) callconv(.Inline) HRESULT {
         return self.vtable.QueryErrorInfo(self, guidErrorType, ppde);
     }
@@ -9054,14 +7003,6 @@ pub const IVariantChangeType = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVariantChangeType_ChangeType(self: *const T, pvarDst: ?*VARIANT, pvarSrc: ?*VARIANT, lcid: u32, vtNew: u16) callconv(.Inline) HRESULT {
-            return @as(*const IVariantChangeType.VTable, @ptrCast(self.vtable)).ChangeType(@as(*const IVariantChangeType, @ptrCast(self)), pvarDst, pvarSrc, lcid, vtNew);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ChangeType(self: *const IVariantChangeType, pvarDst: ?*VARIANT, pvarSrc: ?*VARIANT, lcid: u32, vtNew: u16) callconv(.Inline) HRESULT {
         return self.vtable.ChangeType(self, pvarDst, pvarSrc, lcid, vtNew);
     }
@@ -9079,14 +7020,6 @@ pub const IObjectIdentity = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectIdentity_IsEqualObject(self: *const T, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IObjectIdentity.VTable, @ptrCast(self.vtable)).IsEqualObject(@as(*const IObjectIdentity, @ptrCast(self)), punk);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsEqualObject(self: *const IObjectIdentity, punk: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.IsEqualObject(self, punk);
     }
@@ -9105,14 +7038,6 @@ pub const ICanHandleException = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICanHandleException_CanHandleException(self: *const T, pExcepInfo: ?*EXCEPINFO, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @as(*const ICanHandleException.VTable, @ptrCast(self.vtable)).CanHandleException(@as(*const ICanHandleException, @ptrCast(self)), pExcepInfo, pvar);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CanHandleException(self: *const ICanHandleException, pExcepInfo: ?*EXCEPINFO, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.CanHandleException(self, pExcepInfo, pvar);
     }
@@ -9131,14 +7056,6 @@ pub const IProvideRuntimeContext = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideRuntimeContext_GetCurrentSourceContext(self: *const T, pdwContext: ?*usize, pfExecutingGlobalCode: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IProvideRuntimeContext.VTable, @ptrCast(self.vtable)).GetCurrentSourceContext(@as(*const IProvideRuntimeContext, @ptrCast(self)), pdwContext, pfExecutingGlobalCode);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCurrentSourceContext(self: *const IProvideRuntimeContext, pdwContext: ?*usize, pfExecutingGlobalCode: ?*i16) callconv(.Inline) HRESULT {
         return self.vtable.GetCurrentSourceContext(self, pdwContext, pfExecutingGlobalCode);
     }

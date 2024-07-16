@@ -2005,58 +2005,6 @@ pub const ITraceEvent = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_Clone(self: *const T, NewEvent: ?*?*ITraceEvent) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).Clone(@as(*const ITraceEvent, @ptrCast(self)), NewEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_GetUserContext(self: *const T, UserContext: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).GetUserContext(@as(*const ITraceEvent, @ptrCast(self)), UserContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_GetEventRecord(self: *const T, EventRecord: ?*?*EVENT_RECORD) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).GetEventRecord(@as(*const ITraceEvent, @ptrCast(self)), EventRecord);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetPayload(self: *const T, Payload: [*:0]u8, PayloadSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetPayload(@as(*const ITraceEvent, @ptrCast(self)), Payload, PayloadSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetEventDescriptor(self: *const T, EventDescriptor: ?*const EVENT_DESCRIPTOR) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetEventDescriptor(@as(*const ITraceEvent, @ptrCast(self)), EventDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetProcessId(self: *const T, ProcessId: u32) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetProcessId(@as(*const ITraceEvent, @ptrCast(self)), ProcessId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetProcessorIndex(self: *const T, ProcessorIndex: u32) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetProcessorIndex(@as(*const ITraceEvent, @ptrCast(self)), ProcessorIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetThreadId(self: *const T, ThreadId: u32) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetThreadId(@as(*const ITraceEvent, @ptrCast(self)), ThreadId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetThreadTimes(self: *const T, KernelTime: u32, UserTime: u32) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetThreadTimes(@as(*const ITraceEvent, @ptrCast(self)), KernelTime, UserTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetActivityId(self: *const T, ActivityId: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetActivityId(@as(*const ITraceEvent, @ptrCast(self)), ActivityId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetTimeStamp(self: *const T, TimeStamp: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetTimeStamp(@as(*const ITraceEvent, @ptrCast(self)), TimeStamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetProviderId(self: *const T, ProviderId: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetProviderId(@as(*const ITraceEvent, @ptrCast(self)), ProviderId);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Clone(self: *const ITraceEvent, NewEvent: ?*?*ITraceEvent) callconv(.Inline) HRESULT {
         return self.vtable.Clone(self, NewEvent);
     }
@@ -2118,22 +2066,6 @@ pub const ITraceEventCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEventCallback_OnBeginProcessTrace(self: *const T, HeaderEvent: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEventCallback.VTable, @ptrCast(self.vtable)).OnBeginProcessTrace(@as(*const ITraceEventCallback, @ptrCast(self)), HeaderEvent, Relogger);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEventCallback_OnFinalizeProcessTrace(self: *const T, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEventCallback.VTable, @ptrCast(self.vtable)).OnFinalizeProcessTrace(@as(*const ITraceEventCallback, @ptrCast(self)), Relogger);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEventCallback_OnEvent(self: *const T, Event: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
-            return @as(*const ITraceEventCallback.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const ITraceEventCallback, @ptrCast(self)), Event, Relogger);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnBeginProcessTrace(self: *const ITraceEventCallback, HeaderEvent: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
         return self.vtable.OnBeginProcessTrace(self, HeaderEvent, Relogger);
     }
@@ -2194,46 +2126,6 @@ pub const ITraceRelogger = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_AddLogfileTraceStream(self: *const T, LogfileName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*RELOGSTREAM_HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).AddLogfileTraceStream(@as(*const ITraceRelogger, @ptrCast(self)), LogfileName, UserContext, TraceHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_AddRealtimeTraceStream(self: *const T, LoggerName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*RELOGSTREAM_HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).AddRealtimeTraceStream(@as(*const ITraceRelogger, @ptrCast(self)), LoggerName, UserContext, TraceHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_RegisterCallback(self: *const T, Callback: ?*ITraceEventCallback) callconv(.Inline) HRESULT {
-            return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).RegisterCallback(@as(*const ITraceRelogger, @ptrCast(self)), Callback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_Inject(self: *const T, Event: ?*ITraceEvent) callconv(.Inline) HRESULT {
-            return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).Inject(@as(*const ITraceRelogger, @ptrCast(self)), Event);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_CreateEventInstance(self: *const T, TraceHandle: RELOGSTREAM_HANDLE, Flags: u32, Event: ?*?*ITraceEvent) callconv(.Inline) HRESULT {
-            return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).CreateEventInstance(@as(*const ITraceRelogger, @ptrCast(self)), TraceHandle, Flags, Event);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_ProcessTrace(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).ProcessTrace(@as(*const ITraceRelogger, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_SetOutputFilename(self: *const T, LogfileName: ?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).SetOutputFilename(@as(*const ITraceRelogger, @ptrCast(self)), LogfileName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_SetCompressionMode(self: *const T, CompressionMode: BOOLEAN) callconv(.Inline) HRESULT {
-            return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).SetCompressionMode(@as(*const ITraceRelogger, @ptrCast(self)), CompressionMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).Cancel(@as(*const ITraceRelogger, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddLogfileTraceStream(self: *const ITraceRelogger, LogfileName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*RELOGSTREAM_HANDLE) callconv(.Inline) HRESULT {
         return self.vtable.AddLogfileTraceStream(self, LogfileName, UserContext, TraceHandle);
     }

@@ -21,14 +21,7 @@ pub const IAudioFrameNative = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioFrameNative_GetData(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IAudioFrameNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const IAudioFrameNative, @ptrCast(self)), riid, ppv);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetData(self: *const IAudioFrameNative, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetData(self, riid, ppv);
     }
@@ -52,18 +45,7 @@ pub const IVideoFrameNative = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVideoFrameNative_GetData(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IVideoFrameNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const IVideoFrameNative, @ptrCast(self)), riid, ppv);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVideoFrameNative_GetDevice(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IVideoFrameNative.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IVideoFrameNative, @ptrCast(self)), riid, ppv);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetData(self: *const IVideoFrameNative, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetData(self, riid, ppv);
     }
@@ -87,14 +69,7 @@ pub const IAudioFrameNativeFactory = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioFrameNativeFactory_CreateFromMFSample(self: *const T, data: ?*IMFSample, forceReadOnly: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IAudioFrameNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMFSample(@as(*const IAudioFrameNativeFactory, @ptrCast(self)), data, forceReadOnly, riid, ppv);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateFromMFSample(self: *const IAudioFrameNativeFactory, data: ?*IMFSample, forceReadOnly: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateFromMFSample(self, data, forceReadOnly, riid, ppv);
     }
@@ -120,14 +95,7 @@ pub const IVideoFrameNativeFactory = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVideoFrameNativeFactory_CreateFromMFSample(self: *const T, data: ?*IMFSample, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, device: ?*IMFDXGIDeviceManager, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IVideoFrameNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMFSample(@as(*const IVideoFrameNativeFactory, @ptrCast(self)), data, subtype, width, height, forceReadOnly, minDisplayAperture, device, riid, ppv);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateFromMFSample(self: *const IVideoFrameNativeFactory, data: ?*IMFSample, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, device: ?*IMFDXGIDeviceManager, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateFromMFSample(self, data, subtype, width, height, forceReadOnly, minDisplayAperture, device, riid, ppv);
     }
@@ -152,7 +120,7 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -160,6 +128,7 @@ const HRESULT = @import("../../foundation.zig").HRESULT;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
 const IMFDXGIDeviceManager = @import("../../media/media_foundation.zig").IMFDXGIDeviceManager;
 const IMFSample = @import("../../media/media_foundation.zig").IMFSample;
+const IUnknown = @import("../../system/com.zig").IUnknown;
 const MFVideoArea = @import("../../media/media_foundation.zig").MFVideoArea;
 
 test {

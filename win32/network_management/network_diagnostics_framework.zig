@@ -343,82 +343,6 @@ pub const INetDiagHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_Initialize(self: *const T, celt: u32, rgAttributes: [*]HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).Initialize(@as(*const INetDiagHelper, @ptrCast(self)), celt, rgAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_GetDiagnosticsInfo(self: *const T, ppInfo: ?*?*DiagnosticsInfo) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetDiagnosticsInfo(@as(*const INetDiagHelper, @ptrCast(self)), ppInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_GetKeyAttributes(self: *const T, pcelt: ?*u32, pprgAttributes: [*]?*HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetKeyAttributes(@as(*const INetDiagHelper, @ptrCast(self)), pcelt, pprgAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_LowHealth(self: *const T, pwszInstanceDescription: ?[*:0]const u16, ppwszDescription: ?*?PWSTR, pDeferredTime: ?*i32, pStatus: ?*DIAGNOSIS_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).LowHealth(@as(*const INetDiagHelper, @ptrCast(self)), pwszInstanceDescription, ppwszDescription, pDeferredTime, pStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_HighUtilization(self: *const T, pwszInstanceDescription: ?[*:0]const u16, ppwszDescription: ?*?PWSTR, pDeferredTime: ?*i32, pStatus: ?*DIAGNOSIS_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).HighUtilization(@as(*const INetDiagHelper, @ptrCast(self)), pwszInstanceDescription, ppwszDescription, pDeferredTime, pStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_GetLowerHypotheses(self: *const T, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetLowerHypotheses(@as(*const INetDiagHelper, @ptrCast(self)), pcelt, pprgHypotheses);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_GetDownStreamHypotheses(self: *const T, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetDownStreamHypotheses(@as(*const INetDiagHelper, @ptrCast(self)), pcelt, pprgHypotheses);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_GetHigherHypotheses(self: *const T, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetHigherHypotheses(@as(*const INetDiagHelper, @ptrCast(self)), pcelt, pprgHypotheses);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_GetUpStreamHypotheses(self: *const T, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetUpStreamHypotheses(@as(*const INetDiagHelper, @ptrCast(self)), pcelt, pprgHypotheses);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_Repair(self: *const T, pInfo: ?*RepairInfo, pDeferredTime: ?*i32, pStatus: ?*REPAIR_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).Repair(@as(*const INetDiagHelper, @ptrCast(self)), pInfo, pDeferredTime, pStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_Validate(self: *const T, problem: PROBLEM_TYPE, pDeferredTime: ?*i32, pStatus: ?*REPAIR_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).Validate(@as(*const INetDiagHelper, @ptrCast(self)), problem, pDeferredTime, pStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_GetRepairInfo(self: *const T, problem: PROBLEM_TYPE, pcelt: ?*u32, ppInfo: [*]?*RepairInfo) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetRepairInfo(@as(*const INetDiagHelper, @ptrCast(self)), problem, pcelt, ppInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_GetLifeTime(self: *const T, pLifeTime: ?*LIFE_TIME) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetLifeTime(@as(*const INetDiagHelper, @ptrCast(self)), pLifeTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_SetLifeTime(self: *const T, lifeTime: LIFE_TIME) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).SetLifeTime(@as(*const INetDiagHelper, @ptrCast(self)), lifeTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_GetCacheTime(self: *const T, pCacheTime: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetCacheTime(@as(*const INetDiagHelper, @ptrCast(self)), pCacheTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_GetAttributes(self: *const T, pcelt: ?*u32, pprgAttributes: [*]?*HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const INetDiagHelper, @ptrCast(self)), pcelt, pprgAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).Cancel(@as(*const INetDiagHelper, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelper_Cleanup(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelper.VTable, @ptrCast(self.vtable)).Cleanup(@as(*const INetDiagHelper, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const INetDiagHelper, celt: u32, rgAttributes: [*]HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, celt, rgAttributes);
     }
@@ -494,14 +418,6 @@ pub const INetDiagHelperUtilFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelperUtilFactory_CreateUtilityInstance(self: *const T, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelperUtilFactory.VTable, @ptrCast(self.vtable)).CreateUtilityInstance(@as(*const INetDiagHelperUtilFactory, @ptrCast(self)), riid, ppvObject);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateUtilityInstance(self: *const INetDiagHelperUtilFactory, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateUtilityInstance(self, riid, ppvObject);
     }
@@ -530,22 +446,6 @@ pub const INetDiagHelperEx = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelperEx_ReconfirmLowHealth(self: *const T, celt: u32, pResults: [*]HypothesisResult, ppwszUpdatedDescription: ?*?PWSTR, pUpdatedStatus: ?*DIAGNOSIS_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelperEx.VTable, @ptrCast(self.vtable)).ReconfirmLowHealth(@as(*const INetDiagHelperEx, @ptrCast(self)), celt, pResults, ppwszUpdatedDescription, pUpdatedStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelperEx_SetUtilities(self: *const T, pUtilities: ?*INetDiagHelperUtilFactory) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelperEx.VTable, @ptrCast(self.vtable)).SetUtilities(@as(*const INetDiagHelperEx, @ptrCast(self)), pUtilities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelperEx_ReproduceFailure(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelperEx.VTable, @ptrCast(self.vtable)).ReproduceFailure(@as(*const INetDiagHelperEx, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReconfirmLowHealth(self: *const INetDiagHelperEx, celt: u32, pResults: [*]HypothesisResult, ppwszUpdatedDescription: ?*?PWSTR, pUpdatedStatus: ?*DIAGNOSIS_STATUS) callconv(.Inline) HRESULT {
         return self.vtable.ReconfirmLowHealth(self, celt, pResults, ppwszUpdatedDescription, pUpdatedStatus);
     }
@@ -571,14 +471,6 @@ pub const INetDiagHelperInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelperInfo_GetAttributeInfo(self: *const T, pcelt: ?*u32, pprgAttributeInfos: [*]?*HelperAttributeInfo) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagHelperInfo.VTable, @ptrCast(self.vtable)).GetAttributeInfo(@as(*const INetDiagHelperInfo, @ptrCast(self)), pcelt, pprgAttributeInfos);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAttributeInfo(self: *const INetDiagHelperInfo, pcelt: ?*u32, pprgAttributeInfos: [*]?*HelperAttributeInfo) callconv(.Inline) HRESULT {
         return self.vtable.GetAttributeInfo(self, pcelt, pprgAttributeInfos);
     }
@@ -599,14 +491,6 @@ pub const INetDiagExtensibleHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagExtensibleHelper_ResolveAttributes(self: *const T, celt: u32, rgKeyAttributes: [*]HELPER_ATTRIBUTE, pcelt: ?*u32, prgMatchValues: [*]?*HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
-            return @as(*const INetDiagExtensibleHelper.VTable, @ptrCast(self.vtable)).ResolveAttributes(@as(*const INetDiagExtensibleHelper, @ptrCast(self)), celt, rgKeyAttributes, pcelt, prgMatchValues);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ResolveAttributes(self: *const INetDiagExtensibleHelper, celt: u32, rgKeyAttributes: [*]HELPER_ATTRIBUTE, pcelt: ?*u32, prgMatchValues: [*]?*HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
         return self.vtable.ResolveAttributes(self, celt, rgKeyAttributes, pcelt, prgMatchValues);
     }

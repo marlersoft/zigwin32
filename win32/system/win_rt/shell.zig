@@ -35,14 +35,6 @@ pub const IDDEInitializer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDDEInitializer_Initialize(self: *const T, fileExtensionOrProtocol: ?[*:0]const u16, method: CreateProcessMethod, currentDirectory: ?[*:0]const u16, execTarget: ?*IShellItem, site: ?*IUnknown, application: ?[*:0]const u16, targetFile: ?[*:0]const u16, arguments: ?[*:0]const u16, verb: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IDDEInitializer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDDEInitializer, @ptrCast(self)), fileExtensionOrProtocol, method, currentDirectory, execTarget, site, application, targetFile, arguments, verb);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IDDEInitializer, fileExtensionOrProtocol: ?[*:0]const u16, method: CreateProcessMethod, currentDirectory: ?[*:0]const u16, execTarget: ?*IShellItem, site: ?*IUnknown, application: ?[*:0]const u16, targetFile: ?[*:0]const u16, arguments: ?[*:0]const u16, verb: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, fileExtensionOrProtocol, method, currentDirectory, execTarget, site, application, targetFile, arguments, verb);
     }

@@ -639,54 +639,6 @@ pub const IWCNDevice = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_SetPassword(self: *const T, Type: WCN_PASSWORD_TYPE, dwPasswordLength: u32, pbPassword: [*:0]const u8) callconv(.Inline) HRESULT {
-            return @as(*const IWCNDevice.VTable, @ptrCast(self.vtable)).SetPassword(@as(*const IWCNDevice, @ptrCast(self)), Type, dwPasswordLength, pbPassword);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_Connect(self: *const T, pNotify: ?*IWCNConnectNotify) callconv(.Inline) HRESULT {
-            return @as(*const IWCNDevice.VTable, @ptrCast(self.vtable)).Connect(@as(*const IWCNDevice, @ptrCast(self)), pNotify);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWCNDevice.VTable, @ptrCast(self.vtable)).GetAttribute(@as(*const IWCNDevice, @ptrCast(self)), AttributeType, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetIntegerAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, puInteger: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWCNDevice.VTable, @ptrCast(self.vtable)).GetIntegerAttribute(@as(*const IWCNDevice, @ptrCast(self)), AttributeType, puInteger);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetStringAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, cchMaxString: u32, wszString: [*:0]u16) callconv(.Inline) HRESULT {
-            return @as(*const IWCNDevice.VTable, @ptrCast(self.vtable)).GetStringAttribute(@as(*const IWCNDevice, @ptrCast(self)), AttributeType, cchMaxString, wszString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetNetworkProfile(self: *const T, cchMaxStringLength: u32, wszProfile: [*:0]u16) callconv(.Inline) HRESULT {
-            return @as(*const IWCNDevice.VTable, @ptrCast(self.vtable)).GetNetworkProfile(@as(*const IWCNDevice, @ptrCast(self)), cchMaxStringLength, wszProfile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_SetNetworkProfile(self: *const T, pszProfileXml: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IWCNDevice.VTable, @ptrCast(self.vtable)).SetNetworkProfile(@as(*const IWCNDevice, @ptrCast(self)), pszProfileXml);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetVendorExtension(self: *const T, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IWCNDevice.VTable, @ptrCast(self.vtable)).GetVendorExtension(@as(*const IWCNDevice, @ptrCast(self)), pVendorExtSpec, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_SetVendorExtension(self: *const T, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, cbBuffer: u32, pbBuffer: [*:0]const u8) callconv(.Inline) HRESULT {
-            return @as(*const IWCNDevice.VTable, @ptrCast(self.vtable)).SetVendorExtension(@as(*const IWCNDevice, @ptrCast(self)), pVendorExtSpec, cbBuffer, pbBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_Unadvise(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWCNDevice.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IWCNDevice, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_SetNFCPasswordParams(self: *const T, Type: WCN_PASSWORD_TYPE, dwOOBPasswordID: u32, dwPasswordLength: u32, pbPassword: ?[*:0]const u8, dwRemotePublicKeyHashLength: u32, pbRemotePublicKeyHash: ?[*:0]const u8, dwDHKeyBlobLength: u32, pbDHKeyBlob: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @as(*const IWCNDevice.VTable, @ptrCast(self.vtable)).SetNFCPasswordParams(@as(*const IWCNDevice, @ptrCast(self)), Type, dwOOBPasswordID, dwPasswordLength, pbPassword, dwRemotePublicKeyHashLength, pbRemotePublicKeyHash, dwDHKeyBlobLength, pbDHKeyBlob);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetPassword(self: *const IWCNDevice, Type: WCN_PASSWORD_TYPE, dwPasswordLength: u32, pbPassword: [*:0]const u8) callconv(.Inline) HRESULT {
         return self.vtable.SetPassword(self, Type, dwPasswordLength, pbPassword);
     }
@@ -738,18 +690,6 @@ pub const IWCNConnectNotify = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNConnectNotify_ConnectSucceeded(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IWCNConnectNotify.VTable, @ptrCast(self.vtable)).ConnectSucceeded(@as(*const IWCNConnectNotify, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNConnectNotify_ConnectFailed(self: *const T, hrFailure: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IWCNConnectNotify.VTable, @ptrCast(self.vtable)).ConnectFailed(@as(*const IWCNConnectNotify, @ptrCast(self)), hrFailure);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ConnectSucceeded(self: *const IWCNConnectNotify) callconv(.Inline) HRESULT {
         return self.vtable.ConnectSucceeded(self);
     }

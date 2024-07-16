@@ -27,18 +27,6 @@ pub const IThumbnailExtractor = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IThumbnailExtractor_ExtractThumbnail(self: *const T, pStg: ?*IStorage, ulLength: u32, ulHeight: u32, pulOutputLength: ?*u32, pulOutputHeight: ?*u32, phOutputBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
-            return @as(*const IThumbnailExtractor.VTable, @ptrCast(self.vtable)).ExtractThumbnail(@as(*const IThumbnailExtractor, @ptrCast(self)), pStg, ulLength, ulHeight, pulOutputLength, pulOutputHeight, phOutputBitmap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IThumbnailExtractor_OnFileUpdated(self: *const T, pStg: ?*IStorage) callconv(.Inline) HRESULT {
-            return @as(*const IThumbnailExtractor.VTable, @ptrCast(self.vtable)).OnFileUpdated(@as(*const IThumbnailExtractor, @ptrCast(self)), pStg);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ExtractThumbnail(self: *const IThumbnailExtractor, pStg: ?*IStorage, ulLength: u32, ulHeight: u32, pulOutputLength: ?*u32, pulOutputHeight: ?*u32, phOutputBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
         return self.vtable.ExtractThumbnail(self, pStg, ulLength, ulHeight, pulOutputLength, pulOutputHeight, phOutputBitmap);
     }
@@ -60,14 +48,6 @@ pub const IDummyHICONIncluder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDummyHICONIncluder_Dummy(self: *const T, h1: ?HICON, h2: ?HDC) callconv(.Inline) HRESULT {
-            return @as(*const IDummyHICONIncluder.VTable, @ptrCast(self.vtable)).Dummy(@as(*const IDummyHICONIncluder, @ptrCast(self)), h1, h2);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Dummy(self: *const IDummyHICONIncluder, h1: ?HICON, h2: ?HDC) callconv(.Inline) HRESULT {
         return self.vtable.Dummy(self, h1, h2);
     }

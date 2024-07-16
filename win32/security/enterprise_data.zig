@@ -28,18 +28,7 @@ pub const IProtectionPolicyManagerInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop_RequestAccessForWindowAsync(self: *const T, appWindow: ?HWND, sourceIdentity: ?HSTRING, targetIdentity: ?HSTRING, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop.VTable, @ptrCast(self.vtable)).RequestAccessForWindowAsync(@as(*const IProtectionPolicyManagerInterop, @ptrCast(self)), appWindow, sourceIdentity, targetIdentity, riid, asyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, result: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IProtectionPolicyManagerInterop, @ptrCast(self)), appWindow, riid, result);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn RequestAccessForWindowAsync(self: *const IProtectionPolicyManagerInterop, appWindow: ?HWND, sourceIdentity: ?HSTRING, targetIdentity: ?HSTRING, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.RequestAccessForWindowAsync(self, appWindow, sourceIdentity, targetIdentity, riid, asyncOperation);
     }
@@ -102,30 +91,7 @@ pub const IProtectionPolicyManagerInterop2 = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop2_RequestAccessForAppWithWindowAsync(self: *const T, appWindow: ?HWND, sourceIdentity: ?HSTRING, appPackageFamilyName: ?HSTRING, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop2.VTable, @ptrCast(self.vtable)).RequestAccessForAppWithWindowAsync(@as(*const IProtectionPolicyManagerInterop2, @ptrCast(self)), appWindow, sourceIdentity, appPackageFamilyName, riid, asyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop2_RequestAccessWithAuditingInfoForWindowAsync(self: *const T, appWindow: ?HWND, sourceIdentity: ?HSTRING, targetIdentity: ?HSTRING, auditInfoUnk: ?*IUnknown, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop2.VTable, @ptrCast(self.vtable)).RequestAccessWithAuditingInfoForWindowAsync(@as(*const IProtectionPolicyManagerInterop2, @ptrCast(self)), appWindow, sourceIdentity, targetIdentity, auditInfoUnk, riid, asyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop2_RequestAccessWithMessageForWindowAsync(self: *const T, appWindow: ?HWND, sourceIdentity: ?HSTRING, targetIdentity: ?HSTRING, auditInfoUnk: ?*IUnknown, messageFromApp: ?HSTRING, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop2.VTable, @ptrCast(self.vtable)).RequestAccessWithMessageForWindowAsync(@as(*const IProtectionPolicyManagerInterop2, @ptrCast(self)), appWindow, sourceIdentity, targetIdentity, auditInfoUnk, messageFromApp, riid, asyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop2_RequestAccessForAppWithAuditingInfoForWindowAsync(self: *const T, appWindow: ?HWND, sourceIdentity: ?HSTRING, appPackageFamilyName: ?HSTRING, auditInfoUnk: ?*IUnknown, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop2.VTable, @ptrCast(self.vtable)).RequestAccessForAppWithAuditingInfoForWindowAsync(@as(*const IProtectionPolicyManagerInterop2, @ptrCast(self)), appWindow, sourceIdentity, appPackageFamilyName, auditInfoUnk, riid, asyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop2_RequestAccessForAppWithMessageForWindowAsync(self: *const T, appWindow: ?HWND, sourceIdentity: ?HSTRING, appPackageFamilyName: ?HSTRING, auditInfoUnk: ?*IUnknown, messageFromApp: ?HSTRING, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop2.VTable, @ptrCast(self.vtable)).RequestAccessForAppWithMessageForWindowAsync(@as(*const IProtectionPolicyManagerInterop2, @ptrCast(self)), appWindow, sourceIdentity, appPackageFamilyName, auditInfoUnk, messageFromApp, riid, asyncOperation);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn RequestAccessForAppWithWindowAsync(self: *const IProtectionPolicyManagerInterop2, appWindow: ?HWND, sourceIdentity: ?HSTRING, appPackageFamilyName: ?HSTRING, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.RequestAccessForAppWithWindowAsync(self, appWindow, sourceIdentity, appPackageFamilyName, riid, asyncOperation);
     }
@@ -213,34 +179,7 @@ pub const IProtectionPolicyManagerInterop3 = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop3_RequestAccessWithBehaviorForWindowAsync(self: *const T, appWindow: ?HWND, sourceIdentity: ?HSTRING, targetIdentity: ?HSTRING, auditInfoUnk: ?*IUnknown, messageFromApp: ?HSTRING, behavior: u32, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop3.VTable, @ptrCast(self.vtable)).RequestAccessWithBehaviorForWindowAsync(@as(*const IProtectionPolicyManagerInterop3, @ptrCast(self)), appWindow, sourceIdentity, targetIdentity, auditInfoUnk, messageFromApp, behavior, riid, asyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop3_RequestAccessForAppWithBehaviorForWindowAsync(self: *const T, appWindow: ?HWND, sourceIdentity: ?HSTRING, appPackageFamilyName: ?HSTRING, auditInfoUnk: ?*IUnknown, messageFromApp: ?HSTRING, behavior: u32, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop3.VTable, @ptrCast(self.vtable)).RequestAccessForAppWithBehaviorForWindowAsync(@as(*const IProtectionPolicyManagerInterop3, @ptrCast(self)), appWindow, sourceIdentity, appPackageFamilyName, auditInfoUnk, messageFromApp, behavior, riid, asyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop3_RequestAccessToFilesForAppForWindowAsync(self: *const T, appWindow: ?HWND, sourceItemListUnk: ?*IUnknown, appPackageFamilyName: ?HSTRING, auditInfoUnk: ?*IUnknown, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop3.VTable, @ptrCast(self.vtable)).RequestAccessToFilesForAppForWindowAsync(@as(*const IProtectionPolicyManagerInterop3, @ptrCast(self)), appWindow, sourceItemListUnk, appPackageFamilyName, auditInfoUnk, riid, asyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop3_RequestAccessToFilesForAppWithMessageAndBehaviorForWindowAsync(self: *const T, appWindow: ?HWND, sourceItemListUnk: ?*IUnknown, appPackageFamilyName: ?HSTRING, auditInfoUnk: ?*IUnknown, messageFromApp: ?HSTRING, behavior: u32, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop3.VTable, @ptrCast(self.vtable)).RequestAccessToFilesForAppWithMessageAndBehaviorForWindowAsync(@as(*const IProtectionPolicyManagerInterop3, @ptrCast(self)), appWindow, sourceItemListUnk, appPackageFamilyName, auditInfoUnk, messageFromApp, behavior, riid, asyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop3_RequestAccessToFilesForProcessForWindowAsync(self: *const T, appWindow: ?HWND, sourceItemListUnk: ?*IUnknown, processId: u32, auditInfoUnk: ?*IUnknown, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop3.VTable, @ptrCast(self.vtable)).RequestAccessToFilesForProcessForWindowAsync(@as(*const IProtectionPolicyManagerInterop3, @ptrCast(self)), appWindow, sourceItemListUnk, processId, auditInfoUnk, riid, asyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProtectionPolicyManagerInterop3_RequestAccessToFilesForProcessWithMessageAndBehaviorForWindowAsync(self: *const T, appWindow: ?HWND, sourceItemListUnk: ?*IUnknown, processId: u32, auditInfoUnk: ?*IUnknown, messageFromApp: ?HSTRING, behavior: u32, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IProtectionPolicyManagerInterop3.VTable, @ptrCast(self.vtable)).RequestAccessToFilesForProcessWithMessageAndBehaviorForWindowAsync(@as(*const IProtectionPolicyManagerInterop3, @ptrCast(self)), appWindow, sourceItemListUnk, processId, auditInfoUnk, messageFromApp, behavior, riid, asyncOperation);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn RequestAccessWithBehaviorForWindowAsync(self: *const IProtectionPolicyManagerInterop3, appWindow: ?HWND, sourceIdentity: ?HSTRING, targetIdentity: ?HSTRING, auditInfoUnk: ?*IUnknown, messageFromApp: ?HSTRING, behavior: u32, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.RequestAccessWithBehaviorForWindowAsync(self, appWindow, sourceIdentity, targetIdentity, auditInfoUnk, messageFromApp, behavior, riid, asyncOperation);
     }

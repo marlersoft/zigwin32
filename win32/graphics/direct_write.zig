@@ -341,14 +341,6 @@ pub const IDWriteFontFileLoader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFileLoader_CreateStreamFromKey(self: *const T, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, fontFileStream: ?*?*IDWriteFontFileStream) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFileLoader.VTable, @ptrCast(self.vtable)).CreateStreamFromKey(@as(*const IDWriteFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, fontFileStream);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateStreamFromKey(self: *const IDWriteFontFileLoader, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, fontFileStream: ?*?*IDWriteFontFileStream) callconv(.Inline) HRESULT {
         return self.vtable.CreateStreamFromKey(self, fontFileReferenceKey, fontFileReferenceKeySize, fontFileStream);
     }
@@ -384,22 +376,7 @@ pub const IDWriteLocalFontFileLoader = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFileLoader: IDWriteFontFileLoader,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFileLoader.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteLocalFontFileLoader_GetFilePathLengthFromKey(self: *const T, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, filePathLength: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteLocalFontFileLoader.VTable, @ptrCast(self.vtable)).GetFilePathLengthFromKey(@as(*const IDWriteLocalFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, filePathLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteLocalFontFileLoader_GetFilePathFromKey(self: *const T, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, filePath: [*:0]u16, filePathSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteLocalFontFileLoader.VTable, @ptrCast(self.vtable)).GetFilePathFromKey(@as(*const IDWriteLocalFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, filePath, filePathSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteLocalFontFileLoader_GetLastWriteTimeFromKey(self: *const T, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, lastWriteTime: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteLocalFontFileLoader.VTable, @ptrCast(self.vtable)).GetLastWriteTimeFromKey(@as(*const IDWriteLocalFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, lastWriteTime);
-        }
-    };}
-    pub usingnamespace IDWriteFontFileLoader.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetFilePathLengthFromKey(self: *const IDWriteLocalFontFileLoader, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, filePathLength: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetFilePathLengthFromKey(self, fontFileReferenceKey, fontFileReferenceKeySize, filePathLength);
     }
@@ -439,26 +416,6 @@ pub const IDWriteFontFileStream = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFileStream_ReadFileFragment(self: *const T, fragmentStart: ?*const ?*anyopaque, fileOffset: u64, fragmentSize: u64, fragmentContext: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFileStream.VTable, @ptrCast(self.vtable)).ReadFileFragment(@as(*const IDWriteFontFileStream, @ptrCast(self)), fragmentStart, fileOffset, fragmentSize, fragmentContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFileStream_ReleaseFileFragment(self: *const T, fragmentContext: ?*anyopaque) callconv(.Inline) void {
-            return @as(*const IDWriteFontFileStream.VTable, @ptrCast(self.vtable)).ReleaseFileFragment(@as(*const IDWriteFontFileStream, @ptrCast(self)), fragmentContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFileStream_GetFileSize(self: *const T, fileSize: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFileStream.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IDWriteFontFileStream, @ptrCast(self)), fileSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFileStream_GetLastWriteTime(self: *const T, lastWriteTime: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFileStream.VTable, @ptrCast(self.vtable)).GetLastWriteTime(@as(*const IDWriteFontFileStream, @ptrCast(self)), lastWriteTime);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReadFileFragment(self: *const IDWriteFontFileStream, fragmentStart: ?*const ?*anyopaque, fileOffset: u64, fragmentSize: u64, fragmentContext: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.ReadFileFragment(self, fragmentStart, fileOffset, fragmentSize, fragmentContext);
     }
@@ -498,22 +455,6 @@ pub const IDWriteFontFile = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFile_GetReferenceKey(self: *const T, fontFileReferenceKey: ?*const ?*anyopaque, fontFileReferenceKeySize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFile.VTable, @ptrCast(self.vtable)).GetReferenceKey(@as(*const IDWriteFontFile, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFile_GetLoader(self: *const T, fontFileLoader: ?*?*IDWriteFontFileLoader) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFile.VTable, @ptrCast(self.vtable)).GetLoader(@as(*const IDWriteFontFile, @ptrCast(self)), fontFileLoader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFile_Analyze(self: *const T, isSupportedFontType: ?*BOOL, fontFileType: ?*DWRITE_FONT_FILE_TYPE, fontFaceType: ?*DWRITE_FONT_FACE_TYPE, numberOfFaces: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFile.VTable, @ptrCast(self.vtable)).Analyze(@as(*const IDWriteFontFile, @ptrCast(self)), isSupportedFontType, fontFileType, fontFaceType, numberOfFaces);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetReferenceKey(self: *const IDWriteFontFile, fontFileReferenceKey: ?*const ?*anyopaque, fontFileReferenceKeySize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetReferenceKey(self, fontFileReferenceKey, fontFileReferenceKeySize);
     }
@@ -592,30 +533,6 @@ pub const IDWriteRenderingParams = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRenderingParams_GetGamma(self: *const T) callconv(.Inline) f32 {
-            return @as(*const IDWriteRenderingParams.VTable, @ptrCast(self.vtable)).GetGamma(@as(*const IDWriteRenderingParams, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRenderingParams_GetEnhancedContrast(self: *const T) callconv(.Inline) f32 {
-            return @as(*const IDWriteRenderingParams.VTable, @ptrCast(self.vtable)).GetEnhancedContrast(@as(*const IDWriteRenderingParams, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRenderingParams_GetClearTypeLevel(self: *const T) callconv(.Inline) f32 {
-            return @as(*const IDWriteRenderingParams.VTable, @ptrCast(self.vtable)).GetClearTypeLevel(@as(*const IDWriteRenderingParams, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRenderingParams_GetPixelGeometry(self: *const T) callconv(.Inline) DWRITE_PIXEL_GEOMETRY {
-            return @as(*const IDWriteRenderingParams.VTable, @ptrCast(self.vtable)).GetPixelGeometry(@as(*const IDWriteRenderingParams, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRenderingParams_GetRenderingMode(self: *const T) callconv(.Inline) DWRITE_RENDERING_MODE {
-            return @as(*const IDWriteRenderingParams.VTable, @ptrCast(self.vtable)).GetRenderingMode(@as(*const IDWriteRenderingParams, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetGamma(self: *const IDWriteRenderingParams) callconv(.Inline) f32 {
         return self.vtable.GetGamma(self);
     }
@@ -728,70 +645,6 @@ pub const IDWriteFontFace = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetType(self: *const T) callconv(.Inline) DWRITE_FONT_FACE_TYPE {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetType(@as(*const IDWriteFontFace, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetFiles(self: *const T, numberOfFiles: ?*u32, fontFiles: ?[*]?*IDWriteFontFile) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetFiles(@as(*const IDWriteFontFace, @ptrCast(self)), numberOfFiles, fontFiles);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetIndex(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetIndex(@as(*const IDWriteFontFace, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetSimulations(self: *const T) callconv(.Inline) DWRITE_FONT_SIMULATIONS {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetSimulations(@as(*const IDWriteFontFace, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_IsSymbolFont(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).IsSymbolFont(@as(*const IDWriteFontFace, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetMetrics(self: *const T, fontFaceMetrics: ?*DWRITE_FONT_METRICS) callconv(.Inline) void {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteFontFace, @ptrCast(self)), fontFaceMetrics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetGlyphCount(self: *const T) callconv(.Inline) u16 {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetGlyphCount(@as(*const IDWriteFontFace, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetDesignGlyphMetrics(self: *const T, glyphIndices: [*:0]const u16, glyphCount: u32, glyphMetrics: [*]DWRITE_GLYPH_METRICS, isSideways: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetDesignGlyphMetrics(@as(*const IDWriteFontFace, @ptrCast(self)), glyphIndices, glyphCount, glyphMetrics, isSideways);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetGlyphIndices(self: *const T, codePoints: [*]const u32, codePointCount: u32, glyphIndices: [*:0]u16) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetGlyphIndices(@as(*const IDWriteFontFace, @ptrCast(self)), codePoints, codePointCount, glyphIndices);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_TryGetFontTable(self: *const T, openTypeTableTag: u32, tableData: ?*const ?*anyopaque, tableSize: ?*u32, tableContext: ?*?*anyopaque, exists: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).TryGetFontTable(@as(*const IDWriteFontFace, @ptrCast(self)), openTypeTableTag, tableData, tableSize, tableContext, exists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_ReleaseFontTable(self: *const T, tableContext: ?*anyopaque) callconv(.Inline) void {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).ReleaseFontTable(@as(*const IDWriteFontFace, @ptrCast(self)), tableContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetGlyphRunOutline(self: *const T, emSize: f32, glyphIndices: [*:0]const u16, glyphAdvances: ?[*]const f32, glyphOffsets: ?[*]const DWRITE_GLYPH_OFFSET, glyphCount: u32, isSideways: BOOL, isRightToLeft: BOOL, geometrySink: ?*ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetGlyphRunOutline(@as(*const IDWriteFontFace, @ptrCast(self)), emSize, glyphIndices, glyphAdvances, glyphOffsets, glyphCount, isSideways, isRightToLeft, geometrySink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetRecommendedRenderingMode(self: *const T, emSize: f32, pixelsPerDip: f32, measuringMode: DWRITE_MEASURING_MODE, renderingParams: ?*IDWriteRenderingParams, renderingMode: ?*DWRITE_RENDERING_MODE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetRecommendedRenderingMode(@as(*const IDWriteFontFace, @ptrCast(self)), emSize, pixelsPerDip, measuringMode, renderingParams, renderingMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetGdiCompatibleMetrics(self: *const T, emSize: f32, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, fontFaceMetrics: ?*DWRITE_FONT_METRICS) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetGdiCompatibleMetrics(@as(*const IDWriteFontFace, @ptrCast(self)), emSize, pixelsPerDip, transform, fontFaceMetrics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetGdiCompatibleGlyphMetrics(self: *const T, emSize: f32, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, useGdiNatural: BOOL, glyphIndices: [*:0]const u16, glyphCount: u32, glyphMetrics: [*]DWRITE_GLYPH_METRICS, isSideways: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace.VTable, @ptrCast(self.vtable)).GetGdiCompatibleGlyphMetrics(@as(*const IDWriteFontFace, @ptrCast(self)), emSize, pixelsPerDip, transform, useGdiNatural, glyphIndices, glyphCount, glyphMetrics, isSideways);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetType(self: *const IDWriteFontFace) callconv(.Inline) DWRITE_FONT_FACE_TYPE {
         return self.vtable.GetType(self);
     }
@@ -856,14 +709,6 @@ pub const IDWriteFontCollectionLoader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollectionLoader_CreateEnumeratorFromKey(self: *const T, factory: ?*IDWriteFactory, collectionKey: ?*const anyopaque, collectionKeySize: u32, fontFileEnumerator: ?*?*IDWriteFontFileEnumerator) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontCollectionLoader.VTable, @ptrCast(self.vtable)).CreateEnumeratorFromKey(@as(*const IDWriteFontCollectionLoader, @ptrCast(self)), factory, collectionKey, collectionKeySize, fontFileEnumerator);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateEnumeratorFromKey(self: *const IDWriteFontCollectionLoader, factory: ?*IDWriteFactory, collectionKey: ?*const anyopaque, collectionKeySize: u32, fontFileEnumerator: ?*?*IDWriteFontFileEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.CreateEnumeratorFromKey(self, factory, collectionKey, collectionKeySize, fontFileEnumerator);
     }
@@ -886,18 +731,6 @@ pub const IDWriteFontFileEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFileEnumerator_MoveNext(self: *const T, hasCurrentFile: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFileEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IDWriteFontFileEnumerator, @ptrCast(self)), hasCurrentFile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFileEnumerator_GetCurrentFontFile(self: *const T, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFileEnumerator.VTable, @ptrCast(self.vtable)).GetCurrentFontFile(@as(*const IDWriteFontFileEnumerator, @ptrCast(self)), fontFile);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn MoveNext(self: *const IDWriteFontFileEnumerator, hasCurrentFile: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.MoveNext(self, hasCurrentFile);
     }
@@ -946,34 +779,6 @@ pub const IDWriteLocalizedStrings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteLocalizedStrings_GetCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IDWriteLocalizedStrings, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteLocalizedStrings_FindLocaleName(self: *const T, localeName: ?[*:0]const u16, index: ?*u32, exists: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).FindLocaleName(@as(*const IDWriteLocalizedStrings, @ptrCast(self)), localeName, index, exists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteLocalizedStrings_GetLocaleNameLength(self: *const T, index: u32, length: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).GetLocaleNameLength(@as(*const IDWriteLocalizedStrings, @ptrCast(self)), index, length);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteLocalizedStrings_GetLocaleName(self: *const T, index: u32, localeName: [*:0]u16, size: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).GetLocaleName(@as(*const IDWriteLocalizedStrings, @ptrCast(self)), index, localeName, size);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteLocalizedStrings_GetStringLength(self: *const T, index: u32, length: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).GetStringLength(@as(*const IDWriteLocalizedStrings, @ptrCast(self)), index, length);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteLocalizedStrings_GetString(self: *const T, index: u32, stringBuffer: [*:0]u16, size: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteLocalizedStrings.VTable, @ptrCast(self.vtable)).GetString(@as(*const IDWriteLocalizedStrings, @ptrCast(self)), index, stringBuffer, size);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IDWriteLocalizedStrings) callconv(.Inline) u32 {
         return self.vtable.GetCount(self);
     }
@@ -1022,26 +827,6 @@ pub const IDWriteFontCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollection_GetFontFamilyCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontCollection.VTable, @ptrCast(self.vtable)).GetFontFamilyCount(@as(*const IDWriteFontCollection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollection_GetFontFamily(self: *const T, index: u32, fontFamily: ?*?*IDWriteFontFamily) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontCollection.VTable, @ptrCast(self.vtable)).GetFontFamily(@as(*const IDWriteFontCollection, @ptrCast(self)), index, fontFamily);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollection_FindFamilyName(self: *const T, familyName: ?[*:0]const u16, index: ?*u32, exists: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontCollection.VTable, @ptrCast(self.vtable)).FindFamilyName(@as(*const IDWriteFontCollection, @ptrCast(self)), familyName, index, exists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollection_GetFontFromFontFace(self: *const T, fontFace: ?*IDWriteFontFace, font: ?*?*IDWriteFont) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontCollection.VTable, @ptrCast(self.vtable)).GetFontFromFontFace(@as(*const IDWriteFontCollection, @ptrCast(self)), fontFace, font);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFontFamilyCount(self: *const IDWriteFontCollection) callconv(.Inline) u32 {
         return self.vtable.GetFontFamilyCount(self);
     }
@@ -1077,22 +862,6 @@ pub const IDWriteFontList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontList_GetFontCollection(self: *const T, fontCollection: ?*?*IDWriteFontCollection) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontList.VTable, @ptrCast(self.vtable)).GetFontCollection(@as(*const IDWriteFontList, @ptrCast(self)), fontCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontList_GetFontCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontList.VTable, @ptrCast(self.vtable)).GetFontCount(@as(*const IDWriteFontList, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontList_GetFont(self: *const T, index: u32, font: ?*?*IDWriteFont) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontList.VTable, @ptrCast(self.vtable)).GetFont(@as(*const IDWriteFontList, @ptrCast(self)), index, font);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFontCollection(self: *const IDWriteFontList, fontCollection: ?*?*IDWriteFontCollection) callconv(.Inline) HRESULT {
         return self.vtable.GetFontCollection(self, fontCollection);
     }
@@ -1131,22 +900,7 @@ pub const IDWriteFontFamily = extern union {
     };
     vtable: *const VTable,
     IDWriteFontList: IDWriteFontList,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontList.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFamily_GetFamilyNames(self: *const T, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFamily.VTable, @ptrCast(self.vtable)).GetFamilyNames(@as(*const IDWriteFontFamily, @ptrCast(self)), names);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFamily_GetFirstMatchingFont(self: *const T, weight: DWRITE_FONT_WEIGHT, stretch: DWRITE_FONT_STRETCH, style: DWRITE_FONT_STYLE, matchingFont: ?*?*IDWriteFont) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFamily.VTable, @ptrCast(self.vtable)).GetFirstMatchingFont(@as(*const IDWriteFontFamily, @ptrCast(self)), weight, stretch, style, matchingFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFamily_GetMatchingFonts(self: *const T, weight: DWRITE_FONT_WEIGHT, stretch: DWRITE_FONT_STRETCH, style: DWRITE_FONT_STYLE, matchingFonts: ?*?*IDWriteFontList) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFamily.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontFamily, @ptrCast(self)), weight, stretch, style, matchingFonts);
-        }
-    };}
-    pub usingnamespace IDWriteFontList.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetFamilyNames(self: *const IDWriteFontFamily, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
         return self.vtable.GetFamilyNames(self, names);
     }
@@ -1209,54 +963,6 @@ pub const IDWriteFont = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont_GetFontFamily(self: *const T, fontFamily: ?*?*IDWriteFontFamily) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetFontFamily(@as(*const IDWriteFont, @ptrCast(self)), fontFamily);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont_GetWeight(self: *const T) callconv(.Inline) DWRITE_FONT_WEIGHT {
-            return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetWeight(@as(*const IDWriteFont, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont_GetStretch(self: *const T) callconv(.Inline) DWRITE_FONT_STRETCH {
-            return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetStretch(@as(*const IDWriteFont, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont_GetStyle(self: *const T) callconv(.Inline) DWRITE_FONT_STYLE {
-            return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetStyle(@as(*const IDWriteFont, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont_IsSymbolFont(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).IsSymbolFont(@as(*const IDWriteFont, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont_GetFaceNames(self: *const T, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetFaceNames(@as(*const IDWriteFont, @ptrCast(self)), names);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont_GetInformationalStrings(self: *const T, informationalStringID: DWRITE_INFORMATIONAL_STRING_ID, informationalStrings: ?*?*IDWriteLocalizedStrings, exists: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetInformationalStrings(@as(*const IDWriteFont, @ptrCast(self)), informationalStringID, informationalStrings, exists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont_GetSimulations(self: *const T) callconv(.Inline) DWRITE_FONT_SIMULATIONS {
-            return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetSimulations(@as(*const IDWriteFont, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont_GetMetrics(self: *const T, fontMetrics: ?*DWRITE_FONT_METRICS) callconv(.Inline) void {
-            return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteFont, @ptrCast(self)), fontMetrics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont_HasCharacter(self: *const T, unicodeValue: u32, exists: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).HasCharacter(@as(*const IDWriteFont, @ptrCast(self)), unicodeValue, exists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont_CreateFontFace(self: *const T, fontFace: ?*?*IDWriteFontFace) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFont.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFont, @ptrCast(self)), fontFace);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFontFamily(self: *const IDWriteFont, fontFamily: ?*?*IDWriteFontFamily) callconv(.Inline) HRESULT {
         return self.vtable.GetFontFamily(self, fontFamily);
     }
@@ -1656,110 +1362,6 @@ pub const IDWriteTextFormat = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_SetTextAlignment(self: *const T, textAlignment: DWRITE_TEXT_ALIGNMENT) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetTextAlignment(@as(*const IDWriteTextFormat, @ptrCast(self)), textAlignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_SetParagraphAlignment(self: *const T, paragraphAlignment: DWRITE_PARAGRAPH_ALIGNMENT) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetParagraphAlignment(@as(*const IDWriteTextFormat, @ptrCast(self)), paragraphAlignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_SetWordWrapping(self: *const T, wordWrapping: DWRITE_WORD_WRAPPING) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetWordWrapping(@as(*const IDWriteTextFormat, @ptrCast(self)), wordWrapping);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_SetReadingDirection(self: *const T, readingDirection: DWRITE_READING_DIRECTION) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetReadingDirection(@as(*const IDWriteTextFormat, @ptrCast(self)), readingDirection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_SetFlowDirection(self: *const T, flowDirection: DWRITE_FLOW_DIRECTION) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetFlowDirection(@as(*const IDWriteTextFormat, @ptrCast(self)), flowDirection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_SetIncrementalTabStop(self: *const T, incrementalTabStop: f32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetIncrementalTabStop(@as(*const IDWriteTextFormat, @ptrCast(self)), incrementalTabStop);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_SetTrimming(self: *const T, trimmingOptions: ?*const DWRITE_TRIMMING, trimmingSign: ?*IDWriteInlineObject) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetTrimming(@as(*const IDWriteTextFormat, @ptrCast(self)), trimmingOptions, trimmingSign);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_SetLineSpacing(self: *const T, lineSpacingMethod: DWRITE_LINE_SPACING_METHOD, lineSpacing: f32, baseline: f32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).SetLineSpacing(@as(*const IDWriteTextFormat, @ptrCast(self)), lineSpacingMethod, lineSpacing, baseline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetTextAlignment(self: *const T) callconv(.Inline) DWRITE_TEXT_ALIGNMENT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetTextAlignment(@as(*const IDWriteTextFormat, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetParagraphAlignment(self: *const T) callconv(.Inline) DWRITE_PARAGRAPH_ALIGNMENT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetParagraphAlignment(@as(*const IDWriteTextFormat, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetWordWrapping(self: *const T) callconv(.Inline) DWRITE_WORD_WRAPPING {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetWordWrapping(@as(*const IDWriteTextFormat, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetReadingDirection(self: *const T) callconv(.Inline) DWRITE_READING_DIRECTION {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetReadingDirection(@as(*const IDWriteTextFormat, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetFlowDirection(self: *const T) callconv(.Inline) DWRITE_FLOW_DIRECTION {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFlowDirection(@as(*const IDWriteTextFormat, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetIncrementalTabStop(self: *const T) callconv(.Inline) f32 {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetIncrementalTabStop(@as(*const IDWriteTextFormat, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetTrimming(self: *const T, trimmingOptions: ?*DWRITE_TRIMMING, trimmingSign: ?*?*IDWriteInlineObject) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetTrimming(@as(*const IDWriteTextFormat, @ptrCast(self)), trimmingOptions, trimmingSign);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetLineSpacing(self: *const T, lineSpacingMethod: ?*DWRITE_LINE_SPACING_METHOD, lineSpacing: ?*f32, baseline: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetLineSpacing(@as(*const IDWriteTextFormat, @ptrCast(self)), lineSpacingMethod, lineSpacing, baseline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetFontCollection(self: *const T, fontCollection: ?*?*IDWriteFontCollection) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontCollection(@as(*const IDWriteTextFormat, @ptrCast(self)), fontCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetFontFamilyNameLength(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontFamilyNameLength(@as(*const IDWriteTextFormat, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetFontFamilyName(self: *const T, fontFamilyName: [*:0]u16, nameSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontFamilyName(@as(*const IDWriteTextFormat, @ptrCast(self)), fontFamilyName, nameSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetFontWeight(self: *const T) callconv(.Inline) DWRITE_FONT_WEIGHT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontWeight(@as(*const IDWriteTextFormat, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetFontStyle(self: *const T) callconv(.Inline) DWRITE_FONT_STYLE {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontStyle(@as(*const IDWriteTextFormat, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetFontStretch(self: *const T) callconv(.Inline) DWRITE_FONT_STRETCH {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontStretch(@as(*const IDWriteTextFormat, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetFontSize(self: *const T) callconv(.Inline) f32 {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetFontSize(@as(*const IDWriteTextFormat, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetLocaleNameLength(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetLocaleNameLength(@as(*const IDWriteTextFormat, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat_GetLocaleName(self: *const T, localeName: [*:0]u16, nameSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat.VTable, @ptrCast(self.vtable)).GetLocaleName(@as(*const IDWriteTextFormat, @ptrCast(self)), localeName, nameSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetTextAlignment(self: *const IDWriteTextFormat, textAlignment: DWRITE_TEXT_ALIGNMENT) callconv(.Inline) HRESULT {
         return self.vtable.SetTextAlignment(self, textAlignment);
     }
@@ -1858,22 +1460,6 @@ pub const IDWriteTypography = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTypography_AddFontFeature(self: *const T, fontFeature: DWRITE_FONT_FEATURE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTypography.VTable, @ptrCast(self.vtable)).AddFontFeature(@as(*const IDWriteTypography, @ptrCast(self)), fontFeature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTypography_GetFontFeatureCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteTypography.VTable, @ptrCast(self.vtable)).GetFontFeatureCount(@as(*const IDWriteTypography, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTypography_GetFontFeature(self: *const T, fontFeatureIndex: u32, fontFeature: ?*DWRITE_FONT_FEATURE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTypography.VTable, @ptrCast(self.vtable)).GetFontFeature(@as(*const IDWriteTypography, @ptrCast(self)), fontFeatureIndex, fontFeature);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddFontFeature(self: *const IDWriteTypography, fontFeature: DWRITE_FONT_FEATURE) callconv(.Inline) HRESULT {
         return self.vtable.AddFontFeature(self, fontFeature);
     }
@@ -1963,10 +1549,6 @@ pub const IDWriteNumberSubstitution = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
 };
 
 pub const DWRITE_SHAPING_TEXT_PROPERTIES = extern struct {
@@ -2013,30 +1595,6 @@ pub const IDWriteTextAnalysisSource = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalysisSource_GetTextAtPosition(self: *const T, textPosition: u32, textString: ?*const ?*u16, textLength: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalysisSource.VTable, @ptrCast(self.vtable)).GetTextAtPosition(@as(*const IDWriteTextAnalysisSource, @ptrCast(self)), textPosition, textString, textLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalysisSource_GetTextBeforePosition(self: *const T, textPosition: u32, textString: ?*const ?*u16, textLength: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalysisSource.VTable, @ptrCast(self.vtable)).GetTextBeforePosition(@as(*const IDWriteTextAnalysisSource, @ptrCast(self)), textPosition, textString, textLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalysisSource_GetParagraphReadingDirection(self: *const T) callconv(.Inline) DWRITE_READING_DIRECTION {
-            return @as(*const IDWriteTextAnalysisSource.VTable, @ptrCast(self.vtable)).GetParagraphReadingDirection(@as(*const IDWriteTextAnalysisSource, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalysisSource_GetLocaleName(self: *const T, textPosition: u32, textLength: ?*u32, localeName: ?*const ?*u16) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalysisSource.VTable, @ptrCast(self.vtable)).GetLocaleName(@as(*const IDWriteTextAnalysisSource, @ptrCast(self)), textPosition, textLength, localeName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalysisSource_GetNumberSubstitution(self: *const T, textPosition: u32, textLength: ?*u32, numberSubstitution: ?*?*IDWriteNumberSubstitution) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalysisSource.VTable, @ptrCast(self.vtable)).GetNumberSubstitution(@as(*const IDWriteTextAnalysisSource, @ptrCast(self)), textPosition, textLength, numberSubstitution);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTextAtPosition(self: *const IDWriteTextAnalysisSource, textPosition: u32, textString: ?*const ?*u16, textLength: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetTextAtPosition(self, textPosition, textString, textLength);
     }
@@ -2088,26 +1646,6 @@ pub const IDWriteTextAnalysisSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalysisSink_SetScriptAnalysis(self: *const T, textPosition: u32, textLength: u32, scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalysisSink.VTable, @ptrCast(self.vtable)).SetScriptAnalysis(@as(*const IDWriteTextAnalysisSink, @ptrCast(self)), textPosition, textLength, scriptAnalysis);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalysisSink_SetLineBreakpoints(self: *const T, textPosition: u32, textLength: u32, lineBreakpoints: [*]const DWRITE_LINE_BREAKPOINT) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalysisSink.VTable, @ptrCast(self.vtable)).SetLineBreakpoints(@as(*const IDWriteTextAnalysisSink, @ptrCast(self)), textPosition, textLength, lineBreakpoints);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalysisSink_SetBidiLevel(self: *const T, textPosition: u32, textLength: u32, explicitLevel: u8, resolvedLevel: u8) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalysisSink.VTable, @ptrCast(self.vtable)).SetBidiLevel(@as(*const IDWriteTextAnalysisSink, @ptrCast(self)), textPosition, textLength, explicitLevel, resolvedLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalysisSink_SetNumberSubstitution(self: *const T, textPosition: u32, textLength: u32, numberSubstitution: ?*IDWriteNumberSubstitution) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalysisSink.VTable, @ptrCast(self.vtable)).SetNumberSubstitution(@as(*const IDWriteTextAnalysisSink, @ptrCast(self)), textPosition, textLength, numberSubstitution);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetScriptAnalysis(self: *const IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS) callconv(.Inline) HRESULT {
         return self.vtable.SetScriptAnalysis(self, textPosition, textLength, scriptAnalysis);
     }
@@ -2224,38 +1762,6 @@ pub const IDWriteTextAnalyzer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer_AnalyzeScript(self: *const T, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ?*IDWriteTextAnalysisSink) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).AnalyzeScript(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), analysisSource, textPosition, textLength, analysisSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer_AnalyzeBidi(self: *const T, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ?*IDWriteTextAnalysisSink) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).AnalyzeBidi(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), analysisSource, textPosition, textLength, analysisSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer_AnalyzeNumberSubstitution(self: *const T, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ?*IDWriteTextAnalysisSink) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).AnalyzeNumberSubstitution(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), analysisSource, textPosition, textLength, analysisSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer_AnalyzeLineBreakpoints(self: *const T, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ?*IDWriteTextAnalysisSink) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).AnalyzeLineBreakpoints(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), analysisSource, textPosition, textLength, analysisSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer_GetGlyphs(self: *const T, textString: [*:0]const u16, textLength: u32, fontFace: ?*IDWriteFontFace, isSideways: BOOL, isRightToLeft: BOOL, scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS, localeName: ?[*:0]const u16, numberSubstitution: ?*IDWriteNumberSubstitution, features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES, featureRangeLengths: ?[*]const u32, featureRanges: u32, maxGlyphCount: u32, clusterMap: [*:0]u16, textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES, glyphIndices: [*:0]u16, glyphProps: [*]DWRITE_SHAPING_GLYPH_PROPERTIES, actualGlyphCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).GetGlyphs(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), textString, textLength, fontFace, isSideways, isRightToLeft, scriptAnalysis, localeName, numberSubstitution, features, featureRangeLengths, featureRanges, maxGlyphCount, clusterMap, textProps, glyphIndices, glyphProps, actualGlyphCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer_GetGlyphPlacements(self: *const T, textString: [*:0]const u16, clusterMap: [*:0]const u16, textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES, textLength: u32, glyphIndices: [*:0]const u16, glyphProps: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES, glyphCount: u32, fontFace: ?*IDWriteFontFace, fontEmSize: f32, isSideways: BOOL, isRightToLeft: BOOL, scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS, localeName: ?[*:0]const u16, features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES, featureRangeLengths: ?[*]const u32, featureRanges: u32, glyphAdvances: [*]f32, glyphOffsets: [*]DWRITE_GLYPH_OFFSET) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).GetGlyphPlacements(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), textString, clusterMap, textProps, textLength, glyphIndices, glyphProps, glyphCount, fontFace, fontEmSize, isSideways, isRightToLeft, scriptAnalysis, localeName, features, featureRangeLengths, featureRanges, glyphAdvances, glyphOffsets);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer_GetGdiCompatibleGlyphPlacements(self: *const T, textString: [*:0]const u16, clusterMap: [*:0]const u16, textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES, textLength: u32, glyphIndices: [*:0]const u16, glyphProps: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES, glyphCount: u32, fontFace: ?*IDWriteFontFace, fontEmSize: f32, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, useGdiNatural: BOOL, isSideways: BOOL, isRightToLeft: BOOL, scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS, localeName: ?[*:0]const u16, features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES, featureRangeLengths: ?[*]const u32, featureRanges: u32, glyphAdvances: [*]f32, glyphOffsets: [*]DWRITE_GLYPH_OFFSET) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer.VTable, @ptrCast(self.vtable)).GetGdiCompatibleGlyphPlacements(@as(*const IDWriteTextAnalyzer, @ptrCast(self)), textString, clusterMap, textProps, textLength, glyphIndices, glyphProps, glyphCount, fontFace, fontEmSize, pixelsPerDip, transform, useGdiNatural, isSideways, isRightToLeft, scriptAnalysis, localeName, features, featureRangeLengths, featureRanges, glyphAdvances, glyphOffsets);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AnalyzeScript(self: *const IDWriteTextAnalyzer, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ?*IDWriteTextAnalysisSink) callconv(.Inline) HRESULT {
         return self.vtable.AnalyzeScript(self, analysisSource, textPosition, textLength, analysisSink);
     }
@@ -2404,26 +1910,6 @@ pub const IDWriteInlineObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteInlineObject_Draw(self: *const T, clientDrawingContext: ?*anyopaque, renderer: ?*IDWriteTextRenderer, originX: f32, originY: f32, isSideways: BOOL, isRightToLeft: BOOL, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteInlineObject.VTable, @ptrCast(self.vtable)).Draw(@as(*const IDWriteInlineObject, @ptrCast(self)), clientDrawingContext, renderer, originX, originY, isSideways, isRightToLeft, clientDrawingEffect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteInlineObject_GetMetrics(self: *const T, metrics: ?*DWRITE_INLINE_OBJECT_METRICS) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteInlineObject.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteInlineObject, @ptrCast(self)), metrics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteInlineObject_GetOverhangMetrics(self: *const T, overhangs: ?*DWRITE_OVERHANG_METRICS) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteInlineObject.VTable, @ptrCast(self.vtable)).GetOverhangMetrics(@as(*const IDWriteInlineObject, @ptrCast(self)), overhangs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteInlineObject_GetBreakConditions(self: *const T, breakConditionBefore: ?*DWRITE_BREAK_CONDITION, breakConditionAfter: ?*DWRITE_BREAK_CONDITION) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteInlineObject.VTable, @ptrCast(self.vtable)).GetBreakConditions(@as(*const IDWriteInlineObject, @ptrCast(self)), breakConditionBefore, breakConditionAfter);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Draw(self: *const IDWriteInlineObject, clientDrawingContext: ?*anyopaque, renderer: ?*IDWriteTextRenderer, originX: f32, originY: f32, isSideways: BOOL, isRightToLeft: BOOL, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.Draw(self, clientDrawingContext, renderer, originX, originY, isSideways, isRightToLeft, clientDrawingEffect);
     }
@@ -2462,22 +1948,6 @@ pub const IDWritePixelSnapping = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWritePixelSnapping_IsPixelSnappingDisabled(self: *const T, clientDrawingContext: ?*anyopaque, isDisabled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWritePixelSnapping.VTable, @ptrCast(self.vtable)).IsPixelSnappingDisabled(@as(*const IDWritePixelSnapping, @ptrCast(self)), clientDrawingContext, isDisabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWritePixelSnapping_GetCurrentTransform(self: *const T, clientDrawingContext: ?*anyopaque, transform: ?*DWRITE_MATRIX) callconv(.Inline) HRESULT {
-            return @as(*const IDWritePixelSnapping.VTable, @ptrCast(self.vtable)).GetCurrentTransform(@as(*const IDWritePixelSnapping, @ptrCast(self)), clientDrawingContext, transform);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWritePixelSnapping_GetPixelsPerDip(self: *const T, clientDrawingContext: ?*anyopaque, pixelsPerDip: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const IDWritePixelSnapping.VTable, @ptrCast(self.vtable)).GetPixelsPerDip(@as(*const IDWritePixelSnapping, @ptrCast(self)), clientDrawingContext, pixelsPerDip);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsPixelSnappingDisabled(self: *const IDWritePixelSnapping, clientDrawingContext: ?*anyopaque, isDisabled: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.IsPixelSnappingDisabled(self, clientDrawingContext, isDisabled);
     }
@@ -2534,26 +2004,7 @@ pub const IDWriteTextRenderer = extern union {
     };
     vtable: *const VTable,
     IDWritePixelSnapping: IDWritePixelSnapping,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWritePixelSnapping.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextRenderer_DrawGlyphRun(self: *const T, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextRenderer.VTable, @ptrCast(self.vtable)).DrawGlyphRun(@as(*const IDWriteTextRenderer, @ptrCast(self)), clientDrawingContext, baselineOriginX, baselineOriginY, measuringMode, glyphRun, glyphRunDescription, clientDrawingEffect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextRenderer_DrawUnderline(self: *const T, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, underline: ?*const DWRITE_UNDERLINE, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextRenderer.VTable, @ptrCast(self.vtable)).DrawUnderline(@as(*const IDWriteTextRenderer, @ptrCast(self)), clientDrawingContext, baselineOriginX, baselineOriginY, underline, clientDrawingEffect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextRenderer_DrawStrikethrough(self: *const T, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, strikethrough: ?*const DWRITE_STRIKETHROUGH, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextRenderer.VTable, @ptrCast(self.vtable)).DrawStrikethrough(@as(*const IDWriteTextRenderer, @ptrCast(self)), clientDrawingContext, baselineOriginX, baselineOriginY, strikethrough, clientDrawingEffect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextRenderer_DrawInlineObject(self: *const T, clientDrawingContext: ?*anyopaque, originX: f32, originY: f32, inlineObject: ?*IDWriteInlineObject, isSideways: BOOL, isRightToLeft: BOOL, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextRenderer.VTable, @ptrCast(self.vtable)).DrawInlineObject(@as(*const IDWriteTextRenderer, @ptrCast(self)), clientDrawingContext, originX, originY, inlineObject, isSideways, isRightToLeft, clientDrawingEffect);
-        }
-    };}
-    pub usingnamespace IDWritePixelSnapping.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn DrawGlyphRun(self: *const IDWriteTextRenderer, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.DrawGlyphRun(self, clientDrawingContext, baselineOriginX, baselineOriginY, measuringMode, glyphRun, glyphRunDescription, clientDrawingEffect);
     }
@@ -2794,166 +2245,7 @@ pub const IDWriteTextLayout = extern union {
     };
     vtable: *const VTable,
     IDWriteTextFormat: IDWriteTextFormat,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextFormat.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetMaxWidth(self: *const T, maxWidth: f32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetMaxWidth(@as(*const IDWriteTextLayout, @ptrCast(self)), maxWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetMaxHeight(self: *const T, maxHeight: f32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetMaxHeight(@as(*const IDWriteTextLayout, @ptrCast(self)), maxHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetFontCollection(self: *const T, fontCollection: ?*IDWriteFontCollection, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetFontCollection(@as(*const IDWriteTextLayout, @ptrCast(self)), fontCollection, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetFontFamilyName(self: *const T, fontFamilyName: ?[*:0]const u16, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetFontFamilyName(@as(*const IDWriteTextLayout, @ptrCast(self)), fontFamilyName, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetFontWeight(self: *const T, fontWeight: DWRITE_FONT_WEIGHT, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetFontWeight(@as(*const IDWriteTextLayout, @ptrCast(self)), fontWeight, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetFontStyle(self: *const T, fontStyle: DWRITE_FONT_STYLE, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetFontStyle(@as(*const IDWriteTextLayout, @ptrCast(self)), fontStyle, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetFontStretch(self: *const T, fontStretch: DWRITE_FONT_STRETCH, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetFontStretch(@as(*const IDWriteTextLayout, @ptrCast(self)), fontStretch, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetFontSize(self: *const T, fontSize: f32, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetFontSize(@as(*const IDWriteTextLayout, @ptrCast(self)), fontSize, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetUnderline(self: *const T, hasUnderline: BOOL, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetUnderline(@as(*const IDWriteTextLayout, @ptrCast(self)), hasUnderline, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetStrikethrough(self: *const T, hasStrikethrough: BOOL, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetStrikethrough(@as(*const IDWriteTextLayout, @ptrCast(self)), hasStrikethrough, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetDrawingEffect(self: *const T, drawingEffect: ?*IUnknown, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetDrawingEffect(@as(*const IDWriteTextLayout, @ptrCast(self)), drawingEffect, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetInlineObject(self: *const T, inlineObject: ?*IDWriteInlineObject, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetInlineObject(@as(*const IDWriteTextLayout, @ptrCast(self)), inlineObject, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetTypography(self: *const T, typography: ?*IDWriteTypography, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetTypography(@as(*const IDWriteTextLayout, @ptrCast(self)), typography, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_SetLocaleName(self: *const T, localeName: ?[*:0]const u16, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).SetLocaleName(@as(*const IDWriteTextLayout, @ptrCast(self)), localeName, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetMaxWidth(self: *const T) callconv(.Inline) f32 {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetMaxWidth(@as(*const IDWriteTextLayout, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetMaxHeight(self: *const T) callconv(.Inline) f32 {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetMaxHeight(@as(*const IDWriteTextLayout, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetFontCollection(self: *const T, currentPosition: u32, fontCollection: ?*?*IDWriteFontCollection, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontCollection(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, fontCollection, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetFontFamilyNameLength(self: *const T, currentPosition: u32, nameLength: ?*u32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontFamilyNameLength(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, nameLength, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetFontFamilyName(self: *const T, currentPosition: u32, fontFamilyName: [*:0]u16, nameSize: u32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontFamilyName(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, fontFamilyName, nameSize, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetFontWeight(self: *const T, currentPosition: u32, fontWeight: ?*DWRITE_FONT_WEIGHT, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontWeight(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, fontWeight, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetFontStyle(self: *const T, currentPosition: u32, fontStyle: ?*DWRITE_FONT_STYLE, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontStyle(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, fontStyle, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetFontStretch(self: *const T, currentPosition: u32, fontStretch: ?*DWRITE_FONT_STRETCH, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontStretch(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, fontStretch, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetFontSize(self: *const T, currentPosition: u32, fontSize: ?*f32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetFontSize(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, fontSize, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetUnderline(self: *const T, currentPosition: u32, hasUnderline: ?*BOOL, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetUnderline(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, hasUnderline, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetStrikethrough(self: *const T, currentPosition: u32, hasStrikethrough: ?*BOOL, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetStrikethrough(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, hasStrikethrough, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetDrawingEffect(self: *const T, currentPosition: u32, drawingEffect: ?*?*IUnknown, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetDrawingEffect(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, drawingEffect, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetInlineObject(self: *const T, currentPosition: u32, inlineObject: ?*?*IDWriteInlineObject, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetInlineObject(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, inlineObject, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetTypography(self: *const T, currentPosition: u32, typography: ?*?*IDWriteTypography, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetTypography(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, typography, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetLocaleNameLength(self: *const T, currentPosition: u32, nameLength: ?*u32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetLocaleNameLength(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, nameLength, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetLocaleName(self: *const T, currentPosition: u32, localeName: [*:0]u16, nameSize: u32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetLocaleName(@as(*const IDWriteTextLayout, @ptrCast(self)), currentPosition, localeName, nameSize, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_Draw(self: *const T, clientDrawingContext: ?*anyopaque, renderer: ?*IDWriteTextRenderer, originX: f32, originY: f32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).Draw(@as(*const IDWriteTextLayout, @ptrCast(self)), clientDrawingContext, renderer, originX, originY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetLineMetrics(self: *const T, lineMetrics: ?[*]DWRITE_LINE_METRICS, maxLineCount: u32, actualLineCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetLineMetrics(@as(*const IDWriteTextLayout, @ptrCast(self)), lineMetrics, maxLineCount, actualLineCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetMetrics(self: *const T, textMetrics: ?*DWRITE_TEXT_METRICS) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteTextLayout, @ptrCast(self)), textMetrics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetOverhangMetrics(self: *const T, overhangs: ?*DWRITE_OVERHANG_METRICS) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetOverhangMetrics(@as(*const IDWriteTextLayout, @ptrCast(self)), overhangs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_GetClusterMetrics(self: *const T, clusterMetrics: ?[*]DWRITE_CLUSTER_METRICS, maxClusterCount: u32, actualClusterCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).GetClusterMetrics(@as(*const IDWriteTextLayout, @ptrCast(self)), clusterMetrics, maxClusterCount, actualClusterCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_DetermineMinWidth(self: *const T, minWidth: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).DetermineMinWidth(@as(*const IDWriteTextLayout, @ptrCast(self)), minWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_HitTestPoint(self: *const T, pointX: f32, pointY: f32, isTrailingHit: ?*BOOL, isInside: ?*BOOL, hitTestMetrics: ?*DWRITE_HIT_TEST_METRICS) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).HitTestPoint(@as(*const IDWriteTextLayout, @ptrCast(self)), pointX, pointY, isTrailingHit, isInside, hitTestMetrics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_HitTestTextPosition(self: *const T, textPosition: u32, isTrailingHit: BOOL, pointX: ?*f32, pointY: ?*f32, hitTestMetrics: ?*DWRITE_HIT_TEST_METRICS) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).HitTestTextPosition(@as(*const IDWriteTextLayout, @ptrCast(self)), textPosition, isTrailingHit, pointX, pointY, hitTestMetrics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout_HitTestTextRange(self: *const T, textPosition: u32, textLength: u32, originX: f32, originY: f32, hitTestMetrics: ?[*]DWRITE_HIT_TEST_METRICS, maxHitTestMetricsCount: u32, actualHitTestMetricsCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout.VTable, @ptrCast(self.vtable)).HitTestTextRange(@as(*const IDWriteTextLayout, @ptrCast(self)), textPosition, textLength, originX, originY, hitTestMetrics, maxHitTestMetricsCount, actualHitTestMetricsCount);
-        }
-    };}
-    pub usingnamespace IDWriteTextFormat.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetMaxWidth(self: *const IDWriteTextLayout, maxWidth: f32) callconv(.Inline) HRESULT {
         return self.vtable.SetMaxWidth(self, maxWidth);
     }
@@ -3119,42 +2411,6 @@ pub const IDWriteBitmapRenderTarget = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteBitmapRenderTarget_DrawGlyphRun(self: *const T, baselineOriginX: f32, baselineOriginY: f32, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ?*const DWRITE_GLYPH_RUN, renderingParams: ?*IDWriteRenderingParams, textColor: u32, blackBoxRect: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).DrawGlyphRun(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), baselineOriginX, baselineOriginY, measuringMode, glyphRun, renderingParams, textColor, blackBoxRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteBitmapRenderTarget_GetMemoryDC(self: *const T) callconv(.Inline) ?HDC {
-            return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).GetMemoryDC(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteBitmapRenderTarget_GetPixelsPerDip(self: *const T) callconv(.Inline) f32 {
-            return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).GetPixelsPerDip(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteBitmapRenderTarget_SetPixelsPerDip(self: *const T, pixelsPerDip: f32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).SetPixelsPerDip(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), pixelsPerDip);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteBitmapRenderTarget_GetCurrentTransform(self: *const T, transform: ?*DWRITE_MATRIX) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).GetCurrentTransform(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), transform);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteBitmapRenderTarget_SetCurrentTransform(self: *const T, transform: ?*const DWRITE_MATRIX) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).SetCurrentTransform(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), transform);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteBitmapRenderTarget_GetSize(self: *const T, size: ?*SIZE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), size);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteBitmapRenderTarget_Resize(self: *const T, width: u32, height: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteBitmapRenderTarget.VTable, @ptrCast(self.vtable)).Resize(@as(*const IDWriteBitmapRenderTarget, @ptrCast(self)), width, height);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DrawGlyphRun(self: *const IDWriteBitmapRenderTarget, baselineOriginX: f32, baselineOriginY: f32, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ?*const DWRITE_GLYPH_RUN, renderingParams: ?*IDWriteRenderingParams, textColor: u32, blackBoxRect: ?*RECT) callconv(.Inline) HRESULT {
         return self.vtable.DrawGlyphRun(self, baselineOriginX, baselineOriginY, measuringMode, glyphRun, renderingParams, textColor, blackBoxRect);
     }
@@ -3218,30 +2474,6 @@ pub const IDWriteGdiInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGdiInterop_CreateFontFromLOGFONT(self: *const T, logFont: ?*const LOGFONTW, font: ?*?*IDWriteFont) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteGdiInterop.VTable, @ptrCast(self.vtable)).CreateFontFromLOGFONT(@as(*const IDWriteGdiInterop, @ptrCast(self)), logFont, font);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGdiInterop_ConvertFontToLOGFONT(self: *const T, font: ?*IDWriteFont, logFont: ?*LOGFONTW, isSystemFont: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteGdiInterop.VTable, @ptrCast(self.vtable)).ConvertFontToLOGFONT(@as(*const IDWriteGdiInterop, @ptrCast(self)), font, logFont, isSystemFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGdiInterop_ConvertFontFaceToLOGFONT(self: *const T, font: ?*IDWriteFontFace, logFont: ?*LOGFONTW) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteGdiInterop.VTable, @ptrCast(self.vtable)).ConvertFontFaceToLOGFONT(@as(*const IDWriteGdiInterop, @ptrCast(self)), font, logFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGdiInterop_CreateFontFaceFromHdc(self: *const T, hdc: ?HDC, fontFace: ?*?*IDWriteFontFace) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteGdiInterop.VTable, @ptrCast(self.vtable)).CreateFontFaceFromHdc(@as(*const IDWriteGdiInterop, @ptrCast(self)), hdc, fontFace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGdiInterop_CreateBitmapRenderTarget(self: *const T, hdc: ?HDC, width: u32, height: u32, renderTarget: ?*?*IDWriteBitmapRenderTarget) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteGdiInterop.VTable, @ptrCast(self.vtable)).CreateBitmapRenderTarget(@as(*const IDWriteGdiInterop, @ptrCast(self)), hdc, width, height, renderTarget);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateFontFromLOGFONT(self: *const IDWriteGdiInterop, logFont: ?*const LOGFONTW, font: ?*?*IDWriteFont) callconv(.Inline) HRESULT {
         return self.vtable.CreateFontFromLOGFONT(self, logFont, font);
     }
@@ -3295,22 +2527,6 @@ pub const IDWriteGlyphRunAnalysis = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGlyphRunAnalysis_GetAlphaTextureBounds(self: *const T, textureType: DWRITE_TEXTURE_TYPE, textureBounds: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteGlyphRunAnalysis.VTable, @ptrCast(self.vtable)).GetAlphaTextureBounds(@as(*const IDWriteGlyphRunAnalysis, @ptrCast(self)), textureType, textureBounds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGlyphRunAnalysis_CreateAlphaTexture(self: *const T, textureType: DWRITE_TEXTURE_TYPE, textureBounds: ?*const RECT, alphaValues: ?*u8, bufferSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteGlyphRunAnalysis.VTable, @ptrCast(self.vtable)).CreateAlphaTexture(@as(*const IDWriteGlyphRunAnalysis, @ptrCast(self)), textureType, textureBounds, alphaValues, bufferSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGlyphRunAnalysis_GetAlphaBlendParams(self: *const T, renderingParams: ?*IDWriteRenderingParams, blendGamma: ?*f32, blendEnhancedContrast: ?*f32, blendClearTypeLevel: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteGlyphRunAnalysis.VTable, @ptrCast(self.vtable)).GetAlphaBlendParams(@as(*const IDWriteGlyphRunAnalysis, @ptrCast(self)), renderingParams, blendGamma, blendEnhancedContrast, blendClearTypeLevel);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAlphaTextureBounds(self: *const IDWriteGlyphRunAnalysis, textureType: DWRITE_TEXTURE_TYPE, textureBounds: ?*RECT) callconv(.Inline) HRESULT {
         return self.vtable.GetAlphaTextureBounds(self, textureType, textureBounds);
     }
@@ -3468,94 +2684,6 @@ pub const IDWriteFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_GetSystemFontCollection(self: *const T, fontCollection: ?*?*IDWriteFontCollection, checkForUpdates: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).GetSystemFontCollection(@as(*const IDWriteFactory, @ptrCast(self)), fontCollection, checkForUpdates);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateCustomFontCollection(self: *const T, collectionLoader: ?*IDWriteFontCollectionLoader, collectionKey: ?*const anyopaque, collectionKeySize: u32, fontCollection: ?*?*IDWriteFontCollection) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateCustomFontCollection(@as(*const IDWriteFactory, @ptrCast(self)), collectionLoader, collectionKey, collectionKeySize, fontCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_RegisterFontCollectionLoader(self: *const T, fontCollectionLoader: ?*IDWriteFontCollectionLoader) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).RegisterFontCollectionLoader(@as(*const IDWriteFactory, @ptrCast(self)), fontCollectionLoader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_UnregisterFontCollectionLoader(self: *const T, fontCollectionLoader: ?*IDWriteFontCollectionLoader) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).UnregisterFontCollectionLoader(@as(*const IDWriteFactory, @ptrCast(self)), fontCollectionLoader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateFontFileReference(self: *const T, filePath: ?[*:0]const u16, lastWriteTime: ?*const FILETIME, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateFontFileReference(@as(*const IDWriteFactory, @ptrCast(self)), filePath, lastWriteTime, fontFile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateCustomFontFileReference(self: *const T, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, fontFileLoader: ?*IDWriteFontFileLoader, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateCustomFontFileReference(@as(*const IDWriteFactory, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, fontFileLoader, fontFile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateFontFace(self: *const T, fontFaceType: DWRITE_FONT_FACE_TYPE, numberOfFiles: u32, fontFiles: [*]?*IDWriteFontFile, faceIndex: u32, fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS, fontFace: ?*?*IDWriteFontFace) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFactory, @ptrCast(self)), fontFaceType, numberOfFiles, fontFiles, faceIndex, fontFaceSimulationFlags, fontFace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateRenderingParams(self: *const T, renderingParams: ?*?*IDWriteRenderingParams) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateRenderingParams(@as(*const IDWriteFactory, @ptrCast(self)), renderingParams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateMonitorRenderingParams(self: *const T, monitor: ?HMONITOR, renderingParams: ?*?*IDWriteRenderingParams) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateMonitorRenderingParams(@as(*const IDWriteFactory, @ptrCast(self)), monitor, renderingParams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateCustomRenderingParams(self: *const T, gamma: f32, enhancedContrast: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE, renderingParams: ?*?*IDWriteRenderingParams) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateCustomRenderingParams(@as(*const IDWriteFactory, @ptrCast(self)), gamma, enhancedContrast, clearTypeLevel, pixelGeometry, renderingMode, renderingParams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_RegisterFontFileLoader(self: *const T, fontFileLoader: ?*IDWriteFontFileLoader) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).RegisterFontFileLoader(@as(*const IDWriteFactory, @ptrCast(self)), fontFileLoader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_UnregisterFontFileLoader(self: *const T, fontFileLoader: ?*IDWriteFontFileLoader) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).UnregisterFontFileLoader(@as(*const IDWriteFactory, @ptrCast(self)), fontFileLoader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateTextFormat(self: *const T, fontFamilyName: ?[*:0]const u16, fontCollection: ?*IDWriteFontCollection, fontWeight: DWRITE_FONT_WEIGHT, fontStyle: DWRITE_FONT_STYLE, fontStretch: DWRITE_FONT_STRETCH, fontSize: f32, localeName: ?[*:0]const u16, textFormat: ?*?*IDWriteTextFormat) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateTextFormat(@as(*const IDWriteFactory, @ptrCast(self)), fontFamilyName, fontCollection, fontWeight, fontStyle, fontStretch, fontSize, localeName, textFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateTypography(self: *const T, typography: ?*?*IDWriteTypography) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateTypography(@as(*const IDWriteFactory, @ptrCast(self)), typography);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_GetGdiInterop(self: *const T, gdiInterop: ?*?*IDWriteGdiInterop) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).GetGdiInterop(@as(*const IDWriteFactory, @ptrCast(self)), gdiInterop);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateTextLayout(self: *const T, string: [*:0]const u16, stringLength: u32, textFormat: ?*IDWriteTextFormat, maxWidth: f32, maxHeight: f32, textLayout: ?*?*IDWriteTextLayout) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateTextLayout(@as(*const IDWriteFactory, @ptrCast(self)), string, stringLength, textFormat, maxWidth, maxHeight, textLayout);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateGdiCompatibleTextLayout(self: *const T, string: [*:0]const u16, stringLength: u32, textFormat: ?*IDWriteTextFormat, layoutWidth: f32, layoutHeight: f32, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, useGdiNatural: BOOL, textLayout: ?*?*IDWriteTextLayout) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateGdiCompatibleTextLayout(@as(*const IDWriteFactory, @ptrCast(self)), string, stringLength, textFormat, layoutWidth, layoutHeight, pixelsPerDip, transform, useGdiNatural, textLayout);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateEllipsisTrimmingSign(self: *const T, textFormat: ?*IDWriteTextFormat, trimmingSign: ?*?*IDWriteInlineObject) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateEllipsisTrimmingSign(@as(*const IDWriteFactory, @ptrCast(self)), textFormat, trimmingSign);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateTextAnalyzer(self: *const T, textAnalyzer: ?*?*IDWriteTextAnalyzer) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateTextAnalyzer(@as(*const IDWriteFactory, @ptrCast(self)), textAnalyzer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateNumberSubstitution(self: *const T, substitutionMethod: DWRITE_NUMBER_SUBSTITUTION_METHOD, localeName: ?[*:0]const u16, ignoreUserOverride: BOOL, numberSubstitution: ?*?*IDWriteNumberSubstitution) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateNumberSubstitution(@as(*const IDWriteFactory, @ptrCast(self)), substitutionMethod, localeName, ignoreUserOverride, numberSubstitution);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateGlyphRunAnalysis(self: *const T, glyphRun: ?*const DWRITE_GLYPH_RUN, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE, measuringMode: DWRITE_MEASURING_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory.VTable, @ptrCast(self.vtable)).CreateGlyphRunAnalysis(@as(*const IDWriteFactory, @ptrCast(self)), glyphRun, pixelsPerDip, transform, renderingMode, measuringMode, baselineOriginX, baselineOriginY, glyphRunAnalysis);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSystemFontCollection(self: *const IDWriteFactory, fontCollection: ?*?*IDWriteFontCollection, checkForUpdates: BOOL) callconv(.Inline) HRESULT {
         return self.vtable.GetSystemFontCollection(self, fontCollection, checkForUpdates);
     }
@@ -4432,18 +3560,7 @@ pub const IDWriteFactory1 = extern union {
     };
     vtable: *const VTable,
     IDWriteFactory: IDWriteFactory,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFactory.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory1_GetEudcFontCollection(self: *const T, fontCollection: ?*?*IDWriteFontCollection, checkForUpdates: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory1.VTable, @ptrCast(self.vtable)).GetEudcFontCollection(@as(*const IDWriteFactory1, @ptrCast(self)), fontCollection, checkForUpdates);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory1_CreateCustomRenderingParams(self: *const T, gamma: f32, enhancedContrast: f32, enhancedContrastGrayscale: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE, renderingParams: ?*?*IDWriteRenderingParams1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory1.VTable, @ptrCast(self.vtable)).CreateCustomRenderingParams(@as(*const IDWriteFactory1, @ptrCast(self)), gamma, enhancedContrast, enhancedContrastGrayscale, clearTypeLevel, pixelGeometry, renderingMode, renderingParams);
-        }
-    };}
-    pub usingnamespace IDWriteFactory.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetEudcFontCollection(self: *const IDWriteFactory1, fontCollection: ?*?*IDWriteFontCollection, checkForUpdates: BOOL) callconv(.Inline) HRESULT {
         return self.vtable.GetEudcFontCollection(self, fontCollection, checkForUpdates);
     }
@@ -4532,58 +3649,7 @@ pub const IDWriteFontFace1 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFace: IDWriteFontFace,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFace.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace1_GetMetrics(self: *const T, fontMetrics: ?*DWRITE_FONT_METRICS1) callconv(.Inline) void {
-            return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteFontFace1, @ptrCast(self)), fontMetrics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace1_GetGdiCompatibleMetrics(self: *const T, emSize: f32, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, fontMetrics: ?*DWRITE_FONT_METRICS1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetGdiCompatibleMetrics(@as(*const IDWriteFontFace1, @ptrCast(self)), emSize, pixelsPerDip, transform, fontMetrics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace1_GetCaretMetrics(self: *const T, caretMetrics: ?*DWRITE_CARET_METRICS) callconv(.Inline) void {
-            return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetCaretMetrics(@as(*const IDWriteFontFace1, @ptrCast(self)), caretMetrics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace1_GetUnicodeRanges(self: *const T, maxRangeCount: u32, unicodeRanges: ?[*]DWRITE_UNICODE_RANGE, actualRangeCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetUnicodeRanges(@as(*const IDWriteFontFace1, @ptrCast(self)), maxRangeCount, unicodeRanges, actualRangeCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace1_IsMonospacedFont(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).IsMonospacedFont(@as(*const IDWriteFontFace1, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace1_GetDesignGlyphAdvances(self: *const T, glyphCount: u32, glyphIndices: [*:0]const u16, glyphAdvances: [*]i32, isSideways: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetDesignGlyphAdvances(@as(*const IDWriteFontFace1, @ptrCast(self)), glyphCount, glyphIndices, glyphAdvances, isSideways);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace1_GetGdiCompatibleGlyphAdvances(self: *const T, emSize: f32, pixelsPerDip: f32, transform: ?*const DWRITE_MATRIX, useGdiNatural: BOOL, isSideways: BOOL, glyphCount: u32, glyphIndices: [*:0]const u16, glyphAdvances: [*]i32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetGdiCompatibleGlyphAdvances(@as(*const IDWriteFontFace1, @ptrCast(self)), emSize, pixelsPerDip, transform, useGdiNatural, isSideways, glyphCount, glyphIndices, glyphAdvances);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace1_GetKerningPairAdjustments(self: *const T, glyphCount: u32, glyphIndices: [*:0]const u16, glyphAdvanceAdjustments: [*]i32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetKerningPairAdjustments(@as(*const IDWriteFontFace1, @ptrCast(self)), glyphCount, glyphIndices, glyphAdvanceAdjustments);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace1_HasKerningPairs(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).HasKerningPairs(@as(*const IDWriteFontFace1, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace1_GetRecommendedRenderingMode(self: *const T, fontEmSize: f32, dpiX: f32, dpiY: f32, transform: ?*const DWRITE_MATRIX, isSideways: BOOL, outlineThreshold: DWRITE_OUTLINE_THRESHOLD, measuringMode: DWRITE_MEASURING_MODE, renderingMode: ?*DWRITE_RENDERING_MODE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetRecommendedRenderingMode(@as(*const IDWriteFontFace1, @ptrCast(self)), fontEmSize, dpiX, dpiY, transform, isSideways, outlineThreshold, measuringMode, renderingMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace1_GetVerticalGlyphVariants(self: *const T, glyphCount: u32, nominalGlyphIndices: [*:0]const u16, verticalGlyphIndices: [*:0]u16) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).GetVerticalGlyphVariants(@as(*const IDWriteFontFace1, @ptrCast(self)), glyphCount, nominalGlyphIndices, verticalGlyphIndices);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace1_HasVerticalGlyphVariants(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontFace1.VTable, @ptrCast(self.vtable)).HasVerticalGlyphVariants(@as(*const IDWriteFontFace1, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDWriteFontFace.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetMetrics(self: *const IDWriteFontFace1, fontMetrics: ?*DWRITE_FONT_METRICS1) callconv(.Inline) void {
         return self.vtable.GetMetrics(self, fontMetrics);
     }
@@ -4648,26 +3714,7 @@ pub const IDWriteFont1 = extern union {
     };
     vtable: *const VTable,
     IDWriteFont: IDWriteFont,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFont.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont1_GetMetrics(self: *const T, fontMetrics: ?*DWRITE_FONT_METRICS1) callconv(.Inline) void {
-            return @as(*const IDWriteFont1.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteFont1, @ptrCast(self)), fontMetrics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont1_GetPanose(self: *const T, panose: ?*DWRITE_PANOSE) callconv(.Inline) void {
-            return @as(*const IDWriteFont1.VTable, @ptrCast(self.vtable)).GetPanose(@as(*const IDWriteFont1, @ptrCast(self)), panose);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont1_GetUnicodeRanges(self: *const T, maxRangeCount: u32, unicodeRanges: ?[*]DWRITE_UNICODE_RANGE, actualRangeCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFont1.VTable, @ptrCast(self.vtable)).GetUnicodeRanges(@as(*const IDWriteFont1, @ptrCast(self)), maxRangeCount, unicodeRanges, actualRangeCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont1_IsMonospacedFont(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFont1.VTable, @ptrCast(self.vtable)).IsMonospacedFont(@as(*const IDWriteFont1, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDWriteFont.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetMetrics(self: *const IDWriteFont1, fontMetrics: ?*DWRITE_FONT_METRICS1) callconv(.Inline) void {
         return self.vtable.GetMetrics(self, fontMetrics);
     }
@@ -4694,14 +3741,7 @@ pub const IDWriteRenderingParams1 = extern union {
     };
     vtable: *const VTable,
     IDWriteRenderingParams: IDWriteRenderingParams,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteRenderingParams.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRenderingParams1_GetGrayscaleEnhancedContrast(self: *const T) callconv(.Inline) f32 {
-            return @as(*const IDWriteRenderingParams1.VTable, @ptrCast(self.vtable)).GetGrayscaleEnhancedContrast(@as(*const IDWriteRenderingParams1, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDWriteRenderingParams.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetGrayscaleEnhancedContrast(self: *const IDWriteRenderingParams1) callconv(.Inline) f32 {
         return self.vtable.GetGrayscaleEnhancedContrast(self);
     }
@@ -4810,46 +3850,7 @@ pub const IDWriteTextAnalyzer1 = extern union {
     };
     vtable: *const VTable,
     IDWriteTextAnalyzer: IDWriteTextAnalyzer,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextAnalyzer.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer1_ApplyCharacterSpacing(self: *const T, leadingSpacing: f32, trailingSpacing: f32, minimumAdvanceWidth: f32, textLength: u32, glyphCount: u32, clusterMap: [*:0]const u16, glyphAdvances: [*]const f32, glyphOffsets: [*]const DWRITE_GLYPH_OFFSET, glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES, modifiedGlyphAdvances: [*]f32, modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).ApplyCharacterSpacing(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), leadingSpacing, trailingSpacing, minimumAdvanceWidth, textLength, glyphCount, clusterMap, glyphAdvances, glyphOffsets, glyphProperties, modifiedGlyphAdvances, modifiedGlyphOffsets);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer1_GetBaseline(self: *const T, fontFace: ?*IDWriteFontFace, baseline: DWRITE_BASELINE, isVertical: BOOL, isSimulationAllowed: BOOL, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, localeName: ?[*:0]const u16, baselineCoordinate: ?*i32, exists: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetBaseline(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), fontFace, baseline, isVertical, isSimulationAllowed, scriptAnalysis, localeName, baselineCoordinate, exists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer1_AnalyzeVerticalGlyphOrientation(self: *const T, analysisSource: ?*IDWriteTextAnalysisSource1, textPosition: u32, textLength: u32, analysisSink: ?*IDWriteTextAnalysisSink1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).AnalyzeVerticalGlyphOrientation(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), analysisSource, textPosition, textLength, analysisSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer1_GetGlyphOrientationTransform(self: *const T, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, isSideways: BOOL, transform: ?*DWRITE_MATRIX) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetGlyphOrientationTransform(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), glyphOrientationAngle, isSideways, transform);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer1_GetScriptProperties(self: *const T, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, scriptProperties: ?*DWRITE_SCRIPT_PROPERTIES) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetScriptProperties(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), scriptAnalysis, scriptProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer1_GetTextComplexity(self: *const T, textString: [*:0]const u16, textLength: u32, fontFace: ?*IDWriteFontFace, isTextSimple: ?*BOOL, textLengthRead: ?*u32, glyphIndices: ?[*:0]u16) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetTextComplexity(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), textString, textLength, fontFace, isTextSimple, textLengthRead, glyphIndices);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer1_GetJustificationOpportunities(self: *const T, fontFace: ?*IDWriteFontFace, fontEmSize: f32, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, textLength: u32, glyphCount: u32, textString: [*:0]const u16, clusterMap: [*:0]const u16, glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES, justificationOpportunities: [*]DWRITE_JUSTIFICATION_OPPORTUNITY) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetJustificationOpportunities(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), fontFace, fontEmSize, scriptAnalysis, textLength, glyphCount, textString, clusterMap, glyphProperties, justificationOpportunities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer1_JustifyGlyphAdvances(self: *const T, lineWidth: f32, glyphCount: u32, justificationOpportunities: [*]const DWRITE_JUSTIFICATION_OPPORTUNITY, glyphAdvances: [*]const f32, glyphOffsets: [*]const DWRITE_GLYPH_OFFSET, justifiedGlyphAdvances: [*]f32, justifiedGlyphOffsets: ?[*]DWRITE_GLYPH_OFFSET) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).JustifyGlyphAdvances(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), lineWidth, glyphCount, justificationOpportunities, glyphAdvances, glyphOffsets, justifiedGlyphAdvances, justifiedGlyphOffsets);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer1_GetJustifiedGlyphs(self: *const T, fontFace: ?*IDWriteFontFace, fontEmSize: f32, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, textLength: u32, glyphCount: u32, maxGlyphCount: u32, clusterMap: ?[*:0]const u16, glyphIndices: [*:0]const u16, glyphAdvances: [*]const f32, justifiedGlyphAdvances: [*]const f32, justifiedGlyphOffsets: [*]const DWRITE_GLYPH_OFFSET, glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES, actualGlyphCount: ?*u32, modifiedClusterMap: ?[*:0]u16, modifiedGlyphIndices: [*:0]u16, modifiedGlyphAdvances: [*]f32, modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer1.VTable, @ptrCast(self.vtable)).GetJustifiedGlyphs(@as(*const IDWriteTextAnalyzer1, @ptrCast(self)), fontFace, fontEmSize, scriptAnalysis, textLength, glyphCount, maxGlyphCount, clusterMap, glyphIndices, glyphAdvances, justifiedGlyphAdvances, justifiedGlyphOffsets, glyphProperties, actualGlyphCount, modifiedClusterMap, modifiedGlyphIndices, modifiedGlyphAdvances, modifiedGlyphOffsets);
-        }
-    };}
-    pub usingnamespace IDWriteTextAnalyzer.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn ApplyCharacterSpacing(self: *const IDWriteTextAnalyzer1, leadingSpacing: f32, trailingSpacing: f32, minimumAdvanceWidth: f32, textLength: u32, glyphCount: u32, clusterMap: [*:0]const u16, glyphAdvances: [*]const f32, glyphOffsets: [*]const DWRITE_GLYPH_OFFSET, glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES, modifiedGlyphAdvances: [*]f32, modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET) callconv(.Inline) HRESULT {
         return self.vtable.ApplyCharacterSpacing(self, leadingSpacing, trailingSpacing, minimumAdvanceWidth, textLength, glyphCount, clusterMap, glyphAdvances, glyphOffsets, glyphProperties, modifiedGlyphAdvances, modifiedGlyphOffsets);
     }
@@ -4895,14 +3896,7 @@ pub const IDWriteTextAnalysisSource1 = extern union {
     };
     vtable: *const VTable,
     IDWriteTextAnalysisSource: IDWriteTextAnalysisSource,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextAnalysisSource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalysisSource1_GetVerticalGlyphOrientation(self: *const T, textPosition: u32, textLength: ?*u32, glyphOrientation: ?*DWRITE_VERTICAL_GLYPH_ORIENTATION, bidiLevel: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalysisSource1.VTable, @ptrCast(self.vtable)).GetVerticalGlyphOrientation(@as(*const IDWriteTextAnalysisSource1, @ptrCast(self)), textPosition, textLength, glyphOrientation, bidiLevel);
-        }
-    };}
-    pub usingnamespace IDWriteTextAnalysisSource.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetVerticalGlyphOrientation(self: *const IDWriteTextAnalysisSource1, textPosition: u32, textLength: ?*u32, glyphOrientation: ?*DWRITE_VERTICAL_GLYPH_ORIENTATION, bidiLevel: ?*u8) callconv(.Inline) HRESULT {
         return self.vtable.GetVerticalGlyphOrientation(self, textPosition, textLength, glyphOrientation, bidiLevel);
     }
@@ -4926,14 +3920,7 @@ pub const IDWriteTextAnalysisSink1 = extern union {
     };
     vtable: *const VTable,
     IDWriteTextAnalysisSink: IDWriteTextAnalysisSink,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextAnalysisSink.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalysisSink1_SetGlyphOrientation(self: *const T, textPosition: u32, textLength: u32, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, adjustedBidiLevel: u8, isSideways: BOOL, isRightToLeft: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalysisSink1.VTable, @ptrCast(self.vtable)).SetGlyphOrientation(@as(*const IDWriteTextAnalysisSink1, @ptrCast(self)), textPosition, textLength, glyphOrientationAngle, adjustedBidiLevel, isSideways, isRightToLeft);
-        }
-    };}
-    pub usingnamespace IDWriteTextAnalysisSink.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetGlyphOrientation(self: *const IDWriteTextAnalysisSink1, textPosition: u32, textLength: u32, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, adjustedBidiLevel: u8, isSideways: BOOL, isRightToLeft: BOOL) callconv(.Inline) HRESULT {
         return self.vtable.SetGlyphOrientation(self, textPosition, textLength, glyphOrientationAngle, adjustedBidiLevel, isSideways, isRightToLeft);
     }
@@ -4974,26 +3961,8 @@ pub const IDWriteTextLayout1 = extern union {
     };
     vtable: *const VTable,
     IDWriteTextLayout: IDWriteTextLayout,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextLayout.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout1_SetPairKerning(self: *const T, isPairKerningEnabled: BOOL, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout1.VTable, @ptrCast(self.vtable)).SetPairKerning(@as(*const IDWriteTextLayout1, @ptrCast(self)), isPairKerningEnabled, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout1_GetPairKerning(self: *const T, currentPosition: u32, isPairKerningEnabled: ?*BOOL, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout1.VTable, @ptrCast(self.vtable)).GetPairKerning(@as(*const IDWriteTextLayout1, @ptrCast(self)), currentPosition, isPairKerningEnabled, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout1_SetCharacterSpacing(self: *const T, leadingSpacing: f32, trailingSpacing: f32, minimumAdvanceWidth: f32, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout1.VTable, @ptrCast(self.vtable)).SetCharacterSpacing(@as(*const IDWriteTextLayout1, @ptrCast(self)), leadingSpacing, trailingSpacing, minimumAdvanceWidth, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout1_GetCharacterSpacing(self: *const T, currentPosition: u32, leadingSpacing: ?*f32, trailingSpacing: ?*f32, minimumAdvanceWidth: ?*f32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout1.VTable, @ptrCast(self.vtable)).GetCharacterSpacing(@as(*const IDWriteTextLayout1, @ptrCast(self)), currentPosition, leadingSpacing, trailingSpacing, minimumAdvanceWidth, textRange);
-        }
-    };}
-    pub usingnamespace IDWriteTextLayout.MethodMixin(@This());
+    IDWriteTextFormat: IDWriteTextFormat,
+    IUnknown: IUnknown,
     pub fn SetPairKerning(self: *const IDWriteTextLayout1, isPairKerningEnabled: BOOL, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
         return self.vtable.SetPairKerning(self, isPairKerningEnabled, textRange);
     }
@@ -5031,18 +4000,7 @@ pub const IDWriteBitmapRenderTarget1 = extern union {
     };
     vtable: *const VTable,
     IDWriteBitmapRenderTarget: IDWriteBitmapRenderTarget,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteBitmapRenderTarget.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteBitmapRenderTarget1_GetTextAntialiasMode(self: *const T) callconv(.Inline) DWRITE_TEXT_ANTIALIAS_MODE {
-            return @as(*const IDWriteBitmapRenderTarget1.VTable, @ptrCast(self.vtable)).GetTextAntialiasMode(@as(*const IDWriteBitmapRenderTarget1, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteBitmapRenderTarget1_SetTextAntialiasMode(self: *const T, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteBitmapRenderTarget1.VTable, @ptrCast(self.vtable)).SetTextAntialiasMode(@as(*const IDWriteBitmapRenderTarget1, @ptrCast(self)), antialiasMode);
-        }
-    };}
-    pub usingnamespace IDWriteBitmapRenderTarget.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetTextAntialiasMode(self: *const IDWriteBitmapRenderTarget1) callconv(.Inline) DWRITE_TEXT_ANTIALIAS_MODE {
         return self.vtable.GetTextAntialiasMode(self);
     }
@@ -5121,26 +4079,8 @@ pub const IDWriteTextRenderer1 = extern union {
     };
     vtable: *const VTable,
     IDWriteTextRenderer: IDWriteTextRenderer,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextRenderer.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextRenderer1_DrawGlyphRun(self: *const T, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextRenderer1.VTable, @ptrCast(self.vtable)).DrawGlyphRun(@as(*const IDWriteTextRenderer1, @ptrCast(self)), clientDrawingContext, baselineOriginX, baselineOriginY, orientationAngle, measuringMode, glyphRun, glyphRunDescription, clientDrawingEffect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextRenderer1_DrawUnderline(self: *const T, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, underline: ?*const DWRITE_UNDERLINE, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextRenderer1.VTable, @ptrCast(self.vtable)).DrawUnderline(@as(*const IDWriteTextRenderer1, @ptrCast(self)), clientDrawingContext, baselineOriginX, baselineOriginY, orientationAngle, underline, clientDrawingEffect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextRenderer1_DrawStrikethrough(self: *const T, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, strikethrough: ?*const DWRITE_STRIKETHROUGH, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextRenderer1.VTable, @ptrCast(self.vtable)).DrawStrikethrough(@as(*const IDWriteTextRenderer1, @ptrCast(self)), clientDrawingContext, baselineOriginX, baselineOriginY, orientationAngle, strikethrough, clientDrawingEffect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextRenderer1_DrawInlineObject(self: *const T, clientDrawingContext: ?*anyopaque, originX: f32, originY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, inlineObject: ?*IDWriteInlineObject, isSideways: BOOL, isRightToLeft: BOOL, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextRenderer1.VTable, @ptrCast(self.vtable)).DrawInlineObject(@as(*const IDWriteTextRenderer1, @ptrCast(self)), clientDrawingContext, originX, originY, orientationAngle, inlineObject, isSideways, isRightToLeft, clientDrawingEffect);
-        }
-    };}
-    pub usingnamespace IDWriteTextRenderer.MethodMixin(@This());
+    IDWritePixelSnapping: IDWritePixelSnapping,
+    IUnknown: IUnknown,
     pub fn DrawGlyphRun(self: *const IDWriteTextRenderer1, clientDrawingContext: ?*anyopaque, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, clientDrawingEffect: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.DrawGlyphRun(self, clientDrawingContext, baselineOriginX, baselineOriginY, orientationAngle, measuringMode, glyphRun, glyphRunDescription, clientDrawingEffect);
     }
@@ -5193,42 +4133,7 @@ pub const IDWriteTextFormat1 = extern union {
     };
     vtable: *const VTable,
     IDWriteTextFormat: IDWriteTextFormat,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextFormat.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat1_SetVerticalGlyphOrientation(self: *const T, glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).SetVerticalGlyphOrientation(@as(*const IDWriteTextFormat1, @ptrCast(self)), glyphOrientation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat1_GetVerticalGlyphOrientation(self: *const T) callconv(.Inline) DWRITE_VERTICAL_GLYPH_ORIENTATION {
-            return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).GetVerticalGlyphOrientation(@as(*const IDWriteTextFormat1, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat1_SetLastLineWrapping(self: *const T, isLastLineWrappingEnabled: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).SetLastLineWrapping(@as(*const IDWriteTextFormat1, @ptrCast(self)), isLastLineWrappingEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat1_GetLastLineWrapping(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).GetLastLineWrapping(@as(*const IDWriteTextFormat1, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat1_SetOpticalAlignment(self: *const T, opticalAlignment: DWRITE_OPTICAL_ALIGNMENT) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).SetOpticalAlignment(@as(*const IDWriteTextFormat1, @ptrCast(self)), opticalAlignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat1_GetOpticalAlignment(self: *const T) callconv(.Inline) DWRITE_OPTICAL_ALIGNMENT {
-            return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).GetOpticalAlignment(@as(*const IDWriteTextFormat1, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat1_SetFontFallback(self: *const T, fontFallback: ?*IDWriteFontFallback) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).SetFontFallback(@as(*const IDWriteTextFormat1, @ptrCast(self)), fontFallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat1_GetFontFallback(self: *const T, fontFallback: ?*?*IDWriteFontFallback) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat1.VTable, @ptrCast(self.vtable)).GetFontFallback(@as(*const IDWriteTextFormat1, @ptrCast(self)), fontFallback);
-        }
-    };}
-    pub usingnamespace IDWriteTextFormat.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetVerticalGlyphOrientation(self: *const IDWriteTextFormat1, glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION) callconv(.Inline) HRESULT {
         return self.vtable.SetVerticalGlyphOrientation(self, glyphOrientation);
     }
@@ -5297,46 +4202,9 @@ pub const IDWriteTextLayout2 = extern union {
     };
     vtable: *const VTable,
     IDWriteTextLayout1: IDWriteTextLayout1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextLayout1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout2_GetMetrics(self: *const T, textMetrics: ?*DWRITE_TEXT_METRICS1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).GetMetrics(@as(*const IDWriteTextLayout2, @ptrCast(self)), textMetrics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout2_SetVerticalGlyphOrientation(self: *const T, glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).SetVerticalGlyphOrientation(@as(*const IDWriteTextLayout2, @ptrCast(self)), glyphOrientation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout2_GetVerticalGlyphOrientation(self: *const T) callconv(.Inline) DWRITE_VERTICAL_GLYPH_ORIENTATION {
-            return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).GetVerticalGlyphOrientation(@as(*const IDWriteTextLayout2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout2_SetLastLineWrapping(self: *const T, isLastLineWrappingEnabled: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).SetLastLineWrapping(@as(*const IDWriteTextLayout2, @ptrCast(self)), isLastLineWrappingEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout2_GetLastLineWrapping(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).GetLastLineWrapping(@as(*const IDWriteTextLayout2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout2_SetOpticalAlignment(self: *const T, opticalAlignment: DWRITE_OPTICAL_ALIGNMENT) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).SetOpticalAlignment(@as(*const IDWriteTextLayout2, @ptrCast(self)), opticalAlignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout2_GetOpticalAlignment(self: *const T) callconv(.Inline) DWRITE_OPTICAL_ALIGNMENT {
-            return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).GetOpticalAlignment(@as(*const IDWriteTextLayout2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout2_SetFontFallback(self: *const T, fontFallback: ?*IDWriteFontFallback) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).SetFontFallback(@as(*const IDWriteTextLayout2, @ptrCast(self)), fontFallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout2_GetFontFallback(self: *const T, fontFallback: ?*?*IDWriteFontFallback) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout2.VTable, @ptrCast(self.vtable)).GetFontFallback(@as(*const IDWriteTextLayout2, @ptrCast(self)), fontFallback);
-        }
-    };}
-    pub usingnamespace IDWriteTextLayout1.MethodMixin(@This());
+    IDWriteTextLayout: IDWriteTextLayout,
+    IDWriteTextFormat: IDWriteTextFormat,
+    IUnknown: IUnknown,
     pub fn GetMetrics(self: *const IDWriteTextLayout2, textMetrics: ?*DWRITE_TEXT_METRICS1) callconv(.Inline) HRESULT {
         return self.vtable.GetMetrics(self, textMetrics);
     }
@@ -5402,22 +4270,8 @@ pub const IDWriteTextAnalyzer2 = extern union {
     };
     vtable: *const VTable,
     IDWriteTextAnalyzer1: IDWriteTextAnalyzer1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextAnalyzer1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer2_GetGlyphOrientationTransform(self: *const T, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, isSideways: BOOL, originX: f32, originY: f32, transform: ?*DWRITE_MATRIX) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer2.VTable, @ptrCast(self.vtable)).GetGlyphOrientationTransform(@as(*const IDWriteTextAnalyzer2, @ptrCast(self)), glyphOrientationAngle, isSideways, originX, originY, transform);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer2_GetTypographicFeatures(self: *const T, fontFace: ?*IDWriteFontFace, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, localeName: ?[*:0]const u16, maxTagCount: u32, actualTagCount: ?*u32, tags: [*]DWRITE_FONT_FEATURE_TAG) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer2.VTable, @ptrCast(self.vtable)).GetTypographicFeatures(@as(*const IDWriteTextAnalyzer2, @ptrCast(self)), fontFace, scriptAnalysis, localeName, maxTagCount, actualTagCount, tags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextAnalyzer2_CheckTypographicFeature(self: *const T, fontFace: ?*IDWriteFontFace, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, localeName: ?[*:0]const u16, featureTag: DWRITE_FONT_FEATURE_TAG, glyphCount: u32, glyphIndices: [*:0]const u16, featureApplies: [*:0]u8) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextAnalyzer2.VTable, @ptrCast(self.vtable)).CheckTypographicFeature(@as(*const IDWriteTextAnalyzer2, @ptrCast(self)), fontFace, scriptAnalysis, localeName, featureTag, glyphCount, glyphIndices, featureApplies);
-        }
-    };}
-    pub usingnamespace IDWriteTextAnalyzer1.MethodMixin(@This());
+    IDWriteTextAnalyzer: IDWriteTextAnalyzer,
+    IUnknown: IUnknown,
     pub fn GetGlyphOrientationTransform(self: *const IDWriteTextAnalyzer2, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, isSideways: BOOL, originX: f32, originY: f32, transform: ?*DWRITE_MATRIX) callconv(.Inline) HRESULT {
         return self.vtable.GetGlyphOrientationTransform(self, glyphOrientationAngle, isSideways, originX, originY, transform);
     }
@@ -5452,14 +4306,6 @@ pub const IDWriteFontFallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFallback_MapCharacters(self: *const T, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, baseFontCollection: ?*IDWriteFontCollection, baseFamilyName: ?[*:0]const u16, baseWeight: DWRITE_FONT_WEIGHT, baseStyle: DWRITE_FONT_STYLE, baseStretch: DWRITE_FONT_STRETCH, mappedLength: ?*u32, mappedFont: ?*?*IDWriteFont, scale: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFallback.VTable, @ptrCast(self.vtable)).MapCharacters(@as(*const IDWriteFontFallback, @ptrCast(self)), analysisSource, textPosition, textLength, baseFontCollection, baseFamilyName, baseWeight, baseStyle, baseStretch, mappedLength, mappedFont, scale);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn MapCharacters(self: *const IDWriteFontFallback, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, baseFontCollection: ?*IDWriteFontCollection, baseFamilyName: ?[*:0]const u16, baseWeight: DWRITE_FONT_WEIGHT, baseStyle: DWRITE_FONT_STYLE, baseStretch: DWRITE_FONT_STRETCH, mappedLength: ?*u32, mappedFont: ?*?*IDWriteFont, scale: ?*f32) callconv(.Inline) HRESULT {
         return self.vtable.MapCharacters(self, analysisSource, textPosition, textLength, baseFontCollection, baseFamilyName, baseWeight, baseStyle, baseStretch, mappedLength, mappedFont, scale);
     }
@@ -5493,22 +4339,6 @@ pub const IDWriteFontFallbackBuilder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFallbackBuilder_AddMapping(self: *const T, ranges: [*]const DWRITE_UNICODE_RANGE, rangesCount: u32, targetFamilyNames: [*]const ?*const u16, targetFamilyNamesCount: u32, fontCollection: ?*IDWriteFontCollection, localeName: ?[*:0]const u16, baseFamilyName: ?[*:0]const u16, scale: f32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFallbackBuilder.VTable, @ptrCast(self.vtable)).AddMapping(@as(*const IDWriteFontFallbackBuilder, @ptrCast(self)), ranges, rangesCount, targetFamilyNames, targetFamilyNamesCount, fontCollection, localeName, baseFamilyName, scale);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFallbackBuilder_AddMappings(self: *const T, fontFallback: ?*IDWriteFontFallback) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFallbackBuilder.VTable, @ptrCast(self.vtable)).AddMappings(@as(*const IDWriteFontFallbackBuilder, @ptrCast(self)), fontFallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFallbackBuilder_CreateFontFallback(self: *const T, fontFallback: ?*?*IDWriteFontFallback) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFallbackBuilder.VTable, @ptrCast(self.vtable)).CreateFontFallback(@as(*const IDWriteFontFallbackBuilder, @ptrCast(self)), fontFallback);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddMapping(self: *const IDWriteFontFallbackBuilder, ranges: [*]const DWRITE_UNICODE_RANGE, rangesCount: u32, targetFamilyNames: [*]const ?*const u16, targetFamilyNamesCount: u32, fontCollection: ?*IDWriteFontCollection, localeName: ?[*:0]const u16, baseFamilyName: ?[*:0]const u16, scale: f32) callconv(.Inline) HRESULT {
         return self.vtable.AddMapping(self, ranges, rangesCount, targetFamilyNames, targetFamilyNamesCount, fontCollection, localeName, baseFamilyName, scale);
     }
@@ -5532,14 +4362,8 @@ pub const IDWriteFont2 = extern union {
     };
     vtable: *const VTable,
     IDWriteFont1: IDWriteFont1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFont1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont2_IsColorFont(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFont2.VTable, @ptrCast(self.vtable)).IsColorFont(@as(*const IDWriteFont2, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDWriteFont1.MethodMixin(@This());
+    IDWriteFont: IDWriteFont,
+    IUnknown: IUnknown,
     pub fn IsColorFont(self: *const IDWriteFont2) callconv(.Inline) BOOL {
         return self.vtable.IsColorFont(self);
     }
@@ -5583,30 +4407,8 @@ pub const IDWriteFontFace2 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFace1: IDWriteFontFace1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFace1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace2_IsColorFont(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontFace2.VTable, @ptrCast(self.vtable)).IsColorFont(@as(*const IDWriteFontFace2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace2_GetColorPaletteCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontFace2.VTable, @ptrCast(self.vtable)).GetColorPaletteCount(@as(*const IDWriteFontFace2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace2_GetPaletteEntryCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontFace2.VTable, @ptrCast(self.vtable)).GetPaletteEntryCount(@as(*const IDWriteFontFace2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace2_GetPaletteEntries(self: *const T, colorPaletteIndex: u32, firstEntryIndex: u32, entryCount: u32, paletteEntries: [*]DWRITE_COLOR_F) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace2.VTable, @ptrCast(self.vtable)).GetPaletteEntries(@as(*const IDWriteFontFace2, @ptrCast(self)), colorPaletteIndex, firstEntryIndex, entryCount, paletteEntries);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace2_GetRecommendedRenderingMode(self: *const T, fontEmSize: f32, dpiX: f32, dpiY: f32, transform: ?*const DWRITE_MATRIX, isSideways: BOOL, outlineThreshold: DWRITE_OUTLINE_THRESHOLD, measuringMode: DWRITE_MEASURING_MODE, renderingParams: ?*IDWriteRenderingParams, renderingMode: ?*DWRITE_RENDERING_MODE, gridFitMode: ?*DWRITE_GRID_FIT_MODE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace2.VTable, @ptrCast(self.vtable)).GetRecommendedRenderingMode(@as(*const IDWriteFontFace2, @ptrCast(self)), fontEmSize, dpiX, dpiY, transform, isSideways, outlineThreshold, measuringMode, renderingParams, renderingMode, gridFitMode);
-        }
-    };}
-    pub usingnamespace IDWriteFontFace1.MethodMixin(@This());
+    IDWriteFontFace: IDWriteFontFace,
+    IUnknown: IUnknown,
     pub fn IsColorFont(self: *const IDWriteFontFace2) callconv(.Inline) BOOL {
         return self.vtable.IsColorFont(self);
     }
@@ -5650,18 +4452,6 @@ pub const IDWriteColorGlyphRunEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteColorGlyphRunEnumerator_MoveNext(self: *const T, hasRun: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteColorGlyphRunEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IDWriteColorGlyphRunEnumerator, @ptrCast(self)), hasRun);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteColorGlyphRunEnumerator_GetCurrentRun(self: *const T, colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteColorGlyphRunEnumerator.VTable, @ptrCast(self.vtable)).GetCurrentRun(@as(*const IDWriteColorGlyphRunEnumerator, @ptrCast(self)), colorGlyphRun);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn MoveNext(self: *const IDWriteColorGlyphRunEnumerator, hasRun: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.MoveNext(self, hasRun);
     }
@@ -5682,14 +4472,8 @@ pub const IDWriteRenderingParams2 = extern union {
     };
     vtable: *const VTable,
     IDWriteRenderingParams1: IDWriteRenderingParams1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteRenderingParams1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRenderingParams2_GetGridFitMode(self: *const T) callconv(.Inline) DWRITE_GRID_FIT_MODE {
-            return @as(*const IDWriteRenderingParams2.VTable, @ptrCast(self.vtable)).GetGridFitMode(@as(*const IDWriteRenderingParams2, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDWriteRenderingParams1.MethodMixin(@This());
+    IDWriteRenderingParams: IDWriteRenderingParams,
+    IUnknown: IUnknown,
     pub fn GetGridFitMode(self: *const IDWriteRenderingParams2) callconv(.Inline) DWRITE_GRID_FIT_MODE {
         return self.vtable.GetGridFitMode(self);
     }
@@ -5746,30 +4530,8 @@ pub const IDWriteFactory2 = extern union {
     };
     vtable: *const VTable,
     IDWriteFactory1: IDWriteFactory1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFactory1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory2_GetSystemFontFallback(self: *const T, fontFallback: ?*?*IDWriteFontFallback) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory2.VTable, @ptrCast(self.vtable)).GetSystemFontFallback(@as(*const IDWriteFactory2, @ptrCast(self)), fontFallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory2_CreateFontFallbackBuilder(self: *const T, fontFallbackBuilder: ?*?*IDWriteFontFallbackBuilder) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory2.VTable, @ptrCast(self.vtable)).CreateFontFallbackBuilder(@as(*const IDWriteFactory2, @ptrCast(self)), fontFallbackBuilder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory2_TranslateColorGlyphRun(self: *const T, baselineOriginX: f32, baselineOriginY: f32, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, measuringMode: DWRITE_MEASURING_MODE, worldToDeviceTransform: ?*const DWRITE_MATRIX, colorPaletteIndex: u32, colorLayers: ?*?*IDWriteColorGlyphRunEnumerator) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory2.VTable, @ptrCast(self.vtable)).TranslateColorGlyphRun(@as(*const IDWriteFactory2, @ptrCast(self)), baselineOriginX, baselineOriginY, glyphRun, glyphRunDescription, measuringMode, worldToDeviceTransform, colorPaletteIndex, colorLayers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory2_CreateCustomRenderingParams(self: *const T, gamma: f32, enhancedContrast: f32, grayscaleEnhancedContrast: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, renderingParams: ?*?*IDWriteRenderingParams2) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory2.VTable, @ptrCast(self.vtable)).CreateCustomRenderingParams(@as(*const IDWriteFactory2, @ptrCast(self)), gamma, enhancedContrast, grayscaleEnhancedContrast, clearTypeLevel, pixelGeometry, renderingMode, gridFitMode, renderingParams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory2_CreateGlyphRunAnalysis(self: *const T, glyphRun: ?*const DWRITE_GLYPH_RUN, transform: ?*const DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE, measuringMode: DWRITE_MEASURING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory2.VTable, @ptrCast(self.vtable)).CreateGlyphRunAnalysis(@as(*const IDWriteFactory2, @ptrCast(self)), glyphRun, transform, renderingMode, measuringMode, gridFitMode, antialiasMode, baselineOriginX, baselineOriginY, glyphRunAnalysis);
-        }
-    };}
-    pub usingnamespace IDWriteFactory1.MethodMixin(@This());
+    IDWriteFactory: IDWriteFactory,
+    IUnknown: IUnknown,
     pub fn GetSystemFontFallback(self: *const IDWriteFactory2, fontFallback: ?*?*IDWriteFontFallback) callconv(.Inline) HRESULT {
         return self.vtable.GetSystemFontFallback(self, fontFallback);
     }
@@ -5874,14 +4636,9 @@ pub const IDWriteRenderingParams3 = extern union {
     };
     vtable: *const VTable,
     IDWriteRenderingParams2: IDWriteRenderingParams2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteRenderingParams2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRenderingParams3_GetRenderingMode1(self: *const T) callconv(.Inline) DWRITE_RENDERING_MODE1 {
-            return @as(*const IDWriteRenderingParams3.VTable, @ptrCast(self.vtable)).GetRenderingMode1(@as(*const IDWriteRenderingParams3, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDWriteRenderingParams2.MethodMixin(@This());
+    IDWriteRenderingParams1: IDWriteRenderingParams1,
+    IDWriteRenderingParams: IDWriteRenderingParams,
+    IUnknown: IUnknown,
     pub fn GetRenderingMode1(self: *const IDWriteRenderingParams3) callconv(.Inline) DWRITE_RENDERING_MODE1 {
         return self.vtable.GetRenderingMode1(self);
     }
@@ -5957,46 +4714,9 @@ pub const IDWriteFactory3 = extern union {
     };
     vtable: *const VTable,
     IDWriteFactory2: IDWriteFactory2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFactory2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory3_CreateGlyphRunAnalysis(self: *const T, glyphRun: ?*const DWRITE_GLYPH_RUN, transform: ?*const DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE1, measuringMode: DWRITE_MEASURING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).CreateGlyphRunAnalysis(@as(*const IDWriteFactory3, @ptrCast(self)), glyphRun, transform, renderingMode, measuringMode, gridFitMode, antialiasMode, baselineOriginX, baselineOriginY, glyphRunAnalysis);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory3_CreateCustomRenderingParams(self: *const T, gamma: f32, enhancedContrast: f32, grayscaleEnhancedContrast: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE1, gridFitMode: DWRITE_GRID_FIT_MODE, renderingParams: ?*?*IDWriteRenderingParams3) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).CreateCustomRenderingParams(@as(*const IDWriteFactory3, @ptrCast(self)), gamma, enhancedContrast, grayscaleEnhancedContrast, clearTypeLevel, pixelGeometry, renderingMode, gridFitMode, renderingParams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory3_CreateFontFaceReference(self: *const T, fontFile: ?*IDWriteFontFile, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).CreateFontFaceReference(@as(*const IDWriteFactory3, @ptrCast(self)), fontFile, faceIndex, fontSimulations, fontFaceReference);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory3_CreateFontFaceReference1(self: *const T, filePath: ?[*:0]const u16, lastWriteTime: ?*const FILETIME, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).CreateFontFaceReference(@as(*const IDWriteFactory3, @ptrCast(self)), filePath, lastWriteTime, faceIndex, fontSimulations, fontFaceReference);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory3_GetSystemFontSet(self: *const T, fontSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).GetSystemFontSet(@as(*const IDWriteFactory3, @ptrCast(self)), fontSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory3_CreateFontSetBuilder(self: *const T, fontSetBuilder: ?*?*IDWriteFontSetBuilder) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).CreateFontSetBuilder(@as(*const IDWriteFactory3, @ptrCast(self)), fontSetBuilder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory3_CreateFontCollectionFromFontSet(self: *const T, fontSet: ?*IDWriteFontSet, fontCollection: ?*?*IDWriteFontCollection1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).CreateFontCollectionFromFontSet(@as(*const IDWriteFactory3, @ptrCast(self)), fontSet, fontCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory3_GetSystemFontCollection(self: *const T, includeDownloadableFonts: BOOL, fontCollection: ?*?*IDWriteFontCollection1, checkForUpdates: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).GetSystemFontCollection(@as(*const IDWriteFactory3, @ptrCast(self)), includeDownloadableFonts, fontCollection, checkForUpdates);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory3_GetFontDownloadQueue(self: *const T, fontDownloadQueue: ?*?*IDWriteFontDownloadQueue) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory3.VTable, @ptrCast(self.vtable)).GetFontDownloadQueue(@as(*const IDWriteFactory3, @ptrCast(self)), fontDownloadQueue);
-        }
-    };}
-    pub usingnamespace IDWriteFactory2.MethodMixin(@This());
+    IDWriteFactory1: IDWriteFactory1,
+    IDWriteFactory: IDWriteFactory,
+    IUnknown: IUnknown,
     pub fn CreateGlyphRunAnalysis(self: *const IDWriteFactory3, glyphRun: ?*const DWRITE_GLYPH_RUN, transform: ?*const DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE1, measuringMode: DWRITE_MEASURING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis) callconv(.Inline) HRESULT {
         return self.vtable.CreateGlyphRunAnalysis(self, glyphRun, transform, renderingMode, measuringMode, gridFitMode, antialiasMode, baselineOriginX, baselineOriginY, glyphRunAnalysis);
     }
@@ -6092,50 +4812,6 @@ pub const IDWriteFontSet = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet_GetFontCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetFontCount(@as(*const IDWriteFontSet, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet_GetFontFaceReference(self: *const T, listIndex: u32, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFontSet, @ptrCast(self)), listIndex, fontFaceReference);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet_FindFontFaceReference(self: *const T, fontFaceReference: ?*IDWriteFontFaceReference, listIndex: ?*u32, exists: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).FindFontFaceReference(@as(*const IDWriteFontSet, @ptrCast(self)), fontFaceReference, listIndex, exists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet_FindFontFace(self: *const T, fontFace: ?*IDWriteFontFace, listIndex: ?*u32, exists: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).FindFontFace(@as(*const IDWriteFontSet, @ptrCast(self)), fontFace, listIndex, exists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet_GetPropertyValues(self: *const T, propertyID: DWRITE_FONT_PROPERTY_ID, values: ?*?*IDWriteStringList) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetPropertyValues(@as(*const IDWriteFontSet, @ptrCast(self)), propertyID, values);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet_GetPropertyValues1(self: *const T, propertyID: DWRITE_FONT_PROPERTY_ID, preferredLocaleNames: ?[*:0]const u16, values: ?*?*IDWriteStringList) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetPropertyValues(@as(*const IDWriteFontSet, @ptrCast(self)), propertyID, preferredLocaleNames, values);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet_GetPropertyValues2(self: *const T, listIndex: u32, propertyId: DWRITE_FONT_PROPERTY_ID, exists: ?*BOOL, values: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetPropertyValues(@as(*const IDWriteFontSet, @ptrCast(self)), listIndex, propertyId, exists, values);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet_GetPropertyOccurrenceCount(self: *const T, property: ?*const DWRITE_FONT_PROPERTY, propertyOccurrenceCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetPropertyOccurrenceCount(@as(*const IDWriteFontSet, @ptrCast(self)), property, propertyOccurrenceCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet_GetMatchingFonts(self: *const T, familyName: ?[*:0]const u16, fontWeight: DWRITE_FONT_WEIGHT, fontStretch: DWRITE_FONT_STRETCH, fontStyle: DWRITE_FONT_STYLE, filteredSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontSet, @ptrCast(self)), familyName, fontWeight, fontStretch, fontStyle, filteredSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet_GetMatchingFonts1(self: *const T, properties: [*]const DWRITE_FONT_PROPERTY, propertyCount: u32, filteredSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontSet, @ptrCast(self)), properties, propertyCount, filteredSet);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFontCount(self: *const IDWriteFontSet) callconv(.Inline) u32 {
         return self.vtable.GetFontCount(self);
     }
@@ -6194,26 +4870,6 @@ pub const IDWriteFontSetBuilder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSetBuilder_AddFontFaceReference(self: *const T, fontFaceReference: ?*IDWriteFontFaceReference, properties: [*]const DWRITE_FONT_PROPERTY, propertyCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSetBuilder.VTable, @ptrCast(self.vtable)).AddFontFaceReference(@as(*const IDWriteFontSetBuilder, @ptrCast(self)), fontFaceReference, properties, propertyCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSetBuilder_AddFontFaceReference1(self: *const T, fontFaceReference: ?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSetBuilder.VTable, @ptrCast(self.vtable)).AddFontFaceReference(@as(*const IDWriteFontSetBuilder, @ptrCast(self)), fontFaceReference);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSetBuilder_AddFontSet(self: *const T, fontSet: ?*IDWriteFontSet) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSetBuilder.VTable, @ptrCast(self.vtable)).AddFontSet(@as(*const IDWriteFontSetBuilder, @ptrCast(self)), fontSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSetBuilder_CreateFontSet(self: *const T, fontSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSetBuilder.VTable, @ptrCast(self.vtable)).CreateFontSet(@as(*const IDWriteFontSetBuilder, @ptrCast(self)), fontSet);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddFontFaceReference(self: *const IDWriteFontSetBuilder, fontFaceReference: ?*IDWriteFontFaceReference, properties: [*]const DWRITE_FONT_PROPERTY, propertyCount: u32) callconv(.Inline) HRESULT {
         return self.vtable.AddFontFaceReference(self, fontFaceReference, properties, propertyCount);
     }
@@ -6246,18 +4902,7 @@ pub const IDWriteFontCollection1 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontCollection: IDWriteFontCollection,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontCollection.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollection1_GetFontSet(self: *const T, fontSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontCollection1.VTable, @ptrCast(self.vtable)).GetFontSet(@as(*const IDWriteFontCollection1, @ptrCast(self)), fontSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollection1_GetFontFamily(self: *const T, index: u32, fontFamily: ?*?*IDWriteFontFamily1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontCollection1.VTable, @ptrCast(self.vtable)).GetFontFamily(@as(*const IDWriteFontCollection1, @ptrCast(self)), index, fontFamily);
-        }
-    };}
-    pub usingnamespace IDWriteFontCollection.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetFontSet(self: *const IDWriteFontCollection1, fontSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
         return self.vtable.GetFontSet(self, fontSet);
     }
@@ -6289,22 +4934,8 @@ pub const IDWriteFontFamily1 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFamily: IDWriteFontFamily,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFamily.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFamily1_GetFontLocality(self: *const T, listIndex: u32) callconv(.Inline) DWRITE_LOCALITY {
-            return @as(*const IDWriteFontFamily1.VTable, @ptrCast(self.vtable)).GetFontLocality(@as(*const IDWriteFontFamily1, @ptrCast(self)), listIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFamily1_GetFont(self: *const T, listIndex: u32, font: ?*?*IDWriteFont3) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFamily1.VTable, @ptrCast(self.vtable)).GetFont(@as(*const IDWriteFontFamily1, @ptrCast(self)), listIndex, font);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFamily1_GetFontFaceReference(self: *const T, listIndex: u32, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFamily1.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFontFamily1, @ptrCast(self)), listIndex, fontFaceReference);
-        }
-    };}
-    pub usingnamespace IDWriteFontFamily.MethodMixin(@This());
+    IDWriteFontList: IDWriteFontList,
+    IUnknown: IUnknown,
     pub fn GetFontLocality(self: *const IDWriteFontFamily1, listIndex: u32) callconv(.Inline) DWRITE_LOCALITY {
         return self.vtable.GetFontLocality(self, listIndex);
     }
@@ -6339,22 +4970,7 @@ pub const IDWriteFontList1 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontList: IDWriteFontList,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontList.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontList1_GetFontLocality(self: *const T, listIndex: u32) callconv(.Inline) DWRITE_LOCALITY {
-            return @as(*const IDWriteFontList1.VTable, @ptrCast(self.vtable)).GetFontLocality(@as(*const IDWriteFontList1, @ptrCast(self)), listIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontList1_GetFont(self: *const T, listIndex: u32, font: ?*?*IDWriteFont3) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontList1.VTable, @ptrCast(self.vtable)).GetFont(@as(*const IDWriteFontList1, @ptrCast(self)), listIndex, font);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontList1_GetFontFaceReference(self: *const T, listIndex: u32, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontList1.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFontList1, @ptrCast(self)), listIndex, fontFaceReference);
-        }
-    };}
-    pub usingnamespace IDWriteFontList.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetFontLocality(self: *const IDWriteFontList1, listIndex: u32) callconv(.Inline) DWRITE_LOCALITY {
         return self.vtable.GetFontLocality(self, listIndex);
     }
@@ -6429,66 +5045,6 @@ pub const IDWriteFontFaceReference = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_CreateFontFace(self: *const T, fontFace: ?*?*IDWriteFontFace3) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFontFaceReference, @ptrCast(self)), fontFace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_CreateFontFaceWithSimulations(self: *const T, fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS, fontFace: ?*?*IDWriteFontFace3) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).CreateFontFaceWithSimulations(@as(*const IDWriteFontFaceReference, @ptrCast(self)), fontFaceSimulationFlags, fontFace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_Equals(self: *const T, fontFaceReference: ?*IDWriteFontFaceReference) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).Equals(@as(*const IDWriteFontFaceReference, @ptrCast(self)), fontFaceReference);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_GetFontFaceIndex(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetFontFaceIndex(@as(*const IDWriteFontFaceReference, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_GetSimulations(self: *const T) callconv(.Inline) DWRITE_FONT_SIMULATIONS {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetSimulations(@as(*const IDWriteFontFaceReference, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_GetFontFile(self: *const T, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetFontFile(@as(*const IDWriteFontFaceReference, @ptrCast(self)), fontFile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_GetLocalFileSize(self: *const T) callconv(.Inline) u64 {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetLocalFileSize(@as(*const IDWriteFontFaceReference, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_GetFileSize(self: *const T) callconv(.Inline) u64 {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IDWriteFontFaceReference, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_GetFileTime(self: *const T, lastWriteTime: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetFileTime(@as(*const IDWriteFontFaceReference, @ptrCast(self)), lastWriteTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_GetLocality(self: *const T) callconv(.Inline) DWRITE_LOCALITY {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).GetLocality(@as(*const IDWriteFontFaceReference, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_EnqueueFontDownloadRequest(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).EnqueueFontDownloadRequest(@as(*const IDWriteFontFaceReference, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_EnqueueCharacterDownloadRequest(self: *const T, characters: [*:0]const u16, characterCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).EnqueueCharacterDownloadRequest(@as(*const IDWriteFontFaceReference, @ptrCast(self)), characters, characterCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_EnqueueGlyphDownloadRequest(self: *const T, glyphIndices: [*:0]const u16, glyphCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).EnqueueGlyphDownloadRequest(@as(*const IDWriteFontFaceReference, @ptrCast(self)), glyphIndices, glyphCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference_EnqueueFileFragmentDownloadRequest(self: *const T, fileOffset: u64, fragmentSize: u64) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFaceReference.VTable, @ptrCast(self.vtable)).EnqueueFileFragmentDownloadRequest(@as(*const IDWriteFontFaceReference, @ptrCast(self)), fileOffset, fragmentSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateFontFace(self: *const IDWriteFontFaceReference, fontFace: ?*?*IDWriteFontFace3) callconv(.Inline) HRESULT {
         return self.vtable.CreateFontFace(self, fontFace);
     }
@@ -6561,30 +5117,9 @@ pub const IDWriteFont3 = extern union {
     };
     vtable: *const VTable,
     IDWriteFont2: IDWriteFont2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFont2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont3_CreateFontFace(self: *const T, fontFace: ?*?*IDWriteFontFace3) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFont3.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFont3, @ptrCast(self)), fontFace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont3_Equals(self: *const T, font: ?*IDWriteFont) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFont3.VTable, @ptrCast(self.vtable)).Equals(@as(*const IDWriteFont3, @ptrCast(self)), font);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont3_GetFontFaceReference(self: *const T, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFont3.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFont3, @ptrCast(self)), fontFaceReference);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont3_HasCharacter(self: *const T, unicodeValue: u32) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFont3.VTable, @ptrCast(self.vtable)).HasCharacter(@as(*const IDWriteFont3, @ptrCast(self)), unicodeValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFont3_GetLocality(self: *const T) callconv(.Inline) DWRITE_LOCALITY {
-            return @as(*const IDWriteFont3.VTable, @ptrCast(self.vtable)).GetLocality(@as(*const IDWriteFont3, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDWriteFont2.MethodMixin(@This());
+    IDWriteFont1: IDWriteFont1,
+    IDWriteFont: IDWriteFont,
+    IUnknown: IUnknown,
     pub fn CreateFontFace(self: *const IDWriteFont3, fontFace: ?*?*IDWriteFontFace3) callconv(.Inline) HRESULT {
         return self.vtable.CreateFontFace(self, fontFace);
     }
@@ -6681,66 +5216,9 @@ pub const IDWriteFontFace3 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFace2: IDWriteFontFace2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFace2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_GetFontFaceReference(self: *const T, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFontFace3, @ptrCast(self)), fontFaceReference);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_GetPanose(self: *const T, panose: ?*DWRITE_PANOSE) callconv(.Inline) void {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetPanose(@as(*const IDWriteFontFace3, @ptrCast(self)), panose);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_GetWeight(self: *const T) callconv(.Inline) DWRITE_FONT_WEIGHT {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetWeight(@as(*const IDWriteFontFace3, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_GetStretch(self: *const T) callconv(.Inline) DWRITE_FONT_STRETCH {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetStretch(@as(*const IDWriteFontFace3, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_GetStyle(self: *const T) callconv(.Inline) DWRITE_FONT_STYLE {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetStyle(@as(*const IDWriteFontFace3, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_GetFamilyNames(self: *const T, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetFamilyNames(@as(*const IDWriteFontFace3, @ptrCast(self)), names);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_GetFaceNames(self: *const T, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetFaceNames(@as(*const IDWriteFontFace3, @ptrCast(self)), names);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_GetInformationalStrings(self: *const T, informationalStringID: DWRITE_INFORMATIONAL_STRING_ID, informationalStrings: ?*?*IDWriteLocalizedStrings, exists: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetInformationalStrings(@as(*const IDWriteFontFace3, @ptrCast(self)), informationalStringID, informationalStrings, exists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_HasCharacter(self: *const T, unicodeValue: u32) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).HasCharacter(@as(*const IDWriteFontFace3, @ptrCast(self)), unicodeValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_GetRecommendedRenderingMode(self: *const T, fontEmSize: f32, dpiX: f32, dpiY: f32, transform: ?*const DWRITE_MATRIX, isSideways: BOOL, outlineThreshold: DWRITE_OUTLINE_THRESHOLD, measuringMode: DWRITE_MEASURING_MODE, renderingParams: ?*IDWriteRenderingParams, renderingMode: ?*DWRITE_RENDERING_MODE1, gridFitMode: ?*DWRITE_GRID_FIT_MODE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).GetRecommendedRenderingMode(@as(*const IDWriteFontFace3, @ptrCast(self)), fontEmSize, dpiX, dpiY, transform, isSideways, outlineThreshold, measuringMode, renderingParams, renderingMode, gridFitMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_IsCharacterLocal(self: *const T, unicodeValue: u32) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).IsCharacterLocal(@as(*const IDWriteFontFace3, @ptrCast(self)), unicodeValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_IsGlyphLocal(self: *const T, glyphId: u16) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).IsGlyphLocal(@as(*const IDWriteFontFace3, @ptrCast(self)), glyphId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_AreCharactersLocal(self: *const T, characters: [*:0]const u16, characterCount: u32, enqueueIfNotLocal: BOOL, isLocal: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).AreCharactersLocal(@as(*const IDWriteFontFace3, @ptrCast(self)), characters, characterCount, enqueueIfNotLocal, isLocal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace3_AreGlyphsLocal(self: *const T, glyphIndices: [*:0]const u16, glyphCount: u32, enqueueIfNotLocal: BOOL, isLocal: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace3.VTable, @ptrCast(self.vtable)).AreGlyphsLocal(@as(*const IDWriteFontFace3, @ptrCast(self)), glyphIndices, glyphCount, enqueueIfNotLocal, isLocal);
-        }
-    };}
-    pub usingnamespace IDWriteFontFace2.MethodMixin(@This());
+    IDWriteFontFace1: IDWriteFontFace1,
+    IDWriteFontFace: IDWriteFontFace,
+    IUnknown: IUnknown,
     pub fn GetFontFaceReference(self: *const IDWriteFontFace3, fontFaceReference: ?*?*IDWriteFontFaceReference) callconv(.Inline) HRESULT {
         return self.vtable.GetFontFaceReference(self, fontFaceReference);
     }
@@ -6818,30 +5296,6 @@ pub const IDWriteStringList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteStringList_GetCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteStringList.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IDWriteStringList, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteStringList_GetLocaleNameLength(self: *const T, listIndex: u32, length: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteStringList.VTable, @ptrCast(self.vtable)).GetLocaleNameLength(@as(*const IDWriteStringList, @ptrCast(self)), listIndex, length);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteStringList_GetLocaleName(self: *const T, listIndex: u32, localeName: [*:0]u16, size: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteStringList.VTable, @ptrCast(self.vtable)).GetLocaleName(@as(*const IDWriteStringList, @ptrCast(self)), listIndex, localeName, size);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteStringList_GetStringLength(self: *const T, listIndex: u32, length: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteStringList.VTable, @ptrCast(self.vtable)).GetStringLength(@as(*const IDWriteStringList, @ptrCast(self)), listIndex, length);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteStringList_GetString(self: *const T, listIndex: u32, stringBuffer: [*:0]u16, stringBufferSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteStringList.VTable, @ptrCast(self.vtable)).GetString(@as(*const IDWriteStringList, @ptrCast(self)), listIndex, stringBuffer, stringBufferSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IDWriteStringList) callconv(.Inline) u32 {
         return self.vtable.GetCount(self);
     }
@@ -6874,14 +5328,6 @@ pub const IDWriteFontDownloadListener = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontDownloadListener_DownloadCompleted(self: *const T, downloadQueue: ?*IDWriteFontDownloadQueue, context: ?*IUnknown, downloadResult: HRESULT) callconv(.Inline) void {
-            return @as(*const IDWriteFontDownloadListener.VTable, @ptrCast(self.vtable)).DownloadCompleted(@as(*const IDWriteFontDownloadListener, @ptrCast(self)), downloadQueue, context, downloadResult);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DownloadCompleted(self: *const IDWriteFontDownloadListener, downloadQueue: ?*IDWriteFontDownloadQueue, context: ?*IUnknown, downloadResult: HRESULT) callconv(.Inline) void {
         return self.vtable.DownloadCompleted(self, downloadQueue, context, downloadResult);
     }
@@ -6918,34 +5364,6 @@ pub const IDWriteFontDownloadQueue = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontDownloadQueue_AddListener(self: *const T, listener: ?*IDWriteFontDownloadListener, token: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).AddListener(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)), listener, token);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontDownloadQueue_RemoveListener(self: *const T, token: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).RemoveListener(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)), token);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontDownloadQueue_IsEmpty(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).IsEmpty(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontDownloadQueue_BeginDownload(self: *const T, context: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).BeginDownload(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)), context);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontDownloadQueue_CancelDownload(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).CancelDownload(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontDownloadQueue_GetGenerationCount(self: *const T) callconv(.Inline) u64 {
-            return @as(*const IDWriteFontDownloadQueue.VTable, @ptrCast(self.vtable)).GetGenerationCount(@as(*const IDWriteFontDownloadQueue, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddListener(self: *const IDWriteFontDownloadQueue, listener: ?*IDWriteFontDownloadListener, token: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.AddListener(self, listener, token);
     }
@@ -6996,26 +5414,7 @@ pub const IDWriteGdiInterop1 = extern union {
     };
     vtable: *const VTable,
     IDWriteGdiInterop: IDWriteGdiInterop,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteGdiInterop.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGdiInterop1_CreateFontFromLOGFONT(self: *const T, logFont: ?*const LOGFONTW, fontCollection: ?*IDWriteFontCollection, font: ?*?*IDWriteFont) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteGdiInterop1.VTable, @ptrCast(self.vtable)).CreateFontFromLOGFONT(@as(*const IDWriteGdiInterop1, @ptrCast(self)), logFont, fontCollection, font);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGdiInterop1_GetFontSignature(self: *const T, fontFace: ?*IDWriteFontFace, fontSignature: ?*FONTSIGNATURE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteGdiInterop1.VTable, @ptrCast(self.vtable)).GetFontSignature(@as(*const IDWriteGdiInterop1, @ptrCast(self)), fontFace, fontSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGdiInterop1_GetFontSignature1(self: *const T, font: ?*IDWriteFont, fontSignature: ?*FONTSIGNATURE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteGdiInterop1.VTable, @ptrCast(self.vtable)).GetFontSignature(@as(*const IDWriteGdiInterop1, @ptrCast(self)), font, fontSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGdiInterop1_GetMatchingFontsByLOGFONT(self: *const T, logFont: ?*const LOGFONTA, fontSet: ?*IDWriteFontSet, filteredSet: ?*?*IDWriteFontSet) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteGdiInterop1.VTable, @ptrCast(self.vtable)).GetMatchingFontsByLOGFONT(@as(*const IDWriteGdiInterop1, @ptrCast(self)), logFont, fontSet, filteredSet);
-        }
-    };}
-    pub usingnamespace IDWriteGdiInterop.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateFontFromLOGFONT(self: *const IDWriteGdiInterop1, logFont: ?*const LOGFONTW, fontCollection: ?*IDWriteFontCollection, font: ?*?*IDWriteFont) callconv(.Inline) HRESULT {
         return self.vtable.CreateFontFromLOGFONT(self, logFont, fontCollection, font);
     }
@@ -7070,18 +5469,8 @@ pub const IDWriteTextFormat2 = extern union {
     };
     vtable: *const VTable,
     IDWriteTextFormat1: IDWriteTextFormat1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextFormat1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat2_SetLineSpacing(self: *const T, lineSpacingOptions: ?*const DWRITE_LINE_SPACING) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat2.VTable, @ptrCast(self.vtable)).SetLineSpacing(@as(*const IDWriteTextFormat2, @ptrCast(self)), lineSpacingOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat2_GetLineSpacing(self: *const T, lineSpacingOptions: ?*DWRITE_LINE_SPACING) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat2.VTable, @ptrCast(self.vtable)).GetLineSpacing(@as(*const IDWriteTextFormat2, @ptrCast(self)), lineSpacingOptions);
-        }
-    };}
-    pub usingnamespace IDWriteTextFormat1.MethodMixin(@This());
+    IDWriteTextFormat: IDWriteTextFormat,
+    IUnknown: IUnknown,
     pub fn SetLineSpacing(self: *const IDWriteTextFormat2, lineSpacingOptions: ?*const DWRITE_LINE_SPACING) callconv(.Inline) HRESULT {
         return self.vtable.SetLineSpacing(self, lineSpacingOptions);
     }
@@ -7116,26 +5505,10 @@ pub const IDWriteTextLayout3 = extern union {
     };
     vtable: *const VTable,
     IDWriteTextLayout2: IDWriteTextLayout2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextLayout2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout3_InvalidateLayout(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout3.VTable, @ptrCast(self.vtable)).InvalidateLayout(@as(*const IDWriteTextLayout3, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout3_SetLineSpacing(self: *const T, lineSpacingOptions: ?*const DWRITE_LINE_SPACING) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout3.VTable, @ptrCast(self.vtable)).SetLineSpacing(@as(*const IDWriteTextLayout3, @ptrCast(self)), lineSpacingOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout3_GetLineSpacing(self: *const T, lineSpacingOptions: ?*DWRITE_LINE_SPACING) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout3.VTable, @ptrCast(self.vtable)).GetLineSpacing(@as(*const IDWriteTextLayout3, @ptrCast(self)), lineSpacingOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout3_GetLineMetrics(self: *const T, lineMetrics: ?[*]DWRITE_LINE_METRICS1, maxLineCount: u32, actualLineCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout3.VTable, @ptrCast(self.vtable)).GetLineMetrics(@as(*const IDWriteTextLayout3, @ptrCast(self)), lineMetrics, maxLineCount, actualLineCount);
-        }
-    };}
-    pub usingnamespace IDWriteTextLayout2.MethodMixin(@This());
+    IDWriteTextLayout1: IDWriteTextLayout1,
+    IDWriteTextLayout: IDWriteTextLayout,
+    IDWriteTextFormat: IDWriteTextFormat,
+    IUnknown: IUnknown,
     pub fn InvalidateLayout(self: *const IDWriteTextLayout3) callconv(.Inline) HRESULT {
         return self.vtable.InvalidateLayout(self);
     }
@@ -7180,14 +5553,7 @@ pub const IDWriteColorGlyphRunEnumerator1 = extern union {
     };
     vtable: *const VTable,
     IDWriteColorGlyphRunEnumerator: IDWriteColorGlyphRunEnumerator,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteColorGlyphRunEnumerator.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteColorGlyphRunEnumerator1_GetCurrentRun(self: *const T, colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteColorGlyphRunEnumerator1.VTable, @ptrCast(self.vtable)).GetCurrentRun(@as(*const IDWriteColorGlyphRunEnumerator1, @ptrCast(self)), colorGlyphRun);
-        }
-    };}
-    pub usingnamespace IDWriteColorGlyphRunEnumerator.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetCurrentRun(self: *const IDWriteColorGlyphRunEnumerator1, colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN1) callconv(.Inline) HRESULT {
         return self.vtable.GetCurrentRun(self, colorGlyphRun);
     }
@@ -7223,26 +5589,10 @@ pub const IDWriteFontFace4 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFace3: IDWriteFontFace3,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFace3.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace4_GetGlyphImageFormats(self: *const T, glyphId: u16, pixelsPerEmFirst: u32, pixelsPerEmLast: u32, glyphImageFormats: ?*DWRITE_GLYPH_IMAGE_FORMATS) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace4.VTable, @ptrCast(self.vtable)).GetGlyphImageFormats(@as(*const IDWriteFontFace4, @ptrCast(self)), glyphId, pixelsPerEmFirst, pixelsPerEmLast, glyphImageFormats);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace4_GetGlyphImageFormats1(self: *const T) callconv(.Inline) DWRITE_GLYPH_IMAGE_FORMATS {
-            return @as(*const IDWriteFontFace4.VTable, @ptrCast(self.vtable)).GetGlyphImageFormats(@as(*const IDWriteFontFace4, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace4_GetGlyphImageData(self: *const T, glyphId: u16, pixelsPerEm: u32, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, glyphData: ?*DWRITE_GLYPH_IMAGE_DATA, glyphDataContext: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace4.VTable, @ptrCast(self.vtable)).GetGlyphImageData(@as(*const IDWriteFontFace4, @ptrCast(self)), glyphId, pixelsPerEm, glyphImageFormat, glyphData, glyphDataContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace4_ReleaseGlyphImageData(self: *const T, glyphDataContext: ?*anyopaque) callconv(.Inline) void {
-            return @as(*const IDWriteFontFace4.VTable, @ptrCast(self.vtable)).ReleaseGlyphImageData(@as(*const IDWriteFontFace4, @ptrCast(self)), glyphDataContext);
-        }
-    };}
-    pub usingnamespace IDWriteFontFace3.MethodMixin(@This());
+    IDWriteFontFace2: IDWriteFontFace2,
+    IDWriteFontFace1: IDWriteFontFace1,
+    IDWriteFontFace: IDWriteFontFace,
+    IUnknown: IUnknown,
     pub fn GetGlyphImageFormats(self: *const IDWriteFontFace4, glyphId: u16, pixelsPerEmFirst: u32, pixelsPerEmLast: u32, glyphImageFormats: ?*DWRITE_GLYPH_IMAGE_FORMATS) callconv(.Inline) HRESULT {
         return self.vtable.GetGlyphImageFormats(self, glyphId, pixelsPerEmFirst, pixelsPerEmLast, glyphImageFormats);
     }
@@ -7290,22 +5640,10 @@ pub const IDWriteFactory4 = extern union {
     };
     vtable: *const VTable,
     IDWriteFactory3: IDWriteFactory3,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFactory3.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory4_TranslateColorGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, desiredGlyphImageFormats: DWRITE_GLYPH_IMAGE_FORMATS, measuringMode: DWRITE_MEASURING_MODE, worldAndDpiTransform: ?*const DWRITE_MATRIX, colorPaletteIndex: u32, colorLayers: ?*?*IDWriteColorGlyphRunEnumerator1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory4.VTable, @ptrCast(self.vtable)).TranslateColorGlyphRun(@as(*const IDWriteFactory4, @ptrCast(self)), baselineOrigin, glyphRun, glyphRunDescription, desiredGlyphImageFormats, measuringMode, worldAndDpiTransform, colorPaletteIndex, colorLayers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory4_ComputeGlyphOrigins(self: *const T, glyphRun: ?*const DWRITE_GLYPH_RUN, baselineOrigin: D2D_POINT_2F, glyphOrigins: ?*D2D_POINT_2F) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory4.VTable, @ptrCast(self.vtable)).ComputeGlyphOrigins(@as(*const IDWriteFactory4, @ptrCast(self)), glyphRun, baselineOrigin, glyphOrigins);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory4_ComputeGlyphOrigins1(self: *const T, glyphRun: ?*const DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, baselineOrigin: D2D_POINT_2F, worldAndDpiTransform: ?*const DWRITE_MATRIX, glyphOrigins: ?*D2D_POINT_2F) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory4.VTable, @ptrCast(self.vtable)).ComputeGlyphOrigins(@as(*const IDWriteFactory4, @ptrCast(self)), glyphRun, measuringMode, baselineOrigin, worldAndDpiTransform, glyphOrigins);
-        }
-    };}
-    pub usingnamespace IDWriteFactory3.MethodMixin(@This());
+    IDWriteFactory2: IDWriteFactory2,
+    IDWriteFactory1: IDWriteFactory1,
+    IDWriteFactory: IDWriteFactory,
+    IUnknown: IUnknown,
     pub fn TranslateColorGlyphRun(self: *const IDWriteFactory4, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, desiredGlyphImageFormats: DWRITE_GLYPH_IMAGE_FORMATS, measuringMode: DWRITE_MEASURING_MODE, worldAndDpiTransform: ?*const DWRITE_MATRIX, colorPaletteIndex: u32, colorLayers: ?*?*IDWriteColorGlyphRunEnumerator1) callconv(.Inline) HRESULT {
         return self.vtable.TranslateColorGlyphRun(self, baselineOrigin, glyphRun, glyphRunDescription, desiredGlyphImageFormats, measuringMode, worldAndDpiTransform, colorPaletteIndex, colorLayers);
     }
@@ -7329,14 +5667,7 @@ pub const IDWriteFontSetBuilder1 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontSetBuilder: IDWriteFontSetBuilder,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontSetBuilder.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSetBuilder1_AddFontFile(self: *const T, fontFile: ?*IDWriteFontFile) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSetBuilder1.VTable, @ptrCast(self.vtable)).AddFontFile(@as(*const IDWriteFontSetBuilder1, @ptrCast(self)), fontFile);
-        }
-    };}
-    pub usingnamespace IDWriteFontSetBuilder.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn AddFontFile(self: *const IDWriteFontSetBuilder1, fontFile: ?*IDWriteFontFile) callconv(.Inline) HRESULT {
         return self.vtable.AddFontFile(self, fontFile);
     }
@@ -7356,18 +5687,6 @@ pub const IDWriteAsyncResult = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteAsyncResult_GetWaitHandle(self: *const T) callconv(.Inline) ?HANDLE {
-            return @as(*const IDWriteAsyncResult.VTable, @ptrCast(self.vtable)).GetWaitHandle(@as(*const IDWriteAsyncResult, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteAsyncResult_GetResult(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteAsyncResult.VTable, @ptrCast(self.vtable)).GetResult(@as(*const IDWriteAsyncResult, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetWaitHandle(self: *const IDWriteAsyncResult) callconv(.Inline) ?HANDLE {
         return self.vtable.GetWaitHandle(self);
     }
@@ -7410,26 +5729,7 @@ pub const IDWriteRemoteFontFileStream = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFileStream: IDWriteFontFileStream,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFileStream.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRemoteFontFileStream_GetLocalFileSize(self: *const T, localFileSize: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteRemoteFontFileStream.VTable, @ptrCast(self.vtable)).GetLocalFileSize(@as(*const IDWriteRemoteFontFileStream, @ptrCast(self)), localFileSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRemoteFontFileStream_GetFileFragmentLocality(self: *const T, fileOffset: u64, fragmentSize: u64, isLocal: ?*BOOL, partialSize: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteRemoteFontFileStream.VTable, @ptrCast(self.vtable)).GetFileFragmentLocality(@as(*const IDWriteRemoteFontFileStream, @ptrCast(self)), fileOffset, fragmentSize, isLocal, partialSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRemoteFontFileStream_GetLocality(self: *const T) callconv(.Inline) DWRITE_LOCALITY {
-            return @as(*const IDWriteRemoteFontFileStream.VTable, @ptrCast(self.vtable)).GetLocality(@as(*const IDWriteRemoteFontFileStream, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRemoteFontFileStream_BeginDownload(self: *const T, downloadOperationID: ?*const Guid, fileFragments: [*]const DWRITE_FILE_FRAGMENT, fragmentCount: u32, asyncResult: ?*?*IDWriteAsyncResult) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteRemoteFontFileStream.VTable, @ptrCast(self.vtable)).BeginDownload(@as(*const IDWriteRemoteFontFileStream, @ptrCast(self)), downloadOperationID, fileFragments, fragmentCount, asyncResult);
-        }
-    };}
-    pub usingnamespace IDWriteFontFileStream.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetLocalFileSize(self: *const IDWriteRemoteFontFileStream, localFileSize: ?*u64) callconv(.Inline) HRESULT {
         return self.vtable.GetLocalFileSize(self, localFileSize);
     }
@@ -7482,22 +5782,7 @@ pub const IDWriteRemoteFontFileLoader = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFileLoader: IDWriteFontFileLoader,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFileLoader.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRemoteFontFileLoader_CreateRemoteStreamFromKey(self: *const T, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, fontFileStream: ?*?*IDWriteRemoteFontFileStream) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteRemoteFontFileLoader.VTable, @ptrCast(self.vtable)).CreateRemoteStreamFromKey(@as(*const IDWriteRemoteFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, fontFileStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRemoteFontFileLoader_GetLocalityFromKey(self: *const T, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, locality: ?*DWRITE_LOCALITY) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteRemoteFontFileLoader.VTable, @ptrCast(self.vtable)).GetLocalityFromKey(@as(*const IDWriteRemoteFontFileLoader, @ptrCast(self)), fontFileReferenceKey, fontFileReferenceKeySize, locality);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRemoteFontFileLoader_CreateFontFileReferenceFromUrl(self: *const T, factory: ?*IDWriteFactory, baseUrl: ?[*:0]const u16, fontFileUrl: ?[*:0]const u16, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteRemoteFontFileLoader.VTable, @ptrCast(self.vtable)).CreateFontFileReferenceFromUrl(@as(*const IDWriteRemoteFontFileLoader, @ptrCast(self)), factory, baseUrl, fontFileUrl, fontFile);
-        }
-    };}
-    pub usingnamespace IDWriteFontFileLoader.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateRemoteStreamFromKey(self: *const IDWriteRemoteFontFileLoader, fontFileReferenceKey: ?*const anyopaque, fontFileReferenceKeySize: u32, fontFileStream: ?*?*IDWriteRemoteFontFileStream) callconv(.Inline) HRESULT {
         return self.vtable.CreateRemoteStreamFromKey(self, fontFileReferenceKey, fontFileReferenceKeySize, fontFileStream);
     }
@@ -7529,18 +5814,7 @@ pub const IDWriteInMemoryFontFileLoader = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFileLoader: IDWriteFontFileLoader,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFileLoader.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteInMemoryFontFileLoader_CreateInMemoryFontFileReference(self: *const T, factory: ?*IDWriteFactory, fontData: ?*const anyopaque, fontDataSize: u32, ownerObject: ?*IUnknown, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteInMemoryFontFileLoader.VTable, @ptrCast(self.vtable)).CreateInMemoryFontFileReference(@as(*const IDWriteInMemoryFontFileLoader, @ptrCast(self)), factory, fontData, fontDataSize, ownerObject, fontFile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteInMemoryFontFileLoader_GetFileCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteInMemoryFontFileLoader.VTable, @ptrCast(self.vtable)).GetFileCount(@as(*const IDWriteInMemoryFontFileLoader, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDWriteFontFileLoader.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateInMemoryFontFileReference(self: *const IDWriteInMemoryFontFileLoader, factory: ?*IDWriteFactory, fontData: ?*const anyopaque, fontDataSize: u32, ownerObject: ?*IUnknown, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
         return self.vtable.CreateInMemoryFontFileReference(self, factory, fontData, fontDataSize, ownerObject, fontFile);
     }
@@ -7585,30 +5859,11 @@ pub const IDWriteFactory5 = extern union {
     };
     vtable: *const VTable,
     IDWriteFactory4: IDWriteFactory4,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFactory4.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory5_CreateFontSetBuilder(self: *const T, fontSetBuilder: ?*?*IDWriteFontSetBuilder1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory5.VTable, @ptrCast(self.vtable)).CreateFontSetBuilder(@as(*const IDWriteFactory5, @ptrCast(self)), fontSetBuilder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory5_CreateInMemoryFontFileLoader(self: *const T, newLoader: ?*?*IDWriteInMemoryFontFileLoader) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory5.VTable, @ptrCast(self.vtable)).CreateInMemoryFontFileLoader(@as(*const IDWriteFactory5, @ptrCast(self)), newLoader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory5_CreateHttpFontFileLoader(self: *const T, referrerUrl: ?[*:0]const u16, extraHeaders: ?[*:0]const u16, newLoader: ?*?*IDWriteRemoteFontFileLoader) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory5.VTable, @ptrCast(self.vtable)).CreateHttpFontFileLoader(@as(*const IDWriteFactory5, @ptrCast(self)), referrerUrl, extraHeaders, newLoader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory5_AnalyzeContainerType(self: *const T, fileData: ?*const anyopaque, fileDataSize: u32) callconv(.Inline) DWRITE_CONTAINER_TYPE {
-            return @as(*const IDWriteFactory5.VTable, @ptrCast(self.vtable)).AnalyzeContainerType(@as(*const IDWriteFactory5, @ptrCast(self)), fileData, fileDataSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory5_UnpackFontFile(self: *const T, containerType: DWRITE_CONTAINER_TYPE, fileData: ?*const anyopaque, fileDataSize: u32, unpackedFontStream: ?*?*IDWriteFontFileStream) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory5.VTable, @ptrCast(self.vtable)).UnpackFontFile(@as(*const IDWriteFactory5, @ptrCast(self)), containerType, fileData, fileDataSize, unpackedFontStream);
-        }
-    };}
-    pub usingnamespace IDWriteFactory4.MethodMixin(@This());
+    IDWriteFactory3: IDWriteFactory3,
+    IDWriteFactory2: IDWriteFactory2,
+    IDWriteFactory1: IDWriteFactory1,
+    IDWriteFactory: IDWriteFactory,
+    IUnknown: IUnknown,
     pub fn CreateFontSetBuilder(self: *const IDWriteFactory5, fontSetBuilder: ?*?*IDWriteFontSetBuilder1) callconv(.Inline) HRESULT {
         return self.vtable.CreateFontSetBuilder(self, fontSetBuilder);
     }
@@ -7773,38 +6028,12 @@ pub const IDWriteFactory6 = extern union {
     };
     vtable: *const VTable,
     IDWriteFactory5: IDWriteFactory5,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFactory5.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory6_CreateFontFaceReference(self: *const T, fontFile: ?*IDWriteFontFile, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFaceReference: ?*?*IDWriteFontFaceReference1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).CreateFontFaceReference(@as(*const IDWriteFactory6, @ptrCast(self)), fontFile, faceIndex, fontSimulations, fontAxisValues, fontAxisValueCount, fontFaceReference);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory6_CreateFontResource(self: *const T, fontFile: ?*IDWriteFontFile, faceIndex: u32, fontResource: ?*?*IDWriteFontResource) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).CreateFontResource(@as(*const IDWriteFactory6, @ptrCast(self)), fontFile, faceIndex, fontResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory6_GetSystemFontSet(self: *const T, includeDownloadableFonts: BOOL, fontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).GetSystemFontSet(@as(*const IDWriteFactory6, @ptrCast(self)), includeDownloadableFonts, fontSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory6_GetSystemFontCollection(self: *const T, includeDownloadableFonts: BOOL, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, fontCollection: ?*?*IDWriteFontCollection2) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).GetSystemFontCollection(@as(*const IDWriteFactory6, @ptrCast(self)), includeDownloadableFonts, fontFamilyModel, fontCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory6_CreateFontCollectionFromFontSet(self: *const T, fontSet: ?*IDWriteFontSet, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, fontCollection: ?*?*IDWriteFontCollection2) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).CreateFontCollectionFromFontSet(@as(*const IDWriteFactory6, @ptrCast(self)), fontSet, fontFamilyModel, fontCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory6_CreateFontSetBuilder(self: *const T, fontSetBuilder: ?*?*IDWriteFontSetBuilder2) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).CreateFontSetBuilder(@as(*const IDWriteFactory6, @ptrCast(self)), fontSetBuilder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory6_CreateTextFormat(self: *const T, fontFamilyName: ?[*:0]const u16, fontCollection: ?*IDWriteFontCollection, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontSize: f32, localeName: ?[*:0]const u16, textFormat: ?*?*IDWriteTextFormat3) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory6.VTable, @ptrCast(self.vtable)).CreateTextFormat(@as(*const IDWriteFactory6, @ptrCast(self)), fontFamilyName, fontCollection, fontAxisValues, fontAxisValueCount, fontSize, localeName, textFormat);
-        }
-    };}
-    pub usingnamespace IDWriteFactory5.MethodMixin(@This());
+    IDWriteFactory4: IDWriteFactory4,
+    IDWriteFactory3: IDWriteFactory3,
+    IDWriteFactory2: IDWriteFactory2,
+    IDWriteFactory1: IDWriteFactory1,
+    IDWriteFactory: IDWriteFactory,
+    IUnknown: IUnknown,
     pub fn CreateFontFaceReference(self: *const IDWriteFactory6, fontFile: ?*IDWriteFontFile, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFaceReference: ?*?*IDWriteFontFaceReference1) callconv(.Inline) HRESULT {
         return self.vtable.CreateFontFaceReference(self, fontFile, faceIndex, fontSimulations, fontAxisValues, fontAxisValueCount, fontFaceReference);
     }
@@ -7855,30 +6084,11 @@ pub const IDWriteFontFace5 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFace4: IDWriteFontFace4,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFace4.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace5_GetFontAxisValueCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontFace5.VTable, @ptrCast(self.vtable)).GetFontAxisValueCount(@as(*const IDWriteFontFace5, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace5_GetFontAxisValues(self: *const T, fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace5.VTable, @ptrCast(self.vtable)).GetFontAxisValues(@as(*const IDWriteFontFace5, @ptrCast(self)), fontAxisValues, fontAxisValueCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace5_HasVariations(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontFace5.VTable, @ptrCast(self.vtable)).HasVariations(@as(*const IDWriteFontFace5, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace5_GetFontResource(self: *const T, fontResource: ?*?*IDWriteFontResource) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace5.VTable, @ptrCast(self.vtable)).GetFontResource(@as(*const IDWriteFontFace5, @ptrCast(self)), fontResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace5_Equals(self: *const T, fontFace: ?*IDWriteFontFace) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontFace5.VTable, @ptrCast(self.vtable)).Equals(@as(*const IDWriteFontFace5, @ptrCast(self)), fontFace);
-        }
-    };}
-    pub usingnamespace IDWriteFontFace4.MethodMixin(@This());
+    IDWriteFontFace3: IDWriteFontFace3,
+    IDWriteFontFace2: IDWriteFontFace2,
+    IDWriteFontFace1: IDWriteFontFace1,
+    IDWriteFontFace: IDWriteFontFace,
+    IUnknown: IUnknown,
     pub fn GetFontAxisValueCount(self: *const IDWriteFontFace5) callconv(.Inline) u32 {
         return self.vtable.GetFontAxisValueCount(self);
     }
@@ -7961,58 +6171,6 @@ pub const IDWriteFontResource = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontResource_GetFontFile(self: *const T, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetFontFile(@as(*const IDWriteFontResource, @ptrCast(self)), fontFile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontResource_GetFontFaceIndex(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetFontFaceIndex(@as(*const IDWriteFontResource, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontResource_GetFontAxisCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetFontAxisCount(@as(*const IDWriteFontResource, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontResource_GetDefaultFontAxisValues(self: *const T, fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetDefaultFontAxisValues(@as(*const IDWriteFontResource, @ptrCast(self)), fontAxisValues, fontAxisValueCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontResource_GetFontAxisRanges(self: *const T, fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetFontAxisRanges(@as(*const IDWriteFontResource, @ptrCast(self)), fontAxisRanges, fontAxisRangeCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontResource_GetFontAxisAttributes(self: *const T, axisIndex: u32) callconv(.Inline) DWRITE_FONT_AXIS_ATTRIBUTES {
-            return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetFontAxisAttributes(@as(*const IDWriteFontResource, @ptrCast(self)), axisIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontResource_GetAxisNames(self: *const T, axisIndex: u32, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetAxisNames(@as(*const IDWriteFontResource, @ptrCast(self)), axisIndex, names);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontResource_GetAxisValueNameCount(self: *const T, axisIndex: u32) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetAxisValueNameCount(@as(*const IDWriteFontResource, @ptrCast(self)), axisIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontResource_GetAxisValueNames(self: *const T, axisIndex: u32, axisValueIndex: u32, fontAxisRange: ?*DWRITE_FONT_AXIS_RANGE, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).GetAxisValueNames(@as(*const IDWriteFontResource, @ptrCast(self)), axisIndex, axisValueIndex, fontAxisRange, names);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontResource_HasVariations(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).HasVariations(@as(*const IDWriteFontResource, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontResource_CreateFontFace(self: *const T, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFace: ?*?*IDWriteFontFace5) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFontResource, @ptrCast(self)), fontSimulations, fontAxisValues, fontAxisValueCount, fontFace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontResource_CreateFontFaceReference(self: *const T, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFaceReference: ?*?*IDWriteFontFaceReference1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontResource.VTable, @ptrCast(self.vtable)).CreateFontFaceReference(@as(*const IDWriteFontResource, @ptrCast(self)), fontSimulations, fontAxisValues, fontAxisValueCount, fontFaceReference);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFontFile(self: *const IDWriteFontResource, fontFile: ?*?*IDWriteFontFile) callconv(.Inline) HRESULT {
         return self.vtable.GetFontFile(self, fontFile);
     }
@@ -8071,22 +6229,7 @@ pub const IDWriteFontFaceReference1 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFaceReference: IDWriteFontFaceReference,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFaceReference.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference1_CreateFontFace(self: *const T, fontFace: ?*?*IDWriteFontFace5) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFaceReference1.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFontFaceReference1, @ptrCast(self)), fontFace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference1_GetFontAxisValueCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontFaceReference1.VTable, @ptrCast(self.vtable)).GetFontAxisValueCount(@as(*const IDWriteFontFaceReference1, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFaceReference1_GetFontAxisValues(self: *const T, fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFaceReference1.VTable, @ptrCast(self.vtable)).GetFontAxisValues(@as(*const IDWriteFontFaceReference1, @ptrCast(self)), fontAxisValues, fontAxisValueCount);
-        }
-    };}
-    pub usingnamespace IDWriteFontFaceReference.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateFontFace(self: *const IDWriteFontFaceReference1, fontFace: ?*?*IDWriteFontFace5) callconv(.Inline) HRESULT {
         return self.vtable.CreateFontFace(self, fontFace);
     }
@@ -8122,18 +6265,8 @@ pub const IDWriteFontSetBuilder2 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontSetBuilder1: IDWriteFontSetBuilder1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontSetBuilder1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSetBuilder2_AddFont(self: *const T, fontFile: ?*IDWriteFontFile, fontFaceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, properties: [*]const DWRITE_FONT_PROPERTY, propertyCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSetBuilder2.VTable, @ptrCast(self.vtable)).AddFont(@as(*const IDWriteFontSetBuilder2, @ptrCast(self)), fontFile, fontFaceIndex, fontSimulations, fontAxisValues, fontAxisValueCount, fontAxisRanges, fontAxisRangeCount, properties, propertyCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSetBuilder2_AddFontFile(self: *const T, filePath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSetBuilder2.VTable, @ptrCast(self.vtable)).AddFontFile(@as(*const IDWriteFontSetBuilder2, @ptrCast(self)), filePath);
-        }
-    };}
-    pub usingnamespace IDWriteFontSetBuilder1.MethodMixin(@This());
+    IDWriteFontSetBuilder: IDWriteFontSetBuilder,
+    IUnknown: IUnknown,
     pub fn AddFont(self: *const IDWriteFontSetBuilder2, fontFile: ?*IDWriteFontFile, fontFaceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, properties: [*]const DWRITE_FONT_PROPERTY, propertyCount: u32) callconv(.Inline) HRESULT {
         return self.vtable.AddFont(self, fontFile, fontFaceIndex, fontSimulations, fontAxisValues, fontAxisValueCount, fontAxisRanges, fontAxisRangeCount, properties, propertyCount);
     }
@@ -8231,62 +6364,7 @@ pub const IDWriteFontSet1 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontSet: IDWriteFontSet,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontSet.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_GetMatchingFonts(self: *const T, fontProperty: ?*const DWRITE_FONT_PROPERTY, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, matchingFonts: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontSet1, @ptrCast(self)), fontProperty, fontAxisValues, fontAxisValueCount, matchingFonts);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_GetFirstFontResources(self: *const T, filteredFontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFirstFontResources(@as(*const IDWriteFontSet1, @ptrCast(self)), filteredFontSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_GetFilteredFonts(self: *const T, indices: [*]const u32, indexCount: u32, filteredFontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFilteredFonts(@as(*const IDWriteFontSet1, @ptrCast(self)), indices, indexCount, filteredFontSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_GetFilteredFonts1(self: *const T, fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, selectAnyRange: BOOL, filteredFontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFilteredFonts(@as(*const IDWriteFontSet1, @ptrCast(self)), fontAxisRanges, fontAxisRangeCount, selectAnyRange, filteredFontSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_GetFilteredFonts2(self: *const T, properties: ?[*]const DWRITE_FONT_PROPERTY, propertyCount: u32, selectAnyProperty: BOOL, filteredFontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFilteredFonts(@as(*const IDWriteFontSet1, @ptrCast(self)), properties, propertyCount, selectAnyProperty, filteredFontSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_GetFilteredFontIndices(self: *const T, fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, selectAnyRange: BOOL, indices: [*]u32, maxIndexCount: u32, actualIndexCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFilteredFontIndices(@as(*const IDWriteFontSet1, @ptrCast(self)), fontAxisRanges, fontAxisRangeCount, selectAnyRange, indices, maxIndexCount, actualIndexCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_GetFilteredFontIndices1(self: *const T, properties: [*]const DWRITE_FONT_PROPERTY, propertyCount: u32, selectAnyProperty: BOOL, indices: [*]u32, maxIndexCount: u32, actualIndexCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFilteredFontIndices(@as(*const IDWriteFontSet1, @ptrCast(self)), properties, propertyCount, selectAnyProperty, indices, maxIndexCount, actualIndexCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_GetFontAxisRanges(self: *const T, listIndex: u32, fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE, maxFontAxisRangeCount: u32, actualFontAxisRangeCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFontAxisRanges(@as(*const IDWriteFontSet1, @ptrCast(self)), listIndex, fontAxisRanges, maxFontAxisRangeCount, actualFontAxisRangeCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_GetFontAxisRanges1(self: *const T, fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE, maxFontAxisRangeCount: u32, actualFontAxisRangeCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFontAxisRanges(@as(*const IDWriteFontSet1, @ptrCast(self)), fontAxisRanges, maxFontAxisRangeCount, actualFontAxisRangeCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_GetFontFaceReference(self: *const T, listIndex: u32, fontFaceReference: ?*?*IDWriteFontFaceReference1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFontFaceReference(@as(*const IDWriteFontSet1, @ptrCast(self)), listIndex, fontFaceReference);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_CreateFontResource(self: *const T, listIndex: u32, fontResource: ?*?*IDWriteFontResource) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).CreateFontResource(@as(*const IDWriteFontSet1, @ptrCast(self)), listIndex, fontResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_CreateFontFace(self: *const T, listIndex: u32, fontFace: ?*?*IDWriteFontFace5) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).CreateFontFace(@as(*const IDWriteFontSet1, @ptrCast(self)), listIndex, fontFace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet1_GetFontLocality(self: *const T, listIndex: u32) callconv(.Inline) DWRITE_LOCALITY {
-            return @as(*const IDWriteFontSet1.VTable, @ptrCast(self.vtable)).GetFontLocality(@as(*const IDWriteFontSet1, @ptrCast(self)), listIndex);
-        }
-    };}
-    pub usingnamespace IDWriteFontSet.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetMatchingFonts(self: *const IDWriteFontSet1, fontProperty: ?*const DWRITE_FONT_PROPERTY, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, matchingFonts: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
         return self.vtable.GetMatchingFonts(self, fontProperty, fontAxisValues, fontAxisValueCount, matchingFonts);
     }
@@ -8340,14 +6418,8 @@ pub const IDWriteFontList2 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontList1: IDWriteFontList1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontList1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontList2_GetFontSet(self: *const T, fontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontList2.VTable, @ptrCast(self.vtable)).GetFontSet(@as(*const IDWriteFontList2, @ptrCast(self)), fontSet);
-        }
-    };}
-    pub usingnamespace IDWriteFontList1.MethodMixin(@This());
+    IDWriteFontList: IDWriteFontList,
+    IUnknown: IUnknown,
     pub fn GetFontSet(self: *const IDWriteFontList2, fontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
         return self.vtable.GetFontSet(self, fontSet);
     }
@@ -8371,18 +6443,9 @@ pub const IDWriteFontFamily2 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFamily1: IDWriteFontFamily1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFamily1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFamily2_GetMatchingFonts(self: *const T, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, matchingFonts: ?*?*IDWriteFontList2) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFamily2.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontFamily2, @ptrCast(self)), fontAxisValues, fontAxisValueCount, matchingFonts);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFamily2_GetFontSet(self: *const T, fontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFamily2.VTable, @ptrCast(self.vtable)).GetFontSet(@as(*const IDWriteFontFamily2, @ptrCast(self)), fontSet);
-        }
-    };}
-    pub usingnamespace IDWriteFontFamily1.MethodMixin(@This());
+    IDWriteFontFamily: IDWriteFontFamily,
+    IDWriteFontList: IDWriteFontList,
+    IUnknown: IUnknown,
     pub fn GetMatchingFonts(self: *const IDWriteFontFamily2, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, matchingFonts: ?*?*IDWriteFontList2) callconv(.Inline) HRESULT {
         return self.vtable.GetMatchingFonts(self, fontAxisValues, fontAxisValueCount, matchingFonts);
     }
@@ -8418,26 +6481,8 @@ pub const IDWriteFontCollection2 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontCollection1: IDWriteFontCollection1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontCollection1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollection2_GetFontFamily(self: *const T, index: u32, fontFamily: ?*?*IDWriteFontFamily2) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontCollection2.VTable, @ptrCast(self.vtable)).GetFontFamily(@as(*const IDWriteFontCollection2, @ptrCast(self)), index, fontFamily);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollection2_GetMatchingFonts(self: *const T, familyName: ?[*:0]const u16, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontList: ?*?*IDWriteFontList2) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontCollection2.VTable, @ptrCast(self.vtable)).GetMatchingFonts(@as(*const IDWriteFontCollection2, @ptrCast(self)), familyName, fontAxisValues, fontAxisValueCount, fontList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollection2_GetFontFamilyModel(self: *const T) callconv(.Inline) DWRITE_FONT_FAMILY_MODEL {
-            return @as(*const IDWriteFontCollection2.VTable, @ptrCast(self.vtable)).GetFontFamilyModel(@as(*const IDWriteFontCollection2, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollection2_GetFontSet(self: *const T, fontSet: ?*?*IDWriteFontSet1) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontCollection2.VTable, @ptrCast(self.vtable)).GetFontSet(@as(*const IDWriteFontCollection2, @ptrCast(self)), fontSet);
-        }
-    };}
-    pub usingnamespace IDWriteFontCollection1.MethodMixin(@This());
+    IDWriteFontCollection: IDWriteFontCollection,
+    IUnknown: IUnknown,
     pub fn GetFontFamily(self: *const IDWriteFontCollection2, index: u32, fontFamily: ?*?*IDWriteFontFamily2) callconv(.Inline) HRESULT {
         return self.vtable.GetFontFamily(self, index, fontFamily);
     }
@@ -8484,30 +6529,11 @@ pub const IDWriteTextLayout4 = extern union {
     };
     vtable: *const VTable,
     IDWriteTextLayout3: IDWriteTextLayout3,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextLayout3.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout4_SetFontAxisValues(self: *const T, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout4.VTable, @ptrCast(self.vtable)).SetFontAxisValues(@as(*const IDWriteTextLayout4, @ptrCast(self)), fontAxisValues, fontAxisValueCount, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout4_GetFontAxisValueCount(self: *const T, currentPosition: u32) callconv(.Inline) u32 {
-            return @as(*const IDWriteTextLayout4.VTable, @ptrCast(self.vtable)).GetFontAxisValueCount(@as(*const IDWriteTextLayout4, @ptrCast(self)), currentPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout4_GetFontAxisValues(self: *const T, currentPosition: u32, fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, textRange: ?*DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout4.VTable, @ptrCast(self.vtable)).GetFontAxisValues(@as(*const IDWriteTextLayout4, @ptrCast(self)), currentPosition, fontAxisValues, fontAxisValueCount, textRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout4_GetAutomaticFontAxes(self: *const T) callconv(.Inline) DWRITE_AUTOMATIC_FONT_AXES {
-            return @as(*const IDWriteTextLayout4.VTable, @ptrCast(self.vtable)).GetAutomaticFontAxes(@as(*const IDWriteTextLayout4, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextLayout4_SetAutomaticFontAxes(self: *const T, automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextLayout4.VTable, @ptrCast(self.vtable)).SetAutomaticFontAxes(@as(*const IDWriteTextLayout4, @ptrCast(self)), automaticFontAxes);
-        }
-    };}
-    pub usingnamespace IDWriteTextLayout3.MethodMixin(@This());
+    IDWriteTextLayout2: IDWriteTextLayout2,
+    IDWriteTextLayout1: IDWriteTextLayout1,
+    IDWriteTextLayout: IDWriteTextLayout,
+    IDWriteTextFormat: IDWriteTextFormat,
+    IUnknown: IUnknown,
     pub fn SetFontAxisValues(self: *const IDWriteTextLayout4, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, textRange: DWRITE_TEXT_RANGE) callconv(.Inline) HRESULT {
         return self.vtable.SetFontAxisValues(self, fontAxisValues, fontAxisValueCount, textRange);
     }
@@ -8553,30 +6579,9 @@ pub const IDWriteTextFormat3 = extern union {
     };
     vtable: *const VTable,
     IDWriteTextFormat2: IDWriteTextFormat2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteTextFormat2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat3_SetFontAxisValues(self: *const T, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat3.VTable, @ptrCast(self.vtable)).SetFontAxisValues(@as(*const IDWriteTextFormat3, @ptrCast(self)), fontAxisValues, fontAxisValueCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat3_GetFontAxisValueCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const IDWriteTextFormat3.VTable, @ptrCast(self.vtable)).GetFontAxisValueCount(@as(*const IDWriteTextFormat3, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat3_GetFontAxisValues(self: *const T, fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat3.VTable, @ptrCast(self.vtable)).GetFontAxisValues(@as(*const IDWriteTextFormat3, @ptrCast(self)), fontAxisValues, fontAxisValueCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat3_GetAutomaticFontAxes(self: *const T) callconv(.Inline) DWRITE_AUTOMATIC_FONT_AXES {
-            return @as(*const IDWriteTextFormat3.VTable, @ptrCast(self.vtable)).GetAutomaticFontAxes(@as(*const IDWriteTextFormat3, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteTextFormat3_SetAutomaticFontAxes(self: *const T, automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteTextFormat3.VTable, @ptrCast(self.vtable)).SetAutomaticFontAxes(@as(*const IDWriteTextFormat3, @ptrCast(self)), automaticFontAxes);
-        }
-    };}
-    pub usingnamespace IDWriteTextFormat2.MethodMixin(@This());
+    IDWriteTextFormat1: IDWriteTextFormat1,
+    IDWriteTextFormat: IDWriteTextFormat,
+    IUnknown: IUnknown,
     pub fn SetFontAxisValues(self: *const IDWriteTextFormat3, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) callconv(.Inline) HRESULT {
         return self.vtable.SetFontAxisValues(self, fontAxisValues, fontAxisValueCount);
     }
@@ -8615,14 +6620,7 @@ pub const IDWriteFontFallback1 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFallback: IDWriteFontFallback,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFallback.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFallback1_MapCharacters(self: *const T, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, baseFontCollection: ?*IDWriteFontCollection, baseFamilyName: ?[*:0]const u16, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, mappedLength: ?*u32, scale: ?*f32, mappedFontFace: ?*?*IDWriteFontFace5) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFallback1.VTable, @ptrCast(self.vtable)).MapCharacters(@as(*const IDWriteFontFallback1, @ptrCast(self)), analysisSource, textPosition, textLength, baseFontCollection, baseFamilyName, fontAxisValues, fontAxisValueCount, mappedLength, scale, mappedFontFace);
-        }
-    };}
-    pub usingnamespace IDWriteFontFallback.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn MapCharacters(self: *const IDWriteFontFallback1, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, baseFontCollection: ?*IDWriteFontCollection, baseFamilyName: ?[*:0]const u16, fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, mappedLength: ?*u32, scale: ?*f32, mappedFontFace: ?*?*IDWriteFontFace5) callconv(.Inline) HRESULT {
         return self.vtable.MapCharacters(self, analysisSource, textPosition, textLength, baseFontCollection, baseFamilyName, fontAxisValues, fontAxisValueCount, mappedLength, scale, mappedFontFace);
     }
@@ -8639,14 +6637,8 @@ pub const IDWriteFontSet2 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontSet1: IDWriteFontSet1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontSet1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet2_GetExpirationEvent(self: *const T) callconv(.Inline) ?HANDLE {
-            return @as(*const IDWriteFontSet2.VTable, @ptrCast(self.vtable)).GetExpirationEvent(@as(*const IDWriteFontSet2, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDWriteFontSet1.MethodMixin(@This());
+    IDWriteFontSet: IDWriteFontSet,
+    IUnknown: IUnknown,
     pub fn GetExpirationEvent(self: *const IDWriteFontSet2) callconv(.Inline) ?HANDLE {
         return self.vtable.GetExpirationEvent(self);
     }
@@ -8663,14 +6655,9 @@ pub const IDWriteFontCollection3 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontCollection2: IDWriteFontCollection2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontCollection2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollection3_GetExpirationEvent(self: *const T) callconv(.Inline) ?HANDLE {
-            return @as(*const IDWriteFontCollection3.VTable, @ptrCast(self.vtable)).GetExpirationEvent(@as(*const IDWriteFontCollection3, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDWriteFontCollection2.MethodMixin(@This());
+    IDWriteFontCollection1: IDWriteFontCollection1,
+    IDWriteFontCollection: IDWriteFontCollection,
+    IUnknown: IUnknown,
     pub fn GetExpirationEvent(self: *const IDWriteFontCollection3) callconv(.Inline) ?HANDLE {
         return self.vtable.GetExpirationEvent(self);
     }
@@ -8695,18 +6682,13 @@ pub const IDWriteFactory7 = extern union {
     };
     vtable: *const VTable,
     IDWriteFactory6: IDWriteFactory6,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFactory6.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory7_GetSystemFontSet(self: *const T, includeDownloadableFonts: BOOL, fontSet: ?*?*IDWriteFontSet2) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory7.VTable, @ptrCast(self.vtable)).GetSystemFontSet(@as(*const IDWriteFactory7, @ptrCast(self)), includeDownloadableFonts, fontSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory7_GetSystemFontCollection(self: *const T, includeDownloadableFonts: BOOL, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, fontCollection: ?*?*IDWriteFontCollection3) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFactory7.VTable, @ptrCast(self.vtable)).GetSystemFontCollection(@as(*const IDWriteFactory7, @ptrCast(self)), includeDownloadableFonts, fontFamilyModel, fontCollection);
-        }
-    };}
-    pub usingnamespace IDWriteFactory6.MethodMixin(@This());
+    IDWriteFactory5: IDWriteFactory5,
+    IDWriteFactory4: IDWriteFactory4,
+    IDWriteFactory3: IDWriteFactory3,
+    IDWriteFactory2: IDWriteFactory2,
+    IDWriteFactory1: IDWriteFactory1,
+    IDWriteFactory: IDWriteFactory,
+    IUnknown: IUnknown,
     pub fn GetSystemFontSet(self: *const IDWriteFactory7, includeDownloadableFonts: BOOL, fontSet: ?*?*IDWriteFontSet2) callconv(.Inline) HRESULT {
         return self.vtable.GetSystemFontSet(self, includeDownloadableFonts, fontSet);
     }
@@ -8750,22 +6732,9 @@ pub const IDWriteFontSet3 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontSet2: IDWriteFontSet2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontSet2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet3_GetFontSourceType(self: *const T, fontIndex: u32) callconv(.Inline) DWRITE_FONT_SOURCE_TYPE {
-            return @as(*const IDWriteFontSet3.VTable, @ptrCast(self.vtable)).GetFontSourceType(@as(*const IDWriteFontSet3, @ptrCast(self)), fontIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet3_GetFontSourceNameLength(self: *const T, listIndex: u32) callconv(.Inline) u32 {
-            return @as(*const IDWriteFontSet3.VTable, @ptrCast(self.vtable)).GetFontSourceNameLength(@as(*const IDWriteFontSet3, @ptrCast(self)), listIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontSet3_GetFontSourceName(self: *const T, listIndex: u32, stringBuffer: [*:0]u16, stringBufferSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontSet3.VTable, @ptrCast(self.vtable)).GetFontSourceName(@as(*const IDWriteFontSet3, @ptrCast(self)), listIndex, stringBuffer, stringBufferSize);
-        }
-    };}
-    pub usingnamespace IDWriteFontSet2.MethodMixin(@This());
+    IDWriteFontSet1: IDWriteFontSet1,
+    IDWriteFontSet: IDWriteFontSet,
+    IUnknown: IUnknown,
     pub fn GetFontSourceType(self: *const IDWriteFontSet3, fontIndex: u32) callconv(.Inline) DWRITE_FONT_SOURCE_TYPE {
         return self.vtable.GetFontSourceType(self, fontIndex);
     }
@@ -8795,18 +6764,12 @@ pub const IDWriteFontFace6 = extern union {
     };
     vtable: *const VTable,
     IDWriteFontFace5: IDWriteFontFace5,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDWriteFontFace5.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace6_GetFamilyNames(self: *const T, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace6.VTable, @ptrCast(self.vtable)).GetFamilyNames(@as(*const IDWriteFontFace6, @ptrCast(self)), fontFamilyModel, names);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace6_GetFaceNames(self: *const T, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
-            return @as(*const IDWriteFontFace6.VTable, @ptrCast(self.vtable)).GetFaceNames(@as(*const IDWriteFontFace6, @ptrCast(self)), fontFamilyModel, names);
-        }
-    };}
-    pub usingnamespace IDWriteFontFace5.MethodMixin(@This());
+    IDWriteFontFace4: IDWriteFontFace4,
+    IDWriteFontFace3: IDWriteFontFace3,
+    IDWriteFontFace2: IDWriteFontFace2,
+    IDWriteFontFace1: IDWriteFontFace1,
+    IDWriteFontFace: IDWriteFontFace,
+    IUnknown: IUnknown,
     pub fn GetFamilyNames(self: *const IDWriteFontFace6, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, names: ?*?*IDWriteLocalizedStrings) callconv(.Inline) HRESULT {
         return self.vtable.GetFamilyNames(self, fontFamilyModel, names);
     }

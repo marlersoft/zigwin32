@@ -859,26 +859,6 @@ pub const ID3D12Object = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Object_GetPrivateData(self: *const T, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Object.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const ID3D12Object, @ptrCast(self)), guid, pDataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Object_SetPrivateData(self: *const T, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Object.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const ID3D12Object, @ptrCast(self)), guid, DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Object_SetPrivateDataInterface(self: *const T, guid: ?*const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Object.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const ID3D12Object, @ptrCast(self)), guid, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Object_SetName(self: *const T, Name: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Object.VTable, @ptrCast(self.vtable)).SetName(@as(*const ID3D12Object, @ptrCast(self)), Name);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPrivateData(self: *const ID3D12Object, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPrivateData(self, guid, pDataSize, pData);
     }
@@ -907,14 +887,7 @@ pub const ID3D12DeviceChild = extern union {
     };
     vtable: *const VTable,
     ID3D12Object: ID3D12Object,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Object.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DeviceChild_GetDevice(self: *const T, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DeviceChild.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const ID3D12DeviceChild, @ptrCast(self)), riid, ppvDevice);
-        }
-    };}
-    pub usingnamespace ID3D12Object.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetDevice(self: *const ID3D12DeviceChild, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetDevice(self, riid, ppvDevice);
     }
@@ -929,10 +902,8 @@ pub const ID3D12RootSignature = extern union {
     };
     vtable: *const VTable,
     ID3D12DeviceChild: ID3D12DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-    };}
-    pub usingnamespace ID3D12DeviceChild.MethodMixin(@This());
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
 };
 
 pub const D3D12_SHADER_BYTECODE = extern struct {
@@ -3403,14 +3374,6 @@ pub const ID3D12RootSignatureDeserializer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12RootSignatureDeserializer_GetRootSignatureDesc(self: *const T) callconv(.Inline) ?*D3D12_ROOT_SIGNATURE_DESC {
-            return @as(*const ID3D12RootSignatureDeserializer.VTable, @ptrCast(self.vtable)).GetRootSignatureDesc(@as(*const ID3D12RootSignatureDeserializer, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRootSignatureDesc(self: *const ID3D12RootSignatureDeserializer) callconv(.Inline) ?*D3D12_ROOT_SIGNATURE_DESC {
         return self.vtable.GetRootSignatureDesc(self);
     }
@@ -3433,18 +3396,6 @@ pub const ID3D12VersionedRootSignatureDeserializer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12VersionedRootSignatureDeserializer_GetRootSignatureDescAtVersion(self: *const T, convertToVersion: D3D_ROOT_SIGNATURE_VERSION, ppDesc: ?*const ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12VersionedRootSignatureDeserializer.VTable, @ptrCast(self.vtable)).GetRootSignatureDescAtVersion(@as(*const ID3D12VersionedRootSignatureDeserializer, @ptrCast(self)), convertToVersion, ppDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12VersionedRootSignatureDeserializer_GetUnconvertedRootSignatureDesc(self: *const T) callconv(.Inline) ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC {
-            return @as(*const ID3D12VersionedRootSignatureDeserializer.VTable, @ptrCast(self.vtable)).GetUnconvertedRootSignatureDesc(@as(*const ID3D12VersionedRootSignatureDeserializer, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRootSignatureDescAtVersion(self: *const ID3D12VersionedRootSignatureDeserializer, convertToVersion: D3D_ROOT_SIGNATURE_VERSION, ppDesc: ?*const ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetRootSignatureDescAtVersion(self, convertToVersion, ppDesc);
     }
@@ -3689,10 +3640,8 @@ pub const ID3D12Pageable = extern union {
     };
     vtable: *const VTable,
     ID3D12DeviceChild: ID3D12DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-    };}
-    pub usingnamespace ID3D12DeviceChild.MethodMixin(@This());
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
 };
 
 // This COM type is Agile, not sure what that means
@@ -3707,14 +3656,9 @@ pub const ID3D12Heap = extern union {
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Pageable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Heap_GetDesc(self: *const T) callconv(.Inline) D3D12_HEAP_DESC {
-            return @as(*const ID3D12Heap.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12Heap, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12Pageable.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetDesc(self: *const ID3D12Heap) callconv(.Inline) D3D12_HEAP_DESC {
         return self.vtable.GetDesc(self);
     }
@@ -3767,38 +3711,9 @@ pub const ID3D12Resource = extern union {
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Pageable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Resource_Map(self: *const T, Subresource: u32, pReadRange: ?*const D3D12_RANGE, ppData: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).Map(@as(*const ID3D12Resource, @ptrCast(self)), Subresource, pReadRange, ppData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Resource_Unmap(self: *const T, Subresource: u32, pWrittenRange: ?*const D3D12_RANGE) callconv(.Inline) void {
-            return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID3D12Resource, @ptrCast(self)), Subresource, pWrittenRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Resource_GetDesc(self: *const T) callconv(.Inline) D3D12_RESOURCE_DESC {
-            return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12Resource, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Resource_GetGPUVirtualAddress(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).GetGPUVirtualAddress(@as(*const ID3D12Resource, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Resource_WriteToSubresource(self: *const T, DstSubresource: u32, pDstBox: ?*const D3D12_BOX, pSrcData: ?*const anyopaque, SrcRowPitch: u32, SrcDepthPitch: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).WriteToSubresource(@as(*const ID3D12Resource, @ptrCast(self)), DstSubresource, pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Resource_ReadFromSubresource(self: *const T, pDstData: ?*anyopaque, DstRowPitch: u32, DstDepthPitch: u32, SrcSubresource: u32, pSrcBox: ?*const D3D12_BOX) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).ReadFromSubresource(@as(*const ID3D12Resource, @ptrCast(self)), pDstData, DstRowPitch, DstDepthPitch, SrcSubresource, pSrcBox);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Resource_GetHeapProperties(self: *const T, pHeapProperties: ?*D3D12_HEAP_PROPERTIES, pHeapFlags: ?*D3D12_HEAP_FLAGS) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).GetHeapProperties(@as(*const ID3D12Resource, @ptrCast(self)), pHeapProperties, pHeapFlags);
-        }
-    };}
-    pub usingnamespace ID3D12Pageable.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn Map(self: *const ID3D12Resource, Subresource: u32, pReadRange: ?*const D3D12_RANGE, ppData: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Map(self, Subresource, pReadRange, ppData);
     }
@@ -3834,14 +3749,9 @@ pub const ID3D12CommandAllocator = extern union {
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Pageable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandAllocator_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12CommandAllocator.VTable, @ptrCast(self.vtable)).Reset(@as(*const ID3D12CommandAllocator, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12Pageable.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn Reset(self: *const ID3D12CommandAllocator) callconv(.Inline) HRESULT {
         return self.vtable.Reset(self);
     }
@@ -3868,22 +3778,9 @@ pub const ID3D12Fence = extern union {
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Pageable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Fence_GetCompletedValue(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D12Fence.VTable, @ptrCast(self.vtable)).GetCompletedValue(@as(*const ID3D12Fence, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Fence_SetEventOnCompletion(self: *const T, Value: u64, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Fence.VTable, @ptrCast(self.vtable)).SetEventOnCompletion(@as(*const ID3D12Fence, @ptrCast(self)), Value, hEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Fence_Signal(self: *const T, Value: u64) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Fence.VTable, @ptrCast(self.vtable)).Signal(@as(*const ID3D12Fence, @ptrCast(self)), Value);
-        }
-    };}
-    pub usingnamespace ID3D12Pageable.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetCompletedValue(self: *const ID3D12Fence) callconv(.Inline) u64 {
         return self.vtable.GetCompletedValue(self);
     }
@@ -3907,14 +3804,10 @@ pub const ID3D12Fence1 = extern union {
     };
     vtable: *const VTable,
     ID3D12Fence: ID3D12Fence,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Fence.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Fence1_GetCreationFlags(self: *const T) callconv(.Inline) D3D12_FENCE_FLAGS {
-            return @as(*const ID3D12Fence1.VTable, @ptrCast(self.vtable)).GetCreationFlags(@as(*const ID3D12Fence1, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12Fence.MethodMixin(@This());
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetCreationFlags(self: *const ID3D12Fence1) callconv(.Inline) D3D12_FENCE_FLAGS {
         return self.vtable.GetCreationFlags(self);
     }
@@ -3933,14 +3826,9 @@ pub const ID3D12PipelineState = extern union {
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Pageable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12PipelineState_GetCachedBlob(self: *const T, ppBlob: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12PipelineState.VTable, @ptrCast(self.vtable)).GetCachedBlob(@as(*const ID3D12PipelineState, @ptrCast(self)), ppBlob);
-        }
-    };}
-    pub usingnamespace ID3D12Pageable.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetCachedBlob(self: *const ID3D12PipelineState, ppBlob: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
         return self.vtable.GetCachedBlob(self, ppBlob);
     }
@@ -3964,22 +3852,9 @@ pub const ID3D12DescriptorHeap = extern union {
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Pageable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DescriptorHeap_GetDesc(self: *const T) callconv(.Inline) D3D12_DESCRIPTOR_HEAP_DESC {
-            return @as(*const ID3D12DescriptorHeap.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12DescriptorHeap, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DescriptorHeap_GetCPUDescriptorHandleForHeapStart(self: *const T) callconv(.Inline) D3D12_CPU_DESCRIPTOR_HANDLE {
-            return @as(*const ID3D12DescriptorHeap.VTable, @ptrCast(self.vtable)).GetCPUDescriptorHandleForHeapStart(@as(*const ID3D12DescriptorHeap, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DescriptorHeap_GetGPUDescriptorHandleForHeapStart(self: *const T) callconv(.Inline) D3D12_GPU_DESCRIPTOR_HANDLE {
-            return @as(*const ID3D12DescriptorHeap.VTable, @ptrCast(self.vtable)).GetGPUDescriptorHandleForHeapStart(@as(*const ID3D12DescriptorHeap, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12Pageable.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetDesc(self: *const ID3D12DescriptorHeap) callconv(.Inline) D3D12_DESCRIPTOR_HEAP_DESC {
         return self.vtable.GetDesc(self);
     }
@@ -4000,10 +3875,9 @@ pub const ID3D12QueryHeap = extern union {
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Pageable.MethodMixin(T);
-    };}
-    pub usingnamespace ID3D12Pageable.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
 };
 
 // This COM type is Agile, not sure what that means
@@ -4015,10 +3889,9 @@ pub const ID3D12CommandSignature = extern union {
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Pageable.MethodMixin(T);
-    };}
-    pub usingnamespace ID3D12Pageable.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
 };
 
 // This COM type is Agile, not sure what that means
@@ -4033,14 +3906,8 @@ pub const ID3D12CommandList = extern union {
     };
     vtable: *const VTable,
     ID3D12DeviceChild: ID3D12DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandList_GetType(self: *const T) callconv(.Inline) D3D12_COMMAND_LIST_TYPE {
-            return @as(*const ID3D12CommandList.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D12CommandList, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12DeviceChild.MethodMixin(@This());
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetType(self: *const ID3D12CommandList) callconv(.Inline) D3D12_COMMAND_LIST_TYPE {
         return self.vtable.GetType(self);
     }
@@ -4356,214 +4223,9 @@ pub const ID3D12GraphicsCommandList = extern union {
     };
     vtable: *const VTable,
     ID3D12CommandList: ID3D12CommandList,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12CommandList.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).Close(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_Reset(self: *const T, pAllocator: ?*ID3D12CommandAllocator, pInitialState: ?*ID3D12PipelineState) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).Reset(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pAllocator, pInitialState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_ClearState(self: *const T, pPipelineState: ?*ID3D12PipelineState) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ClearState(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pPipelineState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_DrawInstanced(self: *const T, VertexCountPerInstance: u32, InstanceCount: u32, StartVertexLocation: u32, StartInstanceLocation: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).DrawInstanced(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), VertexCountPerInstance, InstanceCount, StartVertexLocation, StartInstanceLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_DrawIndexedInstanced(self: *const T, IndexCountPerInstance: u32, InstanceCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32, StartInstanceLocation: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).DrawIndexedInstanced(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), IndexCountPerInstance, InstanceCount, StartIndexLocation, BaseVertexLocation, StartInstanceLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_Dispatch(self: *const T, ThreadGroupCountX: u32, ThreadGroupCountY: u32, ThreadGroupCountZ: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).Dispatch(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), ThreadGroupCountX, ThreadGroupCountY, ThreadGroupCountZ);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_CopyBufferRegion(self: *const T, pDstBuffer: ?*ID3D12Resource, DstOffset: u64, pSrcBuffer: ?*ID3D12Resource, SrcOffset: u64, NumBytes: u64) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).CopyBufferRegion(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pDstBuffer, DstOffset, pSrcBuffer, SrcOffset, NumBytes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_CopyTextureRegion(self: *const T, pDst: ?*const D3D12_TEXTURE_COPY_LOCATION, DstX: u32, DstY: u32, DstZ: u32, pSrc: ?*const D3D12_TEXTURE_COPY_LOCATION, pSrcBox: ?*const D3D12_BOX) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).CopyTextureRegion(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pDst, DstX, DstY, DstZ, pSrc, pSrcBox);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_CopyResource(self: *const T, pDstResource: ?*ID3D12Resource, pSrcResource: ?*ID3D12Resource) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).CopyResource(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pDstResource, pSrcResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_CopyTiles(self: *const T, pTiledResource: ?*ID3D12Resource, pTileRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE, pTileRegionSize: ?*const D3D12_TILE_REGION_SIZE, pBuffer: ?*ID3D12Resource, BufferStartOffsetInBytes: u64, Flags: D3D12_TILE_COPY_FLAGS) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).CopyTiles(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pTiledResource, pTileRegionStartCoordinate, pTileRegionSize, pBuffer, BufferStartOffsetInBytes, Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_ResolveSubresource(self: *const T, pDstResource: ?*ID3D12Resource, DstSubresource: u32, pSrcResource: ?*ID3D12Resource, SrcSubresource: u32, Format: DXGI_FORMAT) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ResolveSubresource(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pDstResource, DstSubresource, pSrcResource, SrcSubresource, Format);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_IASetPrimitiveTopology(self: *const T, PrimitiveTopology: D3D_PRIMITIVE_TOPOLOGY) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).IASetPrimitiveTopology(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), PrimitiveTopology);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_RSSetViewports(self: *const T, NumViewports: u32, pViewports: [*]const D3D12_VIEWPORT) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).RSSetViewports(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), NumViewports, pViewports);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_RSSetScissorRects(self: *const T, NumRects: u32, pRects: [*]const RECT) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).RSSetScissorRects(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), NumRects, pRects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_OMSetBlendFactor(self: *const T, BlendFactor: ?*[4]f32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).OMSetBlendFactor(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), BlendFactor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_OMSetStencilRef(self: *const T, StencilRef: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).OMSetStencilRef(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), StencilRef);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetPipelineState(self: *const T, pPipelineState: ?*ID3D12PipelineState) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetPipelineState(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pPipelineState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_ResourceBarrier(self: *const T, NumBarriers: u32, pBarriers: [*]const D3D12_RESOURCE_BARRIER) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ResourceBarrier(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), NumBarriers, pBarriers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_ExecuteBundle(self: *const T, pCommandList: ?*ID3D12GraphicsCommandList) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ExecuteBundle(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pCommandList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetDescriptorHeaps(self: *const T, NumDescriptorHeaps: u32, ppDescriptorHeaps: [*]?*ID3D12DescriptorHeap) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetDescriptorHeaps(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), NumDescriptorHeaps, ppDescriptorHeaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetComputeRootSignature(self: *const T, pRootSignature: ?*ID3D12RootSignature) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRootSignature(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pRootSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetGraphicsRootSignature(self: *const T, pRootSignature: ?*ID3D12RootSignature) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRootSignature(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pRootSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetComputeRootDescriptorTable(self: *const T, RootParameterIndex: u32, BaseDescriptor: D3D12_GPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRootDescriptorTable(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BaseDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetGraphicsRootDescriptorTable(self: *const T, RootParameterIndex: u32, BaseDescriptor: D3D12_GPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRootDescriptorTable(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BaseDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetComputeRoot32BitConstant(self: *const T, RootParameterIndex: u32, SrcData: u32, DestOffsetIn32BitValues: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRoot32BitConstant(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, SrcData, DestOffsetIn32BitValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetGraphicsRoot32BitConstant(self: *const T, RootParameterIndex: u32, SrcData: u32, DestOffsetIn32BitValues: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRoot32BitConstant(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, SrcData, DestOffsetIn32BitValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetComputeRoot32BitConstants(self: *const T, RootParameterIndex: u32, Num32BitValuesToSet: u32, pSrcData: ?*const anyopaque, DestOffsetIn32BitValues: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRoot32BitConstants(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, Num32BitValuesToSet, pSrcData, DestOffsetIn32BitValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetGraphicsRoot32BitConstants(self: *const T, RootParameterIndex: u32, Num32BitValuesToSet: u32, pSrcData: ?*const anyopaque, DestOffsetIn32BitValues: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRoot32BitConstants(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, Num32BitValuesToSet, pSrcData, DestOffsetIn32BitValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetComputeRootConstantBufferView(self: *const T, RootParameterIndex: u32, BufferLocation: u64) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRootConstantBufferView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BufferLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetGraphicsRootConstantBufferView(self: *const T, RootParameterIndex: u32, BufferLocation: u64) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRootConstantBufferView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BufferLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetComputeRootShaderResourceView(self: *const T, RootParameterIndex: u32, BufferLocation: u64) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRootShaderResourceView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BufferLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetGraphicsRootShaderResourceView(self: *const T, RootParameterIndex: u32, BufferLocation: u64) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRootShaderResourceView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BufferLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetComputeRootUnorderedAccessView(self: *const T, RootParameterIndex: u32, BufferLocation: u64) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRootUnorderedAccessView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BufferLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetGraphicsRootUnorderedAccessView(self: *const T, RootParameterIndex: u32, BufferLocation: u64) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRootUnorderedAccessView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BufferLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_IASetIndexBuffer(self: *const T, pView: ?*const D3D12_INDEX_BUFFER_VIEW) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).IASetIndexBuffer(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_IASetVertexBuffers(self: *const T, StartSlot: u32, NumViews: u32, pViews: ?[*]const D3D12_VERTEX_BUFFER_VIEW) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).IASetVertexBuffers(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), StartSlot, NumViews, pViews);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SOSetTargets(self: *const T, StartSlot: u32, NumViews: u32, pViews: ?[*]const D3D12_STREAM_OUTPUT_BUFFER_VIEW) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SOSetTargets(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), StartSlot, NumViews, pViews);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_OMSetRenderTargets(self: *const T, NumRenderTargetDescriptors: u32, pRenderTargetDescriptors: ?*const D3D12_CPU_DESCRIPTOR_HANDLE, RTsSingleHandleToDescriptorRange: BOOL, pDepthStencilDescriptor: ?*const D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).OMSetRenderTargets(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), NumRenderTargetDescriptors, pRenderTargetDescriptors, RTsSingleHandleToDescriptorRange, pDepthStencilDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_ClearDepthStencilView(self: *const T, DepthStencilView: D3D12_CPU_DESCRIPTOR_HANDLE, ClearFlags: D3D12_CLEAR_FLAGS, Depth: f32, Stencil: u8, NumRects: u32, pRects: [*]const RECT) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ClearDepthStencilView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), DepthStencilView, ClearFlags, Depth, Stencil, NumRects, pRects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_ClearRenderTargetView(self: *const T, RenderTargetView: D3D12_CPU_DESCRIPTOR_HANDLE, ColorRGBA: ?*const f32, NumRects: u32, pRects: [*]const RECT) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ClearRenderTargetView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RenderTargetView, ColorRGBA, NumRects, pRects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_ClearUnorderedAccessViewUint(self: *const T, ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE, ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE, pResource: ?*ID3D12Resource, Values: ?*const u32, NumRects: u32, pRects: [*]const RECT) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ClearUnorderedAccessViewUint(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), ViewGPUHandleInCurrentHeap, ViewCPUHandle, pResource, Values, NumRects, pRects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_ClearUnorderedAccessViewFloat(self: *const T, ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE, ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE, pResource: ?*ID3D12Resource, Values: ?*const f32, NumRects: u32, pRects: [*]const RECT) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ClearUnorderedAccessViewFloat(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), ViewGPUHandleInCurrentHeap, ViewCPUHandle, pResource, Values, NumRects, pRects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_DiscardResource(self: *const T, pResource: ?*ID3D12Resource, pRegion: ?*const D3D12_DISCARD_REGION) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).DiscardResource(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pResource, pRegion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_BeginQuery(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).BeginQuery(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_EndQuery(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).EndQuery(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_ResolveQueryData(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, StartIndex: u32, NumQueries: u32, pDestinationBuffer: ?*ID3D12Resource, AlignedDestinationBufferOffset: u64) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ResolveQueryData(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetPredication(self: *const T, pBuffer: ?*ID3D12Resource, AlignedBufferOffset: u64, Operation: D3D12_PREDICATION_OP) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetPredication(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pBuffer, AlignedBufferOffset, Operation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetMarker(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetMarker(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), Metadata, pData, Size);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_BeginEvent(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).BeginEvent(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), Metadata, pData, Size);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_EndEvent(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_ExecuteIndirect(self: *const T, pCommandSignature: ?*ID3D12CommandSignature, MaxCommandCount: u32, pArgumentBuffer: ?*ID3D12Resource, ArgumentBufferOffset: u64, pCountBuffer: ?*ID3D12Resource, CountBufferOffset: u64) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ExecuteIndirect(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pCommandSignature, MaxCommandCount, pArgumentBuffer, ArgumentBufferOffset, pCountBuffer, CountBufferOffset);
-        }
-    };}
-    pub usingnamespace ID3D12CommandList.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn Close(self: *const ID3D12GraphicsCommandList) callconv(.Inline) HRESULT {
         return self.vtable.Close(self);
     }
@@ -4775,34 +4437,10 @@ pub const ID3D12GraphicsCommandList1 = extern union {
     };
     vtable: *const VTable,
     ID3D12GraphicsCommandList: ID3D12GraphicsCommandList,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12GraphicsCommandList.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList1_AtomicCopyBufferUINT(self: *const T, pDstBuffer: ?*ID3D12Resource, DstOffset: u64, pSrcBuffer: ?*ID3D12Resource, SrcOffset: u64, Dependencies: u32, ppDependentResources: [*]?*ID3D12Resource, pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList1.VTable, @ptrCast(self.vtable)).AtomicCopyBufferUINT(@as(*const ID3D12GraphicsCommandList1, @ptrCast(self)), pDstBuffer, DstOffset, pSrcBuffer, SrcOffset, Dependencies, ppDependentResources, pDependentSubresourceRanges);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList1_AtomicCopyBufferUINT64(self: *const T, pDstBuffer: ?*ID3D12Resource, DstOffset: u64, pSrcBuffer: ?*ID3D12Resource, SrcOffset: u64, Dependencies: u32, ppDependentResources: [*]?*ID3D12Resource, pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList1.VTable, @ptrCast(self.vtable)).AtomicCopyBufferUINT64(@as(*const ID3D12GraphicsCommandList1, @ptrCast(self)), pDstBuffer, DstOffset, pSrcBuffer, SrcOffset, Dependencies, ppDependentResources, pDependentSubresourceRanges);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList1_OMSetDepthBounds(self: *const T, Min: f32, Max: f32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList1.VTable, @ptrCast(self.vtable)).OMSetDepthBounds(@as(*const ID3D12GraphicsCommandList1, @ptrCast(self)), Min, Max);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList1_SetSamplePositions(self: *const T, NumSamplesPerPixel: u32, NumPixels: u32, pSamplePositions: ?*D3D12_SAMPLE_POSITION) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList1.VTable, @ptrCast(self.vtable)).SetSamplePositions(@as(*const ID3D12GraphicsCommandList1, @ptrCast(self)), NumSamplesPerPixel, NumPixels, pSamplePositions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList1_ResolveSubresourceRegion(self: *const T, pDstResource: ?*ID3D12Resource, DstSubresource: u32, DstX: u32, DstY: u32, pSrcResource: ?*ID3D12Resource, SrcSubresource: u32, pSrcRect: ?*RECT, Format: DXGI_FORMAT, ResolveMode: D3D12_RESOLVE_MODE) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList1.VTable, @ptrCast(self.vtable)).ResolveSubresourceRegion(@as(*const ID3D12GraphicsCommandList1, @ptrCast(self)), pDstResource, DstSubresource, DstX, DstY, pSrcResource, SrcSubresource, pSrcRect, Format, ResolveMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList1_SetViewInstanceMask(self: *const T, Mask: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList1.VTable, @ptrCast(self.vtable)).SetViewInstanceMask(@as(*const ID3D12GraphicsCommandList1, @ptrCast(self)), Mask);
-        }
-    };}
-    pub usingnamespace ID3D12GraphicsCommandList.MethodMixin(@This());
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn AtomicCopyBufferUINT(self: *const ID3D12GraphicsCommandList1, pDstBuffer: ?*ID3D12Resource, DstOffset: u64, pSrcBuffer: ?*ID3D12Resource, SrcOffset: u64, Dependencies: u32, ppDependentResources: [*]?*ID3D12Resource, pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64) callconv(.Inline) void {
         return self.vtable.AtomicCopyBufferUINT(self, pDstBuffer, DstOffset, pSrcBuffer, SrcOffset, Dependencies, ppDependentResources, pDependentSubresourceRanges);
     }
@@ -4852,14 +4490,11 @@ pub const ID3D12GraphicsCommandList2 = extern union {
     };
     vtable: *const VTable,
     ID3D12GraphicsCommandList1: ID3D12GraphicsCommandList1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12GraphicsCommandList1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList2_WriteBufferImmediate(self: *const T, Count: u32, pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER, pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList2.VTable, @ptrCast(self.vtable)).WriteBufferImmediate(@as(*const ID3D12GraphicsCommandList2, @ptrCast(self)), Count, pParams, pModes);
-        }
-    };}
-    pub usingnamespace ID3D12GraphicsCommandList1.MethodMixin(@This());
+    ID3D12GraphicsCommandList: ID3D12GraphicsCommandList,
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn WriteBufferImmediate(self: *const ID3D12GraphicsCommandList2, Count: u32, pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER, pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE) callconv(.Inline) void {
         return self.vtable.WriteBufferImmediate(self, Count, pParams, pModes);
     }
@@ -4940,54 +4575,9 @@ pub const ID3D12CommandQueue = extern union {
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Pageable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_UpdateTileMappings(self: *const T, pResource: ?*ID3D12Resource, NumResourceRegions: u32, pResourceRegionStartCoordinates: ?[*]const D3D12_TILED_RESOURCE_COORDINATE, pResourceRegionSizes: ?[*]const D3D12_TILE_REGION_SIZE, pHeap: ?*ID3D12Heap, NumRanges: u32, pRangeFlags: ?[*]const D3D12_TILE_RANGE_FLAGS, pHeapRangeStartOffsets: ?[*]const u32, pRangeTileCounts: ?[*]const u32, Flags: D3D12_TILE_MAPPING_FLAGS) callconv(.Inline) void {
-            return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).UpdateTileMappings(@as(*const ID3D12CommandQueue, @ptrCast(self)), pResource, NumResourceRegions, pResourceRegionStartCoordinates, pResourceRegionSizes, pHeap, NumRanges, pRangeFlags, pHeapRangeStartOffsets, pRangeTileCounts, Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_CopyTileMappings(self: *const T, pDstResource: ?*ID3D12Resource, pDstRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE, pSrcResource: ?*ID3D12Resource, pSrcRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE, pRegionSize: ?*const D3D12_TILE_REGION_SIZE, Flags: D3D12_TILE_MAPPING_FLAGS) callconv(.Inline) void {
-            return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).CopyTileMappings(@as(*const ID3D12CommandQueue, @ptrCast(self)), pDstResource, pDstRegionStartCoordinate, pSrcResource, pSrcRegionStartCoordinate, pRegionSize, Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_ExecuteCommandLists(self: *const T, NumCommandLists: u32, ppCommandLists: [*]?*ID3D12CommandList) callconv(.Inline) void {
-            return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).ExecuteCommandLists(@as(*const ID3D12CommandQueue, @ptrCast(self)), NumCommandLists, ppCommandLists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_SetMarker(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
-            return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).SetMarker(@as(*const ID3D12CommandQueue, @ptrCast(self)), Metadata, pData, Size);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_BeginEvent(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
-            return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).BeginEvent(@as(*const ID3D12CommandQueue, @ptrCast(self)), Metadata, pData, Size);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_EndEvent(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3D12CommandQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_Signal(self: *const T, pFence: ?*ID3D12Fence, Value: u64) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).Signal(@as(*const ID3D12CommandQueue, @ptrCast(self)), pFence, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_Wait(self: *const T, pFence: ?*ID3D12Fence, Value: u64) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).Wait(@as(*const ID3D12CommandQueue, @ptrCast(self)), pFence, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_GetTimestampFrequency(self: *const T, pFrequency: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).GetTimestampFrequency(@as(*const ID3D12CommandQueue, @ptrCast(self)), pFrequency);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_GetClockCalibration(self: *const T, pGpuTimestamp: ?*u64, pCpuTimestamp: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).GetClockCalibration(@as(*const ID3D12CommandQueue, @ptrCast(self)), pGpuTimestamp, pCpuTimestamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_GetDesc(self: *const T) callconv(.Inline) D3D12_COMMAND_QUEUE_DESC {
-            return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12CommandQueue, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12Pageable.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn UpdateTileMappings(self: *const ID3D12CommandQueue, pResource: ?*ID3D12Resource, NumResourceRegions: u32, pResourceRegionStartCoordinates: ?[*]const D3D12_TILED_RESOURCE_COORDINATE, pResourceRegionSizes: ?[*]const D3D12_TILE_REGION_SIZE, pHeap: ?*ID3D12Heap, NumRanges: u32, pRangeFlags: ?[*]const D3D12_TILE_RANGE_FLAGS, pHeapRangeStartOffsets: ?[*]const u32, pRangeTileCounts: ?[*]const u32, Flags: D3D12_TILE_MAPPING_FLAGS) callconv(.Inline) void {
         return self.vtable.UpdateTileMappings(self, pResource, NumResourceRegions, pResourceRegionStartCoordinates, pResourceRegionSizes, pHeap, NumRanges, pRangeFlags, pHeapRangeStartOffsets, pRangeTileCounts, Flags);
     }
@@ -5271,158 +4861,7 @@ pub const ID3D12Device = extern union {
     };
     vtable: *const VTable,
     ID3D12Object: ID3D12Object,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Object.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_GetNodeCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetNodeCount(@as(*const ID3D12Device, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateCommandQueue(self: *const T, pDesc: ?*const D3D12_COMMAND_QUEUE_DESC, riid: ?*const Guid, ppCommandQueue: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandQueue(@as(*const ID3D12Device, @ptrCast(self)), pDesc, riid, ppCommandQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateCommandAllocator(self: *const T, @"type": D3D12_COMMAND_LIST_TYPE, riid: ?*const Guid, ppCommandAllocator: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandAllocator(@as(*const ID3D12Device, @ptrCast(self)), @"type", riid, ppCommandAllocator);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateGraphicsPipelineState(self: *const T, pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateGraphicsPipelineState(@as(*const ID3D12Device, @ptrCast(self)), pDesc, riid, ppPipelineState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateComputePipelineState(self: *const T, pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateComputePipelineState(@as(*const ID3D12Device, @ptrCast(self)), pDesc, riid, ppPipelineState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateCommandList(self: *const T, nodeMask: u32, @"type": D3D12_COMMAND_LIST_TYPE, pCommandAllocator: ?*ID3D12CommandAllocator, pInitialState: ?*ID3D12PipelineState, riid: ?*const Guid, ppCommandList: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandList(@as(*const ID3D12Device, @ptrCast(self)), nodeMask, @"type", pCommandAllocator, pInitialState, riid, ppCommandList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CheckFeatureSupport(self: *const T, Feature: D3D12_FEATURE, pFeatureSupportData: ?*anyopaque, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CheckFeatureSupport(@as(*const ID3D12Device, @ptrCast(self)), Feature, pFeatureSupportData, FeatureSupportDataSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateDescriptorHeap(self: *const T, pDescriptorHeapDesc: ?*const D3D12_DESCRIPTOR_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateDescriptorHeap(@as(*const ID3D12Device, @ptrCast(self)), pDescriptorHeapDesc, riid, ppvHeap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_GetDescriptorHandleIncrementSize(self: *const T, DescriptorHeapType: D3D12_DESCRIPTOR_HEAP_TYPE) callconv(.Inline) u32 {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetDescriptorHandleIncrementSize(@as(*const ID3D12Device, @ptrCast(self)), DescriptorHeapType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateRootSignature(self: *const T, nodeMask: u32, pBlobWithRootSignature: [*]const u8, blobLengthInBytes: usize, riid: ?*const Guid, ppvRootSignature: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateRootSignature(@as(*const ID3D12Device, @ptrCast(self)), nodeMask, pBlobWithRootSignature, blobLengthInBytes, riid, ppvRootSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateConstantBufferView(self: *const T, pDesc: ?*const D3D12_CONSTANT_BUFFER_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateConstantBufferView(@as(*const ID3D12Device, @ptrCast(self)), pDesc, DestDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateShaderResourceView(self: *const T, pResource: ?*ID3D12Resource, pDesc: ?*const D3D12_SHADER_RESOURCE_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateShaderResourceView(@as(*const ID3D12Device, @ptrCast(self)), pResource, pDesc, DestDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateUnorderedAccessView(self: *const T, pResource: ?*ID3D12Resource, pCounterResource: ?*ID3D12Resource, pDesc: ?*const D3D12_UNORDERED_ACCESS_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateUnorderedAccessView(@as(*const ID3D12Device, @ptrCast(self)), pResource, pCounterResource, pDesc, DestDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateRenderTargetView(self: *const T, pResource: ?*ID3D12Resource, pDesc: ?*const D3D12_RENDER_TARGET_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateRenderTargetView(@as(*const ID3D12Device, @ptrCast(self)), pResource, pDesc, DestDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateDepthStencilView(self: *const T, pResource: ?*ID3D12Resource, pDesc: ?*const D3D12_DEPTH_STENCIL_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateDepthStencilView(@as(*const ID3D12Device, @ptrCast(self)), pResource, pDesc, DestDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateSampler(self: *const T, pDesc: ?*const D3D12_SAMPLER_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateSampler(@as(*const ID3D12Device, @ptrCast(self)), pDesc, DestDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CopyDescriptors(self: *const T, NumDestDescriptorRanges: u32, pDestDescriptorRangeStarts: [*]const D3D12_CPU_DESCRIPTOR_HANDLE, pDestDescriptorRangeSizes: ?[*]const u32, NumSrcDescriptorRanges: u32, pSrcDescriptorRangeStarts: [*]const D3D12_CPU_DESCRIPTOR_HANDLE, pSrcDescriptorRangeSizes: ?[*]const u32, DescriptorHeapsType: D3D12_DESCRIPTOR_HEAP_TYPE) callconv(.Inline) void {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CopyDescriptors(@as(*const ID3D12Device, @ptrCast(self)), NumDestDescriptorRanges, pDestDescriptorRangeStarts, pDestDescriptorRangeSizes, NumSrcDescriptorRanges, pSrcDescriptorRangeStarts, pSrcDescriptorRangeSizes, DescriptorHeapsType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CopyDescriptorsSimple(self: *const T, NumDescriptors: u32, DestDescriptorRangeStart: D3D12_CPU_DESCRIPTOR_HANDLE, SrcDescriptorRangeStart: D3D12_CPU_DESCRIPTOR_HANDLE, DescriptorHeapsType: D3D12_DESCRIPTOR_HEAP_TYPE) callconv(.Inline) void {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CopyDescriptorsSimple(@as(*const ID3D12Device, @ptrCast(self)), NumDescriptors, DestDescriptorRangeStart, SrcDescriptorRangeStart, DescriptorHeapsType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_GetResourceAllocationInfo(self: *const T, visibleMask: u32, numResourceDescs: u32, pResourceDescs: [*]const D3D12_RESOURCE_DESC) callconv(.Inline) D3D12_RESOURCE_ALLOCATION_INFO {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetResourceAllocationInfo(@as(*const ID3D12Device, @ptrCast(self)), visibleMask, numResourceDescs, pResourceDescs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_GetCustomHeapProperties(self: *const T, nodeMask: u32, heapType: D3D12_HEAP_TYPE) callconv(.Inline) D3D12_HEAP_PROPERTIES {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetCustomHeapProperties(@as(*const ID3D12Device, @ptrCast(self)), nodeMask, heapType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateCommittedResource(self: *const T, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riidResource: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommittedResource(@as(*const ID3D12Device, @ptrCast(self)), pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, riidResource, ppvResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateHeap(self: *const T, pDesc: ?*const D3D12_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateHeap(@as(*const ID3D12Device, @ptrCast(self)), pDesc, riid, ppvHeap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreatePlacedResource(self: *const T, pHeap: ?*ID3D12Heap, HeapOffset: u64, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreatePlacedResource(@as(*const ID3D12Device, @ptrCast(self)), pHeap, HeapOffset, pDesc, InitialState, pOptimizedClearValue, riid, ppvResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateReservedResource(self: *const T, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateReservedResource(@as(*const ID3D12Device, @ptrCast(self)), pDesc, InitialState, pOptimizedClearValue, riid, ppvResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateSharedHandle(self: *const T, pObject: ?*ID3D12DeviceChild, pAttributes: ?*const SECURITY_ATTRIBUTES, Access: u32, Name: ?[*:0]const u16, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateSharedHandle(@as(*const ID3D12Device, @ptrCast(self)), pObject, pAttributes, Access, Name, pHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_OpenSharedHandle(self: *const T, NTHandle: ?HANDLE, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).OpenSharedHandle(@as(*const ID3D12Device, @ptrCast(self)), NTHandle, riid, ppvObj);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_OpenSharedHandleByName(self: *const T, Name: ?[*:0]const u16, Access: u32, pNTHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).OpenSharedHandleByName(@as(*const ID3D12Device, @ptrCast(self)), Name, Access, pNTHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_MakeResident(self: *const T, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).MakeResident(@as(*const ID3D12Device, @ptrCast(self)), NumObjects, ppObjects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_Evict(self: *const T, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).Evict(@as(*const ID3D12Device, @ptrCast(self)), NumObjects, ppObjects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateFence(self: *const T, InitialValue: u64, Flags: D3D12_FENCE_FLAGS, riid: ?*const Guid, ppFence: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateFence(@as(*const ID3D12Device, @ptrCast(self)), InitialValue, Flags, riid, ppFence);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_GetDeviceRemovedReason(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetDeviceRemovedReason(@as(*const ID3D12Device, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_GetCopyableFootprints(self: *const T, pResourceDesc: ?*const D3D12_RESOURCE_DESC, FirstSubresource: u32, NumSubresources: u32, BaseOffset: u64, pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT, pNumRows: ?[*]u32, pRowSizeInBytes: ?[*]u64, pTotalBytes: ?*u64) callconv(.Inline) void {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetCopyableFootprints(@as(*const ID3D12Device, @ptrCast(self)), pResourceDesc, FirstSubresource, NumSubresources, BaseOffset, pLayouts, pNumRows, pRowSizeInBytes, pTotalBytes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateQueryHeap(self: *const T, pDesc: ?*const D3D12_QUERY_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateQueryHeap(@as(*const ID3D12Device, @ptrCast(self)), pDesc, riid, ppvHeap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_SetStablePowerState(self: *const T, Enable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).SetStablePowerState(@as(*const ID3D12Device, @ptrCast(self)), Enable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateCommandSignature(self: *const T, pDesc: ?*const D3D12_COMMAND_SIGNATURE_DESC, pRootSignature: ?*ID3D12RootSignature, riid: ?*const Guid, ppvCommandSignature: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandSignature(@as(*const ID3D12Device, @ptrCast(self)), pDesc, pRootSignature, riid, ppvCommandSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_GetResourceTiling(self: *const T, pTiledResource: ?*ID3D12Resource, pNumTilesForEntireResource: ?*u32, pPackedMipDesc: ?*D3D12_PACKED_MIP_INFO, pStandardTileShapeForNonPackedMips: ?*D3D12_TILE_SHAPE, pNumSubresourceTilings: ?*u32, FirstSubresourceTilingToGet: u32, pSubresourceTilingsForNonPackedMips: [*]D3D12_SUBRESOURCE_TILING) callconv(.Inline) void {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetResourceTiling(@as(*const ID3D12Device, @ptrCast(self)), pTiledResource, pNumTilesForEntireResource, pPackedMipDesc, pStandardTileShapeForNonPackedMips, pNumSubresourceTilings, FirstSubresourceTilingToGet, pSubresourceTilingsForNonPackedMips);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_GetAdapterLuid(self: *const T) callconv(.Inline) LUID {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetAdapterLuid(@as(*const ID3D12Device, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12Object.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetNodeCount(self: *const ID3D12Device) callconv(.Inline) u32 {
         return self.vtable.GetNodeCount(self);
     }
@@ -5572,30 +5011,8 @@ pub const ID3D12PipelineLibrary = extern union {
     };
     vtable: *const VTable,
     ID3D12DeviceChild: ID3D12DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12PipelineLibrary_StorePipeline(self: *const T, pName: ?[*:0]const u16, pPipeline: ?*ID3D12PipelineState) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12PipelineLibrary.VTable, @ptrCast(self.vtable)).StorePipeline(@as(*const ID3D12PipelineLibrary, @ptrCast(self)), pName, pPipeline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12PipelineLibrary_LoadGraphicsPipeline(self: *const T, pName: ?[*:0]const u16, pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12PipelineLibrary.VTable, @ptrCast(self.vtable)).LoadGraphicsPipeline(@as(*const ID3D12PipelineLibrary, @ptrCast(self)), pName, pDesc, riid, ppPipelineState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12PipelineLibrary_LoadComputePipeline(self: *const T, pName: ?[*:0]const u16, pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12PipelineLibrary.VTable, @ptrCast(self.vtable)).LoadComputePipeline(@as(*const ID3D12PipelineLibrary, @ptrCast(self)), pName, pDesc, riid, ppPipelineState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12PipelineLibrary_GetSerializedSize(self: *const T) callconv(.Inline) usize {
-            return @as(*const ID3D12PipelineLibrary.VTable, @ptrCast(self.vtable)).GetSerializedSize(@as(*const ID3D12PipelineLibrary, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12PipelineLibrary_Serialize(self: *const T, pData: [*]u8, DataSizeInBytes: usize) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12PipelineLibrary.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ID3D12PipelineLibrary, @ptrCast(self)), pData, DataSizeInBytes);
-        }
-    };}
-    pub usingnamespace ID3D12DeviceChild.MethodMixin(@This());
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn StorePipeline(self: *const ID3D12PipelineLibrary, pName: ?[*:0]const u16, pPipeline: ?*ID3D12PipelineState) callconv(.Inline) HRESULT {
         return self.vtable.StorePipeline(self, pName, pPipeline);
     }
@@ -5629,14 +5046,9 @@ pub const ID3D12PipelineLibrary1 = extern union {
     };
     vtable: *const VTable,
     ID3D12PipelineLibrary: ID3D12PipelineLibrary,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12PipelineLibrary.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12PipelineLibrary1_LoadPipeline(self: *const T, pName: ?[*:0]const u16, pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12PipelineLibrary1.VTable, @ptrCast(self.vtable)).LoadPipeline(@as(*const ID3D12PipelineLibrary1, @ptrCast(self)), pName, pDesc, riid, ppPipelineState);
-        }
-    };}
-    pub usingnamespace ID3D12PipelineLibrary.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn LoadPipeline(self: *const ID3D12PipelineLibrary1, pName: ?[*:0]const u16, pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.LoadPipeline(self, pName, pDesc, riid, ppPipelineState);
     }
@@ -5723,22 +5135,8 @@ pub const ID3D12Device1 = extern union {
     };
     vtable: *const VTable,
     ID3D12Device: ID3D12Device,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Device.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device1_CreatePipelineLibrary(self: *const T, pLibraryBlob: [*]const u8, BlobLength: usize, riid: ?*const Guid, ppPipelineLibrary: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device1.VTable, @ptrCast(self.vtable)).CreatePipelineLibrary(@as(*const ID3D12Device1, @ptrCast(self)), pLibraryBlob, BlobLength, riid, ppPipelineLibrary);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device1_SetEventOnMultipleFenceCompletion(self: *const T, ppFences: [*]?*ID3D12Fence, pFenceValues: [*]const u64, NumFences: u32, Flags: D3D12_MULTIPLE_FENCE_WAIT_FLAGS, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device1.VTable, @ptrCast(self.vtable)).SetEventOnMultipleFenceCompletion(@as(*const ID3D12Device1, @ptrCast(self)), ppFences, pFenceValues, NumFences, Flags, hEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device1_SetResidencyPriority(self: *const T, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable, pPriorities: [*]const D3D12_RESIDENCY_PRIORITY) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device1.VTable, @ptrCast(self.vtable)).SetResidencyPriority(@as(*const ID3D12Device1, @ptrCast(self)), NumObjects, ppObjects, pPriorities);
-        }
-    };}
-    pub usingnamespace ID3D12Device.MethodMixin(@This());
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn CreatePipelineLibrary(self: *const ID3D12Device1, pLibraryBlob: [*]const u8, BlobLength: usize, riid: ?*const Guid, ppPipelineLibrary: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreatePipelineLibrary(self, pLibraryBlob, BlobLength, riid, ppPipelineLibrary);
     }
@@ -5765,14 +5163,9 @@ pub const ID3D12Device2 = extern union {
     };
     vtable: *const VTable,
     ID3D12Device1: ID3D12Device1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Device1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device2_CreatePipelineState(self: *const T, pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device2.VTable, @ptrCast(self.vtable)).CreatePipelineState(@as(*const ID3D12Device2, @ptrCast(self)), pDesc, riid, ppPipelineState);
-        }
-    };}
-    pub usingnamespace ID3D12Device1.MethodMixin(@This());
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn CreatePipelineState(self: *const ID3D12Device2, pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreatePipelineState(self, pDesc, riid, ppPipelineState);
     }
@@ -5844,22 +5237,10 @@ pub const ID3D12Device3 = extern union {
     };
     vtable: *const VTable,
     ID3D12Device2: ID3D12Device2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Device2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device3_OpenExistingHeapFromAddress(self: *const T, pAddress: ?*const anyopaque, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device3.VTable, @ptrCast(self.vtable)).OpenExistingHeapFromAddress(@as(*const ID3D12Device3, @ptrCast(self)), pAddress, riid, ppvHeap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device3_OpenExistingHeapFromFileMapping(self: *const T, hFileMapping: ?HANDLE, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device3.VTable, @ptrCast(self.vtable)).OpenExistingHeapFromFileMapping(@as(*const ID3D12Device3, @ptrCast(self)), hFileMapping, riid, ppvHeap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device3_EnqueueMakeResident(self: *const T, Flags: D3D12_RESIDENCY_FLAGS, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable, pFenceToSignal: ?*ID3D12Fence, FenceValueToSignal: u64) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device3.VTable, @ptrCast(self.vtable)).EnqueueMakeResident(@as(*const ID3D12Device3, @ptrCast(self)), Flags, NumObjects, ppObjects, pFenceToSignal, FenceValueToSignal);
-        }
-    };}
-    pub usingnamespace ID3D12Device2.MethodMixin(@This());
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn OpenExistingHeapFromAddress(self: *const ID3D12Device3, pAddress: ?*const anyopaque, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.OpenExistingHeapFromAddress(self, pAddress, riid, ppvHeap);
     }
@@ -6003,18 +5384,8 @@ pub const ID3D12ProtectedSession = extern union {
     };
     vtable: *const VTable,
     ID3D12DeviceChild: ID3D12DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ProtectedSession_GetStatusFence(self: *const T, riid: ?*const Guid, ppFence: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ProtectedSession.VTable, @ptrCast(self.vtable)).GetStatusFence(@as(*const ID3D12ProtectedSession, @ptrCast(self)), riid, ppFence);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ProtectedSession_GetSessionStatus(self: *const T) callconv(.Inline) D3D12_PROTECTED_SESSION_STATUS {
-            return @as(*const ID3D12ProtectedSession.VTable, @ptrCast(self.vtable)).GetSessionStatus(@as(*const ID3D12ProtectedSession, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12DeviceChild.MethodMixin(@This());
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetStatusFence(self: *const ID3D12ProtectedSession, riid: ?*const Guid, ppFence: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetStatusFence(self, riid, ppFence);
     }
@@ -6118,14 +5489,9 @@ pub const ID3D12ProtectedResourceSession = extern union {
     };
     vtable: *const VTable,
     ID3D12ProtectedSession: ID3D12ProtectedSession,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12ProtectedSession.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ProtectedResourceSession_GetDesc(self: *const T) callconv(.Inline) D3D12_PROTECTED_RESOURCE_SESSION_DESC {
-            return @as(*const ID3D12ProtectedResourceSession.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12ProtectedResourceSession, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12ProtectedSession.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetDesc(self: *const ID3D12ProtectedResourceSession) callconv(.Inline) D3D12_PROTECTED_RESOURCE_SESSION_DESC {
         return self.vtable.GetDesc(self);
     }
@@ -6188,34 +5554,11 @@ pub const ID3D12Device4 = extern union {
     };
     vtable: *const VTable,
     ID3D12Device3: ID3D12Device3,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Device3.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device4_CreateCommandList1(self: *const T, nodeMask: u32, @"type": D3D12_COMMAND_LIST_TYPE, flags: D3D12_COMMAND_LIST_FLAGS, riid: ?*const Guid, ppCommandList: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).CreateCommandList1(@as(*const ID3D12Device4, @ptrCast(self)), nodeMask, @"type", flags, riid, ppCommandList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device4_CreateProtectedResourceSession(self: *const T, pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC, riid: ?*const Guid, ppSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).CreateProtectedResourceSession(@as(*const ID3D12Device4, @ptrCast(self)), pDesc, riid, ppSession);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device4_CreateCommittedResource1(self: *const T, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riidResource: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).CreateCommittedResource1(@as(*const ID3D12Device4, @ptrCast(self)), pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, pProtectedSession, riidResource, ppvResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device4_CreateHeap1(self: *const T, pDesc: ?*const D3D12_HEAP_DESC, pProtectedSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).CreateHeap1(@as(*const ID3D12Device4, @ptrCast(self)), pDesc, pProtectedSession, riid, ppvHeap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device4_CreateReservedResource1(self: *const T, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).CreateReservedResource1(@as(*const ID3D12Device4, @ptrCast(self)), pDesc, InitialState, pOptimizedClearValue, pProtectedSession, riid, ppvResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device4_GetResourceAllocationInfo1(self: *const T, visibleMask: u32, numResourceDescs: u32, pResourceDescs: [*]const D3D12_RESOURCE_DESC, pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1) callconv(.Inline) D3D12_RESOURCE_ALLOCATION_INFO {
-            return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).GetResourceAllocationInfo1(@as(*const ID3D12Device4, @ptrCast(self)), visibleMask, numResourceDescs, pResourceDescs, pResourceAllocationInfo1);
-        }
-    };}
-    pub usingnamespace ID3D12Device3.MethodMixin(@This());
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn CreateCommandList1(self: *const ID3D12Device4, nodeMask: u32, @"type": D3D12_COMMAND_LIST_TYPE, flags: D3D12_COMMAND_LIST_FLAGS, riid: ?*const Guid, ppCommandList: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCommandList1(self, nodeMask, @"type", flags, riid, ppCommandList);
     }
@@ -6256,14 +5599,6 @@ pub const ID3D12LifetimeOwner = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12LifetimeOwner_LifetimeStateUpdated(self: *const T, NewState: D3D12_LIFETIME_STATE) callconv(.Inline) void {
-            return @as(*const ID3D12LifetimeOwner.VTable, @ptrCast(self.vtable)).LifetimeStateUpdated(@as(*const ID3D12LifetimeOwner, @ptrCast(self)), NewState);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LifetimeStateUpdated(self: *const ID3D12LifetimeOwner, NewState: D3D12_LIFETIME_STATE) callconv(.Inline) void {
         return self.vtable.LifetimeStateUpdated(self, NewState);
     }
@@ -6296,26 +5631,6 @@ pub const ID3D12SwapChainAssistant = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12SwapChainAssistant_GetLUID(self: *const T) callconv(.Inline) LUID {
-            return @as(*const ID3D12SwapChainAssistant.VTable, @ptrCast(self.vtable)).GetLUID(@as(*const ID3D12SwapChainAssistant, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12SwapChainAssistant_GetSwapChainObject(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12SwapChainAssistant.VTable, @ptrCast(self.vtable)).GetSwapChainObject(@as(*const ID3D12SwapChainAssistant, @ptrCast(self)), riid, ppv);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12SwapChainAssistant_GetCurrentResourceAndCommandQueue(self: *const T, riidResource: ?*const Guid, ppvResource: ?*?*anyopaque, riidQueue: ?*const Guid, ppvQueue: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12SwapChainAssistant.VTable, @ptrCast(self.vtable)).GetCurrentResourceAndCommandQueue(@as(*const ID3D12SwapChainAssistant, @ptrCast(self)), riidResource, ppvResource, riidQueue, ppvQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12SwapChainAssistant_InsertImplicitSync(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12SwapChainAssistant.VTable, @ptrCast(self.vtable)).InsertImplicitSync(@as(*const ID3D12SwapChainAssistant, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLUID(self: *const ID3D12SwapChainAssistant) callconv(.Inline) LUID {
         return self.vtable.GetLUID(self);
     }
@@ -6343,14 +5658,8 @@ pub const ID3D12LifetimeTracker = extern union {
     };
     vtable: *const VTable,
     ID3D12DeviceChild: ID3D12DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12LifetimeTracker_DestroyOwnedObject(self: *const T, pObject: ?*ID3D12DeviceChild) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12LifetimeTracker.VTable, @ptrCast(self.vtable)).DestroyOwnedObject(@as(*const ID3D12LifetimeTracker, @ptrCast(self)), pObject);
-        }
-    };}
-    pub usingnamespace ID3D12DeviceChild.MethodMixin(@This());
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn DestroyOwnedObject(self: *const ID3D12LifetimeTracker, pObject: ?*ID3D12DeviceChild) callconv(.Inline) HRESULT {
         return self.vtable.DestroyOwnedObject(self, pObject);
     }
@@ -6492,10 +5801,9 @@ pub const ID3D12StateObject = extern union {
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Pageable.MethodMixin(T);
-    };}
-    pub usingnamespace ID3D12Pageable.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
 };
 
 // This COM type is Agile, not sure what that means
@@ -6522,26 +5830,6 @@ pub const ID3D12StateObjectProperties = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12StateObjectProperties_GetShaderIdentifier(self: *const T, pExportName: ?[*:0]const u16) callconv(.Inline) ?*anyopaque {
-            return @as(*const ID3D12StateObjectProperties.VTable, @ptrCast(self.vtable)).GetShaderIdentifier(@as(*const ID3D12StateObjectProperties, @ptrCast(self)), pExportName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12StateObjectProperties_GetShaderStackSize(self: *const T, pExportName: ?[*:0]const u16) callconv(.Inline) u64 {
-            return @as(*const ID3D12StateObjectProperties.VTable, @ptrCast(self.vtable)).GetShaderStackSize(@as(*const ID3D12StateObjectProperties, @ptrCast(self)), pExportName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12StateObjectProperties_GetPipelineStackSize(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D12StateObjectProperties.VTable, @ptrCast(self.vtable)).GetPipelineStackSize(@as(*const ID3D12StateObjectProperties, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12StateObjectProperties_SetPipelineStackSize(self: *const T, PipelineStackSizeInBytes: u64) callconv(.Inline) void {
-            return @as(*const ID3D12StateObjectProperties.VTable, @ptrCast(self.vtable)).SetPipelineStackSize(@as(*const ID3D12StateObjectProperties, @ptrCast(self)), PipelineStackSizeInBytes);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetShaderIdentifier(self: *const ID3D12StateObjectProperties, pExportName: ?[*:0]const u16) callconv(.Inline) ?*anyopaque {
         return self.vtable.GetShaderIdentifier(self, pExportName);
     }
@@ -7205,42 +6493,12 @@ pub const ID3D12Device5 = extern union {
     };
     vtable: *const VTable,
     ID3D12Device4: ID3D12Device4,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Device4.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device5_CreateLifetimeTracker(self: *const T, pOwner: ?*ID3D12LifetimeOwner, riid: ?*const Guid, ppvTracker: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).CreateLifetimeTracker(@as(*const ID3D12Device5, @ptrCast(self)), pOwner, riid, ppvTracker);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device5_RemoveDevice(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).RemoveDevice(@as(*const ID3D12Device5, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device5_EnumerateMetaCommands(self: *const T, pNumMetaCommands: ?*u32, pDescs: ?[*]D3D12_META_COMMAND_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).EnumerateMetaCommands(@as(*const ID3D12Device5, @ptrCast(self)), pNumMetaCommands, pDescs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device5_EnumerateMetaCommandParameters(self: *const T, CommandId: ?*const Guid, Stage: D3D12_META_COMMAND_PARAMETER_STAGE, pTotalStructureSizeInBytes: ?*u32, pParameterCount: ?*u32, pParameterDescs: ?[*]D3D12_META_COMMAND_PARAMETER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).EnumerateMetaCommandParameters(@as(*const ID3D12Device5, @ptrCast(self)), CommandId, Stage, pTotalStructureSizeInBytes, pParameterCount, pParameterDescs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device5_CreateMetaCommand(self: *const T, CommandId: ?*const Guid, NodeMask: u32, pCreationParametersData: ?*const anyopaque, CreationParametersDataSizeInBytes: usize, riid: ?*const Guid, ppMetaCommand: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).CreateMetaCommand(@as(*const ID3D12Device5, @ptrCast(self)), CommandId, NodeMask, pCreationParametersData, CreationParametersDataSizeInBytes, riid, ppMetaCommand);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device5_CreateStateObject(self: *const T, pDesc: ?*const D3D12_STATE_OBJECT_DESC, riid: ?*const Guid, ppStateObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).CreateStateObject(@as(*const ID3D12Device5, @ptrCast(self)), pDesc, riid, ppStateObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device5_GetRaytracingAccelerationStructurePrebuildInfo(self: *const T, pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS, pInfo: ?*D3D12_RAYTRACING_ACCELERATION_STRUCTURE_PREBUILD_INFO) callconv(.Inline) void {
-            return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).GetRaytracingAccelerationStructurePrebuildInfo(@as(*const ID3D12Device5, @ptrCast(self)), pDesc, pInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device5_CheckDriverMatchingIdentifier(self: *const T, SerializedDataType: D3D12_SERIALIZED_DATA_TYPE, pIdentifierToCheck: ?*const D3D12_SERIALIZED_DATA_DRIVER_MATCHING_IDENTIFIER) callconv(.Inline) D3D12_DRIVER_MATCHING_IDENTIFIER_STATUS {
-            return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).CheckDriverMatchingIdentifier(@as(*const ID3D12Device5, @ptrCast(self)), SerializedDataType, pIdentifierToCheck);
-        }
-    };}
-    pub usingnamespace ID3D12Device4.MethodMixin(@This());
+    ID3D12Device3: ID3D12Device3,
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn CreateLifetimeTracker(self: *const ID3D12Device5, pOwner: ?*ID3D12LifetimeOwner, riid: ?*const Guid, ppvTracker: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateLifetimeTracker(self, pOwner, riid, ppvTracker);
     }
@@ -7656,22 +6914,6 @@ pub const ID3D12DeviceRemovedExtendedDataSettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DeviceRemovedExtendedDataSettings_SetAutoBreadcrumbsEnablement(self: *const T, Enablement: D3D12_DRED_ENABLEMENT) callconv(.Inline) void {
-            return @as(*const ID3D12DeviceRemovedExtendedDataSettings.VTable, @ptrCast(self.vtable)).SetAutoBreadcrumbsEnablement(@as(*const ID3D12DeviceRemovedExtendedDataSettings, @ptrCast(self)), Enablement);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DeviceRemovedExtendedDataSettings_SetPageFaultEnablement(self: *const T, Enablement: D3D12_DRED_ENABLEMENT) callconv(.Inline) void {
-            return @as(*const ID3D12DeviceRemovedExtendedDataSettings.VTable, @ptrCast(self.vtable)).SetPageFaultEnablement(@as(*const ID3D12DeviceRemovedExtendedDataSettings, @ptrCast(self)), Enablement);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DeviceRemovedExtendedDataSettings_SetWatsonDumpEnablement(self: *const T, Enablement: D3D12_DRED_ENABLEMENT) callconv(.Inline) void {
-            return @as(*const ID3D12DeviceRemovedExtendedDataSettings.VTable, @ptrCast(self.vtable)).SetWatsonDumpEnablement(@as(*const ID3D12DeviceRemovedExtendedDataSettings, @ptrCast(self)), Enablement);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAutoBreadcrumbsEnablement(self: *const ID3D12DeviceRemovedExtendedDataSettings, Enablement: D3D12_DRED_ENABLEMENT) callconv(.Inline) void {
         return self.vtable.SetAutoBreadcrumbsEnablement(self, Enablement);
     }
@@ -7696,14 +6938,7 @@ pub const ID3D12DeviceRemovedExtendedDataSettings1 = extern union {
     };
     vtable: *const VTable,
     ID3D12DeviceRemovedExtendedDataSettings: ID3D12DeviceRemovedExtendedDataSettings,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12DeviceRemovedExtendedDataSettings.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DeviceRemovedExtendedDataSettings1_SetBreadcrumbContextEnablement(self: *const T, Enablement: D3D12_DRED_ENABLEMENT) callconv(.Inline) void {
-            return @as(*const ID3D12DeviceRemovedExtendedDataSettings1.VTable, @ptrCast(self.vtable)).SetBreadcrumbContextEnablement(@as(*const ID3D12DeviceRemovedExtendedDataSettings1, @ptrCast(self)), Enablement);
-        }
-    };}
-    pub usingnamespace ID3D12DeviceRemovedExtendedDataSettings.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetBreadcrumbContextEnablement(self: *const ID3D12DeviceRemovedExtendedDataSettings1, Enablement: D3D12_DRED_ENABLEMENT) callconv(.Inline) void {
         return self.vtable.SetBreadcrumbContextEnablement(self, Enablement);
     }
@@ -7726,18 +6961,6 @@ pub const ID3D12DeviceRemovedExtendedData = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DeviceRemovedExtendedData_GetAutoBreadcrumbsOutput(self: *const T, pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DeviceRemovedExtendedData.VTable, @ptrCast(self.vtable)).GetAutoBreadcrumbsOutput(@as(*const ID3D12DeviceRemovedExtendedData, @ptrCast(self)), pOutput);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DeviceRemovedExtendedData_GetPageFaultAllocationOutput(self: *const T, pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DeviceRemovedExtendedData.VTable, @ptrCast(self.vtable)).GetPageFaultAllocationOutput(@as(*const ID3D12DeviceRemovedExtendedData, @ptrCast(self)), pOutput);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAutoBreadcrumbsOutput(self: *const ID3D12DeviceRemovedExtendedData, pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT) callconv(.Inline) HRESULT {
         return self.vtable.GetAutoBreadcrumbsOutput(self, pOutput);
     }
@@ -7763,18 +6986,7 @@ pub const ID3D12DeviceRemovedExtendedData1 = extern union {
     };
     vtable: *const VTable,
     ID3D12DeviceRemovedExtendedData: ID3D12DeviceRemovedExtendedData,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12DeviceRemovedExtendedData.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DeviceRemovedExtendedData1_GetAutoBreadcrumbsOutput1(self: *const T, pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT1) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DeviceRemovedExtendedData1.VTable, @ptrCast(self.vtable)).GetAutoBreadcrumbsOutput1(@as(*const ID3D12DeviceRemovedExtendedData1, @ptrCast(self)), pOutput);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DeviceRemovedExtendedData1_GetPageFaultAllocationOutput1(self: *const T, pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT1) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DeviceRemovedExtendedData1.VTable, @ptrCast(self.vtable)).GetPageFaultAllocationOutput1(@as(*const ID3D12DeviceRemovedExtendedData1, @ptrCast(self)), pOutput);
-        }
-    };}
-    pub usingnamespace ID3D12DeviceRemovedExtendedData.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetAutoBreadcrumbsOutput1(self: *const ID3D12DeviceRemovedExtendedData1, pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT1) callconv(.Inline) HRESULT {
         return self.vtable.GetAutoBreadcrumbsOutput1(self, pOutput);
     }
@@ -7799,18 +7011,8 @@ pub const ID3D12DeviceRemovedExtendedData2 = extern union {
     };
     vtable: *const VTable,
     ID3D12DeviceRemovedExtendedData1: ID3D12DeviceRemovedExtendedData1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12DeviceRemovedExtendedData1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DeviceRemovedExtendedData2_GetPageFaultAllocationOutput2(self: *const T, pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT2) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DeviceRemovedExtendedData2.VTable, @ptrCast(self.vtable)).GetPageFaultAllocationOutput2(@as(*const ID3D12DeviceRemovedExtendedData2, @ptrCast(self)), pOutput);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DeviceRemovedExtendedData2_GetDeviceState(self: *const T) callconv(.Inline) D3D12_DRED_DEVICE_STATE {
-            return @as(*const ID3D12DeviceRemovedExtendedData2.VTable, @ptrCast(self.vtable)).GetDeviceState(@as(*const ID3D12DeviceRemovedExtendedData2, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12DeviceRemovedExtendedData1.MethodMixin(@This());
+    ID3D12DeviceRemovedExtendedData: ID3D12DeviceRemovedExtendedData,
+    IUnknown: IUnknown,
     pub fn GetPageFaultAllocationOutput2(self: *const ID3D12DeviceRemovedExtendedData2, pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT2) callconv(.Inline) HRESULT {
         return self.vtable.GetPageFaultAllocationOutput2(self, pOutput);
     }
@@ -7857,14 +7059,13 @@ pub const ID3D12Device6 = extern union {
     };
     vtable: *const VTable,
     ID3D12Device5: ID3D12Device5,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Device5.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device6_SetBackgroundProcessingMode(self: *const T, Mode: D3D12_BACKGROUND_PROCESSING_MODE, MeasurementsAction: D3D12_MEASUREMENTS_ACTION, hEventToSignalUponCompletion: ?HANDLE, pbFurtherMeasurementsDesired: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device6.VTable, @ptrCast(self.vtable)).SetBackgroundProcessingMode(@as(*const ID3D12Device6, @ptrCast(self)), Mode, MeasurementsAction, hEventToSignalUponCompletion, pbFurtherMeasurementsDesired);
-        }
-    };}
-    pub usingnamespace ID3D12Device5.MethodMixin(@This());
+    ID3D12Device4: ID3D12Device4,
+    ID3D12Device3: ID3D12Device3,
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn SetBackgroundProcessingMode(self: *const ID3D12Device6, Mode: D3D12_BACKGROUND_PROCESSING_MODE, MeasurementsAction: D3D12_MEASUREMENTS_ACTION, hEventToSignalUponCompletion: ?HANDLE, pbFurtherMeasurementsDesired: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.SetBackgroundProcessingMode(self, Mode, MeasurementsAction, hEventToSignalUponCompletion, pbFurtherMeasurementsDesired);
     }
@@ -7899,14 +7100,10 @@ pub const ID3D12ProtectedResourceSession1 = extern union {
     };
     vtable: *const VTable,
     ID3D12ProtectedResourceSession: ID3D12ProtectedResourceSession,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12ProtectedResourceSession.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ProtectedResourceSession1_GetDesc1(self: *const T) callconv(.Inline) D3D12_PROTECTED_RESOURCE_SESSION_DESC1 {
-            return @as(*const ID3D12ProtectedResourceSession1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D12ProtectedResourceSession1, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12ProtectedResourceSession.MethodMixin(@This());
+    ID3D12ProtectedSession: ID3D12ProtectedSession,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetDesc1(self: *const ID3D12ProtectedResourceSession1) callconv(.Inline) D3D12_PROTECTED_RESOURCE_SESSION_DESC1 {
         return self.vtable.GetDesc1(self);
     }
@@ -7934,18 +7131,14 @@ pub const ID3D12Device7 = extern union {
     };
     vtable: *const VTable,
     ID3D12Device6: ID3D12Device6,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Device6.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device7_AddToStateObject(self: *const T, pAddition: ?*const D3D12_STATE_OBJECT_DESC, pStateObjectToGrowFrom: ?*ID3D12StateObject, riid: ?*const Guid, ppNewStateObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device7.VTable, @ptrCast(self.vtable)).AddToStateObject(@as(*const ID3D12Device7, @ptrCast(self)), pAddition, pStateObjectToGrowFrom, riid, ppNewStateObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device7_CreateProtectedResourceSession1(self: *const T, pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC1, riid: ?*const Guid, ppSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device7.VTable, @ptrCast(self.vtable)).CreateProtectedResourceSession1(@as(*const ID3D12Device7, @ptrCast(self)), pDesc, riid, ppSession);
-        }
-    };}
-    pub usingnamespace ID3D12Device6.MethodMixin(@This());
+    ID3D12Device5: ID3D12Device5,
+    ID3D12Device4: ID3D12Device4,
+    ID3D12Device3: ID3D12Device3,
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn AddToStateObject(self: *const ID3D12Device7, pAddition: ?*const D3D12_STATE_OBJECT_DESC, pStateObjectToGrowFrom: ?*ID3D12StateObject, riid: ?*const Guid, ppNewStateObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.AddToStateObject(self, pAddition, pStateObjectToGrowFrom, riid, ppNewStateObject);
     }
@@ -8008,30 +7201,15 @@ pub const ID3D12Device8 = extern union {
     };
     vtable: *const VTable,
     ID3D12Device7: ID3D12Device7,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Device7.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device8_GetResourceAllocationInfo2(self: *const T, visibleMask: u32, numResourceDescs: u32, pResourceDescs: [*]const D3D12_RESOURCE_DESC1, pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1) callconv(.Inline) D3D12_RESOURCE_ALLOCATION_INFO {
-            return @as(*const ID3D12Device8.VTable, @ptrCast(self.vtable)).GetResourceAllocationInfo2(@as(*const ID3D12Device8, @ptrCast(self)), visibleMask, numResourceDescs, pResourceDescs, pResourceAllocationInfo1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device8_CreateCommittedResource2(self: *const T, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC1, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riidResource: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device8.VTable, @ptrCast(self.vtable)).CreateCommittedResource2(@as(*const ID3D12Device8, @ptrCast(self)), pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, pProtectedSession, riidResource, ppvResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device8_CreatePlacedResource1(self: *const T, pHeap: ?*ID3D12Heap, HeapOffset: u64, pDesc: ?*const D3D12_RESOURCE_DESC1, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device8.VTable, @ptrCast(self.vtable)).CreatePlacedResource1(@as(*const ID3D12Device8, @ptrCast(self)), pHeap, HeapOffset, pDesc, InitialState, pOptimizedClearValue, riid, ppvResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device8_CreateSamplerFeedbackUnorderedAccessView(self: *const T, pTargetedResource: ?*ID3D12Resource, pFeedbackResource: ?*ID3D12Resource, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
-            return @as(*const ID3D12Device8.VTable, @ptrCast(self.vtable)).CreateSamplerFeedbackUnorderedAccessView(@as(*const ID3D12Device8, @ptrCast(self)), pTargetedResource, pFeedbackResource, DestDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device8_GetCopyableFootprints1(self: *const T, pResourceDesc: ?*const D3D12_RESOURCE_DESC1, FirstSubresource: u32, NumSubresources: u32, BaseOffset: u64, pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT, pNumRows: ?[*]u32, pRowSizeInBytes: ?[*]u64, pTotalBytes: ?*u64) callconv(.Inline) void {
-            return @as(*const ID3D12Device8.VTable, @ptrCast(self.vtable)).GetCopyableFootprints1(@as(*const ID3D12Device8, @ptrCast(self)), pResourceDesc, FirstSubresource, NumSubresources, BaseOffset, pLayouts, pNumRows, pRowSizeInBytes, pTotalBytes);
-        }
-    };}
-    pub usingnamespace ID3D12Device7.MethodMixin(@This());
+    ID3D12Device6: ID3D12Device6,
+    ID3D12Device5: ID3D12Device5,
+    ID3D12Device4: ID3D12Device4,
+    ID3D12Device3: ID3D12Device3,
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetResourceAllocationInfo2(self: *const ID3D12Device8, visibleMask: u32, numResourceDescs: u32, pResourceDescs: [*]const D3D12_RESOURCE_DESC1, pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1) callconv(.Inline) D3D12_RESOURCE_ALLOCATION_INFO {
         return self.vtable.GetResourceAllocationInfo2(self, visibleMask, numResourceDescs, pResourceDescs, pResourceAllocationInfo1);
     }
@@ -8063,14 +7241,10 @@ pub const ID3D12Resource1 = extern union {
     };
     vtable: *const VTable,
     ID3D12Resource: ID3D12Resource,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Resource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Resource1_GetProtectedResourceSession(self: *const T, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Resource1.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12Resource1, @ptrCast(self)), riid, ppProtectedSession);
-        }
-    };}
-    pub usingnamespace ID3D12Resource.MethodMixin(@This());
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetProtectedResourceSession(self: *const ID3D12Resource1, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetProtectedResourceSession(self, riid, ppProtectedSession);
     }
@@ -8088,14 +7262,11 @@ pub const ID3D12Resource2 = extern union {
     };
     vtable: *const VTable,
     ID3D12Resource1: ID3D12Resource1,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Resource1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Resource2_GetDesc1(self: *const T) callconv(.Inline) D3D12_RESOURCE_DESC1 {
-            return @as(*const ID3D12Resource2.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D12Resource2, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12Resource1.MethodMixin(@This());
+    ID3D12Resource: ID3D12Resource,
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetDesc1(self: *const ID3D12Resource2) callconv(.Inline) D3D12_RESOURCE_DESC1 {
         return self.vtable.GetDesc1(self);
     }
@@ -8115,14 +7286,10 @@ pub const ID3D12Heap1 = extern union {
     };
     vtable: *const VTable,
     ID3D12Heap: ID3D12Heap,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Heap.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Heap1_GetProtectedResourceSession(self: *const T, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Heap1.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12Heap1, @ptrCast(self)), riid, ppProtectedSession);
-        }
-    };}
-    pub usingnamespace ID3D12Heap.MethodMixin(@This());
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetProtectedResourceSession(self: *const ID3D12Heap1, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetProtectedResourceSession(self, riid, ppProtectedSession);
     }
@@ -8141,14 +7308,12 @@ pub const ID3D12GraphicsCommandList3 = extern union {
     };
     vtable: *const VTable,
     ID3D12GraphicsCommandList2: ID3D12GraphicsCommandList2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12GraphicsCommandList2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList3_SetProtectedResourceSession(self: *const T, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList3.VTable, @ptrCast(self.vtable)).SetProtectedResourceSession(@as(*const ID3D12GraphicsCommandList3, @ptrCast(self)), pProtectedResourceSession);
-        }
-    };}
-    pub usingnamespace ID3D12GraphicsCommandList2.MethodMixin(@This());
+    ID3D12GraphicsCommandList1: ID3D12GraphicsCommandList1,
+    ID3D12GraphicsCommandList: ID3D12GraphicsCommandList,
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn SetProtectedResourceSession(self: *const ID3D12GraphicsCommandList3, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession) callconv(.Inline) void {
         return self.vtable.SetProtectedResourceSession(self, pProtectedResourceSession);
     }
@@ -8279,14 +7444,9 @@ pub const ID3D12MetaCommand = extern union {
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Pageable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12MetaCommand_GetRequiredParameterResourceSize(self: *const T, Stage: D3D12_META_COMMAND_PARAMETER_STAGE, ParameterIndex: u32) callconv(.Inline) u64 {
-            return @as(*const ID3D12MetaCommand.VTable, @ptrCast(self.vtable)).GetRequiredParameterResourceSize(@as(*const ID3D12MetaCommand, @ptrCast(self)), Stage, ParameterIndex);
-        }
-    };}
-    pub usingnamespace ID3D12Pageable.MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn GetRequiredParameterResourceSize(self: *const ID3D12MetaCommand, Stage: D3D12_META_COMMAND_PARAMETER_STAGE, ParameterIndex: u32) callconv(.Inline) u64 {
         return self.vtable.GetRequiredParameterResourceSize(self, Stage, ParameterIndex);
     }
@@ -8361,46 +7521,13 @@ pub const ID3D12GraphicsCommandList4 = extern union {
     };
     vtable: *const VTable,
     ID3D12GraphicsCommandList3: ID3D12GraphicsCommandList3,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12GraphicsCommandList3.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList4_BeginRenderPass(self: *const T, NumRenderTargets: u32, pRenderTargets: ?[*]const D3D12_RENDER_PASS_RENDER_TARGET_DESC, pDepthStencil: ?*const D3D12_RENDER_PASS_DEPTH_STENCIL_DESC, Flags: D3D12_RENDER_PASS_FLAGS) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).BeginRenderPass(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), NumRenderTargets, pRenderTargets, pDepthStencil, Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList4_EndRenderPass(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).EndRenderPass(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList4_InitializeMetaCommand(self: *const T, pMetaCommand: ?*ID3D12MetaCommand, pInitializationParametersData: ?*const anyopaque, InitializationParametersDataSizeInBytes: usize) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).InitializeMetaCommand(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), pMetaCommand, pInitializationParametersData, InitializationParametersDataSizeInBytes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList4_ExecuteMetaCommand(self: *const T, pMetaCommand: ?*ID3D12MetaCommand, pExecutionParametersData: ?*const anyopaque, ExecutionParametersDataSizeInBytes: usize) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).ExecuteMetaCommand(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), pMetaCommand, pExecutionParametersData, ExecutionParametersDataSizeInBytes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList4_BuildRaytracingAccelerationStructure(self: *const T, pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_DESC, NumPostbuildInfoDescs: u32, pPostbuildInfoDescs: ?[*]const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INFO_DESC) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).BuildRaytracingAccelerationStructure(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), pDesc, NumPostbuildInfoDescs, pPostbuildInfoDescs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList4_EmitRaytracingAccelerationStructurePostbuildInfo(self: *const T, pDesc: ?*const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INFO_DESC, NumSourceAccelerationStructures: u32, pSourceAccelerationStructureData: [*]const u64) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).EmitRaytracingAccelerationStructurePostbuildInfo(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), pDesc, NumSourceAccelerationStructures, pSourceAccelerationStructureData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList4_CopyRaytracingAccelerationStructure(self: *const T, DestAccelerationStructureData: u64, SourceAccelerationStructureData: u64, Mode: D3D12_RAYTRACING_ACCELERATION_STRUCTURE_COPY_MODE) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).CopyRaytracingAccelerationStructure(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), DestAccelerationStructureData, SourceAccelerationStructureData, Mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList4_SetPipelineState1(self: *const T, pStateObject: ?*ID3D12StateObject) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).SetPipelineState1(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), pStateObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList4_DispatchRays(self: *const T, pDesc: ?*const D3D12_DISPATCH_RAYS_DESC) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).DispatchRays(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), pDesc);
-        }
-    };}
-    pub usingnamespace ID3D12GraphicsCommandList3.MethodMixin(@This());
+    ID3D12GraphicsCommandList2: ID3D12GraphicsCommandList2,
+    ID3D12GraphicsCommandList1: ID3D12GraphicsCommandList1,
+    ID3D12GraphicsCommandList: ID3D12GraphicsCommandList,
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn BeginRenderPass(self: *const ID3D12GraphicsCommandList4, NumRenderTargets: u32, pRenderTargets: ?[*]const D3D12_RENDER_PASS_RENDER_TARGET_DESC, pDepthStencil: ?*const D3D12_RENDER_PASS_DEPTH_STENCIL_DESC, Flags: D3D12_RENDER_PASS_FLAGS) callconv(.Inline) void {
         return self.vtable.BeginRenderPass(self, NumRenderTargets, pRenderTargets, pDepthStencil, Flags);
     }
@@ -8518,26 +7645,8 @@ pub const ID3D12ShaderCacheSession = extern union {
     };
     vtable: *const VTable,
     ID3D12DeviceChild: ID3D12DeviceChild,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderCacheSession_FindValue(self: *const T, pKey: ?*const anyopaque, KeySize: u32, pValue: ?*anyopaque, pValueSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderCacheSession.VTable, @ptrCast(self.vtable)).FindValue(@as(*const ID3D12ShaderCacheSession, @ptrCast(self)), pKey, KeySize, pValue, pValueSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderCacheSession_StoreValue(self: *const T, pKey: ?*const anyopaque, KeySize: u32, pValue: ?*const anyopaque, ValueSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderCacheSession.VTable, @ptrCast(self.vtable)).StoreValue(@as(*const ID3D12ShaderCacheSession, @ptrCast(self)), pKey, KeySize, pValue, ValueSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderCacheSession_SetDeleteOnDestroy(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12ShaderCacheSession.VTable, @ptrCast(self.vtable)).SetDeleteOnDestroy(@as(*const ID3D12ShaderCacheSession, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderCacheSession_GetDesc(self: *const T) callconv(.Inline) D3D12_SHADER_CACHE_SESSION_DESC {
-            return @as(*const ID3D12ShaderCacheSession.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12ShaderCacheSession, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12DeviceChild.MethodMixin(@This());
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn FindValue(self: *const ID3D12ShaderCacheSession, pKey: ?*const anyopaque, KeySize: u32, pValue: ?*anyopaque, pValueSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.FindValue(self, pKey, KeySize, pValue, pValueSize);
     }
@@ -8656,22 +7765,16 @@ pub const ID3D12Device9 = extern union {
     };
     vtable: *const VTable,
     ID3D12Device8: ID3D12Device8,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Device8.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device9_CreateShaderCacheSession(self: *const T, pDesc: ?*const D3D12_SHADER_CACHE_SESSION_DESC, riid: ?*const Guid, ppvSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device9.VTable, @ptrCast(self.vtable)).CreateShaderCacheSession(@as(*const ID3D12Device9, @ptrCast(self)), pDesc, riid, ppvSession);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device9_ShaderCacheControl(self: *const T, Kinds: D3D12_SHADER_CACHE_KIND_FLAGS, Control: D3D12_SHADER_CACHE_CONTROL_FLAGS) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device9.VTable, @ptrCast(self.vtable)).ShaderCacheControl(@as(*const ID3D12Device9, @ptrCast(self)), Kinds, Control);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device9_CreateCommandQueue1(self: *const T, pDesc: ?*const D3D12_COMMAND_QUEUE_DESC, CreatorID: ?*const Guid, riid: ?*const Guid, ppCommandQueue: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device9.VTable, @ptrCast(self.vtable)).CreateCommandQueue1(@as(*const ID3D12Device9, @ptrCast(self)), pDesc, CreatorID, riid, ppCommandQueue);
-        }
-    };}
-    pub usingnamespace ID3D12Device8.MethodMixin(@This());
+    ID3D12Device7: ID3D12Device7,
+    ID3D12Device6: ID3D12Device6,
+    ID3D12Device5: ID3D12Device5,
+    ID3D12Device4: ID3D12Device4,
+    ID3D12Device3: ID3D12Device3,
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn CreateShaderCacheSession(self: *const ID3D12Device9, pDesc: ?*const D3D12_SHADER_CACHE_SESSION_DESC, riid: ?*const Guid, ppvSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateShaderCacheSession(self, pDesc, riid, ppvSession);
     }
@@ -8699,18 +7802,6 @@ pub const ID3D12Tools = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Tools_EnableShaderInstrumentation(self: *const T, bEnable: BOOL) callconv(.Inline) void {
-            return @as(*const ID3D12Tools.VTable, @ptrCast(self.vtable)).EnableShaderInstrumentation(@as(*const ID3D12Tools, @ptrCast(self)), bEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Tools_ShaderInstrumentationEnabled(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D12Tools.VTable, @ptrCast(self.vtable)).ShaderInstrumentationEnabled(@as(*const ID3D12Tools, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnableShaderInstrumentation(self: *const ID3D12Tools, bEnable: BOOL) callconv(.Inline) void {
         return self.vtable.EnableShaderInstrumentation(self, bEnable);
     }
@@ -8743,14 +7834,6 @@ pub const ID3D12Debug = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Debug_EnableDebugLayer(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12Debug.VTable, @ptrCast(self.vtable)).EnableDebugLayer(@as(*const ID3D12Debug, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnableDebugLayer(self: *const ID3D12Debug) callconv(.Inline) void {
         return self.vtable.EnableDebugLayer(self);
     }
@@ -8783,22 +7866,6 @@ pub const ID3D12Debug1 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Debug1_EnableDebugLayer(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12Debug1.VTable, @ptrCast(self.vtable)).EnableDebugLayer(@as(*const ID3D12Debug1, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Debug1_SetEnableGPUBasedValidation(self: *const T, Enable: BOOL) callconv(.Inline) void {
-            return @as(*const ID3D12Debug1.VTable, @ptrCast(self.vtable)).SetEnableGPUBasedValidation(@as(*const ID3D12Debug1, @ptrCast(self)), Enable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Debug1_SetEnableSynchronizedCommandQueueValidation(self: *const T, Enable: BOOL) callconv(.Inline) void {
-            return @as(*const ID3D12Debug1.VTable, @ptrCast(self.vtable)).SetEnableSynchronizedCommandQueueValidation(@as(*const ID3D12Debug1, @ptrCast(self)), Enable);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnableDebugLayer(self: *const ID3D12Debug1) callconv(.Inline) void {
         return self.vtable.EnableDebugLayer(self);
     }
@@ -8823,14 +7890,6 @@ pub const ID3D12Debug2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Debug2_SetGPUBasedValidationFlags(self: *const T, Flags: D3D12_GPU_BASED_VALIDATION_FLAGS) callconv(.Inline) void {
-            return @as(*const ID3D12Debug2.VTable, @ptrCast(self.vtable)).SetGPUBasedValidationFlags(@as(*const ID3D12Debug2, @ptrCast(self)), Flags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetGPUBasedValidationFlags(self: *const ID3D12Debug2, Flags: D3D12_GPU_BASED_VALIDATION_FLAGS) callconv(.Inline) void {
         return self.vtable.SetGPUBasedValidationFlags(self, Flags);
     }
@@ -8857,22 +7916,7 @@ pub const ID3D12Debug3 = extern union {
     };
     vtable: *const VTable,
     ID3D12Debug: ID3D12Debug,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Debug.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Debug3_SetEnableGPUBasedValidation(self: *const T, Enable: BOOL) callconv(.Inline) void {
-            return @as(*const ID3D12Debug3.VTable, @ptrCast(self.vtable)).SetEnableGPUBasedValidation(@as(*const ID3D12Debug3, @ptrCast(self)), Enable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Debug3_SetEnableSynchronizedCommandQueueValidation(self: *const T, Enable: BOOL) callconv(.Inline) void {
-            return @as(*const ID3D12Debug3.VTable, @ptrCast(self.vtable)).SetEnableSynchronizedCommandQueueValidation(@as(*const ID3D12Debug3, @ptrCast(self)), Enable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Debug3_SetGPUBasedValidationFlags(self: *const T, Flags: D3D12_GPU_BASED_VALIDATION_FLAGS) callconv(.Inline) void {
-            return @as(*const ID3D12Debug3.VTable, @ptrCast(self.vtable)).SetGPUBasedValidationFlags(@as(*const ID3D12Debug3, @ptrCast(self)), Flags);
-        }
-    };}
-    pub usingnamespace ID3D12Debug.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetEnableGPUBasedValidation(self: *const ID3D12Debug3, Enable: BOOL) callconv(.Inline) void {
         return self.vtable.SetEnableGPUBasedValidation(self, Enable);
     }
@@ -8896,14 +7940,8 @@ pub const ID3D12Debug4 = extern union {
     };
     vtable: *const VTable,
     ID3D12Debug3: ID3D12Debug3,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Debug3.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Debug4_DisableDebugLayer(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12Debug4.VTable, @ptrCast(self.vtable)).DisableDebugLayer(@as(*const ID3D12Debug4, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace ID3D12Debug3.MethodMixin(@This());
+    ID3D12Debug: ID3D12Debug,
+    IUnknown: IUnknown,
     pub fn DisableDebugLayer(self: *const ID3D12Debug4) callconv(.Inline) void {
         return self.vtable.DisableDebugLayer(self);
     }
@@ -8922,14 +7960,9 @@ pub const ID3D12Debug5 = extern union {
     };
     vtable: *const VTable,
     ID3D12Debug4: ID3D12Debug4,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12Debug4.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Debug5_SetEnableAutoName(self: *const T, Enable: BOOL) callconv(.Inline) void {
-            return @as(*const ID3D12Debug5.VTable, @ptrCast(self.vtable)).SetEnableAutoName(@as(*const ID3D12Debug5, @ptrCast(self)), Enable);
-        }
-    };}
-    pub usingnamespace ID3D12Debug4.MethodMixin(@This());
+    ID3D12Debug3: ID3D12Debug3,
+    ID3D12Debug: ID3D12Debug,
+    IUnknown: IUnknown,
     pub fn SetEnableAutoName(self: *const ID3D12Debug5, Enable: BOOL) callconv(.Inline) void {
         return self.vtable.SetEnableAutoName(self, Enable);
     }
@@ -9031,22 +8064,6 @@ pub const ID3D12DebugDevice1 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugDevice1_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DebugDevice1.VTable, @ptrCast(self.vtable)).SetDebugParameter(@as(*const ID3D12DebugDevice1, @ptrCast(self)), Type, pData, DataSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugDevice1_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DebugDevice1.VTable, @ptrCast(self.vtable)).GetDebugParameter(@as(*const ID3D12DebugDevice1, @ptrCast(self)), Type, pData, DataSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugDevice1_ReportLiveDeviceObjects(self: *const T, Flags: D3D12_RLDO_FLAGS) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DebugDevice1.VTable, @ptrCast(self.vtable)).ReportLiveDeviceObjects(@as(*const ID3D12DebugDevice1, @ptrCast(self)), Flags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetDebugParameter(self: *const ID3D12DebugDevice1, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
         return self.vtable.SetDebugParameter(self, Type, pData, DataSize);
     }
@@ -9078,22 +8095,6 @@ pub const ID3D12DebugDevice = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugDevice_SetFeatureMask(self: *const T, Mask: D3D12_DEBUG_FEATURE) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DebugDevice.VTable, @ptrCast(self.vtable)).SetFeatureMask(@as(*const ID3D12DebugDevice, @ptrCast(self)), Mask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugDevice_GetFeatureMask(self: *const T) callconv(.Inline) D3D12_DEBUG_FEATURE {
-            return @as(*const ID3D12DebugDevice.VTable, @ptrCast(self.vtable)).GetFeatureMask(@as(*const ID3D12DebugDevice, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugDevice_ReportLiveDeviceObjects(self: *const T, Flags: D3D12_RLDO_FLAGS) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DebugDevice.VTable, @ptrCast(self.vtable)).ReportLiveDeviceObjects(@as(*const ID3D12DebugDevice, @ptrCast(self)), Flags);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFeatureMask(self: *const ID3D12DebugDevice, Mask: D3D12_DEBUG_FEATURE) callconv(.Inline) HRESULT {
         return self.vtable.SetFeatureMask(self, Mask);
     }
@@ -9128,18 +8129,7 @@ pub const ID3D12DebugDevice2 = extern union {
     };
     vtable: *const VTable,
     ID3D12DebugDevice: ID3D12DebugDevice,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12DebugDevice.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugDevice2_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DebugDevice2.VTable, @ptrCast(self.vtable)).SetDebugParameter(@as(*const ID3D12DebugDevice2, @ptrCast(self)), Type, pData, DataSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugDevice2_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DebugDevice2.VTable, @ptrCast(self.vtable)).GetDebugParameter(@as(*const ID3D12DebugDevice2, @ptrCast(self)), Type, pData, DataSize);
-        }
-    };}
-    pub usingnamespace ID3D12DebugDevice.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetDebugParameter(self: *const ID3D12DebugDevice2, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
         return self.vtable.SetDebugParameter(self, Type, pData, DataSize);
     }
@@ -9163,14 +8153,6 @@ pub const ID3D12DebugCommandQueue = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandQueue_AssertResourceState(self: *const T, pResource: ?*ID3D12Resource, Subresource: u32, State: u32) callconv(.Inline) BOOL {
-            return @as(*const ID3D12DebugCommandQueue.VTable, @ptrCast(self.vtable)).AssertResourceState(@as(*const ID3D12DebugCommandQueue, @ptrCast(self)), pResource, Subresource, State);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AssertResourceState(self: *const ID3D12DebugCommandQueue, pResource: ?*ID3D12Resource, Subresource: u32, State: u32) callconv(.Inline) BOOL {
         return self.vtable.AssertResourceState(self, pResource, Subresource, State);
     }
@@ -9214,22 +8196,6 @@ pub const ID3D12DebugCommandList1 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandList1_AssertResourceState(self: *const T, pResource: ?*ID3D12Resource, Subresource: u32, State: u32) callconv(.Inline) BOOL {
-            return @as(*const ID3D12DebugCommandList1.VTable, @ptrCast(self.vtable)).AssertResourceState(@as(*const ID3D12DebugCommandList1, @ptrCast(self)), pResource, Subresource, State);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandList1_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DebugCommandList1.VTable, @ptrCast(self.vtable)).SetDebugParameter(@as(*const ID3D12DebugCommandList1, @ptrCast(self)), Type, pData, DataSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandList1_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DebugCommandList1.VTable, @ptrCast(self.vtable)).GetDebugParameter(@as(*const ID3D12DebugCommandList1, @ptrCast(self)), Type, pData, DataSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AssertResourceState(self: *const ID3D12DebugCommandList1, pResource: ?*ID3D12Resource, Subresource: u32, State: u32) callconv(.Inline) BOOL {
         return self.vtable.AssertResourceState(self, pResource, Subresource, State);
     }
@@ -9263,22 +8229,6 @@ pub const ID3D12DebugCommandList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandList_AssertResourceState(self: *const T, pResource: ?*ID3D12Resource, Subresource: u32, State: u32) callconv(.Inline) BOOL {
-            return @as(*const ID3D12DebugCommandList.VTable, @ptrCast(self.vtable)).AssertResourceState(@as(*const ID3D12DebugCommandList, @ptrCast(self)), pResource, Subresource, State);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandList_SetFeatureMask(self: *const T, Mask: D3D12_DEBUG_FEATURE) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DebugCommandList.VTable, @ptrCast(self.vtable)).SetFeatureMask(@as(*const ID3D12DebugCommandList, @ptrCast(self)), Mask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandList_GetFeatureMask(self: *const T) callconv(.Inline) D3D12_DEBUG_FEATURE {
-            return @as(*const ID3D12DebugCommandList.VTable, @ptrCast(self.vtable)).GetFeatureMask(@as(*const ID3D12DebugCommandList, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AssertResourceState(self: *const ID3D12DebugCommandList, pResource: ?*ID3D12Resource, Subresource: u32, State: u32) callconv(.Inline) BOOL {
         return self.vtable.AssertResourceState(self, pResource, Subresource, State);
     }
@@ -9313,18 +8263,7 @@ pub const ID3D12DebugCommandList2 = extern union {
     };
     vtable: *const VTable,
     ID3D12DebugCommandList: ID3D12DebugCommandList,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12DebugCommandList.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandList2_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DebugCommandList2.VTable, @ptrCast(self.vtable)).SetDebugParameter(@as(*const ID3D12DebugCommandList2, @ptrCast(self)), Type, pData, DataSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandList2_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12DebugCommandList2.VTable, @ptrCast(self.vtable)).GetDebugParameter(@as(*const ID3D12DebugCommandList2, @ptrCast(self)), Type, pData, DataSize);
-        }
-    };}
-    pub usingnamespace ID3D12DebugCommandList.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetDebugParameter(self: *const ID3D12DebugCommandList2, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
         return self.vtable.SetDebugParameter(self, Type, pData, DataSize);
     }
@@ -9361,26 +8300,6 @@ pub const ID3D12SharingContract = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12SharingContract_Present(self: *const T, pResource: ?*ID3D12Resource, Subresource: u32, window: ?HWND) callconv(.Inline) void {
-            return @as(*const ID3D12SharingContract.VTable, @ptrCast(self.vtable)).Present(@as(*const ID3D12SharingContract, @ptrCast(self)), pResource, Subresource, window);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12SharingContract_SharedFenceSignal(self: *const T, pFence: ?*ID3D12Fence, FenceValue: u64) callconv(.Inline) void {
-            return @as(*const ID3D12SharingContract.VTable, @ptrCast(self.vtable)).SharedFenceSignal(@as(*const ID3D12SharingContract, @ptrCast(self)), pFence, FenceValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12SharingContract_BeginCapturableWork(self: *const T, guid: ?*const Guid) callconv(.Inline) void {
-            return @as(*const ID3D12SharingContract.VTable, @ptrCast(self.vtable)).BeginCapturableWork(@as(*const ID3D12SharingContract, @ptrCast(self)), guid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12SharingContract_EndCapturableWork(self: *const T, guid: ?*const Guid) callconv(.Inline) void {
-            return @as(*const ID3D12SharingContract.VTable, @ptrCast(self.vtable)).EndCapturableWork(@as(*const ID3D12SharingContract, @ptrCast(self)), guid);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Present(self: *const ID3D12SharingContract, pResource: ?*ID3D12Resource, Subresource: u32, window: ?HWND) callconv(.Inline) void {
         return self.vtable.Present(self, pResource, Subresource, window);
     }
@@ -11387,150 +10306,6 @@ pub const ID3D12InfoQueue = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_SetMessageCountLimit(self: *const T, MessageCountLimit: u64) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).SetMessageCountLimit(@as(*const ID3D12InfoQueue, @ptrCast(self)), MessageCountLimit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_ClearStoredMessages(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).ClearStoredMessages(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetMessage(self: *const T, MessageIndex: u64, pMessage: ?*D3D12_MESSAGE, pMessageByteLength: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const ID3D12InfoQueue, @ptrCast(self)), MessageIndex, pMessage, pMessageByteLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetNumMessagesAllowedByStorageFilter(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesAllowedByStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetNumMessagesDeniedByStorageFilter(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDeniedByStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetNumStoredMessages(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessages(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetNumStoredMessagesAllowedByRetrievalFilter(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessagesAllowedByRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetNumMessagesDiscardedByMessageCountLimit(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDiscardedByMessageCountLimit(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetMessageCountLimit(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetMessageCountLimit(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_AddStorageFilterEntries(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).AddStorageFilterEntries(@as(*const ID3D12InfoQueue, @ptrCast(self)), pFilter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetStorageFilter(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)), pFilter, pFilterByteLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_ClearStorageFilter(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).ClearStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_PushEmptyStorageFilter(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_PushCopyOfStorageFilter(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_PushStorageFilter(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PushStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)), pFilter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_PopStorageFilter(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PopStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetStorageFilterStackSize(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilterStackSize(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_AddRetrievalFilterEntries(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).AddRetrievalFilterEntries(@as(*const ID3D12InfoQueue, @ptrCast(self)), pFilter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetRetrievalFilter(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)), pFilter, pFilterByteLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_ClearRetrievalFilter(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).ClearRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_PushEmptyRetrievalFilter(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_PushCopyOfRetrievalFilter(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_PushRetrievalFilter(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PushRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)), pFilter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_PopRetrievalFilter(self: *const T) callconv(.Inline) void {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PopRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetRetrievalFilterStackSize(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilterStackSize(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_AddMessage(self: *const T, Category: D3D12_MESSAGE_CATEGORY, Severity: D3D12_MESSAGE_SEVERITY, ID: D3D12_MESSAGE_ID, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).AddMessage(@as(*const ID3D12InfoQueue, @ptrCast(self)), Category, Severity, ID, pDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_AddApplicationMessage(self: *const T, Severity: D3D12_MESSAGE_SEVERITY, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).AddApplicationMessage(@as(*const ID3D12InfoQueue, @ptrCast(self)), Severity, pDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_SetBreakOnCategory(self: *const T, Category: D3D12_MESSAGE_CATEGORY, bEnable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnCategory(@as(*const ID3D12InfoQueue, @ptrCast(self)), Category, bEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_SetBreakOnSeverity(self: *const T, Severity: D3D12_MESSAGE_SEVERITY, bEnable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnSeverity(@as(*const ID3D12InfoQueue, @ptrCast(self)), Severity, bEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_SetBreakOnID(self: *const T, ID: D3D12_MESSAGE_ID, bEnable: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnID(@as(*const ID3D12InfoQueue, @ptrCast(self)), ID, bEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetBreakOnCategory(self: *const T, Category: D3D12_MESSAGE_CATEGORY) callconv(.Inline) BOOL {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnCategory(@as(*const ID3D12InfoQueue, @ptrCast(self)), Category);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetBreakOnSeverity(self: *const T, Severity: D3D12_MESSAGE_SEVERITY) callconv(.Inline) BOOL {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnSeverity(@as(*const ID3D12InfoQueue, @ptrCast(self)), Severity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetBreakOnID(self: *const T, ID: D3D12_MESSAGE_ID) callconv(.Inline) BOOL {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnID(@as(*const ID3D12InfoQueue, @ptrCast(self)), ID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_SetMuteDebugOutput(self: *const T, bMute: BOOL) callconv(.Inline) void {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).SetMuteDebugOutput(@as(*const ID3D12InfoQueue, @ptrCast(self)), bMute);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetMuteDebugOutput(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetMuteDebugOutput(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetMessageCountLimit(self: *const ID3D12InfoQueue, MessageCountLimit: u64) callconv(.Inline) HRESULT {
         return self.vtable.SetMessageCountLimit(self, MessageCountLimit);
     }
@@ -11673,18 +10448,7 @@ pub const ID3D12InfoQueue1 = extern union {
     };
     vtable: *const VTable,
     ID3D12InfoQueue: ID3D12InfoQueue,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12InfoQueue.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue1_RegisterMessageCallback(self: *const T, CallbackFunc: ?D3D12MessageFunc, CallbackFilterFlags: D3D12_MESSAGE_CALLBACK_FLAGS, pContext: ?*anyopaque, pCallbackCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue1.VTable, @ptrCast(self.vtable)).RegisterMessageCallback(@as(*const ID3D12InfoQueue1, @ptrCast(self)), CallbackFunc, CallbackFilterFlags, pContext, pCallbackCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue1_UnregisterMessageCallback(self: *const T, CallbackCookie: u32) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12InfoQueue1.VTable, @ptrCast(self.vtable)).UnregisterMessageCallback(@as(*const ID3D12InfoQueue1, @ptrCast(self)), CallbackCookie);
-        }
-    };}
-    pub usingnamespace ID3D12InfoQueue.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn RegisterMessageCallback(self: *const ID3D12InfoQueue1, CallbackFunc: ?D3D12MessageFunc, CallbackFilterFlags: D3D12_MESSAGE_CALLBACK_FLAGS, pContext: ?*anyopaque, pCallbackCookie: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.RegisterMessageCallback(self, CallbackFunc, CallbackFilterFlags, pContext, pCallbackCookie);
     }
@@ -11725,14 +10489,6 @@ pub const ID3D12SDKConfiguration = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12SDKConfiguration_SetSDKVersion(self: *const T, SDKVersion: u32, SDKPath: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12SDKConfiguration.VTable, @ptrCast(self.vtable)).SetSDKVersion(@as(*const ID3D12SDKConfiguration, @ptrCast(self)), SDKVersion, SDKPath);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetSDKVersion(self: *const ID3D12SDKConfiguration, SDKVersion: u32, SDKPath: ?[*:0]const u8) callconv(.Inline) HRESULT {
         return self.vtable.SetSDKVersion(self, SDKVersion, SDKPath);
     }
@@ -11795,18 +10551,14 @@ pub const ID3D12GraphicsCommandList5 = extern union {
     };
     vtable: *const VTable,
     ID3D12GraphicsCommandList4: ID3D12GraphicsCommandList4,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12GraphicsCommandList4.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList5_RSSetShadingRate(self: *const T, baseShadingRate: D3D12_SHADING_RATE, combiners: ?*const D3D12_SHADING_RATE_COMBINER) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList5.VTable, @ptrCast(self.vtable)).RSSetShadingRate(@as(*const ID3D12GraphicsCommandList5, @ptrCast(self)), baseShadingRate, combiners);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList5_RSSetShadingRateImage(self: *const T, shadingRateImage: ?*ID3D12Resource) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList5.VTable, @ptrCast(self.vtable)).RSSetShadingRateImage(@as(*const ID3D12GraphicsCommandList5, @ptrCast(self)), shadingRateImage);
-        }
-    };}
-    pub usingnamespace ID3D12GraphicsCommandList4.MethodMixin(@This());
+    ID3D12GraphicsCommandList3: ID3D12GraphicsCommandList3,
+    ID3D12GraphicsCommandList2: ID3D12GraphicsCommandList2,
+    ID3D12GraphicsCommandList1: ID3D12GraphicsCommandList1,
+    ID3D12GraphicsCommandList: ID3D12GraphicsCommandList,
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn RSSetShadingRate(self: *const ID3D12GraphicsCommandList5, baseShadingRate: D3D12_SHADING_RATE, combiners: ?*const D3D12_SHADING_RATE_COMBINER) callconv(.Inline) void {
         return self.vtable.RSSetShadingRate(self, baseShadingRate, combiners);
     }
@@ -11836,14 +10588,15 @@ pub const ID3D12GraphicsCommandList6 = extern union {
     };
     vtable: *const VTable,
     ID3D12GraphicsCommandList5: ID3D12GraphicsCommandList5,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D12GraphicsCommandList5.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList6_DispatchMesh(self: *const T, ThreadGroupCountX: u32, ThreadGroupCountY: u32, ThreadGroupCountZ: u32) callconv(.Inline) void {
-            return @as(*const ID3D12GraphicsCommandList6.VTable, @ptrCast(self.vtable)).DispatchMesh(@as(*const ID3D12GraphicsCommandList6, @ptrCast(self)), ThreadGroupCountX, ThreadGroupCountY, ThreadGroupCountZ);
-        }
-    };}
-    pub usingnamespace ID3D12GraphicsCommandList5.MethodMixin(@This());
+    ID3D12GraphicsCommandList4: ID3D12GraphicsCommandList4,
+    ID3D12GraphicsCommandList3: ID3D12GraphicsCommandList3,
+    ID3D12GraphicsCommandList2: ID3D12GraphicsCommandList2,
+    ID3D12GraphicsCommandList1: ID3D12GraphicsCommandList1,
+    ID3D12GraphicsCommandList: ID3D12GraphicsCommandList,
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
     pub fn DispatchMesh(self: *const ID3D12GraphicsCommandList6, ThreadGroupCountX: u32, ThreadGroupCountY: u32, ThreadGroupCountZ: u32) callconv(.Inline) void {
         return self.vtable.DispatchMesh(self, ThreadGroupCountX, ThreadGroupCountY, ThreadGroupCountZ);
     }
@@ -12068,52 +10821,6 @@ pub const ID3D12ShaderReflectionType = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionType_GetDesc(self: *const T, pDesc: ?*D3D12_SHADER_TYPE_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionType_GetMemberTypeByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D12ShaderReflectionType {
-            return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeByIndex(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionType_GetMemberTypeByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D12ShaderReflectionType {
-            return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeByName(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionType_GetMemberTypeName(self: *const T, Index: u32) callconv(.Inline) ?PSTR {
-            return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeName(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionType_IsEqual(self: *const T, pType: ?*ID3D12ShaderReflectionType) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionType_GetSubType(self: *const T) callconv(.Inline) ?*ID3D12ShaderReflectionType {
-            return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetSubType(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionType_GetBaseClass(self: *const T) callconv(.Inline) ?*ID3D12ShaderReflectionType {
-            return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetBaseClass(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionType_GetNumInterfaces(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetNumInterfaces(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionType_GetInterfaceByIndex(self: *const T, uIndex: u32) callconv(.Inline) ?*ID3D12ShaderReflectionType {
-            return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetInterfaceByIndex(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), uIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionType_IsOfType(self: *const T, pType: ?*ID3D12ShaderReflectionType) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).IsOfType(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionType_ImplementsInterface(self: *const T, pBase: ?*ID3D12ShaderReflectionType) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).ImplementsInterface(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), pBase);
-        }
-    };}
     pub fn GetDesc(self: *const ID3D12ShaderReflectionType, pDesc: ?*D3D12_SHADER_TYPE_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -12170,24 +10877,6 @@ pub const ID3D12ShaderReflectionVariable = extern union {
         ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionVariable_GetDesc(self: *const T, pDesc: ?*D3D12_SHADER_VARIABLE_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12ShaderReflectionVariable, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionVariable_GetType(self: *const T) callconv(.Inline) ?*ID3D12ShaderReflectionType {
-            return @as(*const ID3D12ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D12ShaderReflectionVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionVariable_GetBuffer(self: *const T) callconv(.Inline) ?*ID3D12ShaderReflectionConstantBuffer {
-            return @as(*const ID3D12ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const ID3D12ShaderReflectionVariable, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionVariable_GetInterfaceSlot(self: *const T, uArrayIndex: u32) callconv(.Inline) u32 {
-            return @as(*const ID3D12ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetInterfaceSlot(@as(*const ID3D12ShaderReflectionVariable, @ptrCast(self)), uArrayIndex);
-        }
-    };}
     pub fn GetDesc(self: *const ID3D12ShaderReflectionVariable, pDesc: ?*D3D12_SHADER_VARIABLE_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -12221,20 +10910,6 @@ pub const ID3D12ShaderReflectionConstantBuffer = extern union {
         ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionConstantBuffer_GetDesc(self: *const T, pDesc: ?*D3D12_SHADER_BUFFER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12ShaderReflectionConstantBuffer, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionConstantBuffer_GetVariableByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D12ShaderReflectionVariable {
-            return @as(*const ID3D12ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetVariableByIndex(@as(*const ID3D12ShaderReflectionConstantBuffer, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflectionConstantBuffer_GetVariableByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D12ShaderReflectionVariable {
-            return @as(*const ID3D12ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D12ShaderReflectionConstantBuffer, @ptrCast(self)), Name);
-        }
-    };}
     pub fn GetDesc(self: *const ID3D12ShaderReflectionConstantBuffer, pDesc: ?*D3D12_SHADER_BUFFER_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -12330,86 +11005,6 @@ pub const ID3D12ShaderReflection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetDesc(self: *const T, pDesc: ?*D3D12_SHADER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12ShaderReflection, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetConstantBufferByIndex(self: *const T, Index: u32) callconv(.Inline) ?*ID3D12ShaderReflectionConstantBuffer {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByIndex(@as(*const ID3D12ShaderReflection, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetConstantBufferByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D12ShaderReflectionConstantBuffer {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByName(@as(*const ID3D12ShaderReflection, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetResourceBindingDesc(self: *const T, ResourceIndex: u32, pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDesc(@as(*const ID3D12ShaderReflection, @ptrCast(self)), ResourceIndex, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetInputParameterDesc(self: *const T, ParameterIndex: u32, pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetInputParameterDesc(@as(*const ID3D12ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetOutputParameterDesc(self: *const T, ParameterIndex: u32, pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetOutputParameterDesc(@as(*const ID3D12ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetPatchConstantParameterDesc(self: *const T, ParameterIndex: u32, pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetPatchConstantParameterDesc(@as(*const ID3D12ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetVariableByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D12ShaderReflectionVariable {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D12ShaderReflection, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetResourceBindingDescByName(self: *const T, Name: ?[*:0]const u8, pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDescByName(@as(*const ID3D12ShaderReflection, @ptrCast(self)), Name, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetMovInstructionCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetMovInstructionCount(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetMovcInstructionCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetMovcInstructionCount(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetConversionInstructionCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetConversionInstructionCount(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetBitwiseInstructionCount(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetBitwiseInstructionCount(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetGSInputPrimitive(self: *const T) callconv(.Inline) D3D_PRIMITIVE {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetGSInputPrimitive(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_IsSampleFrequencyShader(self: *const T) callconv(.Inline) BOOL {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).IsSampleFrequencyShader(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetNumInterfaceSlots(self: *const T) callconv(.Inline) u32 {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetNumInterfaceSlots(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetMinFeatureLevel(self: *const T, pLevel: ?*D3D_FEATURE_LEVEL) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetMinFeatureLevel(@as(*const ID3D12ShaderReflection, @ptrCast(self)), pLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetThreadGroupSize(self: *const T, pSizeX: ?*u32, pSizeY: ?*u32, pSizeZ: ?*u32) callconv(.Inline) u32 {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetThreadGroupSize(@as(*const ID3D12ShaderReflection, @ptrCast(self)), pSizeX, pSizeY, pSizeZ);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12ShaderReflection_GetRequiresFlags(self: *const T) callconv(.Inline) u64 {
-            return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetRequiresFlags(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDesc(self: *const ID3D12ShaderReflection, pDesc: ?*D3D12_SHADER_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -12486,18 +11081,6 @@ pub const ID3D12LibraryReflection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12LibraryReflection_GetDesc(self: *const T, pDesc: ?*D3D12_LIBRARY_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12LibraryReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12LibraryReflection, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12LibraryReflection_GetFunctionByIndex(self: *const T, FunctionIndex: i32) callconv(.Inline) ?*ID3D12FunctionReflection {
-            return @as(*const ID3D12LibraryReflection.VTable, @ptrCast(self.vtable)).GetFunctionByIndex(@as(*const ID3D12LibraryReflection, @ptrCast(self)), FunctionIndex);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDesc(self: *const ID3D12LibraryReflection, pDesc: ?*D3D12_LIBRARY_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -12543,36 +11126,6 @@ pub const ID3D12FunctionReflection = extern union {
         ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12FunctionParameterReflection,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12FunctionReflection_GetDesc(self: *const T, pDesc: ?*D3D12_FUNCTION_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12FunctionReflection, @ptrCast(self)), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12FunctionReflection_GetConstantBufferByIndex(self: *const T, BufferIndex: u32) callconv(.Inline) ?*ID3D12ShaderReflectionConstantBuffer {
-            return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByIndex(@as(*const ID3D12FunctionReflection, @ptrCast(self)), BufferIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12FunctionReflection_GetConstantBufferByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D12ShaderReflectionConstantBuffer {
-            return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByName(@as(*const ID3D12FunctionReflection, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12FunctionReflection_GetResourceBindingDesc(self: *const T, ResourceIndex: u32, pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDesc(@as(*const ID3D12FunctionReflection, @ptrCast(self)), ResourceIndex, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12FunctionReflection_GetVariableByName(self: *const T, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D12ShaderReflectionVariable {
-            return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D12FunctionReflection, @ptrCast(self)), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12FunctionReflection_GetResourceBindingDescByName(self: *const T, Name: ?[*:0]const u8, pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDescByName(@as(*const ID3D12FunctionReflection, @ptrCast(self)), Name, pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12FunctionReflection_GetFunctionParameter(self: *const T, ParameterIndex: i32) callconv(.Inline) ?*ID3D12FunctionParameterReflection {
-            return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetFunctionParameter(@as(*const ID3D12FunctionReflection, @ptrCast(self)), ParameterIndex);
-        }
-    };}
     pub fn GetDesc(self: *const ID3D12FunctionReflection, pDesc: ?*D3D12_FUNCTION_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
@@ -12607,12 +11160,6 @@ pub const ID3D12FunctionParameterReflection = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12FunctionParameterReflection_GetDesc(self: *const T, pDesc: ?*D3D12_PARAMETER_DESC) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12FunctionParameterReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12FunctionParameterReflection, @ptrCast(self)), pDesc);
-        }
-    };}
     pub fn GetDesc(self: *const ID3D12FunctionParameterReflection, pDesc: ?*D3D12_PARAMETER_DESC) callconv(.Inline) HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }

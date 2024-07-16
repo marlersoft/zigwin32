@@ -1711,14 +1711,6 @@ pub const IDialEventSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEventSink_OnEvent(self: *const T, dwEvent: u32, dwStatus: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDialEventSink.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const IDialEventSink, @ptrCast(self)), dwEvent, dwStatus);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnEvent(self: *const IDialEventSink, dwEvent: u32, dwStatus: u32) callconv(.Inline) HRESULT {
         return self.vtable.OnEvent(self, dwEvent, dwStatus);
     }
@@ -1762,38 +1754,6 @@ pub const IDialEngine = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_Initialize(self: *const T, pwzConnectoid: ?[*:0]const u16, pIDES: ?*IDialEventSink) callconv(.Inline) HRESULT {
-            return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDialEngine, @ptrCast(self)), pwzConnectoid, pIDES);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_GetProperty(self: *const T, pwzProperty: ?[*:0]const u16, pwzValue: ?PWSTR, dwBufSize: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDialEngine, @ptrCast(self)), pwzProperty, pwzValue, dwBufSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_SetProperty(self: *const T, pwzProperty: ?[*:0]const u16, pwzValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IDialEngine, @ptrCast(self)), pwzProperty, pwzValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_Dial(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).Dial(@as(*const IDialEngine, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_HangUp(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).HangUp(@as(*const IDialEngine, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_GetConnectedState(self: *const T, pdwState: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetConnectedState(@as(*const IDialEngine, @ptrCast(self)), pdwState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_GetConnectHandle(self: *const T, pdwHandle: ?*usize) callconv(.Inline) HRESULT {
-            return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetConnectHandle(@as(*const IDialEngine, @ptrCast(self)), pdwHandle);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IDialEngine, pwzConnectoid: ?[*:0]const u16, pIDES: ?*IDialEventSink) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, pwzConnectoid, pIDES);
     }
@@ -1834,18 +1794,6 @@ pub const IDialBranding = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialBranding_Initialize(self: *const T, pwzConnectoid: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IDialBranding.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDialBranding, @ptrCast(self)), pwzConnectoid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialBranding_GetBitmap(self: *const T, dwIndex: u32, phBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
-            return @as(*const IDialBranding.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const IDialBranding, @ptrCast(self)), dwIndex, phBitmap);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IDialBranding, pwzConnectoid: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, pwzConnectoid);
     }
@@ -2280,14 +2228,6 @@ pub const IProofOfPossessionCookieInfoManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProofOfPossessionCookieInfoManager_GetCookieInfoForUri(self: *const T, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
-            return @as(*const IProofOfPossessionCookieInfoManager.VTable, @ptrCast(self.vtable)).GetCookieInfoForUri(@as(*const IProofOfPossessionCookieInfoManager, @ptrCast(self)), uri, cookieInfoCount, cookieInfo);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCookieInfoForUri(self: *const IProofOfPossessionCookieInfoManager, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
         return self.vtable.GetCookieInfoForUri(self, uri, cookieInfoCount, cookieInfo);
     }
@@ -2308,14 +2248,6 @@ pub const IProofOfPossessionCookieInfoManager2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProofOfPossessionCookieInfoManager2_GetCookieInfoWithUriForAccount(self: *const T, webAccount: ?*IInspectable, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
-            return @as(*const IProofOfPossessionCookieInfoManager2.VTable, @ptrCast(self.vtable)).GetCookieInfoWithUriForAccount(@as(*const IProofOfPossessionCookieInfoManager2, @ptrCast(self)), webAccount, uri, cookieInfoCount, cookieInfo);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCookieInfoWithUriForAccount(self: *const IProofOfPossessionCookieInfoManager2, webAccount: ?*IInspectable, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
         return self.vtable.GetCookieInfoWithUriForAccount(self, webAccount, uri, cookieInfoCount, cookieInfo);
     }

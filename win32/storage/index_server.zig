@@ -276,30 +276,6 @@ pub const IFilter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilter_Init(self: *const T, grfFlags: u32, cAttributes: u32, aAttributes: [*]const FULLPROPSPEC, pFlags: ?*u32) callconv(.Inline) i32 {
-            return @as(*const IFilter.VTable, @ptrCast(self.vtable)).Init(@as(*const IFilter, @ptrCast(self)), grfFlags, cAttributes, aAttributes, pFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilter_GetChunk(self: *const T, pStat: ?*STAT_CHUNK) callconv(.Inline) i32 {
-            return @as(*const IFilter.VTable, @ptrCast(self.vtable)).GetChunk(@as(*const IFilter, @ptrCast(self)), pStat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilter_GetText(self: *const T, pcwcBuffer: ?*u32, awcBuffer: [*:0]u16) callconv(.Inline) i32 {
-            return @as(*const IFilter.VTable, @ptrCast(self.vtable)).GetText(@as(*const IFilter, @ptrCast(self)), pcwcBuffer, awcBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilter_GetValue(self: *const T, ppPropValue: ?*?*PROPVARIANT) callconv(.Inline) i32 {
-            return @as(*const IFilter.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IFilter, @ptrCast(self)), ppPropValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilter_BindRegion(self: *const T, origPos: FILTERREGION, riid: ?*const Guid, ppunk: ?*?*anyopaque) callconv(.Inline) i32 {
-            return @as(*const IFilter.VTable, @ptrCast(self.vtable)).BindRegion(@as(*const IFilter, @ptrCast(self)), origPos, riid, ppunk);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Init(self: *const IFilter, grfFlags: u32, cAttributes: u32, aAttributes: [*]const FULLPROPSPEC, pFlags: ?*u32) callconv(.Inline) i32 {
         return self.vtable.Init(self, grfFlags, cAttributes, aAttributes, pFlags);
     }
@@ -339,18 +315,6 @@ pub const IPhraseSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhraseSink_PutSmallPhrase(self: *const T, pwcNoun: ?[*:0]const u16, cwcNoun: u32, pwcModifier: ?[*:0]const u16, cwcModifier: u32, ulAttachmentType: u32) callconv(.Inline) HRESULT {
-            return @as(*const IPhraseSink.VTable, @ptrCast(self.vtable)).PutSmallPhrase(@as(*const IPhraseSink, @ptrCast(self)), pwcNoun, cwcNoun, pwcModifier, cwcModifier, ulAttachmentType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhraseSink_PutPhrase(self: *const T, pwcPhrase: ?[*:0]const u16, cwcPhrase: u32) callconv(.Inline) HRESULT {
-            return @as(*const IPhraseSink.VTable, @ptrCast(self.vtable)).PutPhrase(@as(*const IPhraseSink, @ptrCast(self)), pwcPhrase, cwcPhrase);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn PutSmallPhrase(self: *const IPhraseSink, pwcNoun: ?[*:0]const u16, cwcNoun: u32, pwcModifier: ?[*:0]const u16, cwcModifier: u32, ulAttachmentType: u32) callconv(.Inline) HRESULT {
         return self.vtable.PutSmallPhrase(self, pwcNoun, cwcNoun, pwcModifier, cwcModifier, ulAttachmentType);
     }

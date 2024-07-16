@@ -26,10 +26,7 @@ pub const IDummyMBNUCMExt = extern union {
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
-    pub usingnamespace IDispatch.MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 pub const MBN_SIGNAL_CONSTANTS = enum(i32) {
@@ -616,38 +613,6 @@ pub const IMbnConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_get_ConnectionID(self: *const T, ConnectionID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).get_ConnectionID(@as(*const IMbnConnection, @ptrCast(self)), ConnectionID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_get_InterfaceID(self: *const T, InterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).get_InterfaceID(@as(*const IMbnConnection, @ptrCast(self)), InterfaceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_Connect(self: *const T, connectionMode: MBN_CONNECTION_MODE, strProfile: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).Connect(@as(*const IMbnConnection, @ptrCast(self)), connectionMode, strProfile, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_Disconnect(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IMbnConnection, @ptrCast(self)), requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_GetConnectionState(self: *const T, ConnectionState: ?*MBN_ACTIVATION_STATE, ProfileName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).GetConnectionState(@as(*const IMbnConnection, @ptrCast(self)), ConnectionState, ProfileName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_GetVoiceCallState(self: *const T, voiceCallState: ?*MBN_VOICE_CALL_STATE) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).GetVoiceCallState(@as(*const IMbnConnection, @ptrCast(self)), voiceCallState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_GetActivationNetworkError(self: *const T, networkError: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnection.VTable, @ptrCast(self.vtable)).GetActivationNetworkError(@as(*const IMbnConnection, @ptrCast(self)), networkError);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_ConnectionID(self: *const IMbnConnection, ConnectionID: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_ConnectionID(self, ConnectionID);
     }
@@ -700,26 +665,6 @@ pub const IMbnConnectionEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionEvents_OnConnectComplete(self: *const T, newConnection: ?*IMbnConnection, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionEvents.VTable, @ptrCast(self.vtable)).OnConnectComplete(@as(*const IMbnConnectionEvents, @ptrCast(self)), newConnection, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionEvents_OnDisconnectComplete(self: *const T, newConnection: ?*IMbnConnection, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionEvents.VTable, @ptrCast(self.vtable)).OnDisconnectComplete(@as(*const IMbnConnectionEvents, @ptrCast(self)), newConnection, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionEvents_OnConnectStateChange(self: *const T, newConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionEvents.VTable, @ptrCast(self.vtable)).OnConnectStateChange(@as(*const IMbnConnectionEvents, @ptrCast(self)), newConnection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionEvents_OnVoiceCallStateChange(self: *const T, newConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionEvents.VTable, @ptrCast(self.vtable)).OnVoiceCallStateChange(@as(*const IMbnConnectionEvents, @ptrCast(self)), newConnection);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnConnectComplete(self: *const IMbnConnectionEvents, newConnection: ?*IMbnConnection, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
         return self.vtable.OnConnectComplete(self, newConnection, requestID, status);
     }
@@ -790,54 +735,6 @@ pub const IMbnInterface = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_get_InterfaceID(self: *const T, InterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).get_InterfaceID(@as(*const IMbnInterface, @ptrCast(self)), InterfaceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetInterfaceCapability(self: *const T, interfaceCaps: ?*MBN_INTERFACE_CAPS) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetInterfaceCapability(@as(*const IMbnInterface, @ptrCast(self)), interfaceCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetSubscriberInformation(self: *const T, subscriberInformation: ?*?*IMbnSubscriberInformation) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetSubscriberInformation(@as(*const IMbnInterface, @ptrCast(self)), subscriberInformation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetReadyState(self: *const T, readyState: ?*MBN_READY_STATE) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetReadyState(@as(*const IMbnInterface, @ptrCast(self)), readyState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_InEmergencyMode(self: *const T, emergencyMode: ?*i16) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).InEmergencyMode(@as(*const IMbnInterface, @ptrCast(self)), emergencyMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetHomeProvider(self: *const T, homeProvider: ?*MBN_PROVIDER) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetHomeProvider(@as(*const IMbnInterface, @ptrCast(self)), homeProvider);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetPreferredProviders(self: *const T, preferredProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetPreferredProviders(@as(*const IMbnInterface, @ptrCast(self)), preferredProviders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_SetPreferredProviders(self: *const T, preferredProviders: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).SetPreferredProviders(@as(*const IMbnInterface, @ptrCast(self)), preferredProviders, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetVisibleProviders(self: *const T, age: ?*u32, visibleProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetVisibleProviders(@as(*const IMbnInterface, @ptrCast(self)), age, visibleProviders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_ScanNetwork(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).ScanNetwork(@as(*const IMbnInterface, @ptrCast(self)), requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetConnection(self: *const T, mbnConnection: ?*?*IMbnConnection) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterface.VTable, @ptrCast(self.vtable)).GetConnection(@as(*const IMbnInterface, @ptrCast(self)), mbnConnection);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_InterfaceID(self: *const IMbnInterface, InterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_InterfaceID(self, InterfaceID);
     }
@@ -918,42 +815,6 @@ pub const IMbnInterfaceEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnInterfaceCapabilityAvailable(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnInterfaceCapabilityAvailable(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnSubscriberInformationChange(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnSubscriberInformationChange(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnReadyStateChange(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnReadyStateChange(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnEmergencyModeChange(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnEmergencyModeChange(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnHomeProviderAvailable(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnHomeProviderAvailable(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnPreferredProvidersChange(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnPreferredProvidersChange(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnSetPreferredProvidersComplete(self: *const T, newInterface: ?*IMbnInterface, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnSetPreferredProvidersComplete(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnScanNetworkComplete(self: *const T, newInterface: ?*IMbnInterface, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterfaceEvents.VTable, @ptrCast(self.vtable)).OnScanNetworkComplete(@as(*const IMbnInterfaceEvents, @ptrCast(self)), newInterface, requestID, status);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnInterfaceCapabilityAvailable(self: *const IMbnInterfaceEvents, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
         return self.vtable.OnInterfaceCapabilityAvailable(self, newInterface);
     }
@@ -998,18 +859,6 @@ pub const IMbnInterfaceManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceManager_GetInterface(self: *const T, interfaceID: ?[*:0]const u16, mbnInterface: ?*?*IMbnInterface) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterfaceManager.VTable, @ptrCast(self.vtable)).GetInterface(@as(*const IMbnInterfaceManager, @ptrCast(self)), interfaceID, mbnInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceManager_GetInterfaces(self: *const T, mbnInterfaces: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterfaceManager.VTable, @ptrCast(self.vtable)).GetInterfaces(@as(*const IMbnInterfaceManager, @ptrCast(self)), mbnInterfaces);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInterface(self: *const IMbnInterfaceManager, interfaceID: ?[*:0]const u16, mbnInterface: ?*?*IMbnInterface) callconv(.Inline) HRESULT {
         return self.vtable.GetInterface(self, interfaceID, mbnInterface);
     }
@@ -1035,18 +884,6 @@ pub const IMbnInterfaceManagerEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceManagerEvents_OnInterfaceArrival(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterfaceManagerEvents.VTable, @ptrCast(self.vtable)).OnInterfaceArrival(@as(*const IMbnInterfaceManagerEvents, @ptrCast(self)), newInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceManagerEvents_OnInterfaceRemoval(self: *const T, oldInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
-            return @as(*const IMbnInterfaceManagerEvents.VTable, @ptrCast(self.vtable)).OnInterfaceRemoval(@as(*const IMbnInterfaceManagerEvents, @ptrCast(self)), oldInterface);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnInterfaceArrival(self: *const IMbnInterfaceManagerEvents, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
         return self.vtable.OnInterfaceArrival(self, newInterface);
     }
@@ -1107,50 +944,6 @@ pub const IMbnRegistration = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetRegisterState(self: *const T, registerState: ?*MBN_REGISTER_STATE) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetRegisterState(@as(*const IMbnRegistration, @ptrCast(self)), registerState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetRegisterMode(self: *const T, registerMode: ?*MBN_REGISTER_MODE) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetRegisterMode(@as(*const IMbnRegistration, @ptrCast(self)), registerMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetProviderID(self: *const T, providerID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetProviderID(@as(*const IMbnRegistration, @ptrCast(self)), providerID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetProviderName(self: *const T, providerName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetProviderName(@as(*const IMbnRegistration, @ptrCast(self)), providerName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetRoamingText(self: *const T, roamingText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetRoamingText(@as(*const IMbnRegistration, @ptrCast(self)), roamingText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetAvailableDataClasses(self: *const T, availableDataClasses: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetAvailableDataClasses(@as(*const IMbnRegistration, @ptrCast(self)), availableDataClasses);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetCurrentDataClass(self: *const T, currentDataClass: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetCurrentDataClass(@as(*const IMbnRegistration, @ptrCast(self)), currentDataClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetRegistrationNetworkError(self: *const T, registrationNetworkError: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetRegistrationNetworkError(@as(*const IMbnRegistration, @ptrCast(self)), registrationNetworkError);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetPacketAttachNetworkError(self: *const T, packetAttachNetworkError: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).GetPacketAttachNetworkError(@as(*const IMbnRegistration, @ptrCast(self)), packetAttachNetworkError);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_SetRegisterMode(self: *const T, registerMode: MBN_REGISTER_MODE, providerID: ?[*:0]const u16, dataClass: u32, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistration.VTable, @ptrCast(self.vtable)).SetRegisterMode(@as(*const IMbnRegistration, @ptrCast(self)), registerMode, providerID, dataClass, requestID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRegisterState(self: *const IMbnRegistration, registerState: ?*MBN_REGISTER_STATE) callconv(.Inline) HRESULT {
         return self.vtable.GetRegisterState(self, registerState);
     }
@@ -1210,26 +1003,6 @@ pub const IMbnRegistrationEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistrationEvents_OnRegisterModeAvailable(self: *const T, newInterface: ?*IMbnRegistration) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistrationEvents.VTable, @ptrCast(self.vtable)).OnRegisterModeAvailable(@as(*const IMbnRegistrationEvents, @ptrCast(self)), newInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistrationEvents_OnRegisterStateChange(self: *const T, newInterface: ?*IMbnRegistration) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistrationEvents.VTable, @ptrCast(self.vtable)).OnRegisterStateChange(@as(*const IMbnRegistrationEvents, @ptrCast(self)), newInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistrationEvents_OnPacketServiceStateChange(self: *const T, newInterface: ?*IMbnRegistration) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistrationEvents.VTable, @ptrCast(self.vtable)).OnPacketServiceStateChange(@as(*const IMbnRegistrationEvents, @ptrCast(self)), newInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistrationEvents_OnSetRegisterModeComplete(self: *const T, newInterface: ?*IMbnRegistration, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRegistrationEvents.VTable, @ptrCast(self.vtable)).OnSetRegisterModeComplete(@as(*const IMbnRegistrationEvents, @ptrCast(self)), newInterface, requestID, status);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnRegisterModeAvailable(self: *const IMbnRegistrationEvents, newInterface: ?*IMbnRegistration) callconv(.Inline) HRESULT {
         return self.vtable.OnRegisterModeAvailable(self, newInterface);
     }
@@ -1262,18 +1035,6 @@ pub const IMbnConnectionManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionManager_GetConnection(self: *const T, connectionID: ?[*:0]const u16, mbnConnection: ?*?*IMbnConnection) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionManager.VTable, @ptrCast(self.vtable)).GetConnection(@as(*const IMbnConnectionManager, @ptrCast(self)), connectionID, mbnConnection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionManager_GetConnections(self: *const T, mbnConnections: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionManager.VTable, @ptrCast(self.vtable)).GetConnections(@as(*const IMbnConnectionManager, @ptrCast(self)), mbnConnections);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetConnection(self: *const IMbnConnectionManager, connectionID: ?[*:0]const u16, mbnConnection: ?*?*IMbnConnection) callconv(.Inline) HRESULT {
         return self.vtable.GetConnection(self, connectionID, mbnConnection);
     }
@@ -1299,18 +1060,6 @@ pub const IMbnConnectionManagerEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionManagerEvents_OnConnectionArrival(self: *const T, newConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionManagerEvents.VTable, @ptrCast(self.vtable)).OnConnectionArrival(@as(*const IMbnConnectionManagerEvents, @ptrCast(self)), newConnection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionManagerEvents_OnConnectionRemoval(self: *const T, oldConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionManagerEvents.VTable, @ptrCast(self.vtable)).OnConnectionRemoval(@as(*const IMbnConnectionManagerEvents, @ptrCast(self)), oldConnection);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnConnectionArrival(self: *const IMbnConnectionManagerEvents, newConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
         return self.vtable.OnConnectionArrival(self, newConnection);
     }
@@ -1341,22 +1090,6 @@ pub const IMbnPinManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinManager_GetPinList(self: *const T, pinList: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPinManager.VTable, @ptrCast(self.vtable)).GetPinList(@as(*const IMbnPinManager, @ptrCast(self)), pinList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinManager_GetPin(self: *const T, pinType: MBN_PIN_TYPE, pin: ?*?*IMbnPin) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPinManager.VTable, @ptrCast(self.vtable)).GetPin(@as(*const IMbnPinManager, @ptrCast(self)), pinType, pin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinManager_GetPinState(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPinManager.VTable, @ptrCast(self.vtable)).GetPinState(@as(*const IMbnPinManager, @ptrCast(self)), requestID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPinList(self: *const IMbnPinManager, pinList: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
         return self.vtable.GetPinList(self, pinList);
     }
@@ -1388,18 +1121,6 @@ pub const IMbnPinManagerEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinManagerEvents_OnPinListAvailable(self: *const T, pinManager: ?*IMbnPinManager) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPinManagerEvents.VTable, @ptrCast(self.vtable)).OnPinListAvailable(@as(*const IMbnPinManagerEvents, @ptrCast(self)), pinManager);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinManagerEvents_OnGetPinStateComplete(self: *const T, pinManager: ?*IMbnPinManager, pinInfo: MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPinManagerEvents.VTable, @ptrCast(self.vtable)).OnGetPinStateComplete(@as(*const IMbnPinManagerEvents, @ptrCast(self)), pinManager, pinInfo, requestID, status);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnPinListAvailable(self: *const IMbnPinManagerEvents, pinManager: ?*IMbnPinManager) callconv(.Inline) HRESULT {
         return self.vtable.OnPinListAvailable(self, pinManager);
     }
@@ -1452,30 +1173,6 @@ pub const IMbnPinEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinEvents_OnEnableComplete(self: *const T, pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPinEvents.VTable, @ptrCast(self.vtable)).OnEnableComplete(@as(*const IMbnPinEvents, @ptrCast(self)), pin, pinInfo, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinEvents_OnDisableComplete(self: *const T, pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPinEvents.VTable, @ptrCast(self.vtable)).OnDisableComplete(@as(*const IMbnPinEvents, @ptrCast(self)), pin, pinInfo, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinEvents_OnEnterComplete(self: *const T, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPinEvents.VTable, @ptrCast(self.vtable)).OnEnterComplete(@as(*const IMbnPinEvents, @ptrCast(self)), Pin, pinInfo, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinEvents_OnChangeComplete(self: *const T, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPinEvents.VTable, @ptrCast(self.vtable)).OnChangeComplete(@as(*const IMbnPinEvents, @ptrCast(self)), Pin, pinInfo, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinEvents_OnUnblockComplete(self: *const T, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPinEvents.VTable, @ptrCast(self.vtable)).OnUnblockComplete(@as(*const IMbnPinEvents, @ptrCast(self)), Pin, pinInfo, requestID, status);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnEnableComplete(self: *const IMbnPinEvents, pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
         return self.vtable.OnEnableComplete(self, pin, pinInfo, requestID, status);
     }
@@ -1517,22 +1214,6 @@ pub const IMbnSubscriberInformation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSubscriberInformation_get_SubscriberID(self: *const T, SubscriberID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSubscriberInformation.VTable, @ptrCast(self.vtable)).get_SubscriberID(@as(*const IMbnSubscriberInformation, @ptrCast(self)), SubscriberID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSubscriberInformation_get_SimIccID(self: *const T, SimIccID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSubscriberInformation.VTable, @ptrCast(self.vtable)).get_SimIccID(@as(*const IMbnSubscriberInformation, @ptrCast(self)), SimIccID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSubscriberInformation_get_TelephoneNumbers(self: *const T, TelephoneNumbers: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSubscriberInformation.VTable, @ptrCast(self.vtable)).get_TelephoneNumbers(@as(*const IMbnSubscriberInformation, @ptrCast(self)), TelephoneNumbers);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_SubscriberID(self: *const IMbnSubscriberInformation, SubscriberID: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_SubscriberID(self, SubscriberID);
     }
@@ -1561,18 +1242,6 @@ pub const IMbnSignal = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSignal_GetSignalStrength(self: *const T, signalStrength: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSignal.VTable, @ptrCast(self.vtable)).GetSignalStrength(@as(*const IMbnSignal, @ptrCast(self)), signalStrength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSignal_GetSignalError(self: *const T, signalError: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSignal.VTable, @ptrCast(self.vtable)).GetSignalError(@as(*const IMbnSignal, @ptrCast(self)), signalError);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSignalStrength(self: *const IMbnSignal, signalStrength: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetSignalStrength(self, signalStrength);
     }
@@ -1594,14 +1263,6 @@ pub const IMbnSignalEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSignalEvents_OnSignalStateChange(self: *const T, newInterface: ?*IMbnSignal) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSignalEvents.VTable, @ptrCast(self.vtable)).OnSignalStateChange(@as(*const IMbnSignalEvents, @ptrCast(self)), newInterface);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSignalStateChange(self: *const IMbnSignalEvents, newInterface: ?*IMbnSignal) callconv(.Inline) HRESULT {
         return self.vtable.OnSignalStateChange(self, newInterface);
     }
@@ -1626,18 +1287,6 @@ pub const IMbnConnectionContext = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionContext_GetProvisionedContexts(self: *const T, provisionedContexts: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionContext.VTable, @ptrCast(self.vtable)).GetProvisionedContexts(@as(*const IMbnConnectionContext, @ptrCast(self)), provisionedContexts);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionContext_SetProvisionedContext(self: *const T, provisionedContexts: MBN_CONTEXT, providerID: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionContext.VTable, @ptrCast(self.vtable)).SetProvisionedContext(@as(*const IMbnConnectionContext, @ptrCast(self)), provisionedContexts, providerID, requestID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProvisionedContexts(self: *const IMbnConnectionContext, provisionedContexts: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
         return self.vtable.GetProvisionedContexts(self, provisionedContexts);
     }
@@ -1665,18 +1314,6 @@ pub const IMbnConnectionContextEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionContextEvents_OnProvisionedContextListChange(self: *const T, newInterface: ?*IMbnConnectionContext) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionContextEvents.VTable, @ptrCast(self.vtable)).OnProvisionedContextListChange(@as(*const IMbnConnectionContextEvents, @ptrCast(self)), newInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionContextEvents_OnSetProvisionedContextComplete(self: *const T, newInterface: ?*IMbnConnectionContext, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionContextEvents.VTable, @ptrCast(self.vtable)).OnSetProvisionedContextComplete(@as(*const IMbnConnectionContextEvents, @ptrCast(self)), newInterface, requestID, status);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnProvisionedContextListChange(self: *const IMbnConnectionContextEvents, newInterface: ?*IMbnConnectionContext) callconv(.Inline) HRESULT {
         return self.vtable.OnProvisionedContextListChange(self, newInterface);
     }
@@ -1709,22 +1346,6 @@ pub const IMbnConnectionProfileManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileManager_GetConnectionProfiles(self: *const T, mbnInterface: ?*IMbnInterface, connectionProfiles: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionProfileManager.VTable, @ptrCast(self.vtable)).GetConnectionProfiles(@as(*const IMbnConnectionProfileManager, @ptrCast(self)), mbnInterface, connectionProfiles);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileManager_GetConnectionProfile(self: *const T, mbnInterface: ?*IMbnInterface, profileName: ?[*:0]const u16, connectionProfile: ?*?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionProfileManager.VTable, @ptrCast(self.vtable)).GetConnectionProfile(@as(*const IMbnConnectionProfileManager, @ptrCast(self)), mbnInterface, profileName, connectionProfile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileManager_CreateConnectionProfile(self: *const T, xmlProfile: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionProfileManager.VTable, @ptrCast(self.vtable)).CreateConnectionProfile(@as(*const IMbnConnectionProfileManager, @ptrCast(self)), xmlProfile);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetConnectionProfiles(self: *const IMbnConnectionProfileManager, mbnInterface: ?*IMbnInterface, connectionProfiles: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
         return self.vtable.GetConnectionProfiles(self, mbnInterface, connectionProfiles);
     }
@@ -1756,22 +1377,6 @@ pub const IMbnConnectionProfile = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfile_GetProfileXmlData(self: *const T, profileData: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionProfile.VTable, @ptrCast(self.vtable)).GetProfileXmlData(@as(*const IMbnConnectionProfile, @ptrCast(self)), profileData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfile_UpdateProfile(self: *const T, strProfile: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionProfile.VTable, @ptrCast(self.vtable)).UpdateProfile(@as(*const IMbnConnectionProfile, @ptrCast(self)), strProfile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfile_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionProfile.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMbnConnectionProfile, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProfileXmlData(self: *const IMbnConnectionProfile, profileData: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetProfileXmlData(self, profileData);
     }
@@ -1796,14 +1401,6 @@ pub const IMbnConnectionProfileEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileEvents_OnProfileUpdate(self: *const T, newProfile: ?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionProfileEvents.VTable, @ptrCast(self.vtable)).OnProfileUpdate(@as(*const IMbnConnectionProfileEvents, @ptrCast(self)), newProfile);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnProfileUpdate(self: *const IMbnConnectionProfileEvents, newProfile: ?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
         return self.vtable.OnProfileUpdate(self, newProfile);
     }
@@ -1848,34 +1445,6 @@ pub const IMbnSmsConfiguration = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsConfiguration_get_ServiceCenterAddress(self: *const T, scAddress: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsConfiguration.VTable, @ptrCast(self.vtable)).get_ServiceCenterAddress(@as(*const IMbnSmsConfiguration, @ptrCast(self)), scAddress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsConfiguration_put_ServiceCenterAddress(self: *const T, scAddress: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsConfiguration.VTable, @ptrCast(self.vtable)).put_ServiceCenterAddress(@as(*const IMbnSmsConfiguration, @ptrCast(self)), scAddress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsConfiguration_get_MaxMessageIndex(self: *const T, index: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsConfiguration.VTable, @ptrCast(self.vtable)).get_MaxMessageIndex(@as(*const IMbnSmsConfiguration, @ptrCast(self)), index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsConfiguration_get_CdmaShortMsgSize(self: *const T, shortMsgSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsConfiguration.VTable, @ptrCast(self.vtable)).get_CdmaShortMsgSize(@as(*const IMbnSmsConfiguration, @ptrCast(self)), shortMsgSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsConfiguration_get_SmsFormat(self: *const T, smsFormat: ?*MBN_SMS_FORMAT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsConfiguration.VTable, @ptrCast(self.vtable)).get_SmsFormat(@as(*const IMbnSmsConfiguration, @ptrCast(self)), smsFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsConfiguration_put_SmsFormat(self: *const T, smsFormat: MBN_SMS_FORMAT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsConfiguration.VTable, @ptrCast(self.vtable)).put_SmsFormat(@as(*const IMbnSmsConfiguration, @ptrCast(self)), smsFormat);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_ServiceCenterAddress(self: *const IMbnSmsConfiguration, scAddress: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.get_ServiceCenterAddress(self, scAddress);
     }
@@ -1925,26 +1494,6 @@ pub const IMbnSmsReadMsgPdu = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgPdu_get_Index(self: *const T, Index: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsReadMsgPdu.VTable, @ptrCast(self.vtable)).get_Index(@as(*const IMbnSmsReadMsgPdu, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgPdu_get_Status(self: *const T, Status: ?*MBN_MSG_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsReadMsgPdu.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IMbnSmsReadMsgPdu, @ptrCast(self)), Status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgPdu_get_PduData(self: *const T, PduData: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsReadMsgPdu.VTable, @ptrCast(self.vtable)).get_PduData(@as(*const IMbnSmsReadMsgPdu, @ptrCast(self)), PduData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgPdu_get_Message(self: *const T, Message: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsReadMsgPdu.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IMbnSmsReadMsgPdu, @ptrCast(self)), Message);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Index(self: *const IMbnSmsReadMsgPdu, Index: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.get_Index(self, Index);
     }
@@ -2008,42 +1557,6 @@ pub const IMbnSmsReadMsgTextCdma = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Index(self: *const T, Index: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_Index(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Status(self: *const T, Status: ?*MBN_MSG_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), Status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Address(self: *const T, Address: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_Address(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), Address);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Timestamp(self: *const T, Timestamp: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_Timestamp(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), Timestamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_EncodingID(self: *const T, EncodingID: ?*MBN_SMS_CDMA_ENCODING) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_EncodingID(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), EncodingID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_LanguageID(self: *const T, LanguageID: ?*MBN_SMS_CDMA_LANG) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_LanguageID(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), LanguageID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_SizeInCharacters(self: *const T, SizeInCharacters: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_SizeInCharacters(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), SizeInCharacters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Message(self: *const T, Message: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsReadMsgTextCdma.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IMbnSmsReadMsgTextCdma, @ptrCast(self)), Message);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Index(self: *const IMbnSmsReadMsgTextCdma, Index: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.get_Index(self, Index);
     }
@@ -2123,42 +1636,6 @@ pub const IMbnSms = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_GetSmsConfiguration(self: *const T, smsConfiguration: ?*?*IMbnSmsConfiguration) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).GetSmsConfiguration(@as(*const IMbnSms, @ptrCast(self)), smsConfiguration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_SetSmsConfiguration(self: *const T, smsConfiguration: ?*IMbnSmsConfiguration, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).SetSmsConfiguration(@as(*const IMbnSms, @ptrCast(self)), smsConfiguration, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_SmsSendPdu(self: *const T, pduData: ?[*:0]const u16, size: u8, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).SmsSendPdu(@as(*const IMbnSms, @ptrCast(self)), pduData, size, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_SmsSendCdma(self: *const T, address: ?[*:0]const u16, encoding: MBN_SMS_CDMA_ENCODING, language: MBN_SMS_CDMA_LANG, sizeInCharacters: u32, message: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).SmsSendCdma(@as(*const IMbnSms, @ptrCast(self)), address, encoding, language, sizeInCharacters, message, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_SmsSendCdmaPdu(self: *const T, message: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).SmsSendCdmaPdu(@as(*const IMbnSms, @ptrCast(self)), message, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_SmsRead(self: *const T, smsFilter: ?*MBN_SMS_FILTER, smsFormat: MBN_SMS_FORMAT, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).SmsRead(@as(*const IMbnSms, @ptrCast(self)), smsFilter, smsFormat, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_SmsDelete(self: *const T, smsFilter: ?*MBN_SMS_FILTER, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).SmsDelete(@as(*const IMbnSms, @ptrCast(self)), smsFilter, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_GetSmsStatus(self: *const T, smsStatusInfo: ?*MBN_SMS_STATUS_INFO) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSms.VTable, @ptrCast(self.vtable)).GetSmsStatus(@as(*const IMbnSms, @ptrCast(self)), smsStatusInfo);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSmsConfiguration(self: *const IMbnSms, smsConfiguration: ?*?*IMbnSmsConfiguration) callconv(.Inline) HRESULT {
         return self.vtable.GetSmsConfiguration(self, smsConfiguration);
     }
@@ -2235,38 +1712,6 @@ pub const IMbnSmsEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSmsConfigurationChange(self: *const T, sms: ?*IMbnSms) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSmsConfigurationChange(@as(*const IMbnSmsEvents, @ptrCast(self)), sms);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSetSmsConfigurationComplete(self: *const T, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSetSmsConfigurationComplete(@as(*const IMbnSmsEvents, @ptrCast(self)), sms, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSmsSendComplete(self: *const T, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSmsSendComplete(@as(*const IMbnSmsEvents, @ptrCast(self)), sms, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSmsReadComplete(self: *const T, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY, moreMsgs: i16, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSmsReadComplete(@as(*const IMbnSmsEvents, @ptrCast(self)), sms, smsFormat, readMsgs, moreMsgs, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSmsNewClass0Message(self: *const T, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSmsNewClass0Message(@as(*const IMbnSmsEvents, @ptrCast(self)), sms, smsFormat, readMsgs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSmsDeleteComplete(self: *const T, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSmsDeleteComplete(@as(*const IMbnSmsEvents, @ptrCast(self)), sms, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSmsStatusChange(self: *const T, sms: ?*IMbnSms) callconv(.Inline) HRESULT {
-            return @as(*const IMbnSmsEvents.VTable, @ptrCast(self.vtable)).OnSmsStatusChange(@as(*const IMbnSmsEvents, @ptrCast(self)), sms);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSmsConfigurationChange(self: *const IMbnSmsEvents, sms: ?*IMbnSms) callconv(.Inline) HRESULT {
         return self.vtable.OnSmsConfigurationChange(self, sms);
     }
@@ -2304,14 +1749,6 @@ pub const IMbnServiceActivation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnServiceActivation_Activate(self: *const T, vendorSpecificData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnServiceActivation.VTable, @ptrCast(self.vtable)).Activate(@as(*const IMbnServiceActivation, @ptrCast(self)), vendorSpecificData, requestID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Activate(self: *const IMbnServiceActivation, vendorSpecificData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Activate(self, vendorSpecificData, requestID);
     }
@@ -2334,14 +1771,6 @@ pub const IMbnServiceActivationEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnServiceActivationEvents_OnActivationComplete(self: *const T, serviceActivation: ?*IMbnServiceActivation, vendorSpecificData: ?*SAFEARRAY, requestID: u32, status: HRESULT, networkError: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnServiceActivationEvents.VTable, @ptrCast(self.vtable)).OnActivationComplete(@as(*const IMbnServiceActivationEvents, @ptrCast(self)), serviceActivation, vendorSpecificData, requestID, status, networkError);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnActivationComplete(self: *const IMbnServiceActivationEvents, serviceActivation: ?*IMbnServiceActivation, vendorSpecificData: ?*SAFEARRAY, requestID: u32, status: HRESULT, networkError: u32) callconv(.Inline) HRESULT {
         return self.vtable.OnActivationComplete(self, serviceActivation, vendorSpecificData, requestID, status, networkError);
     }
@@ -2361,14 +1790,6 @@ pub const IMbnVendorSpecificOperation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnVendorSpecificOperation_SetVendorSpecific(self: *const T, vendorSpecificData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnVendorSpecificOperation.VTable, @ptrCast(self.vtable)).SetVendorSpecific(@as(*const IMbnVendorSpecificOperation, @ptrCast(self)), vendorSpecificData, requestID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetVendorSpecific(self: *const IMbnVendorSpecificOperation, vendorSpecificData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.SetVendorSpecific(self, vendorSpecificData, requestID);
     }
@@ -2394,18 +1815,6 @@ pub const IMbnVendorSpecificEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnVendorSpecificEvents_OnEventNotification(self: *const T, vendorOperation: ?*IMbnVendorSpecificOperation, vendorSpecificData: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnVendorSpecificEvents.VTable, @ptrCast(self.vtable)).OnEventNotification(@as(*const IMbnVendorSpecificEvents, @ptrCast(self)), vendorOperation, vendorSpecificData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnVendorSpecificEvents_OnSetVendorSpecificComplete(self: *const T, vendorOperation: ?*IMbnVendorSpecificOperation, vendorSpecificData: ?*SAFEARRAY, requestID: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnVendorSpecificEvents.VTable, @ptrCast(self.vtable)).OnSetVendorSpecificComplete(@as(*const IMbnVendorSpecificEvents, @ptrCast(self)), vendorOperation, vendorSpecificData, requestID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnEventNotification(self: *const IMbnVendorSpecificEvents, vendorOperation: ?*IMbnVendorSpecificOperation, vendorSpecificData: ?*SAFEARRAY) callconv(.Inline) HRESULT {
         return self.vtable.OnEventNotification(self, vendorOperation, vendorSpecificData);
     }
@@ -2431,18 +1840,6 @@ pub const IMbnConnectionProfileManagerEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileManagerEvents_OnConnectionProfileArrival(self: *const T, newConnectionProfile: ?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionProfileManagerEvents.VTable, @ptrCast(self.vtable)).OnConnectionProfileArrival(@as(*const IMbnConnectionProfileManagerEvents, @ptrCast(self)), newConnectionProfile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileManagerEvents_OnConnectionProfileRemoval(self: *const T, oldConnectionProfile: ?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
-            return @as(*const IMbnConnectionProfileManagerEvents.VTable, @ptrCast(self.vtable)).OnConnectionProfileRemoval(@as(*const IMbnConnectionProfileManagerEvents, @ptrCast(self)), oldConnectionProfile);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnConnectionProfileArrival(self: *const IMbnConnectionProfileManagerEvents, newConnectionProfile: ?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
         return self.vtable.OnConnectionProfileArrival(self, newConnectionProfile);
     }
@@ -2475,22 +1872,6 @@ pub const IMbnRadio = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRadio_get_SoftwareRadioState(self: *const T, SoftwareRadioState: ?*MBN_RADIO) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRadio.VTable, @ptrCast(self.vtable)).get_SoftwareRadioState(@as(*const IMbnRadio, @ptrCast(self)), SoftwareRadioState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRadio_get_HardwareRadioState(self: *const T, HardwareRadioState: ?*MBN_RADIO) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRadio.VTable, @ptrCast(self.vtable)).get_HardwareRadioState(@as(*const IMbnRadio, @ptrCast(self)), HardwareRadioState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRadio_SetSoftwareRadioState(self: *const T, radioState: MBN_RADIO, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRadio.VTable, @ptrCast(self.vtable)).SetSoftwareRadioState(@as(*const IMbnRadio, @ptrCast(self)), radioState, requestID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_SoftwareRadioState(self: *const IMbnRadio, SoftwareRadioState: ?*MBN_RADIO) callconv(.Inline) HRESULT {
         return self.vtable.get_SoftwareRadioState(self, SoftwareRadioState);
     }
@@ -2521,18 +1902,6 @@ pub const IMbnRadioEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRadioEvents_OnRadioStateChange(self: *const T, newInterface: ?*IMbnRadio) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRadioEvents.VTable, @ptrCast(self.vtable)).OnRadioStateChange(@as(*const IMbnRadioEvents, @ptrCast(self)), newInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRadioEvents_OnSetSoftwareRadioStateComplete(self: *const T, newInterface: ?*IMbnRadio, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnRadioEvents.VTable, @ptrCast(self.vtable)).OnSetSoftwareRadioStateComplete(@as(*const IMbnRadioEvents, @ptrCast(self)), newInterface, requestID, status);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnRadioStateChange(self: *const IMbnRadioEvents, newInterface: ?*IMbnRadio) callconv(.Inline) HRESULT {
         return self.vtable.OnRadioStateChange(self, newInterface);
     }
@@ -2576,34 +1945,6 @@ pub const IMbnMultiCarrier = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_SetHomeProvider(self: *const T, homeProvider: ?*MBN_PROVIDER2, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnMultiCarrier.VTable, @ptrCast(self.vtable)).SetHomeProvider(@as(*const IMbnMultiCarrier, @ptrCast(self)), homeProvider, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_GetPreferredProviders(self: *const T, preferredMulticarrierProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnMultiCarrier.VTable, @ptrCast(self.vtable)).GetPreferredProviders(@as(*const IMbnMultiCarrier, @ptrCast(self)), preferredMulticarrierProviders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_GetVisibleProviders(self: *const T, age: ?*u32, visibleProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnMultiCarrier.VTable, @ptrCast(self.vtable)).GetVisibleProviders(@as(*const IMbnMultiCarrier, @ptrCast(self)), age, visibleProviders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_GetSupportedCellularClasses(self: *const T, cellularClasses: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnMultiCarrier.VTable, @ptrCast(self.vtable)).GetSupportedCellularClasses(@as(*const IMbnMultiCarrier, @ptrCast(self)), cellularClasses);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_GetCurrentCellularClass(self: *const T, currentCellularClass: ?*MBN_CELLULAR_CLASS) callconv(.Inline) HRESULT {
-            return @as(*const IMbnMultiCarrier.VTable, @ptrCast(self.vtable)).GetCurrentCellularClass(@as(*const IMbnMultiCarrier, @ptrCast(self)), currentCellularClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_ScanNetwork(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnMultiCarrier.VTable, @ptrCast(self.vtable)).ScanNetwork(@as(*const IMbnMultiCarrier, @ptrCast(self)), requestID);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetHomeProvider(self: *const IMbnMultiCarrier, homeProvider: ?*MBN_PROVIDER2, requestID: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.SetHomeProvider(self, homeProvider, requestID);
     }
@@ -2657,30 +1998,6 @@ pub const IMbnMultiCarrierEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrierEvents_OnSetHomeProviderComplete(self: *const T, mbnInterface: ?*IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnMultiCarrierEvents.VTable, @ptrCast(self.vtable)).OnSetHomeProviderComplete(@as(*const IMbnMultiCarrierEvents, @ptrCast(self)), mbnInterface, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrierEvents_OnCurrentCellularClassChange(self: *const T, mbnInterface: ?*IMbnMultiCarrier) callconv(.Inline) HRESULT {
-            return @as(*const IMbnMultiCarrierEvents.VTable, @ptrCast(self.vtable)).OnCurrentCellularClassChange(@as(*const IMbnMultiCarrierEvents, @ptrCast(self)), mbnInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrierEvents_OnPreferredProvidersChange(self: *const T, mbnInterface: ?*IMbnMultiCarrier) callconv(.Inline) HRESULT {
-            return @as(*const IMbnMultiCarrierEvents.VTable, @ptrCast(self.vtable)).OnPreferredProvidersChange(@as(*const IMbnMultiCarrierEvents, @ptrCast(self)), mbnInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrierEvents_OnScanNetworkComplete(self: *const T, mbnInterface: ?*IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnMultiCarrierEvents.VTable, @ptrCast(self.vtable)).OnScanNetworkComplete(@as(*const IMbnMultiCarrierEvents, @ptrCast(self)), mbnInterface, requestID, status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrierEvents_OnInterfaceCapabilityChange(self: *const T, mbnInterface: ?*IMbnMultiCarrier) callconv(.Inline) HRESULT {
-            return @as(*const IMbnMultiCarrierEvents.VTable, @ptrCast(self.vtable)).OnInterfaceCapabilityChange(@as(*const IMbnMultiCarrierEvents, @ptrCast(self)), mbnInterface);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSetHomeProviderComplete(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
         return self.vtable.OnSetHomeProviderComplete(self, mbnInterface, requestID, status);
     }
@@ -2711,14 +2028,6 @@ pub const IMbnDeviceServiceStateEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServiceStateEvents_OnSessionsStateChange(self: *const T, interfaceID: ?BSTR, stateChange: MBN_DEVICE_SERVICE_SESSIONS_STATE) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServiceStateEvents.VTable, @ptrCast(self.vtable)).OnSessionsStateChange(@as(*const IMbnDeviceServiceStateEvents, @ptrCast(self)), interfaceID, stateChange);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSessionsStateChange(self: *const IMbnDeviceServiceStateEvents, interfaceID: ?BSTR, stateChange: MBN_DEVICE_SERVICE_SESSIONS_STATE) callconv(.Inline) HRESULT {
         return self.vtable.OnSessionsStateChange(self, interfaceID, stateChange);
     }
@@ -2738,14 +2047,6 @@ pub const IMbnDeviceServicesManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesManager_GetDeviceServicesContext(self: *const T, networkInterfaceID: ?BSTR, mbnDevicesContext: ?*?*IMbnDeviceServicesContext) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesManager.VTable, @ptrCast(self.vtable)).GetDeviceServicesContext(@as(*const IMbnDeviceServicesManager, @ptrCast(self)), networkInterfaceID, mbnDevicesContext);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDeviceServicesContext(self: *const IMbnDeviceServicesManager, networkInterfaceID: ?BSTR, mbnDevicesContext: ?*?*IMbnDeviceServicesContext) callconv(.Inline) HRESULT {
         return self.vtable.GetDeviceServicesContext(self, networkInterfaceID, mbnDevicesContext);
     }
@@ -2779,26 +2080,6 @@ pub const IMbnDeviceServicesContext = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesContext_EnumerateDeviceServices(self: *const T, deviceServices: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesContext.VTable, @ptrCast(self.vtable)).EnumerateDeviceServices(@as(*const IMbnDeviceServicesContext, @ptrCast(self)), deviceServices);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesContext_GetDeviceService(self: *const T, deviceServiceID: ?BSTR, mbnDeviceService: ?*?*IMbnDeviceService) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesContext.VTable, @ptrCast(self.vtable)).GetDeviceService(@as(*const IMbnDeviceServicesContext, @ptrCast(self)), deviceServiceID, mbnDeviceService);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesContext_get_MaxCommandSize(self: *const T, maxCommandSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesContext.VTable, @ptrCast(self.vtable)).get_MaxCommandSize(@as(*const IMbnDeviceServicesContext, @ptrCast(self)), maxCommandSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesContext_get_MaxDataSize(self: *const T, maxDataSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesContext.VTable, @ptrCast(self.vtable)).get_MaxDataSize(@as(*const IMbnDeviceServicesContext, @ptrCast(self)), maxDataSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnumerateDeviceServices(self: *const IMbnDeviceServicesContext, deviceServices: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateDeviceServices(self, deviceServices);
     }
@@ -2891,54 +2172,6 @@ pub const IMbnDeviceServicesEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnQuerySupportedCommandsComplete(self: *const T, deviceService: ?*IMbnDeviceService, commandIDList: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnQuerySupportedCommandsComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, commandIDList, status, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnOpenCommandSessionComplete(self: *const T, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnOpenCommandSessionComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, status, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnCloseCommandSessionComplete(self: *const T, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnCloseCommandSessionComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, status, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnSetCommandComplete(self: *const T, deviceService: ?*IMbnDeviceService, responseID: u32, deviceServiceData: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnSetCommandComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, responseID, deviceServiceData, status, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnQueryCommandComplete(self: *const T, deviceService: ?*IMbnDeviceService, responseID: u32, deviceServiceData: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnQueryCommandComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, responseID, deviceServiceData, status, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnEventNotification(self: *const T, deviceService: ?*IMbnDeviceService, eventID: u32, deviceServiceData: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnEventNotification(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, eventID, deviceServiceData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnOpenDataSessionComplete(self: *const T, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnOpenDataSessionComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, status, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnCloseDataSessionComplete(self: *const T, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnCloseDataSessionComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, status, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnWriteDataComplete(self: *const T, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnWriteDataComplete(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, status, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnReadData(self: *const T, deviceService: ?*IMbnDeviceService, deviceServiceData: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnReadData(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), deviceService, deviceServiceData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnInterfaceStateChange(self: *const T, interfaceID: ?BSTR, stateChange: MBN_DEVICE_SERVICES_INTERFACE_STATE) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceServicesEvents.VTable, @ptrCast(self.vtable)).OnInterfaceStateChange(@as(*const IMbnDeviceServicesEvents, @ptrCast(self)), interfaceID, stateChange);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnQuerySupportedCommandsComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, commandIDList: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
         return self.vtable.OnQuerySupportedCommandsComplete(self, deviceService, commandIDList, status, requestID);
     }
@@ -3040,58 +2273,6 @@ pub const IMbnDeviceService = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_QuerySupportedCommands(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).QuerySupportedCommands(@as(*const IMbnDeviceService, @ptrCast(self)), requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_OpenCommandSession(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).OpenCommandSession(@as(*const IMbnDeviceService, @ptrCast(self)), requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_CloseCommandSession(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).CloseCommandSession(@as(*const IMbnDeviceService, @ptrCast(self)), requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_SetCommand(self: *const T, commandID: u32, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).SetCommand(@as(*const IMbnDeviceService, @ptrCast(self)), commandID, deviceServiceData, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_QueryCommand(self: *const T, commandID: u32, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).QueryCommand(@as(*const IMbnDeviceService, @ptrCast(self)), commandID, deviceServiceData, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_OpenDataSession(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).OpenDataSession(@as(*const IMbnDeviceService, @ptrCast(self)), requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_CloseDataSession(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).CloseDataSession(@as(*const IMbnDeviceService, @ptrCast(self)), requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_WriteData(self: *const T, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).WriteData(@as(*const IMbnDeviceService, @ptrCast(self)), deviceServiceData, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_get_InterfaceID(self: *const T, InterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).get_InterfaceID(@as(*const IMbnDeviceService, @ptrCast(self)), InterfaceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_get_DeviceServiceID(self: *const T, DeviceServiceID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).get_DeviceServiceID(@as(*const IMbnDeviceService, @ptrCast(self)), DeviceServiceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_get_IsCommandSessionOpen(self: *const T, value: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).get_IsCommandSessionOpen(@as(*const IMbnDeviceService, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_get_IsDataSessionOpen(self: *const T, value: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IMbnDeviceService.VTable, @ptrCast(self.vtable)).get_IsDataSessionOpen(@as(*const IMbnDeviceService, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QuerySupportedCommands(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.QuerySupportedCommands(self, requestID);
     }
@@ -3216,54 +2397,6 @@ pub const IMbnPin = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_get_PinType(self: *const T, PinType: ?*MBN_PIN_TYPE) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).get_PinType(@as(*const IMbnPin, @ptrCast(self)), PinType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_get_PinFormat(self: *const T, PinFormat: ?*MBN_PIN_FORMAT) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).get_PinFormat(@as(*const IMbnPin, @ptrCast(self)), PinFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_get_PinLengthMin(self: *const T, PinLengthMin: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).get_PinLengthMin(@as(*const IMbnPin, @ptrCast(self)), PinLengthMin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_get_PinLengthMax(self: *const T, PinLengthMax: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).get_PinLengthMax(@as(*const IMbnPin, @ptrCast(self)), PinLengthMax);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_get_PinMode(self: *const T, PinMode: ?*MBN_PIN_MODE) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).get_PinMode(@as(*const IMbnPin, @ptrCast(self)), PinMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_Enable(self: *const T, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).Enable(@as(*const IMbnPin, @ptrCast(self)), pin, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_Disable(self: *const T, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).Disable(@as(*const IMbnPin, @ptrCast(self)), pin, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_Enter(self: *const T, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).Enter(@as(*const IMbnPin, @ptrCast(self)), pin, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_Change(self: *const T, pin: ?[*:0]const u16, newPin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).Change(@as(*const IMbnPin, @ptrCast(self)), pin, newPin, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_Unblock(self: *const T, puk: ?[*:0]const u16, newPin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).Unblock(@as(*const IMbnPin, @ptrCast(self)), puk, newPin, requestID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_GetPinManager(self: *const T, pinManager: ?*?*IMbnPinManager) callconv(.Inline) HRESULT {
-            return @as(*const IMbnPin.VTable, @ptrCast(self.vtable)).GetPinManager(@as(*const IMbnPin, @ptrCast(self)), pinManager);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_PinType(self: *const IMbnPin, PinType: ?*MBN_PIN_TYPE) callconv(.Inline) HRESULT {
         return self.vtable.get_PinType(self, PinType);
     }

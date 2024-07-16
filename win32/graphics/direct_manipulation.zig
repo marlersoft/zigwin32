@@ -224,38 +224,6 @@ pub const IDirectManipulationManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationManager_Activate(self: *const T, window: ?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationManager.VTable, @ptrCast(self.vtable)).Activate(@as(*const IDirectManipulationManager, @ptrCast(self)), window);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationManager_Deactivate(self: *const T, window: ?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationManager.VTable, @ptrCast(self.vtable)).Deactivate(@as(*const IDirectManipulationManager, @ptrCast(self)), window);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationManager_RegisterHitTestTarget(self: *const T, window: ?HWND, hitTestWindow: ?HWND, @"type": DIRECTMANIPULATION_HITTEST_TYPE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationManager.VTable, @ptrCast(self.vtable)).RegisterHitTestTarget(@as(*const IDirectManipulationManager, @ptrCast(self)), window, hitTestWindow, @"type");
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationManager_ProcessInput(self: *const T, message: ?*const MSG, handled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationManager.VTable, @ptrCast(self.vtable)).ProcessInput(@as(*const IDirectManipulationManager, @ptrCast(self)), message, handled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationManager_GetUpdateManager(self: *const T, riid: ?*const Guid, object: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationManager.VTable, @ptrCast(self.vtable)).GetUpdateManager(@as(*const IDirectManipulationManager, @ptrCast(self)), riid, object);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationManager_CreateViewport(self: *const T, frameInfo: ?*IDirectManipulationFrameInfoProvider, window: ?HWND, riid: ?*const Guid, object: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationManager.VTable, @ptrCast(self.vtable)).CreateViewport(@as(*const IDirectManipulationManager, @ptrCast(self)), frameInfo, window, riid, object);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationManager_CreateContent(self: *const T, frameInfo: ?*IDirectManipulationFrameInfoProvider, clsid: ?*const Guid, riid: ?*const Guid, object: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationManager.VTable, @ptrCast(self.vtable)).CreateContent(@as(*const IDirectManipulationManager, @ptrCast(self)), frameInfo, clsid, riid, object);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Activate(self: *const IDirectManipulationManager, window: ?HWND) callconv(.Inline) HRESULT {
         return self.vtable.Activate(self, window);
     }
@@ -294,14 +262,7 @@ pub const IDirectManipulationManager2 = extern union {
     };
     vtable: *const VTable,
     IDirectManipulationManager: IDirectManipulationManager,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectManipulationManager.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationManager2_CreateBehavior(self: *const T, clsid: ?*const Guid, riid: ?*const Guid, object: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationManager2.VTable, @ptrCast(self.vtable)).CreateBehavior(@as(*const IDirectManipulationManager2, @ptrCast(self)), clsid, riid, object);
-        }
-    };}
-    pub usingnamespace IDirectManipulationManager.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateBehavior(self: *const IDirectManipulationManager2, clsid: ?*const Guid, riid: ?*const Guid, object: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateBehavior(self, clsid, riid, object);
     }
@@ -322,14 +283,8 @@ pub const IDirectManipulationManager3 = extern union {
     };
     vtable: *const VTable,
     IDirectManipulationManager2: IDirectManipulationManager2,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectManipulationManager2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationManager3_GetService(self: *const T, clsid: ?*const Guid, riid: ?*const Guid, object: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationManager3.VTable, @ptrCast(self.vtable)).GetService(@as(*const IDirectManipulationManager3, @ptrCast(self)), clsid, riid, object);
-        }
-    };}
-    pub usingnamespace IDirectManipulationManager2.MethodMixin(@This());
+    IDirectManipulationManager: IDirectManipulationManager,
+    IUnknown: IUnknown,
     pub fn GetService(self: *const IDirectManipulationManager3, clsid: ?*const Guid, riid: ?*const Guid, object: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetService(self, clsid, riid, object);
     }
@@ -463,122 +418,6 @@ pub const IDirectManipulationViewport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_Enable(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).Enable(@as(*const IDirectManipulationViewport, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_Disable(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).Disable(@as(*const IDirectManipulationViewport, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_SetContact(self: *const T, pointerId: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).SetContact(@as(*const IDirectManipulationViewport, @ptrCast(self)), pointerId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_ReleaseContact(self: *const T, pointerId: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).ReleaseContact(@as(*const IDirectManipulationViewport, @ptrCast(self)), pointerId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_ReleaseAllContacts(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).ReleaseAllContacts(@as(*const IDirectManipulationViewport, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_GetStatus(self: *const T, status: ?*DIRECTMANIPULATION_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDirectManipulationViewport, @ptrCast(self)), status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_GetTag(self: *const T, riid: ?*const Guid, object: ?*?*anyopaque, id: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).GetTag(@as(*const IDirectManipulationViewport, @ptrCast(self)), riid, object, id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_SetTag(self: *const T, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).SetTag(@as(*const IDirectManipulationViewport, @ptrCast(self)), object, id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_GetViewportRect(self: *const T, viewport: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).GetViewportRect(@as(*const IDirectManipulationViewport, @ptrCast(self)), viewport);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_SetViewportRect(self: *const T, viewport: ?*const RECT) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).SetViewportRect(@as(*const IDirectManipulationViewport, @ptrCast(self)), viewport);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_ZoomToRect(self: *const T, left: f32, top: f32, right: f32, bottom: f32, animate: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).ZoomToRect(@as(*const IDirectManipulationViewport, @ptrCast(self)), left, top, right, bottom, animate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_SetViewportTransform(self: *const T, matrix: [*]const f32, pointCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).SetViewportTransform(@as(*const IDirectManipulationViewport, @ptrCast(self)), matrix, pointCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_SyncDisplayTransform(self: *const T, matrix: [*]const f32, pointCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).SyncDisplayTransform(@as(*const IDirectManipulationViewport, @ptrCast(self)), matrix, pointCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_GetPrimaryContent(self: *const T, riid: ?*const Guid, object: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).GetPrimaryContent(@as(*const IDirectManipulationViewport, @ptrCast(self)), riid, object);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_AddContent(self: *const T, content: ?*IDirectManipulationContent) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).AddContent(@as(*const IDirectManipulationViewport, @ptrCast(self)), content);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_RemoveContent(self: *const T, content: ?*IDirectManipulationContent) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).RemoveContent(@as(*const IDirectManipulationViewport, @ptrCast(self)), content);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_SetViewportOptions(self: *const T, options: DIRECTMANIPULATION_VIEWPORT_OPTIONS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).SetViewportOptions(@as(*const IDirectManipulationViewport, @ptrCast(self)), options);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_AddConfiguration(self: *const T, configuration: DIRECTMANIPULATION_CONFIGURATION) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).AddConfiguration(@as(*const IDirectManipulationViewport, @ptrCast(self)), configuration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_RemoveConfiguration(self: *const T, configuration: DIRECTMANIPULATION_CONFIGURATION) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).RemoveConfiguration(@as(*const IDirectManipulationViewport, @ptrCast(self)), configuration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_ActivateConfiguration(self: *const T, configuration: DIRECTMANIPULATION_CONFIGURATION) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).ActivateConfiguration(@as(*const IDirectManipulationViewport, @ptrCast(self)), configuration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_SetManualGesture(self: *const T, configuration: DIRECTMANIPULATION_GESTURE_CONFIGURATION) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).SetManualGesture(@as(*const IDirectManipulationViewport, @ptrCast(self)), configuration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_SetChaining(self: *const T, enabledTypes: DIRECTMANIPULATION_MOTION_TYPES) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).SetChaining(@as(*const IDirectManipulationViewport, @ptrCast(self)), enabledTypes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_AddEventHandler(self: *const T, window: ?HWND, eventHandler: ?*IDirectManipulationViewportEventHandler, cookie: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).AddEventHandler(@as(*const IDirectManipulationViewport, @ptrCast(self)), window, eventHandler, cookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_RemoveEventHandler(self: *const T, cookie: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).RemoveEventHandler(@as(*const IDirectManipulationViewport, @ptrCast(self)), cookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_SetInputMode(self: *const T, mode: DIRECTMANIPULATION_INPUT_MODE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).SetInputMode(@as(*const IDirectManipulationViewport, @ptrCast(self)), mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_SetUpdateMode(self: *const T, mode: DIRECTMANIPULATION_INPUT_MODE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).SetUpdateMode(@as(*const IDirectManipulationViewport, @ptrCast(self)), mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_Stop(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).Stop(@as(*const IDirectManipulationViewport, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport_Abandon(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport.VTable, @ptrCast(self.vtable)).Abandon(@as(*const IDirectManipulationViewport, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Enable(self: *const IDirectManipulationViewport) callconv(.Inline) HRESULT {
         return self.vtable.Enable(self);
     }
@@ -686,22 +525,7 @@ pub const IDirectManipulationViewport2 = extern union {
     };
     vtable: *const VTable,
     IDirectManipulationViewport: IDirectManipulationViewport,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectManipulationViewport.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport2_AddBehavior(self: *const T, behavior: ?*IUnknown, cookie: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport2.VTable, @ptrCast(self.vtable)).AddBehavior(@as(*const IDirectManipulationViewport2, @ptrCast(self)), behavior, cookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport2_RemoveBehavior(self: *const T, cookie: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport2.VTable, @ptrCast(self.vtable)).RemoveBehavior(@as(*const IDirectManipulationViewport2, @ptrCast(self)), cookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewport2_RemoveAllBehaviors(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewport2.VTable, @ptrCast(self.vtable)).RemoveAllBehaviors(@as(*const IDirectManipulationViewport2, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IDirectManipulationViewport.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn AddBehavior(self: *const IDirectManipulationViewport2, behavior: ?*IUnknown, cookie: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.AddBehavior(self, behavior, cookie);
     }
@@ -737,22 +561,6 @@ pub const IDirectManipulationViewportEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewportEventHandler_OnViewportStatusChanged(self: *const T, viewport: ?*IDirectManipulationViewport, current: DIRECTMANIPULATION_STATUS, previous: DIRECTMANIPULATION_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewportEventHandler.VTable, @ptrCast(self.vtable)).OnViewportStatusChanged(@as(*const IDirectManipulationViewportEventHandler, @ptrCast(self)), viewport, current, previous);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewportEventHandler_OnViewportUpdated(self: *const T, viewport: ?*IDirectManipulationViewport) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewportEventHandler.VTable, @ptrCast(self.vtable)).OnViewportUpdated(@as(*const IDirectManipulationViewportEventHandler, @ptrCast(self)), viewport);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationViewportEventHandler_OnContentUpdated(self: *const T, viewport: ?*IDirectManipulationViewport, content: ?*IDirectManipulationContent) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationViewportEventHandler.VTable, @ptrCast(self.vtable)).OnContentUpdated(@as(*const IDirectManipulationViewportEventHandler, @ptrCast(self)), viewport, content);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnViewportStatusChanged(self: *const IDirectManipulationViewportEventHandler, viewport: ?*IDirectManipulationViewport, current: DIRECTMANIPULATION_STATUS, previous: DIRECTMANIPULATION_STATUS) callconv(.Inline) HRESULT {
         return self.vtable.OnViewportStatusChanged(self, viewport, current, previous);
     }
@@ -812,42 +620,6 @@ pub const IDirectManipulationContent = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationContent_GetContentRect(self: *const T, contentSize: ?*RECT) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationContent.VTable, @ptrCast(self.vtable)).GetContentRect(@as(*const IDirectManipulationContent, @ptrCast(self)), contentSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationContent_SetContentRect(self: *const T, contentSize: ?*const RECT) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationContent.VTable, @ptrCast(self.vtable)).SetContentRect(@as(*const IDirectManipulationContent, @ptrCast(self)), contentSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationContent_GetViewport(self: *const T, riid: ?*const Guid, object: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationContent.VTable, @ptrCast(self.vtable)).GetViewport(@as(*const IDirectManipulationContent, @ptrCast(self)), riid, object);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationContent_GetTag(self: *const T, riid: ?*const Guid, object: ?*?*anyopaque, id: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationContent.VTable, @ptrCast(self.vtable)).GetTag(@as(*const IDirectManipulationContent, @ptrCast(self)), riid, object, id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationContent_SetTag(self: *const T, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationContent.VTable, @ptrCast(self.vtable)).SetTag(@as(*const IDirectManipulationContent, @ptrCast(self)), object, id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationContent_GetOutputTransform(self: *const T, matrix: [*]f32, pointCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationContent.VTable, @ptrCast(self.vtable)).GetOutputTransform(@as(*const IDirectManipulationContent, @ptrCast(self)), matrix, pointCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationContent_GetContentTransform(self: *const T, matrix: [*]f32, pointCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationContent.VTable, @ptrCast(self.vtable)).GetContentTransform(@as(*const IDirectManipulationContent, @ptrCast(self)), matrix, pointCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationContent_SyncContentTransform(self: *const T, matrix: [*]const f32, pointCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationContent.VTable, @ptrCast(self.vtable)).SyncContentTransform(@as(*const IDirectManipulationContent, @ptrCast(self)), matrix, pointCount);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetContentRect(self: *const IDirectManipulationContent, contentSize: ?*RECT) callconv(.Inline) HRESULT {
         return self.vtable.GetContentRect(self, contentSize);
     }
@@ -929,46 +701,6 @@ pub const IDirectManipulationPrimaryContent = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationPrimaryContent_SetSnapInterval(self: *const T, motion: DIRECTMANIPULATION_MOTION_TYPES, interval: f32, offset: f32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationPrimaryContent.VTable, @ptrCast(self.vtable)).SetSnapInterval(@as(*const IDirectManipulationPrimaryContent, @ptrCast(self)), motion, interval, offset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationPrimaryContent_SetSnapPoints(self: *const T, motion: DIRECTMANIPULATION_MOTION_TYPES, points: ?[*]const f32, pointCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationPrimaryContent.VTable, @ptrCast(self.vtable)).SetSnapPoints(@as(*const IDirectManipulationPrimaryContent, @ptrCast(self)), motion, points, pointCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationPrimaryContent_SetSnapType(self: *const T, motion: DIRECTMANIPULATION_MOTION_TYPES, @"type": DIRECTMANIPULATION_SNAPPOINT_TYPE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationPrimaryContent.VTable, @ptrCast(self.vtable)).SetSnapType(@as(*const IDirectManipulationPrimaryContent, @ptrCast(self)), motion, @"type");
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationPrimaryContent_SetSnapCoordinate(self: *const T, motion: DIRECTMANIPULATION_MOTION_TYPES, coordinate: DIRECTMANIPULATION_SNAPPOINT_COORDINATE, origin: f32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationPrimaryContent.VTable, @ptrCast(self.vtable)).SetSnapCoordinate(@as(*const IDirectManipulationPrimaryContent, @ptrCast(self)), motion, coordinate, origin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationPrimaryContent_SetZoomBoundaries(self: *const T, zoomMinimum: f32, zoomMaximum: f32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationPrimaryContent.VTable, @ptrCast(self.vtable)).SetZoomBoundaries(@as(*const IDirectManipulationPrimaryContent, @ptrCast(self)), zoomMinimum, zoomMaximum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationPrimaryContent_SetHorizontalAlignment(self: *const T, alignment: DIRECTMANIPULATION_HORIZONTALALIGNMENT) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationPrimaryContent.VTable, @ptrCast(self.vtable)).SetHorizontalAlignment(@as(*const IDirectManipulationPrimaryContent, @ptrCast(self)), alignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationPrimaryContent_SetVerticalAlignment(self: *const T, alignment: DIRECTMANIPULATION_VERTICALALIGNMENT) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationPrimaryContent.VTable, @ptrCast(self.vtable)).SetVerticalAlignment(@as(*const IDirectManipulationPrimaryContent, @ptrCast(self)), alignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationPrimaryContent_GetInertiaEndTransform(self: *const T, matrix: [*]f32, pointCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationPrimaryContent.VTable, @ptrCast(self.vtable)).GetInertiaEndTransform(@as(*const IDirectManipulationPrimaryContent, @ptrCast(self)), matrix, pointCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationPrimaryContent_GetCenterPoint(self: *const T, centerX: ?*f32, centerY: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationPrimaryContent.VTable, @ptrCast(self.vtable)).GetCenterPoint(@as(*const IDirectManipulationPrimaryContent, @ptrCast(self)), centerX, centerY);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetSnapInterval(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, interval: f32, offset: f32) callconv(.Inline) HRESULT {
         return self.vtable.SetSnapInterval(self, motion, interval, offset);
     }
@@ -1028,14 +760,6 @@ pub const IDirectManipulationDragDropEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationDragDropEventHandler_OnDragDropStatusChange(self: *const T, viewport: ?*IDirectManipulationViewport2, current: DIRECTMANIPULATION_DRAG_DROP_STATUS, previous: DIRECTMANIPULATION_DRAG_DROP_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationDragDropEventHandler.VTable, @ptrCast(self.vtable)).OnDragDropStatusChange(@as(*const IDirectManipulationDragDropEventHandler, @ptrCast(self)), viewport, current, previous);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnDragDropStatusChange(self: *const IDirectManipulationDragDropEventHandler, viewport: ?*IDirectManipulationViewport2, current: DIRECTMANIPULATION_DRAG_DROP_STATUS, previous: DIRECTMANIPULATION_DRAG_DROP_STATUS) callconv(.Inline) HRESULT {
         return self.vtable.OnDragDropStatusChange(self, viewport, current, previous);
     }
@@ -1071,18 +795,6 @@ pub const IDirectManipulationDragDropBehavior = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationDragDropBehavior_SetConfiguration(self: *const T, configuration: DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationDragDropBehavior.VTable, @ptrCast(self.vtable)).SetConfiguration(@as(*const IDirectManipulationDragDropBehavior, @ptrCast(self)), configuration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationDragDropBehavior_GetStatus(self: *const T, status: ?*DIRECTMANIPULATION_DRAG_DROP_STATUS) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationDragDropBehavior.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDirectManipulationDragDropBehavior, @ptrCast(self)), status);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetConfiguration(self: *const IDirectManipulationDragDropBehavior, configuration: DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION) callconv(.Inline) HRESULT {
         return self.vtable.SetConfiguration(self, configuration);
     }
@@ -1122,14 +834,6 @@ pub const IDirectManipulationInteractionEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationInteractionEventHandler_OnInteraction(self: *const T, viewport: ?*IDirectManipulationViewport2, interaction: DIRECTMANIPULATION_INTERACTION_TYPE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationInteractionEventHandler.VTable, @ptrCast(self.vtable)).OnInteraction(@as(*const IDirectManipulationInteractionEventHandler, @ptrCast(self)), viewport, interaction);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnInteraction(self: *const IDirectManipulationInteractionEventHandler, viewport: ?*IDirectManipulationViewport2, interaction: DIRECTMANIPULATION_INTERACTION_TYPE) callconv(.Inline) HRESULT {
         return self.vtable.OnInteraction(self, viewport, interaction);
     }
@@ -1150,14 +854,6 @@ pub const IDirectManipulationFrameInfoProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationFrameInfoProvider_GetNextFrameInfo(self: *const T, time: ?*u64, processTime: ?*u64, compositionTime: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationFrameInfoProvider.VTable, @ptrCast(self.vtable)).GetNextFrameInfo(@as(*const IDirectManipulationFrameInfoProvider, @ptrCast(self)), time, processTime, compositionTime);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNextFrameInfo(self: *const IDirectManipulationFrameInfoProvider, time: ?*u64, processTime: ?*u64, compositionTime: ?*u64) callconv(.Inline) HRESULT {
         return self.vtable.GetNextFrameInfo(self, time, processTime, compositionTime);
     }
@@ -1190,26 +886,6 @@ pub const IDirectManipulationCompositor = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationCompositor_AddContent(self: *const T, content: ?*IDirectManipulationContent, device: ?*IUnknown, parentVisual: ?*IUnknown, childVisual: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationCompositor.VTable, @ptrCast(self.vtable)).AddContent(@as(*const IDirectManipulationCompositor, @ptrCast(self)), content, device, parentVisual, childVisual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationCompositor_RemoveContent(self: *const T, content: ?*IDirectManipulationContent) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationCompositor.VTable, @ptrCast(self.vtable)).RemoveContent(@as(*const IDirectManipulationCompositor, @ptrCast(self)), content);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationCompositor_SetUpdateManager(self: *const T, updateManager: ?*IDirectManipulationUpdateManager) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationCompositor.VTable, @ptrCast(self.vtable)).SetUpdateManager(@as(*const IDirectManipulationCompositor, @ptrCast(self)), updateManager);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationCompositor_Flush(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationCompositor.VTable, @ptrCast(self.vtable)).Flush(@as(*const IDirectManipulationCompositor, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddContent(self: *const IDirectManipulationCompositor, content: ?*IDirectManipulationContent, device: ?*IUnknown, parentVisual: ?*IUnknown, childVisual: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.AddContent(self, content, device, parentVisual, childVisual);
     }
@@ -1240,14 +916,7 @@ pub const IDirectManipulationCompositor2 = extern union {
     };
     vtable: *const VTable,
     IDirectManipulationCompositor: IDirectManipulationCompositor,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectManipulationCompositor.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationCompositor2_AddContentWithCrossProcessChaining(self: *const T, content: ?*IDirectManipulationPrimaryContent, device: ?*IUnknown, parentVisual: ?*IUnknown, childVisual: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationCompositor2.VTable, @ptrCast(self.vtable)).AddContentWithCrossProcessChaining(@as(*const IDirectManipulationCompositor2, @ptrCast(self)), content, device, parentVisual, childVisual);
-        }
-    };}
-    pub usingnamespace IDirectManipulationCompositor.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn AddContentWithCrossProcessChaining(self: *const IDirectManipulationCompositor2, content: ?*IDirectManipulationPrimaryContent, device: ?*IUnknown, parentVisual: ?*IUnknown, childVisual: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.AddContentWithCrossProcessChaining(self, content, device, parentVisual, childVisual);
     }
@@ -1265,14 +934,6 @@ pub const IDirectManipulationUpdateHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationUpdateHandler_Update(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationUpdateHandler.VTable, @ptrCast(self.vtable)).Update(@as(*const IDirectManipulationUpdateHandler, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Update(self: *const IDirectManipulationUpdateHandler) callconv(.Inline) HRESULT {
         return self.vtable.Update(self);
     }
@@ -1301,22 +962,6 @@ pub const IDirectManipulationUpdateManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationUpdateManager_RegisterWaitHandleCallback(self: *const T, handle: ?HANDLE, eventHandler: ?*IDirectManipulationUpdateHandler, cookie: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationUpdateManager.VTable, @ptrCast(self.vtable)).RegisterWaitHandleCallback(@as(*const IDirectManipulationUpdateManager, @ptrCast(self)), handle, eventHandler, cookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationUpdateManager_UnregisterWaitHandleCallback(self: *const T, cookie: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationUpdateManager.VTable, @ptrCast(self.vtable)).UnregisterWaitHandleCallback(@as(*const IDirectManipulationUpdateManager, @ptrCast(self)), cookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationUpdateManager_Update(self: *const T, frameInfo: ?*IDirectManipulationFrameInfoProvider) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationUpdateManager.VTable, @ptrCast(self.vtable)).Update(@as(*const IDirectManipulationUpdateManager, @ptrCast(self)), frameInfo);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterWaitHandleCallback(self: *const IDirectManipulationUpdateManager, handle: ?HANDLE, eventHandler: ?*IDirectManipulationUpdateHandler, cookie: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.RegisterWaitHandleCallback(self, handle, eventHandler, cookie);
     }
@@ -1351,14 +996,6 @@ pub const IDirectManipulationAutoScrollBehavior = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationAutoScrollBehavior_SetConfiguration(self: *const T, motionTypes: DIRECTMANIPULATION_MOTION_TYPES, scrollMotion: DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationAutoScrollBehavior.VTable, @ptrCast(self.vtable)).SetConfiguration(@as(*const IDirectManipulationAutoScrollBehavior, @ptrCast(self)), motionTypes, scrollMotion);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetConfiguration(self: *const IDirectManipulationAutoScrollBehavior, motionTypes: DIRECTMANIPULATION_MOTION_TYPES, scrollMotion: DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION) callconv(.Inline) HRESULT {
         return self.vtable.SetConfiguration(self, motionTypes, scrollMotion);
     }
@@ -1386,22 +1023,6 @@ pub const IDirectManipulationDeferContactService = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationDeferContactService_DeferContact(self: *const T, pointerId: u32, timeout: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationDeferContactService.VTable, @ptrCast(self.vtable)).DeferContact(@as(*const IDirectManipulationDeferContactService, @ptrCast(self)), pointerId, timeout);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationDeferContactService_CancelContact(self: *const T, pointerId: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationDeferContactService.VTable, @ptrCast(self.vtable)).CancelContact(@as(*const IDirectManipulationDeferContactService, @ptrCast(self)), pointerId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationDeferContactService_CancelDeferral(self: *const T, pointerId: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationDeferContactService.VTable, @ptrCast(self.vtable)).CancelDeferral(@as(*const IDirectManipulationDeferContactService, @ptrCast(self)), pointerId);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DeferContact(self: *const IDirectManipulationDeferContactService, pointerId: u32, timeout: u32) callconv(.Inline) HRESULT {
         return self.vtable.DeferContact(self, pointerId, timeout);
     }

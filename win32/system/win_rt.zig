@@ -63,14 +63,6 @@ pub const IAgileReference = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAgileReference_Resolve(self: *const T, riid: ?*const Guid, ppvObjectReference: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IAgileReference.VTable, @ptrCast(self.vtable)).Resolve(@as(*const IAgileReference, @ptrCast(self)), riid, ppvObjectReference);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Resolve(self: *const IAgileReference, riid: ?*const Guid, ppvObjectReference: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Resolve(self, riid, ppvObjectReference);
     }
@@ -89,14 +81,6 @@ pub const IApartmentShutdown = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApartmentShutdown_OnUninitialize(self: *const T, ui64ApartmentIdentifier: u64) callconv(.Inline) void {
-            return @as(*const IApartmentShutdown.VTable, @ptrCast(self.vtable)).OnUninitialize(@as(*const IApartmentShutdown, @ptrCast(self)), ui64ApartmentIdentifier);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnUninitialize(self: *const IApartmentShutdown, ui64ApartmentIdentifier: u64) callconv(.Inline) void {
         return self.vtable.OnUninitialize(self, ui64ApartmentIdentifier);
     }
@@ -130,14 +114,7 @@ pub const ISpatialInteractionManagerInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialInteractionManagerInterop_GetForWindow(self: *const T, window: ?HWND, riid: ?*const Guid, spatialInteractionManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISpatialInteractionManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const ISpatialInteractionManagerInterop, @ptrCast(self)), window, riid, spatialInteractionManager);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetForWindow(self: *const ISpatialInteractionManagerInterop, window: ?HWND, riid: ?*const Guid, spatialInteractionManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, window, riid, spatialInteractionManager);
     }
@@ -158,14 +135,7 @@ pub const IHolographicSpaceInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHolographicSpaceInterop_CreateForWindow(self: *const T, window: ?HWND, riid: ?*const Guid, holographicSpace: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IHolographicSpaceInterop.VTable, @ptrCast(self.vtable)).CreateForWindow(@as(*const IHolographicSpaceInterop, @ptrCast(self)), window, riid, holographicSpace);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateForWindow(self: *const IHolographicSpaceInterop, window: ?HWND, riid: ?*const Guid, holographicSpace: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateForWindow(self, window, riid, holographicSpace);
     }
@@ -202,22 +172,6 @@ pub const IInspectable = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInspectable_GetIids(self: *const T, iidCount: ?*u32, iids: [*]?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IInspectable.VTable, @ptrCast(self.vtable)).GetIids(@as(*const IInspectable, @ptrCast(self)), iidCount, iids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInspectable_GetRuntimeClassName(self: *const T, className: ?*?HSTRING) callconv(.Inline) HRESULT {
-            return @as(*const IInspectable.VTable, @ptrCast(self.vtable)).GetRuntimeClassName(@as(*const IInspectable, @ptrCast(self)), className);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInspectable_GetTrustLevel(self: *const T, trustLevel: ?*TrustLevel) callconv(.Inline) HRESULT {
-            return @as(*const IInspectable.VTable, @ptrCast(self.vtable)).GetTrustLevel(@as(*const IInspectable, @ptrCast(self)), trustLevel);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIids(self: *const IInspectable, iidCount: ?*u32, iids: [*]?*Guid) callconv(.Inline) HRESULT {
         return self.vtable.GetIids(self, iidCount, iids);
     }
@@ -291,22 +245,7 @@ pub const IAccountsSettingsPaneInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountsSettingsPaneInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, accountsSettingsPane: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IAccountsSettingsPaneInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IAccountsSettingsPaneInterop, @ptrCast(self)), appWindow, riid, accountsSettingsPane);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountsSettingsPaneInterop_ShowManageAccountsForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncAction: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IAccountsSettingsPaneInterop.VTable, @ptrCast(self.vtable)).ShowManageAccountsForWindowAsync(@as(*const IAccountsSettingsPaneInterop, @ptrCast(self)), appWindow, riid, asyncAction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountsSettingsPaneInterop_ShowAddAccountForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncAction: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IAccountsSettingsPaneInterop.VTable, @ptrCast(self.vtable)).ShowAddAccountForWindowAsync(@as(*const IAccountsSettingsPaneInterop, @ptrCast(self)), appWindow, riid, asyncAction);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetForWindow(self: *const IAccountsSettingsPaneInterop, appWindow: ?HWND, riid: ?*const Guid, accountsSettingsPane: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, accountsSettingsPane);
     }
@@ -331,14 +270,6 @@ pub const IAppServiceConnectionExtendedExecution = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppServiceConnectionExtendedExecution_OpenForExtendedExecutionAsync(self: *const T, riid: ?*const Guid, operation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IAppServiceConnectionExtendedExecution.VTable, @ptrCast(self.vtable)).OpenForExtendedExecutionAsync(@as(*const IAppServiceConnectionExtendedExecution, @ptrCast(self)), riid, operation);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OpenForExtendedExecutionAsync(self: *const IAppServiceConnectionExtendedExecution, riid: ?*const Guid, operation: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.OpenForExtendedExecutionAsync(self, riid, operation);
     }
@@ -357,14 +288,6 @@ pub const ICorrelationVectorSource = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICorrelationVectorSource_get_CorrelationVector(self: *const T, cv: ?*?HSTRING) callconv(.Inline) HRESULT {
-            return @as(*const ICorrelationVectorSource.VTable, @ptrCast(self.vtable)).get_CorrelationVector(@as(*const ICorrelationVectorSource, @ptrCast(self)), cv);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_CorrelationVector(self: *const ICorrelationVectorSource, cv: ?*?HSTRING) callconv(.Inline) HRESULT {
         return self.vtable.get_CorrelationVector(self, cv);
     }
@@ -417,18 +340,6 @@ pub const ICastingEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICastingEventHandler_OnStateChanged(self: *const T, newState: CASTING_CONNECTION_STATE) callconv(.Inline) HRESULT {
-            return @as(*const ICastingEventHandler.VTable, @ptrCast(self.vtable)).OnStateChanged(@as(*const ICastingEventHandler, @ptrCast(self)), newState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICastingEventHandler_OnError(self: *const T, errorStatus: CASTING_CONNECTION_ERROR_STATUS, errorMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const ICastingEventHandler.VTable, @ptrCast(self.vtable)).OnError(@as(*const ICastingEventHandler, @ptrCast(self)), errorStatus, errorMessage);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnStateChanged(self: *const ICastingEventHandler, newState: CASTING_CONNECTION_STATE) callconv(.Inline) HRESULT {
         return self.vtable.OnStateChanged(self, newState);
     }
@@ -465,30 +376,6 @@ pub const ICastingController = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICastingController_Initialize(self: *const T, castingEngine: ?*IUnknown, castingSource: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ICastingController.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICastingController, @ptrCast(self)), castingEngine, castingSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICastingController_Connect(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ICastingController.VTable, @ptrCast(self.vtable)).Connect(@as(*const ICastingController, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICastingController_Disconnect(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ICastingController.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const ICastingController, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICastingController_Advise(self: *const T, eventHandler: ?*ICastingEventHandler, cookie: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ICastingController.VTable, @ptrCast(self.vtable)).Advise(@as(*const ICastingController, @ptrCast(self)), eventHandler, cookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICastingController_UnAdvise(self: *const T, cookie: u32) callconv(.Inline) HRESULT {
-            return @as(*const ICastingController.VTable, @ptrCast(self.vtable)).UnAdvise(@as(*const ICastingController, @ptrCast(self)), cookie);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const ICastingController, castingEngine: ?*IUnknown, castingSource: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, castingEngine, castingSource);
     }
@@ -522,18 +409,6 @@ pub const ICastingSourceInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICastingSourceInfo_GetController(self: *const T, controller: ?*?*ICastingController) callconv(.Inline) HRESULT {
-            return @as(*const ICastingSourceInfo.VTable, @ptrCast(self.vtable)).GetController(@as(*const ICastingSourceInfo, @ptrCast(self)), controller);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICastingSourceInfo_GetProperties(self: *const T, props: ?*?*INamedPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const ICastingSourceInfo.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const ICastingSourceInfo, @ptrCast(self)), props);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetController(self: *const ICastingSourceInfo, controller: ?*?*ICastingController) callconv(.Inline) HRESULT {
         return self.vtable.GetController(self, controller);
     }
@@ -556,14 +431,7 @@ pub const IDragDropManagerInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDragDropManagerInterop_GetForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IDragDropManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IDragDropManagerInterop, @ptrCast(self)), hwnd, riid, ppv);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetForWindow(self: *const IDragDropManagerInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, hwnd, riid, ppv);
     }
@@ -584,14 +452,7 @@ pub const IInputPaneInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInputPaneInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, inputPane: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IInputPaneInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IInputPaneInterop, @ptrCast(self)), appWindow, riid, inputPane);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetForWindow(self: *const IInputPaneInterop, appWindow: ?HWND, riid: ?*const Guid, inputPane: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, inputPane);
     }
@@ -616,18 +477,7 @@ pub const IPlayToManagerInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPlayToManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, playToManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IPlayToManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IPlayToManagerInterop, @ptrCast(self)), appWindow, riid, playToManager);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPlayToManagerInterop_ShowPlayToUIForWindow(self: *const T, appWindow: ?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IPlayToManagerInterop.VTable, @ptrCast(self.vtable)).ShowPlayToUIForWindow(@as(*const IPlayToManagerInterop, @ptrCast(self)), appWindow);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetForWindow(self: *const IPlayToManagerInterop, appWindow: ?HWND, riid: ?*const Guid, playToManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, playToManager);
     }
@@ -659,22 +509,7 @@ pub const ICorrelationVectorInformation = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICorrelationVectorInformation_get_LastCorrelationVectorForThread(self: *const T, cv: ?*?HSTRING) callconv(.Inline) HRESULT {
-            return @as(*const ICorrelationVectorInformation.VTable, @ptrCast(self.vtable)).get_LastCorrelationVectorForThread(@as(*const ICorrelationVectorInformation, @ptrCast(self)), cv);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICorrelationVectorInformation_get_NextCorrelationVectorForThread(self: *const T, cv: ?*?HSTRING) callconv(.Inline) HRESULT {
-            return @as(*const ICorrelationVectorInformation.VTable, @ptrCast(self.vtable)).get_NextCorrelationVectorForThread(@as(*const ICorrelationVectorInformation, @ptrCast(self)), cv);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICorrelationVectorInformation_put_NextCorrelationVectorForThread(self: *const T, cv: ?HSTRING) callconv(.Inline) HRESULT {
-            return @as(*const ICorrelationVectorInformation.VTable, @ptrCast(self.vtable)).put_NextCorrelationVectorForThread(@as(*const ICorrelationVectorInformation, @ptrCast(self)), cv);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_LastCorrelationVectorForThread(self: *const ICorrelationVectorInformation, cv: ?*?HSTRING) callconv(.Inline) HRESULT {
         return self.vtable.get_LastCorrelationVectorForThread(self, cv);
     }
@@ -700,14 +535,7 @@ pub const IUIViewSettingsInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIViewSettingsInterop_GetForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IUIViewSettingsInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IUIViewSettingsInterop, @ptrCast(self)), hwnd, riid, ppv);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetForWindow(self: *const IUIViewSettingsInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, hwnd, riid, ppv);
     }
@@ -727,14 +555,7 @@ pub const IUserActivityInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserActivityInterop_CreateSessionForWindow(self: *const T, window: ?HWND, iid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IUserActivityInterop.VTable, @ptrCast(self.vtable)).CreateSessionForWindow(@as(*const IUserActivityInterop, @ptrCast(self)), window, iid, value);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn CreateSessionForWindow(self: *const IUserActivityInterop, window: ?HWND, iid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateSessionForWindow(self, window, iid, value);
     }
@@ -752,14 +573,7 @@ pub const IUserActivitySourceHostInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserActivitySourceHostInterop_SetActivitySourceHost(self: *const T, activitySourceHost: ?HSTRING) callconv(.Inline) HRESULT {
-            return @as(*const IUserActivitySourceHostInterop.VTable, @ptrCast(self.vtable)).SetActivitySourceHost(@as(*const IUserActivitySourceHostInterop, @ptrCast(self)), activitySourceHost);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetActivitySourceHost(self: *const IUserActivitySourceHostInterop, activitySourceHost: ?HSTRING) callconv(.Inline) HRESULT {
         return self.vtable.SetActivitySourceHost(self, activitySourceHost);
     }
@@ -779,14 +593,7 @@ pub const IUserActivityRequestManagerInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserActivityRequestManagerInterop_GetForWindow(self: *const T, window: ?HWND, iid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IUserActivityRequestManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IUserActivityRequestManagerInterop, @ptrCast(self)), window, iid, value);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetForWindow(self: *const IUserActivityRequestManagerInterop, window: ?HWND, iid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, window, iid, value);
     }
@@ -807,14 +614,7 @@ pub const IUserConsentVerifierInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserConsentVerifierInterop_RequestVerificationForWindowAsync(self: *const T, appWindow: ?HWND, message: ?HSTRING, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IUserConsentVerifierInterop.VTable, @ptrCast(self.vtable)).RequestVerificationForWindowAsync(@as(*const IUserConsentVerifierInterop, @ptrCast(self)), appWindow, message, riid, asyncOperation);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn RequestVerificationForWindowAsync(self: *const IUserConsentVerifierInterop, appWindow: ?HWND, message: ?HSTRING, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.RequestVerificationForWindowAsync(self, appWindow, message, riid, asyncOperation);
     }
@@ -843,18 +643,7 @@ pub const IWebAuthenticationCoreManagerInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebAuthenticationCoreManagerInterop_RequestTokenForWindowAsync(self: *const T, appWindow: ?HWND, request: ?*IInspectable, riid: ?*const Guid, asyncInfo: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IWebAuthenticationCoreManagerInterop.VTable, @ptrCast(self.vtable)).RequestTokenForWindowAsync(@as(*const IWebAuthenticationCoreManagerInterop, @ptrCast(self)), appWindow, request, riid, asyncInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebAuthenticationCoreManagerInterop_RequestTokenWithWebAccountForWindowAsync(self: *const T, appWindow: ?HWND, request: ?*IInspectable, webAccount: ?*IInspectable, riid: ?*const Guid, asyncInfo: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IWebAuthenticationCoreManagerInterop.VTable, @ptrCast(self.vtable)).RequestTokenWithWebAccountForWindowAsync(@as(*const IWebAuthenticationCoreManagerInterop, @ptrCast(self)), appWindow, request, webAccount, riid, asyncInfo);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn RequestTokenForWindowAsync(self: *const IWebAuthenticationCoreManagerInterop, appWindow: ?HWND, request: ?*IInspectable, riid: ?*const Guid, asyncInfo: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.RequestTokenForWindowAsync(self, appWindow, request, riid, asyncInfo);
     }
@@ -884,18 +673,6 @@ pub const IRestrictedErrorInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRestrictedErrorInfo_GetErrorDetails(self: *const T, description: ?*?BSTR, @"error": ?*HRESULT, restrictedDescription: ?*?BSTR, capabilitySid: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IRestrictedErrorInfo.VTable, @ptrCast(self.vtable)).GetErrorDetails(@as(*const IRestrictedErrorInfo, @ptrCast(self)), description, @"error", restrictedDescription, capabilitySid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRestrictedErrorInfo_GetReference(self: *const T, reference: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @as(*const IRestrictedErrorInfo.VTable, @ptrCast(self.vtable)).GetReference(@as(*const IRestrictedErrorInfo, @ptrCast(self)), reference);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetErrorDetails(self: *const IRestrictedErrorInfo, description: ?*?BSTR, @"error": ?*HRESULT, restrictedDescription: ?*?BSTR, capabilitySid: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetErrorDetails(self, description, @"error", restrictedDescription, capabilitySid);
     }
@@ -917,14 +694,6 @@ pub const ILanguageExceptionErrorInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILanguageExceptionErrorInfo_GetLanguageException(self: *const T, languageException: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ILanguageExceptionErrorInfo.VTable, @ptrCast(self.vtable)).GetLanguageException(@as(*const ILanguageExceptionErrorInfo, @ptrCast(self)), languageException);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLanguageException(self: *const ILanguageExceptionErrorInfo, languageException: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetLanguageException(self, languageException);
     }
@@ -943,14 +712,6 @@ pub const ILanguageExceptionTransform = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILanguageExceptionTransform_GetTransformedRestrictedErrorInfo(self: *const T, restrictedErrorInfo: ?*?*IRestrictedErrorInfo) callconv(.Inline) HRESULT {
-            return @as(*const ILanguageExceptionTransform.VTable, @ptrCast(self.vtable)).GetTransformedRestrictedErrorInfo(@as(*const ILanguageExceptionTransform, @ptrCast(self)), restrictedErrorInfo);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTransformedRestrictedErrorInfo(self: *const ILanguageExceptionTransform, restrictedErrorInfo: ?*?*IRestrictedErrorInfo) callconv(.Inline) HRESULT {
         return self.vtable.GetTransformedRestrictedErrorInfo(self, restrictedErrorInfo);
     }
@@ -971,14 +732,6 @@ pub const ILanguageExceptionStackBackTrace = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILanguageExceptionStackBackTrace_GetStackBackTrace(self: *const T, maxFramesToCapture: u32, stackBackTrace: ?*usize, framesCaptured: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ILanguageExceptionStackBackTrace.VTable, @ptrCast(self.vtable)).GetStackBackTrace(@as(*const ILanguageExceptionStackBackTrace, @ptrCast(self)), maxFramesToCapture, stackBackTrace, framesCaptured);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStackBackTrace(self: *const ILanguageExceptionStackBackTrace, maxFramesToCapture: u32, stackBackTrace: ?*usize, framesCaptured: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetStackBackTrace(self, maxFramesToCapture, stackBackTrace, framesCaptured);
     }
@@ -1005,22 +758,7 @@ pub const ILanguageExceptionErrorInfo2 = extern union {
     };
     vtable: *const VTable,
     ILanguageExceptionErrorInfo: ILanguageExceptionErrorInfo,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ILanguageExceptionErrorInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILanguageExceptionErrorInfo2_GetPreviousLanguageExceptionErrorInfo(self: *const T, previousLanguageExceptionErrorInfo: ?*?*ILanguageExceptionErrorInfo2) callconv(.Inline) HRESULT {
-            return @as(*const ILanguageExceptionErrorInfo2.VTable, @ptrCast(self.vtable)).GetPreviousLanguageExceptionErrorInfo(@as(*const ILanguageExceptionErrorInfo2, @ptrCast(self)), previousLanguageExceptionErrorInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILanguageExceptionErrorInfo2_CapturePropagationContext(self: *const T, languageException: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ILanguageExceptionErrorInfo2.VTable, @ptrCast(self.vtable)).CapturePropagationContext(@as(*const ILanguageExceptionErrorInfo2, @ptrCast(self)), languageException);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILanguageExceptionErrorInfo2_GetPropagationContextHead(self: *const T, propagatedLanguageExceptionErrorInfoHead: ?*?*ILanguageExceptionErrorInfo2) callconv(.Inline) HRESULT {
-            return @as(*const ILanguageExceptionErrorInfo2.VTable, @ptrCast(self.vtable)).GetPropagationContextHead(@as(*const ILanguageExceptionErrorInfo2, @ptrCast(self)), propagatedLanguageExceptionErrorInfoHead);
-        }
-    };}
-    pub usingnamespace ILanguageExceptionErrorInfo.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetPreviousLanguageExceptionErrorInfo(self: *const ILanguageExceptionErrorInfo2, previousLanguageExceptionErrorInfo: ?*?*ILanguageExceptionErrorInfo2) callconv(.Inline) HRESULT {
         return self.vtable.GetPreviousLanguageExceptionErrorInfo(self, previousLanguageExceptionErrorInfo);
     }
@@ -1045,14 +783,7 @@ pub const IActivationFactory = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActivationFactory_ActivateInstance(self: *const T, instance: ?*?*IInspectable) callconv(.Inline) HRESULT {
-            return @as(*const IActivationFactory.VTable, @ptrCast(self.vtable)).ActivateInstance(@as(*const IActivationFactory, @ptrCast(self)), instance);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn ActivateInstance(self: *const IActivationFactory, instance: ?*?*IInspectable) callconv(.Inline) HRESULT {
         return self.vtable.ActivateInstance(self, instance);
     }
@@ -1081,14 +812,6 @@ pub const IBufferByteAccess = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBufferByteAccess_Buffer(self: *const T, value: ?*?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IBufferByteAccess.VTable, @ptrCast(self.vtable)).Buffer(@as(*const IBufferByteAccess, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Buffer(self: *const IBufferByteAccess, value: ?*?*u8) callconv(.Inline) HRESULT {
         return self.vtable.Buffer(self, value);
     }
@@ -1198,48 +921,6 @@ pub const IRoSimpleMetaDataBuilder = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoSimpleMetaDataBuilder_SetWinRtInterface(self: *const T, iid: Guid) callconv(.Inline) HRESULT {
-            return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetWinRtInterface(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), iid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoSimpleMetaDataBuilder_SetDelegate(self: *const T, iid: Guid) callconv(.Inline) HRESULT {
-            return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetDelegate(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), iid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoSimpleMetaDataBuilder_SetInterfaceGroupSimpleDefault(self: *const T, name: ?[*:0]const u16, defaultInterfaceName: ?[*:0]const u16, defaultInterfaceIID: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetInterfaceGroupSimpleDefault(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), name, defaultInterfaceName, defaultInterfaceIID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoSimpleMetaDataBuilder_SetInterfaceGroupParameterizedDefault(self: *const T, name: ?[*:0]const u16, elementCount: u32, defaultInterfaceNameElements: [*]?PWSTR) callconv(.Inline) HRESULT {
-            return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetInterfaceGroupParameterizedDefault(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), name, elementCount, defaultInterfaceNameElements);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoSimpleMetaDataBuilder_SetRuntimeClassSimpleDefault(self: *const T, name: ?[*:0]const u16, defaultInterfaceName: ?[*:0]const u16, defaultInterfaceIID: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetRuntimeClassSimpleDefault(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), name, defaultInterfaceName, defaultInterfaceIID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoSimpleMetaDataBuilder_SetRuntimeClassParameterizedDefault(self: *const T, name: ?[*:0]const u16, elementCount: u32, defaultInterfaceNameElements: [*]const ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetRuntimeClassParameterizedDefault(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), name, elementCount, defaultInterfaceNameElements);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoSimpleMetaDataBuilder_SetStruct(self: *const T, name: ?[*:0]const u16, numFields: u32, fieldTypeNames: [*]const ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetStruct(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), name, numFields, fieldTypeNames);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoSimpleMetaDataBuilder_SetEnum(self: *const T, name: ?[*:0]const u16, baseType: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetEnum(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), name, baseType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoSimpleMetaDataBuilder_SetParameterizedInterface(self: *const T, piid: Guid, numArgs: u32) callconv(.Inline) HRESULT {
-            return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetParameterizedInterface(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), piid, numArgs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoSimpleMetaDataBuilder_SetParameterizedDelegate(self: *const T, piid: Guid, numArgs: u32) callconv(.Inline) HRESULT {
-            return @as(*const IRoSimpleMetaDataBuilder.VTable, @ptrCast(self.vtable)).SetParameterizedDelegate(@as(*const IRoSimpleMetaDataBuilder, @ptrCast(self)), piid, numArgs);
-        }
-    };}
     pub fn SetWinRtInterface(self: *const IRoSimpleMetaDataBuilder, iid: Guid) callconv(.Inline) HRESULT {
         return self.vtable.SetWinRtInterface(self, iid);
     }
@@ -1281,12 +962,6 @@ pub const IRoMetaDataLocator = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoMetaDataLocator_Locate(self: *const T, nameElement: ?[*:0]const u16, metaDataDestination: ?*IRoSimpleMetaDataBuilder) callconv(.Inline) HRESULT {
-            return @as(*const IRoMetaDataLocator.VTable, @ptrCast(self.vtable)).Locate(@as(*const IRoMetaDataLocator, @ptrCast(self)), nameElement, metaDataDestination);
-        }
-    };}
     pub fn Locate(self: *const IRoMetaDataLocator, nameElement: ?[*:0]const u16, metaDataDestination: ?*IRoSimpleMetaDataBuilder) callconv(.Inline) HRESULT {
         return self.vtable.Locate(self, nameElement, metaDataDestination);
     }
@@ -1312,14 +987,6 @@ pub const IMemoryBufferByteAccess = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMemoryBufferByteAccess_GetBuffer(self: *const T, value: ?*?*u8, capacity: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IMemoryBufferByteAccess.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const IMemoryBufferByteAccess, @ptrCast(self)), value, capacity);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetBuffer(self: *const IMemoryBufferByteAccess, value: ?*?*u8, capacity: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetBuffer(self, value, capacity);
     }
@@ -1339,14 +1006,6 @@ pub const IWeakReference = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWeakReference_Resolve(self: *const T, riid: ?*const Guid, objectReference: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IWeakReference.VTable, @ptrCast(self.vtable)).Resolve(@as(*const IWeakReference, @ptrCast(self)), riid, objectReference);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Resolve(self: *const IWeakReference, riid: ?*const Guid, objectReference: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Resolve(self, riid, objectReference);
     }
@@ -1365,14 +1024,6 @@ pub const IWeakReferenceSource = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWeakReferenceSource_GetWeakReference(self: *const T, weakReference: ?*?*IWeakReference) callconv(.Inline) HRESULT {
-            return @as(*const IWeakReferenceSource.VTable, @ptrCast(self.vtable)).GetWeakReference(@as(*const IWeakReferenceSource, @ptrCast(self)), weakReference);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetWeakReference(self: *const IWeakReferenceSource, weakReference: ?*?*IWeakReference) callconv(.Inline) HRESULT {
         return self.vtable.GetWeakReference(self, weakReference);
     }
@@ -1392,14 +1043,7 @@ pub const ISystemMediaTransportControlsInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISystemMediaTransportControlsInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, mediaTransportControl: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISystemMediaTransportControlsInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const ISystemMediaTransportControlsInterop, @ptrCast(self)), appWindow, riid, mediaTransportControl);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetForWindow(self: *const ISystemMediaTransportControlsInterop, appWindow: ?HWND, riid: ?*const Guid, mediaTransportControl: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, mediaTransportControl);
     }
@@ -1417,14 +1061,6 @@ pub const IShareWindowCommandEventArgsInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShareWindowCommandEventArgsInterop_GetWindow(self: *const T, value: ?*?HWND) callconv(.Inline) HRESULT {
-            return @as(*const IShareWindowCommandEventArgsInterop.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const IShareWindowCommandEventArgsInterop, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetWindow(self: *const IShareWindowCommandEventArgsInterop, value: ?*?HWND) callconv(.Inline) HRESULT {
         return self.vtable.GetWindow(self, value);
     }
@@ -1444,14 +1080,6 @@ pub const IShareWindowCommandSourceInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShareWindowCommandSourceInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, shareWindowCommandSource: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IShareWindowCommandSourceInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IShareWindowCommandSourceInterop, @ptrCast(self)), appWindow, riid, shareWindowCommandSource);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetForWindow(self: *const IShareWindowCommandSourceInterop, appWindow: ?HWND, riid: ?*const Guid, shareWindowCommandSource: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, shareWindowCommandSource);
     }
@@ -1468,14 +1096,7 @@ pub const IMessageDispatcher = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMessageDispatcher_PumpMessages(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IMessageDispatcher.VTable, @ptrCast(self.vtable)).PumpMessages(@as(*const IMessageDispatcher, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn PumpMessages(self: *const IMessageDispatcher) callconv(.Inline) HRESULT {
         return self.vtable.PumpMessages(self);
     }
@@ -1499,18 +1120,6 @@ pub const ICoreWindowInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreWindowInterop_get_WindowHandle(self: *const T, hwnd: ?*?HWND) callconv(.Inline) HRESULT {
-            return @as(*const ICoreWindowInterop.VTable, @ptrCast(self.vtable)).get_WindowHandle(@as(*const ICoreWindowInterop, @ptrCast(self)), hwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreWindowInterop_put_MessageHandled(self: *const T, value: u8) callconv(.Inline) HRESULT {
-            return @as(*const ICoreWindowInterop.VTable, @ptrCast(self.vtable)).put_MessageHandled(@as(*const ICoreWindowInterop, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_WindowHandle(self: *const ICoreWindowInterop, hwnd: ?*?HWND) callconv(.Inline) HRESULT {
         return self.vtable.get_WindowHandle(self, hwnd);
     }
@@ -1536,18 +1145,6 @@ pub const ICoreInputInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreInputInterop_SetInputSource(self: *const T, value: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ICoreInputInterop.VTable, @ptrCast(self.vtable)).SetInputSource(@as(*const ICoreInputInterop, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreInputInterop_put_MessageHandled(self: *const T, value: u8) callconv(.Inline) HRESULT {
-            return @as(*const ICoreInputInterop.VTable, @ptrCast(self.vtable)).put_MessageHandled(@as(*const ICoreInputInterop, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetInputSource(self: *const ICoreInputInterop, value: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.SetInputSource(self, value);
     }
@@ -1574,18 +1171,6 @@ pub const ICoreWindowComponentInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreWindowComponentInterop_ConfigureComponentInput(self: *const T, hostViewInstanceId: u32, hwndHost: ?HWND, inputSourceVisual: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ICoreWindowComponentInterop.VTable, @ptrCast(self.vtable)).ConfigureComponentInput(@as(*const ICoreWindowComponentInterop, @ptrCast(self)), hostViewInstanceId, hwndHost, inputSourceVisual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreWindowComponentInterop_GetViewInstanceId(self: *const T, componentViewInstanceId: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ICoreWindowComponentInterop.VTable, @ptrCast(self.vtable)).GetViewInstanceId(@as(*const ICoreWindowComponentInterop, @ptrCast(self)), componentViewInstanceId);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ConfigureComponentInput(self: *const ICoreWindowComponentInterop, hostViewInstanceId: u32, hwndHost: ?HWND, inputSourceVisual: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.ConfigureComponentInput(self, hostViewInstanceId, hwndHost, inputSourceVisual);
     }
@@ -1641,42 +1226,7 @@ pub const ICoreWindowAdapterInterop = extern union {
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreWindowAdapterInterop_get_AppActivationClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_AppActivationClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreWindowAdapterInterop_get_ApplicationViewClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_ApplicationViewClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreWindowAdapterInterop_get_CoreApplicationViewClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_CoreApplicationViewClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreWindowAdapterInterop_get_HoloViewClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_HoloViewClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreWindowAdapterInterop_get_PositionerClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_PositionerClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreWindowAdapterInterop_get_SystemNavigationClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_SystemNavigationClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreWindowAdapterInterop_get_TitleBarClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_TitleBarClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreWindowAdapterInterop_SetWindowClientAdapter(self: *const T, value: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).SetWindowClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
-        }
-    };}
-    pub usingnamespace IInspectable.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn get_AppActivationClientAdapter(self: *const ICoreWindowAdapterInterop, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.get_AppActivationClientAdapter(self, value);
     }

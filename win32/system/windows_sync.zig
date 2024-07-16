@@ -203,18 +203,6 @@ pub const IClockVectorElement = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClockVectorElement_GetReplicaKey(self: *const T, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IClockVectorElement.VTable, @ptrCast(self.vtable)).GetReplicaKey(@as(*const IClockVectorElement, @ptrCast(self)), pdwReplicaKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClockVectorElement_GetTickCount(self: *const T, pullTickCount: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const IClockVectorElement.VTable, @ptrCast(self.vtable)).GetTickCount(@as(*const IClockVectorElement, @ptrCast(self)), pullTickCount);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetReplicaKey(self: *const IClockVectorElement, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetReplicaKey(self, pdwReplicaKey);
     }
@@ -240,18 +228,7 @@ pub const IFeedClockVectorElement = extern union {
     };
     vtable: *const VTable,
     IClockVectorElement: IClockVectorElement,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IClockVectorElement.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFeedClockVectorElement_GetSyncTime(self: *const T, pSyncTime: ?*SYNC_TIME) callconv(.Inline) HRESULT {
-            return @as(*const IFeedClockVectorElement.VTable, @ptrCast(self.vtable)).GetSyncTime(@as(*const IFeedClockVectorElement, @ptrCast(self)), pSyncTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFeedClockVectorElement_GetFlags(self: *const T, pbFlags: ?*u8) callconv(.Inline) HRESULT {
-            return @as(*const IFeedClockVectorElement.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IFeedClockVectorElement, @ptrCast(self)), pbFlags);
-        }
-    };}
-    pub usingnamespace IClockVectorElement.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetSyncTime(self: *const IFeedClockVectorElement, pSyncTime: ?*SYNC_TIME) callconv(.Inline) HRESULT {
         return self.vtable.GetSyncTime(self, pSyncTime);
     }
@@ -278,18 +255,6 @@ pub const IClockVector = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClockVector_GetClockVectorElements(self: *const T, riid: ?*const Guid, ppiEnumClockVector: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IClockVector.VTable, @ptrCast(self.vtable)).GetClockVectorElements(@as(*const IClockVector, @ptrCast(self)), riid, ppiEnumClockVector);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClockVector_GetClockVectorElementCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IClockVector.VTable, @ptrCast(self.vtable)).GetClockVectorElementCount(@as(*const IClockVector, @ptrCast(self)), pdwCount);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetClockVectorElements(self: *const IClockVector, riid: ?*const Guid, ppiEnumClockVector: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetClockVectorElements(self, riid, ppiEnumClockVector);
     }
@@ -315,18 +280,7 @@ pub const IFeedClockVector = extern union {
     };
     vtable: *const VTable,
     IClockVector: IClockVector,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IClockVector.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFeedClockVector_GetUpdateCount(self: *const T, pdwUpdateCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IFeedClockVector.VTable, @ptrCast(self.vtable)).GetUpdateCount(@as(*const IFeedClockVector, @ptrCast(self)), pdwUpdateCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFeedClockVector_IsNoConflictsSpecified(self: *const T, pfIsNoConflictsSpecified: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const IFeedClockVector.VTable, @ptrCast(self.vtable)).IsNoConflictsSpecified(@as(*const IFeedClockVector, @ptrCast(self)), pfIsNoConflictsSpecified);
-        }
-    };}
-    pub usingnamespace IClockVector.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetUpdateCount(self: *const IFeedClockVector, pdwUpdateCount: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetUpdateCount(self, pdwUpdateCount);
     }
@@ -361,26 +315,6 @@ pub const IEnumClockVector = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumClockVector_Next(self: *const T, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IClockVectorElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumClockVector, @ptrCast(self)), cClockVectorElements, ppiClockVectorElements, pcFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumClockVector_Skip(self: *const T, cSyncVersions: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumClockVector, @ptrCast(self)), cSyncVersions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumClockVector_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumClockVector, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumClockVector_Clone(self: *const T, ppiEnum: ?*?*IEnumClockVector) callconv(.Inline) HRESULT {
-            return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumClockVector, @ptrCast(self)), ppiEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumClockVector, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IClockVectorElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cClockVectorElements, ppiClockVectorElements, pcFetched);
     }
@@ -421,26 +355,6 @@ pub const IEnumFeedClockVector = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumFeedClockVector_Next(self: *const T, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IFeedClockVectorElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumFeedClockVector, @ptrCast(self)), cClockVectorElements, ppiClockVectorElements, pcFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumFeedClockVector_Skip(self: *const T, cSyncVersions: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumFeedClockVector, @ptrCast(self)), cSyncVersions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumFeedClockVector_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumFeedClockVector, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumFeedClockVector_Clone(self: *const T, ppiEnum: ?*?*IEnumFeedClockVector) callconv(.Inline) HRESULT {
-            return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumFeedClockVector, @ptrCast(self)), ppiEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumFeedClockVector, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IFeedClockVectorElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cClockVectorElements, ppiClockVectorElements, pcFetched);
     }
@@ -486,30 +400,6 @@ pub const ICoreFragment = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFragment_NextColumn(self: *const T, pChangeUnitId: ?*u8, pChangeUnitIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).NextColumn(@as(*const ICoreFragment, @ptrCast(self)), pChangeUnitId, pChangeUnitIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFragment_NextRange(self: *const T, pItemId: ?*u8, pItemIdSize: ?*u32, piClockVector: ?*?*IClockVector) callconv(.Inline) HRESULT {
-            return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).NextRange(@as(*const ICoreFragment, @ptrCast(self)), pItemId, pItemIdSize, piClockVector);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFragment_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICoreFragment, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFragment_GetColumnCount(self: *const T, pColumnCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).GetColumnCount(@as(*const ICoreFragment, @ptrCast(self)), pColumnCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFragment_GetRangeCount(self: *const T, pRangeCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).GetRangeCount(@as(*const ICoreFragment, @ptrCast(self)), pRangeCount);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NextColumn(self: *const ICoreFragment, pChangeUnitId: ?*u8, pChangeUnitIdSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.NextColumn(self, pChangeUnitId, pChangeUnitIdSize);
     }
@@ -545,18 +435,6 @@ pub const ICoreFragmentInspector = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFragmentInspector_NextCoreFragments(self: *const T, requestedCount: u32, ppiCoreFragments: ?*?*ICoreFragment, pFetchedCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ICoreFragmentInspector.VTable, @ptrCast(self.vtable)).NextCoreFragments(@as(*const ICoreFragmentInspector, @ptrCast(self)), requestedCount, ppiCoreFragments, pFetchedCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFragmentInspector_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ICoreFragmentInspector.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICoreFragmentInspector, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NextCoreFragments(self: *const ICoreFragmentInspector, requestedCount: u32, ppiCoreFragments: ?*?*ICoreFragment, pFetchedCount: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.NextCoreFragments(self, requestedCount, ppiCoreFragments, pFetchedCount);
     }
@@ -589,22 +467,6 @@ pub const IRangeException = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeException_GetClosedRangeStart(self: *const T, pbClosedRangeStart: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IRangeException.VTable, @ptrCast(self.vtable)).GetClosedRangeStart(@as(*const IRangeException, @ptrCast(self)), pbClosedRangeStart, pcbIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeException_GetClosedRangeEnd(self: *const T, pbClosedRangeEnd: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IRangeException.VTable, @ptrCast(self.vtable)).GetClosedRangeEnd(@as(*const IRangeException, @ptrCast(self)), pbClosedRangeEnd, pcbIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IRangeException.VTable, @ptrCast(self.vtable)).GetClockVector(@as(*const IRangeException, @ptrCast(self)), riid, ppUnk);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetClosedRangeStart(self: *const IRangeException, pbClosedRangeStart: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetClosedRangeStart(self, pbClosedRangeStart, pcbIdSize);
     }
@@ -642,26 +504,6 @@ pub const IEnumRangeExceptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRangeExceptions_Next(self: *const T, cExceptions: u32, ppRangeException: ?*?*IRangeException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumRangeExceptions, @ptrCast(self)), cExceptions, ppRangeException, pcFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRangeExceptions_Skip(self: *const T, cExceptions: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumRangeExceptions, @ptrCast(self)), cExceptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRangeExceptions_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumRangeExceptions, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRangeExceptions_Clone(self: *const T, ppEnum: ?*?*IEnumRangeExceptions) callconv(.Inline) HRESULT {
-            return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumRangeExceptions, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumRangeExceptions, cExceptions: u32, ppRangeException: ?*?*IRangeException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cExceptions, ppRangeException, pcFetched);
     }
@@ -695,18 +537,6 @@ pub const ISingleItemException = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISingleItemException_GetItemId(self: *const T, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISingleItemException.VTable, @ptrCast(self.vtable)).GetItemId(@as(*const ISingleItemException, @ptrCast(self)), pbItemId, pcbIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISingleItemException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISingleItemException.VTable, @ptrCast(self.vtable)).GetClockVector(@as(*const ISingleItemException, @ptrCast(self)), riid, ppUnk);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetItemId(self: *const ISingleItemException, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetItemId(self, pbItemId, pcbIdSize);
     }
@@ -741,26 +571,6 @@ pub const IEnumSingleItemExceptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSingleItemExceptions_Next(self: *const T, cExceptions: u32, ppSingleItemException: ?*?*ISingleItemException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSingleItemExceptions, @ptrCast(self)), cExceptions, ppSingleItemException, pcFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSingleItemExceptions_Skip(self: *const T, cExceptions: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSingleItemExceptions, @ptrCast(self)), cExceptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSingleItemExceptions_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSingleItemExceptions, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSingleItemExceptions_Clone(self: *const T, ppEnum: ?*?*IEnumSingleItemExceptions) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSingleItemExceptions, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumSingleItemExceptions, cExceptions: u32, ppSingleItemException: ?*?*ISingleItemException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cExceptions, ppSingleItemException, pcFetched);
     }
@@ -799,22 +609,6 @@ pub const IChangeUnitException = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitException_GetItemId(self: *const T, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IChangeUnitException.VTable, @ptrCast(self.vtable)).GetItemId(@as(*const IChangeUnitException, @ptrCast(self)), pbItemId, pcbIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitException_GetChangeUnitId(self: *const T, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IChangeUnitException.VTable, @ptrCast(self.vtable)).GetChangeUnitId(@as(*const IChangeUnitException, @ptrCast(self)), pbChangeUnitId, pcbIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IChangeUnitException.VTable, @ptrCast(self.vtable)).GetClockVector(@as(*const IChangeUnitException, @ptrCast(self)), riid, ppUnk);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetItemId(self: *const IChangeUnitException, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetItemId(self, pbItemId, pcbIdSize);
     }
@@ -852,26 +646,6 @@ pub const IEnumChangeUnitExceptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumChangeUnitExceptions_Next(self: *const T, cExceptions: u32, ppChangeUnitException: ?*?*IChangeUnitException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)), cExceptions, ppChangeUnitException, pcFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumChangeUnitExceptions_Skip(self: *const T, cExceptions: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)), cExceptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumChangeUnitExceptions_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumChangeUnitExceptions_Clone(self: *const T, ppEnum: ?*?*IEnumChangeUnitExceptions) callconv(.Inline) HRESULT {
-            return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumChangeUnitExceptions, cExceptions: u32, ppChangeUnitException: ?*?*IChangeUnitException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cExceptions, ppChangeUnitException, pcFetched);
     }
@@ -911,22 +685,6 @@ pub const IReplicaKeyMap = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReplicaKeyMap_LookupReplicaKey(self: *const T, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IReplicaKeyMap.VTable, @ptrCast(self.vtable)).LookupReplicaKey(@as(*const IReplicaKeyMap, @ptrCast(self)), pbReplicaId, pdwReplicaKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReplicaKeyMap_LookupReplicaId(self: *const T, dwReplicaKey: u32, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IReplicaKeyMap.VTable, @ptrCast(self.vtable)).LookupReplicaId(@as(*const IReplicaKeyMap, @ptrCast(self)), dwReplicaKey, pbReplicaId, pcbIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReplicaKeyMap_Serialize(self: *const T, pbReplicaKeyMap: ?*u8, pcbReplicaKeyMap: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IReplicaKeyMap.VTable, @ptrCast(self.vtable)).Serialize(@as(*const IReplicaKeyMap, @ptrCast(self)), pbReplicaKeyMap, pcbReplicaKeyMap);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LookupReplicaKey(self: *const IReplicaKeyMap, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.LookupReplicaKey(self, pbReplicaId, pdwReplicaKey);
     }
@@ -952,14 +710,6 @@ pub const IConstructReplicaKeyMap = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstructReplicaKeyMap_FindOrAddReplica(self: *const T, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IConstructReplicaKeyMap.VTable, @ptrCast(self.vtable)).FindOrAddReplica(@as(*const IConstructReplicaKeyMap, @ptrCast(self)), pbReplicaId, pdwReplicaKey);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FindOrAddReplica(self: *const IConstructReplicaKeyMap, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.FindOrAddReplica(self, pbReplicaId, pdwReplicaKey);
     }
@@ -1099,106 +849,6 @@ pub const ISyncKnowledge = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetOwnerReplicaId(self: *const T, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetOwnerReplicaId(@as(*const ISyncKnowledge, @ptrCast(self)), pbReplicaId, pcbIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_Serialize(self: *const T, fSerializeReplicaKeyMap: BOOL, pbKnowledge: ?*u8, pcbKnowledge: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncKnowledge, @ptrCast(self)), fSerializeReplicaKeyMap, pbKnowledge, pcbKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_SetLocalTickCount(self: *const T, ullTickCount: u64) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).SetLocalTickCount(@as(*const ISyncKnowledge, @ptrCast(self)), ullTickCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ContainsChange(self: *const T, pbVersionOwnerReplicaId: ?*const u8, pgidItemId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ContainsChange(@as(*const ISyncKnowledge, @ptrCast(self)), pbVersionOwnerReplicaId, pgidItemId, pSyncVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ContainsChangeUnit(self: *const T, pbVersionOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ContainsChangeUnit(@as(*const ISyncKnowledge, @ptrCast(self)), pbVersionOwnerReplicaId, pbItemId, pbChangeUnitId, pSyncVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetScopeVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetScopeVector(@as(*const ISyncKnowledge, @ptrCast(self)), riid, ppUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetReplicaKeyMap(self: *const T, ppReplicaKeyMap: ?*?*IReplicaKeyMap) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetReplicaKeyMap(@as(*const ISyncKnowledge, @ptrCast(self)), ppReplicaKeyMap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_Clone(self: *const T, ppClonedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).Clone(@as(*const ISyncKnowledge, @ptrCast(self)), ppClonedKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ConvertVersion(self: *const T, pKnowledgeIn: ?*ISyncKnowledge, pbCurrentOwnerId: ?*const u8, pVersionIn: ?*const SYNC_VERSION, pbNewOwnerId: ?*u8, pcbIdSize: ?*u32, pVersionOut: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ConvertVersion(@as(*const ISyncKnowledge, @ptrCast(self)), pKnowledgeIn, pbCurrentOwnerId, pVersionIn, pbNewOwnerId, pcbIdSize, pVersionOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_MapRemoteToLocal(self: *const T, pRemoteKnowledge: ?*ISyncKnowledge, ppMappedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).MapRemoteToLocal(@as(*const ISyncKnowledge, @ptrCast(self)), pRemoteKnowledge, ppMappedKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_Union(self: *const T, pKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).Union(@as(*const ISyncKnowledge, @ptrCast(self)), pKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ProjectOntoItem(self: *const T, pbItemId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ProjectOntoItem(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, ppKnowledgeOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ProjectOntoChangeUnit(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ProjectOntoChangeUnit(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, pbChangeUnitId, ppKnowledgeOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ProjectOntoRange(self: *const T, psrngSyncRange: ?*const SYNC_RANGE, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ProjectOntoRange(@as(*const ISyncKnowledge, @ptrCast(self)), psrngSyncRange, ppKnowledgeOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ExcludeItem(self: *const T, pbItemId: ?*const u8) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ExcludeItem(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ExcludeChangeUnit(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ExcludeChangeUnit(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, pbChangeUnitId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ContainsKnowledge(self: *const T, pKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ContainsKnowledge(@as(*const ISyncKnowledge, @ptrCast(self)), pKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_FindMinTickCountForReplica(self: *const T, pbReplicaId: ?*const u8, pullReplicaTickCount: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).FindMinTickCountForReplica(@as(*const ISyncKnowledge, @ptrCast(self)), pbReplicaId, pullReplicaTickCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetRangeExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetRangeExceptions(@as(*const ISyncKnowledge, @ptrCast(self)), riid, ppUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetSingleItemExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetSingleItemExceptions(@as(*const ISyncKnowledge, @ptrCast(self)), riid, ppUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetChangeUnitExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetChangeUnitExceptions(@as(*const ISyncKnowledge, @ptrCast(self)), riid, ppUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_FindClockVectorForItem(self: *const T, pbItemId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).FindClockVectorForItem(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, riid, ppUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_FindClockVectorForChangeUnit(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).FindClockVectorForChangeUnit(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, pbChangeUnitId, riid, ppUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetVersion(self: *const T, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetVersion(@as(*const ISyncKnowledge, @ptrCast(self)), pdwVersion);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOwnerReplicaId(self: *const ISyncKnowledge, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetOwnerReplicaId(self, pbReplicaId, pcbIdSize);
     }
@@ -1287,14 +937,7 @@ pub const IForgottenKnowledge = extern union {
     };
     vtable: *const VTable,
     ISyncKnowledge: ISyncKnowledge,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncKnowledge.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IForgottenKnowledge_ForgetToVersion(self: *const T, pKnowledge: ?*ISyncKnowledge, pVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
-            return @as(*const IForgottenKnowledge.VTable, @ptrCast(self.vtable)).ForgetToVersion(@as(*const IForgottenKnowledge, @ptrCast(self)), pKnowledge, pVersion);
-        }
-    };}
-    pub usingnamespace ISyncKnowledge.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn ForgetToVersion(self: *const IForgottenKnowledge, pKnowledge: ?*ISyncKnowledge, pVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
         return self.vtable.ForgetToVersion(self, pKnowledge, pVersion);
     }
@@ -1381,66 +1024,7 @@ pub const ISyncKnowledge2 = extern union {
     };
     vtable: *const VTable,
     ISyncKnowledge: ISyncKnowledge,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncKnowledge.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetIdParameters(self: *const T, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const ISyncKnowledge2, @ptrCast(self)), pIdParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_ProjectOntoColumnSet(self: *const T, ppColumns: ?*const ?*u8, count: u32, ppiKnowledgeOut: ?*?*ISyncKnowledge2) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).ProjectOntoColumnSet(@as(*const ISyncKnowledge2, @ptrCast(self)), ppColumns, count, ppiKnowledgeOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_SerializeWithOptions(self: *const T, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).SerializeWithOptions(@as(*const ISyncKnowledge2, @ptrCast(self)), targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetLowestUncontainedId(self: *const T, piSyncKnowledge: ?*ISyncKnowledge2, pbItemId: ?*u8, pcbItemIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetLowestUncontainedId(@as(*const ISyncKnowledge2, @ptrCast(self)), piSyncKnowledge, pbItemId, pcbItemIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetInspector(self: *const T, riid: ?*const Guid, ppiInspector: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetInspector(@as(*const ISyncKnowledge2, @ptrCast(self)), riid, ppiInspector);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetMinimumSupportedVersion(self: *const T, pVersion: ?*SYNC_SERIALIZATION_VERSION) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetMinimumSupportedVersion(@as(*const ISyncKnowledge2, @ptrCast(self)), pVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetStatistics(self: *const T, which: SYNC_STATISTICS, pValue: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const ISyncKnowledge2, @ptrCast(self)), which, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_ContainsKnowledgeForItem(self: *const T, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).ContainsKnowledgeForItem(@as(*const ISyncKnowledge2, @ptrCast(self)), pKnowledge, pbItemId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_ContainsKnowledgeForChangeUnit(self: *const T, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).ContainsKnowledgeForChangeUnit(@as(*const ISyncKnowledge2, @ptrCast(self)), pKnowledge, pbItemId, pbChangeUnitId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_ProjectOntoKnowledgeWithPrerequisite(self: *const T, pPrerequisiteKnowledge: ?*ISyncKnowledge, pTemplateKnowledge: ?*ISyncKnowledge, ppProjectedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).ProjectOntoKnowledgeWithPrerequisite(@as(*const ISyncKnowledge2, @ptrCast(self)), pPrerequisiteKnowledge, pTemplateKnowledge, ppProjectedKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_Complement(self: *const T, pSyncKnowledge: ?*ISyncKnowledge, ppComplementedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).Complement(@as(*const ISyncKnowledge2, @ptrCast(self)), pSyncKnowledge, ppComplementedKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_IntersectsWithKnowledge(self: *const T, pSyncKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).IntersectsWithKnowledge(@as(*const ISyncKnowledge2, @ptrCast(self)), pSyncKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetKnowledgeCookie(self: *const T, ppKnowledgeCookie: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetKnowledgeCookie(@as(*const ISyncKnowledge2, @ptrCast(self)), ppKnowledgeCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_CompareToKnowledgeCookie(self: *const T, pKnowledgeCookie: ?*IUnknown, pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT) callconv(.Inline) HRESULT {
-            return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).CompareToKnowledgeCookie(@as(*const ISyncKnowledge2, @ptrCast(self)), pKnowledgeCookie, pResult);
-        }
-    };}
-    pub usingnamespace ISyncKnowledge.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetIdParameters(self: *const ISyncKnowledge2, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
         return self.vtable.GetIdParameters(self, pIdParameters);
     }
@@ -1509,22 +1093,6 @@ pub const IRecoverableErrorData = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableErrorData_Initialize(self: *const T, pcszItemDisplayName: ?[*:0]const u16, pcszErrorDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @as(*const IRecoverableErrorData.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IRecoverableErrorData, @ptrCast(self)), pcszItemDisplayName, pcszErrorDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableErrorData_GetItemDisplayName(self: *const T, pszItemDisplayName: ?PWSTR, pcchItemDisplayName: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IRecoverableErrorData.VTable, @ptrCast(self.vtable)).GetItemDisplayName(@as(*const IRecoverableErrorData, @ptrCast(self)), pszItemDisplayName, pcchItemDisplayName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableErrorData_GetErrorDescription(self: *const T, pszErrorDescription: ?PWSTR, pcchErrorDescription: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IRecoverableErrorData.VTable, @ptrCast(self.vtable)).GetErrorDescription(@as(*const IRecoverableErrorData, @ptrCast(self)), pszErrorDescription, pcchErrorDescription);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IRecoverableErrorData, pcszItemDisplayName: ?[*:0]const u16, pcszErrorDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, pcszItemDisplayName, pcszErrorDescription);
     }
@@ -1568,30 +1136,6 @@ pub const IRecoverableError = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableError_GetStage(self: *const T, pStage: ?*SYNC_PROGRESS_STAGE) callconv(.Inline) HRESULT {
-            return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetStage(@as(*const IRecoverableError, @ptrCast(self)), pStage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableError_GetProvider(self: *const T, pProviderRole: ?*SYNC_PROVIDER_ROLE) callconv(.Inline) HRESULT {
-            return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetProvider(@as(*const IRecoverableError, @ptrCast(self)), pProviderRole);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableError_GetChangeWithRecoverableError(self: *const T, ppChangeWithRecoverableError: ?*?*ISyncChange) callconv(.Inline) HRESULT {
-            return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetChangeWithRecoverableError(@as(*const IRecoverableError, @ptrCast(self)), ppChangeWithRecoverableError);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableError_GetRecoverableErrorDataForChange(self: *const T, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) callconv(.Inline) HRESULT {
-            return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetRecoverableErrorDataForChange(@as(*const IRecoverableError, @ptrCast(self)), phrError, ppErrorData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableError_GetRecoverableErrorDataForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) callconv(.Inline) HRESULT {
-            return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetRecoverableErrorDataForChangeUnit(@as(*const IRecoverableError, @ptrCast(self)), pChangeUnit, phrError, ppErrorData);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStage(self: *const IRecoverableError, pStage: ?*SYNC_PROGRESS_STAGE) callconv(.Inline) HRESULT {
         return self.vtable.GetStage(self, pStage);
     }
@@ -1652,42 +1196,6 @@ pub const IChangeConflict = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_GetDestinationProviderConflictingChange(self: *const T, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
-            return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderConflictingChange(@as(*const IChangeConflict, @ptrCast(self)), ppConflictingChange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_GetSourceProviderConflictingChange(self: *const T, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
-            return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetSourceProviderConflictingChange(@as(*const IChangeConflict, @ptrCast(self)), ppConflictingChange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_GetDestinationProviderConflictingData(self: *const T, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderConflictingData(@as(*const IChangeConflict, @ptrCast(self)), ppConflictingData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_GetSourceProviderConflictingData(self: *const T, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetSourceProviderConflictingData(@as(*const IChangeConflict, @ptrCast(self)), ppConflictingData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_GetResolveActionForChange(self: *const T, pResolveAction: ?*SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
-            return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetResolveActionForChange(@as(*const IChangeConflict, @ptrCast(self)), pResolveAction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_SetResolveActionForChange(self: *const T, resolveAction: SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
-            return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).SetResolveActionForChange(@as(*const IChangeConflict, @ptrCast(self)), resolveAction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_GetResolveActionForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, pResolveAction: ?*SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
-            return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetResolveActionForChangeUnit(@as(*const IChangeConflict, @ptrCast(self)), pChangeUnit, pResolveAction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_SetResolveActionForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, resolveAction: SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
-            return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).SetResolveActionForChangeUnit(@as(*const IChangeConflict, @ptrCast(self)), pChangeUnit, resolveAction);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDestinationProviderConflictingChange(self: *const IChangeConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
         return self.vtable.GetDestinationProviderConflictingChange(self, ppConflictingChange);
     }
@@ -1771,58 +1279,6 @@ pub const IConstraintConflict = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetDestinationProviderConflictingChange(self: *const T, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
-            return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderConflictingChange(@as(*const IConstraintConflict, @ptrCast(self)), ppConflictingChange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetSourceProviderConflictingChange(self: *const T, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
-            return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetSourceProviderConflictingChange(@as(*const IConstraintConflict, @ptrCast(self)), ppConflictingChange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetDestinationProviderOriginalChange(self: *const T, ppOriginalChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
-            return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderOriginalChange(@as(*const IConstraintConflict, @ptrCast(self)), ppOriginalChange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetDestinationProviderConflictingData(self: *const T, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderConflictingData(@as(*const IConstraintConflict, @ptrCast(self)), ppConflictingData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetSourceProviderConflictingData(self: *const T, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetSourceProviderConflictingData(@as(*const IConstraintConflict, @ptrCast(self)), ppConflictingData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetDestinationProviderOriginalData(self: *const T, ppOriginalData: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderOriginalData(@as(*const IConstraintConflict, @ptrCast(self)), ppOriginalData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetConstraintResolveActionForChange(self: *const T, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
-            return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetConstraintResolveActionForChange(@as(*const IConstraintConflict, @ptrCast(self)), pConstraintResolveAction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_SetConstraintResolveActionForChange(self: *const T, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
-            return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).SetConstraintResolveActionForChange(@as(*const IConstraintConflict, @ptrCast(self)), constraintResolveAction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetConstraintResolveActionForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
-            return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetConstraintResolveActionForChangeUnit(@as(*const IConstraintConflict, @ptrCast(self)), pChangeUnit, pConstraintResolveAction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_SetConstraintResolveActionForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
-            return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).SetConstraintResolveActionForChangeUnit(@as(*const IConstraintConflict, @ptrCast(self)), pChangeUnit, constraintResolveAction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetConstraintConflictReason(self: *const T, pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON) callconv(.Inline) HRESULT {
-            return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetConstraintConflictReason(@as(*const IConstraintConflict, @ptrCast(self)), pConstraintConflictReason);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_IsTemporary(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).IsTemporary(@as(*const IConstraintConflict, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDestinationProviderConflictingChange(self: *const IConstraintConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
         return self.vtable.GetDestinationProviderConflictingChange(self, ppConflictingChange);
     }
@@ -1893,30 +1349,6 @@ pub const ISyncCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncCallback_OnProgress(self: *const T, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnProgress(@as(*const ISyncCallback, @ptrCast(self)), provider, syncStage, dwCompletedWork, dwTotalWork);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncCallback_OnChange(self: *const T, pSyncChange: ?*ISyncChange) callconv(.Inline) HRESULT {
-            return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnChange(@as(*const ISyncCallback, @ptrCast(self)), pSyncChange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncCallback_OnConflict(self: *const T, pConflict: ?*IChangeConflict) callconv(.Inline) HRESULT {
-            return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnConflict(@as(*const ISyncCallback, @ptrCast(self)), pConflict);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncCallback_OnFullEnumerationNeeded(self: *const T, pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION) callconv(.Inline) HRESULT {
-            return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnFullEnumerationNeeded(@as(*const ISyncCallback, @ptrCast(self)), pFullEnumerationAction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncCallback_OnRecoverableError(self: *const T, pRecoverableError: ?*IRecoverableError) callconv(.Inline) HRESULT {
-            return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnRecoverableError(@as(*const ISyncCallback, @ptrCast(self)), pRecoverableError);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnProgress(self: *const ISyncCallback, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) callconv(.Inline) HRESULT {
         return self.vtable.OnProgress(self, provider, syncStage, dwCompletedWork, dwTotalWork);
     }
@@ -1953,18 +1385,7 @@ pub const ISyncCallback2 = extern union {
     };
     vtable: *const VTable,
     ISyncCallback: ISyncCallback,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncCallback.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncCallback2_OnChangeApplied(self: *const T, dwChangesApplied: u32, dwChangesFailed: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncCallback2.VTable, @ptrCast(self.vtable)).OnChangeApplied(@as(*const ISyncCallback2, @ptrCast(self)), dwChangesApplied, dwChangesFailed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncCallback2_OnChangeFailed(self: *const T, dwChangesApplied: u32, dwChangesFailed: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncCallback2.VTable, @ptrCast(self.vtable)).OnChangeFailed(@as(*const ISyncCallback2, @ptrCast(self)), dwChangesApplied, dwChangesFailed);
-        }
-    };}
-    pub usingnamespace ISyncCallback.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn OnChangeApplied(self: *const ISyncCallback2, dwChangesApplied: u32, dwChangesFailed: u32) callconv(.Inline) HRESULT {
         return self.vtable.OnChangeApplied(self, dwChangesApplied, dwChangesFailed);
     }
@@ -1985,14 +1406,6 @@ pub const ISyncConstraintCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncConstraintCallback_OnConstraintConflict(self: *const T, pConflict: ?*IConstraintConflict) callconv(.Inline) HRESULT {
-            return @as(*const ISyncConstraintCallback.VTable, @ptrCast(self.vtable)).OnConstraintConflict(@as(*const ISyncConstraintCallback, @ptrCast(self)), pConflict);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnConstraintConflict(self: *const ISyncConstraintCallback, pConflict: ?*IConstraintConflict) callconv(.Inline) HRESULT {
         return self.vtable.OnConstraintConflict(self, pConflict);
     }
@@ -2011,14 +1424,6 @@ pub const ISyncProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProvider_GetIdParameters(self: *const T, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProvider.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const ISyncProvider, @ptrCast(self)), pIdParameters);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIdParameters(self: *const ISyncProvider, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
         return self.vtable.GetIdParameters(self, pIdParameters);
     }
@@ -2068,38 +1473,6 @@ pub const ISyncSessionState = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_IsCanceled(self: *const T, pfIsCanceled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).IsCanceled(@as(*const ISyncSessionState, @ptrCast(self)), pfIsCanceled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_GetInfoForChangeApplication(self: *const T, pbChangeApplierInfo: ?*u8, pcbChangeApplierInfo: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).GetInfoForChangeApplication(@as(*const ISyncSessionState, @ptrCast(self)), pbChangeApplierInfo, pcbChangeApplierInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_LoadInfoFromChangeApplication(self: *const T, pbChangeApplierInfo: ?*const u8, cbChangeApplierInfo: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).LoadInfoFromChangeApplication(@as(*const ISyncSessionState, @ptrCast(self)), pbChangeApplierInfo, cbChangeApplierInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_GetForgottenKnowledgeRecoveryRangeStart(self: *const T, pbRangeStart: ?*u8, pcbRangeStart: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).GetForgottenKnowledgeRecoveryRangeStart(@as(*const ISyncSessionState, @ptrCast(self)), pbRangeStart, pcbRangeStart);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_GetForgottenKnowledgeRecoveryRangeEnd(self: *const T, pbRangeEnd: ?*u8, pcbRangeEnd: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).GetForgottenKnowledgeRecoveryRangeEnd(@as(*const ISyncSessionState, @ptrCast(self)), pbRangeEnd, pcbRangeEnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_SetForgottenKnowledgeRecoveryRange(self: *const T, pRange: ?*const SYNC_RANGE) callconv(.Inline) HRESULT {
-            return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).SetForgottenKnowledgeRecoveryRange(@as(*const ISyncSessionState, @ptrCast(self)), pRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_OnProgress(self: *const T, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).OnProgress(@as(*const ISyncSessionState, @ptrCast(self)), provider, syncStage, dwCompletedWork, dwTotalWork);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsCanceled(self: *const ISyncSessionState, pfIsCanceled: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.IsCanceled(self, pfIsCanceled);
     }
@@ -2136,14 +1509,6 @@ pub const ISyncSessionExtendedErrorInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionExtendedErrorInfo_GetSyncProviderWithError(self: *const T, ppProviderWithError: ?*?*ISyncProvider) callconv(.Inline) HRESULT {
-            return @as(*const ISyncSessionExtendedErrorInfo.VTable, @ptrCast(self.vtable)).GetSyncProviderWithError(@as(*const ISyncSessionExtendedErrorInfo, @ptrCast(self)), ppProviderWithError);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSyncProviderWithError(self: *const ISyncSessionExtendedErrorInfo, ppProviderWithError: ?*?*ISyncProvider) callconv(.Inline) HRESULT {
         return self.vtable.GetSyncProviderWithError(self, ppProviderWithError);
     }
@@ -2166,18 +1531,7 @@ pub const ISyncSessionState2 = extern union {
     };
     vtable: *const VTable,
     ISyncSessionState: ISyncSessionState,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncSessionState.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState2_SetProviderWithError(self: *const T, fSelf: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISyncSessionState2.VTable, @ptrCast(self.vtable)).SetProviderWithError(@as(*const ISyncSessionState2, @ptrCast(self)), fSelf);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState2_GetSessionErrorStatus(self: *const T, phrSessionError: ?*HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const ISyncSessionState2.VTable, @ptrCast(self.vtable)).GetSessionErrorStatus(@as(*const ISyncSessionState2, @ptrCast(self)), phrSessionError);
-        }
-    };}
-    pub usingnamespace ISyncSessionState.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetProviderWithError(self: *const ISyncSessionState2, fSelf: BOOL) callconv(.Inline) HRESULT {
         return self.vtable.SetProviderWithError(self, fSelf);
     }
@@ -2200,14 +1554,6 @@ pub const ISyncFilterInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFilterInfo_Serialize(self: *const T, pbBuffer: ?*u8, pcbBuffer: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncFilterInfo.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncFilterInfo, @ptrCast(self)), pbBuffer, pcbBuffer);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Serialize(self: *const ISyncFilterInfo, pbBuffer: ?*u8, pcbBuffer: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Serialize(self, pbBuffer, pcbBuffer);
     }
@@ -2226,14 +1572,7 @@ pub const ISyncFilterInfo2 = extern union {
     };
     vtable: *const VTable,
     ISyncFilterInfo: ISyncFilterInfo,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncFilterInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFilterInfo2_GetFlags(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncFilterInfo2.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const ISyncFilterInfo2, @ptrCast(self)), pdwFlags);
-        }
-    };}
-    pub usingnamespace ISyncFilterInfo.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetFlags(self: *const ISyncFilterInfo2, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetFlags(self, pdwFlags);
     }
@@ -2263,22 +1602,7 @@ pub const IChangeUnitListFilterInfo = extern union {
     };
     vtable: *const VTable,
     ISyncFilterInfo: ISyncFilterInfo,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncFilterInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitListFilterInfo_Initialize(self: *const T, ppbChangeUnitIds: ?*const ?*u8, dwChangeUnitCount: u32) callconv(.Inline) HRESULT {
-            return @as(*const IChangeUnitListFilterInfo.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IChangeUnitListFilterInfo, @ptrCast(self)), ppbChangeUnitIds, dwChangeUnitCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitListFilterInfo_GetChangeUnitIdCount(self: *const T, pdwChangeUnitIdCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IChangeUnitListFilterInfo.VTable, @ptrCast(self.vtable)).GetChangeUnitIdCount(@as(*const IChangeUnitListFilterInfo, @ptrCast(self)), pdwChangeUnitIdCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitListFilterInfo_GetChangeUnitId(self: *const T, dwChangeUnitIdIndex: u32, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IChangeUnitListFilterInfo.VTable, @ptrCast(self.vtable)).GetChangeUnitId(@as(*const IChangeUnitListFilterInfo, @ptrCast(self)), dwChangeUnitIdIndex, pbChangeUnitId, pcbIdSize);
-        }
-    };}
-    pub usingnamespace ISyncFilterInfo.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn Initialize(self: *const IChangeUnitListFilterInfo, ppbChangeUnitIds: ?*const ?*u8, dwChangeUnitCount: u32) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, ppbChangeUnitIds, dwChangeUnitCount);
     }
@@ -2307,18 +1631,6 @@ pub const ISyncFilter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFilter_IsIdentical(self: *const T, pSyncFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
-            return @as(*const ISyncFilter.VTable, @ptrCast(self.vtable)).IsIdentical(@as(*const ISyncFilter, @ptrCast(self)), pSyncFilter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFilter_Serialize(self: *const T, pbSyncFilter: ?*u8, pcbSyncFilter: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncFilter.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncFilter, @ptrCast(self)), pbSyncFilter, pcbSyncFilter);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsIdentical(self: *const ISyncFilter, pSyncFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
         return self.vtable.IsIdentical(self, pSyncFilter);
     }
@@ -2341,14 +1653,6 @@ pub const ISyncFilterDeserializer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFilterDeserializer_DeserializeSyncFilter(self: *const T, pbSyncFilter: ?*const u8, dwCbSyncFilter: u32, ppISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
-            return @as(*const ISyncFilterDeserializer.VTable, @ptrCast(self.vtable)).DeserializeSyncFilter(@as(*const ISyncFilterDeserializer, @ptrCast(self)), pbSyncFilter, dwCbSyncFilter, ppISyncFilter);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DeserializeSyncFilter(self: *const ISyncFilterDeserializer, pbSyncFilter: ?*const u8, dwCbSyncFilter: u32, ppISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
         return self.vtable.DeserializeSyncFilter(self, pbSyncFilter, dwCbSyncFilter, ppISyncFilter);
     }
@@ -2366,14 +1670,7 @@ pub const ICustomFilterInfo = extern union {
     };
     vtable: *const VTable,
     ISyncFilterInfo: ISyncFilterInfo,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncFilterInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICustomFilterInfo_GetSyncFilter(self: *const T, pISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
-            return @as(*const ICustomFilterInfo.VTable, @ptrCast(self.vtable)).GetSyncFilter(@as(*const ICustomFilterInfo, @ptrCast(self)), pISyncFilter);
-        }
-    };}
-    pub usingnamespace ISyncFilterInfo.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetSyncFilter(self: *const ICustomFilterInfo, pISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
         return self.vtable.GetSyncFilter(self, pISyncFilter);
     }
@@ -2405,22 +1702,7 @@ pub const ICombinedFilterInfo = extern union {
     };
     vtable: *const VTable,
     ISyncFilterInfo: ISyncFilterInfo,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncFilterInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICombinedFilterInfo_GetFilterCount(self: *const T, pdwFilterCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ICombinedFilterInfo.VTable, @ptrCast(self.vtable)).GetFilterCount(@as(*const ICombinedFilterInfo, @ptrCast(self)), pdwFilterCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICombinedFilterInfo_GetFilterInfo(self: *const T, dwFilterIndex: u32, ppIFilterInfo: ?*?*ISyncFilterInfo) callconv(.Inline) HRESULT {
-            return @as(*const ICombinedFilterInfo.VTable, @ptrCast(self.vtable)).GetFilterInfo(@as(*const ICombinedFilterInfo, @ptrCast(self)), dwFilterIndex, ppIFilterInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICombinedFilterInfo_GetFilterCombinationType(self: *const T, pFilterCombinationType: ?*FILTER_COMBINATION_TYPE) callconv(.Inline) HRESULT {
-            return @as(*const ICombinedFilterInfo.VTable, @ptrCast(self.vtable)).GetFilterCombinationType(@as(*const ICombinedFilterInfo, @ptrCast(self)), pFilterCombinationType);
-        }
-    };}
-    pub usingnamespace ISyncFilterInfo.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetFilterCount(self: *const ICombinedFilterInfo, pdwFilterCount: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetFilterCount(self, pdwFilterCount);
     }
@@ -2458,26 +1740,6 @@ pub const IEnumSyncChanges = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncChanges_Next(self: *const T, cChanges: u32, ppChange: ?*?*ISyncChange, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncChanges, @ptrCast(self)), cChanges, ppChange, pcFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncChanges_Skip(self: *const T, cChanges: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncChanges, @ptrCast(self)), cChanges);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncChanges_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncChanges, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncChanges_Clone(self: *const T, ppEnum: ?*?*IEnumSyncChanges) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncChanges, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumSyncChanges, cChanges: u32, ppChange: ?*?*ISyncChange, pcFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cChanges, ppChange, pcFetched);
     }
@@ -2506,14 +1768,6 @@ pub const ISyncChangeBuilder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBuilder_AddChangeUnitMetadata(self: *const T, pbChangeUnitId: ?*const u8, pChangeUnitVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBuilder.VTable, @ptrCast(self.vtable)).AddChangeUnitMetadata(@as(*const ISyncChangeBuilder, @ptrCast(self)), pbChangeUnitId, pChangeUnitVersion);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddChangeUnitMetadata(self: *const ISyncChangeBuilder, pbChangeUnitId: ?*const u8, pChangeUnitVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
         return self.vtable.AddChangeUnitMetadata(self, pbChangeUnitId, pChangeUnitVersion);
     }
@@ -2535,18 +1789,6 @@ pub const IFilterTrackingSyncChangeBuilder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterTrackingSyncChangeBuilder_AddFilterChange(self: *const T, dwFilterKey: u32, pFilterChange: ?*const SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
-            return @as(*const IFilterTrackingSyncChangeBuilder.VTable, @ptrCast(self.vtable)).AddFilterChange(@as(*const IFilterTrackingSyncChangeBuilder, @ptrCast(self)), dwFilterKey, pFilterChange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterTrackingSyncChangeBuilder_SetAllChangeUnitsPresentFlag(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IFilterTrackingSyncChangeBuilder.VTable, @ptrCast(self.vtable)).SetAllChangeUnitsPresentFlag(@as(*const IFilterTrackingSyncChangeBuilder, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddFilterChange(self: *const IFilterTrackingSyncChangeBuilder, dwFilterKey: u32, pFilterChange: ?*const SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
         return self.vtable.AddFilterChange(self, dwFilterKey, pFilterChange);
     }
@@ -2627,66 +1869,6 @@ pub const ISyncChangeBatchBase = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetChangeEnumerator(self: *const T, ppEnum: ?*?*IEnumSyncChanges) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetChangeEnumerator(@as(*const ISyncChangeBatchBase, @ptrCast(self)), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetIsLastBatch(self: *const T, pfLastBatch: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetIsLastBatch(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pfLastBatch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetWorkEstimateForBatch(self: *const T, pdwWorkForBatch: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetWorkEstimateForBatch(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pdwWorkForBatch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetRemainingWorkEstimateForSession(self: *const T, pdwRemainingWorkForSession: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetRemainingWorkEstimateForSession(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pdwRemainingWorkForSession);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_BeginOrderedGroup(self: *const T, pbLowerBound: ?*const u8) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).BeginOrderedGroup(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbLowerBound);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_EndOrderedGroup(self: *const T, pbUpperBound: ?*const u8, pMadeWithKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).EndOrderedGroup(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbUpperBound, pMadeWithKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_AddItemMetadataToGroup(self: *const T, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).AddItemMetadataToGroup(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, ppChangeBuilder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetLearnedKnowledge(self: *const T, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetLearnedKnowledge(@as(*const ISyncChangeBatchBase, @ptrCast(self)), ppLearnedKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetPrerequisiteKnowledge(self: *const T, ppPrerequisteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetPrerequisiteKnowledge(@as(*const ISyncChangeBatchBase, @ptrCast(self)), ppPrerequisteKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetSourceForgottenKnowledge(self: *const T, ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetSourceForgottenKnowledge(@as(*const ISyncChangeBatchBase, @ptrCast(self)), ppSourceForgottenKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_SetLastBatch(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).SetLastBatch(@as(*const ISyncChangeBatchBase, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_SetWorkEstimateForBatch(self: *const T, dwWorkForBatch: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).SetWorkEstimateForBatch(@as(*const ISyncChangeBatchBase, @ptrCast(self)), dwWorkForBatch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_SetRemainingWorkEstimateForSession(self: *const T, dwRemainingWorkForSession: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).SetRemainingWorkEstimateForSession(@as(*const ISyncChangeBatchBase, @ptrCast(self)), dwRemainingWorkForSession);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_Serialize(self: *const T, pbChangeBatch: ?*u8, pcbChangeBatch: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbChangeBatch, pcbChangeBatch);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetChangeEnumerator(self: *const ISyncChangeBatchBase, ppEnum: ?*?*IEnumSyncChanges) callconv(.Inline) HRESULT {
         return self.vtable.GetChangeEnumerator(self, ppEnum);
     }
@@ -2759,22 +1941,7 @@ pub const ISyncChangeBatch = extern union {
     };
     vtable: *const VTable,
     ISyncChangeBatchBase: ISyncChangeBatchBase,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncChangeBatchBase.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatch_BeginUnorderedGroup(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatch.VTable, @ptrCast(self.vtable)).BeginUnorderedGroup(@as(*const ISyncChangeBatch, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatch_EndUnorderedGroup(self: *const T, pMadeWithKnowledge: ?*ISyncKnowledge, fAllChangesForKnowledge: BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatch.VTable, @ptrCast(self.vtable)).EndUnorderedGroup(@as(*const ISyncChangeBatch, @ptrCast(self)), pMadeWithKnowledge, fAllChangesForKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatch_AddLoggedConflict(self: *const T, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatch.VTable, @ptrCast(self.vtable)).AddLoggedConflict(@as(*const ISyncChangeBatch, @ptrCast(self)), pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
-        }
-    };}
-    pub usingnamespace ISyncChangeBatchBase.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn BeginUnorderedGroup(self: *const ISyncChangeBatch) callconv(.Inline) HRESULT {
         return self.vtable.BeginUnorderedGroup(self);
     }
@@ -2809,22 +1976,7 @@ pub const ISyncFullEnumerationChangeBatch = extern union {
     };
     vtable: *const VTable,
     ISyncChangeBatchBase: ISyncChangeBatchBase,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncChangeBatchBase.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFullEnumerationChangeBatch_GetLearnedKnowledgeAfterRecoveryComplete(self: *const T, ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncFullEnumerationChangeBatch.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeAfterRecoveryComplete(@as(*const ISyncFullEnumerationChangeBatch, @ptrCast(self)), ppLearnedKnowledgeAfterRecoveryComplete);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFullEnumerationChangeBatch_GetClosedLowerBoundItemId(self: *const T, pbClosedLowerBoundItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncFullEnumerationChangeBatch.VTable, @ptrCast(self.vtable)).GetClosedLowerBoundItemId(@as(*const ISyncFullEnumerationChangeBatch, @ptrCast(self)), pbClosedLowerBoundItemId, pcbIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFullEnumerationChangeBatch_GetClosedUpperBoundItemId(self: *const T, pbClosedUpperBoundItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncFullEnumerationChangeBatch.VTable, @ptrCast(self.vtable)).GetClosedUpperBoundItemId(@as(*const ISyncFullEnumerationChangeBatch, @ptrCast(self)), pbClosedUpperBoundItemId, pcbIdSize);
-        }
-    };}
-    pub usingnamespace ISyncChangeBatchBase.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetLearnedKnowledgeAfterRecoveryComplete(self: *const ISyncFullEnumerationChangeBatch, ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
         return self.vtable.GetLearnedKnowledgeAfterRecoveryComplete(self, ppLearnedKnowledgeAfterRecoveryComplete);
     }
@@ -2858,22 +2010,7 @@ pub const ISyncChangeBatchWithPrerequisite = extern union {
     };
     vtable: *const VTable,
     ISyncChangeBatchBase: ISyncChangeBatchBase,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncChangeBatchBase.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithPrerequisite_SetPrerequisiteKnowledge(self: *const T, pPrerequisiteKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchWithPrerequisite.VTable, @ptrCast(self.vtable)).SetPrerequisiteKnowledge(@as(*const ISyncChangeBatchWithPrerequisite, @ptrCast(self)), pPrerequisiteKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithPrerequisite_GetLearnedKnowledgeWithPrerequisite(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchWithPrerequisite.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeWithPrerequisite(@as(*const ISyncChangeBatchWithPrerequisite, @ptrCast(self)), pDestinationKnowledge, ppLearnedWithPrerequisiteKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithPrerequisite_GetLearnedForgottenKnowledge(self: *const T, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchWithPrerequisite.VTable, @ptrCast(self.vtable)).GetLearnedForgottenKnowledge(@as(*const ISyncChangeBatchWithPrerequisite, @ptrCast(self)), ppLearnedForgottenKnowledge);
-        }
-    };}
-    pub usingnamespace ISyncChangeBatchBase.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SetPrerequisiteKnowledge(self: *const ISyncChangeBatchWithPrerequisite, pPrerequisiteKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
         return self.vtable.SetPrerequisiteKnowledge(self, pPrerequisiteKnowledge);
     }
@@ -2901,14 +2038,7 @@ pub const ISyncChangeBatchBase2 = extern union {
     };
     vtable: *const VTable,
     ISyncChangeBatchBase: ISyncChangeBatchBase,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncChangeBatchBase.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase2_SerializeWithOptions(self: *const T, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchBase2.VTable, @ptrCast(self.vtable)).SerializeWithOptions(@as(*const ISyncChangeBatchBase2, @ptrCast(self)), targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
-        }
-    };}
-    pub usingnamespace ISyncChangeBatchBase.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn SerializeWithOptions(self: *const ISyncChangeBatchBase2, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.SerializeWithOptions(self, targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
     }
@@ -2940,26 +2070,6 @@ pub const ISyncChangeBatchAdvanced = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchAdvanced_GetFilterInfo(self: *const T, ppFilterInfo: ?*?*ISyncFilterInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).GetFilterInfo(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), ppFilterInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchAdvanced_ConvertFullEnumerationChangeBatchToRegularChangeBatch(self: *const T, ppChangeBatch: ?*?*ISyncChangeBatch) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).ConvertFullEnumerationChangeBatchToRegularChangeBatch(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), ppChangeBatch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchAdvanced_GetUpperBoundItemId(self: *const T, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).GetUpperBoundItemId(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), pbItemId, pcbIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchAdvanced_GetBatchLevelKnowledgeShouldBeApplied(self: *const T, pfBatchKnowledgeShouldBeApplied: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).GetBatchLevelKnowledgeShouldBeApplied(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), pfBatchKnowledgeShouldBeApplied);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFilterInfo(self: *const ISyncChangeBatchAdvanced, ppFilterInfo: ?*?*ISyncFilterInfo) callconv(.Inline) HRESULT {
         return self.vtable.GetFilterInfo(self, ppFilterInfo);
     }
@@ -3003,18 +2113,8 @@ pub const ISyncChangeBatch2 = extern union {
     };
     vtable: *const VTable,
     ISyncChangeBatch: ISyncChangeBatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncChangeBatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatch2_AddMergeTombstoneMetadataToGroup(self: *const T, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatch2.VTable, @ptrCast(self.vtable)).AddMergeTombstoneMetadataToGroup(@as(*const ISyncChangeBatch2, @ptrCast(self)), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatch2_AddMergeTombstoneLoggedConflict(self: *const T, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatch2.VTable, @ptrCast(self.vtable)).AddMergeTombstoneLoggedConflict(@as(*const ISyncChangeBatch2, @ptrCast(self)), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
-        }
-    };}
-    pub usingnamespace ISyncChangeBatch.MethodMixin(@This());
+    ISyncChangeBatchBase: ISyncChangeBatchBase,
+    IUnknown: IUnknown,
     pub fn AddMergeTombstoneMetadataToGroup(self: *const ISyncChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
         return self.vtable.AddMergeTombstoneMetadataToGroup(self, pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
     }
@@ -3041,14 +2141,8 @@ pub const ISyncFullEnumerationChangeBatch2 = extern union {
     };
     vtable: *const VTable,
     ISyncFullEnumerationChangeBatch: ISyncFullEnumerationChangeBatch,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncFullEnumerationChangeBatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFullEnumerationChangeBatch2_AddMergeTombstoneMetadataToGroup(self: *const T, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
-            return @as(*const ISyncFullEnumerationChangeBatch2.VTable, @ptrCast(self.vtable)).AddMergeTombstoneMetadataToGroup(@as(*const ISyncFullEnumerationChangeBatch2, @ptrCast(self)), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
-        }
-    };}
-    pub usingnamespace ISyncFullEnumerationChangeBatch.MethodMixin(@This());
+    ISyncChangeBatchBase: ISyncChangeBatchBase,
+    IUnknown: IUnknown,
     pub fn AddMergeTombstoneMetadataToGroup(self: *const ISyncFullEnumerationChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
         return self.vtable.AddMergeTombstoneMetadataToGroup(self, pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
     }
@@ -3108,38 +2202,7 @@ pub const IKnowledgeSyncProvider = extern union {
     };
     vtable: *const VTable,
     ISyncProvider: ISyncProvider,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISyncProvider.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_BeginSession(self: *const T, role: SYNC_PROVIDER_ROLE, pSessionState: ?*ISyncSessionState) callconv(.Inline) HRESULT {
-            return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).BeginSession(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), role, pSessionState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_GetSyncBatchParameters(self: *const T, ppSyncKnowledge: ?*?*ISyncKnowledge, pdwRequestedBatchSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).GetSyncBatchParameters(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), ppSyncKnowledge, pdwRequestedBatchSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_GetChangeBatch(self: *const T, dwBatchSize: u32, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).GetChangeBatch(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), dwBatchSize, pSyncKnowledge, ppSyncChangeBatch, ppUnkDataRetriever);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_GetFullEnumerationChangeBatch(self: *const T, dwBatchSize: u32, pbLowerEnumerationBound: ?*const u8, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).GetFullEnumerationChangeBatch(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), dwBatchSize, pbLowerEnumerationBound, pSyncKnowledge, ppSyncChangeBatch, ppUnkDataRetriever);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_ProcessChangeBatch(self: *const T, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) callconv(.Inline) HRESULT {
-            return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).ProcessChangeBatch(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), resolutionPolicy, pSourceChangeBatch, pUnkDataRetriever, pCallback, pSyncSessionStatistics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_ProcessFullEnumerationChangeBatch(self: *const T, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) callconv(.Inline) HRESULT {
-            return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).ProcessFullEnumerationChangeBatch(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), resolutionPolicy, pSourceChangeBatch, pUnkDataRetriever, pCallback, pSyncSessionStatistics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_EndSession(self: *const T, pSessionState: ?*ISyncSessionState) callconv(.Inline) HRESULT {
-            return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).EndSession(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), pSessionState);
-        }
-    };}
-    pub usingnamespace ISyncProvider.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn BeginSession(self: *const IKnowledgeSyncProvider, role: SYNC_PROVIDER_ROLE, pSessionState: ?*ISyncSessionState) callconv(.Inline) HRESULT {
         return self.vtable.BeginSession(self, role, pSessionState);
     }
@@ -3186,22 +2249,6 @@ pub const ISyncChangeUnit = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeUnit_GetItemChange(self: *const T, ppSyncChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeUnit.VTable, @ptrCast(self.vtable)).GetItemChange(@as(*const ISyncChangeUnit, @ptrCast(self)), ppSyncChange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeUnit_GetChangeUnitId(self: *const T, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeUnit.VTable, @ptrCast(self.vtable)).GetChangeUnitId(@as(*const ISyncChangeUnit, @ptrCast(self)), pbChangeUnitId, pcbIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeUnit_GetChangeUnitVersion(self: *const T, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeUnit.VTable, @ptrCast(self.vtable)).GetChangeUnitVersion(@as(*const ISyncChangeUnit, @ptrCast(self)), pbCurrentReplicaId, pVersion);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetItemChange(self: *const ISyncChangeUnit, ppSyncChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
         return self.vtable.GetItemChange(self, ppSyncChange);
     }
@@ -3239,26 +2286,6 @@ pub const IEnumSyncChangeUnits = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncChangeUnits_Next(self: *const T, cChanges: u32, ppChangeUnit: ?*?*ISyncChangeUnit, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncChangeUnits, @ptrCast(self)), cChanges, ppChangeUnit, pcFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncChangeUnits_Skip(self: *const T, cChanges: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncChangeUnits, @ptrCast(self)), cChanges);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncChangeUnits_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncChangeUnits, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncChangeUnits_Clone(self: *const T, ppEnum: ?*?*IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncChangeUnits, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumSyncChangeUnits, cChanges: u32, ppChangeUnit: ?*?*ISyncChangeUnit, pcFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cChanges, ppChangeUnit, pcFetched);
     }
@@ -3326,50 +2353,6 @@ pub const ISyncChange = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetOwnerReplicaId(self: *const T, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetOwnerReplicaId(@as(*const ISyncChange, @ptrCast(self)), pbReplicaId, pcbIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetRootItemId(self: *const T, pbRootItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetRootItemId(@as(*const ISyncChange, @ptrCast(self)), pbRootItemId, pcbIdSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetChangeVersion(self: *const T, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetChangeVersion(@as(*const ISyncChange, @ptrCast(self)), pbCurrentReplicaId, pVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetCreationVersion(self: *const T, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetCreationVersion(@as(*const ISyncChange, @ptrCast(self)), pbCurrentReplicaId, pVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetFlags(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const ISyncChange, @ptrCast(self)), pdwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetWorkEstimate(self: *const T, pdwWork: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetWorkEstimate(@as(*const ISyncChange, @ptrCast(self)), pdwWork);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetChangeUnits(self: *const T, ppEnum: ?*?*IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetChangeUnits(@as(*const ISyncChange, @ptrCast(self)), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetMadeWithKnowledge(self: *const T, ppMadeWithKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetMadeWithKnowledge(@as(*const ISyncChange, @ptrCast(self)), ppMadeWithKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetLearnedKnowledge(self: *const T, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetLearnedKnowledge(@as(*const ISyncChange, @ptrCast(self)), ppLearnedKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_SetWorkEstimate(self: *const T, dwWork: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).SetWorkEstimate(@as(*const ISyncChange, @ptrCast(self)), dwWork);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOwnerReplicaId(self: *const ISyncChange, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetOwnerReplicaId(self, pbReplicaId, pcbIdSize);
     }
@@ -3420,18 +2403,6 @@ pub const ISyncChangeWithPrerequisite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithPrerequisite_GetPrerequisiteKnowledge(self: *const T, ppPrerequisiteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeWithPrerequisite.VTable, @ptrCast(self.vtable)).GetPrerequisiteKnowledge(@as(*const ISyncChangeWithPrerequisite, @ptrCast(self)), ppPrerequisiteKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithPrerequisite_GetLearnedKnowledgeWithPrerequisite(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeWithPrerequisite.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeWithPrerequisite(@as(*const ISyncChangeWithPrerequisite, @ptrCast(self)), pDestinationKnowledge, ppLearnedKnowledgeWithPrerequisite);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPrerequisiteKnowledge(self: *const ISyncChangeWithPrerequisite, ppPrerequisiteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
         return self.vtable.GetPrerequisiteKnowledge(self, ppPrerequisiteKnowledge);
     }
@@ -3457,18 +2428,6 @@ pub const ISyncFullEnumerationChange = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFullEnumerationChange_GetLearnedKnowledgeAfterRecoveryComplete(self: *const T, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncFullEnumerationChange.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeAfterRecoveryComplete(@as(*const ISyncFullEnumerationChange, @ptrCast(self)), ppLearnedKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFullEnumerationChange_GetLearnedForgottenKnowledge(self: *const T, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncFullEnumerationChange.VTable, @ptrCast(self.vtable)).GetLearnedForgottenKnowledge(@as(*const ISyncFullEnumerationChange, @ptrCast(self)), ppLearnedForgottenKnowledge);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLearnedKnowledgeAfterRecoveryComplete(self: *const ISyncFullEnumerationChange, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
         return self.vtable.GetLearnedKnowledgeAfterRecoveryComplete(self, ppLearnedKnowledge);
     }
@@ -3490,14 +2449,6 @@ pub const ISyncMergeTombstoneChange = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMergeTombstoneChange_GetWinnerItemId(self: *const T, pbWinnerItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncMergeTombstoneChange.VTable, @ptrCast(self.vtable)).GetWinnerItemId(@as(*const ISyncMergeTombstoneChange, @ptrCast(self)), pbWinnerItemId, pcbIdSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetWinnerItemId(self: *const ISyncMergeTombstoneChange, pbWinnerItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetWinnerItemId(self, pbWinnerItemId, pcbIdSize);
     }
@@ -3516,14 +2467,6 @@ pub const IEnumItemIds = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumItemIds_Next(self: *const T, pbItemId: ?*u8, pcbItemIdSize: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumItemIds.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumItemIds, @ptrCast(self)), pbItemId, pcbItemIdSize);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumItemIds, pbItemId: ?*u8, pcbItemIdSize: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, pbItemId, pcbItemIdSize);
     }
@@ -3556,26 +2499,6 @@ pub const IFilterKeyMap = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterKeyMap_GetCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IFilterKeyMap, @ptrCast(self)), pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterKeyMap_AddFilter(self: *const T, pISyncFilter: ?*ISyncFilter, pdwFilterKey: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).AddFilter(@as(*const IFilterKeyMap, @ptrCast(self)), pISyncFilter, pdwFilterKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterKeyMap_GetFilter(self: *const T, dwFilterKey: u32, ppISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
-            return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilter(@as(*const IFilterKeyMap, @ptrCast(self)), dwFilterKey, ppISyncFilter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterKeyMap_Serialize(self: *const T, pbFilterKeyMap: ?*u8, pcbFilterKeyMap: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).Serialize(@as(*const IFilterKeyMap, @ptrCast(self)), pbFilterKeyMap, pcbFilterKeyMap);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IFilterKeyMap, pdwCount: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetCount(self, pdwCount);
     }
@@ -3648,46 +2571,6 @@ pub const ISyncChangeWithFilterKeyMap = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetFilterCount(self: *const T, pdwFilterCount: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilterCount(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pdwFilterCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetFilterChange(self: *const T, dwFilterKey: u32, pFilterChange: ?*SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilterChange(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), dwFilterKey, pFilterChange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetAllChangeUnitsPresentFlag(self: *const T, pfAllChangeUnitsPresent: ?*BOOL) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetAllChangeUnitsPresentFlag(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pfAllChangeUnitsPresent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetFilterForgottenKnowledge(self: *const T, dwFilterKey: u32, ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilterForgottenKnowledge(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), dwFilterKey, ppIFilterForgottenKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetFilteredReplicaLearnedKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedKnowledge(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetLearnedFilterForgottenKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledge(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedForgottenKnowledge(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFilterCount(self: *const ISyncChangeWithFilterKeyMap, pdwFilterCount: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetFilterCount(self, pdwFilterCount);
     }
@@ -3770,42 +2653,6 @@ pub const ISyncChangeBatchWithFilterKeyMap = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_GetFilterKeyMap(self: *const T, ppIFilterKeyMap: ?*?*IFilterKeyMap) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilterKeyMap(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), ppIFilterKeyMap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_SetFilterKeyMap(self: *const T, pIFilterKeyMap: ?*IFilterKeyMap) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).SetFilterKeyMap(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pIFilterKeyMap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_SetFilterForgottenKnowledge(self: *const T, dwFilterKey: u32, pFilterForgottenKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).SetFilterForgottenKnowledge(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), dwFilterKey, pFilterForgottenKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_GetFilteredReplicaLearnedKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedKnowledge(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_GetLearnedFilterForgottenKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledge(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedForgottenKnowledge(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
-            return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFilterKeyMap(self: *const ISyncChangeBatchWithFilterKeyMap, ppIFilterKeyMap: ?*?*IFilterKeyMap) callconv(.Inline) HRESULT {
         return self.vtable.GetFilterKeyMap(self, ppIFilterKeyMap);
     }
@@ -3849,18 +2696,6 @@ pub const IDataRetrieverCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataRetrieverCallback_LoadChangeDataComplete(self: *const T, pUnkData: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const IDataRetrieverCallback.VTable, @ptrCast(self.vtable)).LoadChangeDataComplete(@as(*const IDataRetrieverCallback, @ptrCast(self)), pUnkData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataRetrieverCallback_LoadChangeDataError(self: *const T, hrError: HRESULT) callconv(.Inline) HRESULT {
-            return @as(*const IDataRetrieverCallback.VTable, @ptrCast(self.vtable)).LoadChangeDataError(@as(*const IDataRetrieverCallback, @ptrCast(self)), hrError);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LoadChangeDataComplete(self: *const IDataRetrieverCallback, pUnkData: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.LoadChangeDataComplete(self, pUnkData);
     }
@@ -3893,22 +2728,6 @@ pub const ILoadChangeContext = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILoadChangeContext_GetSyncChange(self: *const T, ppSyncChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
-            return @as(*const ILoadChangeContext.VTable, @ptrCast(self.vtable)).GetSyncChange(@as(*const ILoadChangeContext, @ptrCast(self)), ppSyncChange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILoadChangeContext_SetRecoverableErrorOnChange(self: *const T, hrError: HRESULT, pErrorData: ?*IRecoverableErrorData) callconv(.Inline) HRESULT {
-            return @as(*const ILoadChangeContext.VTable, @ptrCast(self.vtable)).SetRecoverableErrorOnChange(@as(*const ILoadChangeContext, @ptrCast(self)), hrError, pErrorData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILoadChangeContext_SetRecoverableErrorOnChangeUnit(self: *const T, hrError: HRESULT, pChangeUnit: ?*ISyncChangeUnit, pErrorData: ?*IRecoverableErrorData) callconv(.Inline) HRESULT {
-            return @as(*const ILoadChangeContext.VTable, @ptrCast(self.vtable)).SetRecoverableErrorOnChangeUnit(@as(*const ILoadChangeContext, @ptrCast(self)), hrError, pChangeUnit, pErrorData);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSyncChange(self: *const ILoadChangeContext, ppSyncChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
         return self.vtable.GetSyncChange(self, ppSyncChange);
     }
@@ -3938,18 +2757,6 @@ pub const ISynchronousDataRetriever = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISynchronousDataRetriever_GetIdParameters(self: *const T, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
-            return @as(*const ISynchronousDataRetriever.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const ISynchronousDataRetriever, @ptrCast(self)), pIdParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISynchronousDataRetriever_LoadChangeData(self: *const T, pLoadChangeContext: ?*ILoadChangeContext, ppUnkData: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISynchronousDataRetriever.VTable, @ptrCast(self.vtable)).LoadChangeData(@as(*const ISynchronousDataRetriever, @ptrCast(self)), pLoadChangeContext, ppUnkData);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIdParameters(self: *const ISynchronousDataRetriever, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
         return self.vtable.GetIdParameters(self, pIdParameters);
     }
@@ -3983,26 +2790,6 @@ pub const IAsynchronousDataRetriever = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsynchronousDataRetriever_GetIdParameters(self: *const T, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
-            return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pIdParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsynchronousDataRetriever_RegisterCallback(self: *const T, pDataRetrieverCallback: ?*IDataRetrieverCallback) callconv(.Inline) HRESULT {
-            return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).RegisterCallback(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pDataRetrieverCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsynchronousDataRetriever_RevokeCallback(self: *const T, pDataRetrieverCallback: ?*IDataRetrieverCallback) callconv(.Inline) HRESULT {
-            return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).RevokeCallback(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pDataRetrieverCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsynchronousDataRetriever_LoadChangeData(self: *const T, pLoadChangeContext: ?*ILoadChangeContext) callconv(.Inline) HRESULT {
-            return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).LoadChangeData(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pLoadChangeContext);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIdParameters(self: *const IAsynchronousDataRetriever, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
         return self.vtable.GetIdParameters(self, pIdParameters);
     }
@@ -4031,14 +2818,6 @@ pub const IFilterRequestCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterRequestCallback_RequestFilter(self: *const T, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) callconv(.Inline) HRESULT {
-            return @as(*const IFilterRequestCallback.VTable, @ptrCast(self.vtable)).RequestFilter(@as(*const IFilterRequestCallback, @ptrCast(self)), pFilter, filteringType);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RequestFilter(self: *const IFilterRequestCallback, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) callconv(.Inline) HRESULT {
         return self.vtable.RequestFilter(self, pFilter, filteringType);
     }
@@ -4057,14 +2836,6 @@ pub const IRequestFilteredSync = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRequestFilteredSync_SpecifyFilter(self: *const T, pCallback: ?*IFilterRequestCallback) callconv(.Inline) HRESULT {
-            return @as(*const IRequestFilteredSync.VTable, @ptrCast(self.vtable)).SpecifyFilter(@as(*const IRequestFilteredSync, @ptrCast(self)), pCallback);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SpecifyFilter(self: *const IRequestFilteredSync, pCallback: ?*IFilterRequestCallback) callconv(.Inline) HRESULT {
         return self.vtable.SpecifyFilter(self, pCallback);
     }
@@ -4084,14 +2855,6 @@ pub const ISupportFilteredSync = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISupportFilteredSync_AddFilter(self: *const T, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) callconv(.Inline) HRESULT {
-            return @as(*const ISupportFilteredSync.VTable, @ptrCast(self.vtable)).AddFilter(@as(*const ISupportFilteredSync, @ptrCast(self)), pFilter, filteringType);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddFilter(self: *const ISupportFilteredSync, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) callconv(.Inline) HRESULT {
         return self.vtable.AddFilter(self, pFilter, filteringType);
     }
@@ -4109,14 +2872,6 @@ pub const IFilterTrackingRequestCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterTrackingRequestCallback_RequestTrackedFilter(self: *const T, pFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
-            return @as(*const IFilterTrackingRequestCallback.VTable, @ptrCast(self.vtable)).RequestTrackedFilter(@as(*const IFilterTrackingRequestCallback, @ptrCast(self)), pFilter);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RequestTrackedFilter(self: *const IFilterTrackingRequestCallback, pFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
         return self.vtable.RequestTrackedFilter(self, pFilter);
     }
@@ -4138,18 +2893,6 @@ pub const IFilterTrackingProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterTrackingProvider_SpecifyTrackedFilters(self: *const T, pCallback: ?*IFilterTrackingRequestCallback) callconv(.Inline) HRESULT {
-            return @as(*const IFilterTrackingProvider.VTable, @ptrCast(self.vtable)).SpecifyTrackedFilters(@as(*const IFilterTrackingProvider, @ptrCast(self)), pCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterTrackingProvider_AddTrackedFilter(self: *const T, pFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
-            return @as(*const IFilterTrackingProvider.VTable, @ptrCast(self.vtable)).AddTrackedFilter(@as(*const IFilterTrackingProvider, @ptrCast(self)), pFilter);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SpecifyTrackedFilters(self: *const IFilterTrackingProvider, pCallback: ?*IFilterTrackingRequestCallback) callconv(.Inline) HRESULT {
         return self.vtable.SpecifyTrackedFilters(self, pCallback);
     }
@@ -4178,18 +2921,6 @@ pub const ISupportLastWriteTime = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISupportLastWriteTime_GetItemChangeTime(self: *const T, pbItemId: ?*const u8, pullTimestamp: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const ISupportLastWriteTime.VTable, @ptrCast(self.vtable)).GetItemChangeTime(@as(*const ISupportLastWriteTime, @ptrCast(self)), pbItemId, pullTimestamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISupportLastWriteTime_GetChangeUnitChangeTime(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pullTimestamp: ?*u64) callconv(.Inline) HRESULT {
-            return @as(*const ISupportLastWriteTime.VTable, @ptrCast(self.vtable)).GetChangeUnitChangeTime(@as(*const ISupportLastWriteTime, @ptrCast(self)), pbItemId, pbChangeUnitId, pullTimestamp);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetItemChangeTime(self: *const ISupportLastWriteTime, pbItemId: ?*const u8, pullTimestamp: ?*u64) callconv(.Inline) HRESULT {
         return self.vtable.GetItemChangeTime(self, pbItemId, pullTimestamp);
     }
@@ -4211,14 +2942,6 @@ pub const IProviderConverter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderConverter_Initialize(self: *const T, pISyncProvider: ?*ISyncProvider) callconv(.Inline) HRESULT {
-            return @as(*const IProviderConverter.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IProviderConverter, @ptrCast(self)), pISyncProvider);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IProviderConverter, pISyncProvider: ?*ISyncProvider) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, pISyncProvider);
     }
@@ -4256,26 +2979,6 @@ pub const ISyncDataConverter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncDataConverter_ConvertDataRetrieverFromProviderFormat(self: *const T, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataRetrieverFromProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncDataConverter_ConvertDataRetrieverToProviderFormat(self: *const T, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataRetrieverToProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncDataConverter_ConvertDataFromProviderFormat(self: *const T, pDataContext: ?*ILoadChangeContext, pUnkDataIn: ?*IUnknown, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataFromProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pDataContext, pUnkDataIn, ppUnkDataOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncDataConverter_ConvertDataToProviderFormat(self: *const T, pDataContext: ?*ILoadChangeContext, pUnkDataOut: ?*IUnknown, ppUnkDataout: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataToProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pDataContext, pUnkDataOut, ppUnkDataout);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ConvertDataRetrieverFromProviderFormat(self: *const ISyncDataConverter, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.ConvertDataRetrieverFromProviderFormat(self, pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
     }
@@ -4406,74 +3109,6 @@ pub const ISyncProviderRegistration = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_CreateSyncProviderConfigUIRegistrationInstance(self: *const T, pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).CreateSyncProviderConfigUIRegistrationInstance(@as(*const ISyncProviderRegistration, @ptrCast(self)), pConfigUIConfig, ppConfigUIInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_UnregisterSyncProviderConfigUI(self: *const T, pguidInstanceId: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).UnregisterSyncProviderConfigUI(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_EnumerateSyncProviderConfigUIs(self: *const T, pguidContentType: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).EnumerateSyncProviderConfigUIs(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidContentType, dwSupportedArchitecture, ppEnumSyncProviderConfigUIInfos);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_CreateSyncProviderRegistrationInstance(self: *const T, pProviderConfiguration: ?*const SyncProviderConfiguration, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).CreateSyncProviderRegistrationInstance(@as(*const ISyncProviderRegistration, @ptrCast(self)), pProviderConfiguration, ppProviderInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_UnregisterSyncProvider(self: *const T, pguidInstanceId: ?*const Guid) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).UnregisterSyncProvider(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfoforProvider(self: *const T, pguidProviderInstanceId: ?*const Guid, ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUIInfoforProvider(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidProviderInstanceId, ppProviderConfigUIInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_EnumerateSyncProviders(self: *const T, pguidContentType: ?*const Guid, dwStateFlagsToFilterMask: u32, dwStateFlagsToFilter: u32, refProviderClsId: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).EnumerateSyncProviders(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidContentType, dwStateFlagsToFilterMask, dwStateFlagsToFilter, refProviderClsId, dwSupportedArchitecture, ppEnumSyncProviderInfos);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderInfo(self: *const T, pguidInstanceId: ?*const Guid, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderInfo(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, ppProviderInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderFromInstanceId(self: *const T, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderFromInstanceId(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, dwClsContext, ppSyncProvider);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfo(self: *const T, pguidInstanceId: ?*const Guid, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUIInfo(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, ppConfigUIInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIFromInstanceId(self: *const T, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUIFromInstanceId(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, dwClsContext, ppConfigUI);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderState(self: *const T, pguidInstanceId: ?*const Guid, pdwStateFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderState(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, pdwStateFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_SetSyncProviderState(self: *const T, pguidInstanceId: ?*const Guid, dwStateFlagsMask: u32, dwStateFlags: u32) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).SetSyncProviderState(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, dwStateFlagsMask, dwStateFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_RegisterForEvent(self: *const T, phEvent: ?*?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).RegisterForEvent(@as(*const ISyncProviderRegistration, @ptrCast(self)), phEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_RevokeEvent(self: *const T, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).RevokeEvent(@as(*const ISyncProviderRegistration, @ptrCast(self)), hEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetChange(self: *const T, hEvent: ?HANDLE, ppChange: ?*?*ISyncRegistrationChange) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetChange(@as(*const ISyncProviderRegistration, @ptrCast(self)), hEvent, ppChange);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateSyncProviderConfigUIRegistrationInstance(self: *const ISyncProviderRegistration, pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
         return self.vtable.CreateSyncProviderConfigUIRegistrationInstance(self, pConfigUIConfig, ppConfigUIInfo);
     }
@@ -4550,26 +3185,6 @@ pub const IEnumSyncProviderConfigUIInfos = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderConfigUIInfos_Next(self: *const T, cFactories: u32, ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)), cFactories, ppSyncProviderConfigUIInfo, pcFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderConfigUIInfos_Skip(self: *const T, cFactories: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)), cFactories);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderConfigUIInfos_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderConfigUIInfos_Clone(self: *const T, ppEnum: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumSyncProviderConfigUIInfos, cFactories: u32, ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cFactories, ppSyncProviderConfigUIInfo, pcFetched);
     }
@@ -4610,26 +3225,6 @@ pub const IEnumSyncProviderInfos = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderInfos_Next(self: *const T, cInstances: u32, ppSyncProviderInfo: [*]?*ISyncProviderInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncProviderInfos, @ptrCast(self)), cInstances, ppSyncProviderInfo, pcFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderInfos_Skip(self: *const T, cInstances: u32) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncProviderInfos, @ptrCast(self)), cInstances);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderInfos_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncProviderInfos, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderInfos_Clone(self: *const T, ppEnum: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
-            return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncProviderInfos, @ptrCast(self)), ppEnum);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumSyncProviderInfos, cInstances: u32, ppSyncProviderInfo: [*]?*ISyncProviderInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Next(self, cInstances, ppSyncProviderInfo, pcFetched);
     }
@@ -4658,14 +3253,7 @@ pub const ISyncProviderInfo = extern union {
     };
     vtable: *const VTable,
     IPropertyStore: IPropertyStore,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPropertyStore.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderInfo_GetSyncProvider(self: *const T, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderInfo.VTable, @ptrCast(self.vtable)).GetSyncProvider(@as(*const ISyncProviderInfo, @ptrCast(self)), dwClsContext, ppSyncProvider);
-        }
-    };}
-    pub usingnamespace IPropertyStore.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetSyncProvider(self: *const ISyncProviderInfo, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
         return self.vtable.GetSyncProvider(self, dwClsContext, ppSyncProvider);
     }
@@ -4685,14 +3273,7 @@ pub const ISyncProviderConfigUIInfo = extern union {
     };
     vtable: *const VTable,
     IPropertyStore: IPropertyStore,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPropertyStore.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUIInfo_GetSyncProviderConfigUI(self: *const T, dwClsContext: u32, ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderConfigUIInfo.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUI(@as(*const ISyncProviderConfigUIInfo, @ptrCast(self)), dwClsContext, ppSyncProviderConfigUI);
-        }
-    };}
-    pub usingnamespace IPropertyStore.MethodMixin(@This());
+    IUnknown: IUnknown,
     pub fn GetSyncProviderConfigUI(self: *const ISyncProviderConfigUIInfo, dwClsContext: u32, ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
         return self.vtable.GetSyncProviderConfigUI(self, dwClsContext, ppSyncProviderConfigUI);
     }
@@ -4729,26 +3310,6 @@ pub const ISyncProviderConfigUI = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUI_Init(self: *const T, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pConfigurationProperties: ?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).Init(@as(*const ISyncProviderConfigUI, @ptrCast(self)), pguidInstanceId, pguidContentType, pConfigurationProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUI_GetRegisteredProperties(self: *const T, ppConfigUIProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).GetRegisteredProperties(@as(*const ISyncProviderConfigUI, @ptrCast(self)), ppConfigUIProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUI_CreateAndRegisterNewSyncProvider(self: *const T, hwndParent: ?HWND, pUnkContext: ?*IUnknown, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).CreateAndRegisterNewSyncProvider(@as(*const ISyncProviderConfigUI, @ptrCast(self)), hwndParent, pUnkContext, ppProviderInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUI_ModifySyncProvider(self: *const T, hwndParent: ?HWND, pUnkContext: ?*IUnknown, pProviderInfo: ?*ISyncProviderInfo) callconv(.Inline) HRESULT {
-            return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).ModifySyncProvider(@as(*const ISyncProviderConfigUI, @ptrCast(self)), hwndParent, pUnkContext, pProviderInfo);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Init(self: *const ISyncProviderConfigUI, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pConfigurationProperties: ?*IPropertyStore) callconv(.Inline) HRESULT {
         return self.vtable.Init(self, pguidInstanceId, pguidContentType, pConfigurationProperties);
     }
@@ -4785,22 +3346,6 @@ pub const IRegisteredSyncProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredSyncProvider_Init(self: *const T, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pContextPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @as(*const IRegisteredSyncProvider.VTable, @ptrCast(self.vtable)).Init(@as(*const IRegisteredSyncProvider, @ptrCast(self)), pguidInstanceId, pguidContentType, pContextPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredSyncProvider_GetInstanceId(self: *const T, pguidInstanceId: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const IRegisteredSyncProvider.VTable, @ptrCast(self.vtable)).GetInstanceId(@as(*const IRegisteredSyncProvider, @ptrCast(self)), pguidInstanceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredSyncProvider_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const IRegisteredSyncProvider.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRegisteredSyncProvider, @ptrCast(self)));
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Init(self: *const IRegisteredSyncProvider, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pContextPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
         return self.vtable.Init(self, pguidInstanceId, pguidContentType, pContextPropertyStore);
     }
@@ -4846,18 +3391,6 @@ pub const ISyncRegistrationChange = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncRegistrationChange_GetEvent(self: *const T, psreEvent: ?*SYNC_REGISTRATION_EVENT) callconv(.Inline) HRESULT {
-            return @as(*const ISyncRegistrationChange.VTable, @ptrCast(self.vtable)).GetEvent(@as(*const ISyncRegistrationChange, @ptrCast(self)), psreEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncRegistrationChange_GetInstanceId(self: *const T, pguidInstanceId: ?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const ISyncRegistrationChange.VTable, @ptrCast(self.vtable)).GetInstanceId(@as(*const ISyncRegistrationChange, @ptrCast(self)), pguidInstanceId);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetEvent(self: *const ISyncRegistrationChange, psreEvent: ?*SYNC_REGISTRATION_EVENT) callconv(.Inline) HRESULT {
         return self.vtable.GetEvent(self, psreEvent);
     }

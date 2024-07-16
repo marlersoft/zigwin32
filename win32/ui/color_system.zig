@@ -319,54 +319,6 @@ pub const IDeviceModelPlugIn = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_Initialize(self: *const T, bstrXml: ?BSTR, cNumModels: u32, iModelPosition: u32) callconv(.Inline) HRESULT {
-            return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDeviceModelPlugIn, @ptrCast(self)), bstrXml, cNumModels, iModelPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_GetNumChannels(self: *const T, pNumChannels: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).GetNumChannels(@as(*const IDeviceModelPlugIn, @ptrCast(self)), pNumChannels);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_DeviceToColorimetricColors(self: *const T, cColors: u32, cChannels: u32, pDeviceValues: ?*const f32, pXYZColors: [*]XYZColorF) callconv(.Inline) HRESULT {
-            return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).DeviceToColorimetricColors(@as(*const IDeviceModelPlugIn, @ptrCast(self)), cColors, cChannels, pDeviceValues, pXYZColors);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_ColorimetricToDeviceColors(self: *const T, cColors: u32, cChannels: u32, pXYZColors: [*]const XYZColorF, pDeviceValues: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).ColorimetricToDeviceColors(@as(*const IDeviceModelPlugIn, @ptrCast(self)), cColors, cChannels, pXYZColors, pDeviceValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_ColorimetricToDeviceColorsWithBlack(self: *const T, cColors: u32, cChannels: u32, pXYZColors: [*]const XYZColorF, pBlackInformation: [*]const BlackInformation, pDeviceValues: ?*f32) callconv(.Inline) HRESULT {
-            return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).ColorimetricToDeviceColorsWithBlack(@as(*const IDeviceModelPlugIn, @ptrCast(self)), cColors, cChannels, pXYZColors, pBlackInformation, pDeviceValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_SetTransformDeviceModelInfo(self: *const T, iModelPosition: u32, pIDeviceModelOther: ?*IDeviceModelPlugIn) callconv(.Inline) HRESULT {
-            return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).SetTransformDeviceModelInfo(@as(*const IDeviceModelPlugIn, @ptrCast(self)), iModelPosition, pIDeviceModelOther);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_GetPrimarySamples(self: *const T, pPrimaryColor: ?*PrimaryXYZColors) callconv(.Inline) HRESULT {
-            return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).GetPrimarySamples(@as(*const IDeviceModelPlugIn, @ptrCast(self)), pPrimaryColor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_GetGamutBoundaryMeshSize(self: *const T, pNumVertices: ?*u32, pNumTriangles: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).GetGamutBoundaryMeshSize(@as(*const IDeviceModelPlugIn, @ptrCast(self)), pNumVertices, pNumTriangles);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_GetGamutBoundaryMesh(self: *const T, cChannels: u32, cVertices: u32, cTriangles: u32, pVertices: ?*f32, pTriangles: [*]GamutShellTriangle) callconv(.Inline) HRESULT {
-            return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).GetGamutBoundaryMesh(@as(*const IDeviceModelPlugIn, @ptrCast(self)), cChannels, cVertices, cTriangles, pVertices, pTriangles);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_GetNeutralAxisSize(self: *const T, pcColors: ?*u32) callconv(.Inline) HRESULT {
-            return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).GetNeutralAxisSize(@as(*const IDeviceModelPlugIn, @ptrCast(self)), pcColors);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_GetNeutralAxis(self: *const T, cColors: u32, pXYZColors: [*]XYZColorF) callconv(.Inline) HRESULT {
-            return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).GetNeutralAxis(@as(*const IDeviceModelPlugIn, @ptrCast(self)), cColors, pXYZColors);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IDeviceModelPlugIn, bstrXml: ?BSTR, cNumModels: u32, iModelPosition: u32) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, bstrXml, cNumModels, iModelPosition);
     }
@@ -424,18 +376,6 @@ pub const IGamutMapModelPlugIn = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGamutMapModelPlugIn_Initialize(self: *const T, bstrXml: ?BSTR, pSrcPlugIn: ?*IDeviceModelPlugIn, pDestPlugIn: ?*IDeviceModelPlugIn, pSrcGBD: ?*GamutBoundaryDescription, pDestGBD: ?*GamutBoundaryDescription) callconv(.Inline) HRESULT {
-            return @as(*const IGamutMapModelPlugIn.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IGamutMapModelPlugIn, @ptrCast(self)), bstrXml, pSrcPlugIn, pDestPlugIn, pSrcGBD, pDestGBD);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGamutMapModelPlugIn_SourceToDestinationAppearanceColors(self: *const T, cColors: u32, pInputColors: [*]const JChColorF, pOutputColors: [*]JChColorF) callconv(.Inline) HRESULT {
-            return @as(*const IGamutMapModelPlugIn.VTable, @ptrCast(self.vtable)).SourceToDestinationAppearanceColors(@as(*const IGamutMapModelPlugIn, @ptrCast(self)), cColors, pInputColors, pOutputColors);
-        }
-    };}
-    pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IGamutMapModelPlugIn, bstrXml: ?BSTR, pSrcPlugIn: ?*IDeviceModelPlugIn, pDestPlugIn: ?*IDeviceModelPlugIn, pSrcGBD: ?*GamutBoundaryDescription, pDestGBD: ?*GamutBoundaryDescription) callconv(.Inline) HRESULT {
         return self.vtable.Initialize(self, bstrXml, pSrcPlugIn, pDestPlugIn, pSrcGBD, pDestGBD);
     }
