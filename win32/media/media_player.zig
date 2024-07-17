@@ -6249,7 +6249,7 @@ pub const IXFeedItem = extern union {
         return self.vtable.Link(self, ppszUrl);
     }
     pub fn _method_Guid(self: *const IXFeedItem, ppszGuid: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return self.vtable.Guid(self, ppszGuid);
+        return self.vtable._method_Guid(self, ppszGuid);
     }
     pub fn Description(self: *const IXFeedItem, ppszDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.Description(self, ppszDescription);

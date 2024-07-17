@@ -7109,25 +7109,25 @@ pub const ID2D1SvgStrokeDashArray = extern union {
             self: *const ID2D1SvgStrokeDashArray,
             dashesCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateDashes: *const fn(
+        UpdateDashesUnits: *const fn(
             self: *const ID2D1SvgStrokeDashArray,
             dashes: [*]const D2D1_SVG_LENGTH,
             dashesCount: u32,
             startIndex: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateDashes1: *const fn(
+        UpdateDashesFloats: *const fn(
             self: *const ID2D1SvgStrokeDashArray,
             dashes: [*]const f32,
             dashesCount: u32,
             startIndex: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDashes: *const fn(
+        GetDashesUnits: *const fn(
             self: *const ID2D1SvgStrokeDashArray,
             dashes: [*]D2D1_SVG_LENGTH,
             dashesCount: u32,
             startIndex: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDashes1: *const fn(
+        GetDashesFloats: *const fn(
             self: *const ID2D1SvgStrokeDashArray,
             dashes: [*]f32,
             dashesCount: u32,
@@ -7141,20 +7141,22 @@ pub const ID2D1SvgStrokeDashArray = extern union {
     ID2D1SvgAttribute: ID2D1SvgAttribute,
     ID2D1Resource: ID2D1Resource,
     IUnknown: IUnknown,
+    pub const UpdateDashes = @compileError("COM method 'UpdateDashes' must be called using one of the following overload names: UpdateDashesFloats, UpdateDashesUnits");
+    pub const GetDashes = @compileError("COM method 'GetDashes' must be called using one of the following overload names: GetDashesUnits, GetDashesFloats");
     pub fn RemoveDashesAtEnd(self: *const ID2D1SvgStrokeDashArray, dashesCount: u32) callconv(.Inline) HRESULT {
         return self.vtable.RemoveDashesAtEnd(self, dashesCount);
     }
-    pub fn UpdateDashes(self: *const ID2D1SvgStrokeDashArray, dashes: [*]const D2D1_SVG_LENGTH, dashesCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
-        return self.vtable.UpdateDashes(self, dashes, dashesCount, startIndex);
+    pub fn UpdateDashesUnits(self: *const ID2D1SvgStrokeDashArray, dashes: [*]const D2D1_SVG_LENGTH, dashesCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return self.vtable.UpdateDashesUnits(self, dashes, dashesCount, startIndex);
     }
-    pub fn UpdateDashes1(self: *const ID2D1SvgStrokeDashArray, dashes: [*]const f32, dashesCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
-        return self.vtable.UpdateDashes(self, dashes, dashesCount, startIndex);
+    pub fn UpdateDashesFloats(self: *const ID2D1SvgStrokeDashArray, dashes: [*]const f32, dashesCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return self.vtable.UpdateDashesFloats(self, dashes, dashesCount, startIndex);
     }
-    pub fn GetDashes(self: *const ID2D1SvgStrokeDashArray, dashes: [*]D2D1_SVG_LENGTH, dashesCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
-        return self.vtable.GetDashes(self, dashes, dashesCount, startIndex);
+    pub fn GetDashesUnits(self: *const ID2D1SvgStrokeDashArray, dashes: [*]D2D1_SVG_LENGTH, dashesCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetDashesUnits(self, dashes, dashesCount, startIndex);
     }
-    pub fn GetDashes1(self: *const ID2D1SvgStrokeDashArray, dashes: [*]f32, dashesCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
-        return self.vtable.GetDashes(self, dashes, dashesCount, startIndex);
+    pub fn GetDashesFloats(self: *const ID2D1SvgStrokeDashArray, dashes: [*]f32, dashesCount: u32, startIndex: u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetDashesFloats(self, dashes, dashesCount, startIndex);
     }
     pub fn GetDashesCount(self: *const ID2D1SvgStrokeDashArray) callconv(.Inline) u32 {
         return self.vtable.GetDashesCount(self);
@@ -7392,12 +7394,12 @@ pub const ID2D1SvgElement = extern union {
         GetTextValueLength: *const fn(
             self: *const ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) u32,
-        SetAttributeValue: *const fn(
+        SetAttributeValueObj: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             value: ?*ID2D1SvgAttribute,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAttributeValue1: *const fn(
+        SetAttributeValuePod: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_POD_TYPE,
@@ -7405,19 +7407,19 @@ pub const ID2D1SvgElement = extern union {
             value: ?*const anyopaque,
             valueSizeInBytes: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAttributeValue2: *const fn(
+        SetAttributeValueString: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_STRING_TYPE,
             value: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttributeValue: *const fn(
+        GetAttributeValueObj: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             riid: ?*const Guid,
             value: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttributeValue1: *const fn(
+        GetAttributeValuePod: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_POD_TYPE,
@@ -7425,7 +7427,7 @@ pub const ID2D1SvgElement = extern union {
             value: ?*anyopaque,
             valueSizeInBytes: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttributeValue2: *const fn(
+        GetAttributeValueString: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_STRING_TYPE,
@@ -7442,6 +7444,8 @@ pub const ID2D1SvgElement = extern union {
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
     IUnknown: IUnknown,
+    pub const SetAttributeValue = @compileError("COM method 'SetAttributeValue' must be called using one of the following overload names: SetAttributeValuePod, SetAttributeValueString, SetAttributeValueObj");
+    pub const GetAttributeValue = @compileError("COM method 'GetAttributeValue' must be called using one of the following overload names: GetAttributeValueString, GetAttributeValueObj, GetAttributeValuePod");
     pub fn GetDocument(self: *const ID2D1SvgElement, document: ?*?*ID2D1SvgDocument) callconv(.Inline) void {
         return self.vtable.GetDocument(self, document);
     }
@@ -7511,23 +7515,23 @@ pub const ID2D1SvgElement = extern union {
     pub fn GetTextValueLength(self: *const ID2D1SvgElement) callconv(.Inline) u32 {
         return self.vtable.GetTextValueLength(self);
     }
-    pub fn SetAttributeValue(self: *const ID2D1SvgElement, name: ?[*:0]const u16, value: ?*ID2D1SvgAttribute) callconv(.Inline) HRESULT {
-        return self.vtable.SetAttributeValue(self, name, value);
+    pub fn SetAttributeValueObj(self: *const ID2D1SvgElement, name: ?[*:0]const u16, value: ?*ID2D1SvgAttribute) callconv(.Inline) HRESULT {
+        return self.vtable.SetAttributeValueObj(self, name, value);
     }
-    pub fn SetAttributeValue1(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*const anyopaque, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
-        return self.vtable.SetAttributeValue(self, name, @"type", value, valueSizeInBytes);
+    pub fn SetAttributeValuePod(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*const anyopaque, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetAttributeValuePod(self, name, @"type", value, valueSizeInBytes);
     }
-    pub fn SetAttributeValue2(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return self.vtable.SetAttributeValue(self, name, @"type", value);
+    pub fn SetAttributeValueString(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetAttributeValueString(self, name, @"type", value);
     }
-    pub fn GetAttributeValue(self: *const ID2D1SvgElement, name: ?[*:0]const u16, riid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return self.vtable.GetAttributeValue(self, name, riid, value);
+    pub fn GetAttributeValueObj(self: *const ID2D1SvgElement, name: ?[*:0]const u16, riid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetAttributeValueObj(self, name, riid, value);
     }
-    pub fn GetAttributeValue1(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*anyopaque, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
-        return self.vtable.GetAttributeValue(self, name, @"type", value, valueSizeInBytes);
+    pub fn GetAttributeValuePod(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*anyopaque, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetAttributeValuePod(self, name, @"type", value, valueSizeInBytes);
     }
-    pub fn GetAttributeValue2(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: [*:0]u16, valueCount: u32) callconv(.Inline) HRESULT {
-        return self.vtable.GetAttributeValue(self, name, @"type", value, valueCount);
+    pub fn GetAttributeValueString(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: [*:0]u16, valueCount: u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetAttributeValueString(self, name, @"type", value, valueCount);
     }
     pub fn GetAttributeValueLength(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_STRING_TYPE, valueLength: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetAttributeValueLength(self, name, @"type", valueLength);
