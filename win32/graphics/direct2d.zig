@@ -238,7 +238,7 @@ pub const D2D1_BITMAP_PROPERTIES = extern struct {
 
 pub const D2D1_GRADIENT_STOP = extern struct {
     position: f32,
-    color: D2D1_COLOR_F,
+    color: D2D_COLOR_F,
 };
 
 pub const D2D1_BRUSH_PROPERTIES = extern struct {
@@ -1097,20 +1097,20 @@ pub const ID2D1SolidColorBrush = extern union {
         base: ID2D1Brush.VTable,
         SetColor: *const fn(
             self: *const ID2D1SolidColorBrush,
-            color: ?*const D2D1_COLOR_F,
+            color: ?*const D2D_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetColor: *const fn(
             self: *const ID2D1SolidColorBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_COLOR_F,
+        ) callconv(@import("std").os.windows.WINAPI) D2D_COLOR_F,
     };
     vtable: *const VTable,
     ID2D1Brush: ID2D1Brush,
     ID2D1Resource: ID2D1Resource,
     IUnknown: IUnknown,
-    pub fn SetColor(self: *const ID2D1SolidColorBrush, color: ?*const D2D1_COLOR_F) callconv(.Inline) void {
+    pub fn SetColor(self: *const ID2D1SolidColorBrush, color: ?*const D2D_COLOR_F) callconv(.Inline) void {
         return self.vtable.SetColor(self, color);
     }
-    pub fn GetColor(self: *const ID2D1SolidColorBrush) callconv(.Inline) D2D1_COLOR_F {
+    pub fn GetColor(self: *const ID2D1SolidColorBrush) callconv(.Inline) D2D_COLOR_F {
         return self.vtable.GetColor(self);
     }
 };
@@ -1790,7 +1790,7 @@ pub const ID2D1RenderTarget = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSolidColorBrush: *const fn(
             self: *const ID2D1RenderTarget,
-            color: ?*const D2D1_COLOR_F,
+            color: ?*const D2D_COLOR_F,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
             solidColorBrush: ?*?*ID2D1SolidColorBrush,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2006,7 +2006,7 @@ pub const ID2D1RenderTarget = extern union {
         ) callconv(@import("std").os.windows.WINAPI) void,
         Clear: *const fn(
             self: *const ID2D1RenderTarget,
-            clearColor: ?*const D2D1_COLOR_F,
+            clearColor: ?*const D2D_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         BeginDraw: *const fn(
             self: *const ID2D1RenderTarget,
@@ -2058,7 +2058,7 @@ pub const ID2D1RenderTarget = extern union {
     pub fn CreateBitmapBrush(self: *const ID2D1RenderTarget, bitmap: ?*ID2D1Bitmap, bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, bitmapBrush: ?*?*ID2D1BitmapBrush) callconv(.Inline) HRESULT {
         return self.vtable.CreateBitmapBrush(self, bitmap, bitmapBrushProperties, brushProperties, bitmapBrush);
     }
-    pub fn CreateSolidColorBrush(self: *const ID2D1RenderTarget, color: ?*const D2D1_COLOR_F, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, solidColorBrush: ?*?*ID2D1SolidColorBrush) callconv(.Inline) HRESULT {
+    pub fn CreateSolidColorBrush(self: *const ID2D1RenderTarget, color: ?*const D2D_COLOR_F, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, solidColorBrush: ?*?*ID2D1SolidColorBrush) callconv(.Inline) HRESULT {
         return self.vtable.CreateSolidColorBrush(self, color, brushProperties, solidColorBrush);
     }
     pub fn CreateGradientStopCollection(self: *const ID2D1RenderTarget, gradientStops: [*]const D2D1_GRADIENT_STOP, gradientStopsCount: u32, colorInterpolationGamma: D2D1_GAMMA, extendMode: D2D1_EXTEND_MODE, gradientStopCollection: ?*?*ID2D1GradientStopCollection) callconv(.Inline) HRESULT {
@@ -2175,7 +2175,7 @@ pub const ID2D1RenderTarget = extern union {
     pub fn PopAxisAlignedClip(self: *const ID2D1RenderTarget) callconv(.Inline) void {
         return self.vtable.PopAxisAlignedClip(self);
     }
-    pub fn Clear(self: *const ID2D1RenderTarget, clearColor: ?*const D2D1_COLOR_F) callconv(.Inline) void {
+    pub fn Clear(self: *const ID2D1RenderTarget, clearColor: ?*const D2D_COLOR_F) callconv(.Inline) void {
         return self.vtable.Clear(self, clearColor);
     }
     pub fn BeginDraw(self: *const ID2D1RenderTarget) callconv(.Inline) void {
@@ -3993,7 +3993,7 @@ pub const ID2D1CommandSink = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clear: *const fn(
             self: *const ID2D1CommandSink,
-            color: ?*const D2D1_COLOR_F,
+            color: ?*const D2D_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawGlyphRun: *const fn(
             self: *const ID2D1CommandSink,
@@ -4116,7 +4116,7 @@ pub const ID2D1CommandSink = extern union {
     pub fn SetUnitMode(self: *const ID2D1CommandSink, unitMode: D2D1_UNIT_MODE) callconv(.Inline) HRESULT {
         return self.vtable.SetUnitMode(self, unitMode);
     }
-    pub fn Clear(self: *const ID2D1CommandSink, color: ?*const D2D1_COLOR_F) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const ID2D1CommandSink, color: ?*const D2D_COLOR_F) callconv(.Inline) HRESULT {
         return self.vtable.Clear(self, color);
     }
     pub fn DrawGlyphRun(self: *const ID2D1CommandSink, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, foregroundBrush: ?*ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) HRESULT {
@@ -7054,11 +7054,11 @@ pub const ID2D1SvgPaint = extern union {
         ) callconv(@import("std").os.windows.WINAPI) D2D1_SVG_PAINT_TYPE,
         SetColor: *const fn(
             self: *const ID2D1SvgPaint,
-            color: ?*const D2D1_COLOR_F,
+            color: ?*const D2D_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColor: *const fn(
             self: *const ID2D1SvgPaint,
-            color: ?*D2D1_COLOR_F,
+            color: ?*D2D_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetId: *const fn(
             self: *const ID2D1SvgPaint,
@@ -7083,10 +7083,10 @@ pub const ID2D1SvgPaint = extern union {
     pub fn GetPaintType(self: *const ID2D1SvgPaint) callconv(.Inline) D2D1_SVG_PAINT_TYPE {
         return self.vtable.GetPaintType(self);
     }
-    pub fn SetColor(self: *const ID2D1SvgPaint, color: ?*const D2D1_COLOR_F) callconv(.Inline) HRESULT {
+    pub fn SetColor(self: *const ID2D1SvgPaint, color: ?*const D2D_COLOR_F) callconv(.Inline) HRESULT {
         return self.vtable.SetColor(self, color);
     }
-    pub fn GetColor(self: *const ID2D1SvgPaint, color: ?*D2D1_COLOR_F) callconv(.Inline) void {
+    pub fn GetColor(self: *const ID2D1SvgPaint, color: ?*D2D_COLOR_F) callconv(.Inline) void {
         return self.vtable.GetColor(self, color);
     }
     pub fn SetId(self: *const ID2D1SvgPaint, id: ?[*:0]const u16) callconv(.Inline) HRESULT {
@@ -7576,7 +7576,7 @@ pub const ID2D1SvgDocument = extern union {
         CreatePaint: *const fn(
             self: *const ID2D1SvgDocument,
             paintType: D2D1_SVG_PAINT_TYPE,
-            color: ?*const D2D1_COLOR_F,
+            color: ?*const D2D_COLOR_F,
             id: ?[*:0]const u16,
             paint: ?*?*ID2D1SvgPaint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -7625,7 +7625,7 @@ pub const ID2D1SvgDocument = extern union {
     pub fn Deserialize(self: *const ID2D1SvgDocument, inputXmlStream: ?*IStream, subtree: ?*?*ID2D1SvgElement) callconv(.Inline) HRESULT {
         return self.vtable.Deserialize(self, inputXmlStream, subtree);
     }
-    pub fn CreatePaint(self: *const ID2D1SvgDocument, paintType: D2D1_SVG_PAINT_TYPE, color: ?*const D2D1_COLOR_F, id: ?[*:0]const u16, paint: ?*?*ID2D1SvgPaint) callconv(.Inline) HRESULT {
+    pub fn CreatePaint(self: *const ID2D1SvgDocument, paintType: D2D1_SVG_PAINT_TYPE, color: ?*const D2D_COLOR_F, id: ?[*:0]const u16, paint: ?*?*ID2D1SvgPaint) callconv(.Inline) HRESULT {
         return self.vtable.CreatePaint(self, paintType, color, id, paint);
     }
     pub fn CreateStrokeDashArray(self: *const ID2D1SvgDocument, dashes: ?[*]const D2D1_SVG_LENGTH, dashesCount: u32, strokeDashArray: ?*?*ID2D1SvgStrokeDashArray) callconv(.Inline) HRESULT {
@@ -7936,10 +7936,10 @@ pub const D2D1_GRADIENT_MESH_PATCH = extern struct {
     point31: D2D_POINT_2F,
     point32: D2D_POINT_2F,
     point33: D2D_POINT_2F,
-    color00: D2D1_COLOR_F,
-    color03: D2D1_COLOR_F,
-    color30: D2D1_COLOR_F,
-    color33: D2D1_COLOR_F,
+    color00: D2D_COLOR_F,
+    color03: D2D_COLOR_F,
+    color30: D2D_COLOR_F,
+    color33: D2D_COLOR_F,
     topEdgeMode: D2D1_PATCH_EDGE_MODE,
     leftEdgeMode: D2D1_PATCH_EDGE_MODE,
     bottomEdgeMode: D2D1_PATCH_EDGE_MODE,
@@ -8576,7 +8576,7 @@ pub const ID2D1SpriteBatch = extern union {
             spriteCount: u32,
             destinationRectangles: ?*const D2D_RECT_F,
             sourceRectangles: ?*const D2D_RECT_U,
-            colors: ?*const D2D1_COLOR_F,
+            colors: ?*const D2D_COLOR_F,
             transforms: ?*const D2D_MATRIX_3X2_F,
             destinationRectanglesStride: u32,
             sourceRectanglesStride: u32,
@@ -8589,7 +8589,7 @@ pub const ID2D1SpriteBatch = extern union {
             spriteCount: u32,
             destinationRectangles: ?*const D2D_RECT_F,
             sourceRectangles: ?*const D2D_RECT_U,
-            colors: ?*const D2D1_COLOR_F,
+            colors: ?*const D2D_COLOR_F,
             transforms: ?*const D2D_MATRIX_3X2_F,
             destinationRectanglesStride: u32,
             sourceRectanglesStride: u32,
@@ -8602,7 +8602,7 @@ pub const ID2D1SpriteBatch = extern union {
             spriteCount: u32,
             destinationRectangles: ?[*]D2D_RECT_F,
             sourceRectangles: ?[*]D2D_RECT_U,
-            colors: ?[*]D2D1_COLOR_F,
+            colors: ?[*]D2D_COLOR_F,
             transforms: ?[*]D2D_MATRIX_3X2_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSpriteCount: *const fn(
@@ -8615,13 +8615,13 @@ pub const ID2D1SpriteBatch = extern union {
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
     IUnknown: IUnknown,
-    pub fn AddSprites(self: *const ID2D1SpriteBatch, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D2D1_COLOR_F, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
+    pub fn AddSprites(self: *const ID2D1SpriteBatch, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D2D_COLOR_F, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
         return self.vtable.AddSprites(self, spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
     }
-    pub fn SetSprites(self: *const ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D2D1_COLOR_F, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
+    pub fn SetSprites(self: *const ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D2D_COLOR_F, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
         return self.vtable.SetSprites(self, startIndex, spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
     }
-    pub fn GetSprites(self: *const ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, destinationRectangles: ?[*]D2D_RECT_F, sourceRectangles: ?[*]D2D_RECT_U, colors: ?[*]D2D1_COLOR_F, transforms: ?[*]D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
+    pub fn GetSprites(self: *const ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, destinationRectangles: ?[*]D2D_RECT_F, sourceRectangles: ?[*]D2D_RECT_U, colors: ?[*]D2D_COLOR_F, transforms: ?[*]D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
         return self.vtable.GetSprites(self, startIndex, spriteCount, destinationRectangles, sourceRectangles, colors, transforms);
     }
     pub fn GetSpriteCount(self: *const ID2D1SpriteBatch) callconv(.Inline) u32 {
@@ -9313,8 +9313,8 @@ pub extern "d2d1" fn D2D1CreateDeviceContext(
 pub extern "d2d1" fn D2D1ConvertColorSpace(
     sourceColorSpace: D2D1_COLOR_SPACE,
     destinationColorSpace: D2D1_COLOR_SPACE,
-    color: ?*const D2D1_COLOR_F,
-) callconv(@import("std").os.windows.WINAPI) D2D1_COLOR_F;
+    color: ?*const D2D_COLOR_F,
+) callconv(@import("std").os.windows.WINAPI) D2D_COLOR_F;
 
 pub extern "d2d1" fn D2D1SinCos(
     angle: f32,
@@ -9379,10 +9379,10 @@ const BOOL = @import("../foundation.zig").BOOL;
 const D2D1_ALPHA_MODE = @import("../graphics/direct2d/common.zig").D2D1_ALPHA_MODE;
 const D2D1_BEZIER_SEGMENT = @import("../graphics/direct2d/common.zig").D2D1_BEZIER_SEGMENT;
 const D2D1_BLEND_MODE = @import("../graphics/direct2d/common.zig").D2D1_BLEND_MODE;
-const D2D1_COLOR_F = @import("../graphics/direct2d/common.zig").D2D1_COLOR_F;
 const D2D1_COMPOSITE_MODE = @import("../graphics/direct2d/common.zig").D2D1_COMPOSITE_MODE;
 const D2D1_FILL_MODE = @import("../graphics/direct2d/common.zig").D2D1_FILL_MODE;
 const D2D1_PIXEL_FORMAT = @import("../graphics/direct2d/common.zig").D2D1_PIXEL_FORMAT;
+const D2D_COLOR_F = @import("../graphics/direct2d/common.zig").D2D_COLOR_F;
 const D2D_MATRIX_3X2_F = @import("../graphics/direct2d/common.zig").D2D_MATRIX_3X2_F;
 const D2D_MATRIX_4X3_F = @import("../graphics/direct2d/common.zig").D2D_MATRIX_4X3_F;
 const D2D_MATRIX_4X4_F = @import("../graphics/direct2d/common.zig").D2D_MATRIX_4X4_F;

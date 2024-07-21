@@ -13,12 +13,7 @@ pub const D2D_COLOR_F = extern struct {
     a: f32,
 };
 
-pub const D2D1_COLOR_F = extern struct {
-    r: f32,
-    g: f32,
-    b: f32,
-    a: f32,
-};
+// Struct Type 'D2D1_COLOR_F' has been substituted with 'D2D_COLOR_F'
 
 pub const D2D1_ALPHA_MODE = enum(u32) {
     UNKNOWN = 0,
