@@ -1776,7 +1776,7 @@ pub const IDCompositionVisualDebug = extern union {
         base: IDCompositionVisual2.VTable,
         EnableHeatMap: *const fn(
             self: *const IDCompositionVisualDebug,
-            color: ?*const D2D1_COLOR_F,
+            color: ?*const D2D_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DisableHeatMap: *const fn(
             self: *const IDCompositionVisualDebug,
@@ -1792,7 +1792,7 @@ pub const IDCompositionVisualDebug = extern union {
     IDCompositionVisual2: IDCompositionVisual2,
     IDCompositionVisual: IDCompositionVisual,
     IUnknown: IUnknown,
-    pub fn EnableHeatMap(self: *const IDCompositionVisualDebug, color: ?*const D2D1_COLOR_F) callconv(.Inline) HRESULT {
+    pub fn EnableHeatMap(self: *const IDCompositionVisualDebug, color: ?*const D2D_COLOR_F) callconv(.Inline) HRESULT {
         return self.vtable.EnableHeatMap(self, color);
     }
     pub fn DisableHeatMap(self: *const IDCompositionVisualDebug) callconv(.Inline) HRESULT {
@@ -2920,7 +2920,7 @@ pub const IDCompositionDelegatedInkTrail = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StartNewTrail: *const fn(
             self: *const IDCompositionDelegatedInkTrail,
-            color: ?*const D2D1_COLOR_F,
+            color: ?*const D2D_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2934,7 +2934,7 @@ pub const IDCompositionDelegatedInkTrail = extern union {
     pub fn RemoveTrailPoints(self: *const IDCompositionDelegatedInkTrail, generationId: u32) callconv(.Inline) HRESULT {
         return self.vtable.RemoveTrailPoints(self, generationId);
     }
-    pub fn StartNewTrail(self: *const IDCompositionDelegatedInkTrail, color: ?*const D2D1_COLOR_F) callconv(.Inline) HRESULT {
+    pub fn StartNewTrail(self: *const IDCompositionDelegatedInkTrail, color: ?*const D2D_COLOR_F) callconv(.Inline) HRESULT {
         return self.vtable.StartNewTrail(self, color);
     }
 };
@@ -3058,10 +3058,10 @@ const BOOL = @import("../foundation.zig").BOOL;
 const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE = @import("../graphics/direct2d/common.zig").D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE;
 const D2D1_BLEND_MODE = @import("../graphics/direct2d/common.zig").D2D1_BLEND_MODE;
 const D2D1_BORDER_MODE = @import("../graphics/direct2d/common.zig").D2D1_BORDER_MODE;
-const D2D1_COLOR_F = @import("../graphics/direct2d/common.zig").D2D1_COLOR_F;
 const D2D1_COLORMATRIX_ALPHA_MODE = @import("../graphics/direct2d/common.zig").D2D1_COLORMATRIX_ALPHA_MODE;
 const D2D1_COMPOSITE_MODE = @import("../graphics/direct2d/common.zig").D2D1_COMPOSITE_MODE;
 const D2D1_TURBULENCE_NOISE = @import("../graphics/direct2d/common.zig").D2D1_TURBULENCE_NOISE;
+const D2D_COLOR_F = @import("../graphics/direct2d/common.zig").D2D_COLOR_F;
 const D2D_MATRIX_3X2_F = @import("../graphics/direct2d/common.zig").D2D_MATRIX_3X2_F;
 const D2D_MATRIX_4X4_F = @import("../graphics/direct2d/common.zig").D2D_MATRIX_4X4_F;
 const D2D_MATRIX_5X4_F = @import("../graphics/direct2d/common.zig").D2D_MATRIX_5X4_F;
