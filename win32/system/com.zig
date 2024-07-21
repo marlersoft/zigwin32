@@ -267,7 +267,7 @@ pub const TYSPEC_OBJECTID = TYSPEC.OBJECTID;
 
 pub const uCLSSPEC = extern struct {
     tyspec: u32,
-    tagged_union: extern struct {
+    tagged_union: extern union {
         clsid: Guid,
         pFileExt: ?PWSTR,
         pMimeType: ?PWSTR,
@@ -3348,7 +3348,7 @@ pub const STGMEDIUM = extern struct {
 
 pub const GDI_OBJECT = extern struct {
     ObjectType: u32,
-    u: extern struct {
+    u: extern union {
         hBitmap: ?*userHBITMAP,
         hPalette: ?*userHPALETTE,
         hGeneric: ?*userHGLOBAL,
@@ -3358,7 +3358,7 @@ pub const GDI_OBJECT = extern struct {
 pub const userSTGMEDIUM = extern struct {
     pub const _STGMEDIUM_UNION = extern struct {
         tymed: u32,
-        u: extern struct {
+        u: extern union {
             hMetaFilePict: ?*userHMETAFILEPICT,
             hHEnhMetaFile: ?*userHENHMETAFILE,
             hGdiHandle: ?*GDI_OBJECT,
