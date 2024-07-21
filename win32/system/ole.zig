@@ -971,7 +971,7 @@ pub const SF_HAVEIID = SF_TYPE.HAVEIID;
 
 pub const _wireSAFEARRAY_UNION = extern struct {
     sfType: u32,
-    u: extern struct {
+    u: extern union {
         BstrStr: _wireSAFEARR_BSTR,
         UnknownStr: _wireSAFEARR_UNKNOWN,
         DispatchStr: _wireSAFEARR_DISPATCH,

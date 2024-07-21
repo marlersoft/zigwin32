@@ -3887,7 +3887,7 @@ pub const RemBRUSH = extern struct {
 
 pub const userCLIPFORMAT = extern struct {
     fContext: i32,
-    u: extern struct {
+    u: extern union {
         dwValue: u32,
         pwszName: ?PWSTR,
     },
@@ -3895,7 +3895,7 @@ pub const userCLIPFORMAT = extern struct {
 
 pub const GDI_NONREMOTE = extern struct {
     fContext: i32,
-    u: extern struct {
+    u: extern union {
         hInproc: i32,
         hRemote: ?*DWORD_BLOB,
     },
@@ -3903,7 +3903,7 @@ pub const GDI_NONREMOTE = extern struct {
 
 pub const userHGLOBAL = extern struct {
     fContext: i32,
-    u: extern struct {
+    u: extern union {
         hInproc: i32,
         hRemote: ?*FLAGGED_BYTE_BLOB,
         hInproc64: i64,
@@ -3912,7 +3912,7 @@ pub const userHGLOBAL = extern struct {
 
 pub const userHMETAFILE = extern struct {
     fContext: i32,
-    u: extern struct {
+    u: extern union {
         hInproc: i32,
         hRemote: ?*BYTE_BLOB,
         hInproc64: i64,
@@ -3928,7 +3928,7 @@ pub const remoteMETAFILEPICT = extern struct {
 
 pub const userHMETAFILEPICT = extern struct {
     fContext: i32,
-    u: extern struct {
+    u: extern union {
         hInproc: i32,
         hRemote: ?*remoteMETAFILEPICT,
         hInproc64: i64,
@@ -3937,7 +3937,7 @@ pub const userHMETAFILEPICT = extern struct {
 
 pub const userHENHMETAFILE = extern struct {
     fContext: i32,
-    u: extern struct {
+    u: extern union {
         hInproc: i32,
         hRemote: ?*BYTE_BLOB,
         hInproc64: i64,
@@ -3957,7 +3957,7 @@ pub const userBITMAP = extern struct {
 
 pub const userHBITMAP = extern struct {
     fContext: i32,
-    u: extern struct {
+    u: extern union {
         hInproc: i32,
         hRemote: ?*userBITMAP,
         hInproc64: i64,
@@ -3966,7 +3966,7 @@ pub const userHBITMAP = extern struct {
 
 pub const userHPALETTE = extern struct {
     fContext: i32,
-    u: extern struct {
+    u: extern union {
         hInproc: i32,
         hRemote: ?*LOGPALETTE,
         hInproc64: i64,
@@ -3975,7 +3975,7 @@ pub const userHPALETTE = extern struct {
 
 pub const RemotableHandle = extern struct {
     fContext: i32,
-    u: extern struct {
+    u: extern union {
         hInproc: i32,
         hRemote: i32,
     },
