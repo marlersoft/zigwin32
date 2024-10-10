@@ -3609,6 +3609,32 @@ pub const WINDOW_LONG_PTR_INDEX = enum(i32) {
     // _WNDPROC = -4, this enum value conflicts with P_WNDPROC
     // _HWNDPARENT = -8, this enum value conflicts with P_HWNDPARENT
     _,
+    pub fn tagName(self: WINDOW_LONG_PTR_INDEX) ?[:0]const u8 {
+        return switch (self) {
+            ._EXSTYLE => "_EXSTYLE",
+            .P_HINSTANCE => "P_HINSTANCE",
+            .P_HWNDPARENT => "P_HWNDPARENT",
+            .P_ID => "P_ID",
+            ._STYLE => "_STYLE",
+            .P_USERDATA => "P_USERDATA",
+            .P_WNDPROC => "P_WNDPROC",
+            else => null,
+        };
+    }
+    pub fn fmt(self: WINDOW_LONG_PTR_INDEX) Fmt { return .{ .value = self }; }
+    pub const Fmt = struct {
+        value: WINDOW_LONG_PTR_INDEX,
+        pub fn format(
+            self: Fmt,
+            comptime fmt_spec: []const u8,
+            options: @import("std").fmt.FormatOptions,
+            writer: anytype,
+        ) !void {
+            _ = fmt_spec;
+            _ = options;
+            try writer.print("{s}({})", .{self.value.tagName() orelse "?", @intFromEnum(self.value)});
+        }
+    };
 };
 pub const GWL_EXSTYLE = WINDOW_LONG_PTR_INDEX._EXSTYLE;
 pub const GWLP_HINSTANCE = WINDOW_LONG_PTR_INDEX.P_HINSTANCE;

@@ -2,6 +2,10 @@
 const std = @import("std");
 const builtin = @import("builtin");
 const testing = std.testing;
+const win32 = @import("../win32.zig");
+const foundation = win32.foundation;
+
+const HWND = foundation.HWND;
 
 const root = @import("root");
 pub const UnicodeMode = enum { ansi, wide, unspecified };
@@ -107,17 +111,81 @@ pub const PropertyKey = extern struct {
     }
 };
 
-pub fn FAILED(hr: @import("foundation.zig").HRESULT) bool {
+pub fn FAILED(hr: foundation.HRESULT) bool {
     return hr < 0;
 }
-pub fn SUCCEEDED(hr: @import("foundation.zig").HRESULT) bool {
+pub fn SUCCEEDED(hr: foundation.HRESULT) bool {
     return hr >= 0;
 }
 
 // These constants were removed from the metadata to allow each projection
 // to define them however they like (see https://github.com/microsoft/win32metadata/issues/530)
-pub const FALSE: @import("foundation.zig").BOOL = 0;
-pub const TRUE: @import("foundation.zig").BOOL = 1;
+pub const FALSE: foundation.BOOL = 0;
+pub const TRUE: foundation.BOOL = 1;
+
+pub const getWindowLongPtr = switch (unicode_mode) {
+    .ansi => getWindowLongPtrA,
+    .wide => getWindowLongPtrW,
+    .unpecified => if (builtin.is_test) struct{} else @compileError(
+        "getWindowLongPtr requires that UNICODE be set to true or false in the root module"
+    ),
+};
+
+/// calls CloseHandle, panics on failure
+pub fn closeHandle(handle: foundation.HANDLE) void {
+    if (0 == foundation.CloseHandle(handle)) std.debug.panic(
+        "CloseHandle failed with {}",
+        .{foundation.GetLastError().fmt()},
+    );
+}
+
+pub const setWindowLongPtr = switch (unicode_mode) {
+    .ansi => setWindowLongPtrA,
+    .wide => setWindowLongPtrW,
+    .unpecified => if (builtin.is_test) struct{} else @compileError(
+        "setWindowLongPtr requires that UNICODE be set to true or false in the root module"
+    ),
+};
+
+pub fn getWindowLongPtrA(hwnd: HWND, index: i32) usize {
+    return @bitCast(win32.ui.windows_and_messaging.GetWindowLongPtrA(hwnd, @enumFromInt(index)));
+}
+pub fn getWindowLongPtrW(hwnd: HWND, index: i32) usize {
+    return @bitCast(win32.ui.windows_and_messaging.GetWindowLongPtrW(hwnd, @enumFromInt(index)));
+}
+pub fn setWindowLongPtrA(hwnd: HWND, index: i32, value: usize) usize {
+    return @bitCast(win32.ui.windows_and_messaging.SetWindowLongPtrA(hwnd, @enumFromInt(index), @bitCast(value)));
+}
+pub fn setWindowLongPtrW(hwnd: HWND, index: i32, value: usize) usize {
+    return @bitCast(win32.ui.windows_and_messaging.SetWindowLongPtrW(hwnd, @enumFromInt(index), @bitCast(value)));
+}
+
+pub fn scaleDpi(comptime T: type, value: anytype, dpi: u32) T {
+    std.debug.assert(dpi >= 96);
+    switch (@typeInfo(T)) {
+        .Float => return value * (@as(T, @floatFromInt(dpi)) / @as(T, 96.0)),
+        .Int => return @intFromFloat(@round(@as(f32, @floatFromInt(value)) * (@as(f32, @floatFromInt(dpi)) / 96.0))),
+        else => @compileError("scale_dpi does not support type " ++ @typeName(@TypeOf(value))),
+    }
+}
+
+/// calls DpiForWindow, panics on failure
+pub fn dpiFromHwnd(hwnd: HWND) u32 {
+    const value = win32.ui.hi_dpi.GetDpiForWindow(hwnd);
+    if (value == 0) std.debug.panic(
+        "GetDpiForWindow failed with {}",
+        .{foundation.GetLastError().fmt()},
+    );
+    return value;
+}
+
+/// calls InvalidateRect, panics on failure
+pub fn invalidateHwnd(hwnd: HWND) void {
+    if (0 == win32.graphics.gdi.InvalidateRect(hwnd, null, 0)) std.debug.panic(
+        "InvalidateRect failed with {}",
+        .{foundation.GetLastError().fmt()},
+    );
+}
 
 /// Converts comptime values to the given type.
 /// Note that this function is called at compile time rather than converting constant values earlier at code generation time.
