@@ -151,6 +151,32 @@ pub fn setWindowLongPtrW(hwnd: HWND, index: i32, value: usize) usize {
     return @bitCast(win32.ui.windows_and_messaging.SetWindowLongPtrW(hwnd, @enumFromInt(index), @bitCast(value)));
 }
 
+pub fn scaleDpi(comptime T: type, value: anytype, dpi: u32) T {
+    std.debug.assert(dpi >= 96);
+    switch (@typeInfo(T)) {
+        .Float => return value * (@as(T, @floatFromInt(dpi)) / @as(T, 96.0)),
+        .Int => return @intFromFloat(@round(@as(f32, @floatFromInt(value)) * (@as(f32, @floatFromInt(dpi)) / 96.0))),
+        else => @compileError("scale_dpi does not support type " ++ @typeName(@TypeOf(value))),
+    }
+}
+
+/// calls DpiForWindow, panics on failure
+pub fn dpiFromHwnd(hwnd: HWND) u32 {
+    const value = win32.ui.hi_dpi.GetDpiForWindow(hwnd);
+    if (value == 0) std.debug.panic(
+        "GetDpiForWindow failed with {}",
+        .{win32.foundation.GetLastError().fmt()},
+    );
+    return value;
+}
+
+/// calls InvalidateRect, panics on failure
+pub fn invalidateHwnd(hwnd: HWND) void {
+    if (0 == win32.graphics.gdi.InvalidateRect(hwnd, null, 0)) std.debug.panic(
+        "InvalidateRect failed with {}",
+        .{win32.foundation.GetLastError().fmt()},
+    );
+}
 
 /// Converts comptime values to the given type.
 /// Note that this function is called at compile time rather than converting constant values earlier at code generation time.
