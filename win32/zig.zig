@@ -2,6 +2,7 @@
 const std = @import("std");
 const builtin = @import("builtin");
 const testing = std.testing;
+const foundation = @import("foundation.zig");
 
 const root = @import("root");
 pub const UnicodeMode = enum { ansi, wide, unspecified };
@@ -107,17 +108,17 @@ pub const PropertyKey = extern struct {
     }
 };
 
-pub fn FAILED(hr: @import("foundation.zig").HRESULT) bool {
+pub fn FAILED(hr: foundation.HRESULT) bool {
     return hr < 0;
 }
-pub fn SUCCEEDED(hr: @import("foundation.zig").HRESULT) bool {
+pub fn SUCCEEDED(hr: foundation.HRESULT) bool {
     return hr >= 0;
 }
 
 // These constants were removed from the metadata to allow each projection
 // to define them however they like (see https://github.com/microsoft/win32metadata/issues/530)
-pub const FALSE: @import("foundation.zig").BOOL = 0;
-pub const TRUE: @import("foundation.zig").BOOL = 1;
+pub const FALSE: foundation.BOOL = 0;
+pub const TRUE: foundation.BOOL = 1;
 
 /// Converts comptime values to the given type.
 /// Note that this function is called at compile time rather than converting constant values earlier at code generation time.
