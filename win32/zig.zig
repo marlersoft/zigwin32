@@ -130,6 +130,15 @@ pub const getWindowLongPtr = switch (unicode_mode) {
         "getWindowLongPtr requires that UNICODE be set to true or false in the root module"
     ),
 };
+
+/// calls CloseHandle, panics on failure
+pub fn closeHandle(handle: foundation.HANDLE) void {
+    if (0 == foundation.CloseHandle(handle)) std.debug.panic(
+        "CloseHandle failed with {}",
+        .{foundation.GetLastError().fmt()},
+    );
+}
+
 pub const setWindowLongPtr = switch (unicode_mode) {
     .ansi => setWindowLongPtrA,
     .wide => setWindowLongPtrW,
@@ -165,7 +174,7 @@ pub fn dpiFromHwnd(hwnd: HWND) u32 {
     const value = win32.ui.hi_dpi.GetDpiForWindow(hwnd);
     if (value == 0) std.debug.panic(
         "GetDpiForWindow failed with {}",
-        .{win32.foundation.GetLastError().fmt()},
+        .{foundation.GetLastError().fmt()},
     );
     return value;
 }
@@ -174,7 +183,7 @@ pub fn dpiFromHwnd(hwnd: HWND) u32 {
 pub fn invalidateHwnd(hwnd: HWND) void {
     if (0 == win32.graphics.gdi.InvalidateRect(hwnd, null, 0)) std.debug.panic(
         "InvalidateRect failed with {}",
-        .{win32.foundation.GetLastError().fmt()},
+        .{foundation.GetLastError().fmt()},
     );
 }
 
