@@ -153,7 +153,7 @@ pub extern "kernel32" fn DisableThreadLibraryCalls(
 pub extern "kernel32" fn FindResourceExW(
     hModule: ?HINSTANCE,
     lpType: ?[*:0]align(1) const u16,
-    lpName: ?[*:0]const u16,
+    lpName: ?[*:0]align(1) const u16,
     wLanguage: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
 
@@ -325,7 +325,7 @@ pub extern "kernel32" fn EnumResourceTypesExW(
 
 pub extern "kernel32" fn FindResourceW(
     hModule: ?HINSTANCE,
-    lpName: ?[*:0]const u16,
+    lpName: ?[*:0]align(1) const u16,
     lpType: ?[*:0]align(1) const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
 
@@ -440,7 +440,7 @@ pub extern "kernel32" fn UpdateResourceA(
 pub extern "kernel32" fn UpdateResourceW(
     hUpdate: ?HANDLE,
     lpType: ?[*:0]align(1) const u16,
-    lpName: ?[*:0]const u16,
+    lpName: ?[*:0]align(1) const u16,
     wLanguage: u16,
     // TODO: what to do with BytesParamIndex 5?
     lpData: ?*anyopaque,
