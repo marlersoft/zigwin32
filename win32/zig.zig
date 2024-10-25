@@ -123,14 +123,6 @@ pub fn SUCCEEDED(hr: foundation.HRESULT) bool {
 pub const FALSE: foundation.BOOL = 0;
 pub const TRUE: foundation.BOOL = 1;
 
-pub const getWindowLongPtr = switch (unicode_mode) {
-    .ansi => getWindowLongPtrA,
-    .wide => getWindowLongPtrW,
-    .unpecified => if (builtin.is_test) struct{} else @compileError(
-        "getWindowLongPtr requires that UNICODE be set to true or false in the root module"
-    ),
-};
-
 /// calls CloseHandle, panics on failure
 pub fn closeHandle(handle: foundation.HANDLE) void {
     if (0 == foundation.CloseHandle(handle)) std.debug.panic(
@@ -139,24 +131,41 @@ pub fn closeHandle(handle: foundation.HANDLE) void {
     );
 }
 
+pub const has_window_longptr = switch (arch) {
+    .X86 => false,
+    .X64, .Arm64 => true,
+};
+
+pub const getWindowLongPtr = switch (unicode_mode) {
+    .ansi => getWindowLongPtrA,
+    .wide => getWindowLongPtrW,
+    .unpecified => if (builtin.is_test) struct {} else @compileError(
+        "getWindowLongPtr requires that UNICODE be set to true or false in the root module",
+    ),
+};
+
 pub const setWindowLongPtr = switch (unicode_mode) {
     .ansi => setWindowLongPtrA,
     .wide => setWindowLongPtrW,
-    .unpecified => if (builtin.is_test) struct{} else @compileError(
-        "setWindowLongPtr requires that UNICODE be set to true or false in the root module"
+    .unpecified => if (builtin.is_test) struct {} else @compileError(
+        "setWindowLongPtr requires that UNICODE be set to true or false in the root module",
     ),
 };
 
 pub fn getWindowLongPtrA(hwnd: HWND, index: i32) usize {
+    if (!has_window_longptr) @compileError("this arch does not have GetWindowLongPtr");
     return @bitCast(win32.ui.windows_and_messaging.GetWindowLongPtrA(hwnd, @enumFromInt(index)));
 }
 pub fn getWindowLongPtrW(hwnd: HWND, index: i32) usize {
+    if (!has_window_longptr) @compileError("this arch does not have GetWindowLongPtr");
     return @bitCast(win32.ui.windows_and_messaging.GetWindowLongPtrW(hwnd, @enumFromInt(index)));
 }
 pub fn setWindowLongPtrA(hwnd: HWND, index: i32, value: usize) usize {
+    if (!has_window_longptr) @compileError("this arch does not have SetWindowLongPtr");
     return @bitCast(win32.ui.windows_and_messaging.SetWindowLongPtrA(hwnd, @enumFromInt(index), @bitCast(value)));
 }
 pub fn setWindowLongPtrW(hwnd: HWND, index: i32, value: usize) usize {
+    if (!has_window_longptr) @compileError("this arch does not have SetWindowLongPtr");
     return @bitCast(win32.ui.windows_and_messaging.SetWindowLongPtrW(hwnd, @enumFromInt(index), @bitCast(value)));
 }
 
