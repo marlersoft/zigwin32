@@ -131,6 +131,27 @@ pub fn closeHandle(handle: foundation.HANDLE) void {
     );
 }
 
+pub fn loword(value: anytype) u16 {
+    switch (@typeInfo(@TypeOf(value))) {
+        .Int => |int| switch (int.signedness) {
+            .signed => return loword(@as(@Type(.{ .Int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
+            .unsigned => return if (int.bits <= 16) value else @intCast(0xffff & value),
+        },
+        else => {},
+    }
+    @compileError("unsupported type " ++ @typeName(@TypeOf(value)));
+}
+pub fn hiword(value: anytype) u16 {
+    switch (@typeInfo(@TypeOf(value))) {
+        .Int => |int| switch (int.signedness) {
+            .signed => return hiword(@as(@Type(.{ .Int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
+            .unsigned => return @intCast(0xffff & (value >> 16)),
+        },
+        else => {},
+    }
+    @compileError("unsupported type " ++ @typeName(@TypeOf(value)));
+}
+
 pub const has_window_longptr = switch (arch) {
     .X86 => false,
     .X64, .Arm64 => true,
