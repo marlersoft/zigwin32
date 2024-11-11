@@ -190,7 +190,7 @@ pub fn setWindowLongPtrW(hwnd: HWND, index: i32, value: usize) usize {
     return @bitCast(win32.ui.windows_and_messaging.SetWindowLongPtrW(hwnd, @enumFromInt(index), @bitCast(value)));
 }
 
-pub fn scaleDpi(comptime T: type, value: anytype, dpi: u32) T {
+pub fn scaleDpi(comptime T: type, value: T, dpi: u32) T {
     std.debug.assert(dpi >= 96);
     switch (@typeInfo(T)) {
         .Float => return value * (@as(T, @floatFromInt(dpi)) / @as(T, 96.0)),
