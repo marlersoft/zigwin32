@@ -3802,7 +3802,7 @@ pub const ICondition = extern union {
         GetSubConditions: *const fn(
             self: *const ICondition,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetComparisonInfo: *const fn(
             self: *const ICondition,
@@ -3836,7 +3836,7 @@ pub const ICondition = extern union {
     pub fn GetConditionType(self: *const ICondition, pNodeType: ?*CONDITION_TYPE) callconv(.Inline) HRESULT {
         return self.vtable.GetConditionType(self, pNodeType);
     }
-    pub fn GetSubConditions(self: *const ICondition, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetSubConditions(self: *const ICondition, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetSubConditions(self, riid, ppv);
     }
     pub fn GetComparisonInfo(self: *const ICondition, ppszPropertyName: ?*?PWSTR, pcop: ?*CONDITION_OPERATION, ppropvar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
@@ -8294,7 +8294,7 @@ pub const IQuerySolution = extern union {
         GetErrors: *const fn(
             self: *const IQuerySolution,
             riid: ?*const Guid,
-            ppParseErrors: ?*?*anyopaque,
+            ppParseErrors: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLexicalData: *const fn(
             self: *const IQuerySolution,
@@ -8310,7 +8310,7 @@ pub const IQuerySolution = extern union {
     pub fn GetQuery(self: *const IQuerySolution, ppQueryNode: ?*?*ICondition, ppMainType: ?*?*IEntity) callconv(.Inline) HRESULT {
         return self.vtable.GetQuery(self, ppQueryNode, ppMainType);
     }
-    pub fn GetErrors(self: *const IQuerySolution, riid: ?*const Guid, ppParseErrors: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetErrors(self: *const IQuerySolution, riid: ?*const Guid, ppParseErrors: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetErrors(self, riid, ppParseErrors);
     }
     pub fn GetLexicalData(self: *const IQuerySolution, ppszInputString: ?*?PWSTR, ppTokens: ?*?*ITokenCollection, plcid: ?*u32, ppWordBreaker: ?*?*IUnknown) callconv(.Inline) HRESULT {
@@ -8371,14 +8371,14 @@ pub const IConditionFactory2 = extern union {
             fVal: BOOL,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateNegation: *const fn(
             self: *const IConditionFactory2,
             pcSub: ?*ICondition,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCompoundFromObjectArray: *const fn(
             self: *const IConditionFactory2,
@@ -8386,7 +8386,7 @@ pub const IConditionFactory2 = extern union {
             poaSubs: ?*IObjectArray,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCompoundFromArray: *const fn(
             self: *const IConditionFactory2,
@@ -8395,7 +8395,7 @@ pub const IConditionFactory2 = extern union {
             cSubs: u32,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateStringLeaf: *const fn(
             self: *const IConditionFactory2,
@@ -8405,7 +8405,7 @@ pub const IConditionFactory2 = extern union {
             pszLocaleName: ?[*:0]const u16,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateIntegerLeaf: *const fn(
             self: *const IConditionFactory2,
@@ -8414,7 +8414,7 @@ pub const IConditionFactory2 = extern union {
             lValue: i32,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBooleanLeaf: *const fn(
             self: *const IConditionFactory2,
@@ -8423,7 +8423,7 @@ pub const IConditionFactory2 = extern union {
             fValue: BOOL,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateLeaf: *const fn(
             self: *const IConditionFactory2,
@@ -8437,7 +8437,7 @@ pub const IConditionFactory2 = extern union {
             pValueTerm: ?*IRichChunk,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResolveCondition: *const fn(
             self: *const IConditionFactory2,
@@ -8445,37 +8445,37 @@ pub const IConditionFactory2 = extern union {
             sqro: STRUCTURED_QUERY_RESOLVE_OPTION,
             pstReferenceTime: ?*const SYSTEMTIME,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IConditionFactory: IConditionFactory,
     IUnknown: IUnknown,
-    pub fn CreateTrueFalse(self: *const IConditionFactory2, fVal: BOOL, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateTrueFalse(self: *const IConditionFactory2, fVal: BOOL, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateTrueFalse(self, fVal, cco, riid, ppv);
     }
-    pub fn CreateNegation(self: *const IConditionFactory2, pcSub: ?*ICondition, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateNegation(self: *const IConditionFactory2, pcSub: ?*ICondition, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateNegation(self, pcSub, cco, riid, ppv);
     }
-    pub fn CreateCompoundFromObjectArray(self: *const IConditionFactory2, ct: CONDITION_TYPE, poaSubs: ?*IObjectArray, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCompoundFromObjectArray(self: *const IConditionFactory2, ct: CONDITION_TYPE, poaSubs: ?*IObjectArray, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCompoundFromObjectArray(self, ct, poaSubs, cco, riid, ppv);
     }
-    pub fn CreateCompoundFromArray(self: *const IConditionFactory2, ct: CONDITION_TYPE, ppcondSubs: [*]?*ICondition, cSubs: u32, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCompoundFromArray(self: *const IConditionFactory2, ct: CONDITION_TYPE, ppcondSubs: [*]?*ICondition, cSubs: u32, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCompoundFromArray(self, ct, ppcondSubs, cSubs, cco, riid, ppv);
     }
-    pub fn CreateStringLeaf(self: *const IConditionFactory2, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, pszValue: ?[*:0]const u16, pszLocaleName: ?[*:0]const u16, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateStringLeaf(self: *const IConditionFactory2, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, pszValue: ?[*:0]const u16, pszLocaleName: ?[*:0]const u16, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateStringLeaf(self, propkey, cop, pszValue, pszLocaleName, cco, riid, ppv);
     }
-    pub fn CreateIntegerLeaf(self: *const IConditionFactory2, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, lValue: i32, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateIntegerLeaf(self: *const IConditionFactory2, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, lValue: i32, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateIntegerLeaf(self, propkey, cop, lValue, cco, riid, ppv);
     }
-    pub fn CreateBooleanLeaf(self: *const IConditionFactory2, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, fValue: BOOL, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateBooleanLeaf(self: *const IConditionFactory2, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, fValue: BOOL, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateBooleanLeaf(self, propkey, cop, fValue, cco, riid, ppv);
     }
-    pub fn CreateLeaf(self: *const IConditionFactory2, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, propvar: ?*const PROPVARIANT, pszSemanticType: ?[*:0]const u16, pszLocaleName: ?[*:0]const u16, pPropertyNameTerm: ?*IRichChunk, pOperationTerm: ?*IRichChunk, pValueTerm: ?*IRichChunk, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateLeaf(self: *const IConditionFactory2, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, propvar: ?*const PROPVARIANT, pszSemanticType: ?[*:0]const u16, pszLocaleName: ?[*:0]const u16, pPropertyNameTerm: ?*IRichChunk, pOperationTerm: ?*IRichChunk, pValueTerm: ?*IRichChunk, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateLeaf(self, propkey, cop, propvar, pszSemanticType, pszLocaleName, pPropertyNameTerm, pOperationTerm, pValueTerm, cco, riid, ppv);
     }
-    pub fn ResolveCondition(self: *const IConditionFactory2, pc: ?*ICondition, sqro: STRUCTURED_QUERY_RESOLVE_OPTION, pstReferenceTime: ?*const SYSTEMTIME, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn ResolveCondition(self: *const IConditionFactory2, pc: ?*ICondition, sqro: STRUCTURED_QUERY_RESOLVE_OPTION, pstReferenceTime: ?*const SYSTEMTIME, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.ResolveCondition(self, pc, sqro, pstReferenceTime, riid, ppv);
     }
 };
@@ -8593,7 +8593,7 @@ pub const IEntity = extern union {
         Relationships: *const fn(
             self: *const IEntity,
             riid: ?*const Guid,
-            pRelationships: ?*?*anyopaque,
+            pRelationships: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRelationship: *const fn(
             self: *const IEntity,
@@ -8603,12 +8603,12 @@ pub const IEntity = extern union {
         MetaData: *const fn(
             self: *const IEntity,
             riid: ?*const Guid,
-            pMetaData: ?*?*anyopaque,
+            pMetaData: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NamedEntities: *const fn(
             self: *const IEntity,
             riid: ?*const Guid,
-            pNamedEntities: ?*?*anyopaque,
+            pNamedEntities: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNamedEntity: *const fn(
             self: *const IEntity,
@@ -8628,16 +8628,16 @@ pub const IEntity = extern union {
     pub fn Base(self: *const IEntity, pBaseEntity: ?*?*IEntity) callconv(.Inline) HRESULT {
         return self.vtable.Base(self, pBaseEntity);
     }
-    pub fn Relationships(self: *const IEntity, riid: ?*const Guid, pRelationships: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Relationships(self: *const IEntity, riid: ?*const Guid, pRelationships: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Relationships(self, riid, pRelationships);
     }
     pub fn GetRelationship(self: *const IEntity, pszRelationName: ?[*:0]const u16, pRelationship: ?*?*IRelationship) callconv(.Inline) HRESULT {
         return self.vtable.GetRelationship(self, pszRelationName, pRelationship);
     }
-    pub fn MetaData(self: *const IEntity, riid: ?*const Guid, pMetaData: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn MetaData(self: *const IEntity, riid: ?*const Guid, pMetaData: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.MetaData(self, riid, pMetaData);
     }
-    pub fn NamedEntities(self: *const IEntity, riid: ?*const Guid, pNamedEntities: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn NamedEntities(self: *const IEntity, riid: ?*const Guid, pNamedEntities: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.NamedEntities(self, riid, pNamedEntities);
     }
     pub fn GetNamedEntity(self: *const IEntity, pszValue: ?[*:0]const u16, ppNamedEntity: ?*?*INamedEntity) callconv(.Inline) HRESULT {
@@ -8669,7 +8669,7 @@ pub const IRelationship = extern union {
         MetaData: *const fn(
             self: *const IRelationship,
             riid: ?*const Guid,
-            pMetaData: ?*?*anyopaque,
+            pMetaData: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DefaultPhrase: *const fn(
             self: *const IRelationship,
@@ -8687,7 +8687,7 @@ pub const IRelationship = extern union {
     pub fn Destination(self: *const IRelationship, pDestinationEntity: ?*?*IEntity) callconv(.Inline) HRESULT {
         return self.vtable.Destination(self, pDestinationEntity);
     }
-    pub fn MetaData(self: *const IRelationship, riid: ?*const Guid, pMetaData: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn MetaData(self: *const IRelationship, riid: ?*const Guid, pMetaData: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.MetaData(self, riid, pMetaData);
     }
     pub fn DefaultPhrase(self: *const IRelationship, ppszPhrase: ?*?PWSTR) callconv(.Inline) HRESULT {
@@ -8729,7 +8729,7 @@ pub const ISchemaProvider = extern union {
         Entities: *const fn(
             self: *const ISchemaProvider,
             riid: ?*const Guid,
-            pEntities: ?*?*anyopaque,
+            pEntities: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RootEntity: *const fn(
             self: *const ISchemaProvider,
@@ -8743,7 +8743,7 @@ pub const ISchemaProvider = extern union {
         MetaData: *const fn(
             self: *const ISchemaProvider,
             riid: ?*const Guid,
-            pMetaData: ?*?*anyopaque,
+            pMetaData: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Localize: *const fn(
             self: *const ISchemaProvider,
@@ -8766,7 +8766,7 @@ pub const ISchemaProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Entities(self: *const ISchemaProvider, riid: ?*const Guid, pEntities: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Entities(self: *const ISchemaProvider, riid: ?*const Guid, pEntities: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Entities(self, riid, pEntities);
     }
     pub fn RootEntity(self: *const ISchemaProvider, pRootEntity: ?*?*IEntity) callconv(.Inline) HRESULT {
@@ -8775,7 +8775,7 @@ pub const ISchemaProvider = extern union {
     pub fn GetEntity(self: *const ISchemaProvider, pszEntityName: ?[*:0]const u16, pEntity: ?*?*IEntity) callconv(.Inline) HRESULT {
         return self.vtable.GetEntity(self, pszEntityName, pEntity);
     }
-    pub fn MetaData(self: *const ISchemaProvider, riid: ?*const Guid, pMetaData: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn MetaData(self: *const ISchemaProvider, riid: ?*const Guid, pMetaData: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.MetaData(self, riid, pMetaData);
     }
     pub fn Localize(self: *const ISchemaProvider, lcid: u32, pSchemaLocalizerSupport: ?*ISchemaLocalizerSupport) callconv(.Inline) HRESULT {
@@ -8880,7 +8880,7 @@ pub const IQueryParserManager = extern union {
             pszCatalog: ?[*:0]const u16,
             langidForKeywords: u16,
             riid: ?*const Guid,
-            ppQueryParser: ?*?*anyopaque,
+            ppQueryParser: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeOptions: *const fn(
             self: *const IQueryParserManager,
@@ -8896,7 +8896,7 @@ pub const IQueryParserManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateLoadedParser(self: *const IQueryParserManager, pszCatalog: ?[*:0]const u16, langidForKeywords: u16, riid: ?*const Guid, ppQueryParser: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateLoadedParser(self: *const IQueryParserManager, pszCatalog: ?[*:0]const u16, langidForKeywords: u16, riid: ?*const Guid, ppQueryParser: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateLoadedParser(self, pszCatalog, langidForKeywords, riid, ppQueryParser);
     }
     pub fn InitializeOptions(self: *const IQueryParserManager, fUnderstandNQS: BOOL, fAutoWildCard: BOOL, pQueryParser: ?*IQueryParser) callconv(.Inline) HRESULT {

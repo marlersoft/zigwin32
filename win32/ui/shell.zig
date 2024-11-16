@@ -3690,7 +3690,7 @@ pub const IParseAndCreateItem = extern union {
         GetItem: *const fn(
             self: *const IParseAndCreateItem,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3698,7 +3698,7 @@ pub const IParseAndCreateItem = extern union {
     pub fn SetItem(self: *const IParseAndCreateItem, psi: ?*IShellItem) callconv(.Inline) HRESULT {
         return self.vtable.SetItem(self, psi);
     }
-    pub fn GetItem(self: *const IParseAndCreateItem, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetItem(self: *const IParseAndCreateItem, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetItem(self, riid, ppv);
     }
 };
@@ -3729,14 +3729,14 @@ pub const IShellFolder = extern union {
             pidl: ?*ITEMIDLIST,
             pbc: ?*IBindCtx,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BindToStorage: *const fn(
             self: *const IShellFolder,
             pidl: ?*ITEMIDLIST,
             pbc: ?*IBindCtx,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareIDs: *const fn(
             self: *const IShellFolder,
@@ -3748,7 +3748,7 @@ pub const IShellFolder = extern union {
             self: *const IShellFolder,
             hwndOwner: ?HWND,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributesOf: *const fn(
             self: *const IShellFolder,
@@ -3763,7 +3763,7 @@ pub const IShellFolder = extern union {
             apidl: [*]?*ITEMIDLIST,
             riid: ?*const Guid,
             rgfReserved: ?*u32,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDisplayNameOf: *const fn(
             self: *const IShellFolder,
@@ -3788,22 +3788,22 @@ pub const IShellFolder = extern union {
     pub fn EnumObjects(self: *const IShellFolder, hwnd: ?HWND, grfFlags: u32, ppenumIDList: ?*?*IEnumIDList) callconv(.Inline) HRESULT {
         return self.vtable.EnumObjects(self, hwnd, grfFlags, ppenumIDList);
     }
-    pub fn BindToObject(self: *const IShellFolder, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToObject(self: *const IShellFolder, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.BindToObject(self, pidl, pbc, riid, ppv);
     }
-    pub fn BindToStorage(self: *const IShellFolder, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToStorage(self: *const IShellFolder, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.BindToStorage(self, pidl, pbc, riid, ppv);
     }
     pub fn CompareIDs(self: *const IShellFolder, lParam: LPARAM, pidl1: ?*ITEMIDLIST, pidl2: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
         return self.vtable.CompareIDs(self, lParam, pidl1, pidl2);
     }
-    pub fn CreateViewObject(self: *const IShellFolder, hwndOwner: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateViewObject(self: *const IShellFolder, hwndOwner: ?HWND, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateViewObject(self, hwndOwner, riid, ppv);
     }
     pub fn GetAttributesOf(self: *const IShellFolder, cidl: u32, apidl: [*]?*ITEMIDLIST, rgfInOut: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetAttributesOf(self, cidl, apidl, rgfInOut);
     }
-    pub fn GetUIObjectOf(self: *const IShellFolder, hwndOwner: ?HWND, cidl: u32, apidl: [*]?*ITEMIDLIST, riid: ?*const Guid, rgfReserved: ?*u32, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetUIObjectOf(self: *const IShellFolder, hwndOwner: ?HWND, cidl: u32, apidl: [*]?*ITEMIDLIST, riid: ?*const Guid, rgfReserved: ?*u32, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetUIObjectOf(self, hwndOwner, cidl, apidl, riid, rgfReserved, ppv);
     }
     pub fn GetDisplayNameOf(self: *const IShellFolder, pidl: ?*ITEMIDLIST, uFlags: SHGDNF, pName: ?*STRRET) callconv(.Inline) HRESULT {
@@ -4156,7 +4156,7 @@ pub const IShellView = extern union {
             self: *const IShellView,
             uItem: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4192,7 +4192,7 @@ pub const IShellView = extern union {
     pub fn SelectItem(self: *const IShellView, pidlItem: ?*ITEMIDLIST, uFlags: u32) callconv(.Inline) HRESULT {
         return self.vtable.SelectItem(self, pidlItem, uFlags);
     }
-    pub fn GetItemObject(self: *const IShellView, uItem: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetItemObject(self: *const IShellView, uItem: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetItemObject(self, uItem, riid, ppv);
     }
 };
@@ -4268,7 +4268,7 @@ pub const IFolderView = extern union {
         GetFolder: *const fn(
             self: *const IFolderView,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: *const fn(
             self: *const IFolderView,
@@ -4284,7 +4284,7 @@ pub const IFolderView = extern union {
             self: *const IFolderView,
             uFlags: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSelectionMarkedItem: *const fn(
             self: *const IFolderView,
@@ -4331,7 +4331,7 @@ pub const IFolderView = extern union {
     pub fn SetCurrentViewMode(self: *const IFolderView, ViewMode: u32) callconv(.Inline) HRESULT {
         return self.vtable.SetCurrentViewMode(self, ViewMode);
     }
-    pub fn GetFolder(self: *const IFolderView, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetFolder(self: *const IFolderView, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetFolder(self, riid, ppv);
     }
     pub fn Item(self: *const IFolderView, iItemIndex: i32, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
@@ -4340,7 +4340,7 @@ pub const IFolderView = extern union {
     pub fn ItemCount(self: *const IFolderView, uFlags: u32, pcItems: ?*i32) callconv(.Inline) HRESULT {
         return self.vtable.ItemCount(self, uFlags, pcItems);
     }
-    pub fn Items(self: *const IFolderView, uFlags: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Items(self: *const IFolderView, uFlags: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Items(self, uFlags, riid, ppv);
     }
     pub fn GetSelectionMarkedItem(self: *const IFolderView, piItem: ?*i32) callconv(.Inline) HRESULT {
@@ -4456,7 +4456,7 @@ pub const IFolderView2 = extern union {
             self: *const IFolderView2,
             iItem: i32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVisibleItem: *const fn(
             self: *const IFolderView2,
@@ -4551,7 +4551,7 @@ pub const IFolderView2 = extern union {
     pub fn GetSortColumns(self: *const IFolderView2, rgSortColumns: [*]SORTCOLUMN, cColumns: i32) callconv(.Inline) HRESULT {
         return self.vtable.GetSortColumns(self, rgSortColumns, cColumns);
     }
-    pub fn GetItem(self: *const IFolderView2, iItem: i32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetItem(self: *const IFolderView2, iItem: i32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetItem(self, iItem, riid, ppv);
     }
     pub fn GetVisibleItem(self: *const IFolderView2, iStart: i32, fPrevious: BOOL, piItem: ?*i32) callconv(.Inline) HRESULT {
@@ -4601,7 +4601,7 @@ pub const IFolderViewSettings = extern union {
         GetColumnPropertyList: *const fn(
             self: *const IFolderViewSettings,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGroupByProperty: *const fn(
             self: *const IFolderViewSettings,
@@ -4634,7 +4634,7 @@ pub const IFolderViewSettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetColumnPropertyList(self: *const IFolderViewSettings, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetColumnPropertyList(self: *const IFolderViewSettings, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetColumnPropertyList(self, riid, ppv);
     }
     pub fn GetGroupByProperty(self: *const IFolderViewSettings, pkey: ?*PROPERTYKEY, pfGroupAscending: ?*BOOL) callconv(.Inline) HRESULT {
@@ -5261,7 +5261,7 @@ pub const IShellItem = extern union {
             pbc: ?*IBindCtx,
             bhid: ?*const Guid,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParent: *const fn(
             self: *const IShellItem,
@@ -5286,7 +5286,7 @@ pub const IShellItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BindToHandler(self: *const IShellItem, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToHandler(self: *const IShellItem, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.BindToHandler(self, pbc, bhid, riid, ppv);
     }
     pub fn GetParent(self: *const IShellItem, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
@@ -5326,14 +5326,14 @@ pub const IShellItem2 = extern union {
             self: *const IShellItem2,
             flags: GETPROPERTYSTOREFLAGS,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStoreWithCreateObject: *const fn(
             self: *const IShellItem2,
             flags: GETPROPERTYSTOREFLAGS,
             punkCreateObject: ?*IUnknown,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStoreForKeys: *const fn(
             self: *const IShellItem2,
@@ -5341,13 +5341,13 @@ pub const IShellItem2 = extern union {
             cKeys: u32,
             flags: GETPROPERTYSTOREFLAGS,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDescriptionList: *const fn(
             self: *const IShellItem2,
             keyType: ?*const PROPERTYKEY,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Update: *const fn(
             self: *const IShellItem2,
@@ -5397,16 +5397,16 @@ pub const IShellItem2 = extern union {
     vtable: *const VTable,
     IShellItem: IShellItem,
     IUnknown: IUnknown,
-    pub fn GetPropertyStore(self: *const IShellItem2, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyStore(self: *const IShellItem2, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPropertyStore(self, flags, riid, ppv);
     }
-    pub fn GetPropertyStoreWithCreateObject(self: *const IShellItem2, flags: GETPROPERTYSTOREFLAGS, punkCreateObject: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyStoreWithCreateObject(self: *const IShellItem2, flags: GETPROPERTYSTOREFLAGS, punkCreateObject: ?*IUnknown, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPropertyStoreWithCreateObject(self, flags, punkCreateObject, riid, ppv);
     }
-    pub fn GetPropertyStoreForKeys(self: *const IShellItem2, rgKeys: [*]const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyStoreForKeys(self: *const IShellItem2, rgKeys: [*]const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPropertyStoreForKeys(self, rgKeys, cKeys, flags, riid, ppv);
     }
-    pub fn GetPropertyDescriptionList(self: *const IShellItem2, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyDescriptionList(self: *const IShellItem2, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPropertyDescriptionList(self, keyType, riid, ppv);
     }
     pub fn Update(self: *const IShellItem2, pbc: ?*IBindCtx) callconv(.Inline) HRESULT {
@@ -5889,13 +5889,13 @@ pub const IShellItemResources = extern union {
             self: *const IShellItemResources,
             pcsir: ?*const SHELL_ITEM_RESOURCE,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateResource: *const fn(
             self: *const IShellItemResources,
             pcsir: ?*const SHELL_ITEM_RESOURCE,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MarkForDelete: *const fn(
             self: *const IShellItemResources,
@@ -5924,10 +5924,10 @@ pub const IShellItemResources = extern union {
     pub fn SupportsResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE) callconv(.Inline) HRESULT {
         return self.vtable.SupportsResource(self, pcsir);
     }
-    pub fn OpenResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.OpenResource(self, pcsir, riid, ppv);
     }
-    pub fn CreateResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateResource(self, pcsir, riid, ppv);
     }
     pub fn MarkForDelete(self: *const IShellItemResources) callconv(.Inline) HRESULT {
@@ -6153,19 +6153,19 @@ pub const IShellItemArray = extern union {
             pbc: ?*IBindCtx,
             bhid: ?*const Guid,
             riid: ?*const Guid,
-            ppvOut: ?*?*anyopaque,
+            ppvOut: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStore: *const fn(
             self: *const IShellItemArray,
             flags: GETPROPERTYSTOREFLAGS,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDescriptionList: *const fn(
             self: *const IShellItemArray,
             keyType: ?*const PROPERTYKEY,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributes: *const fn(
             self: *const IShellItemArray,
@@ -6189,13 +6189,13 @@ pub const IShellItemArray = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BindToHandler(self: *const IShellItemArray, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppvOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToHandler(self: *const IShellItemArray, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppvOut: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.BindToHandler(self, pbc, bhid, riid, ppvOut);
     }
-    pub fn GetPropertyStore(self: *const IShellItemArray, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyStore(self: *const IShellItemArray, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPropertyStore(self, flags, riid, ppv);
     }
-    pub fn GetPropertyDescriptionList(self: *const IShellItemArray, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyDescriptionList(self: *const IShellItemArray, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPropertyDescriptionList(self, keyType, riid, ppv);
     }
     pub fn GetAttributes(self: *const IShellItemArray, AttribFlags: SIATTRIBFLAGS, sfgaoMask: u32, psfgaoAttribs: ?*u32) callconv(.Inline) HRESULT {
@@ -6244,7 +6244,7 @@ pub const IObjectWithSelection = extern union {
         GetSelection: *const fn(
             self: *const IObjectWithSelection,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6252,7 +6252,7 @@ pub const IObjectWithSelection = extern union {
     pub fn SetSelection(self: *const IObjectWithSelection, psia: ?*IShellItemArray) callconv(.Inline) HRESULT {
         return self.vtable.SetSelection(self, psia);
     }
-    pub fn GetSelection(self: *const IObjectWithSelection, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetSelection(self: *const IObjectWithSelection, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetSelection(self, riid, ppv);
     }
 };
@@ -6308,7 +6308,7 @@ pub const ICategoryProvider = extern union {
             self: *const ICategoryProvider,
             pguid: ?*const Guid,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6328,7 +6328,7 @@ pub const ICategoryProvider = extern union {
     pub fn GetCategoryName(self: *const ICategoryProvider, pguid: ?*const Guid, pszName: [*:0]u16, cch: u32) callconv(.Inline) HRESULT {
         return self.vtable.GetCategoryName(self, pguid, pszName, cch);
     }
-    pub fn CreateCategory(self: *const ICategoryProvider, pguid: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCategory(self: *const ICategoryProvider, pguid: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCategory(self, pguid, riid, ppv);
     }
 };
@@ -7285,7 +7285,7 @@ pub const ISearchFolderItemFactory = extern union {
         GetShellItem: *const fn(
             self: *const ISearchFolderItemFactory,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIDList: *const fn(
             self: *const ISearchFolderItemFactory,
@@ -7324,7 +7324,7 @@ pub const ISearchFolderItemFactory = extern union {
     pub fn SetCondition(self: *const ISearchFolderItemFactory, pCondition: ?*ICondition) callconv(.Inline) HRESULT {
         return self.vtable.SetCondition(self, pCondition);
     }
-    pub fn GetShellItem(self: *const ISearchFolderItemFactory, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetShellItem(self: *const ISearchFolderItemFactory, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetShellItem(self, riid, ppv);
     }
     pub fn GetIDList(self: *const ISearchFolderItemFactory, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
@@ -7392,12 +7392,12 @@ pub const IThumbnailHandlerFactory = extern union {
             pidlChild: ?*ITEMIDLIST,
             pbc: ?*IBindCtx,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetThumbnailHandler(self: *const IThumbnailHandlerFactory, pidlChild: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetThumbnailHandler(self: *const IThumbnailHandlerFactory, pidlChild: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetThumbnailHandler(self, pidlChild, pbc, riid, ppv);
     }
 };
@@ -7938,7 +7938,7 @@ pub const IExplorerBrowser = extern union {
         GetCurrentView: *const fn(
             self: *const IExplorerBrowser,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7985,7 +7985,7 @@ pub const IExplorerBrowser = extern union {
     pub fn RemoveAll(self: *const IExplorerBrowser) callconv(.Inline) HRESULT {
         return self.vtable.RemoveAll(self);
     }
-    pub fn GetCurrentView(self: *const IExplorerBrowser, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCurrentView(self: *const IExplorerBrowser, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetCurrentView(self, riid, ppv);
     }
 };
@@ -8385,12 +8385,12 @@ pub const IObjectProvider = extern union {
             self: *const IObjectProvider,
             guidObject: ?*const Guid,
             riid: ?*const Guid,
-            ppvOut: ?*?*anyopaque,
+            ppvOut: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryObject(self: *const IObjectProvider, guidObject: ?*const Guid, riid: ?*const Guid, ppvOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn QueryObject(self: *const IObjectProvider, guidObject: ?*const Guid, riid: ?*const Guid, ppvOut: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.QueryObject(self, guidObject, riid, ppvOut);
     }
 };
@@ -8573,7 +8573,7 @@ pub const IBandSite = extern union {
             self: *const IBandSite,
             dwBandID: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBandSiteInfo: *const fn(
             self: *const IBandSite,
@@ -8601,7 +8601,7 @@ pub const IBandSite = extern union {
     pub fn RemoveBand(self: *const IBandSite, dwBandID: u32) callconv(.Inline) HRESULT {
         return self.vtable.RemoveBand(self, dwBandID);
     }
-    pub fn GetBandObject(self: *const IBandSite, dwBandID: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetBandObject(self: *const IBandSite, dwBandID: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetBandObject(self, dwBandID, riid, ppv);
     }
     pub fn SetBandSiteInfo(self: *const IBandSite, pbsinfo: ?*const BANDSITEINFO) callconv(.Inline) HRESULT {
@@ -10140,7 +10140,7 @@ pub const IKnownFolder = extern union {
             self: *const IKnownFolder,
             dwFlags: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPath: *const fn(
             self: *const IKnownFolder,
@@ -10178,7 +10178,7 @@ pub const IKnownFolder = extern union {
     pub fn GetCategory(self: *const IKnownFolder, pCategory: ?*KF_CATEGORY) callconv(.Inline) HRESULT {
         return self.vtable.GetCategory(self, pCategory);
     }
-    pub fn GetShellItem(self: *const IKnownFolder, dwFlags: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetShellItem(self: *const IKnownFolder, dwFlags: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetShellItem(self, dwFlags, riid, ppv);
     }
     pub fn GetPath(self: *const IKnownFolder, dwFlags: u32, ppszPath: ?*?PWSTR) callconv(.Inline) HRESULT {
@@ -11420,21 +11420,21 @@ pub const IExplorerCommandProvider = extern union {
             self: *const IExplorerCommandProvider,
             punkSite: ?*IUnknown,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCommand: *const fn(
             self: *const IExplorerCommandProvider,
             rguidCommandId: ?*const Guid,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCommands(self: *const IExplorerCommandProvider, punkSite: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCommands(self: *const IExplorerCommandProvider, punkSite: ?*IUnknown, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetCommands(self, punkSite, riid, ppv);
     }
-    pub fn GetCommand(self: *const IExplorerCommandProvider, rguidCommandId: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCommand(self: *const IExplorerCommandProvider, rguidCommandId: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetCommand(self, rguidCommandId, riid, ppv);
     }
 };
@@ -11572,7 +11572,7 @@ pub const ICustomDestinationList = extern union {
             self: *const ICustomDestinationList,
             pcMinSlots: ?*u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AppendCategory: *const fn(
             self: *const ICustomDestinationList,
@@ -11593,7 +11593,7 @@ pub const ICustomDestinationList = extern union {
         GetRemovedDestinations: *const fn(
             self: *const ICustomDestinationList,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteList: *const fn(
             self: *const ICustomDestinationList,
@@ -11608,7 +11608,7 @@ pub const ICustomDestinationList = extern union {
     pub fn SetAppID(self: *const ICustomDestinationList, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.SetAppID(self, pszAppID);
     }
-    pub fn BeginList(self: *const ICustomDestinationList, pcMinSlots: ?*u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn BeginList(self: *const ICustomDestinationList, pcMinSlots: ?*u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.BeginList(self, pcMinSlots, riid, ppv);
     }
     pub fn AppendCategory(self: *const ICustomDestinationList, pszCategory: ?[*:0]const u16, poa: ?*IObjectArray) callconv(.Inline) HRESULT {
@@ -11623,7 +11623,7 @@ pub const ICustomDestinationList = extern union {
     pub fn CommitList(self: *const ICustomDestinationList) callconv(.Inline) HRESULT {
         return self.vtable.CommitList(self);
     }
-    pub fn GetRemovedDestinations(self: *const ICustomDestinationList, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetRemovedDestinations(self: *const ICustomDestinationList, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetRemovedDestinations(self, riid, ppv);
     }
     pub fn DeleteList(self: *const ICustomDestinationList, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
@@ -11687,7 +11687,7 @@ pub const IApplicationDocumentLists = extern union {
             listtype: APPDOCLISTTYPE,
             cItemsDesired: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -11695,7 +11695,7 @@ pub const IApplicationDocumentLists = extern union {
     pub fn SetAppID(self: *const IApplicationDocumentLists, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.SetAppID(self, pszAppID);
     }
-    pub fn GetList(self: *const IApplicationDocumentLists, listtype: APPDOCLISTTYPE, cItemsDesired: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetList(self: *const IApplicationDocumentLists, listtype: APPDOCLISTTYPE, cItemsDesired: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetList(self, listtype, cItemsDesired, riid, ppv);
     }
 };
@@ -12008,12 +12008,12 @@ pub const IOpenSearchSource = extern union {
             dwStartIndex: u32,
             dwCount: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetResults(self: *const IOpenSearchSource, hwnd: ?HWND, pszQuery: ?[*:0]const u16, dwStartIndex: u32, dwCount: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetResults(self: *const IOpenSearchSource, hwnd: ?HWND, pszQuery: ?[*:0]const u16, dwStartIndex: u32, dwCount: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetResults(self, hwnd, pszQuery, dwStartIndex, dwCount, riid, ppv);
     }
 };
@@ -12082,20 +12082,20 @@ pub const IShellLibrary = extern union {
             self: *const IShellLibrary,
             lff: LIBRARYFOLDERFILTER,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResolveFolder: *const fn(
             self: *const IShellLibrary,
             psiFolderToResolve: ?*IShellItem,
             dwTimeout: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultSaveFolder: *const fn(
             self: *const IShellLibrary,
             dsft: DEFAULTSAVEFOLDERTYPE,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDefaultSaveFolder: *const fn(
             self: *const IShellLibrary,
@@ -12159,13 +12159,13 @@ pub const IShellLibrary = extern union {
     pub fn RemoveFolder(self: *const IShellLibrary, psiLocation: ?*IShellItem) callconv(.Inline) HRESULT {
         return self.vtable.RemoveFolder(self, psiLocation);
     }
-    pub fn GetFolders(self: *const IShellLibrary, lff: LIBRARYFOLDERFILTER, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetFolders(self: *const IShellLibrary, lff: LIBRARYFOLDERFILTER, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetFolders(self, lff, riid, ppv);
     }
-    pub fn ResolveFolder(self: *const IShellLibrary, psiFolderToResolve: ?*IShellItem, dwTimeout: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn ResolveFolder(self: *const IShellLibrary, psiFolderToResolve: ?*IShellItem, dwTimeout: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.ResolveFolder(self, psiFolderToResolve, dwTimeout, riid, ppv);
     }
-    pub fn GetDefaultSaveFolder(self: *const IShellLibrary, dsft: DEFAULTSAVEFOLDERTYPE, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDefaultSaveFolder(self: *const IShellLibrary, dsft: DEFAULTSAVEFOLDERTYPE, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetDefaultSaveFolder(self, dsft, riid, ppv);
     }
     pub fn SetDefaultSaveFolder(self: *const IShellLibrary, dsft: DEFAULTSAVEFOLDERTYPE, psi: ?*IShellItem) callconv(.Inline) HRESULT {
@@ -12533,7 +12533,7 @@ pub const IDataTransferManagerInterop = extern union {
             self: *const IDataTransferManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            dataTransferManager: ?*?*anyopaque,
+            dataTransferManager: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowShareUIForWindow: *const fn(
             self: *const IDataTransferManagerInterop,
@@ -12542,7 +12542,7 @@ pub const IDataTransferManagerInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IDataTransferManagerInterop, appWindow: ?HWND, riid: ?*const Guid, dataTransferManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IDataTransferManagerInterop, appWindow: ?HWND, riid: ?*const Guid, dataTransferManager: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, dataTransferManager);
     }
     pub fn ShowShareUIForWindow(self: *const IDataTransferManagerInterop, appWindow: ?HWND) callconv(.Inline) HRESULT {
@@ -13684,7 +13684,7 @@ pub const ISearchBoxInfo = extern union {
         GetCondition: *const fn(
             self: *const ISearchBoxInfo,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetText: *const fn(
             self: *const ISearchBoxInfo,
@@ -13693,7 +13693,7 @@ pub const ISearchBoxInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCondition(self: *const ISearchBoxInfo, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCondition(self: *const ISearchBoxInfo, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetCondition(self, riid, ppv);
     }
     pub fn GetText(self: *const ISearchBoxInfo, ppsz: ?*?PWSTR) callconv(.Inline) HRESULT {
@@ -15206,7 +15206,7 @@ pub const IBandHost = extern union {
             fAvailable: BOOL,
             fVisible: BOOL,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBandAvailability: *const fn(
             self: *const IBandHost,
@@ -15220,7 +15220,7 @@ pub const IBandHost = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateBand(self: *const IBandHost, rclsidBand: ?*const Guid, fAvailable: BOOL, fVisible: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateBand(self: *const IBandHost, rclsidBand: ?*const Guid, fAvailable: BOOL, fVisible: BOOL, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateBand(self, rclsidBand, fAvailable, fVisible, riid, ppv);
     }
     pub fn SetBandAvailability(self: *const IBandHost, rclsidBand: ?*const Guid, fAvailable: BOOL) callconv(.Inline) HRESULT {
@@ -23021,7 +23021,7 @@ pub const ICredentialProvider = extern union {
         GetCredentialAt: *const fn(
             self: *const ICredentialProvider,
             dwIndex: u32,
-            ppcpc: ?*?*ICredentialProviderCredential,
+            ppcpc: **ICredentialProviderCredential,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -23047,7 +23047,7 @@ pub const ICredentialProvider = extern union {
     pub fn GetCredentialCount(self: *const ICredentialProvider, pdwCount: ?*u32, pdwDefault: ?*u32, pbAutoLogonWithDefault: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.GetCredentialCount(self, pdwCount, pdwDefault, pbAutoLogonWithDefault);
     }
-    pub fn GetCredentialAt(self: *const ICredentialProvider, dwIndex: u32, ppcpc: ?*?*ICredentialProviderCredential) callconv(.Inline) HRESULT {
+    pub fn GetCredentialAt(self: *const ICredentialProvider, dwIndex: u32, ppcpc: **ICredentialProviderCredential) callconv(.Inline) HRESULT {
         return self.vtable.GetCredentialAt(self, dwIndex, ppcpc);
     }
 };
@@ -23233,7 +23233,7 @@ pub const ICredentialProviderUserArray = extern union {
         GetAt: *const fn(
             self: *const ICredentialProviderUserArray,
             userIndex: u32,
-            user: ?*?*ICredentialProviderUser,
+            user: **ICredentialProviderUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -23247,7 +23247,7 @@ pub const ICredentialProviderUserArray = extern union {
     pub fn GetCount(self: *const ICredentialProviderUserArray, userCount: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetCount(self, userCount);
     }
-    pub fn GetAt(self: *const ICredentialProviderUserArray, userIndex: u32, user: ?*?*ICredentialProviderUser) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const ICredentialProviderUserArray, userIndex: u32, user: **ICredentialProviderUser) callconv(.Inline) HRESULT {
         return self.vtable.GetAt(self, userIndex, user);
     }
 };
@@ -23308,7 +23308,7 @@ pub const ISyncMgrHandlerCollection = extern union {
             self: *const ISyncMgrHandlerCollection,
             pszHandlerID: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -23316,7 +23316,7 @@ pub const ISyncMgrHandlerCollection = extern union {
     pub fn GetHandlerEnumerator(self: *const ISyncMgrHandlerCollection, ppenum: ?*?*IEnumString) callconv(.Inline) HRESULT {
         return self.vtable.GetHandlerEnumerator(self, ppenum);
     }
-    pub fn BindToHandler(self: *const ISyncMgrHandlerCollection, pszHandlerID: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToHandler(self: *const ISyncMgrHandlerCollection, pszHandlerID: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.BindToHandler(self, pszHandlerID, riid, ppv);
     }
 };
@@ -23401,7 +23401,7 @@ pub const ISyncMgrHandler = extern union {
             self: *const ISyncMgrHandler,
             rguidObjectID: ?*const Guid,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCapabilities: *const fn(
             self: *const ISyncMgrHandler,
@@ -23436,7 +23436,7 @@ pub const ISyncMgrHandler = extern union {
     pub fn GetHandlerInfo(self: *const ISyncMgrHandler, ppHandlerInfo: ?*?*ISyncMgrHandlerInfo) callconv(.Inline) HRESULT {
         return self.vtable.GetHandlerInfo(self, ppHandlerInfo);
     }
-    pub fn GetObject(self: *const ISyncMgrHandler, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const ISyncMgrHandler, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetObject(self, rguidObjectID, riid, ppv);
     }
     pub fn GetCapabilities(self: *const ISyncMgrHandler, pmCapabilities: ?*SYNCMGR_HANDLER_CAPABILITIES) callconv(.Inline) HRESULT {
@@ -23639,7 +23639,7 @@ pub const ISyncMgrSyncItem = extern union {
             self: *const ISyncMgrSyncItem,
             rguidObjectID: ?*const Guid,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCapabilities: *const fn(
             self: *const ISyncMgrSyncItem,
@@ -23668,7 +23668,7 @@ pub const ISyncMgrSyncItem = extern union {
     pub fn GetItemInfo(self: *const ISyncMgrSyncItem, ppItemInfo: ?*?*ISyncMgrSyncItemInfo) callconv(.Inline) HRESULT {
         return self.vtable.GetItemInfo(self, ppItemInfo);
     }
-    pub fn GetObject(self: *const ISyncMgrSyncItem, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const ISyncMgrSyncItem, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetObject(self, rguidObjectID, riid, ppv);
     }
     pub fn GetCapabilities(self: *const ISyncMgrSyncItem, pmCapabilities: ?*SYNCMGR_ITEM_CAPABILITIES) callconv(.Inline) HRESULT {
@@ -24379,7 +24379,7 @@ pub const ISyncMgrConflictStore = extern union {
             self: *const ISyncMgrConflictStore,
             pConflictIdInfo: ?*const SYNCMGR_CONFLICT_ID_INFO,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveConflicts: *const fn(
             self: *const ISyncMgrConflictStore,
@@ -24398,7 +24398,7 @@ pub const ISyncMgrConflictStore = extern union {
     pub fn EnumConflicts(self: *const ISyncMgrConflictStore, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, ppEnum: ?*?*IEnumSyncMgrConflict) callconv(.Inline) HRESULT {
         return self.vtable.EnumConflicts(self, pszHandlerID, pszItemID, ppEnum);
     }
-    pub fn BindToConflict(self: *const ISyncMgrConflictStore, pConflictIdInfo: ?*const SYNCMGR_CONFLICT_ID_INFO, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToConflict(self: *const ISyncMgrConflictStore, pConflictIdInfo: ?*const SYNCMGR_CONFLICT_ID_INFO, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.BindToConflict(self, pConflictIdInfo, riid, ppv);
     }
     pub fn RemoveConflicts(self: *const ISyncMgrConflictStore, rgConflictIdInfo: [*]const SYNCMGR_CONFLICT_ID_INFO, cConflicts: u32) callconv(.Inline) HRESULT {
@@ -24482,7 +24482,7 @@ pub const ISyncMgrConflict = extern union {
         GetResolutionHandler: *const fn(
             self: *const ISyncMgrConflict,
             riid: ?*const Guid,
-            ppvResolutionHandler: ?*?*anyopaque,
+            ppvResolutionHandler: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -24499,7 +24499,7 @@ pub const ISyncMgrConflict = extern union {
     pub fn Resolve(self: *const ISyncMgrConflict, pResolveInfo: ?*ISyncMgrConflictResolveInfo) callconv(.Inline) HRESULT {
         return self.vtable.Resolve(self, pResolveInfo);
     }
-    pub fn GetResolutionHandler(self: *const ISyncMgrConflict, riid: ?*const Guid, ppvResolutionHandler: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetResolutionHandler(self: *const ISyncMgrConflict, riid: ?*const Guid, ppvResolutionHandler: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetResolutionHandler(self, riid, ppvResolutionHandler);
     }
 };
@@ -25649,7 +25649,7 @@ pub const ISyncMgrSynchronize = extern union {
             self: *const ISyncMgrSynchronize,
             ItemID: ?*const Guid,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowProperties: *const fn(
             self: *const ISyncMgrSynchronize,
@@ -25693,7 +25693,7 @@ pub const ISyncMgrSynchronize = extern union {
     pub fn EnumSyncMgrItems(self: *const ISyncMgrSynchronize, ppSyncMgrEnumItems: ?*?*ISyncMgrEnumItems) callconv(.Inline) HRESULT {
         return self.vtable.EnumSyncMgrItems(self, ppSyncMgrEnumItems);
     }
-    pub fn GetItemObject(self: *const ISyncMgrSynchronize, ItemID: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetItemObject(self: *const ISyncMgrSynchronize, ItemID: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetItemObject(self, ItemID, riid, ppv);
     }
     pub fn ShowProperties(self: *const ISyncMgrSynchronize, hWndParent: ?HWND, ItemID: ?*const Guid) callconv(.Inline) HRESULT {
@@ -26306,7 +26306,7 @@ pub const IHlinkSite = extern union {
             dwSiteData: u32,
             guidService: ?*const Guid,
             riid: ?*const Guid,
-            ppiunk: ?*?*IUnknown,
+            ppiunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMoniker: *const fn(
             self: *const IHlinkSite,
@@ -26330,7 +26330,7 @@ pub const IHlinkSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryService(self: *const IHlinkSite, dwSiteData: u32, guidService: ?*const Guid, riid: ?*const Guid, ppiunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn QueryService(self: *const IHlinkSite, dwSiteData: u32, guidService: ?*const Guid, riid: ?*const Guid, ppiunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.QueryService(self, dwSiteData, guidService, riid, ppiunk);
     }
     pub fn GetMoniker(self: *const IHlinkSite, dwSiteData: u32, dwAssign: u32, dwWhich: u32, ppimk: ?*?*IMoniker) callconv(.Inline) HRESULT {
@@ -26656,7 +26656,7 @@ pub const IHlinkBrowseContext = extern union {
             self: *const IHlinkBrowseContext,
             piunkOuter: ?*IUnknown,
             riid: ?*const Guid,
-            ppiunkObj: ?*?*IUnknown,
+            ppiunkObj: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: *const fn(
             self: *const IHlinkBrowseContext,
@@ -26701,7 +26701,7 @@ pub const IHlinkBrowseContext = extern union {
     pub fn SetCurrentHlink(self: *const IHlinkBrowseContext, uHLID: u32) callconv(.Inline) HRESULT {
         return self.vtable.SetCurrentHlink(self, uHLID);
     }
-    pub fn Clone(self: *const IHlinkBrowseContext, piunkOuter: ?*IUnknown, riid: ?*const Guid, ppiunkObj: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IHlinkBrowseContext, piunkOuter: ?*IUnknown, riid: ?*const Guid, ppiunkObj: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.Clone(self, piunkOuter, riid, ppiunkObj);
     }
     pub fn Close(self: *const IHlinkBrowseContext, reserved: u32) callconv(.Inline) HRESULT {
@@ -28859,7 +28859,7 @@ pub extern "shell32" fn SHCreateItemFromParsingName(
     pszPath: ?[*:0]const u16,
     pbc: ?*IBindCtx,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -29523,7 +29523,7 @@ pub extern "shell32" fn SHCoCreateInstance(
     pclsid: ?*const Guid,
     pUnkOuter: ?*IUnknown,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -30335,7 +30335,7 @@ pub extern "shell32" fn AssocCreateForClasses(
     rgClasses: [*]const ASSOCIATIONELEMENT,
     cClasses: u32,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -32705,7 +32705,7 @@ pub extern "shlwapi" fn IUnknown_QueryService(
     punk: ?*IUnknown,
     guidService: ?*const Guid,
     riid: ?*const Guid,
-    ppvOut: ?*?*anyopaque,
+    ppvOut: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -32927,7 +32927,7 @@ pub extern "shlwapi" fn QISearch(
     that: ?*anyopaque,
     pqit: ?*QITAB,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -32967,7 +32967,7 @@ pub extern "shlwapi" fn SHSetThreadRef(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "shlwapi" fn SHGetThreadRef(
-    ppunk: ?*?*IUnknown,
+    ppunk: **IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'

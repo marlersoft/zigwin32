@@ -565,7 +565,7 @@ pub extern "ole32" fn CoMarshalInterface(
 pub extern "ole32" fn CoUnmarshalInterface(
     pStm: ?*IStream,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'

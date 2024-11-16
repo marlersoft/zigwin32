@@ -6643,12 +6643,12 @@ pub const IRemoteSystemAdditionalInfoProvider = extern union {
             self: *const IRemoteSystemAdditionalInfoProvider,
             deduplicationId: ?*?HSTRING,
             riid: ?*const Guid,
-            mapView: ?*?*anyopaque,
+            mapView: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAdditionalInfo(self: *const IRemoteSystemAdditionalInfoProvider, deduplicationId: ?*?HSTRING, riid: ?*const Guid, mapView: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAdditionalInfo(self: *const IRemoteSystemAdditionalInfoProvider, deduplicationId: ?*?HSTRING, riid: ?*const Guid, mapView: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetAdditionalInfo(self, deduplicationId, riid, mapView);
     }
 };

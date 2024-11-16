@@ -1313,7 +1313,7 @@ pub extern "ole32" fn GetHGlobalFromStream(
 pub extern "ole32" fn CoGetInterfaceAndReleaseStream(
     pStm: ?*IStream,
     iid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'

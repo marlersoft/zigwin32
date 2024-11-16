@@ -882,13 +882,13 @@ pub const ID3D12DeviceChild = extern union {
         GetDevice: *const fn(
             self: *const ID3D12DeviceChild,
             riid: ?*const Guid,
-            ppvDevice: ?*?*anyopaque,
+            ppvDevice: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn GetDevice(self: *const ID3D12DeviceChild, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const ID3D12DeviceChild, riid: ?*const Guid, ppvDevice: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetDevice(self, riid, ppvDevice);
     }
 };
@@ -3821,7 +3821,7 @@ pub const ID3D12PipelineState = extern union {
         base: ID3D12Pageable.VTable,
         GetCachedBlob: *const fn(
             self: *const ID3D12PipelineState,
-            ppBlob: ?*?*ID3DBlob,
+            ppBlob: **ID3DBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3829,7 +3829,7 @@ pub const ID3D12PipelineState = extern union {
     ID3D12DeviceChild: ID3D12DeviceChild,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn GetCachedBlob(self: *const ID3D12PipelineState, ppBlob: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
+    pub fn GetCachedBlob(self: *const ID3D12PipelineState, ppBlob: **ID3DBlob) callconv(.Inline) HRESULT {
         return self.vtable.GetCachedBlob(self, ppBlob);
     }
 };
@@ -4626,25 +4626,25 @@ pub const ID3D12Device = extern union {
             self: *const ID3D12Device,
             pDesc: ?*const D3D12_COMMAND_QUEUE_DESC,
             riid: ?*const Guid,
-            ppCommandQueue: ?*?*anyopaque,
+            ppCommandQueue: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCommandAllocator: *const fn(
             self: *const ID3D12Device,
             type: D3D12_COMMAND_LIST_TYPE,
             riid: ?*const Guid,
-            ppCommandAllocator: ?*?*anyopaque,
+            ppCommandAllocator: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGraphicsPipelineState: *const fn(
             self: *const ID3D12Device,
             pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC,
             riid: ?*const Guid,
-            ppPipelineState: ?*?*anyopaque,
+            ppPipelineState: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateComputePipelineState: *const fn(
             self: *const ID3D12Device,
             pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC,
             riid: ?*const Guid,
-            ppPipelineState: ?*?*anyopaque,
+            ppPipelineState: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCommandList: *const fn(
             self: *const ID3D12Device,
@@ -4653,7 +4653,7 @@ pub const ID3D12Device = extern union {
             pCommandAllocator: ?*ID3D12CommandAllocator,
             pInitialState: ?*ID3D12PipelineState,
             riid: ?*const Guid,
-            ppCommandList: ?*?*anyopaque,
+            ppCommandList: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CheckFeatureSupport: *const fn(
             self: *const ID3D12Device,
@@ -4666,7 +4666,7 @@ pub const ID3D12Device = extern union {
             self: *const ID3D12Device,
             pDescriptorHeapDesc: ?*const D3D12_DESCRIPTOR_HEAP_DESC,
             riid: ?*const Guid,
-            ppvHeap: ?*?*anyopaque,
+            ppvHeap: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDescriptorHandleIncrementSize: *const fn(
             self: *const ID3D12Device,
@@ -4678,7 +4678,7 @@ pub const ID3D12Device = extern union {
             pBlobWithRootSignature: [*]const u8,
             blobLengthInBytes: usize,
             riid: ?*const Guid,
-            ppvRootSignature: ?*?*anyopaque,
+            ppvRootSignature: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateConstantBufferView: *const fn(
             self: *const ID3D12Device,
@@ -4751,13 +4751,13 @@ pub const ID3D12Device = extern union {
             InitialResourceState: D3D12_RESOURCE_STATES,
             pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
             riidResource: ?*const Guid,
-            ppvResource: ?*?*anyopaque,
+            ppvResource: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateHeap: *const fn(
             self: *const ID3D12Device,
             pDesc: ?*const D3D12_HEAP_DESC,
             riid: ?*const Guid,
-            ppvHeap: ?*?*anyopaque,
+            ppvHeap: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePlacedResource: *const fn(
             self: *const ID3D12Device,
@@ -4767,7 +4767,7 @@ pub const ID3D12Device = extern union {
             InitialState: D3D12_RESOURCE_STATES,
             pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
             riid: ?*const Guid,
-            ppvResource: ?*?*anyopaque,
+            ppvResource: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateReservedResource: *const fn(
             self: *const ID3D12Device,
@@ -4775,7 +4775,7 @@ pub const ID3D12Device = extern union {
             InitialState: D3D12_RESOURCE_STATES,
             pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
             riid: ?*const Guid,
-            ppvResource: ?*?*anyopaque,
+            ppvResource: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSharedHandle: *const fn(
             self: *const ID3D12Device,
@@ -4789,7 +4789,7 @@ pub const ID3D12Device = extern union {
             self: *const ID3D12Device,
             NTHandle: ?HANDLE,
             riid: ?*const Guid,
-            ppvObj: ?*?*anyopaque,
+            ppvObj: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenSharedHandleByName: *const fn(
             self: *const ID3D12Device,
@@ -4812,7 +4812,7 @@ pub const ID3D12Device = extern union {
             InitialValue: u64,
             Flags: D3D12_FENCE_FLAGS,
             riid: ?*const Guid,
-            ppFence: ?*?*anyopaque,
+            ppFence: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceRemovedReason: *const fn(
             self: *const ID3D12Device,
@@ -4832,7 +4832,7 @@ pub const ID3D12Device = extern union {
             self: *const ID3D12Device,
             pDesc: ?*const D3D12_QUERY_HEAP_DESC,
             riid: ?*const Guid,
-            ppvHeap: ?*?*anyopaque,
+            ppvHeap: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStablePowerState: *const fn(
             self: *const ID3D12Device,
@@ -4843,7 +4843,7 @@ pub const ID3D12Device = extern union {
             pDesc: ?*const D3D12_COMMAND_SIGNATURE_DESC,
             pRootSignature: ?*ID3D12RootSignature,
             riid: ?*const Guid,
-            ppvCommandSignature: ?*?*anyopaque,
+            ppvCommandSignature: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResourceTiling: *const fn(
             self: *const ID3D12Device,
@@ -4865,31 +4865,31 @@ pub const ID3D12Device = extern union {
     pub fn GetNodeCount(self: *const ID3D12Device) callconv(.Inline) u32 {
         return self.vtable.GetNodeCount(self);
     }
-    pub fn CreateCommandQueue(self: *const ID3D12Device, pDesc: ?*const D3D12_COMMAND_QUEUE_DESC, riid: ?*const Guid, ppCommandQueue: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCommandQueue(self: *const ID3D12Device, pDesc: ?*const D3D12_COMMAND_QUEUE_DESC, riid: ?*const Guid, ppCommandQueue: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCommandQueue(self, pDesc, riid, ppCommandQueue);
     }
-    pub fn CreateCommandAllocator(self: *const ID3D12Device, @"type": D3D12_COMMAND_LIST_TYPE, riid: ?*const Guid, ppCommandAllocator: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCommandAllocator(self: *const ID3D12Device, @"type": D3D12_COMMAND_LIST_TYPE, riid: ?*const Guid, ppCommandAllocator: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCommandAllocator(self, @"type", riid, ppCommandAllocator);
     }
-    pub fn CreateGraphicsPipelineState(self: *const ID3D12Device, pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateGraphicsPipelineState(self: *const ID3D12Device, pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateGraphicsPipelineState(self, pDesc, riid, ppPipelineState);
     }
-    pub fn CreateComputePipelineState(self: *const ID3D12Device, pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateComputePipelineState(self: *const ID3D12Device, pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateComputePipelineState(self, pDesc, riid, ppPipelineState);
     }
-    pub fn CreateCommandList(self: *const ID3D12Device, nodeMask: u32, @"type": D3D12_COMMAND_LIST_TYPE, pCommandAllocator: ?*ID3D12CommandAllocator, pInitialState: ?*ID3D12PipelineState, riid: ?*const Guid, ppCommandList: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCommandList(self: *const ID3D12Device, nodeMask: u32, @"type": D3D12_COMMAND_LIST_TYPE, pCommandAllocator: ?*ID3D12CommandAllocator, pInitialState: ?*ID3D12PipelineState, riid: ?*const Guid, ppCommandList: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCommandList(self, nodeMask, @"type", pCommandAllocator, pInitialState, riid, ppCommandList);
     }
     pub fn CheckFeatureSupport(self: *const ID3D12Device, Feature: D3D12_FEATURE, pFeatureSupportData: ?*anyopaque, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
         return self.vtable.CheckFeatureSupport(self, Feature, pFeatureSupportData, FeatureSupportDataSize);
     }
-    pub fn CreateDescriptorHeap(self: *const ID3D12Device, pDescriptorHeapDesc: ?*const D3D12_DESCRIPTOR_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateDescriptorHeap(self: *const ID3D12Device, pDescriptorHeapDesc: ?*const D3D12_DESCRIPTOR_HEAP_DESC, riid: ?*const Guid, ppvHeap: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateDescriptorHeap(self, pDescriptorHeapDesc, riid, ppvHeap);
     }
     pub fn GetDescriptorHandleIncrementSize(self: *const ID3D12Device, DescriptorHeapType: D3D12_DESCRIPTOR_HEAP_TYPE) callconv(.Inline) u32 {
         return self.vtable.GetDescriptorHandleIncrementSize(self, DescriptorHeapType);
     }
-    pub fn CreateRootSignature(self: *const ID3D12Device, nodeMask: u32, pBlobWithRootSignature: [*]const u8, blobLengthInBytes: usize, riid: ?*const Guid, ppvRootSignature: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateRootSignature(self: *const ID3D12Device, nodeMask: u32, pBlobWithRootSignature: [*]const u8, blobLengthInBytes: usize, riid: ?*const Guid, ppvRootSignature: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateRootSignature(self, nodeMask, pBlobWithRootSignature, blobLengthInBytes, riid, ppvRootSignature);
     }
     pub fn CreateConstantBufferView(self: *const ID3D12Device, pDesc: ?*const D3D12_CONSTANT_BUFFER_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
@@ -4922,22 +4922,22 @@ pub const ID3D12Device = extern union {
     pub fn GetCustomHeapProperties(self: *const ID3D12Device, nodeMask: u32, heapType: D3D12_HEAP_TYPE) callconv(.Inline) D3D12_HEAP_PROPERTIES {
         return self.vtable.GetCustomHeapProperties(self, nodeMask, heapType);
     }
-    pub fn CreateCommittedResource(self: *const ID3D12Device, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riidResource: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCommittedResource(self: *const ID3D12Device, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riidResource: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCommittedResource(self, pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, riidResource, ppvResource);
     }
-    pub fn CreateHeap(self: *const ID3D12Device, pDesc: ?*const D3D12_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateHeap(self: *const ID3D12Device, pDesc: ?*const D3D12_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateHeap(self, pDesc, riid, ppvHeap);
     }
-    pub fn CreatePlacedResource(self: *const ID3D12Device, pHeap: ?*ID3D12Heap, HeapOffset: u64, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreatePlacedResource(self: *const ID3D12Device, pHeap: ?*ID3D12Heap, HeapOffset: u64, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreatePlacedResource(self, pHeap, HeapOffset, pDesc, InitialState, pOptimizedClearValue, riid, ppvResource);
     }
-    pub fn CreateReservedResource(self: *const ID3D12Device, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateReservedResource(self: *const ID3D12Device, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateReservedResource(self, pDesc, InitialState, pOptimizedClearValue, riid, ppvResource);
     }
     pub fn CreateSharedHandle(self: *const ID3D12Device, pObject: ?*ID3D12DeviceChild, pAttributes: ?*const SECURITY_ATTRIBUTES, Access: u32, Name: ?[*:0]const u16, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
         return self.vtable.CreateSharedHandle(self, pObject, pAttributes, Access, Name, pHandle);
     }
-    pub fn OpenSharedHandle(self: *const ID3D12Device, NTHandle: ?HANDLE, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenSharedHandle(self: *const ID3D12Device, NTHandle: ?HANDLE, riid: ?*const Guid, ppvObj: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.OpenSharedHandle(self, NTHandle, riid, ppvObj);
     }
     pub fn OpenSharedHandleByName(self: *const ID3D12Device, Name: ?[*:0]const u16, Access: u32, pNTHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
@@ -4949,7 +4949,7 @@ pub const ID3D12Device = extern union {
     pub fn Evict(self: *const ID3D12Device, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable) callconv(.Inline) HRESULT {
         return self.vtable.Evict(self, NumObjects, ppObjects);
     }
-    pub fn CreateFence(self: *const ID3D12Device, InitialValue: u64, Flags: D3D12_FENCE_FLAGS, riid: ?*const Guid, ppFence: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateFence(self: *const ID3D12Device, InitialValue: u64, Flags: D3D12_FENCE_FLAGS, riid: ?*const Guid, ppFence: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateFence(self, InitialValue, Flags, riid, ppFence);
     }
     pub fn GetDeviceRemovedReason(self: *const ID3D12Device) callconv(.Inline) HRESULT {
@@ -4958,13 +4958,13 @@ pub const ID3D12Device = extern union {
     pub fn GetCopyableFootprints(self: *const ID3D12Device, pResourceDesc: ?*const D3D12_RESOURCE_DESC, FirstSubresource: u32, NumSubresources: u32, BaseOffset: u64, pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT, pNumRows: ?[*]u32, pRowSizeInBytes: ?[*]u64, pTotalBytes: ?*u64) callconv(.Inline) void {
         return self.vtable.GetCopyableFootprints(self, pResourceDesc, FirstSubresource, NumSubresources, BaseOffset, pLayouts, pNumRows, pRowSizeInBytes, pTotalBytes);
     }
-    pub fn CreateQueryHeap(self: *const ID3D12Device, pDesc: ?*const D3D12_QUERY_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateQueryHeap(self: *const ID3D12Device, pDesc: ?*const D3D12_QUERY_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateQueryHeap(self, pDesc, riid, ppvHeap);
     }
     pub fn SetStablePowerState(self: *const ID3D12Device, Enable: BOOL) callconv(.Inline) HRESULT {
         return self.vtable.SetStablePowerState(self, Enable);
     }
-    pub fn CreateCommandSignature(self: *const ID3D12Device, pDesc: ?*const D3D12_COMMAND_SIGNATURE_DESC, pRootSignature: ?*ID3D12RootSignature, riid: ?*const Guid, ppvCommandSignature: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCommandSignature(self: *const ID3D12Device, pDesc: ?*const D3D12_COMMAND_SIGNATURE_DESC, pRootSignature: ?*ID3D12RootSignature, riid: ?*const Guid, ppvCommandSignature: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCommandSignature(self, pDesc, pRootSignature, riid, ppvCommandSignature);
     }
     pub fn GetResourceTiling(self: *const ID3D12Device, pTiledResource: ?*ID3D12Resource, pNumTilesForEntireResource: ?*u32, pPackedMipDesc: ?*D3D12_PACKED_MIP_INFO, pStandardTileShapeForNonPackedMips: ?*D3D12_TILE_SHAPE, pNumSubresourceTilings: ?*u32, FirstSubresourceTilingToGet: u32, pSubresourceTilingsForNonPackedMips: [*]D3D12_SUBRESOURCE_TILING) callconv(.Inline) void {
@@ -4991,14 +4991,14 @@ pub const ID3D12PipelineLibrary = extern union {
             pName: ?[*:0]const u16,
             pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC,
             riid: ?*const Guid,
-            ppPipelineState: ?*?*anyopaque,
+            ppPipelineState: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadComputePipeline: *const fn(
             self: *const ID3D12PipelineLibrary,
             pName: ?[*:0]const u16,
             pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC,
             riid: ?*const Guid,
-            ppPipelineState: ?*?*anyopaque,
+            ppPipelineState: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSerializedSize: *const fn(
             self: *const ID3D12PipelineLibrary,
@@ -5016,10 +5016,10 @@ pub const ID3D12PipelineLibrary = extern union {
     pub fn StorePipeline(self: *const ID3D12PipelineLibrary, pName: ?[*:0]const u16, pPipeline: ?*ID3D12PipelineState) callconv(.Inline) HRESULT {
         return self.vtable.StorePipeline(self, pName, pPipeline);
     }
-    pub fn LoadGraphicsPipeline(self: *const ID3D12PipelineLibrary, pName: ?[*:0]const u16, pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn LoadGraphicsPipeline(self: *const ID3D12PipelineLibrary, pName: ?[*:0]const u16, pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.LoadGraphicsPipeline(self, pName, pDesc, riid, ppPipelineState);
     }
-    pub fn LoadComputePipeline(self: *const ID3D12PipelineLibrary, pName: ?[*:0]const u16, pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn LoadComputePipeline(self: *const ID3D12PipelineLibrary, pName: ?[*:0]const u16, pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.LoadComputePipeline(self, pName, pDesc, riid, ppPipelineState);
     }
     pub fn GetSerializedSize(self: *const ID3D12PipelineLibrary) callconv(.Inline) usize {
@@ -5041,7 +5041,7 @@ pub const ID3D12PipelineLibrary1 = extern union {
             pName: ?[*:0]const u16,
             pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC,
             riid: ?*const Guid,
-            ppPipelineState: ?*?*anyopaque,
+            ppPipelineState: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5049,7 +5049,7 @@ pub const ID3D12PipelineLibrary1 = extern union {
     ID3D12DeviceChild: ID3D12DeviceChild,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn LoadPipeline(self: *const ID3D12PipelineLibrary1, pName: ?[*:0]const u16, pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn LoadPipeline(self: *const ID3D12PipelineLibrary1, pName: ?[*:0]const u16, pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC, riid: ?*const Guid, ppPipelineState: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.LoadPipeline(self, pName, pDesc, riid, ppPipelineState);
     }
 };
@@ -5116,7 +5116,7 @@ pub const ID3D12Device1 = extern union {
             pLibraryBlob: [*]const u8,
             BlobLength: usize,
             riid: ?*const Guid,
-            ppPipelineLibrary: ?*?*anyopaque,
+            ppPipelineLibrary: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEventOnMultipleFenceCompletion: *const fn(
             self: *const ID3D12Device1,
@@ -5137,7 +5137,7 @@ pub const ID3D12Device1 = extern union {
     ID3D12Device: ID3D12Device,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn CreatePipelineLibrary(self: *const ID3D12Device1, pLibraryBlob: [*]const u8, BlobLength: usize, riid: ?*const Guid, ppPipelineLibrary: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreatePipelineLibrary(self: *const ID3D12Device1, pLibraryBlob: [*]const u8, BlobLength: usize, riid: ?*const Guid, ppPipelineLibrary: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreatePipelineLibrary(self, pLibraryBlob, BlobLength, riid, ppPipelineLibrary);
     }
     pub fn SetEventOnMultipleFenceCompletion(self: *const ID3D12Device1, ppFences: [*]?*ID3D12Fence, pFenceValues: [*]const u64, NumFences: u32, Flags: D3D12_MULTIPLE_FENCE_WAIT_FLAGS, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
@@ -5158,7 +5158,7 @@ pub const ID3D12Device2 = extern union {
             self: *const ID3D12Device2,
             pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC,
             riid: ?*const Guid,
-            ppPipelineState: ?*?*anyopaque,
+            ppPipelineState: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5166,7 +5166,7 @@ pub const ID3D12Device2 = extern union {
     ID3D12Device: ID3D12Device,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn CreatePipelineState(self: *const ID3D12Device2, pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreatePipelineState(self: *const ID3D12Device2, pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC, riid: ?*const Guid, ppPipelineState: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreatePipelineState(self, pDesc, riid, ppPipelineState);
     }
 };
@@ -5218,13 +5218,13 @@ pub const ID3D12Device3 = extern union {
             self: *const ID3D12Device3,
             pAddress: ?*const anyopaque,
             riid: ?*const Guid,
-            ppvHeap: ?*?*anyopaque,
+            ppvHeap: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenExistingHeapFromFileMapping: *const fn(
             self: *const ID3D12Device3,
             hFileMapping: ?HANDLE,
             riid: ?*const Guid,
-            ppvHeap: ?*?*anyopaque,
+            ppvHeap: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnqueueMakeResident: *const fn(
             self: *const ID3D12Device3,
@@ -5241,10 +5241,10 @@ pub const ID3D12Device3 = extern union {
     ID3D12Device: ID3D12Device,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn OpenExistingHeapFromAddress(self: *const ID3D12Device3, pAddress: ?*const anyopaque, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenExistingHeapFromAddress(self: *const ID3D12Device3, pAddress: ?*const anyopaque, riid: ?*const Guid, ppvHeap: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.OpenExistingHeapFromAddress(self, pAddress, riid, ppvHeap);
     }
-    pub fn OpenExistingHeapFromFileMapping(self: *const ID3D12Device3, hFileMapping: ?HANDLE, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenExistingHeapFromFileMapping(self: *const ID3D12Device3, hFileMapping: ?HANDLE, riid: ?*const Guid, ppvHeap: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.OpenExistingHeapFromFileMapping(self, hFileMapping, riid, ppvHeap);
     }
     pub fn EnqueueMakeResident(self: *const ID3D12Device3, Flags: D3D12_RESIDENCY_FLAGS, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable, pFenceToSignal: ?*ID3D12Fence, FenceValueToSignal: u64) callconv(.Inline) HRESULT {
@@ -5376,7 +5376,7 @@ pub const ID3D12ProtectedSession = extern union {
         GetStatusFence: *const fn(
             self: *const ID3D12ProtectedSession,
             riid: ?*const Guid,
-            ppFence: ?*?*anyopaque,
+            ppFence: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSessionStatus: *const fn(
             self: *const ID3D12ProtectedSession,
@@ -5386,7 +5386,7 @@ pub const ID3D12ProtectedSession = extern union {
     ID3D12DeviceChild: ID3D12DeviceChild,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn GetStatusFence(self: *const ID3D12ProtectedSession, riid: ?*const Guid, ppFence: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetStatusFence(self: *const ID3D12ProtectedSession, riid: ?*const Guid, ppFence: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetStatusFence(self, riid, ppFence);
     }
     pub fn GetSessionStatus(self: *const ID3D12ProtectedSession) callconv(.Inline) D3D12_PROTECTED_SESSION_STATUS {
@@ -5509,13 +5509,13 @@ pub const ID3D12Device4 = extern union {
             type: D3D12_COMMAND_LIST_TYPE,
             flags: D3D12_COMMAND_LIST_FLAGS,
             riid: ?*const Guid,
-            ppCommandList: ?*?*anyopaque,
+            ppCommandList: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateProtectedResourceSession: *const fn(
             self: *const ID3D12Device4,
             pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC,
             riid: ?*const Guid,
-            ppSession: ?*?*anyopaque,
+            ppSession: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCommittedResource1: *const fn(
             self: *const ID3D12Device4,
@@ -5526,14 +5526,14 @@ pub const ID3D12Device4 = extern union {
             pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
             pProtectedSession: ?*ID3D12ProtectedResourceSession,
             riidResource: ?*const Guid,
-            ppvResource: ?*?*anyopaque,
+            ppvResource: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateHeap1: *const fn(
             self: *const ID3D12Device4,
             pDesc: ?*const D3D12_HEAP_DESC,
             pProtectedSession: ?*ID3D12ProtectedResourceSession,
             riid: ?*const Guid,
-            ppvHeap: ?*?*anyopaque,
+            ppvHeap: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateReservedResource1: *const fn(
             self: *const ID3D12Device4,
@@ -5542,7 +5542,7 @@ pub const ID3D12Device4 = extern union {
             pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
             pProtectedSession: ?*ID3D12ProtectedResourceSession,
             riid: ?*const Guid,
-            ppvResource: ?*?*anyopaque,
+            ppvResource: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResourceAllocationInfo1: *const fn(
             self: *const ID3D12Device4,
@@ -5559,19 +5559,19 @@ pub const ID3D12Device4 = extern union {
     ID3D12Device: ID3D12Device,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn CreateCommandList1(self: *const ID3D12Device4, nodeMask: u32, @"type": D3D12_COMMAND_LIST_TYPE, flags: D3D12_COMMAND_LIST_FLAGS, riid: ?*const Guid, ppCommandList: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCommandList1(self: *const ID3D12Device4, nodeMask: u32, @"type": D3D12_COMMAND_LIST_TYPE, flags: D3D12_COMMAND_LIST_FLAGS, riid: ?*const Guid, ppCommandList: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCommandList1(self, nodeMask, @"type", flags, riid, ppCommandList);
     }
-    pub fn CreateProtectedResourceSession(self: *const ID3D12Device4, pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC, riid: ?*const Guid, ppSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateProtectedResourceSession(self: *const ID3D12Device4, pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC, riid: ?*const Guid, ppSession: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateProtectedResourceSession(self, pDesc, riid, ppSession);
     }
-    pub fn CreateCommittedResource1(self: *const ID3D12Device4, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riidResource: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCommittedResource1(self: *const ID3D12Device4, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riidResource: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCommittedResource1(self, pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, pProtectedSession, riidResource, ppvResource);
     }
-    pub fn CreateHeap1(self: *const ID3D12Device4, pDesc: ?*const D3D12_HEAP_DESC, pProtectedSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateHeap1(self: *const ID3D12Device4, pDesc: ?*const D3D12_HEAP_DESC, pProtectedSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppvHeap: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateHeap1(self, pDesc, pProtectedSession, riid, ppvHeap);
     }
-    pub fn CreateReservedResource1(self: *const ID3D12Device4, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateReservedResource1(self: *const ID3D12Device4, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateReservedResource1(self, pDesc, InitialState, pOptimizedClearValue, pProtectedSession, riid, ppvResource);
     }
     pub fn GetResourceAllocationInfo1(self: *const ID3D12Device4, visibleMask: u32, numResourceDescs: u32, pResourceDescs: [*]const D3D12_RESOURCE_DESC, pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1) callconv(.Inline) D3D12_RESOURCE_ALLOCATION_INFO {
@@ -5616,14 +5616,14 @@ pub const ID3D12SwapChainAssistant = extern union {
         GetSwapChainObject: *const fn(
             self: *const ID3D12SwapChainAssistant,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentResourceAndCommandQueue: *const fn(
             self: *const ID3D12SwapChainAssistant,
             riidResource: ?*const Guid,
-            ppvResource: ?*?*anyopaque,
+            ppvResource: **anyopaque,
             riidQueue: ?*const Guid,
-            ppvQueue: ?*?*anyopaque,
+            ppvQueue: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertImplicitSync: *const fn(
             self: *const ID3D12SwapChainAssistant,
@@ -5634,10 +5634,10 @@ pub const ID3D12SwapChainAssistant = extern union {
     pub fn GetLUID(self: *const ID3D12SwapChainAssistant) callconv(.Inline) LUID {
         return self.vtable.GetLUID(self);
     }
-    pub fn GetSwapChainObject(self: *const ID3D12SwapChainAssistant, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetSwapChainObject(self: *const ID3D12SwapChainAssistant, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetSwapChainObject(self, riid, ppv);
     }
-    pub fn GetCurrentResourceAndCommandQueue(self: *const ID3D12SwapChainAssistant, riidResource: ?*const Guid, ppvResource: ?*?*anyopaque, riidQueue: ?*const Guid, ppvQueue: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCurrentResourceAndCommandQueue(self: *const ID3D12SwapChainAssistant, riidResource: ?*const Guid, ppvResource: **anyopaque, riidQueue: ?*const Guid, ppvQueue: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetCurrentResourceAndCommandQueue(self, riidResource, ppvResource, riidQueue, ppvQueue);
     }
     pub fn InsertImplicitSync(self: *const ID3D12SwapChainAssistant) callconv(.Inline) HRESULT {
@@ -6446,7 +6446,7 @@ pub const ID3D12Device5 = extern union {
             self: *const ID3D12Device5,
             pOwner: ?*ID3D12LifetimeOwner,
             riid: ?*const Guid,
-            ppvTracker: ?*?*anyopaque,
+            ppvTracker: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveDevice: *const fn(
             self: *const ID3D12Device5,
@@ -6472,13 +6472,13 @@ pub const ID3D12Device5 = extern union {
             pCreationParametersData: ?*const anyopaque,
             CreationParametersDataSizeInBytes: usize,
             riid: ?*const Guid,
-            ppMetaCommand: ?*?*anyopaque,
+            ppMetaCommand: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateStateObject: *const fn(
             self: *const ID3D12Device5,
             pDesc: ?*const D3D12_STATE_OBJECT_DESC,
             riid: ?*const Guid,
-            ppStateObject: ?*?*anyopaque,
+            ppStateObject: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRaytracingAccelerationStructurePrebuildInfo: *const fn(
             self: *const ID3D12Device5,
@@ -6499,7 +6499,7 @@ pub const ID3D12Device5 = extern union {
     ID3D12Device: ID3D12Device,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn CreateLifetimeTracker(self: *const ID3D12Device5, pOwner: ?*ID3D12LifetimeOwner, riid: ?*const Guid, ppvTracker: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateLifetimeTracker(self: *const ID3D12Device5, pOwner: ?*ID3D12LifetimeOwner, riid: ?*const Guid, ppvTracker: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateLifetimeTracker(self, pOwner, riid, ppvTracker);
     }
     pub fn RemoveDevice(self: *const ID3D12Device5) callconv(.Inline) void {
@@ -6511,10 +6511,10 @@ pub const ID3D12Device5 = extern union {
     pub fn EnumerateMetaCommandParameters(self: *const ID3D12Device5, CommandId: ?*const Guid, Stage: D3D12_META_COMMAND_PARAMETER_STAGE, pTotalStructureSizeInBytes: ?*u32, pParameterCount: ?*u32, pParameterDescs: ?[*]D3D12_META_COMMAND_PARAMETER_DESC) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateMetaCommandParameters(self, CommandId, Stage, pTotalStructureSizeInBytes, pParameterCount, pParameterDescs);
     }
-    pub fn CreateMetaCommand(self: *const ID3D12Device5, CommandId: ?*const Guid, NodeMask: u32, pCreationParametersData: ?*const anyopaque, CreationParametersDataSizeInBytes: usize, riid: ?*const Guid, ppMetaCommand: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateMetaCommand(self: *const ID3D12Device5, CommandId: ?*const Guid, NodeMask: u32, pCreationParametersData: ?*const anyopaque, CreationParametersDataSizeInBytes: usize, riid: ?*const Guid, ppMetaCommand: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateMetaCommand(self, CommandId, NodeMask, pCreationParametersData, CreationParametersDataSizeInBytes, riid, ppMetaCommand);
     }
-    pub fn CreateStateObject(self: *const ID3D12Device5, pDesc: ?*const D3D12_STATE_OBJECT_DESC, riid: ?*const Guid, ppStateObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateStateObject(self: *const ID3D12Device5, pDesc: ?*const D3D12_STATE_OBJECT_DESC, riid: ?*const Guid, ppStateObject: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateStateObject(self, pDesc, riid, ppStateObject);
     }
     pub fn GetRaytracingAccelerationStructurePrebuildInfo(self: *const ID3D12Device5, pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS, pInfo: ?*D3D12_RAYTRACING_ACCELERATION_STRUCTURE_PREBUILD_INFO) callconv(.Inline) void {
@@ -7120,13 +7120,13 @@ pub const ID3D12Device7 = extern union {
             pAddition: ?*const D3D12_STATE_OBJECT_DESC,
             pStateObjectToGrowFrom: ?*ID3D12StateObject,
             riid: ?*const Guid,
-            ppNewStateObject: ?*?*anyopaque,
+            ppNewStateObject: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateProtectedResourceSession1: *const fn(
             self: *const ID3D12Device7,
             pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC1,
             riid: ?*const Guid,
-            ppSession: ?*?*anyopaque,
+            ppSession: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7139,10 +7139,10 @@ pub const ID3D12Device7 = extern union {
     ID3D12Device: ID3D12Device,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn AddToStateObject(self: *const ID3D12Device7, pAddition: ?*const D3D12_STATE_OBJECT_DESC, pStateObjectToGrowFrom: ?*ID3D12StateObject, riid: ?*const Guid, ppNewStateObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn AddToStateObject(self: *const ID3D12Device7, pAddition: ?*const D3D12_STATE_OBJECT_DESC, pStateObjectToGrowFrom: ?*ID3D12StateObject, riid: ?*const Guid, ppNewStateObject: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.AddToStateObject(self, pAddition, pStateObjectToGrowFrom, riid, ppNewStateObject);
     }
-    pub fn CreateProtectedResourceSession1(self: *const ID3D12Device7, pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC1, riid: ?*const Guid, ppSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateProtectedResourceSession1(self: *const ID3D12Device7, pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC1, riid: ?*const Guid, ppSession: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateProtectedResourceSession1(self, pDesc, riid, ppSession);
     }
 };
@@ -7169,7 +7169,7 @@ pub const ID3D12Device8 = extern union {
             pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
             pProtectedSession: ?*ID3D12ProtectedResourceSession,
             riidResource: ?*const Guid,
-            ppvResource: ?*?*anyopaque,
+            ppvResource: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePlacedResource1: *const fn(
             self: *const ID3D12Device8,
@@ -7179,7 +7179,7 @@ pub const ID3D12Device8 = extern union {
             InitialState: D3D12_RESOURCE_STATES,
             pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
             riid: ?*const Guid,
-            ppvResource: ?*?*anyopaque,
+            ppvResource: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSamplerFeedbackUnorderedAccessView: *const fn(
             self: *const ID3D12Device8,
@@ -7213,10 +7213,10 @@ pub const ID3D12Device8 = extern union {
     pub fn GetResourceAllocationInfo2(self: *const ID3D12Device8, visibleMask: u32, numResourceDescs: u32, pResourceDescs: [*]const D3D12_RESOURCE_DESC1, pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1) callconv(.Inline) D3D12_RESOURCE_ALLOCATION_INFO {
         return self.vtable.GetResourceAllocationInfo2(self, visibleMask, numResourceDescs, pResourceDescs, pResourceAllocationInfo1);
     }
-    pub fn CreateCommittedResource2(self: *const ID3D12Device8, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC1, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riidResource: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCommittedResource2(self: *const ID3D12Device8, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC1, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riidResource: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCommittedResource2(self, pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, pProtectedSession, riidResource, ppvResource);
     }
-    pub fn CreatePlacedResource1(self: *const ID3D12Device8, pHeap: ?*ID3D12Heap, HeapOffset: u64, pDesc: ?*const D3D12_RESOURCE_DESC1, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreatePlacedResource1(self: *const ID3D12Device8, pHeap: ?*ID3D12Heap, HeapOffset: u64, pDesc: ?*const D3D12_RESOURCE_DESC1, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreatePlacedResource1(self, pHeap, HeapOffset, pDesc, InitialState, pOptimizedClearValue, riid, ppvResource);
     }
     pub fn CreateSamplerFeedbackUnorderedAccessView(self: *const ID3D12Device8, pTargetedResource: ?*ID3D12Resource, pFeedbackResource: ?*ID3D12Resource, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
@@ -7236,7 +7236,7 @@ pub const ID3D12Resource1 = extern union {
         GetProtectedResourceSession: *const fn(
             self: *const ID3D12Resource1,
             riid: ?*const Guid,
-            ppProtectedSession: ?*?*anyopaque,
+            ppProtectedSession: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7245,7 +7245,7 @@ pub const ID3D12Resource1 = extern union {
     ID3D12DeviceChild: ID3D12DeviceChild,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn GetProtectedResourceSession(self: *const ID3D12Resource1, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetProtectedResourceSession(self: *const ID3D12Resource1, riid: ?*const Guid, ppProtectedSession: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetProtectedResourceSession(self, riid, ppProtectedSession);
     }
 };
@@ -7281,7 +7281,7 @@ pub const ID3D12Heap1 = extern union {
         GetProtectedResourceSession: *const fn(
             self: *const ID3D12Heap1,
             riid: ?*const Guid,
-            ppProtectedSession: ?*?*anyopaque,
+            ppProtectedSession: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7290,7 +7290,7 @@ pub const ID3D12Heap1 = extern union {
     ID3D12DeviceChild: ID3D12DeviceChild,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn GetProtectedResourceSession(self: *const ID3D12Heap1, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetProtectedResourceSession(self: *const ID3D12Heap1, riid: ?*const Guid, ppProtectedSession: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetProtectedResourceSession(self, riid, ppProtectedSession);
     }
 };
@@ -7748,7 +7748,7 @@ pub const ID3D12Device9 = extern union {
             self: *const ID3D12Device9,
             pDesc: ?*const D3D12_SHADER_CACHE_SESSION_DESC,
             riid: ?*const Guid,
-            ppvSession: ?*?*anyopaque,
+            ppvSession: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShaderCacheControl: *const fn(
             self: *const ID3D12Device9,
@@ -7760,7 +7760,7 @@ pub const ID3D12Device9 = extern union {
             pDesc: ?*const D3D12_COMMAND_QUEUE_DESC,
             CreatorID: ?*const Guid,
             riid: ?*const Guid,
-            ppCommandQueue: ?*?*anyopaque,
+            ppCommandQueue: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7775,13 +7775,13 @@ pub const ID3D12Device9 = extern union {
     ID3D12Device: ID3D12Device,
     ID3D12Object: ID3D12Object,
     IUnknown: IUnknown,
-    pub fn CreateShaderCacheSession(self: *const ID3D12Device9, pDesc: ?*const D3D12_SHADER_CACHE_SESSION_DESC, riid: ?*const Guid, ppvSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateShaderCacheSession(self: *const ID3D12Device9, pDesc: ?*const D3D12_SHADER_CACHE_SESSION_DESC, riid: ?*const Guid, ppvSession: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateShaderCacheSession(self, pDesc, riid, ppvSession);
     }
     pub fn ShaderCacheControl(self: *const ID3D12Device9, Kinds: D3D12_SHADER_CACHE_KIND_FLAGS, Control: D3D12_SHADER_CACHE_CONTROL_FLAGS) callconv(.Inline) HRESULT {
         return self.vtable.ShaderCacheControl(self, Kinds, Control);
     }
-    pub fn CreateCommandQueue1(self: *const ID3D12Device9, pDesc: ?*const D3D12_COMMAND_QUEUE_DESC, CreatorID: ?*const Guid, riid: ?*const Guid, ppCommandQueue: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCommandQueue1(self: *const ID3D12Device9, pDesc: ?*const D3D12_COMMAND_QUEUE_DESC, CreatorID: ?*const Guid, riid: ?*const Guid, ppCommandQueue: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateCommandQueue1(self, pDesc, CreatorID, riid, ppCommandQueue);
     }
 };
@@ -10461,18 +10461,18 @@ pub const PFN_D3D12_CREATE_DEVICE = *const fn(
     param0: ?*IUnknown,
     param1: D3D_FEATURE_LEVEL,
     param2: ?*const Guid,
-    param3: ?*?*anyopaque,
+    param3: ?**anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_D3D12_GET_DEBUG_INTERFACE = *const fn(
     param0: ?*const Guid,
-    param1: ?*?*anyopaque,
+    param1: ?**anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_D3D12_GET_INTERFACE = *const fn(
     param0: ?*const Guid,
     param1: ?*const Guid,
-    param2: ?*?*anyopaque,
+    param2: ?**anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // This COM type is Agile, not sure what that means
@@ -11202,12 +11202,12 @@ pub extern "d3d12" fn D3D12CreateDevice(
     pAdapter: ?*IUnknown,
     MinimumFeatureLevel: D3D_FEATURE_LEVEL,
     riid: ?*const Guid,
-    ppDevice: ?*?*anyopaque,
+    ppDevice: ?**anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d12" fn D3D12GetDebugInterface(
     riid: ?*const Guid,
-    ppvDebug: ?*?*anyopaque,
+    ppvDebug: ?**anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d12" fn D3D12EnableExperimentalFeatures(
@@ -11220,7 +11220,7 @@ pub extern "d3d12" fn D3D12EnableExperimentalFeatures(
 pub extern "d3d12" fn D3D12GetInterface(
     rclsid: ?*const Guid,
     riid: ?*const Guid,
-    ppvDebug: ?*?*anyopaque,
+    ppvDebug: ?**anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

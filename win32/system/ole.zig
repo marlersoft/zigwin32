@@ -1757,12 +1757,12 @@ pub const ITypeFactory = extern union {
             self: *const ITypeFactory,
             pTypeInfo: ?*ITypeInfo,
             riid: ?*const Guid,
-            ppv: ?*?*IUnknown,
+            ppv: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateFromTypeInfo(self: *const ITypeFactory, pTypeInfo: ?*ITypeInfo, riid: ?*const Guid, ppv: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateFromTypeInfo(self: *const ITypeFactory, pTypeInfo: ?*ITypeInfo, riid: ?*const Guid, ppv: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateFromTypeInfo(self, pTypeInfo, riid, ppv);
     }
 };
@@ -2632,14 +2632,14 @@ pub const IOleItemContainer = extern union {
             dwSpeedNeeded: u32,
             pbc: ?*IBindCtx,
             riid: ?*const Guid,
-            ppvObject: ?*?*anyopaque,
+            ppvObject: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetObjectStorage: *const fn(
             self: *const IOleItemContainer,
             pszItem: ?PWSTR,
             pbc: ?*IBindCtx,
             riid: ?*const Guid,
-            ppvStorage: ?*?*anyopaque,
+            ppvStorage: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsRunning: *const fn(
             self: *const IOleItemContainer,
@@ -2650,10 +2650,10 @@ pub const IOleItemContainer = extern union {
     IOleContainer: IOleContainer,
     IParseDisplayName: IParseDisplayName,
     IUnknown: IUnknown,
-    pub fn GetObject(self: *const IOleItemContainer, pszItem: ?PWSTR, dwSpeedNeeded: u32, pbc: ?*IBindCtx, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const IOleItemContainer, pszItem: ?PWSTR, dwSpeedNeeded: u32, pbc: ?*IBindCtx, riid: ?*const Guid, ppvObject: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetObject(self, pszItem, dwSpeedNeeded, pbc, riid, ppvObject);
     }
-    pub fn GetObjectStorage(self: *const IOleItemContainer, pszItem: ?PWSTR, pbc: ?*IBindCtx, riid: ?*const Guid, ppvStorage: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetObjectStorage(self: *const IOleItemContainer, pszItem: ?PWSTR, pbc: ?*IBindCtx, riid: ?*const Guid, ppvStorage: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetObjectStorage(self, pszItem, pbc, riid, ppvStorage);
     }
     pub fn IsRunning(self: *const IOleItemContainer, pszItem: ?PWSTR) callconv(.Inline) HRESULT {
@@ -3322,7 +3322,7 @@ pub const IClassFactory2 = extern union {
             pUnkReserved: ?*IUnknown,
             riid: ?*const Guid,
             bstrKey: ?BSTR,
-            ppvObj: ?*?*anyopaque,
+            ppvObj: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3334,7 +3334,7 @@ pub const IClassFactory2 = extern union {
     pub fn RequestLicKey(self: *const IClassFactory2, dwReserved: u32, pBstrKey: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.RequestLicKey(self, dwReserved, pBstrKey);
     }
-    pub fn CreateInstanceLic(self: *const IClassFactory2, pUnkOuter: ?*IUnknown, pUnkReserved: ?*IUnknown, riid: ?*const Guid, bstrKey: ?BSTR, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateInstanceLic(self: *const IClassFactory2, pUnkOuter: ?*IUnknown, pUnkReserved: ?*IUnknown, riid: ?*const Guid, bstrKey: ?BSTR, ppvObj: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstanceLic(self, pUnkOuter, pUnkReserved, riid, bstrKey, ppvObj);
     }
 };
@@ -4911,7 +4911,7 @@ pub const IObjectWithSite = extern union {
         GetSite: *const fn(
             self: *const IObjectWithSite,
             riid: ?*const Guid,
-            ppvSite: ?*?*anyopaque,
+            ppvSite: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4919,7 +4919,7 @@ pub const IObjectWithSite = extern union {
     pub fn SetSite(self: *const IObjectWithSite, pUnkSite: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.SetSite(self, pUnkSite);
     }
-    pub fn GetSite(self: *const IObjectWithSite, riid: ?*const Guid, ppvSite: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetSite(self: *const IObjectWithSite, riid: ?*const Guid, ppvSite: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetSite(self, riid, ppvSite);
     }
 };

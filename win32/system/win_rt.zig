@@ -58,12 +58,12 @@ pub const IAgileReference = extern union {
         Resolve: *const fn(
             self: *const IAgileReference,
             riid: ?*const Guid,
-            ppvObjectReference: ?*?*anyopaque,
+            ppvObjectReference: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Resolve(self: *const IAgileReference, riid: ?*const Guid, ppvObjectReference: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Resolve(self: *const IAgileReference, riid: ?*const Guid, ppvObjectReference: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Resolve(self, riid, ppvObjectReference);
     }
 };
@@ -109,13 +109,13 @@ pub const ISpatialInteractionManagerInterop = extern union {
             self: *const ISpatialInteractionManagerInterop,
             window: ?HWND,
             riid: ?*const Guid,
-            spatialInteractionManager: ?*?*anyopaque,
+            spatialInteractionManager: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const ISpatialInteractionManagerInterop, window: ?HWND, riid: ?*const Guid, spatialInteractionManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const ISpatialInteractionManagerInterop, window: ?HWND, riid: ?*const Guid, spatialInteractionManager: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, window, riid, spatialInteractionManager);
     }
 };
@@ -130,13 +130,13 @@ pub const IHolographicSpaceInterop = extern union {
             self: *const IHolographicSpaceInterop,
             window: ?HWND,
             riid: ?*const Guid,
-            holographicSpace: ?*?*anyopaque,
+            holographicSpace: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn CreateForWindow(self: *const IHolographicSpaceInterop, window: ?HWND, riid: ?*const Guid, holographicSpace: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateForWindow(self: *const IHolographicSpaceInterop, window: ?HWND, riid: ?*const Guid, holographicSpace: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateForWindow(self, window, riid, holographicSpace);
     }
 };
@@ -228,31 +228,31 @@ pub const IAccountsSettingsPaneInterop = extern union {
             self: *const IAccountsSettingsPaneInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            accountsSettingsPane: ?*?*anyopaque,
+            accountsSettingsPane: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowManageAccountsForWindowAsync: *const fn(
             self: *const IAccountsSettingsPaneInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            asyncAction: ?*?*anyopaque,
+            asyncAction: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowAddAccountForWindowAsync: *const fn(
             self: *const IAccountsSettingsPaneInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            asyncAction: ?*?*anyopaque,
+            asyncAction: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IAccountsSettingsPaneInterop, appWindow: ?HWND, riid: ?*const Guid, accountsSettingsPane: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IAccountsSettingsPaneInterop, appWindow: ?HWND, riid: ?*const Guid, accountsSettingsPane: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, accountsSettingsPane);
     }
-    pub fn ShowManageAccountsForWindowAsync(self: *const IAccountsSettingsPaneInterop, appWindow: ?HWND, riid: ?*const Guid, asyncAction: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn ShowManageAccountsForWindowAsync(self: *const IAccountsSettingsPaneInterop, appWindow: ?HWND, riid: ?*const Guid, asyncAction: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.ShowManageAccountsForWindowAsync(self, appWindow, riid, asyncAction);
     }
-    pub fn ShowAddAccountForWindowAsync(self: *const IAccountsSettingsPaneInterop, appWindow: ?HWND, riid: ?*const Guid, asyncAction: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn ShowAddAccountForWindowAsync(self: *const IAccountsSettingsPaneInterop, appWindow: ?HWND, riid: ?*const Guid, asyncAction: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.ShowAddAccountForWindowAsync(self, appWindow, riid, asyncAction);
     }
 };
@@ -265,12 +265,12 @@ pub const IAppServiceConnectionExtendedExecution = extern union {
         OpenForExtendedExecutionAsync: *const fn(
             self: *const IAppServiceConnectionExtendedExecution,
             riid: ?*const Guid,
-            operation: ?*?*anyopaque,
+            operation: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OpenForExtendedExecutionAsync(self: *const IAppServiceConnectionExtendedExecution, riid: ?*const Guid, operation: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenForExtendedExecutionAsync(self: *const IAppServiceConnectionExtendedExecution, riid: ?*const Guid, operation: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.OpenForExtendedExecutionAsync(self, riid, operation);
     }
 };
@@ -426,13 +426,13 @@ pub const IDragDropManagerInterop = extern union {
             self: *const IDragDropManagerInterop,
             hwnd: ?HWND,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IDragDropManagerInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IDragDropManagerInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, hwnd, riid, ppv);
     }
 };
@@ -447,13 +447,13 @@ pub const IInputPaneInterop = extern union {
             self: *const IInputPaneInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            inputPane: ?*?*anyopaque,
+            inputPane: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IInputPaneInterop, appWindow: ?HWND, riid: ?*const Guid, inputPane: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IInputPaneInterop, appWindow: ?HWND, riid: ?*const Guid, inputPane: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, inputPane);
     }
 };
@@ -468,7 +468,7 @@ pub const IPlayToManagerInterop = extern union {
             self: *const IPlayToManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            playToManager: ?*?*anyopaque,
+            playToManager: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowPlayToUIForWindow: *const fn(
             self: *const IPlayToManagerInterop,
@@ -478,7 +478,7 @@ pub const IPlayToManagerInterop = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IPlayToManagerInterop, appWindow: ?HWND, riid: ?*const Guid, playToManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IPlayToManagerInterop, appWindow: ?HWND, riid: ?*const Guid, playToManager: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, playToManager);
     }
     pub fn ShowPlayToUIForWindow(self: *const IPlayToManagerInterop, appWindow: ?HWND) callconv(.Inline) HRESULT {
@@ -530,13 +530,13 @@ pub const IUIViewSettingsInterop = extern union {
             self: *const IUIViewSettingsInterop,
             hwnd: ?HWND,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IUIViewSettingsInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IUIViewSettingsInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, hwnd, riid, ppv);
     }
 };
@@ -550,13 +550,13 @@ pub const IUserActivityInterop = extern union {
             self: *const IUserActivityInterop,
             window: ?HWND,
             iid: ?*const Guid,
-            value: ?*?*anyopaque,
+            value: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn CreateSessionForWindow(self: *const IUserActivityInterop, window: ?HWND, iid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateSessionForWindow(self: *const IUserActivityInterop, window: ?HWND, iid: ?*const Guid, value: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateSessionForWindow(self, window, iid, value);
     }
 };
@@ -588,13 +588,13 @@ pub const IUserActivityRequestManagerInterop = extern union {
             self: *const IUserActivityRequestManagerInterop,
             window: ?HWND,
             iid: ?*const Guid,
-            value: ?*?*anyopaque,
+            value: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IUserActivityRequestManagerInterop, window: ?HWND, iid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IUserActivityRequestManagerInterop, window: ?HWND, iid: ?*const Guid, value: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, window, iid, value);
     }
 };
@@ -609,13 +609,13 @@ pub const IUserConsentVerifierInterop = extern union {
             appWindow: ?HWND,
             message: ?HSTRING,
             riid: ?*const Guid,
-            asyncOperation: ?*?*anyopaque,
+            asyncOperation: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn RequestVerificationForWindowAsync(self: *const IUserConsentVerifierInterop, appWindow: ?HWND, message: ?HSTRING, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn RequestVerificationForWindowAsync(self: *const IUserConsentVerifierInterop, appWindow: ?HWND, message: ?HSTRING, riid: ?*const Guid, asyncOperation: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.RequestVerificationForWindowAsync(self, appWindow, message, riid, asyncOperation);
     }
 };
@@ -630,7 +630,7 @@ pub const IWebAuthenticationCoreManagerInterop = extern union {
             appWindow: ?HWND,
             request: ?*IInspectable,
             riid: ?*const Guid,
-            asyncInfo: ?*?*anyopaque,
+            asyncInfo: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestTokenWithWebAccountForWindowAsync: *const fn(
             self: *const IWebAuthenticationCoreManagerInterop,
@@ -638,16 +638,16 @@ pub const IWebAuthenticationCoreManagerInterop = extern union {
             request: ?*IInspectable,
             webAccount: ?*IInspectable,
             riid: ?*const Guid,
-            asyncInfo: ?*?*anyopaque,
+            asyncInfo: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn RequestTokenForWindowAsync(self: *const IWebAuthenticationCoreManagerInterop, appWindow: ?HWND, request: ?*IInspectable, riid: ?*const Guid, asyncInfo: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn RequestTokenForWindowAsync(self: *const IWebAuthenticationCoreManagerInterop, appWindow: ?HWND, request: ?*IInspectable, riid: ?*const Guid, asyncInfo: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.RequestTokenForWindowAsync(self, appWindow, request, riid, asyncInfo);
     }
-    pub fn RequestTokenWithWebAccountForWindowAsync(self: *const IWebAuthenticationCoreManagerInterop, appWindow: ?HWND, request: ?*IInspectable, webAccount: ?*IInspectable, riid: ?*const Guid, asyncInfo: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn RequestTokenWithWebAccountForWindowAsync(self: *const IWebAuthenticationCoreManagerInterop, appWindow: ?HWND, request: ?*IInspectable, webAccount: ?*IInspectable, riid: ?*const Guid, asyncInfo: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.RequestTokenWithWebAccountForWindowAsync(self, appWindow, request, webAccount, riid, asyncInfo);
     }
 };
@@ -1001,12 +1001,12 @@ pub const IWeakReference = extern union {
         Resolve: *const fn(
             self: *const IWeakReference,
             riid: ?*const Guid,
-            objectReference: ?*?*anyopaque,
+            objectReference: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Resolve(self: *const IWeakReference, riid: ?*const Guid, objectReference: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Resolve(self: *const IWeakReference, riid: ?*const Guid, objectReference: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Resolve(self, riid, objectReference);
     }
 };
@@ -1038,13 +1038,13 @@ pub const ISystemMediaTransportControlsInterop = extern union {
             self: *const ISystemMediaTransportControlsInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            mediaTransportControl: ?*?*anyopaque,
+            mediaTransportControl: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const ISystemMediaTransportControlsInterop, appWindow: ?HWND, riid: ?*const Guid, mediaTransportControl: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const ISystemMediaTransportControlsInterop, appWindow: ?HWND, riid: ?*const Guid, mediaTransportControl: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, mediaTransportControl);
     }
 };
@@ -1075,12 +1075,12 @@ pub const IShareWindowCommandSourceInterop = extern union {
             self: *const IShareWindowCommandSourceInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            shareWindowCommandSource: ?*?*anyopaque,
+            shareWindowCommandSource: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IShareWindowCommandSourceInterop, appWindow: ?HWND, riid: ?*const Guid, shareWindowCommandSource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IShareWindowCommandSourceInterop, appWindow: ?HWND, riid: ?*const Guid, shareWindowCommandSource: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, shareWindowCommandSource);
     }
 };
@@ -1268,7 +1268,7 @@ pub extern "ole32" fn RoGetAgileReference(
     options: AgileReferenceOptions,
     riid: ?*const Guid,
     pUnk: ?*IUnknown,
-    ppAgileReference: ?*?*IAgileReference,
+    ppAgileReference: **IAgileReference,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1479,7 +1479,7 @@ pub extern "api-ms-win-core-winrt-l1-1-0" fn RoUninitialize(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoActivateInstance(
     activatableClassId: ?HSTRING,
-    instance: ?*?*IInspectable,
+    instance: **IInspectable,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1499,7 +1499,7 @@ pub extern "api-ms-win-core-winrt-l1-1-0" fn RoRevokeActivationFactories(
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoGetActivationFactory(
     activatableClassId: ?HSTRING,
     iid: ?*const Guid,
-    factory: ?*?*anyopaque,
+    factory: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1624,7 +1624,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoInspectCapturedStackBackTra
 
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoGetMatchingRestrictedErrorInfo(
     hrIn: HRESULT,
-    ppRestrictedErrorInfo: ?*?*IRestrictedErrorInfo,
+    ppRestrictedErrorInfo: **IRestrictedErrorInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoReportFailedDelegate(
@@ -1674,7 +1674,7 @@ pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOn
     filePath: ?[*:0]const u16,
     accessMode: u32,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1682,25 +1682,25 @@ pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOv
     stream: ?*IStream,
     options: BSOS_OPTIONS,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateStreamOverRandomAccessStream(
     randomAccessStream: ?*IUnknown,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "windows.ui" fn CreateControlInput(
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "windows.ui" fn CreateControlInputEx(
     pCoreWindow: ?*IUnknown,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

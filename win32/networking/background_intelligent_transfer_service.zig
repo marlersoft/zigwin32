@@ -2180,7 +2180,7 @@ pub const IBackgroundCopyGroup = extern union {
         QueryNewJobInterface: *const fn(
             self: *const IBackgroundCopyGroup,
             iid: ?*const Guid,
-            pUnk: ?*?*IUnknown,
+            pUnk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNotificationPointer: *const fn(
             self: *const IBackgroundCopyGroup,
@@ -2229,7 +2229,7 @@ pub const IBackgroundCopyGroup = extern union {
     pub fn SwitchToForeground(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
         return self.vtable.SwitchToForeground(self);
     }
-    pub fn QueryNewJobInterface(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn QueryNewJobInterface(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.QueryNewJobInterface(self, iid, pUnk);
     }
     pub fn SetNotificationPointer(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {

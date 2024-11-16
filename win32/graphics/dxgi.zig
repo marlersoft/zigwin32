@@ -227,7 +227,7 @@ pub const IDXGIObject = extern union {
         GetParent: *const fn(
             self: *const IDXGIObject,
             riid: ?*const Guid,
-            ppParent: ?*?*anyopaque,
+            ppParent: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -241,7 +241,7 @@ pub const IDXGIObject = extern union {
     pub fn GetPrivateData(self: *const IDXGIObject, Name: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPrivateData(self, Name, pDataSize, pData);
     }
-    pub fn GetParent(self: *const IDXGIObject, riid: ?*const Guid, ppParent: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetParent(self: *const IDXGIObject, riid: ?*const Guid, ppParent: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetParent(self, riid, ppParent);
     }
 };
@@ -254,13 +254,13 @@ pub const IDXGIDeviceSubObject = extern union {
         GetDevice: *const fn(
             self: *const IDXGIDeviceSubObject,
             riid: ?*const Guid,
-            ppDevice: ?*?*anyopaque,
+            ppDevice: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IDXGIObject: IDXGIObject,
     IUnknown: IUnknown,
-    pub fn GetDevice(self: *const IDXGIDeviceSubObject, riid: ?*const Guid, ppDevice: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IDXGIDeviceSubObject, riid: ?*const Guid, ppDevice: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetDevice(self, riid, ppDevice);
     }
 };
@@ -402,7 +402,7 @@ pub const IDXGIAdapter = extern union {
         EnumOutputs: *const fn(
             self: *const IDXGIAdapter,
             Output: u32,
-            ppOutput: ?*?*IDXGIOutput,
+            ppOutput: **IDXGIOutput,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDesc: *const fn(
             self: *const IDXGIAdapter,
@@ -417,7 +417,7 @@ pub const IDXGIAdapter = extern union {
     vtable: *const VTable,
     IDXGIObject: IDXGIObject,
     IUnknown: IUnknown,
-    pub fn EnumOutputs(self: *const IDXGIAdapter, Output: u32, ppOutput: ?*?*IDXGIOutput) callconv(.Inline) HRESULT {
+    pub fn EnumOutputs(self: *const IDXGIAdapter, Output: u32, ppOutput: **IDXGIOutput) callconv(.Inline) HRESULT {
         return self.vtable.EnumOutputs(self, Output, ppOutput);
     }
     pub fn GetDesc(self: *const IDXGIAdapter, pDesc: ?*DXGI_ADAPTER_DESC) callconv(.Inline) HRESULT {
@@ -541,7 +541,7 @@ pub const IDXGISwapChain = extern union {
             self: *const IDXGISwapChain,
             Buffer: u32,
             riid: ?*const Guid,
-            ppSurface: ?*?*anyopaque,
+            ppSurface: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFullscreenState: *const fn(
             self: *const IDXGISwapChain,
@@ -551,7 +551,7 @@ pub const IDXGISwapChain = extern union {
         GetFullscreenState: *const fn(
             self: *const IDXGISwapChain,
             pFullscreen: ?*BOOL,
-            ppTarget: ?*?*IDXGIOutput,
+            ppTarget: ?**IDXGIOutput,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDesc: *const fn(
             self: *const IDXGISwapChain,
@@ -571,7 +571,7 @@ pub const IDXGISwapChain = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetContainingOutput: *const fn(
             self: *const IDXGISwapChain,
-            ppOutput: ?*?*IDXGIOutput,
+            ppOutput: **IDXGIOutput,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFrameStatistics: *const fn(
             self: *const IDXGISwapChain,
@@ -589,13 +589,13 @@ pub const IDXGISwapChain = extern union {
     pub fn Present(self: *const IDXGISwapChain, SyncInterval: u32, Flags: u32) callconv(.Inline) HRESULT {
         return self.vtable.Present(self, SyncInterval, Flags);
     }
-    pub fn GetBuffer(self: *const IDXGISwapChain, Buffer: u32, riid: ?*const Guid, ppSurface: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetBuffer(self: *const IDXGISwapChain, Buffer: u32, riid: ?*const Guid, ppSurface: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetBuffer(self, Buffer, riid, ppSurface);
     }
     pub fn SetFullscreenState(self: *const IDXGISwapChain, Fullscreen: BOOL, pTarget: ?*IDXGIOutput) callconv(.Inline) HRESULT {
         return self.vtable.SetFullscreenState(self, Fullscreen, pTarget);
     }
-    pub fn GetFullscreenState(self: *const IDXGISwapChain, pFullscreen: ?*BOOL, ppTarget: ?*?*IDXGIOutput) callconv(.Inline) HRESULT {
+    pub fn GetFullscreenState(self: *const IDXGISwapChain, pFullscreen: ?*BOOL, ppTarget: ?**IDXGIOutput) callconv(.Inline) HRESULT {
         return self.vtable.GetFullscreenState(self, pFullscreen, ppTarget);
     }
     pub fn GetDesc(self: *const IDXGISwapChain, pDesc: ?*DXGI_SWAP_CHAIN_DESC) callconv(.Inline) HRESULT {
@@ -607,7 +607,7 @@ pub const IDXGISwapChain = extern union {
     pub fn ResizeTarget(self: *const IDXGISwapChain, pNewTargetParameters: ?*const DXGI_MODE_DESC) callconv(.Inline) HRESULT {
         return self.vtable.ResizeTarget(self, pNewTargetParameters);
     }
-    pub fn GetContainingOutput(self: *const IDXGISwapChain, ppOutput: ?*?*IDXGIOutput) callconv(.Inline) HRESULT {
+    pub fn GetContainingOutput(self: *const IDXGISwapChain, ppOutput: **IDXGIOutput) callconv(.Inline) HRESULT {
         return self.vtable.GetContainingOutput(self, ppOutput);
     }
     pub fn GetFrameStatistics(self: *const IDXGISwapChain, pStats: ?*DXGI_FRAME_STATISTICS) callconv(.Inline) HRESULT {
@@ -626,7 +626,7 @@ pub const IDXGIFactory = extern union {
         EnumAdapters: *const fn(
             self: *const IDXGIFactory,
             Adapter: u32,
-            ppAdapter: ?*?*IDXGIAdapter,
+            ppAdapter: **IDXGIAdapter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MakeWindowAssociation: *const fn(
             self: *const IDXGIFactory,
@@ -641,18 +641,18 @@ pub const IDXGIFactory = extern union {
             self: *const IDXGIFactory,
             pDevice: ?*IUnknown,
             pDesc: ?*DXGI_SWAP_CHAIN_DESC,
-            ppSwapChain: ?*?*IDXGISwapChain,
+            ppSwapChain: **IDXGISwapChain,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSoftwareAdapter: *const fn(
             self: *const IDXGIFactory,
             Module: ?HINSTANCE,
-            ppAdapter: ?*?*IDXGIAdapter,
+            ppAdapter: **IDXGIAdapter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IDXGIObject: IDXGIObject,
     IUnknown: IUnknown,
-    pub fn EnumAdapters(self: *const IDXGIFactory, Adapter: u32, ppAdapter: ?*?*IDXGIAdapter) callconv(.Inline) HRESULT {
+    pub fn EnumAdapters(self: *const IDXGIFactory, Adapter: u32, ppAdapter: **IDXGIAdapter) callconv(.Inline) HRESULT {
         return self.vtable.EnumAdapters(self, Adapter, ppAdapter);
     }
     pub fn MakeWindowAssociation(self: *const IDXGIFactory, WindowHandle: ?HWND, Flags: u32) callconv(.Inline) HRESULT {
@@ -661,10 +661,10 @@ pub const IDXGIFactory = extern union {
     pub fn GetWindowAssociation(self: *const IDXGIFactory, pWindowHandle: ?*?HWND) callconv(.Inline) HRESULT {
         return self.vtable.GetWindowAssociation(self, pWindowHandle);
     }
-    pub fn CreateSwapChain(self: *const IDXGIFactory, pDevice: ?*IUnknown, pDesc: ?*DXGI_SWAP_CHAIN_DESC, ppSwapChain: ?*?*IDXGISwapChain) callconv(.Inline) HRESULT {
+    pub fn CreateSwapChain(self: *const IDXGIFactory, pDevice: ?*IUnknown, pDesc: ?*DXGI_SWAP_CHAIN_DESC, ppSwapChain: **IDXGISwapChain) callconv(.Inline) HRESULT {
         return self.vtable.CreateSwapChain(self, pDevice, pDesc, ppSwapChain);
     }
-    pub fn CreateSoftwareAdapter(self: *const IDXGIFactory, Module: ?HINSTANCE, ppAdapter: ?*?*IDXGIAdapter) callconv(.Inline) HRESULT {
+    pub fn CreateSoftwareAdapter(self: *const IDXGIFactory, Module: ?HINSTANCE, ppAdapter: **IDXGIAdapter) callconv(.Inline) HRESULT {
         return self.vtable.CreateSoftwareAdapter(self, Module, ppAdapter);
     }
 };
@@ -676,7 +676,7 @@ pub const IDXGIDevice = extern union {
         base: IDXGIObject.VTable,
         GetAdapter: *const fn(
             self: *const IDXGIDevice,
-            pAdapter: ?*?*IDXGIAdapter,
+            pAdapter: **IDXGIAdapter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSurface: *const fn(
             self: *const IDXGIDevice,
@@ -704,7 +704,7 @@ pub const IDXGIDevice = extern union {
     vtable: *const VTable,
     IDXGIObject: IDXGIObject,
     IUnknown: IUnknown,
-    pub fn GetAdapter(self: *const IDXGIDevice, pAdapter: ?*?*IDXGIAdapter) callconv(.Inline) HRESULT {
+    pub fn GetAdapter(self: *const IDXGIDevice, pAdapter: **IDXGIAdapter) callconv(.Inline) HRESULT {
         return self.vtable.GetAdapter(self, pAdapter);
     }
     pub fn CreateSurface(self: *const IDXGIDevice, pDesc: ?*const DXGI_SURFACE_DESC, NumSurfaces: u32, Usage: u32, pSharedResource: ?*const DXGI_SHARED_RESOURCE, ppSurface: [*]?*IDXGISurface) callconv(.Inline) HRESULT {
@@ -786,7 +786,7 @@ pub const IDXGIFactory1 = extern union {
         EnumAdapters1: *const fn(
             self: *const IDXGIFactory1,
             Adapter: u32,
-            ppAdapter: ?*?*IDXGIAdapter1,
+            ppAdapter: **IDXGIAdapter1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsCurrent: *const fn(
             self: *const IDXGIFactory1,
@@ -796,7 +796,7 @@ pub const IDXGIFactory1 = extern union {
     IDXGIFactory: IDXGIFactory,
     IDXGIObject: IDXGIObject,
     IUnknown: IUnknown,
-    pub fn EnumAdapters1(self: *const IDXGIFactory1, Adapter: u32, ppAdapter: ?*?*IDXGIAdapter1) callconv(.Inline) HRESULT {
+    pub fn EnumAdapters1(self: *const IDXGIFactory1, Adapter: u32, ppAdapter: **IDXGIAdapter1) callconv(.Inline) HRESULT {
         return self.vtable.EnumAdapters1(self, Adapter, ppAdapter);
     }
     pub fn IsCurrent(self: *const IDXGIFactory1) callconv(.Inline) BOOL {
@@ -933,7 +933,7 @@ pub const IDXGIOutputDuplication = extern union {
             self: *const IDXGIOutputDuplication,
             TimeoutInMilliseconds: u32,
             pFrameInfo: ?*DXGI_OUTDUPL_FRAME_INFO,
-            ppDesktopResource: ?*?*IDXGIResource,
+            ppDesktopResource: **IDXGIResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFrameDirtyRects: *const fn(
             self: *const IDXGIOutputDuplication,
@@ -974,7 +974,7 @@ pub const IDXGIOutputDuplication = extern union {
     pub fn GetDesc(self: *const IDXGIOutputDuplication, pDesc: ?*DXGI_OUTDUPL_DESC) callconv(.Inline) void {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn AcquireNextFrame(self: *const IDXGIOutputDuplication, TimeoutInMilliseconds: u32, pFrameInfo: ?*DXGI_OUTDUPL_FRAME_INFO, ppDesktopResource: ?*?*IDXGIResource) callconv(.Inline) HRESULT {
+    pub fn AcquireNextFrame(self: *const IDXGIOutputDuplication, TimeoutInMilliseconds: u32, pFrameInfo: ?*DXGI_OUTDUPL_FRAME_INFO, ppDesktopResource: **IDXGIResource) callconv(.Inline) HRESULT {
         return self.vtable.AcquireNextFrame(self, TimeoutInMilliseconds, pFrameInfo, ppDesktopResource);
     }
     pub fn GetFrameDirtyRects(self: *const IDXGIOutputDuplication, DirtyRectsBufferSize: u32, pDirtyRectsBuffer: ?*RECT, pDirtyRectsBufferSizeRequired: ?*u32) callconv(.Inline) HRESULT {
@@ -1006,7 +1006,7 @@ pub const IDXGISurface2 = extern union {
         GetResource: *const fn(
             self: *const IDXGISurface2,
             riid: ?*const Guid,
-            ppParentResource: ?*?*anyopaque,
+            ppParentResource: **anyopaque,
             pSubresourceIndex: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -1016,7 +1016,7 @@ pub const IDXGISurface2 = extern union {
     IDXGIDeviceSubObject: IDXGIDeviceSubObject,
     IDXGIObject: IDXGIObject,
     IUnknown: IUnknown,
-    pub fn GetResource(self: *const IDXGISurface2, riid: ?*const Guid, ppParentResource: ?*?*anyopaque, pSubresourceIndex: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetResource(self: *const IDXGISurface2, riid: ?*const Guid, ppParentResource: **anyopaque, pSubresourceIndex: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetResource(self, riid, ppParentResource, pSubresourceIndex);
     }
 };
@@ -1030,7 +1030,7 @@ pub const IDXGIResource1 = extern union {
         CreateSubresourceSurface: *const fn(
             self: *const IDXGIResource1,
             index: u32,
-            ppSurface: ?*?*IDXGISurface2,
+            ppSurface: **IDXGISurface2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSharedHandle: *const fn(
             self: *const IDXGIResource1,
@@ -1045,7 +1045,7 @@ pub const IDXGIResource1 = extern union {
     IDXGIDeviceSubObject: IDXGIDeviceSubObject,
     IDXGIObject: IDXGIObject,
     IUnknown: IUnknown,
-    pub fn CreateSubresourceSurface(self: *const IDXGIResource1, index: u32, ppSurface: ?*?*IDXGISurface2) callconv(.Inline) HRESULT {
+    pub fn CreateSubresourceSurface(self: *const IDXGIResource1, index: u32, ppSurface: **IDXGISurface2) callconv(.Inline) HRESULT {
         return self.vtable.CreateSubresourceSurface(self, index, ppSurface);
     }
     pub fn CreateSharedHandle(self: *const IDXGIResource1, pAttributes: ?*const SECURITY_ATTRIBUTES, dwAccess: u32, lpName: ?[*:0]const u16, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
@@ -1169,7 +1169,7 @@ pub const IDXGISwapChain1 = extern union {
         GetCoreWindow: *const fn(
             self: *const IDXGISwapChain1,
             refiid: ?*const Guid,
-            ppUnk: ?*?*anyopaque,
+            ppUnk: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Present1: *const fn(
             self: *const IDXGISwapChain1,
@@ -1215,7 +1215,7 @@ pub const IDXGISwapChain1 = extern union {
     pub fn GetHwnd(self: *const IDXGISwapChain1, pHwnd: ?*?HWND) callconv(.Inline) HRESULT {
         return self.vtable.GetHwnd(self, pHwnd);
     }
-    pub fn GetCoreWindow(self: *const IDXGISwapChain1, refiid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCoreWindow(self: *const IDXGISwapChain1, refiid: ?*const Guid, ppUnk: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetCoreWindow(self, refiid, ppUnk);
     }
     pub fn Present1(self: *const IDXGISwapChain1, SyncInterval: u32, PresentFlags: u32, pPresentParameters: ?*const DXGI_PRESENT_PARAMETERS) callconv(.Inline) HRESULT {
@@ -1257,7 +1257,7 @@ pub const IDXGIFactory2 = extern union {
             pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
             pFullscreenDesc: ?*const DXGI_SWAP_CHAIN_FULLSCREEN_DESC,
             pRestrictToOutput: ?*IDXGIOutput,
-            ppSwapChain: ?*?*IDXGISwapChain1,
+            ppSwapChain: **IDXGISwapChain1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSwapChainForCoreWindow: *const fn(
             self: *const IDXGIFactory2,
@@ -1265,7 +1265,7 @@ pub const IDXGIFactory2 = extern union {
             pWindow: ?*IUnknown,
             pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
             pRestrictToOutput: ?*IDXGIOutput,
-            ppSwapChain: ?*?*IDXGISwapChain1,
+            ppSwapChain: **IDXGISwapChain1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSharedResourceAdapterLuid: *const fn(
             self: *const IDXGIFactory2,
@@ -1307,7 +1307,7 @@ pub const IDXGIFactory2 = extern union {
             pDevice: ?*IUnknown,
             pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
             pRestrictToOutput: ?*IDXGIOutput,
-            ppSwapChain: ?*?*IDXGISwapChain1,
+            ppSwapChain: **IDXGISwapChain1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1318,10 +1318,10 @@ pub const IDXGIFactory2 = extern union {
     pub fn IsWindowedStereoEnabled(self: *const IDXGIFactory2) callconv(.Inline) BOOL {
         return self.vtable.IsWindowedStereoEnabled(self);
     }
-    pub fn CreateSwapChainForHwnd(self: *const IDXGIFactory2, pDevice: ?*IUnknown, hWnd: ?HWND, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pFullscreenDesc: ?*const DXGI_SWAP_CHAIN_FULLSCREEN_DESC, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGISwapChain1) callconv(.Inline) HRESULT {
+    pub fn CreateSwapChainForHwnd(self: *const IDXGIFactory2, pDevice: ?*IUnknown, hWnd: ?HWND, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pFullscreenDesc: ?*const DXGI_SWAP_CHAIN_FULLSCREEN_DESC, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGISwapChain1) callconv(.Inline) HRESULT {
         return self.vtable.CreateSwapChainForHwnd(self, pDevice, hWnd, pDesc, pFullscreenDesc, pRestrictToOutput, ppSwapChain);
     }
-    pub fn CreateSwapChainForCoreWindow(self: *const IDXGIFactory2, pDevice: ?*IUnknown, pWindow: ?*IUnknown, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGISwapChain1) callconv(.Inline) HRESULT {
+    pub fn CreateSwapChainForCoreWindow(self: *const IDXGIFactory2, pDevice: ?*IUnknown, pWindow: ?*IUnknown, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGISwapChain1) callconv(.Inline) HRESULT {
         return self.vtable.CreateSwapChainForCoreWindow(self, pDevice, pWindow, pDesc, pRestrictToOutput, ppSwapChain);
     }
     pub fn GetSharedResourceAdapterLuid(self: *const IDXGIFactory2, hResource: ?HANDLE, pLuid: ?*LUID) callconv(.Inline) HRESULT {
@@ -1345,7 +1345,7 @@ pub const IDXGIFactory2 = extern union {
     pub fn UnregisterOcclusionStatus(self: *const IDXGIFactory2, dwCookie: u32) callconv(.Inline) void {
         return self.vtable.UnregisterOcclusionStatus(self, dwCookie);
     }
-    pub fn CreateSwapChainForComposition(self: *const IDXGIFactory2, pDevice: ?*IUnknown, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGISwapChain1) callconv(.Inline) HRESULT {
+    pub fn CreateSwapChainForComposition(self: *const IDXGIFactory2, pDevice: ?*IUnknown, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGISwapChain1) callconv(.Inline) HRESULT {
         return self.vtable.CreateSwapChainForComposition(self, pDevice, pDesc, pRestrictToOutput, ppSwapChain);
     }
 };
@@ -1438,7 +1438,7 @@ pub const IDXGIOutput1 = extern union {
         DuplicateOutput: *const fn(
             self: *const IDXGIOutput1,
             pDevice: ?*IUnknown,
-            ppOutputDuplication: ?*?*IDXGIOutputDuplication,
+            ppOutputDuplication: **IDXGIOutputDuplication,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1454,7 +1454,7 @@ pub const IDXGIOutput1 = extern union {
     pub fn GetDisplaySurfaceData1(self: *const IDXGIOutput1, pDestination: ?*IDXGIResource) callconv(.Inline) HRESULT {
         return self.vtable.GetDisplaySurfaceData1(self, pDestination);
     }
-    pub fn DuplicateOutput(self: *const IDXGIOutput1, pDevice: ?*IUnknown, ppOutputDuplication: ?*?*IDXGIOutputDuplication) callconv(.Inline) HRESULT {
+    pub fn DuplicateOutput(self: *const IDXGIOutput1, pDevice: ?*IUnknown, ppOutputDuplication: **IDXGIOutputDuplication) callconv(.Inline) HRESULT {
         return self.vtable.DuplicateOutput(self, pDevice, ppOutputDuplication);
     }
 };
@@ -1697,7 +1697,7 @@ pub const IDXGIFactoryMedia = extern union {
             hSurface: ?HANDLE,
             pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
             pRestrictToOutput: ?*IDXGIOutput,
-            ppSwapChain: ?*?*IDXGISwapChain1,
+            ppSwapChain: **IDXGISwapChain1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDecodeSwapChainForCompositionSurfaceHandle: *const fn(
             self: *const IDXGIFactoryMedia,
@@ -1706,15 +1706,15 @@ pub const IDXGIFactoryMedia = extern union {
             pDesc: ?*DXGI_DECODE_SWAP_CHAIN_DESC,
             pYuvDecodeBuffers: ?*IDXGIResource,
             pRestrictToOutput: ?*IDXGIOutput,
-            ppSwapChain: ?*?*IDXGIDecodeSwapChain,
+            ppSwapChain: **IDXGIDecodeSwapChain,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateSwapChainForCompositionSurfaceHandle(self: *const IDXGIFactoryMedia, pDevice: ?*IUnknown, hSurface: ?HANDLE, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGISwapChain1) callconv(.Inline) HRESULT {
+    pub fn CreateSwapChainForCompositionSurfaceHandle(self: *const IDXGIFactoryMedia, pDevice: ?*IUnknown, hSurface: ?HANDLE, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGISwapChain1) callconv(.Inline) HRESULT {
         return self.vtable.CreateSwapChainForCompositionSurfaceHandle(self, pDevice, hSurface, pDesc, pRestrictToOutput, ppSwapChain);
     }
-    pub fn CreateDecodeSwapChainForCompositionSurfaceHandle(self: *const IDXGIFactoryMedia, pDevice: ?*IUnknown, hSurface: ?HANDLE, pDesc: ?*DXGI_DECODE_SWAP_CHAIN_DESC, pYuvDecodeBuffers: ?*IDXGIResource, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGIDecodeSwapChain) callconv(.Inline) HRESULT {
+    pub fn CreateDecodeSwapChainForCompositionSurfaceHandle(self: *const IDXGIFactoryMedia, pDevice: ?*IUnknown, hSurface: ?HANDLE, pDesc: ?*DXGI_DECODE_SWAP_CHAIN_DESC, pYuvDecodeBuffers: ?*IDXGIResource, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGIDecodeSwapChain) callconv(.Inline) HRESULT {
         return self.vtable.CreateDecodeSwapChainForCompositionSurfaceHandle(self, pDevice, hSurface, pDesc, pYuvDecodeBuffers, pRestrictToOutput, ppSwapChain);
     }
 };
@@ -1902,12 +1902,12 @@ pub const IDXGIFactory4 = extern union {
             self: *const IDXGIFactory4,
             AdapterLuid: LUID,
             riid: ?*const Guid,
-            ppvAdapter: ?*?*anyopaque,
+            ppvAdapter: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumWarpAdapter: *const fn(
             self: *const IDXGIFactory4,
             riid: ?*const Guid,
-            ppvAdapter: ?*?*anyopaque,
+            ppvAdapter: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1917,10 +1917,10 @@ pub const IDXGIFactory4 = extern union {
     IDXGIFactory: IDXGIFactory,
     IDXGIObject: IDXGIObject,
     IUnknown: IUnknown,
-    pub fn EnumAdapterByLuid(self: *const IDXGIFactory4, AdapterLuid: LUID, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn EnumAdapterByLuid(self: *const IDXGIFactory4, AdapterLuid: LUID, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.EnumAdapterByLuid(self, AdapterLuid, riid, ppvAdapter);
     }
-    pub fn EnumWarpAdapter(self: *const IDXGIFactory4, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn EnumWarpAdapter(self: *const IDXGIFactory4, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.EnumWarpAdapter(self, riid, ppvAdapter);
     }
 };
@@ -2018,7 +2018,7 @@ pub const IDXGIOutput5 = extern union {
             Flags: u32,
             SupportedFormatsCount: u32,
             pSupportedFormats: [*]const DXGI_FORMAT,
-            ppOutputDuplication: ?*?*IDXGIOutputDuplication,
+            ppOutputDuplication: **IDXGIOutputDuplication,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2029,7 +2029,7 @@ pub const IDXGIOutput5 = extern union {
     IDXGIOutput: IDXGIOutput,
     IDXGIObject: IDXGIObject,
     IUnknown: IUnknown,
-    pub fn DuplicateOutput1(self: *const IDXGIOutput5, pDevice: ?*IUnknown, Flags: u32, SupportedFormatsCount: u32, pSupportedFormats: [*]const DXGI_FORMAT, ppOutputDuplication: ?*?*IDXGIOutputDuplication) callconv(.Inline) HRESULT {
+    pub fn DuplicateOutput1(self: *const IDXGIOutput5, pDevice: ?*IUnknown, Flags: u32, SupportedFormatsCount: u32, pSupportedFormats: [*]const DXGI_FORMAT, ppOutputDuplication: **IDXGIOutputDuplication) callconv(.Inline) HRESULT {
         return self.vtable.DuplicateOutput1(self, pDevice, Flags, SupportedFormatsCount, pSupportedFormats, ppOutputDuplication);
     }
 };
@@ -2382,7 +2382,7 @@ pub const IDXGIFactory6 = extern union {
             Adapter: u32,
             GpuPreference: DXGI_GPU_PREFERENCE,
             riid: ?*const Guid,
-            ppvAdapter: ?*?*anyopaque,
+            ppvAdapter: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2394,7 +2394,7 @@ pub const IDXGIFactory6 = extern union {
     IDXGIFactory: IDXGIFactory,
     IDXGIObject: IDXGIObject,
     IUnknown: IUnknown,
-    pub fn EnumAdapterByGpuPreference(self: *const IDXGIFactory6, Adapter: u32, GpuPreference: DXGI_GPU_PREFERENCE, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn EnumAdapterByGpuPreference(self: *const IDXGIFactory6, Adapter: u32, GpuPreference: DXGI_GPU_PREFERENCE, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.EnumAdapterByGpuPreference(self, Adapter, GpuPreference, riid, ppvAdapter);
     }
 };
@@ -3579,27 +3579,27 @@ pub const IDXGraphicsAnalysis = extern union {
 //--------------------------------------------------------------------------------
 pub extern "dxgi" fn CreateDXGIFactory(
     riid: ?*const Guid,
-    ppFactory: ?*?*anyopaque,
+    ppFactory: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "dxgi" fn CreateDXGIFactory1(
     riid: ?*const Guid,
-    ppFactory: ?*?*anyopaque,
+    ppFactory: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "dxgi" fn CreateDXGIFactory2(
     Flags: u32,
     riid: ?*const Guid,
-    ppFactory: ?*?*anyopaque,
+    ppFactory: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "dxgi" fn DXGIGetDebugInterface1(
     Flags: u32,
     riid: ?*const Guid,
-    pDebug: ?*?*anyopaque,
+    pDebug: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17134'

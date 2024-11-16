@@ -309,7 +309,7 @@ pub const IPropertyChangeArray = extern union {
             self: *const IPropertyChangeArray,
             iIndex: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertAt: *const fn(
             self: *const IPropertyChangeArray,
@@ -338,7 +338,7 @@ pub const IPropertyChangeArray = extern union {
     pub fn GetCount(self: *const IPropertyChangeArray, pcOperations: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetCount(self, pcOperations);
     }
-    pub fn GetAt(self: *const IPropertyChangeArray, iIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const IPropertyChangeArray, iIndex: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetAt(self, iIndex, riid, ppv);
     }
     pub fn InsertAt(self: *const IPropertyChangeArray, iIndex: u32, ppropChange: ?*IPropertyChange) callconv(.Inline) HRESULT {
@@ -523,13 +523,13 @@ pub const IPropertyEnumTypeList = extern union {
             self: *const IPropertyEnumTypeList,
             itype: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConditionAt: *const fn(
             self: *const IPropertyEnumTypeList,
             nIndex: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindMatchingIndex: *const fn(
             self: *const IPropertyEnumTypeList,
@@ -542,10 +542,10 @@ pub const IPropertyEnumTypeList = extern union {
     pub fn GetCount(self: *const IPropertyEnumTypeList, pctypes: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetCount(self, pctypes);
     }
-    pub fn GetAt(self: *const IPropertyEnumTypeList, itype: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const IPropertyEnumTypeList, itype: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetAt(self, itype, riid, ppv);
     }
-    pub fn GetConditionAt(self: *const IPropertyEnumTypeList, nIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetConditionAt(self: *const IPropertyEnumTypeList, nIndex: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetConditionAt(self, nIndex, riid, ppv);
     }
     pub fn FindMatchingIndex(self: *const IPropertyEnumTypeList, propvarCmp: ?*const PROPVARIANT, pnIndex: ?*u32) callconv(.Inline) HRESULT {
@@ -916,7 +916,7 @@ pub const IPropertyDescription = extern union {
         GetEnumTypeList: *const fn(
             self: *const IPropertyDescription,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CoerceToCanonicalValue: *const fn(
             self: *const IPropertyDescription,
@@ -986,7 +986,7 @@ pub const IPropertyDescription = extern union {
     pub fn GetConditionType(self: *const IPropertyDescription, pcontype: ?*PROPDESC_CONDITION_TYPE, popDefault: ?*CONDITION_OPERATION) callconv(.Inline) HRESULT {
         return self.vtable.GetConditionType(self, pcontype, popDefault);
     }
-    pub fn GetEnumTypeList(self: *const IPropertyDescription, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetEnumTypeList(self: *const IPropertyDescription, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetEnumTypeList(self, riid, ppv);
     }
     pub fn CoerceToCanonicalValue(self: *const IPropertyDescription, ppropvar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
@@ -1029,21 +1029,21 @@ pub const IPropertyDescriptionAliasInfo = extern union {
         GetSortByAlias: *const fn(
             self: *const IPropertyDescriptionAliasInfo,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAdditionalSortByAliases: *const fn(
             self: *const IPropertyDescriptionAliasInfo,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IPropertyDescription: IPropertyDescription,
     IUnknown: IUnknown,
-    pub fn GetSortByAlias(self: *const IPropertyDescriptionAliasInfo, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetSortByAlias(self: *const IPropertyDescriptionAliasInfo, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetSortByAlias(self, riid, ppv);
     }
-    pub fn GetAdditionalSortByAliases(self: *const IPropertyDescriptionAliasInfo, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAdditionalSortByAliases(self: *const IPropertyDescriptionAliasInfo, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetAdditionalSortByAliases(self, riid, ppv);
     }
 };
@@ -1154,13 +1154,13 @@ pub const IPropertyDescriptionRelatedPropertyInfo = extern union {
             self: *const IPropertyDescriptionRelatedPropertyInfo,
             pszRelationshipName: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IPropertyDescription: IPropertyDescription,
     IUnknown: IUnknown,
-    pub fn GetRelatedProperty(self: *const IPropertyDescriptionRelatedPropertyInfo, pszRelationshipName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetRelatedProperty(self: *const IPropertyDescriptionRelatedPropertyInfo, pszRelationshipName: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetRelatedProperty(self, pszRelationshipName, riid, ppv);
     }
 };
@@ -1192,25 +1192,25 @@ pub const IPropertySystem = extern union {
             self: *const IPropertySystem,
             propkey: ?*const PROPERTYKEY,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDescriptionByName: *const fn(
             self: *const IPropertySystem,
             pszCanonicalName: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDescriptionListFromString: *const fn(
             self: *const IPropertySystem,
             pszPropList: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumeratePropertyDescriptions: *const fn(
             self: *const IPropertySystem,
             filterOn: PROPDESC_ENUMFILTER,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FormatForDisplay: *const fn(
             self: *const IPropertySystem,
@@ -1241,16 +1241,16 @@ pub const IPropertySystem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPropertyDescription(self: *const IPropertySystem, propkey: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyDescription(self: *const IPropertySystem, propkey: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPropertyDescription(self, propkey, riid, ppv);
     }
-    pub fn GetPropertyDescriptionByName(self: *const IPropertySystem, pszCanonicalName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyDescriptionByName(self: *const IPropertySystem, pszCanonicalName: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPropertyDescriptionByName(self, pszCanonicalName, riid, ppv);
     }
-    pub fn GetPropertyDescriptionListFromString(self: *const IPropertySystem, pszPropList: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyDescriptionListFromString(self: *const IPropertySystem, pszPropList: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPropertyDescriptionListFromString(self, pszPropList, riid, ppv);
     }
-    pub fn EnumeratePropertyDescriptions(self: *const IPropertySystem, filterOn: PROPDESC_ENUMFILTER, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn EnumeratePropertyDescriptions(self: *const IPropertySystem, filterOn: PROPDESC_ENUMFILTER, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.EnumeratePropertyDescriptions(self, filterOn, riid, ppv);
     }
     pub fn FormatForDisplay(self: *const IPropertySystem, key: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT, pdff: PROPDESC_FORMAT_FLAGS, pszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
@@ -1284,7 +1284,7 @@ pub const IPropertyDescriptionList = extern union {
             self: *const IPropertyDescriptionList,
             iElem: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1292,7 +1292,7 @@ pub const IPropertyDescriptionList = extern union {
     pub fn GetCount(self: *const IPropertyDescriptionList, pcElem: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetCount(self, pcElem);
     }
-    pub fn GetAt(self: *const IPropertyDescriptionList, iElem: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const IPropertyDescriptionList, iElem: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetAt(self, iElem, riid, ppv);
     }
 };
@@ -1308,7 +1308,7 @@ pub const IPropertyStoreFactory = extern union {
             flags: GETPROPERTYSTOREFLAGS,
             pUnkFactory: ?*IUnknown,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStoreForKeys: *const fn(
             self: *const IPropertyStoreFactory,
@@ -1316,15 +1316,15 @@ pub const IPropertyStoreFactory = extern union {
             cKeys: u32,
             flags: GETPROPERTYSTOREFLAGS,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPropertyStore(self: *const IPropertyStoreFactory, flags: GETPROPERTYSTOREFLAGS, pUnkFactory: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyStore(self: *const IPropertyStoreFactory, flags: GETPROPERTYSTOREFLAGS, pUnkFactory: ?*IUnknown, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPropertyStore(self, flags, pUnkFactory, riid, ppv);
     }
-    pub fn GetPropertyStoreForKeys(self: *const IPropertyStoreFactory, rgKeys: ?*const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyStoreForKeys(self: *const IPropertyStoreFactory, rgKeys: ?*const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetPropertyStoreForKeys(self, rgKeys, cKeys, flags, riid, ppv);
     }
 };
@@ -1340,13 +1340,13 @@ pub const IDelayedPropertyStoreFactory = extern union {
             flags: GETPROPERTYSTOREFLAGS,
             dwStoreId: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IPropertyStoreFactory: IPropertyStoreFactory,
     IUnknown: IUnknown,
-    pub fn GetDelayedPropertyStore(self: *const IDelayedPropertyStoreFactory, flags: GETPROPERTYSTOREFLAGS, dwStoreId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDelayedPropertyStore(self: *const IDelayedPropertyStoreFactory, flags: GETPROPERTYSTOREFLAGS, dwStoreId: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetDelayedPropertyStore(self, flags, dwStoreId, riid, ppv);
     }
 };
@@ -1455,12 +1455,12 @@ pub const ICreateObject = extern union {
             clsid: ?*const Guid,
             pUnkOuter: ?*IUnknown,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateObject(self: *const ICreateObject, clsid: ?*const Guid, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateObject(self: *const ICreateObject, clsid: ?*const Guid, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateObject(self, clsid, pUnkOuter, riid, ppv);
     }
 };
@@ -2041,7 +2041,7 @@ pub const PROPPRG = extern struct {
 pub extern "propsys" fn PropVariantToWinRTPropertyValue(
     propvar: ?*const PROPVARIANT,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: ?**anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'

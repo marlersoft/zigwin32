@@ -805,7 +805,7 @@ pub const ITextStoreACP = extern union {
             acpPos: i32,
             rguidService: ?*const Guid,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryInsertEmbedded: *const fn(
             self: *const ITextStoreACP,
@@ -941,7 +941,7 @@ pub const ITextStoreACP = extern union {
     pub fn GetFormattedText(self: *const ITextStoreACP, acpStart: i32, acpEnd: i32, ppDataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
         return self.vtable.GetFormattedText(self, acpStart, acpEnd, ppDataObject);
     }
-    pub fn GetEmbedded(self: *const ITextStoreACP, acpPos: i32, rguidService: ?*const Guid, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetEmbedded(self: *const ITextStoreACP, acpPos: i32, rguidService: ?*const Guid, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetEmbedded(self, acpPos, rguidService, riid, ppunk);
     }
     pub fn QueryInsertEmbedded(self: *const ITextStoreACP, pguidService: ?*const Guid, pFormatEtc: ?*const FORMATETC, pfInsertable: ?*BOOL) callconv(.Inline) HRESULT {
@@ -1068,7 +1068,7 @@ pub const ITextStoreACP2 = extern union {
             acpPos: i32,
             rguidService: ?*const Guid,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryInsertEmbedded: *const fn(
             self: *const ITextStoreACP2,
@@ -1199,7 +1199,7 @@ pub const ITextStoreACP2 = extern union {
     pub fn GetFormattedText(self: *const ITextStoreACP2, acpStart: i32, acpEnd: i32, ppDataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
         return self.vtable.GetFormattedText(self, acpStart, acpEnd, ppDataObject);
     }
-    pub fn GetEmbedded(self: *const ITextStoreACP2, acpPos: i32, rguidService: ?*const Guid, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetEmbedded(self: *const ITextStoreACP2, acpPos: i32, rguidService: ?*const Guid, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetEmbedded(self, acpPos, rguidService, riid, ppunk);
     }
     pub fn QueryInsertEmbedded(self: *const ITextStoreACP2, pguidService: ?*const Guid, pFormatEtc: ?*const FORMATETC, pfInsertable: ?*BOOL) callconv(.Inline) HRESULT {
@@ -1498,7 +1498,7 @@ pub const ITextStoreAnchor = extern union {
             paPos: ?*IAnchor,
             rguidService: ?*const Guid,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertEmbedded: *const fn(
             self: *const ITextStoreAnchor,
@@ -1634,7 +1634,7 @@ pub const ITextStoreAnchor = extern union {
     pub fn GetFormattedText(self: *const ITextStoreAnchor, paStart: ?*IAnchor, paEnd: ?*IAnchor, ppDataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
         return self.vtable.GetFormattedText(self, paStart, paEnd, ppDataObject);
     }
-    pub fn GetEmbedded(self: *const ITextStoreAnchor, dwFlags: u32, paPos: ?*IAnchor, rguidService: ?*const Guid, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetEmbedded(self: *const ITextStoreAnchor, dwFlags: u32, paPos: ?*IAnchor, rguidService: ?*const Guid, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetEmbedded(self, dwFlags, paPos, rguidService, riid, ppunk);
     }
     pub fn InsertEmbedded(self: *const ITextStoreAnchor, dwFlags: u32, paStart: ?*IAnchor, paEnd: ?*IAnchor, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
@@ -1779,7 +1779,7 @@ pub const ITfLangBarMgr = extern union {
             dwThreadId: u32,
             dwType: u32,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetThreadLangBarItemMgr: *const fn(
             self: *const ITfLangBarMgr,
@@ -1821,7 +1821,7 @@ pub const ITfLangBarMgr = extern union {
     pub fn UnadviseEventSink(self: *const ITfLangBarMgr, dwCookie: u32) callconv(.Inline) HRESULT {
         return self.vtable.UnadviseEventSink(self, dwCookie);
     }
-    pub fn GetThreadMarshalInterface(self: *const ITfLangBarMgr, dwThreadId: u32, dwType: u32, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetThreadMarshalInterface(self: *const ITfLangBarMgr, dwThreadId: u32, dwType: u32, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetThreadMarshalInterface(self, dwThreadId, dwType, riid, ppunk);
     }
     pub fn GetThreadLangBarItemMgr(self: *const ITfLangBarMgr, dwThreadId: u32, pplbi: ?*?*ITfLangBarItemMgr, pdwThreadid: ?*u32) callconv(.Inline) HRESULT {
@@ -3990,7 +3990,7 @@ pub const ITfRange = extern union {
             ec: u32,
             rguidService: ?*const Guid,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertEmbedded: *const fn(
             self: *const ITfRange,
@@ -4111,7 +4111,7 @@ pub const ITfRange = extern union {
     pub fn GetFormattedText(self: *const ITfRange, ec: u32, ppDataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
         return self.vtable.GetFormattedText(self, ec, ppDataObject);
     }
-    pub fn GetEmbedded(self: *const ITfRange, ec: u32, rguidService: ?*const Guid, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetEmbedded(self: *const ITfRange, ec: u32, rguidService: ?*const Guid, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetEmbedded(self, ec, rguidService, riid, ppunk);
     }
     pub fn InsertEmbedded(self: *const ITfRange, ec: u32, dwFlags: u32, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
@@ -4637,7 +4637,7 @@ pub const ITfFunctionProvider = extern union {
             self: *const ITfFunctionProvider,
             rguid: ?*const Guid,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4648,7 +4648,7 @@ pub const ITfFunctionProvider = extern union {
     pub fn GetDescription(self: *const ITfFunctionProvider, pbstrDesc: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetDescription(self, pbstrDesc);
     }
-    pub fn GetFunction(self: *const ITfFunctionProvider, rguid: ?*const Guid, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetFunction(self: *const ITfFunctionProvider, rguid: ?*const Guid, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetFunction(self, rguid, riid, ppunk);
     }
 };
@@ -7189,13 +7189,13 @@ pub const ITfFnGetLinguisticAlternates = extern union {
         GetAlternates: *const fn(
             self: *const ITfFnGetLinguisticAlternates,
             pRange: ?*ITfRange,
-            ppCandidateList: ?*?*ITfCandidateList,
+            ppCandidateList: **ITfCandidateList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
     IUnknown: IUnknown,
-    pub fn GetAlternates(self: *const ITfFnGetLinguisticAlternates, pRange: ?*ITfRange, ppCandidateList: ?*?*ITfCandidateList) callconv(.Inline) HRESULT {
+    pub fn GetAlternates(self: *const ITfFnGetLinguisticAlternates, pRange: ?*ITfRange, ppCandidateList: **ITfCandidateList) callconv(.Inline) HRESULT {
         return self.vtable.GetAlternates(self, pRange, ppCandidateList);
     }
 };
@@ -7719,7 +7719,7 @@ pub const ICoCreateLocally = extern union {
             rclsid: ?*const Guid,
             dwClsContext: u32,
             riid: ?*const Guid,
-            punk: ?*?*IUnknown,
+            punk: **IUnknown,
             riidParam: ?*const Guid,
             punkParam: ?*IUnknown,
             varParam: VARIANT,
@@ -7727,7 +7727,7 @@ pub const ICoCreateLocally = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CoCreateLocally(self: *const ICoCreateLocally, rclsid: ?*const Guid, dwClsContext: u32, riid: ?*const Guid, punk: ?*?*IUnknown, riidParam: ?*const Guid, punkParam: ?*IUnknown, varParam: VARIANT) callconv(.Inline) HRESULT {
+    pub fn CoCreateLocally(self: *const ICoCreateLocally, rclsid: ?*const Guid, dwClsContext: u32, riid: ?*const Guid, punk: **IUnknown, riidParam: ?*const Guid, punkParam: ?*IUnknown, varParam: VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.CoCreateLocally(self, rclsid, dwClsContext, riid, punk, riidParam, punkParam, varParam);
     }
 };
@@ -7775,13 +7775,13 @@ pub const IAccStore = extern union {
             self: *const IAccStore,
             hWnd: ?HWND,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LookupByPoint: *const fn(
             self: *const IAccStore,
             pt: POINT,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnDocumentFocus: *const fn(
             self: *const IAccStore,
@@ -7790,7 +7790,7 @@ pub const IAccStore = extern union {
         GetFocused: *const fn(
             self: *const IAccStore,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7804,16 +7804,16 @@ pub const IAccStore = extern union {
     pub fn GetDocuments(self: *const IAccStore, enumUnknown: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetDocuments(self, enumUnknown);
     }
-    pub fn LookupByHWND(self: *const IAccStore, hWnd: ?HWND, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn LookupByHWND(self: *const IAccStore, hWnd: ?HWND, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.LookupByHWND(self, hWnd, riid, ppunk);
     }
-    pub fn LookupByPoint(self: *const IAccStore, pt: POINT, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn LookupByPoint(self: *const IAccStore, pt: POINT, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.LookupByPoint(self, pt, riid, ppunk);
     }
     pub fn OnDocumentFocus(self: *const IAccStore, punk: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.OnDocumentFocus(self, punk);
     }
-    pub fn GetFocused(self: *const IAccStore, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetFocused(self: *const IAccStore, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetFocused(self, riid, ppunk);
     }
 };
@@ -7865,18 +7865,18 @@ pub const IAccClientDocMgr = extern union {
             self: *const IAccClientDocMgr,
             hWnd: ?HWND,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LookupByPoint: *const fn(
             self: *const IAccClientDocMgr,
             pt: POINT,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFocused: *const fn(
             self: *const IAccClientDocMgr,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7884,13 +7884,13 @@ pub const IAccClientDocMgr = extern union {
     pub fn GetDocuments(self: *const IAccClientDocMgr, enumUnknown: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetDocuments(self, enumUnknown);
     }
-    pub fn LookupByHWND(self: *const IAccClientDocMgr, hWnd: ?HWND, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn LookupByHWND(self: *const IAccClientDocMgr, hWnd: ?HWND, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.LookupByHWND(self, hWnd, riid, ppunk);
     }
-    pub fn LookupByPoint(self: *const IAccClientDocMgr, pt: POINT, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn LookupByPoint(self: *const IAccClientDocMgr, pt: POINT, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.LookupByPoint(self, pt, riid, ppunk);
     }
-    pub fn GetFocused(self: *const IAccClientDocMgr, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetFocused(self: *const IAccClientDocMgr, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetFocused(self, riid, ppunk);
     }
 };
@@ -7908,7 +7908,7 @@ pub const IDocWrap = extern union {
         GetWrappedDoc: *const fn(
             self: *const IDocWrap,
             riid: ?*const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7916,7 +7916,7 @@ pub const IDocWrap = extern union {
     pub fn SetDoc(self: *const IDocWrap, riid: ?*const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.SetDoc(self, riid, punk);
     }
-    pub fn GetWrappedDoc(self: *const IDocWrap, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetWrappedDoc(self: *const IDocWrap, riid: ?*const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetWrappedDoc(self, riid, ppunk);
     }
 };
@@ -7929,12 +7929,12 @@ pub const IClonableWrapper = extern union {
         CloneNewWrapper: *const fn(
             self: *const IClonableWrapper,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CloneNewWrapper(self: *const IClonableWrapper, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CloneNewWrapper(self: *const IClonableWrapper, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CloneNewWrapper(self, riid, ppv);
     }
 };

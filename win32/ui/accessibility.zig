@@ -4539,13 +4539,13 @@ pub const IUIAutomationElement = extern union {
             self: *const IUIAutomationElement,
             patternId: i32,
             riid: ?*const Guid,
-            patternObject: ?*?*anyopaque,
+            patternObject: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedPatternAs: *const fn(
             self: *const IUIAutomationElement,
             patternId: i32,
             riid: ?*const Guid,
-            patternObject: ?*?*anyopaque,
+            patternObject: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentPattern: *const fn(
             self: *const IUIAutomationElement,
@@ -4926,10 +4926,10 @@ pub const IUIAutomationElement = extern union {
     pub fn GetCachedPropertyValueEx(self: *const IUIAutomationElement, propertyId: i32, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.GetCachedPropertyValueEx(self, propertyId, ignoreDefaultValue, retVal);
     }
-    pub fn GetCurrentPatternAs(self: *const IUIAutomationElement, patternId: i32, riid: ?*const Guid, patternObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCurrentPatternAs(self: *const IUIAutomationElement, patternId: i32, riid: ?*const Guid, patternObject: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetCurrentPatternAs(self, patternId, riid, patternObject);
     }
-    pub fn GetCachedPatternAs(self: *const IUIAutomationElement, patternId: i32, riid: ?*const Guid, patternObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCachedPatternAs(self: *const IUIAutomationElement, patternId: i32, riid: ?*const Guid, patternObject: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetCachedPatternAs(self, patternId, riid, patternObject);
     }
     pub fn GetCurrentPattern(self: *const IUIAutomationElement, patternId: i32, patternObject: ?*?*IUnknown) callconv(.Inline) HRESULT {

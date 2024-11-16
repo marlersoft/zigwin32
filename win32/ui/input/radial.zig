@@ -16,13 +16,13 @@ pub const IRadialControllerInterop = extern union {
             self: *const IRadialControllerInterop,
             hwnd: ?HWND,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn CreateForWindow(self: *const IRadialControllerInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateForWindow(self: *const IRadialControllerInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateForWindow(self, hwnd, riid, ppv);
     }
 };
@@ -37,13 +37,13 @@ pub const IRadialControllerConfigurationInterop = extern union {
             self: *const IRadialControllerConfigurationInterop,
             hwnd: ?HWND,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IRadialControllerConfigurationInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IRadialControllerConfigurationInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, hwnd, riid, ppv);
     }
 };
@@ -57,13 +57,13 @@ pub const IRadialControllerIndependentInputSourceInterop = extern union {
             self: *const IRadialControllerIndependentInputSourceInterop,
             hwnd: ?HWND,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn CreateForWindow(self: *const IRadialControllerIndependentInputSourceInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateForWindow(self: *const IRadialControllerIndependentInputSourceInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateForWindow(self, hwnd, riid, ppv);
     }
 };

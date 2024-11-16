@@ -94,20 +94,20 @@ pub const IGeometrySource2DInterop = extern union {
         base: IUnknown.VTable,
         GetGeometry: *const fn(
             self: *const IGeometrySource2DInterop,
-            value: ?*?*ID2D1Geometry,
+            value: **ID2D1Geometry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TryGetGeometryUsingFactory: *const fn(
             self: *const IGeometrySource2DInterop,
             factory: ?*ID2D1Factory,
-            value: ?*?*ID2D1Geometry,
+            value: ?**ID2D1Geometry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetGeometry(self: *const IGeometrySource2DInterop, value: ?*?*ID2D1Geometry) callconv(.Inline) HRESULT {
+    pub fn GetGeometry(self: *const IGeometrySource2DInterop, value: **ID2D1Geometry) callconv(.Inline) HRESULT {
         return self.vtable.GetGeometry(self, value);
     }
-    pub fn TryGetGeometryUsingFactory(self: *const IGeometrySource2DInterop, factory: ?*ID2D1Factory, value: ?*?*ID2D1Geometry) callconv(.Inline) HRESULT {
+    pub fn TryGetGeometryUsingFactory(self: *const IGeometrySource2DInterop, factory: ?*ID2D1Factory, value: ?**ID2D1Geometry) callconv(.Inline) HRESULT {
         return self.vtable.TryGetGeometryUsingFactory(self, factory, value);
     }
 };
