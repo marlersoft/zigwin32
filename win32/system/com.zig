@@ -511,8 +511,8 @@ pub const IUnknown = extern union {
     pub const VTable = extern struct {
         QueryInterface: *const fn(
             self: *const IUnknown,
-            riid: ?*const Guid,
-            ppvObject: ?*?*anyopaque,
+            riid: *const Guid,
+            ppvObject: *?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddRef: *const fn(
             self: *const IUnknown,
@@ -522,7 +522,7 @@ pub const IUnknown = extern union {
         ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
-    pub fn QueryInterface(self: *const IUnknown, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn QueryInterface(self: *const IUnknown, riid: *const Guid, ppvObject: *?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.QueryInterface(self, riid, ppvObject);
     }
     pub fn AddRef(self: *const IUnknown) callconv(.Inline) u32 {
