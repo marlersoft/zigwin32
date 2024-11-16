@@ -1703,7 +1703,7 @@ pub const ITransactionContextEx = extern union {
             self: *const ITransactionContextEx,
             rclsid: ?*const Guid,
             riid: ?*const Guid,
-            pObject: ?*?*anyopaque,
+            pObject: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Commit: *const fn(
             self: *const ITransactionContextEx,
@@ -1714,7 +1714,7 @@ pub const ITransactionContextEx = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateInstance(self: *const ITransactionContextEx, rclsid: ?*const Guid, riid: ?*const Guid, pObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const ITransactionContextEx, rclsid: ?*const Guid, riid: ?*const Guid, pObject: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstance(self, rclsid, riid, pObject);
     }
     pub fn Commit(self: *const ITransactionContextEx) callconv(.Inline) HRESULT {
@@ -1768,12 +1768,12 @@ pub const ICreateWithTransactionEx = extern union {
             pTransaction: ?*ITransaction,
             rclsid: ?*const Guid,
             riid: ?*const Guid,
-            pObject: ?*?*anyopaque,
+            pObject: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateInstance(self: *const ICreateWithTransactionEx, pTransaction: ?*ITransaction, rclsid: ?*const Guid, riid: ?*const Guid, pObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const ICreateWithTransactionEx, pTransaction: ?*ITransaction, rclsid: ?*const Guid, riid: ?*const Guid, pObject: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstance(self, pTransaction, rclsid, riid, pObject);
     }
 };
@@ -1810,12 +1810,12 @@ pub const ICreateWithTipTransactionEx = extern union {
             bstrTipUrl: ?BSTR,
             rclsid: ?*const Guid,
             riid: ?*const Guid,
-            pObject: ?*?*anyopaque,
+            pObject: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateInstance(self: *const ICreateWithTipTransactionEx, bstrTipUrl: ?BSTR, rclsid: ?*const Guid, riid: ?*const Guid, pObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const ICreateWithTipTransactionEx, bstrTipUrl: ?BSTR, rclsid: ?*const Guid, riid: ?*const Guid, pObject: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstance(self, bstrTipUrl, rclsid, riid, pObject);
     }
 };

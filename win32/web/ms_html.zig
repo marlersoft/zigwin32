@@ -69585,7 +69585,7 @@ pub const ISurfacePresenter = extern union {
             self: *const ISurfacePresenter,
             backBufferIndex: u32,
             riid: ?*const Guid,
-            ppBuffer: ?*?*anyopaque,
+            ppBuffer: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsCurrent: *const fn(
             self: *const ISurfacePresenter,
@@ -69597,7 +69597,7 @@ pub const ISurfacePresenter = extern union {
     pub fn Present(self: *const ISurfacePresenter, uBuffer: u32, pDirty: ?*RECT) callconv(.Inline) HRESULT {
         return self.vtable.Present(self, uBuffer, pDirty);
     }
-    pub fn GetBuffer(self: *const ISurfacePresenter, backBufferIndex: u32, riid: ?*const Guid, ppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetBuffer(self: *const ISurfacePresenter, backBufferIndex: u32, riid: ?*const Guid, ppBuffer: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetBuffer(self, backBufferIndex, riid, ppBuffer);
     }
     pub fn IsCurrent(self: *const ISurfacePresenter, pIsCurrent: ?*BOOL) callconv(.Inline) HRESULT {
@@ -70957,12 +70957,12 @@ pub const IInternetExplorerManager = extern union {
             dwConfig: u32,
             pszURL: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateObject(self: *const IInternetExplorerManager, dwConfig: u32, pszURL: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateObject(self: *const IInternetExplorerManager, dwConfig: u32, pszURL: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateObject(self, dwConfig, pszURL, riid, ppv);
     }
 };
@@ -72085,13 +72085,13 @@ pub const IClassFactoryEx = extern union {
             punkContext: ?*IUnknown,
             punkOuter: ?*IUnknown,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IClassFactory: IClassFactory,
     IUnknown: IUnknown,
-    pub fn CreateInstanceWithContext(self: *const IClassFactoryEx, punkContext: ?*IUnknown, punkOuter: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateInstanceWithContext(self: *const IClassFactoryEx, punkContext: ?*IUnknown, punkOuter: ?*IUnknown, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstanceWithContext(self, punkContext, punkOuter, riid, ppv);
     }
 };
@@ -72826,7 +72826,7 @@ pub const IUrlHistoryStg = extern union {
             self: *const IUrlHistoryStg,
             pocsUrl: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppvOut: ?*?*anyopaque,
+            ppvOut: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumUrls: *const fn(
             self: *const IUrlHistoryStg,
@@ -72844,7 +72844,7 @@ pub const IUrlHistoryStg = extern union {
     pub fn QueryUrl(self: *const IUrlHistoryStg, pocsUrl: ?[*:0]const u16, dwFlags: u32, lpSTATURL: ?*STATURL) callconv(.Inline) HRESULT {
         return self.vtable.QueryUrl(self, pocsUrl, dwFlags, lpSTATURL);
     }
-    pub fn BindToObject(self: *const IUrlHistoryStg, pocsUrl: ?[*:0]const u16, riid: ?*const Guid, ppvOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToObject(self: *const IUrlHistoryStg, pocsUrl: ?[*:0]const u16, riid: ?*const Guid, ppvOut: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.BindToObject(self, pocsUrl, riid, ppvOut);
     }
     pub fn EnumUrls(self: *const IUrlHistoryStg, ppEnum: ?*?*IEnumSTATURL) callconv(.Inline) HRESULT {

@@ -27330,13 +27330,13 @@ pub const IHostDataModelAccess = extern union {
         base: IUnknown.VTable,
         GetDataModel: *const fn(
             self: *const IHostDataModelAccess,
-            manager: ?*?*IDataModelManager,
-            host: ?*?*IDebugHost,
+            manager: **IDataModelManager,
+            host: **IDebugHost,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDataModel(self: *const IHostDataModelAccess, manager: ?*?*IDataModelManager, host: ?*?*IDebugHost) callconv(.Inline) HRESULT {
+    pub fn GetDataModel(self: *const IHostDataModelAccess, manager: **IDataModelManager, host: **IDebugHost) callconv(.Inline) HRESULT {
         return self.vtable.GetDataModel(self, manager, host);
     }
 };
@@ -27350,7 +27350,7 @@ pub const IKeyStore = extern union {
             self: *const IKeyStore,
             key: ?[*:0]const u16,
             object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKey: *const fn(
             self: *const IKeyStore,
@@ -27362,7 +27362,7 @@ pub const IKeyStore = extern union {
             self: *const IKeyStore,
             key: ?[*:0]const u16,
             object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKeyValue: *const fn(
             self: *const IKeyStore,
@@ -27375,13 +27375,13 @@ pub const IKeyStore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetKey(self: *const IKeyStore, key: ?[*:0]const u16, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetKey(self: *const IKeyStore, key: ?[*:0]const u16, object: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetKey(self, key, object, metadata);
     }
     pub fn SetKey(self: *const IKeyStore, key: ?[*:0]const u16, object: ?*IModelObject, metadata: ?*IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.SetKey(self, key, object, metadata);
     }
-    pub fn GetKeyValue(self: *const IKeyStore, key: ?[*:0]const u16, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetKeyValue(self: *const IKeyStore, key: ?[*:0]const u16, object: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetKeyValue(self, key, object, metadata);
     }
     pub fn SetKeyValue(self: *const IKeyStore, key: ?[*:0]const u16, object: ?*IModelObject) callconv(.Inline) HRESULT {
@@ -27406,7 +27406,7 @@ pub const IModelObject = extern union {
         base: IUnknown.VTable,
         GetContext: *const fn(
             self: *const IModelObject,
-            context: ?*?*IDebugHostContext,
+            context: ?**IDebugHostContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKind: *const fn(
             self: *const IModelObject,
@@ -27425,7 +27425,7 @@ pub const IModelObject = extern union {
             self: *const IModelObject,
             key: ?[*:0]const u16,
             object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKeyValue: *const fn(
             self: *const IModelObject,
@@ -27434,7 +27434,7 @@ pub const IModelObject = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateKeyValues: *const fn(
             self: *const IModelObject,
-            enumerator: ?*?*IKeyEnumerator,
+            enumerator: **IKeyEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRawValue: *const fn(
             self: *const IModelObject,
@@ -27447,7 +27447,7 @@ pub const IModelObject = extern union {
             self: *const IModelObject,
             kind: SymbolKind,
             searchFlags: u32,
-            enumerator: ?*?*IRawEnumerator,
+            enumerator: **IRawEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Dereference: *const fn(
             self: *const IModelObject,
@@ -27460,8 +27460,8 @@ pub const IModelObject = extern union {
         GetConcept: *const fn(
             self: *const IModelObject,
             conceptId: ?*const Guid,
-            conceptInterface: ?*?*IUnknown,
-            conceptMetadata: ?*?*IKeyStore,
+            conceptInterface: **IUnknown,
+            conceptMetadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLocation: *const fn(
             self: *const IModelObject,
@@ -27483,8 +27483,8 @@ pub const IModelObject = extern union {
         GetParentModel: *const fn(
             self: *const IModelObject,
             i: u64,
-            model: ?*?*IModelObject,
-            contextObject: ?*?*IModelObject,
+            model: **IModelObject,
+            contextObject: ?**IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddParentModel: *const fn(
             self: *const IModelObject,
@@ -27500,13 +27500,13 @@ pub const IModelObject = extern union {
             self: *const IModelObject,
             key: ?[*:0]const u16,
             object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKeyReference: *const fn(
             self: *const IModelObject,
             key: ?[*:0]const u16,
             objectReference: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKey: *const fn(
             self: *const IModelObject,
@@ -27519,11 +27519,11 @@ pub const IModelObject = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateKeys: *const fn(
             self: *const IModelObject,
-            enumerator: ?*?*IKeyEnumerator,
+            enumerator: **IKeyEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateKeyReferences: *const fn(
             self: *const IModelObject,
-            enumerator: ?*?*IKeyEnumerator,
+            enumerator: **IKeyEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetConcept: *const fn(
             self: *const IModelObject,
@@ -27545,7 +27545,7 @@ pub const IModelObject = extern union {
             self: *const IModelObject,
             kind: SymbolKind,
             searchFlags: u32,
-            enumerator: ?*?*IRawEnumerator,
+            enumerator: **IRawEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetContextForDataModel: *const fn(
             self: *const IModelObject,
@@ -27560,7 +27560,7 @@ pub const IModelObject = extern union {
         Compare: *const fn(
             self: *const IModelObject,
             other: ?*IModelObject,
-            ppResult: ?*?*IModelObject,
+            ppResult: ?**IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsEqualTo: *const fn(
             self: *const IModelObject,
@@ -27570,7 +27570,7 @@ pub const IModelObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetContext(self: *const IModelObject, context: ?*?*IDebugHostContext) callconv(.Inline) HRESULT {
+    pub fn GetContext(self: *const IModelObject, context: ?**IDebugHostContext) callconv(.Inline) HRESULT {
         return self.vtable.GetContext(self, context);
     }
     pub fn GetKind(self: *const IModelObject, kind: ?*ModelObjectKind) callconv(.Inline) HRESULT {
@@ -27582,19 +27582,19 @@ pub const IModelObject = extern union {
     pub fn GetIntrinsicValueAs(self: *const IModelObject, vt: u16, intrinsicData: ?*VARIANT) callconv(.Inline) HRESULT {
         return self.vtable.GetIntrinsicValueAs(self, vt, intrinsicData);
     }
-    pub fn GetKeyValue(self: *const IModelObject, key: ?[*:0]const u16, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetKeyValue(self: *const IModelObject, key: ?[*:0]const u16, object: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetKeyValue(self, key, object, metadata);
     }
     pub fn SetKeyValue(self: *const IModelObject, key: ?[*:0]const u16, object: ?*IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.SetKeyValue(self, key, object);
     }
-    pub fn EnumerateKeyValues(self: *const IModelObject, enumerator: ?*?*IKeyEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateKeyValues(self: *const IModelObject, enumerator: **IKeyEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateKeyValues(self, enumerator);
     }
     pub fn GetRawValue(self: *const IModelObject, kind: SymbolKind, name: ?[*:0]const u16, searchFlags: u32, object: ?*?*IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.GetRawValue(self, kind, name, searchFlags, object);
     }
-    pub fn EnumerateRawValues(self: *const IModelObject, kind: SymbolKind, searchFlags: u32, enumerator: ?*?*IRawEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateRawValues(self: *const IModelObject, kind: SymbolKind, searchFlags: u32, enumerator: **IRawEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateRawValues(self, kind, searchFlags, enumerator);
     }
     pub fn Dereference(self: *const IModelObject, object: ?*?*IModelObject) callconv(.Inline) HRESULT {
@@ -27603,7 +27603,7 @@ pub const IModelObject = extern union {
     pub fn TryCastToRuntimeType(self: *const IModelObject, runtimeTypedObject: ?*?*IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.TryCastToRuntimeType(self, runtimeTypedObject);
     }
-    pub fn GetConcept(self: *const IModelObject, conceptId: ?*const Guid, conceptInterface: ?*?*IUnknown, conceptMetadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetConcept(self: *const IModelObject, conceptId: ?*const Guid, conceptInterface: **IUnknown, conceptMetadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetConcept(self, conceptId, conceptInterface, conceptMetadata);
     }
     pub fn GetLocation(self: *const IModelObject, location: ?*Location) callconv(.Inline) HRESULT {
@@ -27618,7 +27618,7 @@ pub const IModelObject = extern union {
     pub fn GetNumberOfParentModels(self: *const IModelObject, numModels: ?*u64) callconv(.Inline) HRESULT {
         return self.vtable.GetNumberOfParentModels(self, numModels);
     }
-    pub fn GetParentModel(self: *const IModelObject, i: u64, model: ?*?*IModelObject, contextObject: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn GetParentModel(self: *const IModelObject, i: u64, model: **IModelObject, contextObject: ?**IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.GetParentModel(self, i, model, contextObject);
     }
     pub fn AddParentModel(self: *const IModelObject, model: ?*IModelObject, contextObject: ?*IModelObject, override: u8) callconv(.Inline) HRESULT {
@@ -27627,10 +27627,10 @@ pub const IModelObject = extern union {
     pub fn RemoveParentModel(self: *const IModelObject, model: ?*IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.RemoveParentModel(self, model);
     }
-    pub fn GetKey(self: *const IModelObject, key: ?[*:0]const u16, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetKey(self: *const IModelObject, key: ?[*:0]const u16, object: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetKey(self, key, object, metadata);
     }
-    pub fn GetKeyReference(self: *const IModelObject, key: ?[*:0]const u16, objectReference: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetKeyReference(self: *const IModelObject, key: ?[*:0]const u16, objectReference: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetKeyReference(self, key, objectReference, metadata);
     }
     pub fn SetKey(self: *const IModelObject, key: ?[*:0]const u16, object: ?*IModelObject, metadata: ?*IKeyStore) callconv(.Inline) HRESULT {
@@ -27639,10 +27639,10 @@ pub const IModelObject = extern union {
     pub fn ClearKeys(self: *const IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.ClearKeys(self);
     }
-    pub fn EnumerateKeys(self: *const IModelObject, enumerator: ?*?*IKeyEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateKeys(self: *const IModelObject, enumerator: **IKeyEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateKeys(self, enumerator);
     }
-    pub fn EnumerateKeyReferences(self: *const IModelObject, enumerator: ?*?*IKeyEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateKeyReferences(self: *const IModelObject, enumerator: **IKeyEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateKeyReferences(self, enumerator);
     }
     pub fn SetConcept(self: *const IModelObject, conceptId: ?*const Guid, conceptInterface: ?*IUnknown, conceptMetadata: ?*IKeyStore) callconv(.Inline) HRESULT {
@@ -27654,7 +27654,7 @@ pub const IModelObject = extern union {
     pub fn GetRawReference(self: *const IModelObject, kind: SymbolKind, name: ?[*:0]const u16, searchFlags: u32, object: ?*?*IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.GetRawReference(self, kind, name, searchFlags, object);
     }
-    pub fn EnumerateRawReferences(self: *const IModelObject, kind: SymbolKind, searchFlags: u32, enumerator: ?*?*IRawEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateRawReferences(self: *const IModelObject, kind: SymbolKind, searchFlags: u32, enumerator: **IRawEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateRawReferences(self, kind, searchFlags, enumerator);
     }
     pub fn SetContextForDataModel(self: *const IModelObject, dataModelObject: ?*IModelObject, context: ?*IUnknown) callconv(.Inline) HRESULT {
@@ -27663,7 +27663,7 @@ pub const IModelObject = extern union {
     pub fn GetContextForDataModel(self: *const IModelObject, dataModelObject: ?*IModelObject, context: ?*?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetContextForDataModel(self, dataModelObject, context);
     }
-    pub fn Compare(self: *const IModelObject, other: ?*IModelObject, ppResult: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn Compare(self: *const IModelObject, other: ?*IModelObject, ppResult: ?**IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.Compare(self, other, ppResult);
     }
     pub fn IsEqualTo(self: *const IModelObject, other: ?*IModelObject, equal: ?*bool) callconv(.Inline) HRESULT {
@@ -27687,7 +27687,7 @@ pub const IDataModelManager = extern union {
             self: *const IDataModelManager,
             hrError: HRESULT,
             pwszMessage: ?[*:0]const u16,
-            object: ?*?*IModelObject,
+            object: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTypedObject: *const fn(
             self: *const IDataModelManager,
@@ -27706,24 +27706,24 @@ pub const IDataModelManager = extern union {
         CreateSyntheticObject: *const fn(
             self: *const IDataModelManager,
             context: ?*IDebugHostContext,
-            object: ?*?*IModelObject,
+            object: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDataModelObject: *const fn(
             self: *const IDataModelManager,
             dataModel: ?*IDataModelConcept,
-            object: ?*?*IModelObject,
+            object: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateIntrinsicObject: *const fn(
             self: *const IDataModelManager,
             objectKind: ModelObjectKind,
             intrinsicData: ?*VARIANT,
-            object: ?*?*IModelObject,
+            object: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTypedIntrinsicObject: *const fn(
             self: *const IDataModelManager,
             intrinsicData: ?*VARIANT,
             type: ?*IDebugHostType,
-            object: ?*?*IModelObject,
+            object: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetModelForTypeSignature: *const fn(
             self: *const IDataModelManager,
@@ -27733,9 +27733,9 @@ pub const IDataModelManager = extern union {
         GetModelForType: *const fn(
             self: *const IDataModelManager,
             type: ?*IDebugHostType,
-            dataModel: ?*?*IModelObject,
-            typeSignature: ?*?*IDebugHostTypeSignature,
-            wildcardMatches: ?*?*IDebugHostSymbolEnumerator,
+            dataModel: **IModelObject,
+            typeSignature: ?**IDebugHostTypeSignature,
+            wildcardMatches: ?**IDebugHostSymbolEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterModelForTypeSignature: *const fn(
             self: *const IDataModelManager,
@@ -27760,11 +27760,11 @@ pub const IDataModelManager = extern union {
         CreateMetadataStore: *const fn(
             self: *const IDataModelManager,
             parentStore: ?*IKeyStore,
-            metadataStore: ?*?*IKeyStore,
+            metadataStore: **IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRootNamespace: *const fn(
             self: *const IDataModelManager,
-            rootNamespace: ?*?*IModelObject,
+            rootNamespace: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterNamedModel: *const fn(
             self: *const IDataModelManager,
@@ -27778,7 +27778,7 @@ pub const IDataModelManager = extern union {
         AcquireNamedModel: *const fn(
             self: *const IDataModelManager,
             modelName: ?[*:0]const u16,
-            modelObject: ?*?*IModelObject,
+            modelObject: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -27789,7 +27789,7 @@ pub const IDataModelManager = extern union {
     pub fn CreateNoValue(self: *const IDataModelManager, object: ?*?*IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.CreateNoValue(self, object);
     }
-    pub fn CreateErrorObject(self: *const IDataModelManager, hrError: HRESULT, pwszMessage: ?[*:0]const u16, object: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn CreateErrorObject(self: *const IDataModelManager, hrError: HRESULT, pwszMessage: ?[*:0]const u16, object: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.CreateErrorObject(self, hrError, pwszMessage, object);
     }
     pub fn CreateTypedObject(self: *const IDataModelManager, context: ?*IDebugHostContext, objectLocation: Location, objectType: ?*IDebugHostType, object: ?*?*IModelObject) callconv(.Inline) HRESULT {
@@ -27798,22 +27798,22 @@ pub const IDataModelManager = extern union {
     pub fn CreateTypedObjectReference(self: *const IDataModelManager, context: ?*IDebugHostContext, objectLocation: Location, objectType: ?*IDebugHostType, object: ?*?*IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.CreateTypedObjectReference(self, context, objectLocation, objectType, object);
     }
-    pub fn CreateSyntheticObject(self: *const IDataModelManager, context: ?*IDebugHostContext, object: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn CreateSyntheticObject(self: *const IDataModelManager, context: ?*IDebugHostContext, object: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.CreateSyntheticObject(self, context, object);
     }
-    pub fn CreateDataModelObject(self: *const IDataModelManager, dataModel: ?*IDataModelConcept, object: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn CreateDataModelObject(self: *const IDataModelManager, dataModel: ?*IDataModelConcept, object: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.CreateDataModelObject(self, dataModel, object);
     }
-    pub fn CreateIntrinsicObject(self: *const IDataModelManager, objectKind: ModelObjectKind, intrinsicData: ?*VARIANT, object: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn CreateIntrinsicObject(self: *const IDataModelManager, objectKind: ModelObjectKind, intrinsicData: ?*VARIANT, object: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.CreateIntrinsicObject(self, objectKind, intrinsicData, object);
     }
-    pub fn CreateTypedIntrinsicObject(self: *const IDataModelManager, intrinsicData: ?*VARIANT, @"type": ?*IDebugHostType, object: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn CreateTypedIntrinsicObject(self: *const IDataModelManager, intrinsicData: ?*VARIANT, @"type": ?*IDebugHostType, object: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.CreateTypedIntrinsicObject(self, intrinsicData, @"type", object);
     }
     pub fn GetModelForTypeSignature(self: *const IDataModelManager, typeSignature: ?*IDebugHostTypeSignature, dataModel: ?*?*IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.GetModelForTypeSignature(self, typeSignature, dataModel);
     }
-    pub fn GetModelForType(self: *const IDataModelManager, @"type": ?*IDebugHostType, dataModel: ?*?*IModelObject, typeSignature: ?*?*IDebugHostTypeSignature, wildcardMatches: ?*?*IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetModelForType(self: *const IDataModelManager, @"type": ?*IDebugHostType, dataModel: **IModelObject, typeSignature: ?**IDebugHostTypeSignature, wildcardMatches: ?**IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.GetModelForType(self, @"type", dataModel, typeSignature, wildcardMatches);
     }
     pub fn RegisterModelForTypeSignature(self: *const IDataModelManager, typeSignature: ?*IDebugHostTypeSignature, dataModel: ?*IModelObject) callconv(.Inline) HRESULT {
@@ -27828,10 +27828,10 @@ pub const IDataModelManager = extern union {
     pub fn UnregisterExtensionForTypeSignature(self: *const IDataModelManager, dataModel: ?*IModelObject, typeSignature: ?*IDebugHostTypeSignature) callconv(.Inline) HRESULT {
         return self.vtable.UnregisterExtensionForTypeSignature(self, dataModel, typeSignature);
     }
-    pub fn CreateMetadataStore(self: *const IDataModelManager, parentStore: ?*IKeyStore, metadataStore: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn CreateMetadataStore(self: *const IDataModelManager, parentStore: ?*IKeyStore, metadataStore: **IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.CreateMetadataStore(self, parentStore, metadataStore);
     }
-    pub fn GetRootNamespace(self: *const IDataModelManager, rootNamespace: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn GetRootNamespace(self: *const IDataModelManager, rootNamespace: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.GetRootNamespace(self, rootNamespace);
     }
     pub fn RegisterNamedModel(self: *const IDataModelManager, modelName: ?[*:0]const u16, modeObject: ?*IModelObject) callconv(.Inline) HRESULT {
@@ -27840,7 +27840,7 @@ pub const IDataModelManager = extern union {
     pub fn UnregisterNamedModel(self: *const IDataModelManager, modelName: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.UnregisterNamedModel(self, modelName);
     }
-    pub fn AcquireNamedModel(self: *const IDataModelManager, modelName: ?[*:0]const u16, modelObject: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn AcquireNamedModel(self: *const IDataModelManager, modelName: ?[*:0]const u16, modelObject: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.AcquireNamedModel(self, modelName, modelObject);
     }
 };
@@ -27856,21 +27856,21 @@ pub const IModelKeyReference = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOriginalObject: *const fn(
             self: *const IModelKeyReference,
-            originalObject: ?*?*IModelObject,
+            originalObject: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetContextObject: *const fn(
             self: *const IModelKeyReference,
-            containingObject: ?*?*IModelObject,
+            containingObject: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKey: *const fn(
             self: *const IModelKeyReference,
             object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKeyValue: *const fn(
             self: *const IModelKeyReference,
             object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKey: *const fn(
             self: *const IModelKeyReference,
@@ -27887,16 +27887,16 @@ pub const IModelKeyReference = extern union {
     pub fn GetKeyName(self: *const IModelKeyReference, keyName: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetKeyName(self, keyName);
     }
-    pub fn GetOriginalObject(self: *const IModelKeyReference, originalObject: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn GetOriginalObject(self: *const IModelKeyReference, originalObject: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.GetOriginalObject(self, originalObject);
     }
-    pub fn GetContextObject(self: *const IModelKeyReference, containingObject: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn GetContextObject(self: *const IModelKeyReference, containingObject: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.GetContextObject(self, containingObject);
     }
-    pub fn GetKey(self: *const IModelKeyReference, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetKey(self: *const IModelKeyReference, object: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetKey(self, object, metadata);
     }
-    pub fn GetKeyValue(self: *const IModelKeyReference, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetKeyValue(self: *const IModelKeyReference, object: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetKeyValue(self, object, metadata);
     }
     pub fn SetKey(self: *const IModelKeyReference, object: ?*IModelObject, metadata: ?*IKeyStore) callconv(.Inline) HRESULT {
@@ -27916,7 +27916,7 @@ pub const IModelPropertyAccessor = extern union {
             self: *const IModelPropertyAccessor,
             key: ?[*:0]const u16,
             contextObject: ?*IModelObject,
-            value: ?*?*IModelObject,
+            value: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetValue: *const fn(
             self: *const IModelPropertyAccessor,
@@ -27927,7 +27927,7 @@ pub const IModelPropertyAccessor = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetValue(self: *const IModelPropertyAccessor, key: ?[*:0]const u16, contextObject: ?*IModelObject, value: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn GetValue(self: *const IModelPropertyAccessor, key: ?[*:0]const u16, contextObject: ?*IModelObject, value: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.GetValue(self, key, contextObject, value);
     }
     pub fn SetValue(self: *const IModelPropertyAccessor, key: ?[*:0]const u16, contextObject: ?*IModelObject, value: ?*IModelObject) callconv(.Inline) HRESULT {
@@ -27946,12 +27946,12 @@ pub const IModelMethod = extern union {
             argCount: u64,
             ppArguments: [*]?*IModelObject,
             ppResult: ?*?*IModelObject,
-            ppMetadata: ?*?*IKeyStore,
+            ppMetadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Call(self: *const IModelMethod, pContextObject: ?*IModelObject, argCount: u64, ppArguments: [*]?*IModelObject, ppResult: ?*?*IModelObject, ppMetadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn Call(self: *const IModelMethod, pContextObject: ?*IModelObject, argCount: u64, ppArguments: [*]?*IModelObject, ppResult: ?*?*IModelObject, ppMetadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.Call(self, pContextObject, argCount, ppArguments, ppResult, ppMetadata);
     }
 };
@@ -27968,7 +27968,7 @@ pub const IKeyEnumerator = extern union {
             self: *const IKeyEnumerator,
             key: ?*?BSTR,
             value: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -27976,7 +27976,7 @@ pub const IKeyEnumerator = extern union {
     pub fn Reset(self: *const IKeyEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn GetNext(self: *const IKeyEnumerator, key: ?*?BSTR, value: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetNext(self: *const IKeyEnumerator, key: ?*?BSTR, value: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetNext(self, key, value, metadata);
     }
 };
@@ -28082,7 +28082,7 @@ pub const IModelIterator = extern union {
             object: ?*?*IModelObject,
             dimensions: u64,
             indexers: ?[*]?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28090,7 +28090,7 @@ pub const IModelIterator = extern union {
     pub fn Reset(self: *const IModelIterator) callconv(.Inline) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn GetNext(self: *const IModelIterator, object: ?*?*IModelObject, dimensions: u64, indexers: ?[*]?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetNext(self: *const IModelIterator, object: ?*?*IModelObject, dimensions: u64, indexers: ?[*]?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetNext(self, object, dimensions, indexers, metadata);
     }
 };
@@ -28137,7 +28137,7 @@ pub const IIndexableConcept = extern union {
             indexerCount: u64,
             indexers: [*]?*IModelObject,
             object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAt: *const fn(
             self: *const IIndexableConcept,
@@ -28152,7 +28152,7 @@ pub const IIndexableConcept = extern union {
     pub fn GetDimensionality(self: *const IIndexableConcept, contextObject: ?*IModelObject, dimensionality: ?*u64) callconv(.Inline) HRESULT {
         return self.vtable.GetDimensionality(self, contextObject, dimensionality);
     }
-    pub fn GetAt(self: *const IIndexableConcept, contextObject: ?*IModelObject, indexerCount: u64, indexers: [*]?*IModelObject, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const IIndexableConcept, contextObject: ?*IModelObject, indexerCount: u64, indexers: [*]?*IModelObject, object: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetAt(self, contextObject, indexerCount, indexers, object, metadata);
     }
     pub fn SetAt(self: *const IIndexableConcept, contextObject: ?*IModelObject, indexerCount: u64, indexers: [*]?*IModelObject, value: ?*IModelObject) callconv(.Inline) HRESULT {
@@ -28185,26 +28185,26 @@ pub const IDebugHost = extern union {
         base: IUnknown.VTable,
         GetHostDefinedInterface: *const fn(
             self: *const IDebugHost,
-            hostUnk: ?*?*IUnknown,
+            hostUnk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentContext: *const fn(
             self: *const IDebugHost,
-            context: ?*?*IDebugHostContext,
+            context: **IDebugHostContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultMetadata: *const fn(
             self: *const IDebugHost,
-            defaultMetadataStore: ?*?*IKeyStore,
+            defaultMetadataStore: **IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetHostDefinedInterface(self: *const IDebugHost, hostUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetHostDefinedInterface(self: *const IDebugHost, hostUnk: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.GetHostDefinedInterface(self, hostUnk);
     }
-    pub fn GetCurrentContext(self: *const IDebugHost, context: ?*?*IDebugHostContext) callconv(.Inline) HRESULT {
+    pub fn GetCurrentContext(self: *const IDebugHost, context: **IDebugHostContext) callconv(.Inline) HRESULT {
         return self.vtable.GetCurrentContext(self, context);
     }
-    pub fn GetDefaultMetadata(self: *const IDebugHost, defaultMetadataStore: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetDefaultMetadata(self: *const IDebugHost, defaultMetadataStore: **IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetDefaultMetadata(self, defaultMetadataStore);
     }
 };
@@ -28260,7 +28260,7 @@ pub const IDebugHostSymbol = extern union {
         base: IUnknown.VTable,
         GetContext: *const fn(
             self: *const IDebugHostSymbol,
-            context: ?*?*IDebugHostContext,
+            context: **IDebugHostContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateChildren: *const fn(
             self: *const IDebugHostSymbol,
@@ -28293,7 +28293,7 @@ pub const IDebugHostSymbol = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetContext(self: *const IDebugHostSymbol, context: ?*?*IDebugHostContext) callconv(.Inline) HRESULT {
+    pub fn GetContext(self: *const IDebugHostSymbol, context: **IDebugHostContext) callconv(.Inline) HRESULT {
         return self.vtable.GetContext(self, context);
     }
     pub fn EnumerateChildren(self: *const IDebugHostSymbol, kind: SymbolKind, name: ?[*:0]const u16, ppEnum: ?*?*IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
@@ -28326,7 +28326,7 @@ pub const IDebugHostSymbolEnumerator = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNext: *const fn(
             self: *const IDebugHostSymbolEnumerator,
-            symbol: ?*?*IDebugHostSymbol,
+            symbol: **IDebugHostSymbol,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28334,7 +28334,7 @@ pub const IDebugHostSymbolEnumerator = extern union {
     pub fn Reset(self: *const IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn GetNext(self: *const IDebugHostSymbolEnumerator, symbol: ?*?*IDebugHostSymbol) callconv(.Inline) HRESULT {
+    pub fn GetNext(self: *const IDebugHostSymbolEnumerator, symbol: **IDebugHostSymbol) callconv(.Inline) HRESULT {
         return self.vtable.GetNext(self, symbol);
     }
 };
@@ -28445,7 +28445,7 @@ pub const IDebugHostType = extern union {
         CreatePointerTo: *const fn(
             self: *const IDebugHostType,
             kind: PointerKind,
-            newType: ?*?*IDebugHostType,
+            newType: **IDebugHostType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetArrayDimensionality: *const fn(
             self: *const IDebugHostType,
@@ -28460,7 +28460,7 @@ pub const IDebugHostType = extern union {
             self: *const IDebugHostType,
             dimensions: u64,
             pDimensions: [*]ArrayDimension,
-            newType: ?*?*IDebugHostType,
+            newType: **IDebugHostType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFunctionCallingConvention: *const fn(
             self: *const IDebugHostType,
@@ -28468,7 +28468,7 @@ pub const IDebugHostType = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFunctionReturnType: *const fn(
             self: *const IDebugHostType,
-            returnType: ?*?*IDebugHostType,
+            returnType: **IDebugHostType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFunctionParameterTypeCount: *const fn(
             self: *const IDebugHostType,
@@ -28520,7 +28520,7 @@ pub const IDebugHostType = extern union {
     pub fn GetMemberType(self: *const IDebugHostType, memberType: ?*?*IDebugHostType) callconv(.Inline) HRESULT {
         return self.vtable.GetMemberType(self, memberType);
     }
-    pub fn CreatePointerTo(self: *const IDebugHostType, kind: PointerKind, newType: ?*?*IDebugHostType) callconv(.Inline) HRESULT {
+    pub fn CreatePointerTo(self: *const IDebugHostType, kind: PointerKind, newType: **IDebugHostType) callconv(.Inline) HRESULT {
         return self.vtable.CreatePointerTo(self, kind, newType);
     }
     pub fn GetArrayDimensionality(self: *const IDebugHostType, arrayDimensionality: ?*u64) callconv(.Inline) HRESULT {
@@ -28529,13 +28529,13 @@ pub const IDebugHostType = extern union {
     pub fn GetArrayDimensions(self: *const IDebugHostType, dimensions: u64, pDimensions: [*]ArrayDimension) callconv(.Inline) HRESULT {
         return self.vtable.GetArrayDimensions(self, dimensions, pDimensions);
     }
-    pub fn CreateArrayOf(self: *const IDebugHostType, dimensions: u64, pDimensions: [*]ArrayDimension, newType: ?*?*IDebugHostType) callconv(.Inline) HRESULT {
+    pub fn CreateArrayOf(self: *const IDebugHostType, dimensions: u64, pDimensions: [*]ArrayDimension, newType: **IDebugHostType) callconv(.Inline) HRESULT {
         return self.vtable.CreateArrayOf(self, dimensions, pDimensions, newType);
     }
     pub fn GetFunctionCallingConvention(self: *const IDebugHostType, conventionKind: ?*CallingConventionKind) callconv(.Inline) HRESULT {
         return self.vtable.GetFunctionCallingConvention(self, conventionKind);
     }
-    pub fn GetFunctionReturnType(self: *const IDebugHostType, returnType: ?*?*IDebugHostType) callconv(.Inline) HRESULT {
+    pub fn GetFunctionReturnType(self: *const IDebugHostType, returnType: **IDebugHostType) callconv(.Inline) HRESULT {
         return self.vtable.GetFunctionReturnType(self, returnType);
     }
     pub fn GetFunctionParameterTypeCount(self: *const IDebugHostType, count: ?*u64) callconv(.Inline) HRESULT {
@@ -28716,19 +28716,19 @@ pub const IDebugHostSymbols = extern union {
         EnumerateModules: *const fn(
             self: *const IDebugHostSymbols,
             context: ?*IDebugHostContext,
-            moduleEnum: ?*?*IDebugHostSymbolEnumerator,
+            moduleEnum: **IDebugHostSymbolEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindModuleByName: *const fn(
             self: *const IDebugHostSymbols,
             context: ?*IDebugHostContext,
             moduleName: ?[*:0]const u16,
-            module: ?*?*IDebugHostModule,
+            module: **IDebugHostModule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindModuleByLocation: *const fn(
             self: *const IDebugHostSymbols,
             context: ?*IDebugHostContext,
             moduleLocation: Location,
-            module: ?*?*IDebugHostModule,
+            module: **IDebugHostModule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMostDerivedObject: *const fn(
             self: *const IDebugHostSymbols,
@@ -28750,13 +28750,13 @@ pub const IDebugHostSymbols = extern union {
     pub fn CreateTypeSignatureForModuleRange(self: *const IDebugHostSymbols, signatureSpecification: ?[*:0]const u16, moduleName: ?[*:0]const u16, minVersion: ?[*:0]const u16, maxVersion: ?[*:0]const u16, typeSignature: ?*?*IDebugHostTypeSignature) callconv(.Inline) HRESULT {
         return self.vtable.CreateTypeSignatureForModuleRange(self, signatureSpecification, moduleName, minVersion, maxVersion, typeSignature);
     }
-    pub fn EnumerateModules(self: *const IDebugHostSymbols, context: ?*IDebugHostContext, moduleEnum: ?*?*IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateModules(self: *const IDebugHostSymbols, context: ?*IDebugHostContext, moduleEnum: **IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateModules(self, context, moduleEnum);
     }
-    pub fn FindModuleByName(self: *const IDebugHostSymbols, context: ?*IDebugHostContext, moduleName: ?[*:0]const u16, module: ?*?*IDebugHostModule) callconv(.Inline) HRESULT {
+    pub fn FindModuleByName(self: *const IDebugHostSymbols, context: ?*IDebugHostContext, moduleName: ?[*:0]const u16, module: **IDebugHostModule) callconv(.Inline) HRESULT {
         return self.vtable.FindModuleByName(self, context, moduleName, module);
     }
-    pub fn FindModuleByLocation(self: *const IDebugHostSymbols, context: ?*IDebugHostContext, moduleLocation: Location, module: ?*?*IDebugHostModule) callconv(.Inline) HRESULT {
+    pub fn FindModuleByLocation(self: *const IDebugHostSymbols, context: ?*IDebugHostContext, moduleLocation: Location, module: **IDebugHostModule) callconv(.Inline) HRESULT {
         return self.vtable.FindModuleByLocation(self, context, moduleLocation, module);
     }
     pub fn GetMostDerivedObject(self: *const IDebugHostSymbols, pContext: ?*IDebugHostContext, location: Location, objectType: ?*IDebugHostType, derivedLocation: ?*Location, derivedType: ?*?*IDebugHostType) callconv(.Inline) HRESULT {
@@ -28839,7 +28839,7 @@ pub const IDebugHostEvaluator = extern union {
             expression: ?[*:0]const u16,
             bindingContext: ?*IModelObject,
             result: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EvaluateExtendedExpression: *const fn(
             self: *const IDebugHostEvaluator,
@@ -28847,15 +28847,15 @@ pub const IDebugHostEvaluator = extern union {
             expression: ?[*:0]const u16,
             bindingContext: ?*IModelObject,
             result: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EvaluateExpression(self: *const IDebugHostEvaluator, context: ?*IDebugHostContext, expression: ?[*:0]const u16, bindingContext: ?*IModelObject, result: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn EvaluateExpression(self: *const IDebugHostEvaluator, context: ?*IDebugHostContext, expression: ?[*:0]const u16, bindingContext: ?*IModelObject, result: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.EvaluateExpression(self, context, expression, bindingContext, result, metadata);
     }
-    pub fn EvaluateExtendedExpression(self: *const IDebugHostEvaluator, context: ?*IDebugHostContext, expression: ?[*:0]const u16, bindingContext: ?*IModelObject, result: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn EvaluateExtendedExpression(self: *const IDebugHostEvaluator, context: ?*IDebugHostContext, expression: ?[*:0]const u16, bindingContext: ?*IModelObject, result: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.EvaluateExtendedExpression(self, context, expression, bindingContext, result, metadata);
     }
 };
@@ -28904,7 +28904,7 @@ pub const IDebugHostTypeSignature = extern union {
             self: *const IDebugHostTypeSignature,
             type: ?*IDebugHostType,
             isMatch: ?*bool,
-            wildcardMatches: ?*?*IDebugHostSymbolEnumerator,
+            wildcardMatches: ?**IDebugHostSymbolEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareAgainst: *const fn(
             self: *const IDebugHostTypeSignature,
@@ -28917,7 +28917,7 @@ pub const IDebugHostTypeSignature = extern union {
     pub fn GetHashCode(self: *const IDebugHostTypeSignature, hashCode: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetHashCode(self, hashCode);
     }
-    pub fn IsMatch(self: *const IDebugHostTypeSignature, @"type": ?*IDebugHostType, isMatch: ?*bool, wildcardMatches: ?*?*IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
+    pub fn IsMatch(self: *const IDebugHostTypeSignature, @"type": ?*IDebugHostType, isMatch: ?*bool, wildcardMatches: ?**IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.IsMatch(self, @"type", isMatch, wildcardMatches);
     }
     pub fn CompareAgainst(self: *const IDebugHostTypeSignature, typeSignature: ?*IDebugHostTypeSignature, result: ?*SignatureComparison) callconv(.Inline) HRESULT {
@@ -29070,7 +29070,7 @@ pub const IDataModelScriptTemplate = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetContent: *const fn(
             self: *const IDataModelScriptTemplate,
-            contentStream: ?*?*IStream,
+            contentStream: **IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -29081,7 +29081,7 @@ pub const IDataModelScriptTemplate = extern union {
     pub fn GetDescription(self: *const IDataModelScriptTemplate, templateDescription: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetDescription(self, templateDescription);
     }
-    pub fn GetContent(self: *const IDataModelScriptTemplate, contentStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetContent(self: *const IDataModelScriptTemplate, contentStream: **IStream) callconv(.Inline) HRESULT {
         return self.vtable.GetContent(self, contentStream);
     }
 };
@@ -29154,7 +29154,7 @@ pub const IDataModelScriptTemplateEnumerator = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNext: *const fn(
             self: *const IDataModelScriptTemplateEnumerator,
-            templateContent: ?*?*IDataModelScriptTemplate,
+            templateContent: **IDataModelScriptTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -29162,7 +29162,7 @@ pub const IDataModelScriptTemplateEnumerator = extern union {
     pub fn Reset(self: *const IDataModelScriptTemplateEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn GetNext(self: *const IDataModelScriptTemplateEnumerator, templateContent: ?*?*IDataModelScriptTemplate) callconv(.Inline) HRESULT {
+    pub fn GetNext(self: *const IDataModelScriptTemplateEnumerator, templateContent: **IDataModelScriptTemplate) callconv(.Inline) HRESULT {
         return self.vtable.GetNext(self, templateContent);
     }
 };
@@ -29182,15 +29182,15 @@ pub const IDataModelScriptProvider = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateScript: *const fn(
             self: *const IDataModelScriptProvider,
-            script: ?*?*IDataModelScript,
+            script: **IDataModelScript,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultTemplateContent: *const fn(
             self: *const IDataModelScriptProvider,
-            templateContent: ?*?*IDataModelScriptTemplate,
+            templateContent: **IDataModelScriptTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateTemplates: *const fn(
             self: *const IDataModelScriptProvider,
-            enumerator: ?*?*IDataModelScriptTemplateEnumerator,
+            enumerator: **IDataModelScriptTemplateEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -29201,13 +29201,13 @@ pub const IDataModelScriptProvider = extern union {
     pub fn GetExtension(self: *const IDataModelScriptProvider, extension: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetExtension(self, extension);
     }
-    pub fn CreateScript(self: *const IDataModelScriptProvider, script: ?*?*IDataModelScript) callconv(.Inline) HRESULT {
+    pub fn CreateScript(self: *const IDataModelScriptProvider, script: **IDataModelScript) callconv(.Inline) HRESULT {
         return self.vtable.CreateScript(self, script);
     }
-    pub fn GetDefaultTemplateContent(self: *const IDataModelScriptProvider, templateContent: ?*?*IDataModelScriptTemplate) callconv(.Inline) HRESULT {
+    pub fn GetDefaultTemplateContent(self: *const IDataModelScriptProvider, templateContent: **IDataModelScriptTemplate) callconv(.Inline) HRESULT {
         return self.vtable.GetDefaultTemplateContent(self, templateContent);
     }
-    pub fn EnumerateTemplates(self: *const IDataModelScriptProvider, enumerator: ?*?*IDataModelScriptTemplateEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateTemplates(self: *const IDataModelScriptProvider, enumerator: **IDataModelScriptTemplateEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateTemplates(self, enumerator);
     }
 };
@@ -29222,7 +29222,7 @@ pub const IDataModelScriptProviderEnumerator = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNext: *const fn(
             self: *const IDataModelScriptProviderEnumerator,
-            provider: ?*?*IDataModelScriptProvider,
+            provider: **IDataModelScriptProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -29230,7 +29230,7 @@ pub const IDataModelScriptProviderEnumerator = extern union {
     pub fn Reset(self: *const IDataModelScriptProviderEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn GetNext(self: *const IDataModelScriptProviderEnumerator, provider: ?*?*IDataModelScriptProvider) callconv(.Inline) HRESULT {
+    pub fn GetNext(self: *const IDataModelScriptProviderEnumerator, provider: **IDataModelScriptProvider) callconv(.Inline) HRESULT {
         return self.vtable.GetNext(self, provider);
     }
 };
@@ -29242,7 +29242,7 @@ pub const IDataModelScriptManager = extern union {
         base: IUnknown.VTable,
         GetDefaultNameBinder: *const fn(
             self: *const IDataModelScriptManager,
-            ppNameBinder: ?*?*IDataModelNameBinder,
+            ppNameBinder: **IDataModelNameBinder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterScriptProvider: *const fn(
             self: *const IDataModelScriptManager,
@@ -29255,21 +29255,21 @@ pub const IDataModelScriptManager = extern union {
         FindProviderForScriptType: *const fn(
             self: *const IDataModelScriptManager,
             scriptType: ?[*:0]const u16,
-            provider: ?*?*IDataModelScriptProvider,
+            provider: **IDataModelScriptProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindProviderForScriptExtension: *const fn(
             self: *const IDataModelScriptManager,
             scriptExtension: ?[*:0]const u16,
-            provider: ?*?*IDataModelScriptProvider,
+            provider: **IDataModelScriptProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateScriptProviders: *const fn(
             self: *const IDataModelScriptManager,
-            enumerator: ?*?*IDataModelScriptProviderEnumerator,
+            enumerator: **IDataModelScriptProviderEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDefaultNameBinder(self: *const IDataModelScriptManager, ppNameBinder: ?*?*IDataModelNameBinder) callconv(.Inline) HRESULT {
+    pub fn GetDefaultNameBinder(self: *const IDataModelScriptManager, ppNameBinder: **IDataModelNameBinder) callconv(.Inline) HRESULT {
         return self.vtable.GetDefaultNameBinder(self, ppNameBinder);
     }
     pub fn RegisterScriptProvider(self: *const IDataModelScriptManager, provider: ?*IDataModelScriptProvider) callconv(.Inline) HRESULT {
@@ -29278,13 +29278,13 @@ pub const IDataModelScriptManager = extern union {
     pub fn UnregisterScriptProvider(self: *const IDataModelScriptManager, provider: ?*IDataModelScriptProvider) callconv(.Inline) HRESULT {
         return self.vtable.UnregisterScriptProvider(self, provider);
     }
-    pub fn FindProviderForScriptType(self: *const IDataModelScriptManager, scriptType: ?[*:0]const u16, provider: ?*?*IDataModelScriptProvider) callconv(.Inline) HRESULT {
+    pub fn FindProviderForScriptType(self: *const IDataModelScriptManager, scriptType: ?[*:0]const u16, provider: **IDataModelScriptProvider) callconv(.Inline) HRESULT {
         return self.vtable.FindProviderForScriptType(self, scriptType, provider);
     }
-    pub fn FindProviderForScriptExtension(self: *const IDataModelScriptManager, scriptExtension: ?[*:0]const u16, provider: ?*?*IDataModelScriptProvider) callconv(.Inline) HRESULT {
+    pub fn FindProviderForScriptExtension(self: *const IDataModelScriptManager, scriptExtension: ?[*:0]const u16, provider: **IDataModelScriptProvider) callconv(.Inline) HRESULT {
         return self.vtable.FindProviderForScriptExtension(self, scriptExtension, provider);
     }
-    pub fn EnumerateScriptProviders(self: *const IDataModelScriptManager, enumerator: ?*?*IDataModelScriptProviderEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateScriptProviders(self: *const IDataModelScriptManager, enumerator: **IDataModelScriptProviderEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateScriptProviders(self, enumerator);
     }
 };
@@ -29298,8 +29298,8 @@ pub const IDynamicKeyProviderConcept = extern union {
             self: *const IDynamicKeyProviderConcept,
             contextObject: ?*IModelObject,
             key: ?[*:0]const u16,
-            keyValue: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            keyValue: ?**IModelObject,
+            metadata: ?**IKeyStore,
             hasKey: ?*bool,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKey: *const fn(
@@ -29312,18 +29312,18 @@ pub const IDynamicKeyProviderConcept = extern union {
         EnumerateKeys: *const fn(
             self: *const IDynamicKeyProviderConcept,
             contextObject: ?*IModelObject,
-            ppEnumerator: ?*?*IKeyEnumerator,
+            ppEnumerator: **IKeyEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetKey(self: *const IDynamicKeyProviderConcept, contextObject: ?*IModelObject, key: ?[*:0]const u16, keyValue: ?*?*IModelObject, metadata: ?*?*IKeyStore, hasKey: ?*bool) callconv(.Inline) HRESULT {
+    pub fn GetKey(self: *const IDynamicKeyProviderConcept, contextObject: ?*IModelObject, key: ?[*:0]const u16, keyValue: ?**IModelObject, metadata: ?**IKeyStore, hasKey: ?*bool) callconv(.Inline) HRESULT {
         return self.vtable.GetKey(self, contextObject, key, keyValue, metadata, hasKey);
     }
     pub fn SetKey(self: *const IDynamicKeyProviderConcept, contextObject: ?*IModelObject, key: ?[*:0]const u16, keyValue: ?*IModelObject, metadata: ?*IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.SetKey(self, contextObject, key, keyValue, metadata);
     }
-    pub fn EnumerateKeys(self: *const IDynamicKeyProviderConcept, contextObject: ?*IModelObject, ppEnumerator: ?*?*IKeyEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateKeys(self: *const IDynamicKeyProviderConcept, contextObject: ?*IModelObject, ppEnumerator: **IKeyEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateKeys(self, contextObject, ppEnumerator);
     }
 };
@@ -29337,8 +29337,8 @@ pub const IDynamicConceptProviderConcept = extern union {
             self: *const IDynamicConceptProviderConcept,
             contextObject: ?*IModelObject,
             conceptId: ?*const Guid,
-            conceptInterface: ?*?*IUnknown,
-            conceptMetadata: ?*?*IKeyStore,
+            conceptInterface: ?**IUnknown,
+            conceptMetadata: ?**IKeyStore,
             hasConcept: ?*bool,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetConcept: *const fn(
@@ -29362,7 +29362,7 @@ pub const IDynamicConceptProviderConcept = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetConcept(self: *const IDynamicConceptProviderConcept, contextObject: ?*IModelObject, conceptId: ?*const Guid, conceptInterface: ?*?*IUnknown, conceptMetadata: ?*?*IKeyStore, hasConcept: ?*bool) callconv(.Inline) HRESULT {
+    pub fn GetConcept(self: *const IDynamicConceptProviderConcept, contextObject: ?*IModelObject, conceptId: ?*const Guid, conceptInterface: ?**IUnknown, conceptMetadata: ?**IKeyStore, hasConcept: ?*bool) callconv(.Inline) HRESULT {
         return self.vtable.GetConcept(self, contextObject, conceptId, conceptInterface, conceptMetadata, hasConcept);
     }
     pub fn SetConcept(self: *const IDynamicConceptProviderConcept, contextObject: ?*IModelObject, conceptId: ?*const Guid, conceptInterface: ?*IUnknown, conceptMetadata: ?*IKeyStore) callconv(.Inline) HRESULT {
@@ -29396,7 +29396,7 @@ pub const IDataModelScriptHostContext = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNamespaceObject: *const fn(
             self: *const IDataModelScriptHostContext,
-            namespaceObject: ?*?*IModelObject,
+            namespaceObject: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -29404,7 +29404,7 @@ pub const IDataModelScriptHostContext = extern union {
     pub fn NotifyScriptChange(self: *const IDataModelScriptHostContext, script: ?*IDataModelScript, changeKind: ScriptChangeKind) callconv(.Inline) HRESULT {
         return self.vtable.NotifyScriptChange(self, script, changeKind);
     }
-    pub fn GetNamespaceObject(self: *const IDataModelScriptHostContext, namespaceObject: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn GetNamespaceObject(self: *const IDataModelScriptHostContext, namespaceObject: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.GetNamespaceObject(self, namespaceObject);
     }
 };
@@ -29417,12 +29417,12 @@ pub const IDebugHostScriptHost = extern union {
         CreateContext: *const fn(
             self: *const IDebugHostScriptHost,
             script: ?*IDataModelScript,
-            scriptContext: ?*?*IDataModelScriptHostContext,
+            scriptContext: **IDataModelScriptHostContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateContext(self: *const IDebugHostScriptHost, script: ?*IDataModelScript, scriptContext: ?*?*IDataModelScriptHostContext) callconv(.Inline) HRESULT {
+    pub fn CreateContext(self: *const IDebugHostScriptHost, script: ?*IDataModelScript, scriptContext: **IDataModelScriptHostContext) callconv(.Inline) HRESULT {
         return self.vtable.CreateContext(self, script, scriptContext);
     }
 };
@@ -29437,38 +29437,38 @@ pub const IDataModelNameBinder = extern union {
             contextObject: ?*IModelObject,
             name: ?[*:0]const u16,
             value: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BindReference: *const fn(
             self: *const IDataModelNameBinder,
             contextObject: ?*IModelObject,
             name: ?[*:0]const u16,
             reference: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateValues: *const fn(
             self: *const IDataModelNameBinder,
             contextObject: ?*IModelObject,
-            enumerator: ?*?*IKeyEnumerator,
+            enumerator: **IKeyEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateReferences: *const fn(
             self: *const IDataModelNameBinder,
             contextObject: ?*IModelObject,
-            enumerator: ?*?*IKeyEnumerator,
+            enumerator: **IKeyEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BindValue(self: *const IDataModelNameBinder, contextObject: ?*IModelObject, name: ?[*:0]const u16, value: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn BindValue(self: *const IDataModelNameBinder, contextObject: ?*IModelObject, name: ?[*:0]const u16, value: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.BindValue(self, contextObject, name, value, metadata);
     }
-    pub fn BindReference(self: *const IDataModelNameBinder, contextObject: ?*IModelObject, name: ?[*:0]const u16, reference: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn BindReference(self: *const IDataModelNameBinder, contextObject: ?*IModelObject, name: ?[*:0]const u16, reference: ?*?*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.BindReference(self, contextObject, name, reference, metadata);
     }
-    pub fn EnumerateValues(self: *const IDataModelNameBinder, contextObject: ?*IModelObject, enumerator: ?*?*IKeyEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateValues(self: *const IDataModelNameBinder, contextObject: ?*IModelObject, enumerator: **IKeyEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateValues(self, contextObject, enumerator);
     }
-    pub fn EnumerateReferences(self: *const IDataModelNameBinder, contextObject: ?*IModelObject, enumerator: ?*?*IKeyEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateReferences(self: *const IDataModelNameBinder, contextObject: ?*IModelObject, enumerator: **IKeyEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateReferences(self, contextObject, enumerator);
     }
 };
@@ -29501,13 +29501,13 @@ pub const IDebugHostEvaluator2 = extern union {
             assignmentReference: ?*IModelObject,
             assignmentValue: ?*IModelObject,
             assignmentResult: ?*?*IModelObject,
-            assignmentMetadata: ?*?*IKeyStore,
+            assignmentMetadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IDebugHostEvaluator: IDebugHostEvaluator,
     IUnknown: IUnknown,
-    pub fn AssignTo(self: *const IDebugHostEvaluator2, assignmentReference: ?*IModelObject, assignmentValue: ?*IModelObject, assignmentResult: ?*?*IModelObject, assignmentMetadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn AssignTo(self: *const IDebugHostEvaluator2, assignmentReference: ?*IModelObject, assignmentValue: ?*IModelObject, assignmentResult: ?*?*IModelObject, assignmentMetadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.AssignTo(self, assignmentReference, assignmentValue, assignmentResult, assignmentMetadata);
     }
 };
@@ -29523,23 +29523,23 @@ pub const IDataModelManager2 = extern union {
             subNamespaceModelName: ?[*:0]const u16,
             accessName: ?[*:0]const u16,
             metadata: ?*IKeyStore,
-            namespaceModelObject: ?*?*IModelObject,
+            namespaceModelObject: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTypedIntrinsicObjectEx: *const fn(
             self: *const IDataModelManager2,
             context: ?*IDebugHostContext,
             intrinsicData: ?*VARIANT,
             type: ?*IDebugHostType,
-            object: ?*?*IModelObject,
+            object: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IDataModelManager: IDataModelManager,
     IUnknown: IUnknown,
-    pub fn AcquireSubNamespace(self: *const IDataModelManager2, modelName: ?[*:0]const u16, subNamespaceModelName: ?[*:0]const u16, accessName: ?[*:0]const u16, metadata: ?*IKeyStore, namespaceModelObject: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn AcquireSubNamespace(self: *const IDataModelManager2, modelName: ?[*:0]const u16, subNamespaceModelName: ?[*:0]const u16, accessName: ?[*:0]const u16, metadata: ?*IKeyStore, namespaceModelObject: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.AcquireSubNamespace(self, modelName, subNamespaceModelName, accessName, metadata, namespaceModelObject);
     }
-    pub fn CreateTypedIntrinsicObjectEx(self: *const IDataModelManager2, context: ?*IDebugHostContext, intrinsicData: ?*VARIANT, @"type": ?*IDebugHostType, object: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn CreateTypedIntrinsicObjectEx(self: *const IDataModelManager2, context: ?*IDebugHostContext, intrinsicData: ?*VARIANT, @"type": ?*IDebugHostType, object: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.CreateTypedIntrinsicObjectEx(self, context, intrinsicData, @"type", object);
     }
 };
@@ -29683,8 +29683,8 @@ pub const IDataModelScriptDebugVariableSetEnumerator = extern union {
         GetNext: *const fn(
             self: *const IDataModelScriptDebugVariableSetEnumerator,
             variableName: ?*?BSTR,
-            variableValue: ?*?*IModelObject,
-            variableMetadata: ?*?*IKeyStore,
+            variableValue: ?**IModelObject,
+            variableMetadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -29692,7 +29692,7 @@ pub const IDataModelScriptDebugVariableSetEnumerator = extern union {
     pub fn Reset(self: *const IDataModelScriptDebugVariableSetEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn GetNext(self: *const IDataModelScriptDebugVariableSetEnumerator, variableName: ?*?BSTR, variableValue: ?*?*IModelObject, variableMetadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+    pub fn GetNext(self: *const IDataModelScriptDebugVariableSetEnumerator, variableName: ?*?BSTR, variableValue: ?**IModelObject, variableMetadata: ?**IKeyStore) callconv(.Inline) HRESULT {
         return self.vtable.GetNext(self, variableName, variableValue, variableMetadata);
     }
 };
@@ -29718,21 +29718,21 @@ pub const IDataModelScriptDebugStackFrame = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTransition: *const fn(
             self: *const IDataModelScriptDebugStackFrame,
-            transitionScript: ?*?*IDataModelScript,
+            transitionScript: **IDataModelScript,
             isTransitionContiguous: ?*bool,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Evaluate: *const fn(
             self: *const IDataModelScriptDebugStackFrame,
             pwszExpression: ?[*:0]const u16,
-            ppResult: ?*?*IModelObject,
+            ppResult: **IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateLocals: *const fn(
             self: *const IDataModelScriptDebugStackFrame,
-            variablesEnum: ?*?*IDataModelScriptDebugVariableSetEnumerator,
+            variablesEnum: **IDataModelScriptDebugVariableSetEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateArguments: *const fn(
             self: *const IDataModelScriptDebugStackFrame,
-            variablesEnum: ?*?*IDataModelScriptDebugVariableSetEnumerator,
+            variablesEnum: **IDataModelScriptDebugVariableSetEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -29746,16 +29746,16 @@ pub const IDataModelScriptDebugStackFrame = extern union {
     pub fn IsTransitionPoint(self: *const IDataModelScriptDebugStackFrame, isTransitionPoint: ?*bool) callconv(.Inline) HRESULT {
         return self.vtable.IsTransitionPoint(self, isTransitionPoint);
     }
-    pub fn GetTransition(self: *const IDataModelScriptDebugStackFrame, transitionScript: ?*?*IDataModelScript, isTransitionContiguous: ?*bool) callconv(.Inline) HRESULT {
+    pub fn GetTransition(self: *const IDataModelScriptDebugStackFrame, transitionScript: **IDataModelScript, isTransitionContiguous: ?*bool) callconv(.Inline) HRESULT {
         return self.vtable.GetTransition(self, transitionScript, isTransitionContiguous);
     }
-    pub fn Evaluate(self: *const IDataModelScriptDebugStackFrame, pwszExpression: ?[*:0]const u16, ppResult: ?*?*IModelObject) callconv(.Inline) HRESULT {
+    pub fn Evaluate(self: *const IDataModelScriptDebugStackFrame, pwszExpression: ?[*:0]const u16, ppResult: **IModelObject) callconv(.Inline) HRESULT {
         return self.vtable.Evaluate(self, pwszExpression, ppResult);
     }
-    pub fn EnumerateLocals(self: *const IDataModelScriptDebugStackFrame, variablesEnum: ?*?*IDataModelScriptDebugVariableSetEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateLocals(self: *const IDataModelScriptDebugStackFrame, variablesEnum: **IDataModelScriptDebugVariableSetEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateLocals(self, variablesEnum);
     }
-    pub fn EnumerateArguments(self: *const IDataModelScriptDebugStackFrame, variablesEnum: ?*?*IDataModelScriptDebugVariableSetEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateArguments(self: *const IDataModelScriptDebugStackFrame, variablesEnum: **IDataModelScriptDebugVariableSetEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateArguments(self, variablesEnum);
     }
 };
@@ -29771,7 +29771,7 @@ pub const IDataModelScriptDebugStack = extern union {
         GetStackFrame: *const fn(
             self: *const IDataModelScriptDebugStack,
             frameNumber: u64,
-            stackFrame: ?*?*IDataModelScriptDebugStackFrame,
+            stackFrame: **IDataModelScriptDebugStackFrame,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -29779,7 +29779,7 @@ pub const IDataModelScriptDebugStack = extern union {
     pub fn GetFrameCount(self: *const IDataModelScriptDebugStack) callconv(.Inline) u64 {
         return self.vtable.GetFrameCount(self);
     }
-    pub fn GetStackFrame(self: *const IDataModelScriptDebugStack, frameNumber: u64, stackFrame: ?*?*IDataModelScriptDebugStackFrame) callconv(.Inline) HRESULT {
+    pub fn GetStackFrame(self: *const IDataModelScriptDebugStack, frameNumber: u64, stackFrame: **IDataModelScriptDebugStackFrame) callconv(.Inline) HRESULT {
         return self.vtable.GetStackFrame(self, frameNumber, stackFrame);
     }
 };
@@ -29843,7 +29843,7 @@ pub const IDataModelScriptDebugBreakpointEnumerator = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNext: *const fn(
             self: *const IDataModelScriptDebugBreakpointEnumerator,
-            breakpoint: ?*?*IDataModelScriptDebugBreakpoint,
+            breakpoint: **IDataModelScriptDebugBreakpoint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -29851,7 +29851,7 @@ pub const IDataModelScriptDebugBreakpointEnumerator = extern union {
     pub fn Reset(self: *const IDataModelScriptDebugBreakpointEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn GetNext(self: *const IDataModelScriptDebugBreakpointEnumerator, breakpoint: ?*?*IDataModelScriptDebugBreakpoint) callconv(.Inline) HRESULT {
+    pub fn GetNext(self: *const IDataModelScriptDebugBreakpointEnumerator, breakpoint: **IDataModelScriptDebugBreakpoint) callconv(.Inline) HRESULT {
         return self.vtable.GetNext(self, breakpoint);
     }
 };
@@ -29872,22 +29872,22 @@ pub const IDataModelScriptDebug = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStack: *const fn(
             self: *const IDataModelScriptDebug,
-            stack: ?*?*IDataModelScriptDebugStack,
+            stack: **IDataModelScriptDebugStack,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBreakpoint: *const fn(
             self: *const IDataModelScriptDebug,
             linePosition: u32,
             columnPosition: u32,
-            breakpoint: ?*?*IDataModelScriptDebugBreakpoint,
+            breakpoint: **IDataModelScriptDebugBreakpoint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindBreakpointById: *const fn(
             self: *const IDataModelScriptDebug,
             breakpointId: u64,
-            breakpoint: ?*?*IDataModelScriptDebugBreakpoint,
+            breakpoint: **IDataModelScriptDebugBreakpoint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateBreakpoints: *const fn(
             self: *const IDataModelScriptDebug,
-            breakpointEnum: ?*?*IDataModelScriptDebugBreakpointEnumerator,
+            breakpointEnum: **IDataModelScriptDebugBreakpointEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEventFilter: *const fn(
             self: *const IDataModelScriptDebug,
@@ -29916,16 +29916,16 @@ pub const IDataModelScriptDebug = extern union {
     pub fn GetCurrentPosition(self: *const IDataModelScriptDebug, currentPosition: ?*ScriptDebugPosition, positionSpanEnd: ?*ScriptDebugPosition, lineText: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetCurrentPosition(self, currentPosition, positionSpanEnd, lineText);
     }
-    pub fn GetStack(self: *const IDataModelScriptDebug, stack: ?*?*IDataModelScriptDebugStack) callconv(.Inline) HRESULT {
+    pub fn GetStack(self: *const IDataModelScriptDebug, stack: **IDataModelScriptDebugStack) callconv(.Inline) HRESULT {
         return self.vtable.GetStack(self, stack);
     }
-    pub fn SetBreakpoint(self: *const IDataModelScriptDebug, linePosition: u32, columnPosition: u32, breakpoint: ?*?*IDataModelScriptDebugBreakpoint) callconv(.Inline) HRESULT {
+    pub fn SetBreakpoint(self: *const IDataModelScriptDebug, linePosition: u32, columnPosition: u32, breakpoint: **IDataModelScriptDebugBreakpoint) callconv(.Inline) HRESULT {
         return self.vtable.SetBreakpoint(self, linePosition, columnPosition, breakpoint);
     }
-    pub fn FindBreakpointById(self: *const IDataModelScriptDebug, breakpointId: u64, breakpoint: ?*?*IDataModelScriptDebugBreakpoint) callconv(.Inline) HRESULT {
+    pub fn FindBreakpointById(self: *const IDataModelScriptDebug, breakpointId: u64, breakpoint: **IDataModelScriptDebugBreakpoint) callconv(.Inline) HRESULT {
         return self.vtable.FindBreakpointById(self, breakpointId, breakpoint);
     }
-    pub fn EnumerateBreakpoints(self: *const IDataModelScriptDebug, breakpointEnum: ?*?*IDataModelScriptDebugBreakpointEnumerator) callconv(.Inline) HRESULT {
+    pub fn EnumerateBreakpoints(self: *const IDataModelScriptDebug, breakpointEnum: **IDataModelScriptDebugBreakpointEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.EnumerateBreakpoints(self, breakpointEnum);
     }
     pub fn GetEventFilter(self: *const IDataModelScriptDebug, eventFilter: ScriptDebugEventFilter, isBreakEnabled: ?*bool) callconv(.Inline) HRESULT {
@@ -29950,13 +29950,13 @@ pub const IDataModelScriptDebug2 = extern union {
         SetBreakpointAtFunction: *const fn(
             self: *const IDataModelScriptDebug2,
             functionName: ?[*:0]const u16,
-            breakpoint: ?*?*IDataModelScriptDebugBreakpoint,
+            breakpoint: **IDataModelScriptDebugBreakpoint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IDataModelScriptDebug: IDataModelScriptDebug,
     IUnknown: IUnknown,
-    pub fn SetBreakpointAtFunction(self: *const IDataModelScriptDebug2, functionName: ?[*:0]const u16, breakpoint: ?*?*IDataModelScriptDebugBreakpoint) callconv(.Inline) HRESULT {
+    pub fn SetBreakpointAtFunction(self: *const IDataModelScriptDebug2, functionName: ?[*:0]const u16, breakpoint: **IDataModelScriptDebugBreakpoint) callconv(.Inline) HRESULT {
         return self.vtable.SetBreakpointAtFunction(self, functionName, breakpoint);
     }
 };
@@ -32844,7 +32844,7 @@ pub const IActiveScript = extern union {
         GetScriptSite: *const fn(
             self: *const IActiveScript,
             riid: ?*const Guid,
-            ppvObject: ?*?*anyopaque,
+            ppvObject: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetScriptState: *const fn(
             self: *const IActiveScript,
@@ -32904,7 +32904,7 @@ pub const IActiveScript = extern union {
     pub fn SetScriptSite(self: *const IActiveScript, pass: ?*IActiveScriptSite) callconv(.Inline) HRESULT {
         return self.vtable.SetScriptSite(self, pass);
     }
-    pub fn GetScriptSite(self: *const IActiveScript, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetScriptSite(self: *const IActiveScript, riid: ?*const Guid, ppvObject: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetScriptSite(self, riid, ppvObject);
     }
     pub fn SetScriptState(self: *const IActiveScript, ss: SCRIPTSTATE) callconv(.Inline) HRESULT {
@@ -35301,7 +35301,7 @@ pub const IApplicationDebugger = extern union {
             pUnkOuter: ?*IUnknown,
             dwClsContext: u32,
             riid: ?*const Guid,
-            ppvObject: ?*?*IUnknown,
+            ppvObject: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         onDebugOutput: *const fn(
             self: *const IApplicationDebugger,
@@ -35327,7 +35327,7 @@ pub const IApplicationDebugger = extern union {
     pub fn QueryAlive(self: *const IApplicationDebugger) callconv(.Inline) HRESULT {
         return self.vtable.QueryAlive(self);
     }
-    pub fn CreateInstanceAtDebugger(self: *const IApplicationDebugger, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateInstanceAtDebugger(self: *const IApplicationDebugger, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstanceAtDebugger(self, rclsid, pUnkOuter, dwClsContext, riid, ppvObject);
     }
     pub fn onDebugOutput(self: *const IApplicationDebugger, pstr: ?[*:0]const u16) callconv(.Inline) HRESULT {
@@ -35585,7 +35585,7 @@ pub const IRemoteDebugApplication = extern union {
             pUnkOuter: ?*IUnknown,
             dwClsContext: u32,
             riid: ?*const Guid,
-            ppvObject: ?*?*IUnknown,
+            ppvObject: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryAlive: *const fn(
             self: *const IRemoteDebugApplication,
@@ -35624,7 +35624,7 @@ pub const IRemoteDebugApplication = extern union {
     pub fn GetDebugger(self: *const IRemoteDebugApplication, pad: ?*?*IApplicationDebugger) callconv(.Inline) HRESULT {
         return self.vtable.GetDebugger(self, pad);
     }
-    pub fn CreateInstanceAtApplication(self: *const IRemoteDebugApplication, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateInstanceAtApplication(self: *const IRemoteDebugApplication, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: **IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstanceAtApplication(self, rclsid, pUnkOuter, dwClsContext, riid, ppvObject);
     }
     pub fn QueryAlive(self: *const IRemoteDebugApplication) callconv(.Inline) HRESULT {
@@ -41118,18 +41118,18 @@ pub extern "dbgeng" fn DebugConnectWide(
 
 pub extern "dbgeng" fn DebugCreate(
     InterfaceId: ?*const Guid,
-    Interface: ?*?*anyopaque,
+    Interface: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "dbgeng" fn DebugCreateEx(
     InterfaceId: ?*const Guid,
     DbgEngOptions: u32,
-    Interface: ?*?*anyopaque,
+    Interface: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "dbgmodel" fn CreateDataModelManager(
     debugHost: ?*IDebugHost,
-    manager: ?*?*IDataModelManager,
+    manager: **IDataModelManager,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'

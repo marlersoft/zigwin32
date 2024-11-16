@@ -2219,7 +2219,7 @@ pub const ID3D11ClassLinkage = extern union {
             self: *const ID3D11ClassLinkage,
             pClassInstanceName: ?[*:0]const u8,
             InstanceIndex: u32,
-            ppInstance: ?*?*ID3D11ClassInstance,
+            ppInstance: **ID3D11ClassInstance,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateClassInstance: *const fn(
             self: *const ID3D11ClassLinkage,
@@ -2228,16 +2228,16 @@ pub const ID3D11ClassLinkage = extern union {
             ConstantVectorOffset: u32,
             TextureOffset: u32,
             SamplerOffset: u32,
-            ppInstance: ?*?*ID3D11ClassInstance,
+            ppInstance: **ID3D11ClassInstance,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetClassInstance(self: *const ID3D11ClassLinkage, pClassInstanceName: ?[*:0]const u8, InstanceIndex: u32, ppInstance: ?*?*ID3D11ClassInstance) callconv(.Inline) HRESULT {
+    pub fn GetClassInstance(self: *const ID3D11ClassLinkage, pClassInstanceName: ?[*:0]const u8, InstanceIndex: u32, ppInstance: **ID3D11ClassInstance) callconv(.Inline) HRESULT {
         return self.vtable.GetClassInstance(self, pClassInstanceName, InstanceIndex, ppInstance);
     }
-    pub fn CreateClassInstance(self: *const ID3D11ClassLinkage, pClassTypeName: ?[*:0]const u8, ConstantBufferOffset: u32, ConstantVectorOffset: u32, TextureOffset: u32, SamplerOffset: u32, ppInstance: ?*?*ID3D11ClassInstance) callconv(.Inline) HRESULT {
+    pub fn CreateClassInstance(self: *const ID3D11ClassLinkage, pClassTypeName: ?[*:0]const u8, ConstantBufferOffset: u32, ConstantVectorOffset: u32, TextureOffset: u32, SamplerOffset: u32, ppInstance: **ID3D11ClassInstance) callconv(.Inline) HRESULT {
         return self.vtable.CreateClassInstance(self, pClassTypeName, ConstantBufferOffset, ConstantVectorOffset, TextureOffset, SamplerOffset, ppInstance);
     }
 };
@@ -3094,7 +3094,7 @@ pub const ID3D11DeviceContext = extern union {
         FinishCommandList: *const fn(
             self: *const ID3D11DeviceContext,
             RestoreDeferredContextState: BOOL,
-            ppCommandList: ?*?*ID3D11CommandList,
+            ppCommandList: ?**ID3D11CommandList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3421,7 +3421,7 @@ pub const ID3D11DeviceContext = extern union {
     pub fn GetContextFlags(self: *const ID3D11DeviceContext) callconv(.Inline) u32 {
         return self.vtable.GetContextFlags(self);
     }
-    pub fn FinishCommandList(self: *const ID3D11DeviceContext, RestoreDeferredContextState: BOOL, ppCommandList: ?*?*ID3D11CommandList) callconv(.Inline) HRESULT {
+    pub fn FinishCommandList(self: *const ID3D11DeviceContext, RestoreDeferredContextState: BOOL, ppCommandList: ?**ID3D11CommandList) callconv(.Inline) HRESULT {
         return self.vtable.FinishCommandList(self, RestoreDeferredContextState, ppCommandList);
     }
 };
@@ -5047,50 +5047,50 @@ pub const ID3D11VideoDevice = extern union {
             self: *const ID3D11VideoDevice,
             pVideoDesc: ?*const D3D11_VIDEO_DECODER_DESC,
             pConfig: ?*const D3D11_VIDEO_DECODER_CONFIG,
-            ppDecoder: ?*?*ID3D11VideoDecoder,
+            ppDecoder: **ID3D11VideoDecoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVideoProcessor: *const fn(
             self: *const ID3D11VideoDevice,
             pEnum: ?*ID3D11VideoProcessorEnumerator,
             RateConversionIndex: u32,
-            ppVideoProcessor: ?*?*ID3D11VideoProcessor,
+            ppVideoProcessor: **ID3D11VideoProcessor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateAuthenticatedChannel: *const fn(
             self: *const ID3D11VideoDevice,
             ChannelType: D3D11_AUTHENTICATED_CHANNEL_TYPE,
-            ppAuthenticatedChannel: ?*?*ID3D11AuthenticatedChannel,
+            ppAuthenticatedChannel: **ID3D11AuthenticatedChannel,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCryptoSession: *const fn(
             self: *const ID3D11VideoDevice,
             pCryptoType: ?*const Guid,
             pDecoderProfile: ?*const Guid,
             pKeyExchangeType: ?*const Guid,
-            ppCryptoSession: ?*?*ID3D11CryptoSession,
+            ppCryptoSession: **ID3D11CryptoSession,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVideoDecoderOutputView: *const fn(
             self: *const ID3D11VideoDevice,
             pResource: ?*ID3D11Resource,
             pDesc: ?*const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC,
-            ppVDOVView: ?*?*ID3D11VideoDecoderOutputView,
+            ppVDOVView: ?**ID3D11VideoDecoderOutputView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVideoProcessorInputView: *const fn(
             self: *const ID3D11VideoDevice,
             pResource: ?*ID3D11Resource,
             pEnum: ?*ID3D11VideoProcessorEnumerator,
             pDesc: ?*const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC,
-            ppVPIView: ?*?*ID3D11VideoProcessorInputView,
+            ppVPIView: ?**ID3D11VideoProcessorInputView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVideoProcessorOutputView: *const fn(
             self: *const ID3D11VideoDevice,
             pResource: ?*ID3D11Resource,
             pEnum: ?*ID3D11VideoProcessorEnumerator,
             pDesc: ?*const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC,
-            ppVPOView: ?*?*ID3D11VideoProcessorOutputView,
+            ppVPOView: ?**ID3D11VideoProcessorOutputView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVideoProcessorEnumerator: *const fn(
             self: *const ID3D11VideoDevice,
             pDesc: ?*const D3D11_VIDEO_PROCESSOR_CONTENT_DESC,
-            ppEnum: ?*?*ID3D11VideoProcessorEnumerator,
+            ppEnum: **ID3D11VideoProcessorEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVideoDecoderProfileCount: *const fn(
             self: *const ID3D11VideoDevice,
@@ -5145,28 +5145,28 @@ pub const ID3D11VideoDevice = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateVideoDecoder(self: *const ID3D11VideoDevice, pVideoDesc: ?*const D3D11_VIDEO_DECODER_DESC, pConfig: ?*const D3D11_VIDEO_DECODER_CONFIG, ppDecoder: ?*?*ID3D11VideoDecoder) callconv(.Inline) HRESULT {
+    pub fn CreateVideoDecoder(self: *const ID3D11VideoDevice, pVideoDesc: ?*const D3D11_VIDEO_DECODER_DESC, pConfig: ?*const D3D11_VIDEO_DECODER_CONFIG, ppDecoder: **ID3D11VideoDecoder) callconv(.Inline) HRESULT {
         return self.vtable.CreateVideoDecoder(self, pVideoDesc, pConfig, ppDecoder);
     }
-    pub fn CreateVideoProcessor(self: *const ID3D11VideoDevice, pEnum: ?*ID3D11VideoProcessorEnumerator, RateConversionIndex: u32, ppVideoProcessor: ?*?*ID3D11VideoProcessor) callconv(.Inline) HRESULT {
+    pub fn CreateVideoProcessor(self: *const ID3D11VideoDevice, pEnum: ?*ID3D11VideoProcessorEnumerator, RateConversionIndex: u32, ppVideoProcessor: **ID3D11VideoProcessor) callconv(.Inline) HRESULT {
         return self.vtable.CreateVideoProcessor(self, pEnum, RateConversionIndex, ppVideoProcessor);
     }
-    pub fn CreateAuthenticatedChannel(self: *const ID3D11VideoDevice, ChannelType: D3D11_AUTHENTICATED_CHANNEL_TYPE, ppAuthenticatedChannel: ?*?*ID3D11AuthenticatedChannel) callconv(.Inline) HRESULT {
+    pub fn CreateAuthenticatedChannel(self: *const ID3D11VideoDevice, ChannelType: D3D11_AUTHENTICATED_CHANNEL_TYPE, ppAuthenticatedChannel: **ID3D11AuthenticatedChannel) callconv(.Inline) HRESULT {
         return self.vtable.CreateAuthenticatedChannel(self, ChannelType, ppAuthenticatedChannel);
     }
-    pub fn CreateCryptoSession(self: *const ID3D11VideoDevice, pCryptoType: ?*const Guid, pDecoderProfile: ?*const Guid, pKeyExchangeType: ?*const Guid, ppCryptoSession: ?*?*ID3D11CryptoSession) callconv(.Inline) HRESULT {
+    pub fn CreateCryptoSession(self: *const ID3D11VideoDevice, pCryptoType: ?*const Guid, pDecoderProfile: ?*const Guid, pKeyExchangeType: ?*const Guid, ppCryptoSession: **ID3D11CryptoSession) callconv(.Inline) HRESULT {
         return self.vtable.CreateCryptoSession(self, pCryptoType, pDecoderProfile, pKeyExchangeType, ppCryptoSession);
     }
-    pub fn CreateVideoDecoderOutputView(self: *const ID3D11VideoDevice, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC, ppVDOVView: ?*?*ID3D11VideoDecoderOutputView) callconv(.Inline) HRESULT {
+    pub fn CreateVideoDecoderOutputView(self: *const ID3D11VideoDevice, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC, ppVDOVView: ?**ID3D11VideoDecoderOutputView) callconv(.Inline) HRESULT {
         return self.vtable.CreateVideoDecoderOutputView(self, pResource, pDesc, ppVDOVView);
     }
-    pub fn CreateVideoProcessorInputView(self: *const ID3D11VideoDevice, pResource: ?*ID3D11Resource, pEnum: ?*ID3D11VideoProcessorEnumerator, pDesc: ?*const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC, ppVPIView: ?*?*ID3D11VideoProcessorInputView) callconv(.Inline) HRESULT {
+    pub fn CreateVideoProcessorInputView(self: *const ID3D11VideoDevice, pResource: ?*ID3D11Resource, pEnum: ?*ID3D11VideoProcessorEnumerator, pDesc: ?*const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC, ppVPIView: ?**ID3D11VideoProcessorInputView) callconv(.Inline) HRESULT {
         return self.vtable.CreateVideoProcessorInputView(self, pResource, pEnum, pDesc, ppVPIView);
     }
-    pub fn CreateVideoProcessorOutputView(self: *const ID3D11VideoDevice, pResource: ?*ID3D11Resource, pEnum: ?*ID3D11VideoProcessorEnumerator, pDesc: ?*const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC, ppVPOView: ?*?*ID3D11VideoProcessorOutputView) callconv(.Inline) HRESULT {
+    pub fn CreateVideoProcessorOutputView(self: *const ID3D11VideoDevice, pResource: ?*ID3D11Resource, pEnum: ?*ID3D11VideoProcessorEnumerator, pDesc: ?*const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC, ppVPOView: ?**ID3D11VideoProcessorOutputView) callconv(.Inline) HRESULT {
         return self.vtable.CreateVideoProcessorOutputView(self, pResource, pEnum, pDesc, ppVPOView);
     }
-    pub fn CreateVideoProcessorEnumerator(self: *const ID3D11VideoDevice, pDesc: ?*const D3D11_VIDEO_PROCESSOR_CONTENT_DESC, ppEnum: ?*?*ID3D11VideoProcessorEnumerator) callconv(.Inline) HRESULT {
+    pub fn CreateVideoProcessorEnumerator(self: *const ID3D11VideoDevice, pDesc: ?*const D3D11_VIDEO_PROCESSOR_CONTENT_DESC, ppEnum: **ID3D11VideoProcessorEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.CreateVideoProcessorEnumerator(self, pDesc, ppEnum);
     }
     pub fn GetVideoDecoderProfileCount(self: *const ID3D11VideoDevice) callconv(.Inline) u32 {
@@ -5209,49 +5209,49 @@ pub const ID3D11Device = extern union {
             self: *const ID3D11Device,
             pDesc: ?*const D3D11_BUFFER_DESC,
             pInitialData: ?*const D3D11_SUBRESOURCE_DATA,
-            ppBuffer: ?*?*ID3D11Buffer,
+            ppBuffer: ?**ID3D11Buffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTexture1D: *const fn(
             self: *const ID3D11Device,
             pDesc: ?*const D3D11_TEXTURE1D_DESC,
             pInitialData: ?*const D3D11_SUBRESOURCE_DATA,
-            ppTexture1D: ?*?*ID3D11Texture1D,
+            ppTexture1D: ?**ID3D11Texture1D,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTexture2D: *const fn(
             self: *const ID3D11Device,
             pDesc: ?*const D3D11_TEXTURE2D_DESC,
             pInitialData: ?*const D3D11_SUBRESOURCE_DATA,
-            ppTexture2D: ?*?*ID3D11Texture2D,
+            ppTexture2D: ?**ID3D11Texture2D,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTexture3D: *const fn(
             self: *const ID3D11Device,
             pDesc: ?*const D3D11_TEXTURE3D_DESC,
             pInitialData: ?*const D3D11_SUBRESOURCE_DATA,
-            ppTexture3D: ?*?*ID3D11Texture3D,
+            ppTexture3D: ?**ID3D11Texture3D,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateShaderResourceView: *const fn(
             self: *const ID3D11Device,
             pResource: ?*ID3D11Resource,
             pDesc: ?*const D3D11_SHADER_RESOURCE_VIEW_DESC,
-            ppSRView: ?*?*ID3D11ShaderResourceView,
+            ppSRView: ?**ID3D11ShaderResourceView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateUnorderedAccessView: *const fn(
             self: *const ID3D11Device,
             pResource: ?*ID3D11Resource,
             pDesc: ?*const D3D11_UNORDERED_ACCESS_VIEW_DESC,
-            ppUAView: ?*?*ID3D11UnorderedAccessView,
+            ppUAView: ?**ID3D11UnorderedAccessView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRenderTargetView: *const fn(
             self: *const ID3D11Device,
             pResource: ?*ID3D11Resource,
             pDesc: ?*const D3D11_RENDER_TARGET_VIEW_DESC,
-            ppRTView: ?*?*ID3D11RenderTargetView,
+            ppRTView: ?**ID3D11RenderTargetView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDepthStencilView: *const fn(
             self: *const ID3D11Device,
             pResource: ?*ID3D11Resource,
             pDesc: ?*const D3D11_DEPTH_STENCIL_VIEW_DESC,
-            ppDepthStencilView: ?*?*ID3D11DepthStencilView,
+            ppDepthStencilView: ?**ID3D11DepthStencilView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateInputLayout: *const fn(
             self: *const ID3D11Device,
@@ -5259,21 +5259,21 @@ pub const ID3D11Device = extern union {
             NumElements: u32,
             pShaderBytecodeWithInputSignature: [*]const u8,
             BytecodeLength: usize,
-            ppInputLayout: ?*?*ID3D11InputLayout,
+            ppInputLayout: ?**ID3D11InputLayout,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVertexShader: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             pClassLinkage: ?*ID3D11ClassLinkage,
-            ppVertexShader: ?*?*ID3D11VertexShader,
+            ppVertexShader: ?**ID3D11VertexShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGeometryShader: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             pClassLinkage: ?*ID3D11ClassLinkage,
-            ppGeometryShader: ?*?*ID3D11GeometryShader,
+            ppGeometryShader: ?**ID3D11GeometryShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGeometryShaderWithStreamOutput: *const fn(
             self: *const ID3D11Device,
@@ -5285,85 +5285,85 @@ pub const ID3D11Device = extern union {
             NumStrides: u32,
             RasterizedStream: u32,
             pClassLinkage: ?*ID3D11ClassLinkage,
-            ppGeometryShader: ?*?*ID3D11GeometryShader,
+            ppGeometryShader: ?**ID3D11GeometryShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePixelShader: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             pClassLinkage: ?*ID3D11ClassLinkage,
-            ppPixelShader: ?*?*ID3D11PixelShader,
+            ppPixelShader: ?**ID3D11PixelShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateHullShader: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             pClassLinkage: ?*ID3D11ClassLinkage,
-            ppHullShader: ?*?*ID3D11HullShader,
+            ppHullShader: ?**ID3D11HullShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDomainShader: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             pClassLinkage: ?*ID3D11ClassLinkage,
-            ppDomainShader: ?*?*ID3D11DomainShader,
+            ppDomainShader: ?**ID3D11DomainShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateComputeShader: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             pClassLinkage: ?*ID3D11ClassLinkage,
-            ppComputeShader: ?*?*ID3D11ComputeShader,
+            ppComputeShader: ?**ID3D11ComputeShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateClassLinkage: *const fn(
             self: *const ID3D11Device,
-            ppLinkage: ?*?*ID3D11ClassLinkage,
+            ppLinkage: **ID3D11ClassLinkage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlendState: *const fn(
             self: *const ID3D11Device,
             pBlendStateDesc: ?*const D3D11_BLEND_DESC,
-            ppBlendState: ?*?*ID3D11BlendState,
+            ppBlendState: ?**ID3D11BlendState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDepthStencilState: *const fn(
             self: *const ID3D11Device,
             pDepthStencilDesc: ?*const D3D11_DEPTH_STENCIL_DESC,
-            ppDepthStencilState: ?*?*ID3D11DepthStencilState,
+            ppDepthStencilState: ?**ID3D11DepthStencilState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRasterizerState: *const fn(
             self: *const ID3D11Device,
             pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC,
-            ppRasterizerState: ?*?*ID3D11RasterizerState,
+            ppRasterizerState: ?**ID3D11RasterizerState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSamplerState: *const fn(
             self: *const ID3D11Device,
             pSamplerDesc: ?*const D3D11_SAMPLER_DESC,
-            ppSamplerState: ?*?*ID3D11SamplerState,
+            ppSamplerState: ?**ID3D11SamplerState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateQuery: *const fn(
             self: *const ID3D11Device,
             pQueryDesc: ?*const D3D11_QUERY_DESC,
-            ppQuery: ?*?*ID3D11Query,
+            ppQuery: ?**ID3D11Query,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePredicate: *const fn(
             self: *const ID3D11Device,
             pPredicateDesc: ?*const D3D11_QUERY_DESC,
-            ppPredicate: ?*?*ID3D11Predicate,
+            ppPredicate: ?**ID3D11Predicate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCounter: *const fn(
             self: *const ID3D11Device,
             pCounterDesc: ?*const D3D11_COUNTER_DESC,
-            ppCounter: ?*?*ID3D11Counter,
+            ppCounter: ?**ID3D11Counter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDeferredContext: *const fn(
             self: *const ID3D11Device,
             ContextFlags: u32,
-            ppDeferredContext: ?*?*ID3D11DeviceContext,
+            ppDeferredContext: ?**ID3D11DeviceContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenSharedResource: *const fn(
             self: *const ID3D11Device,
             hResource: ?HANDLE,
             ReturnedInterface: ?*const Guid,
-            ppResource: ?*?*anyopaque,
+            ppResource: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CheckFormatSupport: *const fn(
             self: *const ID3D11Device,
@@ -5441,82 +5441,82 @@ pub const ID3D11Device = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateBuffer(self: *const ID3D11Device, pDesc: ?*const D3D11_BUFFER_DESC, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppBuffer: ?*?*ID3D11Buffer) callconv(.Inline) HRESULT {
+    pub fn CreateBuffer(self: *const ID3D11Device, pDesc: ?*const D3D11_BUFFER_DESC, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppBuffer: ?**ID3D11Buffer) callconv(.Inline) HRESULT {
         return self.vtable.CreateBuffer(self, pDesc, pInitialData, ppBuffer);
     }
-    pub fn CreateTexture1D(self: *const ID3D11Device, pDesc: ?*const D3D11_TEXTURE1D_DESC, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture1D: ?*?*ID3D11Texture1D) callconv(.Inline) HRESULT {
+    pub fn CreateTexture1D(self: *const ID3D11Device, pDesc: ?*const D3D11_TEXTURE1D_DESC, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture1D: ?**ID3D11Texture1D) callconv(.Inline) HRESULT {
         return self.vtable.CreateTexture1D(self, pDesc, pInitialData, ppTexture1D);
     }
-    pub fn CreateTexture2D(self: *const ID3D11Device, pDesc: ?*const D3D11_TEXTURE2D_DESC, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture2D: ?*?*ID3D11Texture2D) callconv(.Inline) HRESULT {
+    pub fn CreateTexture2D(self: *const ID3D11Device, pDesc: ?*const D3D11_TEXTURE2D_DESC, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture2D: ?**ID3D11Texture2D) callconv(.Inline) HRESULT {
         return self.vtable.CreateTexture2D(self, pDesc, pInitialData, ppTexture2D);
     }
-    pub fn CreateTexture3D(self: *const ID3D11Device, pDesc: ?*const D3D11_TEXTURE3D_DESC, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture3D: ?*?*ID3D11Texture3D) callconv(.Inline) HRESULT {
+    pub fn CreateTexture3D(self: *const ID3D11Device, pDesc: ?*const D3D11_TEXTURE3D_DESC, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture3D: ?**ID3D11Texture3D) callconv(.Inline) HRESULT {
         return self.vtable.CreateTexture3D(self, pDesc, pInitialData, ppTexture3D);
     }
-    pub fn CreateShaderResourceView(self: *const ID3D11Device, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_SHADER_RESOURCE_VIEW_DESC, ppSRView: ?*?*ID3D11ShaderResourceView) callconv(.Inline) HRESULT {
+    pub fn CreateShaderResourceView(self: *const ID3D11Device, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_SHADER_RESOURCE_VIEW_DESC, ppSRView: ?**ID3D11ShaderResourceView) callconv(.Inline) HRESULT {
         return self.vtable.CreateShaderResourceView(self, pResource, pDesc, ppSRView);
     }
-    pub fn CreateUnorderedAccessView(self: *const ID3D11Device, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_UNORDERED_ACCESS_VIEW_DESC, ppUAView: ?*?*ID3D11UnorderedAccessView) callconv(.Inline) HRESULT {
+    pub fn CreateUnorderedAccessView(self: *const ID3D11Device, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_UNORDERED_ACCESS_VIEW_DESC, ppUAView: ?**ID3D11UnorderedAccessView) callconv(.Inline) HRESULT {
         return self.vtable.CreateUnorderedAccessView(self, pResource, pDesc, ppUAView);
     }
-    pub fn CreateRenderTargetView(self: *const ID3D11Device, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_RENDER_TARGET_VIEW_DESC, ppRTView: ?*?*ID3D11RenderTargetView) callconv(.Inline) HRESULT {
+    pub fn CreateRenderTargetView(self: *const ID3D11Device, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_RENDER_TARGET_VIEW_DESC, ppRTView: ?**ID3D11RenderTargetView) callconv(.Inline) HRESULT {
         return self.vtable.CreateRenderTargetView(self, pResource, pDesc, ppRTView);
     }
-    pub fn CreateDepthStencilView(self: *const ID3D11Device, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_DEPTH_STENCIL_VIEW_DESC, ppDepthStencilView: ?*?*ID3D11DepthStencilView) callconv(.Inline) HRESULT {
+    pub fn CreateDepthStencilView(self: *const ID3D11Device, pResource: ?*ID3D11Resource, pDesc: ?*const D3D11_DEPTH_STENCIL_VIEW_DESC, ppDepthStencilView: ?**ID3D11DepthStencilView) callconv(.Inline) HRESULT {
         return self.vtable.CreateDepthStencilView(self, pResource, pDesc, ppDepthStencilView);
     }
-    pub fn CreateInputLayout(self: *const ID3D11Device, pInputElementDescs: [*]const D3D11_INPUT_ELEMENT_DESC, NumElements: u32, pShaderBytecodeWithInputSignature: [*]const u8, BytecodeLength: usize, ppInputLayout: ?*?*ID3D11InputLayout) callconv(.Inline) HRESULT {
+    pub fn CreateInputLayout(self: *const ID3D11Device, pInputElementDescs: [*]const D3D11_INPUT_ELEMENT_DESC, NumElements: u32, pShaderBytecodeWithInputSignature: [*]const u8, BytecodeLength: usize, ppInputLayout: ?**ID3D11InputLayout) callconv(.Inline) HRESULT {
         return self.vtable.CreateInputLayout(self, pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, ppInputLayout);
     }
-    pub fn CreateVertexShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppVertexShader: ?*?*ID3D11VertexShader) callconv(.Inline) HRESULT {
+    pub fn CreateVertexShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppVertexShader: ?**ID3D11VertexShader) callconv(.Inline) HRESULT {
         return self.vtable.CreateVertexShader(self, pShaderBytecode, BytecodeLength, pClassLinkage, ppVertexShader);
     }
-    pub fn CreateGeometryShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppGeometryShader: ?*?*ID3D11GeometryShader) callconv(.Inline) HRESULT {
+    pub fn CreateGeometryShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppGeometryShader: ?**ID3D11GeometryShader) callconv(.Inline) HRESULT {
         return self.vtable.CreateGeometryShader(self, pShaderBytecode, BytecodeLength, pClassLinkage, ppGeometryShader);
     }
-    pub fn CreateGeometryShaderWithStreamOutput(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pSODeclaration: ?[*]const D3D11_SO_DECLARATION_ENTRY, NumEntries: u32, pBufferStrides: ?[*]const u32, NumStrides: u32, RasterizedStream: u32, pClassLinkage: ?*ID3D11ClassLinkage, ppGeometryShader: ?*?*ID3D11GeometryShader) callconv(.Inline) HRESULT {
+    pub fn CreateGeometryShaderWithStreamOutput(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pSODeclaration: ?[*]const D3D11_SO_DECLARATION_ENTRY, NumEntries: u32, pBufferStrides: ?[*]const u32, NumStrides: u32, RasterizedStream: u32, pClassLinkage: ?*ID3D11ClassLinkage, ppGeometryShader: ?**ID3D11GeometryShader) callconv(.Inline) HRESULT {
         return self.vtable.CreateGeometryShaderWithStreamOutput(self, pShaderBytecode, BytecodeLength, pSODeclaration, NumEntries, pBufferStrides, NumStrides, RasterizedStream, pClassLinkage, ppGeometryShader);
     }
-    pub fn CreatePixelShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppPixelShader: ?*?*ID3D11PixelShader) callconv(.Inline) HRESULT {
+    pub fn CreatePixelShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppPixelShader: ?**ID3D11PixelShader) callconv(.Inline) HRESULT {
         return self.vtable.CreatePixelShader(self, pShaderBytecode, BytecodeLength, pClassLinkage, ppPixelShader);
     }
-    pub fn CreateHullShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppHullShader: ?*?*ID3D11HullShader) callconv(.Inline) HRESULT {
+    pub fn CreateHullShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppHullShader: ?**ID3D11HullShader) callconv(.Inline) HRESULT {
         return self.vtable.CreateHullShader(self, pShaderBytecode, BytecodeLength, pClassLinkage, ppHullShader);
     }
-    pub fn CreateDomainShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppDomainShader: ?*?*ID3D11DomainShader) callconv(.Inline) HRESULT {
+    pub fn CreateDomainShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppDomainShader: ?**ID3D11DomainShader) callconv(.Inline) HRESULT {
         return self.vtable.CreateDomainShader(self, pShaderBytecode, BytecodeLength, pClassLinkage, ppDomainShader);
     }
-    pub fn CreateComputeShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppComputeShader: ?*?*ID3D11ComputeShader) callconv(.Inline) HRESULT {
+    pub fn CreateComputeShader(self: *const ID3D11Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pClassLinkage: ?*ID3D11ClassLinkage, ppComputeShader: ?**ID3D11ComputeShader) callconv(.Inline) HRESULT {
         return self.vtable.CreateComputeShader(self, pShaderBytecode, BytecodeLength, pClassLinkage, ppComputeShader);
     }
-    pub fn CreateClassLinkage(self: *const ID3D11Device, ppLinkage: ?*?*ID3D11ClassLinkage) callconv(.Inline) HRESULT {
+    pub fn CreateClassLinkage(self: *const ID3D11Device, ppLinkage: **ID3D11ClassLinkage) callconv(.Inline) HRESULT {
         return self.vtable.CreateClassLinkage(self, ppLinkage);
     }
-    pub fn CreateBlendState(self: *const ID3D11Device, pBlendStateDesc: ?*const D3D11_BLEND_DESC, ppBlendState: ?*?*ID3D11BlendState) callconv(.Inline) HRESULT {
+    pub fn CreateBlendState(self: *const ID3D11Device, pBlendStateDesc: ?*const D3D11_BLEND_DESC, ppBlendState: ?**ID3D11BlendState) callconv(.Inline) HRESULT {
         return self.vtable.CreateBlendState(self, pBlendStateDesc, ppBlendState);
     }
-    pub fn CreateDepthStencilState(self: *const ID3D11Device, pDepthStencilDesc: ?*const D3D11_DEPTH_STENCIL_DESC, ppDepthStencilState: ?*?*ID3D11DepthStencilState) callconv(.Inline) HRESULT {
+    pub fn CreateDepthStencilState(self: *const ID3D11Device, pDepthStencilDesc: ?*const D3D11_DEPTH_STENCIL_DESC, ppDepthStencilState: ?**ID3D11DepthStencilState) callconv(.Inline) HRESULT {
         return self.vtable.CreateDepthStencilState(self, pDepthStencilDesc, ppDepthStencilState);
     }
-    pub fn CreateRasterizerState(self: *const ID3D11Device, pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC, ppRasterizerState: ?*?*ID3D11RasterizerState) callconv(.Inline) HRESULT {
+    pub fn CreateRasterizerState(self: *const ID3D11Device, pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC, ppRasterizerState: ?**ID3D11RasterizerState) callconv(.Inline) HRESULT {
         return self.vtable.CreateRasterizerState(self, pRasterizerDesc, ppRasterizerState);
     }
-    pub fn CreateSamplerState(self: *const ID3D11Device, pSamplerDesc: ?*const D3D11_SAMPLER_DESC, ppSamplerState: ?*?*ID3D11SamplerState) callconv(.Inline) HRESULT {
+    pub fn CreateSamplerState(self: *const ID3D11Device, pSamplerDesc: ?*const D3D11_SAMPLER_DESC, ppSamplerState: ?**ID3D11SamplerState) callconv(.Inline) HRESULT {
         return self.vtable.CreateSamplerState(self, pSamplerDesc, ppSamplerState);
     }
-    pub fn CreateQuery(self: *const ID3D11Device, pQueryDesc: ?*const D3D11_QUERY_DESC, ppQuery: ?*?*ID3D11Query) callconv(.Inline) HRESULT {
+    pub fn CreateQuery(self: *const ID3D11Device, pQueryDesc: ?*const D3D11_QUERY_DESC, ppQuery: ?**ID3D11Query) callconv(.Inline) HRESULT {
         return self.vtable.CreateQuery(self, pQueryDesc, ppQuery);
     }
-    pub fn CreatePredicate(self: *const ID3D11Device, pPredicateDesc: ?*const D3D11_QUERY_DESC, ppPredicate: ?*?*ID3D11Predicate) callconv(.Inline) HRESULT {
+    pub fn CreatePredicate(self: *const ID3D11Device, pPredicateDesc: ?*const D3D11_QUERY_DESC, ppPredicate: ?**ID3D11Predicate) callconv(.Inline) HRESULT {
         return self.vtable.CreatePredicate(self, pPredicateDesc, ppPredicate);
     }
-    pub fn CreateCounter(self: *const ID3D11Device, pCounterDesc: ?*const D3D11_COUNTER_DESC, ppCounter: ?*?*ID3D11Counter) callconv(.Inline) HRESULT {
+    pub fn CreateCounter(self: *const ID3D11Device, pCounterDesc: ?*const D3D11_COUNTER_DESC, ppCounter: ?**ID3D11Counter) callconv(.Inline) HRESULT {
         return self.vtable.CreateCounter(self, pCounterDesc, ppCounter);
     }
-    pub fn CreateDeferredContext(self: *const ID3D11Device, ContextFlags: u32, ppDeferredContext: ?*?*ID3D11DeviceContext) callconv(.Inline) HRESULT {
+    pub fn CreateDeferredContext(self: *const ID3D11Device, ContextFlags: u32, ppDeferredContext: ?**ID3D11DeviceContext) callconv(.Inline) HRESULT {
         return self.vtable.CreateDeferredContext(self, ContextFlags, ppDeferredContext);
     }
-    pub fn OpenSharedResource(self: *const ID3D11Device, hResource: ?HANDLE, ReturnedInterface: ?*const Guid, ppResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenSharedResource(self: *const ID3D11Device, hResource: ?HANDLE, ReturnedInterface: ?*const Guid, ppResource: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.OpenSharedResource(self, hResource, ReturnedInterface, ppResource);
     }
     pub fn CheckFormatSupport(self: *const ID3D11Device, Format: DXGI_FORMAT, pFormatSupport: ?*u32) callconv(.Inline) HRESULT {
@@ -8829,9 +8829,9 @@ pub const PFN_D3D11_CREATE_DEVICE = *const fn(
     param4: ?[*]const D3D_FEATURE_LEVEL,
     FeatureLevels: u32,
     param6: u32,
-    param7: ?*?*ID3D11Device,
+    param7: ?**ID3D11Device,
     param8: ?*D3D_FEATURE_LEVEL,
-    param9: ?*?*ID3D11DeviceContext,
+    param9: ?**ID3D11DeviceContext,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN = *const fn(
@@ -8843,10 +8843,10 @@ pub const PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN = *const fn(
     FeatureLevels: u32,
     param6: u32,
     param7: ?*const DXGI_SWAP_CHAIN_DESC,
-    param8: ?*?*IDXGISwapChain,
-    param9: ?*?*ID3D11Device,
+    param8: ?**IDXGISwapChain,
+    param9: ?**ID3D11Device,
     param10: ?*D3D_FEATURE_LEVEL,
-    param11: ?*?*ID3D11DeviceContext,
+    param11: ?**ID3D11DeviceContext,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const D3D11_COPY_FLAGS = enum(i32) {
@@ -9536,17 +9536,17 @@ pub const ID3D11Device1 = extern union {
         CreateDeferredContext1: *const fn(
             self: *const ID3D11Device1,
             ContextFlags: u32,
-            ppDeferredContext: ?*?*ID3D11DeviceContext1,
+            ppDeferredContext: ?**ID3D11DeviceContext1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlendState1: *const fn(
             self: *const ID3D11Device1,
             pBlendStateDesc: ?*const D3D11_BLEND_DESC1,
-            ppBlendState: ?*?*ID3D11BlendState1,
+            ppBlendState: ?**ID3D11BlendState1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRasterizerState1: *const fn(
             self: *const ID3D11Device1,
             pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC1,
-            ppRasterizerState: ?*?*ID3D11RasterizerState1,
+            ppRasterizerState: ?**ID3D11RasterizerState1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDeviceContextState: *const fn(
             self: *const ID3D11Device1,
@@ -9562,14 +9562,14 @@ pub const ID3D11Device1 = extern union {
             self: *const ID3D11Device1,
             hResource: ?HANDLE,
             returnedInterface: ?*const Guid,
-            ppResource: ?*?*anyopaque,
+            ppResource: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenSharedResourceByName: *const fn(
             self: *const ID3D11Device1,
             lpName: ?[*:0]const u16,
             dwDesiredAccess: u32,
             returnedInterface: ?*const Guid,
-            ppResource: ?*?*anyopaque,
+            ppResource: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -9578,22 +9578,22 @@ pub const ID3D11Device1 = extern union {
     pub fn GetImmediateContext1(self: *const ID3D11Device1, ppImmediateContext: ?*?*ID3D11DeviceContext1) callconv(.Inline) void {
         return self.vtable.GetImmediateContext1(self, ppImmediateContext);
     }
-    pub fn CreateDeferredContext1(self: *const ID3D11Device1, ContextFlags: u32, ppDeferredContext: ?*?*ID3D11DeviceContext1) callconv(.Inline) HRESULT {
+    pub fn CreateDeferredContext1(self: *const ID3D11Device1, ContextFlags: u32, ppDeferredContext: ?**ID3D11DeviceContext1) callconv(.Inline) HRESULT {
         return self.vtable.CreateDeferredContext1(self, ContextFlags, ppDeferredContext);
     }
-    pub fn CreateBlendState1(self: *const ID3D11Device1, pBlendStateDesc: ?*const D3D11_BLEND_DESC1, ppBlendState: ?*?*ID3D11BlendState1) callconv(.Inline) HRESULT {
+    pub fn CreateBlendState1(self: *const ID3D11Device1, pBlendStateDesc: ?*const D3D11_BLEND_DESC1, ppBlendState: ?**ID3D11BlendState1) callconv(.Inline) HRESULT {
         return self.vtable.CreateBlendState1(self, pBlendStateDesc, ppBlendState);
     }
-    pub fn CreateRasterizerState1(self: *const ID3D11Device1, pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC1, ppRasterizerState: ?*?*ID3D11RasterizerState1) callconv(.Inline) HRESULT {
+    pub fn CreateRasterizerState1(self: *const ID3D11Device1, pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC1, ppRasterizerState: ?**ID3D11RasterizerState1) callconv(.Inline) HRESULT {
         return self.vtable.CreateRasterizerState1(self, pRasterizerDesc, ppRasterizerState);
     }
     pub fn CreateDeviceContextState(self: *const ID3D11Device1, Flags: u32, pFeatureLevels: [*]const D3D_FEATURE_LEVEL, FeatureLevels: u32, SDKVersion: u32, EmulatedInterface: ?*const Guid, pChosenFeatureLevel: ?*D3D_FEATURE_LEVEL, ppContextState: ?*?*ID3DDeviceContextState) callconv(.Inline) HRESULT {
         return self.vtable.CreateDeviceContextState(self, Flags, pFeatureLevels, FeatureLevels, SDKVersion, EmulatedInterface, pChosenFeatureLevel, ppContextState);
     }
-    pub fn OpenSharedResource1(self: *const ID3D11Device1, hResource: ?HANDLE, returnedInterface: ?*const Guid, ppResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenSharedResource1(self: *const ID3D11Device1, hResource: ?HANDLE, returnedInterface: ?*const Guid, ppResource: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.OpenSharedResource1(self, hResource, returnedInterface, ppResource);
     }
-    pub fn OpenSharedResourceByName(self: *const ID3D11Device1, lpName: ?[*:0]const u16, dwDesiredAccess: u32, returnedInterface: ?*const Guid, ppResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenSharedResourceByName(self: *const ID3D11Device1, lpName: ?[*:0]const u16, dwDesiredAccess: u32, returnedInterface: ?*const Guid, ppResource: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.OpenSharedResourceByName(self, lpName, dwDesiredAccess, returnedInterface, ppResource);
     }
 };
@@ -9823,7 +9823,7 @@ pub const ID3D11Device2 = extern union {
         CreateDeferredContext2: *const fn(
             self: *const ID3D11Device2,
             ContextFlags: u32,
-            ppDeferredContext: ?*?*ID3D11DeviceContext2,
+            ppDeferredContext: ?**ID3D11DeviceContext2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResourceTiling: *const fn(
             self: *const ID3D11Device2,
@@ -9850,7 +9850,7 @@ pub const ID3D11Device2 = extern union {
     pub fn GetImmediateContext2(self: *const ID3D11Device2, ppImmediateContext: ?*?*ID3D11DeviceContext2) callconv(.Inline) void {
         return self.vtable.GetImmediateContext2(self, ppImmediateContext);
     }
-    pub fn CreateDeferredContext2(self: *const ID3D11Device2, ContextFlags: u32, ppDeferredContext: ?*?*ID3D11DeviceContext2) callconv(.Inline) HRESULT {
+    pub fn CreateDeferredContext2(self: *const ID3D11Device2, ContextFlags: u32, ppDeferredContext: ?**ID3D11DeviceContext2) callconv(.Inline) HRESULT {
         return self.vtable.CreateDeferredContext2(self, ContextFlags, ppDeferredContext);
     }
     pub fn GetResourceTiling(self: *const ID3D11Device2, pTiledResource: ?*ID3D11Resource, pNumTilesForEntireResource: ?*u32, pPackedMipDesc: ?*D3D11_PACKED_MIP_DESC, pStandardTileShapeForNonPackedMips: ?*D3D11_TILE_SHAPE, pNumSubresourceTilings: ?*u32, FirstSubresourceTilingToGet: u32, pSubresourceTilingsForNonPackedMips: [*]D3D11_SUBRESOURCE_TILING) callconv(.Inline) void {
@@ -10331,41 +10331,41 @@ pub const ID3D11Device3 = extern union {
             self: *const ID3D11Device3,
             pDesc1: ?*const D3D11_TEXTURE2D_DESC1,
             pInitialData: ?*const D3D11_SUBRESOURCE_DATA,
-            ppTexture2D: ?*?*ID3D11Texture2D1,
+            ppTexture2D: ?**ID3D11Texture2D1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTexture3D1: *const fn(
             self: *const ID3D11Device3,
             pDesc1: ?*const D3D11_TEXTURE3D_DESC1,
             pInitialData: ?*const D3D11_SUBRESOURCE_DATA,
-            ppTexture3D: ?*?*ID3D11Texture3D1,
+            ppTexture3D: ?**ID3D11Texture3D1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRasterizerState2: *const fn(
             self: *const ID3D11Device3,
             pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC2,
-            ppRasterizerState: ?*?*ID3D11RasterizerState2,
+            ppRasterizerState: ?**ID3D11RasterizerState2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateShaderResourceView1: *const fn(
             self: *const ID3D11Device3,
             pResource: ?*ID3D11Resource,
             pDesc1: ?*const D3D11_SHADER_RESOURCE_VIEW_DESC1,
-            ppSRView1: ?*?*ID3D11ShaderResourceView1,
+            ppSRView1: ?**ID3D11ShaderResourceView1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateUnorderedAccessView1: *const fn(
             self: *const ID3D11Device3,
             pResource: ?*ID3D11Resource,
             pDesc1: ?*const D3D11_UNORDERED_ACCESS_VIEW_DESC1,
-            ppUAView1: ?*?*ID3D11UnorderedAccessView1,
+            ppUAView1: ?**ID3D11UnorderedAccessView1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRenderTargetView1: *const fn(
             self: *const ID3D11Device3,
             pResource: ?*ID3D11Resource,
             pDesc1: ?*const D3D11_RENDER_TARGET_VIEW_DESC1,
-            ppRTView1: ?*?*ID3D11RenderTargetView1,
+            ppRTView1: ?**ID3D11RenderTargetView1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateQuery1: *const fn(
             self: *const ID3D11Device3,
             pQueryDesc1: ?*const D3D11_QUERY_DESC1,
-            ppQuery1: ?*?*ID3D11Query1,
+            ppQuery1: ?**ID3D11Query1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetImmediateContext3: *const fn(
             self: *const ID3D11Device3,
@@ -10374,7 +10374,7 @@ pub const ID3D11Device3 = extern union {
         CreateDeferredContext3: *const fn(
             self: *const ID3D11Device3,
             ContextFlags: u32,
-            ppDeferredContext: ?*?*ID3D11DeviceContext3,
+            ppDeferredContext: ?**ID3D11DeviceContext3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WriteToSubresource: *const fn(
             self: *const ID3D11Device3,
@@ -10400,31 +10400,31 @@ pub const ID3D11Device3 = extern union {
     ID3D11Device1: ID3D11Device1,
     ID3D11Device: ID3D11Device,
     IUnknown: IUnknown,
-    pub fn CreateTexture2D1(self: *const ID3D11Device3, pDesc1: ?*const D3D11_TEXTURE2D_DESC1, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture2D: ?*?*ID3D11Texture2D1) callconv(.Inline) HRESULT {
+    pub fn CreateTexture2D1(self: *const ID3D11Device3, pDesc1: ?*const D3D11_TEXTURE2D_DESC1, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture2D: ?**ID3D11Texture2D1) callconv(.Inline) HRESULT {
         return self.vtable.CreateTexture2D1(self, pDesc1, pInitialData, ppTexture2D);
     }
-    pub fn CreateTexture3D1(self: *const ID3D11Device3, pDesc1: ?*const D3D11_TEXTURE3D_DESC1, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture3D: ?*?*ID3D11Texture3D1) callconv(.Inline) HRESULT {
+    pub fn CreateTexture3D1(self: *const ID3D11Device3, pDesc1: ?*const D3D11_TEXTURE3D_DESC1, pInitialData: ?*const D3D11_SUBRESOURCE_DATA, ppTexture3D: ?**ID3D11Texture3D1) callconv(.Inline) HRESULT {
         return self.vtable.CreateTexture3D1(self, pDesc1, pInitialData, ppTexture3D);
     }
-    pub fn CreateRasterizerState2(self: *const ID3D11Device3, pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC2, ppRasterizerState: ?*?*ID3D11RasterizerState2) callconv(.Inline) HRESULT {
+    pub fn CreateRasterizerState2(self: *const ID3D11Device3, pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC2, ppRasterizerState: ?**ID3D11RasterizerState2) callconv(.Inline) HRESULT {
         return self.vtable.CreateRasterizerState2(self, pRasterizerDesc, ppRasterizerState);
     }
-    pub fn CreateShaderResourceView1(self: *const ID3D11Device3, pResource: ?*ID3D11Resource, pDesc1: ?*const D3D11_SHADER_RESOURCE_VIEW_DESC1, ppSRView1: ?*?*ID3D11ShaderResourceView1) callconv(.Inline) HRESULT {
+    pub fn CreateShaderResourceView1(self: *const ID3D11Device3, pResource: ?*ID3D11Resource, pDesc1: ?*const D3D11_SHADER_RESOURCE_VIEW_DESC1, ppSRView1: ?**ID3D11ShaderResourceView1) callconv(.Inline) HRESULT {
         return self.vtable.CreateShaderResourceView1(self, pResource, pDesc1, ppSRView1);
     }
-    pub fn CreateUnorderedAccessView1(self: *const ID3D11Device3, pResource: ?*ID3D11Resource, pDesc1: ?*const D3D11_UNORDERED_ACCESS_VIEW_DESC1, ppUAView1: ?*?*ID3D11UnorderedAccessView1) callconv(.Inline) HRESULT {
+    pub fn CreateUnorderedAccessView1(self: *const ID3D11Device3, pResource: ?*ID3D11Resource, pDesc1: ?*const D3D11_UNORDERED_ACCESS_VIEW_DESC1, ppUAView1: ?**ID3D11UnorderedAccessView1) callconv(.Inline) HRESULT {
         return self.vtable.CreateUnorderedAccessView1(self, pResource, pDesc1, ppUAView1);
     }
-    pub fn CreateRenderTargetView1(self: *const ID3D11Device3, pResource: ?*ID3D11Resource, pDesc1: ?*const D3D11_RENDER_TARGET_VIEW_DESC1, ppRTView1: ?*?*ID3D11RenderTargetView1) callconv(.Inline) HRESULT {
+    pub fn CreateRenderTargetView1(self: *const ID3D11Device3, pResource: ?*ID3D11Resource, pDesc1: ?*const D3D11_RENDER_TARGET_VIEW_DESC1, ppRTView1: ?**ID3D11RenderTargetView1) callconv(.Inline) HRESULT {
         return self.vtable.CreateRenderTargetView1(self, pResource, pDesc1, ppRTView1);
     }
-    pub fn CreateQuery1(self: *const ID3D11Device3, pQueryDesc1: ?*const D3D11_QUERY_DESC1, ppQuery1: ?*?*ID3D11Query1) callconv(.Inline) HRESULT {
+    pub fn CreateQuery1(self: *const ID3D11Device3, pQueryDesc1: ?*const D3D11_QUERY_DESC1, ppQuery1: ?**ID3D11Query1) callconv(.Inline) HRESULT {
         return self.vtable.CreateQuery1(self, pQueryDesc1, ppQuery1);
     }
     pub fn GetImmediateContext3(self: *const ID3D11Device3, ppImmediateContext: ?*?*ID3D11DeviceContext3) callconv(.Inline) void {
         return self.vtable.GetImmediateContext3(self, ppImmediateContext);
     }
-    pub fn CreateDeferredContext3(self: *const ID3D11Device3, ContextFlags: u32, ppDeferredContext: ?*?*ID3D11DeviceContext3) callconv(.Inline) HRESULT {
+    pub fn CreateDeferredContext3(self: *const ID3D11Device3, ContextFlags: u32, ppDeferredContext: ?**ID3D11DeviceContext3) callconv(.Inline) HRESULT {
         return self.vtable.CreateDeferredContext3(self, ContextFlags, ppDeferredContext);
     }
     pub fn WriteToSubresource(self: *const ID3D11Device3, pDstResource: ?*ID3D11Resource, DstSubresource: u32, pDstBox: ?*const D3D11_BOX, pSrcData: ?*const anyopaque, SrcRowPitch: u32, SrcDepthPitch: u32) callconv(.Inline) void {
@@ -10475,14 +10475,14 @@ pub const ID3D11Device5 = extern union {
             self: *const ID3D11Device5,
             hFence: ?HANDLE,
             ReturnedInterface: ?*const Guid,
-            ppFence: ?*?*anyopaque,
+            ppFence: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateFence: *const fn(
             self: *const ID3D11Device5,
             InitialValue: u64,
             Flags: D3D11_FENCE_FLAG,
             ReturnedInterface: ?*const Guid,
-            ppFence: ?*?*anyopaque,
+            ppFence: ?**anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -10492,10 +10492,10 @@ pub const ID3D11Device5 = extern union {
     ID3D11Device1: ID3D11Device1,
     ID3D11Device: ID3D11Device,
     IUnknown: IUnknown,
-    pub fn OpenSharedFence(self: *const ID3D11Device5, hFence: ?HANDLE, ReturnedInterface: ?*const Guid, ppFence: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenSharedFence(self: *const ID3D11Device5, hFence: ?HANDLE, ReturnedInterface: ?*const Guid, ppFence: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.OpenSharedFence(self, hFence, ReturnedInterface, ppFence);
     }
-    pub fn CreateFence(self: *const ID3D11Device5, InitialValue: u64, Flags: D3D11_FENCE_FLAG, ReturnedInterface: ?*const Guid, ppFence: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateFence(self: *const ID3D11Device5, InitialValue: u64, Flags: D3D11_FENCE_FLAG, ReturnedInterface: ?*const Guid, ppFence: ?**anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateFence(self, InitialValue, Flags, ReturnedInterface, ppFence);
     }
 };
@@ -11468,12 +11468,12 @@ pub const ID3D11Module = extern union {
         CreateInstance: *const fn(
             self: *const ID3D11Module,
             pNamespace: ?[*:0]const u8,
-            ppModuleInstance: ?*?*ID3D11ModuleInstance,
+            ppModuleInstance: **ID3D11ModuleInstance,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateInstance(self: *const ID3D11Module, pNamespace: ?[*:0]const u8, ppModuleInstance: ?*?*ID3D11ModuleInstance) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const ID3D11Module, pNamespace: ?[*:0]const u8, ppModuleInstance: **ID3D11ModuleInstance) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstance(self, pNamespace, ppModuleInstance);
     }
 };
@@ -11490,7 +11490,7 @@ pub const ID3D11Linker = extern union {
             pEntryName: ?[*:0]const u8,
             pTargetName: ?[*:0]const u8,
             uFlags: u32,
-            ppShaderBlob: ?*?*ID3DBlob,
+            ppShaderBlob: **ID3DBlob,
             ppErrorBuffer: ?*?*ID3DBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UseLibrary: *const fn(
@@ -11505,7 +11505,7 @@ pub const ID3D11Linker = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Link(self: *const ID3D11Linker, pEntry: ?*ID3D11ModuleInstance, pEntryName: ?[*:0]const u8, pTargetName: ?[*:0]const u8, uFlags: u32, ppShaderBlob: ?*?*ID3DBlob, ppErrorBuffer: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
+    pub fn Link(self: *const ID3D11Linker, pEntry: ?*ID3D11ModuleInstance, pEntryName: ?[*:0]const u8, pTargetName: ?[*:0]const u8, uFlags: u32, ppShaderBlob: **ID3DBlob, ppErrorBuffer: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
         return self.vtable.Link(self, pEntry, pEntryName, pTargetName, uFlags, ppShaderBlob, ppErrorBuffer);
     }
     pub fn UseLibrary(self: *const ID3D11Linker, pLibraryMI: ?*ID3D11ModuleInstance) callconv(.Inline) HRESULT {
@@ -11535,27 +11535,27 @@ pub const ID3D11FunctionLinkingGraph = extern union {
         base: IUnknown.VTable,
         CreateModuleInstance: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
-            ppModuleInstance: ?*?*ID3D11ModuleInstance,
+            ppModuleInstance: **ID3D11ModuleInstance,
             ppErrorBuffer: ?*?*ID3DBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetInputSignature: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
             pInputParameters: [*]const D3D11_PARAMETER_DESC,
             cInputParameters: u32,
-            ppInputNode: ?*?*ID3D11LinkingNode,
+            ppInputNode: **ID3D11LinkingNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOutputSignature: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
             pOutputParameters: [*]const D3D11_PARAMETER_DESC,
             cOutputParameters: u32,
-            ppOutputNode: ?*?*ID3D11LinkingNode,
+            ppOutputNode: **ID3D11LinkingNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CallFunction: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
             pModuleInstanceNamespace: ?[*:0]const u8,
             pModuleWithFunctionPrototype: ?*ID3D11Module,
             pFunctionName: ?[*:0]const u8,
-            ppCallNode: ?*?*ID3D11LinkingNode,
+            ppCallNode: **ID3D11LinkingNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PassValue: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
@@ -11580,21 +11580,21 @@ pub const ID3D11FunctionLinkingGraph = extern union {
         GenerateHlsl: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
             uFlags: u32,
-            ppBuffer: ?*?*ID3DBlob,
+            ppBuffer: **ID3DBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateModuleInstance(self: *const ID3D11FunctionLinkingGraph, ppModuleInstance: ?*?*ID3D11ModuleInstance, ppErrorBuffer: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
+    pub fn CreateModuleInstance(self: *const ID3D11FunctionLinkingGraph, ppModuleInstance: **ID3D11ModuleInstance, ppErrorBuffer: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
         return self.vtable.CreateModuleInstance(self, ppModuleInstance, ppErrorBuffer);
     }
-    pub fn SetInputSignature(self: *const ID3D11FunctionLinkingGraph, pInputParameters: [*]const D3D11_PARAMETER_DESC, cInputParameters: u32, ppInputNode: ?*?*ID3D11LinkingNode) callconv(.Inline) HRESULT {
+    pub fn SetInputSignature(self: *const ID3D11FunctionLinkingGraph, pInputParameters: [*]const D3D11_PARAMETER_DESC, cInputParameters: u32, ppInputNode: **ID3D11LinkingNode) callconv(.Inline) HRESULT {
         return self.vtable.SetInputSignature(self, pInputParameters, cInputParameters, ppInputNode);
     }
-    pub fn SetOutputSignature(self: *const ID3D11FunctionLinkingGraph, pOutputParameters: [*]const D3D11_PARAMETER_DESC, cOutputParameters: u32, ppOutputNode: ?*?*ID3D11LinkingNode) callconv(.Inline) HRESULT {
+    pub fn SetOutputSignature(self: *const ID3D11FunctionLinkingGraph, pOutputParameters: [*]const D3D11_PARAMETER_DESC, cOutputParameters: u32, ppOutputNode: **ID3D11LinkingNode) callconv(.Inline) HRESULT {
         return self.vtable.SetOutputSignature(self, pOutputParameters, cOutputParameters, ppOutputNode);
     }
-    pub fn CallFunction(self: *const ID3D11FunctionLinkingGraph, pModuleInstanceNamespace: ?[*:0]const u8, pModuleWithFunctionPrototype: ?*ID3D11Module, pFunctionName: ?[*:0]const u8, ppCallNode: ?*?*ID3D11LinkingNode) callconv(.Inline) HRESULT {
+    pub fn CallFunction(self: *const ID3D11FunctionLinkingGraph, pModuleInstanceNamespace: ?[*:0]const u8, pModuleWithFunctionPrototype: ?*ID3D11Module, pFunctionName: ?[*:0]const u8, ppCallNode: **ID3D11LinkingNode) callconv(.Inline) HRESULT {
         return self.vtable.CallFunction(self, pModuleInstanceNamespace, pModuleWithFunctionPrototype, pFunctionName, ppCallNode);
     }
     pub fn PassValue(self: *const ID3D11FunctionLinkingGraph, pSrcNode: ?*ID3D11LinkingNode, SrcParameterIndex: i32, pDstNode: ?*ID3D11LinkingNode, DstParameterIndex: i32) callconv(.Inline) HRESULT {
@@ -11606,7 +11606,7 @@ pub const ID3D11FunctionLinkingGraph = extern union {
     pub fn GetLastError(self: *const ID3D11FunctionLinkingGraph, ppErrorBuffer: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
         return self.vtable.GetLastError(self, ppErrorBuffer);
     }
-    pub fn GenerateHlsl(self: *const ID3D11FunctionLinkingGraph, uFlags: u32, ppBuffer: ?*?*ID3DBlob) callconv(.Inline) HRESULT {
+    pub fn GenerateHlsl(self: *const ID3D11FunctionLinkingGraph, uFlags: u32, ppBuffer: **ID3DBlob) callconv(.Inline) HRESULT {
         return self.vtable.GenerateHlsl(self, uFlags, ppBuffer);
     }
 };
@@ -11895,12 +11895,12 @@ pub const ID3D11ShaderTraceFactory = extern union {
             self: *const ID3D11ShaderTraceFactory,
             pShader: ?*IUnknown,
             pTraceDesc: ?*D3D11_SHADER_TRACE_DESC,
-            ppShaderTrace: ?*?*ID3D11ShaderTrace,
+            ppShaderTrace: **ID3D11ShaderTrace,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateShaderTrace(self: *const ID3D11ShaderTraceFactory, pShader: ?*IUnknown, pTraceDesc: ?*D3D11_SHADER_TRACE_DESC, ppShaderTrace: ?*?*ID3D11ShaderTrace) callconv(.Inline) HRESULT {
+    pub fn CreateShaderTrace(self: *const ID3D11ShaderTraceFactory, pShader: ?*IUnknown, pTraceDesc: ?*D3D11_SHADER_TRACE_DESC, ppShaderTrace: **ID3D11ShaderTrace) callconv(.Inline) HRESULT {
         return self.vtable.CreateShaderTrace(self, pShader, pTraceDesc, ppShaderTrace);
     }
 };
@@ -12149,7 +12149,7 @@ pub extern "d3dcompiler_47" fn D3DDisassemble11Trace(
     StartStep: u32,
     NumSteps: u32,
     Flags: u32,
-    ppDisassembly: ?*?*ID3DBlob,
+    ppDisassembly: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3dcsx" fn D3DX11CreateScan(

@@ -169,7 +169,7 @@ pub const IDXCoreAdapter = extern union {
         GetFactory: *const fn(
             self: *const IDXCoreAdapter,
             riid: ?*const Guid,
-            ppvFactory: ?*?*anyopaque,
+            ppvFactory: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -201,7 +201,7 @@ pub const IDXCoreAdapter = extern union {
     pub fn SetState(self: *const IDXCoreAdapter, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, inputDataSize: usize, inputData: ?*const anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.SetState(self, state, inputStateDetailsSize, inputStateDetails, inputDataSize, inputData);
     }
-    pub fn GetFactory(self: *const IDXCoreAdapter, riid: ?*const Guid, ppvFactory: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetFactory(self: *const IDXCoreAdapter, riid: ?*const Guid, ppvFactory: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetFactory(self, riid, ppvFactory);
     }
 };
@@ -215,7 +215,7 @@ pub const IDXCoreAdapterList = extern union {
             self: *const IDXCoreAdapterList,
             index: u32,
             riid: ?*const Guid,
-            ppvAdapter: ?*?*anyopaque,
+            ppvAdapter: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAdapterCount: *const fn(
             self: *const IDXCoreAdapterList,
@@ -226,7 +226,7 @@ pub const IDXCoreAdapterList = extern union {
         GetFactory: *const fn(
             self: *const IDXCoreAdapterList,
             riid: ?*const Guid,
-            ppvFactory: ?*?*anyopaque,
+            ppvFactory: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Sort: *const fn(
             self: *const IDXCoreAdapterList,
@@ -240,7 +240,7 @@ pub const IDXCoreAdapterList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAdapter(self: *const IDXCoreAdapterList, index: u32, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAdapter(self: *const IDXCoreAdapterList, index: u32, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetAdapter(self, index, riid, ppvAdapter);
     }
     pub fn GetAdapterCount(self: *const IDXCoreAdapterList) callconv(.Inline) u32 {
@@ -249,7 +249,7 @@ pub const IDXCoreAdapterList = extern union {
     pub fn IsStale(self: *const IDXCoreAdapterList) callconv(.Inline) bool {
         return self.vtable.IsStale(self);
     }
-    pub fn GetFactory(self: *const IDXCoreAdapterList, riid: ?*const Guid, ppvFactory: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetFactory(self: *const IDXCoreAdapterList, riid: ?*const Guid, ppvFactory: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetFactory(self, riid, ppvFactory);
     }
     pub fn Sort(self: *const IDXCoreAdapterList, numPreferences: u32, preferences: [*]const DXCoreAdapterPreference) callconv(.Inline) HRESULT {
@@ -270,13 +270,13 @@ pub const IDXCoreAdapterFactory = extern union {
             numAttributes: u32,
             filterAttributes: [*]const Guid,
             riid: ?*const Guid,
-            ppvAdapterList: ?*?*anyopaque,
+            ppvAdapterList: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAdapterByLuid: *const fn(
             self: *const IDXCoreAdapterFactory,
             adapterLUID: ?*const LUID,
             riid: ?*const Guid,
-            ppvAdapter: ?*?*anyopaque,
+            ppvAdapter: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsNotificationTypeSupported: *const fn(
             self: *const IDXCoreAdapterFactory,
@@ -297,10 +297,10 @@ pub const IDXCoreAdapterFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateAdapterList(self: *const IDXCoreAdapterFactory, numAttributes: u32, filterAttributes: [*]const Guid, riid: ?*const Guid, ppvAdapterList: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateAdapterList(self: *const IDXCoreAdapterFactory, numAttributes: u32, filterAttributes: [*]const Guid, riid: ?*const Guid, ppvAdapterList: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateAdapterList(self, numAttributes, filterAttributes, riid, ppvAdapterList);
     }
-    pub fn GetAdapterByLuid(self: *const IDXCoreAdapterFactory, adapterLUID: ?*const LUID, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAdapterByLuid(self: *const IDXCoreAdapterFactory, adapterLUID: ?*const LUID, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetAdapterByLuid(self, adapterLUID, riid, ppvAdapter);
     }
     pub fn IsNotificationTypeSupported(self: *const IDXCoreAdapterFactory, notificationType: DXCoreNotificationType) callconv(.Inline) bool {
@@ -320,7 +320,7 @@ pub const IDXCoreAdapterFactory = extern union {
 //--------------------------------------------------------------------------------
 pub extern "dxcore" fn DXCoreCreateAdapterFactory(
     riid: ?*const Guid,
-    ppvFactory: ?*?*anyopaque,
+    ppvFactory: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

@@ -3224,7 +3224,7 @@ pub const IPortableDeviceWebControl = extern union {
         GetDeviceFromId: *const fn(
             self: *const IPortableDeviceWebControl,
             deviceId: ?BSTR,
-            ppDevice: ?*?*IDispatch,
+            ppDevice: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceFromIdAsync: *const fn(
             self: *const IPortableDeviceWebControl,
@@ -3236,7 +3236,7 @@ pub const IPortableDeviceWebControl = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetDeviceFromId(self: *const IPortableDeviceWebControl, deviceId: ?BSTR, ppDevice: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn GetDeviceFromId(self: *const IPortableDeviceWebControl, deviceId: ?BSTR, ppDevice: **IDispatch) callconv(.Inline) HRESULT {
         return self.vtable.GetDeviceFromId(self, deviceId, ppDevice);
     }
     pub fn GetDeviceFromIdAsync(self: *const IPortableDeviceWebControl, deviceId: ?BSTR, pCompletionHandler: ?*IDispatch, pErrorHandler: ?*IDispatch) callconv(.Inline) HRESULT {

@@ -171,12 +171,12 @@ pub const IDxcIncludeHandler = extern union {
         LoadSource: *const fn(
             self: *const IDxcIncludeHandler,
             pFilename: ?[*:0]const u16,
-            ppIncludeSource: ?*?*IDxcBlob,
+            ppIncludeSource: ?**IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn LoadSource(self: *const IDxcIncludeHandler, pFilename: ?[*:0]const u16, ppIncludeSource: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
+    pub fn LoadSource(self: *const IDxcIncludeHandler, pFilename: ?[*:0]const u16, ppIncludeSource: ?**IDxcBlob) callconv(.Inline) HRESULT {
         return self.vtable.LoadSource(self, pFilename, ppIncludeSource);
     }
 };
@@ -252,13 +252,13 @@ pub const IDxcLibrary = extern union {
             pBlob: ?*IDxcBlob,
             offset: u32,
             length: u32,
-            ppResult: ?*?*IDxcBlob,
+            ppResult: **IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlobFromFile: *const fn(
             self: *const IDxcLibrary,
             pFileName: ?[*:0]const u16,
             codePage: ?*DXC_CP,
-            pBlobEncoding: ?*?*IDxcBlobEncoding,
+            pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlobWithEncodingFromPinned: *const fn(
             self: *const IDxcLibrary,
@@ -266,7 +266,7 @@ pub const IDxcLibrary = extern union {
             pText: ?*const anyopaque,
             size: u32,
             codePage: DXC_CP,
-            pBlobEncoding: ?*?*IDxcBlobEncoding,
+            pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlobWithEncodingOnHeapCopy: *const fn(
             self: *const IDxcLibrary,
@@ -274,7 +274,7 @@ pub const IDxcLibrary = extern union {
             pText: ?*const anyopaque,
             size: u32,
             codePage: DXC_CP,
-            pBlobEncoding: ?*?*IDxcBlobEncoding,
+            pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlobWithEncodingOnMalloc: *const fn(
             self: *const IDxcLibrary,
@@ -283,26 +283,26 @@ pub const IDxcLibrary = extern union {
             pIMalloc: ?*IMalloc,
             size: u32,
             codePage: DXC_CP,
-            pBlobEncoding: ?*?*IDxcBlobEncoding,
+            pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateIncludeHandler: *const fn(
             self: *const IDxcLibrary,
-            ppResult: ?*?*IDxcIncludeHandler,
+            ppResult: **IDxcIncludeHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateStreamFromBlobReadOnly: *const fn(
             self: *const IDxcLibrary,
             pBlob: ?*IDxcBlob,
-            ppStream: ?*?*IStream,
+            ppStream: **IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBlobAsUtf8: *const fn(
             self: *const IDxcLibrary,
             pBlob: ?*IDxcBlob,
-            pBlobEncoding: ?*?*IDxcBlobEncoding,
+            pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBlobAsUtf16: *const fn(
             self: *const IDxcLibrary,
             pBlob: ?*IDxcBlob,
-            pBlobEncoding: ?*?*IDxcBlobEncoding,
+            pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -310,31 +310,31 @@ pub const IDxcLibrary = extern union {
     pub fn SetMalloc(self: *const IDxcLibrary, pMalloc: ?*IMalloc) callconv(.Inline) HRESULT {
         return self.vtable.SetMalloc(self, pMalloc);
     }
-    pub fn CreateBlobFromBlob(self: *const IDxcLibrary, pBlob: ?*IDxcBlob, offset: u32, length: u32, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
+    pub fn CreateBlobFromBlob(self: *const IDxcLibrary, pBlob: ?*IDxcBlob, offset: u32, length: u32, ppResult: **IDxcBlob) callconv(.Inline) HRESULT {
         return self.vtable.CreateBlobFromBlob(self, pBlob, offset, length, ppResult);
     }
-    pub fn CreateBlobFromFile(self: *const IDxcLibrary, pFileName: ?[*:0]const u16, codePage: ?*DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn CreateBlobFromFile(self: *const IDxcLibrary, pFileName: ?[*:0]const u16, codePage: ?*DXC_CP, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.CreateBlobFromFile(self, pFileName, codePage, pBlobEncoding);
     }
-    pub fn CreateBlobWithEncodingFromPinned(self: *const IDxcLibrary, pText: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn CreateBlobWithEncodingFromPinned(self: *const IDxcLibrary, pText: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.CreateBlobWithEncodingFromPinned(self, pText, size, codePage, pBlobEncoding);
     }
-    pub fn CreateBlobWithEncodingOnHeapCopy(self: *const IDxcLibrary, pText: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn CreateBlobWithEncodingOnHeapCopy(self: *const IDxcLibrary, pText: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.CreateBlobWithEncodingOnHeapCopy(self, pText, size, codePage, pBlobEncoding);
     }
-    pub fn CreateBlobWithEncodingOnMalloc(self: *const IDxcLibrary, pText: ?*const anyopaque, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn CreateBlobWithEncodingOnMalloc(self: *const IDxcLibrary, pText: ?*const anyopaque, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.CreateBlobWithEncodingOnMalloc(self, pText, pIMalloc, size, codePage, pBlobEncoding);
     }
-    pub fn CreateIncludeHandler(self: *const IDxcLibrary, ppResult: ?*?*IDxcIncludeHandler) callconv(.Inline) HRESULT {
+    pub fn CreateIncludeHandler(self: *const IDxcLibrary, ppResult: **IDxcIncludeHandler) callconv(.Inline) HRESULT {
         return self.vtable.CreateIncludeHandler(self, ppResult);
     }
-    pub fn CreateStreamFromBlobReadOnly(self: *const IDxcLibrary, pBlob: ?*IDxcBlob, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn CreateStreamFromBlobReadOnly(self: *const IDxcLibrary, pBlob: ?*IDxcBlob, ppStream: **IStream) callconv(.Inline) HRESULT {
         return self.vtable.CreateStreamFromBlobReadOnly(self, pBlob, ppStream);
     }
-    pub fn GetBlobAsUtf8(self: *const IDxcLibrary, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn GetBlobAsUtf8(self: *const IDxcLibrary, pBlob: ?*IDxcBlob, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.GetBlobAsUtf8(self, pBlob, pBlobEncoding);
     }
-    pub fn GetBlobAsUtf16(self: *const IDxcLibrary, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn GetBlobAsUtf16(self: *const IDxcLibrary, pBlob: ?*IDxcBlob, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.GetBlobAsUtf16(self, pBlob, pBlobEncoding);
     }
 };
@@ -350,11 +350,11 @@ pub const IDxcOperationResult = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResult: *const fn(
             self: *const IDxcOperationResult,
-            ppResult: ?*?*IDxcBlob,
+            ppResult: ?**IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorBuffer: *const fn(
             self: *const IDxcOperationResult,
-            ppErrors: ?*?*IDxcBlobEncoding,
+            ppErrors: ?**IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -362,10 +362,10 @@ pub const IDxcOperationResult = extern union {
     pub fn GetStatus(self: *const IDxcOperationResult, pStatus: ?*HRESULT) callconv(.Inline) HRESULT {
         return self.vtable.GetStatus(self, pStatus);
     }
-    pub fn GetResult(self: *const IDxcOperationResult, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
+    pub fn GetResult(self: *const IDxcOperationResult, ppResult: ?**IDxcBlob) callconv(.Inline) HRESULT {
         return self.vtable.GetResult(self, ppResult);
     }
-    pub fn GetErrorBuffer(self: *const IDxcOperationResult, ppErrors: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn GetErrorBuffer(self: *const IDxcOperationResult, ppErrors: ?**IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.GetErrorBuffer(self, ppErrors);
     }
 };
@@ -386,7 +386,7 @@ pub const IDxcCompiler = extern union {
             pDefines: [*]const DxcDefine,
             defineCount: u32,
             pIncludeHandler: ?*IDxcIncludeHandler,
-            ppResult: ?*?*IDxcOperationResult,
+            ppResult: **IDxcOperationResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Preprocess: *const fn(
             self: *const IDxcCompiler,
@@ -397,23 +397,23 @@ pub const IDxcCompiler = extern union {
             pDefines: [*]const DxcDefine,
             defineCount: u32,
             pIncludeHandler: ?*IDxcIncludeHandler,
-            ppResult: ?*?*IDxcOperationResult,
+            ppResult: **IDxcOperationResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Disassemble: *const fn(
             self: *const IDxcCompiler,
             pSource: ?*IDxcBlob,
-            ppDisassembly: ?*?*IDxcBlobEncoding,
+            ppDisassembly: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compile(self: *const IDxcCompiler, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
+    pub fn Compile(self: *const IDxcCompiler, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: **IDxcOperationResult) callconv(.Inline) HRESULT {
         return self.vtable.Compile(self, pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult);
     }
-    pub fn Preprocess(self: *const IDxcCompiler, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
+    pub fn Preprocess(self: *const IDxcCompiler, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: **IDxcOperationResult) callconv(.Inline) HRESULT {
         return self.vtable.Preprocess(self, pSource, pSourceName, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult);
     }
-    pub fn Disassemble(self: *const IDxcCompiler, pSource: ?*IDxcBlob, ppDisassembly: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn Disassemble(self: *const IDxcCompiler, pSource: ?*IDxcBlob, ppDisassembly: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.Disassemble(self, pSource, ppDisassembly);
     }
 };
@@ -434,15 +434,15 @@ pub const IDxcCompiler2 = extern union {
             pDefines: [*]const DxcDefine,
             defineCount: u32,
             pIncludeHandler: ?*IDxcIncludeHandler,
-            ppResult: ?*?*IDxcOperationResult,
+            ppResult: **IDxcOperationResult,
             ppDebugBlobName: ?*?PWSTR,
-            ppDebugBlob: ?*?*IDxcBlob,
+            ppDebugBlob: ?**IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IDxcCompiler: IDxcCompiler,
     IUnknown: IUnknown,
-    pub fn CompileWithDebug(self: *const IDxcCompiler2, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: ?*?*IDxcOperationResult, ppDebugBlobName: ?*?PWSTR, ppDebugBlob: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
+    pub fn CompileWithDebug(self: *const IDxcCompiler2, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: **IDxcOperationResult, ppDebugBlobName: ?*?PWSTR, ppDebugBlob: ?**IDxcBlob) callconv(.Inline) HRESULT {
         return self.vtable.CompileWithDebug(self, pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult, ppDebugBlobName, ppDebugBlob);
     }
 };
@@ -465,7 +465,7 @@ pub const IDxcLinker = extern union {
             libCount: u32,
             pArguments: ?[*]const ?[*:0]const u16,
             argCount: u32,
-            ppResult: ?*?*IDxcOperationResult,
+            ppResult: **IDxcOperationResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -473,7 +473,7 @@ pub const IDxcLinker = extern union {
     pub fn RegisterLibrary(self: *const IDxcLinker, pLibName: ?[*:0]const u16, pLib: ?*IDxcBlob) callconv(.Inline) HRESULT {
         return self.vtable.RegisterLibrary(self, pLibName, pLib);
     }
-    pub fn Link(self: *const IDxcLinker, pEntryName: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pLibNames: [*]const ?[*:0]const u16, libCount: u32, pArguments: ?[*]const ?[*:0]const u16, argCount: u32, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
+    pub fn Link(self: *const IDxcLinker, pEntryName: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pLibNames: [*]const ?[*:0]const u16, libCount: u32, pArguments: ?[*]const ?[*:0]const u16, argCount: u32, ppResult: **IDxcOperationResult) callconv(.Inline) HRESULT {
         return self.vtable.Link(self, pEntryName, pTargetProfile, pLibNames, libCount, pArguments, argCount, ppResult);
     }
 };
@@ -488,7 +488,7 @@ pub const IDxcUtils = extern union {
             pBlob: ?*IDxcBlob,
             offset: u32,
             length: u32,
-            ppResult: ?*?*IDxcBlob,
+            ppResult: **IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlobFromPinned: *const fn(
             self: *const IDxcUtils,
@@ -496,7 +496,7 @@ pub const IDxcUtils = extern union {
             pData: ?*const anyopaque,
             size: u32,
             codePage: DXC_CP,
-            pBlobEncoding: ?*?*IDxcBlobEncoding,
+            pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveToBlob: *const fn(
             self: *const IDxcUtils,
@@ -505,7 +505,7 @@ pub const IDxcUtils = extern union {
             pIMalloc: ?*IMalloc,
             size: u32,
             codePage: DXC_CP,
-            pBlobEncoding: ?*?*IDxcBlobEncoding,
+            pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlob: *const fn(
             self: *const IDxcUtils,
@@ -513,32 +513,32 @@ pub const IDxcUtils = extern union {
             pData: ?*const anyopaque,
             size: u32,
             codePage: DXC_CP,
-            pBlobEncoding: ?*?*IDxcBlobEncoding,
+            pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadFile: *const fn(
             self: *const IDxcUtils,
             pFileName: ?[*:0]const u16,
             pCodePage: ?*DXC_CP,
-            pBlobEncoding: ?*?*IDxcBlobEncoding,
+            pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateReadOnlyStreamFromBlob: *const fn(
             self: *const IDxcUtils,
             pBlob: ?*IDxcBlob,
-            ppStream: ?*?*IStream,
+            ppStream: **IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDefaultIncludeHandler: *const fn(
             self: *const IDxcUtils,
-            ppResult: ?*?*IDxcIncludeHandler,
+            ppResult: **IDxcIncludeHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBlobAsUtf8: *const fn(
             self: *const IDxcUtils,
             pBlob: ?*IDxcBlob,
-            pBlobEncoding: ?*?*IDxcBlobUtf8,
+            pBlobEncoding: **IDxcBlobUtf8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBlobAsUtf16: *const fn(
             self: *const IDxcUtils,
             pBlob: ?*IDxcBlob,
-            pBlobEncoding: ?*?*IDxcBlobUtf16,
+            pBlobEncoding: **IDxcBlobUtf16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDxilContainerPart: *const fn(
             self: *const IDxcUtils,
@@ -562,42 +562,42 @@ pub const IDxcUtils = extern union {
             argCount: u32,
             pDefines: [*]const DxcDefine,
             defineCount: u32,
-            ppArgs: ?*?*IDxcCompilerArgs,
+            ppArgs: **IDxcCompilerArgs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPDBContents: *const fn(
             self: *const IDxcUtils,
             pPDBBlob: ?*IDxcBlob,
-            ppHash: ?*?*IDxcBlob,
-            ppContainer: ?*?*IDxcBlob,
+            ppHash: **IDxcBlob,
+            ppContainer: **IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateBlobFromBlob(self: *const IDxcUtils, pBlob: ?*IDxcBlob, offset: u32, length: u32, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
+    pub fn CreateBlobFromBlob(self: *const IDxcUtils, pBlob: ?*IDxcBlob, offset: u32, length: u32, ppResult: **IDxcBlob) callconv(.Inline) HRESULT {
         return self.vtable.CreateBlobFromBlob(self, pBlob, offset, length, ppResult);
     }
-    pub fn CreateBlobFromPinned(self: *const IDxcUtils, pData: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn CreateBlobFromPinned(self: *const IDxcUtils, pData: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.CreateBlobFromPinned(self, pData, size, codePage, pBlobEncoding);
     }
-    pub fn MoveToBlob(self: *const IDxcUtils, pData: ?*const anyopaque, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn MoveToBlob(self: *const IDxcUtils, pData: ?*const anyopaque, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.MoveToBlob(self, pData, pIMalloc, size, codePage, pBlobEncoding);
     }
-    pub fn CreateBlob(self: *const IDxcUtils, pData: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn CreateBlob(self: *const IDxcUtils, pData: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.CreateBlob(self, pData, size, codePage, pBlobEncoding);
     }
-    pub fn LoadFile(self: *const IDxcUtils, pFileName: ?[*:0]const u16, pCodePage: ?*DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn LoadFile(self: *const IDxcUtils, pFileName: ?[*:0]const u16, pCodePage: ?*DXC_CP, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.LoadFile(self, pFileName, pCodePage, pBlobEncoding);
     }
-    pub fn CreateReadOnlyStreamFromBlob(self: *const IDxcUtils, pBlob: ?*IDxcBlob, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn CreateReadOnlyStreamFromBlob(self: *const IDxcUtils, pBlob: ?*IDxcBlob, ppStream: **IStream) callconv(.Inline) HRESULT {
         return self.vtable.CreateReadOnlyStreamFromBlob(self, pBlob, ppStream);
     }
-    pub fn CreateDefaultIncludeHandler(self: *const IDxcUtils, ppResult: ?*?*IDxcIncludeHandler) callconv(.Inline) HRESULT {
+    pub fn CreateDefaultIncludeHandler(self: *const IDxcUtils, ppResult: **IDxcIncludeHandler) callconv(.Inline) HRESULT {
         return self.vtable.CreateDefaultIncludeHandler(self, ppResult);
     }
-    pub fn GetBlobAsUtf8(self: *const IDxcUtils, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobUtf8) callconv(.Inline) HRESULT {
+    pub fn GetBlobAsUtf8(self: *const IDxcUtils, pBlob: ?*IDxcBlob, pBlobEncoding: **IDxcBlobUtf8) callconv(.Inline) HRESULT {
         return self.vtable.GetBlobAsUtf8(self, pBlob, pBlobEncoding);
     }
-    pub fn GetBlobAsUtf16(self: *const IDxcUtils, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
+    pub fn GetBlobAsUtf16(self: *const IDxcUtils, pBlob: ?*IDxcBlob, pBlobEncoding: **IDxcBlobUtf16) callconv(.Inline) HRESULT {
         return self.vtable.GetBlobAsUtf16(self, pBlob, pBlobEncoding);
     }
     pub fn GetDxilContainerPart(self: *const IDxcUtils, pShader: ?*const DxcBuffer, DxcPart: u32, ppPartData: ?*?*anyopaque, pPartSizeInBytes: ?*u32) callconv(.Inline) HRESULT {
@@ -606,10 +606,10 @@ pub const IDxcUtils = extern union {
     pub fn CreateReflection(self: *const IDxcUtils, pData: ?*const DxcBuffer, iid: ?*const Guid, ppvReflection: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateReflection(self, pData, iid, ppvReflection);
     }
-    pub fn BuildArguments(self: *const IDxcUtils, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, ppArgs: ?*?*IDxcCompilerArgs) callconv(.Inline) HRESULT {
+    pub fn BuildArguments(self: *const IDxcUtils, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, ppArgs: **IDxcCompilerArgs) callconv(.Inline) HRESULT {
         return self.vtable.BuildArguments(self, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, ppArgs);
     }
-    pub fn GetPDBContents(self: *const IDxcUtils, pPDBBlob: ?*IDxcBlob, ppHash: ?*?*IDxcBlob, ppContainer: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
+    pub fn GetPDBContents(self: *const IDxcUtils, pPDBBlob: ?*IDxcBlob, ppHash: **IDxcBlob, ppContainer: **IDxcBlob) callconv(.Inline) HRESULT {
         return self.vtable.GetPDBContents(self, pPDBBlob, ppHash, ppContainer);
     }
 };
@@ -654,8 +654,8 @@ pub const IDxcResult = extern union {
             self: *const IDxcResult,
             dxcOutKind: DXC_OUT_KIND,
             iid: ?*const Guid,
-            ppvObject: ?*?*anyopaque,
-            ppOutputName: ?*?*IDxcBlobUtf16,
+            ppvObject: ?**anyopaque,
+            ppOutputName: **IDxcBlobUtf16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNumOutputs: *const fn(
             self: *const IDxcResult,
@@ -674,7 +674,7 @@ pub const IDxcResult = extern union {
     pub fn HasOutput(self: *const IDxcResult, dxcOutKind: DXC_OUT_KIND) callconv(.Inline) BOOL {
         return self.vtable.HasOutput(self, dxcOutKind);
     }
-    pub fn GetOutput(self: *const IDxcResult, dxcOutKind: DXC_OUT_KIND, iid: ?*const Guid, ppvObject: ?*?*anyopaque, ppOutputName: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
+    pub fn GetOutput(self: *const IDxcResult, dxcOutKind: DXC_OUT_KIND, iid: ?*const Guid, ppvObject: ?**anyopaque, ppOutputName: **IDxcBlobUtf16) callconv(.Inline) HRESULT {
         return self.vtable.GetOutput(self, dxcOutKind, iid, ppvObject, ppOutputName);
     }
     pub fn GetNumOutputs(self: *const IDxcResult) callconv(.Inline) u32 {
@@ -700,9 +700,9 @@ pub const IDxcExtraOutputs = extern union {
             self: *const IDxcExtraOutputs,
             uIndex: u32,
             iid: ?*const Guid,
-            ppvObject: ?*?*anyopaque,
-            ppOutputType: ?*?*IDxcBlobUtf16,
-            ppOutputName: ?*?*IDxcBlobUtf16,
+            ppvObject: ?**anyopaque,
+            ppOutputType: ?**IDxcBlobUtf16,
+            ppOutputName: ?**IDxcBlobUtf16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -710,7 +710,7 @@ pub const IDxcExtraOutputs = extern union {
     pub fn GetOutputCount(self: *const IDxcExtraOutputs) callconv(.Inline) u32 {
         return self.vtable.GetOutputCount(self);
     }
-    pub fn GetOutput(self: *const IDxcExtraOutputs, uIndex: u32, iid: ?*const Guid, ppvObject: ?*?*anyopaque, ppOutputType: ?*?*IDxcBlobUtf16, ppOutputName: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
+    pub fn GetOutput(self: *const IDxcExtraOutputs, uIndex: u32, iid: ?*const Guid, ppvObject: ?**anyopaque, ppOutputType: ?**IDxcBlobUtf16, ppOutputName: ?**IDxcBlobUtf16) callconv(.Inline) HRESULT {
         return self.vtable.GetOutput(self, uIndex, iid, ppvObject, ppOutputType, ppOutputName);
     }
 };
@@ -755,12 +755,12 @@ pub const IDxcValidator = extern union {
             self: *const IDxcValidator,
             pShader: ?*IDxcBlob,
             Flags: u32,
-            ppResult: ?*?*IDxcOperationResult,
+            ppResult: **IDxcOperationResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Validate(self: *const IDxcValidator, pShader: ?*IDxcBlob, Flags: u32, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
+    pub fn Validate(self: *const IDxcValidator, pShader: ?*IDxcBlob, Flags: u32, ppResult: **IDxcOperationResult) callconv(.Inline) HRESULT {
         return self.vtable.Validate(self, pShader, Flags, ppResult);
     }
 };
@@ -775,13 +775,13 @@ pub const IDxcValidator2 = extern union {
             pShader: ?*IDxcBlob,
             Flags: u32,
             pOptDebugBitcode: ?*DxcBuffer,
-            ppResult: ?*?*IDxcOperationResult,
+            ppResult: **IDxcOperationResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IDxcValidator: IDxcValidator,
     IUnknown: IUnknown,
-    pub fn ValidateWithDebug(self: *const IDxcValidator2, pShader: ?*IDxcBlob, Flags: u32, pOptDebugBitcode: ?*DxcBuffer, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
+    pub fn ValidateWithDebug(self: *const IDxcValidator2, pShader: ?*IDxcBlob, Flags: u32, pOptDebugBitcode: ?*DxcBuffer, ppResult: **IDxcOperationResult) callconv(.Inline) HRESULT {
         return self.vtable.ValidateWithDebug(self, pShader, Flags, pOptDebugBitcode, ppResult);
     }
 };
@@ -833,12 +833,12 @@ pub const IDxcAssembler = extern union {
         AssembleToContainer: *const fn(
             self: *const IDxcAssembler,
             pShader: ?*IDxcBlob,
-            ppResult: ?*?*IDxcOperationResult,
+            ppResult: **IDxcOperationResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AssembleToContainer(self: *const IDxcAssembler, pShader: ?*IDxcBlob, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
+    pub fn AssembleToContainer(self: *const IDxcAssembler, pShader: ?*IDxcBlob, ppResult: **IDxcOperationResult) callconv(.Inline) HRESULT {
         return self.vtable.AssembleToContainer(self, pShader, ppResult);
     }
 };
@@ -864,7 +864,7 @@ pub const IDxcContainerReflection = extern union {
         GetPartContent: *const fn(
             self: *const IDxcContainerReflection,
             idx: u32,
-            ppResult: ?*?*IDxcBlob,
+            ppResult: **IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindFirstPartKind: *const fn(
             self: *const IDxcContainerReflection,
@@ -889,7 +889,7 @@ pub const IDxcContainerReflection = extern union {
     pub fn GetPartKind(self: *const IDxcContainerReflection, idx: u32, pResult: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetPartKind(self, idx, pResult);
     }
-    pub fn GetPartContent(self: *const IDxcContainerReflection, idx: u32, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
+    pub fn GetPartContent(self: *const IDxcContainerReflection, idx: u32, ppResult: **IDxcBlob) callconv(.Inline) HRESULT {
         return self.vtable.GetPartContent(self, idx, ppResult);
     }
     pub fn FindFirstPartKind(self: *const IDxcContainerReflection, kind: u32, pResult: ?*u32) callconv(.Inline) HRESULT {
@@ -907,11 +907,11 @@ pub const IDxcOptimizerPass = extern union {
         base: IUnknown.VTable,
         GetOptionName: *const fn(
             self: *const IDxcOptimizerPass,
-            ppResult: ?*?PWSTR,
+            ppResult: *PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDescription: *const fn(
             self: *const IDxcOptimizerPass,
-            ppResult: ?*?PWSTR,
+            ppResult: *PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOptionArgCount: *const fn(
             self: *const IDxcOptimizerPass,
@@ -920,29 +920,29 @@ pub const IDxcOptimizerPass = extern union {
         GetOptionArgName: *const fn(
             self: *const IDxcOptimizerPass,
             argIndex: u32,
-            ppResult: ?*?PWSTR,
+            ppResult: *PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOptionArgDescription: *const fn(
             self: *const IDxcOptimizerPass,
             argIndex: u32,
-            ppResult: ?*?PWSTR,
+            ppResult: *PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOptionName(self: *const IDxcOptimizerPass, ppResult: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetOptionName(self: *const IDxcOptimizerPass, ppResult: *PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetOptionName(self, ppResult);
     }
-    pub fn GetDescription(self: *const IDxcOptimizerPass, ppResult: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDescription(self: *const IDxcOptimizerPass, ppResult: *PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetDescription(self, ppResult);
     }
     pub fn GetOptionArgCount(self: *const IDxcOptimizerPass, pCount: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetOptionArgCount(self, pCount);
     }
-    pub fn GetOptionArgName(self: *const IDxcOptimizerPass, argIndex: u32, ppResult: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetOptionArgName(self: *const IDxcOptimizerPass, argIndex: u32, ppResult: *PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetOptionArgName(self, argIndex, ppResult);
     }
-    pub fn GetOptionArgDescription(self: *const IDxcOptimizerPass, argIndex: u32, ppResult: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetOptionArgDescription(self: *const IDxcOptimizerPass, argIndex: u32, ppResult: *PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetOptionArgDescription(self, argIndex, ppResult);
     }
 };
@@ -959,15 +959,15 @@ pub const IDxcOptimizer = extern union {
         GetAvailablePass: *const fn(
             self: *const IDxcOptimizer,
             index: u32,
-            ppResult: ?*?*IDxcOptimizerPass,
+            ppResult: **IDxcOptimizerPass,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RunOptimizer: *const fn(
             self: *const IDxcOptimizer,
             pBlob: ?*IDxcBlob,
             ppOptions: [*]?PWSTR,
             optionCount: u32,
-            pOutputModule: ?*?*IDxcBlob,
-            ppOutputText: ?*?*IDxcBlobEncoding,
+            pOutputModule: **IDxcBlob,
+            ppOutputText: ?**IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -975,10 +975,10 @@ pub const IDxcOptimizer = extern union {
     pub fn GetAvailablePassCount(self: *const IDxcOptimizer, pCount: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetAvailablePassCount(self, pCount);
     }
-    pub fn GetAvailablePass(self: *const IDxcOptimizer, index: u32, ppResult: ?*?*IDxcOptimizerPass) callconv(.Inline) HRESULT {
+    pub fn GetAvailablePass(self: *const IDxcOptimizer, index: u32, ppResult: **IDxcOptimizerPass) callconv(.Inline) HRESULT {
         return self.vtable.GetAvailablePass(self, index, ppResult);
     }
-    pub fn RunOptimizer(self: *const IDxcOptimizer, pBlob: ?*IDxcBlob, ppOptions: [*]?PWSTR, optionCount: u32, pOutputModule: ?*?*IDxcBlob, ppOutputText: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn RunOptimizer(self: *const IDxcOptimizer, pBlob: ?*IDxcBlob, ppOptions: [*]?PWSTR, optionCount: u32, pOutputModule: **IDxcBlob, ppOutputText: ?**IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.RunOptimizer(self, pBlob, ppOptions, optionCount, pOutputModule, ppOutputText);
     }
 };
@@ -1065,7 +1065,7 @@ pub const IDxcPdbUtils = extern union {
         GetSource: *const fn(
             self: *const IDxcPdbUtils,
             uIndex: u32,
-            ppResult: ?*?*IDxcBlobEncoding,
+            ppResult: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSourceName: *const fn(
             self: *const IDxcPdbUtils,
@@ -1123,7 +1123,7 @@ pub const IDxcPdbUtils = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHash: *const fn(
             self: *const IDxcPdbUtils,
-            ppResult: ?*?*IDxcBlob,
+            ppResult: **IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetName: *const fn(
             self: *const IDxcPdbUtils,
@@ -1134,11 +1134,11 @@ pub const IDxcPdbUtils = extern union {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
         GetFullPDB: *const fn(
             self: *const IDxcPdbUtils,
-            ppFullPDB: ?*?*IDxcBlob,
+            ppFullPDB: **IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVersionInfo: *const fn(
             self: *const IDxcPdbUtils,
-            ppVersionInfo: ?*?*IDxcVersionInfo,
+            ppVersionInfo: **IDxcVersionInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCompiler: *const fn(
             self: *const IDxcPdbUtils,
@@ -1146,7 +1146,7 @@ pub const IDxcPdbUtils = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompileForFullPDB: *const fn(
             self: *const IDxcPdbUtils,
-            ppResult: ?*?*IDxcResult,
+            ppResult: **IDxcResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OverrideArgs: *const fn(
             self: *const IDxcPdbUtils,
@@ -1166,7 +1166,7 @@ pub const IDxcPdbUtils = extern union {
     pub fn GetSourceCount(self: *const IDxcPdbUtils, pCount: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetSourceCount(self, pCount);
     }
-    pub fn GetSource(self: *const IDxcPdbUtils, uIndex: u32, ppResult: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+    pub fn GetSource(self: *const IDxcPdbUtils, uIndex: u32, ppResult: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
         return self.vtable.GetSource(self, uIndex, ppResult);
     }
     pub fn GetSourceName(self: *const IDxcPdbUtils, uIndex: u32, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
@@ -1205,7 +1205,7 @@ pub const IDxcPdbUtils = extern union {
     pub fn GetMainFileName(self: *const IDxcPdbUtils, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
         return self.vtable.GetMainFileName(self, pResult);
     }
-    pub fn GetHash(self: *const IDxcPdbUtils, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
+    pub fn GetHash(self: *const IDxcPdbUtils, ppResult: **IDxcBlob) callconv(.Inline) HRESULT {
         return self.vtable.GetHash(self, ppResult);
     }
     pub fn GetName(self: *const IDxcPdbUtils, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
@@ -1214,16 +1214,16 @@ pub const IDxcPdbUtils = extern union {
     pub fn IsFullPDB(self: *const IDxcPdbUtils) callconv(.Inline) BOOL {
         return self.vtable.IsFullPDB(self);
     }
-    pub fn GetFullPDB(self: *const IDxcPdbUtils, ppFullPDB: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
+    pub fn GetFullPDB(self: *const IDxcPdbUtils, ppFullPDB: **IDxcBlob) callconv(.Inline) HRESULT {
         return self.vtable.GetFullPDB(self, ppFullPDB);
     }
-    pub fn GetVersionInfo(self: *const IDxcPdbUtils, ppVersionInfo: ?*?*IDxcVersionInfo) callconv(.Inline) HRESULT {
+    pub fn GetVersionInfo(self: *const IDxcPdbUtils, ppVersionInfo: **IDxcVersionInfo) callconv(.Inline) HRESULT {
         return self.vtable.GetVersionInfo(self, ppVersionInfo);
     }
     pub fn SetCompiler(self: *const IDxcPdbUtils, pCompiler: ?*IDxcCompiler3) callconv(.Inline) HRESULT {
         return self.vtable.SetCompiler(self, pCompiler);
     }
-    pub fn CompileForFullPDB(self: *const IDxcPdbUtils, ppResult: ?*?*IDxcResult) callconv(.Inline) HRESULT {
+    pub fn CompileForFullPDB(self: *const IDxcPdbUtils, ppResult: **IDxcResult) callconv(.Inline) HRESULT {
         return self.vtable.CompileForFullPDB(self, ppResult);
     }
     pub fn OverrideArgs(self: *const IDxcPdbUtils, pArgPairs: ?*DxcArgPair, uNumArgPairs: u32) callconv(.Inline) HRESULT {
@@ -1241,14 +1241,14 @@ pub const IDxcPdbUtils = extern union {
 pub extern "dxcompiler" fn DxcCreateInstance(
     rclsid: ?*const Guid,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "dxcompiler" fn DxcCreateInstance2(
     pMalloc: ?*IMalloc,
     rclsid: ?*const Guid,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

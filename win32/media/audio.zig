@@ -1432,7 +1432,7 @@ pub const IAudioClient = extern union {
         GetService: *const fn(
             self: *const IAudioClient,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1470,7 +1470,7 @@ pub const IAudioClient = extern union {
     pub fn SetEventHandle(self: *const IAudioClient, eventHandle: ?HANDLE) callconv(.Inline) HRESULT {
         return self.vtable.SetEventHandle(self, eventHandle);
     }
-    pub fn GetService(self: *const IAudioClient, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetService(self: *const IAudioClient, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetService(self, riid, ppv);
     }
 };
@@ -2245,7 +2245,7 @@ pub const ISpatialAudioObjectRenderStreamBase = extern union {
         GetService: *const fn(
             self: *const ISpatialAudioObjectRenderStreamBase,
             riid: ?*const Guid,
-            service: ?*?*anyopaque,
+            service: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Start: *const fn(
             self: *const ISpatialAudioObjectRenderStreamBase,
@@ -2270,7 +2270,7 @@ pub const ISpatialAudioObjectRenderStreamBase = extern union {
     pub fn GetAvailableDynamicObjectCount(self: *const ISpatialAudioObjectRenderStreamBase, value: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetAvailableDynamicObjectCount(self, value);
     }
-    pub fn GetService(self: *const ISpatialAudioObjectRenderStreamBase, riid: ?*const Guid, service: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetService(self: *const ISpatialAudioObjectRenderStreamBase, riid: ?*const Guid, service: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetService(self, riid, service);
     }
     pub fn Start(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.Inline) HRESULT {
@@ -2299,13 +2299,13 @@ pub const ISpatialAudioObjectRenderStream = extern union {
         ActivateSpatialAudioObject: *const fn(
             self: *const ISpatialAudioObjectRenderStream,
             type: AudioObjectType,
-            audioObject: ?*?*ISpatialAudioObject,
+            audioObject: **ISpatialAudioObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
     IUnknown: IUnknown,
-    pub fn ActivateSpatialAudioObject(self: *const ISpatialAudioObjectRenderStream, @"type": AudioObjectType, audioObject: ?*?*ISpatialAudioObject) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioObject(self: *const ISpatialAudioObjectRenderStream, @"type": AudioObjectType, audioObject: **ISpatialAudioObject) callconv(.Inline) HRESULT {
         return self.vtable.ActivateSpatialAudioObject(self, @"type", audioObject);
     }
 };
@@ -2353,7 +2353,7 @@ pub const ISpatialAudioClient = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedAudioObjectFormatEnumerator: *const fn(
             self: *const ISpatialAudioClient,
-            enumerator: ?*?*IAudioFormatEnumerator,
+            enumerator: **IAudioFormatEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxFrameCount: *const fn(
             self: *const ISpatialAudioClient,
@@ -2373,7 +2373,7 @@ pub const ISpatialAudioClient = extern union {
             self: *const ISpatialAudioClient,
             activationParams: ?*const PROPVARIANT,
             riid: ?*const Guid,
-            stream: ?*?*anyopaque,
+            stream: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2387,7 +2387,7 @@ pub const ISpatialAudioClient = extern union {
     pub fn GetMaxDynamicObjectCount(self: *const ISpatialAudioClient, value: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetMaxDynamicObjectCount(self, value);
     }
-    pub fn GetSupportedAudioObjectFormatEnumerator(self: *const ISpatialAudioClient, enumerator: ?*?*IAudioFormatEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetSupportedAudioObjectFormatEnumerator(self: *const ISpatialAudioClient, enumerator: **IAudioFormatEnumerator) callconv(.Inline) HRESULT {
         return self.vtable.GetSupportedAudioObjectFormatEnumerator(self, enumerator);
     }
     pub fn GetMaxFrameCount(self: *const ISpatialAudioClient, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.Inline) HRESULT {
@@ -2399,7 +2399,7 @@ pub const ISpatialAudioClient = extern union {
     pub fn IsSpatialAudioStreamAvailable(self: *const ISpatialAudioClient, streamUuid: ?*const Guid, auxiliaryInfo: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
         return self.vtable.IsSpatialAudioStreamAvailable(self, streamUuid, auxiliaryInfo);
     }
-    pub fn ActivateSpatialAudioStream(self: *const ISpatialAudioClient, activationParams: ?*const PROPVARIANT, riid: ?*const Guid, stream: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioStream(self: *const ISpatialAudioClient, activationParams: ?*const PROPVARIANT, riid: ?*const Guid, stream: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.ActivateSpatialAudioStream(self, activationParams, riid, stream);
     }
 };
@@ -2595,13 +2595,13 @@ pub const ISpatialAudioObjectRenderStreamForHrtf = extern union {
         ActivateSpatialAudioObjectForHrtf: *const fn(
             self: *const ISpatialAudioObjectRenderStreamForHrtf,
             type: AudioObjectType,
-            audioObject: ?*?*ISpatialAudioObjectForHrtf,
+            audioObject: **ISpatialAudioObjectForHrtf,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
     IUnknown: IUnknown,
-    pub fn ActivateSpatialAudioObjectForHrtf(self: *const ISpatialAudioObjectRenderStreamForHrtf, @"type": AudioObjectType, audioObject: ?*?*ISpatialAudioObjectForHrtf) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioObjectForHrtf(self: *const ISpatialAudioObjectRenderStreamForHrtf, @"type": AudioObjectType, audioObject: **ISpatialAudioObjectForHrtf) callconv(.Inline) HRESULT {
         return self.vtable.ActivateSpatialAudioObjectForHrtf(self, @"type", audioObject);
     }
 };
@@ -2725,7 +2725,7 @@ pub const IMMDevice = extern union {
             iid: ?*const Guid,
             dwClsCtx: CLSCTX,
             pActivationParams: ?*PROPVARIANT,
-            ppInterface: ?*?*anyopaque,
+            ppInterface: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenPropertyStore: *const fn(
             self: *const IMMDevice,
@@ -2743,7 +2743,7 @@ pub const IMMDevice = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Activate(self: *const IMMDevice, iid: ?*const Guid, dwClsCtx: CLSCTX, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const IMMDevice, iid: ?*const Guid, dwClsCtx: CLSCTX, pActivationParams: ?*PROPVARIANT, ppInterface: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Activate(self, iid, dwClsCtx, pActivationParams, ppInterface);
     }
     pub fn OpenPropertyStore(self: *const IMMDevice, stgmAccess: STGM, ppProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
@@ -2953,17 +2953,17 @@ pub const IAudioSystemEffectsPropertyStore = extern union {
         OpenDefaultPropertyStore: *const fn(
             self: *const IAudioSystemEffectsPropertyStore,
             stgmAccess: u32,
-            propStore: ?*?*IPropertyStore,
+            propStore: **IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenUserPropertyStore: *const fn(
             self: *const IAudioSystemEffectsPropertyStore,
             stgmAccess: u32,
-            propStore: ?*?*IPropertyStore,
+            propStore: **IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenVolatilePropertyStore: *const fn(
             self: *const IAudioSystemEffectsPropertyStore,
             stgmAccess: u32,
-            propStore: ?*?*IPropertyStore,
+            propStore: **IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResetUserPropertyStore: *const fn(
             self: *const IAudioSystemEffectsPropertyStore,
@@ -2982,13 +2982,13 @@ pub const IAudioSystemEffectsPropertyStore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OpenDefaultPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn OpenDefaultPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.Inline) HRESULT {
         return self.vtable.OpenDefaultPropertyStore(self, stgmAccess, propStore);
     }
-    pub fn OpenUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn OpenUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.Inline) HRESULT {
         return self.vtable.OpenUserPropertyStore(self, stgmAccess, propStore);
     }
-    pub fn OpenVolatilePropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn OpenVolatilePropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.Inline) HRESULT {
         return self.vtable.OpenVolatilePropertyStore(self, stgmAccess, propStore);
     }
     pub fn ResetUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore) callconv(.Inline) HRESULT {
@@ -4394,21 +4394,21 @@ pub const ISpatialAudioObjectRenderStreamForMetadata = extern union {
         ActivateSpatialAudioObjectForMetadataCommands: *const fn(
             self: *const ISpatialAudioObjectRenderStreamForMetadata,
             type: AudioObjectType,
-            audioObject: ?*?*ISpatialAudioObjectForMetadataCommands,
+            audioObject: **ISpatialAudioObjectForMetadataCommands,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ActivateSpatialAudioObjectForMetadataItems: *const fn(
             self: *const ISpatialAudioObjectRenderStreamForMetadata,
             type: AudioObjectType,
-            audioObject: ?*?*ISpatialAudioObjectForMetadataItems,
+            audioObject: **ISpatialAudioObjectForMetadataItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
     IUnknown: IUnknown,
-    pub fn ActivateSpatialAudioObjectForMetadataCommands(self: *const ISpatialAudioObjectRenderStreamForMetadata, @"type": AudioObjectType, audioObject: ?*?*ISpatialAudioObjectForMetadataCommands) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioObjectForMetadataCommands(self: *const ISpatialAudioObjectRenderStreamForMetadata, @"type": AudioObjectType, audioObject: **ISpatialAudioObjectForMetadataCommands) callconv(.Inline) HRESULT {
         return self.vtable.ActivateSpatialAudioObjectForMetadataCommands(self, @"type", audioObject);
     }
-    pub fn ActivateSpatialAudioObjectForMetadataItems(self: *const ISpatialAudioObjectRenderStreamForMetadata, @"type": AudioObjectType, audioObject: ?*?*ISpatialAudioObjectForMetadataItems) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioObjectForMetadataItems(self: *const ISpatialAudioObjectRenderStreamForMetadata, @"type": AudioObjectType, audioObject: **ISpatialAudioObjectForMetadataItems) callconv(.Inline) HRESULT {
         return self.vtable.ActivateSpatialAudioObjectForMetadataItems(self, @"type", audioObject);
     }
 };
@@ -5604,7 +5604,7 @@ pub extern "mmdevapi" fn ActivateAudioInterfaceAsync(
     riid: ?*const Guid,
     activationParams: ?*PROPVARIANT,
     completionHandler: ?*IActivateAudioInterfaceCompletionHandler,
-    activationOperation: ?*?*IActivateAudioInterfaceAsyncOperation,
+    activationOperation: **IActivateAudioInterfaceAsyncOperation,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitor(

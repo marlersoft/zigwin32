@@ -2247,14 +2247,14 @@ pub const IWICBitmapEncoderInfo = extern union {
         base: IWICBitmapCodecInfo.VTable,
         CreateInstance: *const fn(
             self: *const IWICBitmapEncoderInfo,
-            ppIBitmapEncoder: ?*?*IWICBitmapEncoder,
+            ppIBitmapEncoder: **IWICBitmapEncoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapCodecInfo: IWICBitmapCodecInfo,
     IWICComponentInfo: IWICComponentInfo,
     IUnknown: IUnknown,
-    pub fn CreateInstance(self: *const IWICBitmapEncoderInfo, ppIBitmapEncoder: ?*?*IWICBitmapEncoder) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const IWICBitmapEncoderInfo, ppIBitmapEncoder: **IWICBitmapEncoder) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstance(self, ppIBitmapEncoder);
     }
 };
@@ -2280,7 +2280,7 @@ pub const IWICBitmapDecoderInfo = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateInstance: *const fn(
             self: *const IWICBitmapDecoderInfo,
-            ppIBitmapDecoder: ?*?*IWICBitmapDecoder,
+            ppIBitmapDecoder: **IWICBitmapDecoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2293,7 +2293,7 @@ pub const IWICBitmapDecoderInfo = extern union {
     pub fn MatchesPattern(self: *const IWICBitmapDecoderInfo, pIStream: ?*IStream, pfMatches: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.MatchesPattern(self, pIStream, pfMatches);
     }
-    pub fn CreateInstance(self: *const IWICBitmapDecoderInfo, ppIBitmapDecoder: ?*?*IWICBitmapDecoder) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const IWICBitmapDecoderInfo, ppIBitmapDecoder: **IWICBitmapDecoder) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstance(self, ppIBitmapDecoder);
     }
 };
@@ -3704,7 +3704,7 @@ pub const IWICMetadataReaderInfo = extern union {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateInstance: *const fn(
             self: *const IWICMetadataReaderInfo,
-            ppIReader: ?*?*IWICMetadataReader,
+            ppIReader: **IWICMetadataReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3717,7 +3717,7 @@ pub const IWICMetadataReaderInfo = extern union {
     pub fn MatchesPattern(self: *const IWICMetadataReaderInfo, guidContainerFormat: ?*const Guid, pIStream: ?*IStream, pfMatches: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.MatchesPattern(self, guidContainerFormat, pIStream, pfMatches);
     }
-    pub fn CreateInstance(self: *const IWICMetadataReaderInfo, ppIReader: ?*?*IWICMetadataReader) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const IWICMetadataReaderInfo, ppIReader: **IWICMetadataReader) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstance(self, ppIReader);
     }
 };

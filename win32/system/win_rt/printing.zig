@@ -15,22 +15,22 @@ pub const IPrinting3DManagerInterop = extern union {
             self: *const IPrinting3DManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            printManager: ?*?*anyopaque,
+            printManager: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowPrintUIForWindowAsync: *const fn(
             self: *const IPrinting3DManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            asyncOperation: ?*?*anyopaque,
+            asyncOperation: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IPrinting3DManagerInterop, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IPrinting3DManagerInterop, appWindow: ?HWND, riid: ?*const Guid, printManager: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, printManager);
     }
-    pub fn ShowPrintUIForWindowAsync(self: *const IPrinting3DManagerInterop, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn ShowPrintUIForWindowAsync(self: *const IPrinting3DManagerInterop, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.ShowPrintUIForWindowAsync(self, appWindow, riid, asyncOperation);
     }
 };
@@ -45,22 +45,22 @@ pub const IPrintManagerInterop = extern union {
             self: *const IPrintManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            printManager: ?*?*anyopaque,
+            printManager: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowPrintUIForWindowAsync: *const fn(
             self: *const IPrintManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            asyncOperation: ?*?*anyopaque,
+            asyncOperation: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IPrintManagerInterop, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IPrintManagerInterop, appWindow: ?HWND, riid: ?*const Guid, printManager: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, printManager);
     }
-    pub fn ShowPrintUIForWindowAsync(self: *const IPrintManagerInterop, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn ShowPrintUIForWindowAsync(self: *const IPrintManagerInterop, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.ShowPrintUIForWindowAsync(self, appWindow, riid, asyncOperation);
     }
 };

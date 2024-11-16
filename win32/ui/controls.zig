@@ -10493,7 +10493,7 @@ pub extern "comctl32" fn ImageList_CoCreateInstance(
     rclsid: ?*const Guid,
     punkOuter: ?*IUnknown,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'

@@ -157,7 +157,7 @@ pub const ISurfaceImageSourceNativeWithD2D = extern union {
             self: *const ISurfaceImageSourceNativeWithD2D,
             updateRect: ?*const RECT,
             iid: ?*const Guid,
-            updateObject: ?*?*anyopaque,
+            updateObject: **anyopaque,
             offset: ?*POINT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EndDraw: *const fn(
@@ -175,7 +175,7 @@ pub const ISurfaceImageSourceNativeWithD2D = extern union {
     pub fn SetDevice(self: *const ISurfaceImageSourceNativeWithD2D, device: ?*IUnknown) callconv(.Inline) HRESULT {
         return self.vtable.SetDevice(self, device);
     }
-    pub fn BeginDraw(self: *const ISurfaceImageSourceNativeWithD2D, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, offset: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn BeginDraw(self: *const ISurfaceImageSourceNativeWithD2D, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: **anyopaque, offset: ?*POINT) callconv(.Inline) HRESULT {
         return self.vtable.BeginDraw(self, updateRect, iid, updateObject, offset);
     }
     pub fn EndDraw(self: *const ISurfaceImageSourceNativeWithD2D) callconv(.Inline) HRESULT {

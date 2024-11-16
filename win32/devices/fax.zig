@@ -8208,7 +8208,7 @@ pub extern "fxsutility" fn SendToFaxRecipient(
 pub extern "sti" fn StiCreateInstanceW(
     hinst: ?HINSTANCE,
     dwVer: u32,
-    ppSti: ?*?*IStillImageW,
+    ppSti: **IStillImageW,
     punkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

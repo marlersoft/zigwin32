@@ -761,12 +761,12 @@ pub const ITransactionImport = extern union {
             cbTransactionCookie: u32,
             rgbTransactionCookie: [*:0]u8,
             piid: ?*const Guid,
-            ppvTransaction: ?*?*anyopaque,
+            ppvTransaction: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Import(self: *const ITransactionImport, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, piid: ?*const Guid, ppvTransaction: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Import(self: *const ITransactionImport, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, piid: ?*const Guid, ppvTransaction: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Import(self, cbTransactionCookie, rgbTransactionCookie, piid, ppvTransaction);
     }
 };

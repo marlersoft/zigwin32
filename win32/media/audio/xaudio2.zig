@@ -1182,7 +1182,7 @@ pub extern "xaudio2_8" fn CreateAudioReverb(
 
 pub extern "hrtfapo" fn CreateHrtfApo(
     init: ?*const HrtfApoInit,
-    xApo: ?*?*IXAPO,
+    xApo: **IXAPO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

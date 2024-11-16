@@ -180,7 +180,7 @@ pub const IObjectArray = extern union {
             self: *const IObjectArray,
             uiIndex: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -188,7 +188,7 @@ pub const IObjectArray = extern union {
     pub fn GetCount(self: *const IObjectArray, pcObjects: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.GetCount(self, pcObjects);
     }
-    pub fn GetAt(self: *const IObjectArray, uiIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const IObjectArray, uiIndex: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetAt(self, uiIndex, riid, ppv);
     }
 };

@@ -3632,7 +3632,7 @@ pub const IWbemServices = extern union {
             strFilter: ?BSTR,
             lFlags: i32,
             pCtx: ?*IWbemContext,
-            ppEnum: ?*?*IEnumWbemClassObject,
+            ppEnum: **IEnumWbemClassObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateInstanceEnumAsync: *const fn(
             self: *const IWbemServices,
@@ -3740,7 +3740,7 @@ pub const IWbemServices = extern union {
     pub fn DeleteInstanceAsync(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
         return self.vtable.DeleteInstanceAsync(self, strObjectPath, lFlags, pCtx, pResponseHandler);
     }
-    pub fn CreateInstanceEnum(self: *const IWbemServices, strFilter: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn CreateInstanceEnum(self: *const IWbemServices, strFilter: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: **IEnumWbemClassObject) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstanceEnum(self, strFilter, lFlags, pCtx, ppEnum);
     }
     pub fn CreateInstanceEnumAsync(self: *const IWbemServices, strFilter: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
@@ -7673,12 +7673,12 @@ pub const IWbemConnectorLogin = extern union {
             lFlags: i32,
             pCtx: ?*IWbemContext,
             riid: ?*const Guid,
-            pInterface: ?*?*anyopaque,
+            pInterface: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ConnectorLogin(self: *const IWbemConnectorLogin, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn ConnectorLogin(self: *const IWbemConnectorLogin, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.ConnectorLogin(self, wszNetworkResource, wszPreferredLocale, lFlags, pCtx, riid, pInterface);
     }
 };
@@ -7747,7 +7747,7 @@ pub const IWbemClientConnectionTransport = extern union {
             lFlags: i32,
             pCtx: ?*IWbemContext,
             riid: ?*const Guid,
-            pInterface: ?*?*anyopaque,
+            pInterface: **anyopaque,
             pCallRes: ?*?*IWbemCallResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenAsync: *const fn(
@@ -7772,7 +7772,7 @@ pub const IWbemClientConnectionTransport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Open(self: *const IWbemClientConnectionTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*anyopaque, pCallRes: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IWbemClientConnectionTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: **anyopaque, pCallRes: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
         return self.vtable.Open(self, strAddressType, dwBinaryAddressLength, abBinaryAddress, strObject, strUser, strPassword, strLocale, lFlags, pCtx, riid, pInterface, pCallRes);
     }
     pub fn OpenAsync(self: *const IWbemClientConnectionTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {

@@ -129,7 +129,7 @@ pub const ICreateDeviceAccessAsync = extern union {
         GetResult: *const fn(
             self: *const ICreateDeviceAccessAsync,
             riid: ?*const Guid,
-            deviceAccess: ?*?*anyopaque,
+            deviceAccess: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -143,7 +143,7 @@ pub const ICreateDeviceAccessAsync = extern union {
     pub fn Close(self: *const ICreateDeviceAccessAsync) callconv(.Inline) HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn GetResult(self: *const ICreateDeviceAccessAsync, riid: ?*const Guid, deviceAccess: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetResult(self: *const ICreateDeviceAccessAsync, riid: ?*const Guid, deviceAccess: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetResult(self, riid, deviceAccess);
     }
 };
@@ -155,7 +155,7 @@ pub const ICreateDeviceAccessAsync = extern union {
 pub extern "deviceaccess" fn CreateDeviceAccessInstance(
     deviceInterfacePath: ?[*:0]const u16,
     desiredAccess: u32,
-    createAsync: ?*?*ICreateDeviceAccessAsync,
+    createAsync: **ICreateDeviceAccessAsync,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

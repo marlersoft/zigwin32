@@ -512,7 +512,7 @@ pub const IUnknown = extern union {
         QueryInterface: *const fn(
             self: *const IUnknown,
             riid: *const Guid,
-            ppvObject: *?*anyopaque,
+            ppvObject: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddRef: *const fn(
             self: *const IUnknown,
@@ -522,7 +522,7 @@ pub const IUnknown = extern union {
         ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
-    pub fn QueryInterface(self: *const IUnknown, riid: *const Guid, ppvObject: *?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn QueryInterface(self: *const IUnknown, riid: *const Guid, ppvObject: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.QueryInterface(self, riid, ppvObject);
     }
     pub fn AddRef(self: *const IUnknown) callconv(.Inline) u32 {
@@ -591,7 +591,7 @@ pub const IClassFactory = extern union {
             self: *const IClassFactory,
             pUnkOuter: ?*IUnknown,
             riid: ?*const Guid,
-            ppvObject: ?*?*anyopaque,
+            ppvObject: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LockServer: *const fn(
             self: *const IClassFactory,
@@ -600,7 +600,7 @@ pub const IClassFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateInstance(self: *const IClassFactory, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const IClassFactory, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppvObject: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstance(self, pUnkOuter, riid, ppvObject);
     }
     pub fn LockServer(self: *const IClassFactory, fLock: BOOL) callconv(.Inline) HRESULT {
@@ -2497,7 +2497,7 @@ pub const IMachineGlobalObjectTable = extern union {
             clsid: ?*const Guid,
             identifier: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RevokeObject: *const fn(
             self: *const IMachineGlobalObjectTable,
@@ -2509,7 +2509,7 @@ pub const IMachineGlobalObjectTable = extern union {
     pub fn RegisterObject(self: *const IMachineGlobalObjectTable, clsid: ?*const Guid, identifier: ?[*:0]const u16, object: ?*IUnknown, token: ?*?*MachineGlobalObjectTableRegistrationToken__) callconv(.Inline) HRESULT {
         return self.vtable.RegisterObject(self, clsid, identifier, object, token);
     }
-    pub fn GetObject(self: *const IMachineGlobalObjectTable, clsid: ?*const Guid, identifier: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const IMachineGlobalObjectTable, clsid: ?*const Guid, identifier: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetObject(self, clsid, identifier, riid, ppv);
     }
     pub fn RevokeObject(self: *const IMachineGlobalObjectTable, token: ?*MachineGlobalObjectTableRegistrationToken__) callconv(.Inline) HRESULT {
@@ -3738,12 +3738,12 @@ pub const IClassActivator = extern union {
             dwClassContext: u32,
             locale: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetClassObject(self: *const IClassActivator, rclsid: ?*const Guid, dwClassContext: u32, locale: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetClassObject(self: *const IClassActivator, rclsid: ?*const Guid, dwClassContext: u32, locale: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetClassObject(self, rclsid, dwClassContext, locale, riid, ppv);
     }
 };
@@ -3830,7 +3830,7 @@ pub const IOplockStorage = extern union {
             stgfmt: u32,
             grfAttrs: u32,
             riid: ?*const Guid,
-            ppstgOpen: ?*?*anyopaque,
+            ppstgOpen: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenStorageEx: *const fn(
             self: *const IOplockStorage,
@@ -3839,15 +3839,15 @@ pub const IOplockStorage = extern union {
             stgfmt: u32,
             grfAttrs: u32,
             riid: ?*const Guid,
-            ppstgOpen: ?*?*anyopaque,
+            ppstgOpen: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateStorageEx(self: *const IOplockStorage, pwcsName: ?[*:0]const u16, grfMode: u32, stgfmt: u32, grfAttrs: u32, riid: ?*const Guid, ppstgOpen: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateStorageEx(self: *const IOplockStorage, pwcsName: ?[*:0]const u16, grfMode: u32, stgfmt: u32, grfAttrs: u32, riid: ?*const Guid, ppstgOpen: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateStorageEx(self, pwcsName, grfMode, stgfmt, grfAttrs, riid, ppstgOpen);
     }
-    pub fn OpenStorageEx(self: *const IOplockStorage, pwcsName: ?[*:0]const u16, grfMode: u32, stgfmt: u32, grfAttrs: u32, riid: ?*const Guid, ppstgOpen: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenStorageEx(self: *const IOplockStorage, pwcsName: ?[*:0]const u16, grfMode: u32, stgfmt: u32, grfAttrs: u32, riid: ?*const Guid, ppstgOpen: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.OpenStorageEx(self, pwcsName, grfMode, stgfmt, grfAttrs, riid, ppstgOpen);
     }
 };
@@ -5512,7 +5512,7 @@ pub const ITypeInfo = extern union {
             self: *const ITypeInfo,
             pUnkOuter: ?*IUnknown,
             riid: ?*const Guid,
-            ppvObj: ?*?*anyopaque,
+            ppvObj: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMops: *const fn(
             self: *const ITypeInfo,
@@ -5578,7 +5578,7 @@ pub const ITypeInfo = extern union {
     pub fn AddressOfMember(self: *const ITypeInfo, memid: i32, invKind: INVOKEKIND, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.AddressOfMember(self, memid, invKind, ppv);
     }
-    pub fn CreateInstance(self: *const ITypeInfo, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const ITypeInfo, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppvObj: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateInstance(self, pUnkOuter, riid, ppvObj);
     }
     pub fn GetMops(self: *const ITypeInfo, memid: i32, pBstrMops: ?*?BSTR) callconv(.Inline) HRESULT {
@@ -6782,7 +6782,7 @@ pub extern "ole32" fn CoCreateInstance(
     pUnkOuter: ?*IUnknown,
     dwClsContext: CLSCTX,
     riid: *const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'

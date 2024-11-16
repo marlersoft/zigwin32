@@ -5282,7 +5282,7 @@ pub const IXFeedsManager = extern union {
         RootFolder: *const fn(
             self: *const IXFeedsManager,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsSubscribed: *const fn(
             self: *const IXFeedsManager,
@@ -5298,13 +5298,13 @@ pub const IXFeedsManager = extern union {
             self: *const IXFeedsManager,
             pszPath: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFeedByUrl: *const fn(
             self: *const IXFeedsManager,
             pszUrl: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExistsFolder: *const fn(
             self: *const IXFeedsManager,
@@ -5315,7 +5315,7 @@ pub const IXFeedsManager = extern union {
             self: *const IXFeedsManager,
             pszPath: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteFeed: *const fn(
             self: *const IXFeedsManager,
@@ -5356,7 +5356,7 @@ pub const IXFeedsManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RootFolder(self: *const IXFeedsManager, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn RootFolder(self: *const IXFeedsManager, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.RootFolder(self, riid, ppv);
     }
     pub fn IsSubscribed(self: *const IXFeedsManager, pszUrl: ?[*:0]const u16, pbSubscribed: ?*BOOL) callconv(.Inline) HRESULT {
@@ -5365,16 +5365,16 @@ pub const IXFeedsManager = extern union {
     pub fn ExistsFeed(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, pbFeedExists: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.ExistsFeed(self, pszPath, pbFeedExists);
     }
-    pub fn GetFeed(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetFeed(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetFeed(self, pszPath, riid, ppv);
     }
-    pub fn GetFeedByUrl(self: *const IXFeedsManager, pszUrl: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetFeedByUrl(self: *const IXFeedsManager, pszUrl: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetFeedByUrl(self, pszUrl, riid, ppv);
     }
     pub fn ExistsFolder(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, pbFolderExists: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.ExistsFolder(self, pszPath, pbFolderExists);
     }
-    pub fn GetFolder(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetFolder(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetFolder(self, pszPath, riid, ppv);
     }
     pub fn DeleteFeed(self: *const IXFeedsManager, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
@@ -5419,7 +5419,7 @@ pub const IXFeedsEnum = extern union {
             self: *const IXFeedsEnum,
             uiIndex: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5427,7 +5427,7 @@ pub const IXFeedsEnum = extern union {
     pub fn Count(self: *const IXFeedsEnum, puiCount: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.Count(self, puiCount);
     }
-    pub fn Item(self: *const IXFeedsEnum, uiIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const IXFeedsEnum, uiIndex: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Item(self, uiIndex, riid, ppv);
     }
 };
@@ -5450,13 +5450,13 @@ pub const IXFeedFolder = extern union {
             pszName: ?[*:0]const u16,
             pszUrl: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSubfolder: *const fn(
             self: *const IXFeedFolder,
             pszName: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExistsFeed: *const fn(
             self: *const IXFeedFolder,
@@ -5472,13 +5472,13 @@ pub const IXFeedFolder = extern union {
             self: *const IXFeedFolder,
             pszName: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSubfolder: *const fn(
             self: *const IXFeedFolder,
             pszName: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: *const fn(
             self: *const IXFeedFolder,
@@ -5502,7 +5502,7 @@ pub const IXFeedFolder = extern union {
         Parent: *const fn(
             self: *const IXFeedFolder,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsRoot: *const fn(
             self: *const IXFeedFolder,
@@ -5513,7 +5513,7 @@ pub const IXFeedFolder = extern union {
             scope: FEEDS_EVENTS_SCOPE,
             mask: FEEDS_EVENTS_MASK,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TotalUnreadItemCount: *const fn(
             self: *const IXFeedFolder,
@@ -5532,10 +5532,10 @@ pub const IXFeedFolder = extern union {
     pub fn Subfolders(self: *const IXFeedFolder, ppfe: ?*?*IXFeedsEnum) callconv(.Inline) HRESULT {
         return self.vtable.Subfolders(self, ppfe);
     }
-    pub fn CreateFeed(self: *const IXFeedFolder, pszName: ?[*:0]const u16, pszUrl: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateFeed(self: *const IXFeedFolder, pszName: ?[*:0]const u16, pszUrl: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateFeed(self, pszName, pszUrl, riid, ppv);
     }
-    pub fn CreateSubfolder(self: *const IXFeedFolder, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateSubfolder(self: *const IXFeedFolder, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.CreateSubfolder(self, pszName, riid, ppv);
     }
     pub fn ExistsFeed(self: *const IXFeedFolder, pszName: ?[*:0]const u16, pbFeedExists: ?*BOOL) callconv(.Inline) HRESULT {
@@ -5544,10 +5544,10 @@ pub const IXFeedFolder = extern union {
     pub fn ExistsSubfolder(self: *const IXFeedFolder, pszName: ?[*:0]const u16, pbSubfolderExists: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.ExistsSubfolder(self, pszName, pbSubfolderExists);
     }
-    pub fn GetFeed(self: *const IXFeedFolder, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetFeed(self: *const IXFeedFolder, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetFeed(self, pszName, riid, ppv);
     }
-    pub fn GetSubfolder(self: *const IXFeedFolder, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetSubfolder(self: *const IXFeedFolder, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetSubfolder(self, pszName, riid, ppv);
     }
     pub fn Delete(self: *const IXFeedFolder) callconv(.Inline) HRESULT {
@@ -5565,13 +5565,13 @@ pub const IXFeedFolder = extern union {
     pub fn Move(self: *const IXFeedFolder, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.Move(self, pszPath);
     }
-    pub fn Parent(self: *const IXFeedFolder, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Parent(self: *const IXFeedFolder, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Parent(self, riid, ppv);
     }
     pub fn IsRoot(self: *const IXFeedFolder, pbIsRootFeedFolder: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.IsRoot(self, pbIsRootFeedFolder);
     }
-    pub fn GetWatcher(self: *const IXFeedFolder, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetWatcher(self: *const IXFeedFolder, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetWatcher(self, scope, mask, riid, ppv);
     }
     pub fn TotalUnreadItemCount(self: *const IXFeedFolder, puiTotalUnreadItemCount: ?*u32) callconv(.Inline) HRESULT {
@@ -5757,7 +5757,7 @@ pub const IXFeed = extern union {
         Parent: *const fn(
             self: *const IXFeed,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LastWriteTime: *const fn(
             self: *const IXFeed,
@@ -5807,7 +5807,7 @@ pub const IXFeed = extern union {
             self: *const IXFeed,
             uiId: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MarkAllItemsRead: *const fn(
             self: *const IXFeed,
@@ -5890,7 +5890,7 @@ pub const IXFeed = extern union {
             scope: FEEDS_EVENTS_SCOPE,
             mask: FEEDS_EVENTS_MASK,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnreadItemCount: *const fn(
             self: *const IXFeed,
@@ -5927,7 +5927,7 @@ pub const IXFeed = extern union {
     pub fn Move(self: *const IXFeed, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
         return self.vtable.Move(self, pszPath);
     }
-    pub fn Parent(self: *const IXFeed, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Parent(self: *const IXFeed, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Parent(self, riid, ppv);
     }
     pub fn LastWriteTime(self: *const IXFeed, pstLastWriteTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
@@ -5966,7 +5966,7 @@ pub const IXFeed = extern union {
     pub fn Items(self: *const IXFeed, ppfe: ?*?*IXFeedsEnum) callconv(.Inline) HRESULT {
         return self.vtable.Items(self, ppfe);
     }
-    pub fn GetItem(self: *const IXFeed, uiId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetItem(self: *const IXFeed, uiId: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetItem(self, uiId, riid, ppv);
     }
     pub fn MarkAllItemsRead(self: *const IXFeed) callconv(.Inline) HRESULT {
@@ -6026,7 +6026,7 @@ pub const IXFeed = extern union {
     pub fn IsList(self: *const IXFeed, pbIsList: ?*BOOL) callconv(.Inline) HRESULT {
         return self.vtable.IsList(self, pbIsList);
     }
-    pub fn GetWatcher(self: *const IXFeed, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetWatcher(self: *const IXFeed, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetWatcher(self, scope, mask, riid, ppv);
     }
     pub fn UnreadItemCount(self: *const IXFeed, puiUnreadItemCount: ?*u32) callconv(.Inline) HRESULT {
@@ -6046,7 +6046,7 @@ pub const IXFeed2 = extern union {
             self: *const IXFeed2,
             uiEffectiveId: u32,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LastItemDownloadTime: *const fn(
             self: *const IXFeed2,
@@ -6072,7 +6072,7 @@ pub const IXFeed2 = extern union {
     vtable: *const VTable,
     IXFeed: IXFeed,
     IUnknown: IUnknown,
-    pub fn GetItemByEffectiveId(self: *const IXFeed2, uiEffectiveId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetItemByEffectiveId(self: *const IXFeed2, uiEffectiveId: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.GetItemByEffectiveId(self, uiEffectiveId, riid, ppv);
     }
     pub fn LastItemDownloadTime(self: *const IXFeed2, pstLastItemDownloadTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
@@ -6202,7 +6202,7 @@ pub const IXFeedItem = extern union {
         Enclosure: *const fn(
             self: *const IXFeedItem,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsRead: *const fn(
             self: *const IXFeedItem,
@@ -6219,7 +6219,7 @@ pub const IXFeedItem = extern union {
         Parent: *const fn(
             self: *const IXFeedItem,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: *const fn(
             self: *const IXFeedItem,
@@ -6263,7 +6263,7 @@ pub const IXFeedItem = extern union {
     pub fn Author(self: *const IXFeedItem, ppszAuthor: ?*?PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.Author(self, ppszAuthor);
     }
-    pub fn Enclosure(self: *const IXFeedItem, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Enclosure(self: *const IXFeedItem, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Enclosure(self, riid, ppv);
     }
     pub fn IsRead(self: *const IXFeedItem, pbIsRead: ?*BOOL) callconv(.Inline) HRESULT {
@@ -6275,7 +6275,7 @@ pub const IXFeedItem = extern union {
     pub fn LocalId(self: *const IXFeedItem, puiId: ?*u32) callconv(.Inline) HRESULT {
         return self.vtable.LocalId(self, puiId);
     }
-    pub fn Parent(self: *const IXFeedItem, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Parent(self: *const IXFeedItem, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Parent(self, riid, ppv);
     }
     pub fn Delete(self: *const IXFeedItem) callconv(.Inline) HRESULT {
@@ -6348,7 +6348,7 @@ pub const IXFeedEnclosure = extern union {
         Parent: *const fn(
             self: *const IXFeedEnclosure,
             riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+            ppv: **anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DownloadUrl: *const fn(
             self: *const IXFeedEnclosure,
@@ -6395,7 +6395,7 @@ pub const IXFeedEnclosure = extern union {
     pub fn LocalPath(self: *const IXFeedEnclosure, ppszPath: ?*?PWSTR) callconv(.Inline) HRESULT {
         return self.vtable.LocalPath(self, ppszPath);
     }
-    pub fn Parent(self: *const IXFeedEnclosure, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Parent(self: *const IXFeedEnclosure, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
         return self.vtable.Parent(self, riid, ppv);
     }
     pub fn DownloadUrl(self: *const IXFeedEnclosure, ppszUrl: ?*?PWSTR) callconv(.Inline) HRESULT {
