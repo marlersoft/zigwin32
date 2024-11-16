@@ -12120,9 +12120,9 @@ pub extern "d3d11" fn D3D11CreateDevice(
     pFeatureLevels: ?[*]const D3D_FEATURE_LEVEL,
     FeatureLevels: u32,
     SDKVersion: u32,
-    ppDevice: ?*?*ID3D11Device,
+    ppDevice: ?**ID3D11Device,
     pFeatureLevel: ?*D3D_FEATURE_LEVEL,
-    ppImmediateContext: ?*?*ID3D11DeviceContext,
+    ppImmediateContext: ?**ID3D11DeviceContext,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d11" fn D3D11CreateDeviceAndSwapChain(
@@ -12134,10 +12134,10 @@ pub extern "d3d11" fn D3D11CreateDeviceAndSwapChain(
     FeatureLevels: u32,
     SDKVersion: u32,
     pSwapChainDesc: ?*const DXGI_SWAP_CHAIN_DESC,
-    ppSwapChain: ?*?*IDXGISwapChain,
-    ppDevice: ?*?*ID3D11Device,
+    ppSwapChain: ?**IDXGISwapChain,
+    ppDevice: ?**ID3D11Device,
     pFeatureLevel: ?*D3D_FEATURE_LEVEL,
-    ppImmediateContext: ?*?*ID3D11DeviceContext,
+    ppImmediateContext: ?**ID3D11DeviceContext,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
