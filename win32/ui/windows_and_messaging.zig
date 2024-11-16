@@ -8139,7 +8139,7 @@ pub extern "user32" fn CreateIconFromResourceEx(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadImageA(
     hInst: ?HINSTANCE,
-    name: ?[*:0]const u8,
+    name: ?[*:0]align(1) const u8,
     type: GDI_IMAGE_TYPE,
     cx: i32,
     cy: i32,
@@ -8149,7 +8149,7 @@ pub extern "user32" fn LoadImageA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadImageW(
     hInst: ?HINSTANCE,
-    name: ?[*:0]const u16,
+    name: ?[*:0]align(1) const u16,
     type: GDI_IMAGE_TYPE,
     cx: i32,
     cy: i32,
