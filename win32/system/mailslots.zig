@@ -16,7 +16,7 @@ pub extern "kernel32" fn CreateMailslotA(
     nMaxMessageSize: u32,
     lReadTimeout: u32,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn CreateMailslotW(
@@ -24,7 +24,7 @@ pub extern "kernel32" fn CreateMailslotW(
     nMaxMessageSize: u32,
     lReadTimeout: u32,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn GetMailslotInfo(
