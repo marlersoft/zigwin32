@@ -120,7 +120,7 @@ pub extern "kernel32" fn CreateNamedPipeW(
     nInBufferSize: u32,
     nDefaultTimeOut: u32,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 pub extern "kernel32" fn WaitNamedPipeW(
     lpNamedPipeName: ?[*:0]const u16,
@@ -180,7 +180,7 @@ pub extern "kernel32" fn CreateNamedPipeA(
     nInBufferSize: u32,
     nDefaultTimeOut: u32,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn GetNamedPipeHandleStateA(

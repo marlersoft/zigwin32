@@ -154,7 +154,7 @@ pub const MODULEENTRY32 = extern struct {
 pub extern "kernel32" fn CreateToolhelp32Snapshot(
     dwFlags: CREATE_TOOLHELP_SNAPSHOT_FLAGS,
     th32ProcessID: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn Heap32ListFirst(
