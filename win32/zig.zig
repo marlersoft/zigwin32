@@ -184,8 +184,8 @@ pub fn FormatError(comptime max_len: usize) type {
 /// calls CloseHandle, panics on failure
 pub fn closeHandle(handle: foundation.HANDLE) void {
     if (0 == foundation.CloseHandle(handle)) std.debug.panic(
-        "CloseHandle failed with {}",
-        .{foundation.GetLastError().fmt()},
+        "CloseHandle failed, error={}",
+        .{foundation.GetLastError()},
     );
 }
 
@@ -261,8 +261,8 @@ pub fn scaleDpi(comptime T: type, value: T, dpi: u32) T {
 pub fn dpiFromHwnd(hwnd: HWND) u32 {
     const value = win32.ui.hi_dpi.GetDpiForWindow(hwnd);
     if (value == 0) std.debug.panic(
-        "GetDpiForWindow failed with {}",
-        .{foundation.GetLastError().fmt()},
+        "GetDpiForWindow failed, error={}",
+        .{foundation.GetLastError()},
     );
     return value;
 }
@@ -270,8 +270,8 @@ pub fn dpiFromHwnd(hwnd: HWND) u32 {
 /// calls InvalidateRect, panics on failure
 pub fn invalidateHwnd(hwnd: HWND) void {
     if (0 == win32.graphics.gdi.InvalidateRect(hwnd, null, 0)) std.debug.panic(
-        "InvalidateRect failed with {}",
-        .{foundation.GetLastError().fmt()},
+        "InvalidateRect failed, error={}",
+        .{foundation.GetLastError()},
     );
 }
 
