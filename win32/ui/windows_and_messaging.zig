@@ -3621,20 +3621,16 @@ pub const WINDOW_LONG_PTR_INDEX = enum(i32) {
             else => null,
         };
     }
-    pub fn fmt(self: WINDOW_LONG_PTR_INDEX) Fmt { return .{ .value = self }; }
-    pub const Fmt = struct {
-        value: WINDOW_LONG_PTR_INDEX,
-        pub fn format(
-            self: Fmt,
-            comptime fmt_spec: []const u8,
-            options: @import("std").fmt.FormatOptions,
-            writer: anytype,
-        ) !void {
-            _ = fmt_spec;
-            _ = options;
-            try writer.print("{s}({})", .{self.value.tagName() orelse "?", @intFromEnum(self.value)});
-        }
-    };
+    pub fn format(
+        self: WINDOW_LONG_PTR_INDEX,
+        comptime fmt: []const u8,
+        options: @import("std").fmt.FormatOptions,
+        writer: anytype,
+    ) !void {
+        _ = fmt;
+        _ = options;
+        try writer.print("{s}({})", .{self.value.tagName() orelse "?", @intFromEnum(self.value)});
+    }
 };
 pub const GWL_EXSTYLE = WINDOW_LONG_PTR_INDEX._EXSTYLE;
 pub const GWLP_HINSTANCE = WINDOW_LONG_PTR_INDEX.P_HINSTANCE;

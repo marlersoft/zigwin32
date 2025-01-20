@@ -123,11 +123,69 @@ pub fn SUCCEEDED(hr: foundation.HRESULT) bool {
 pub const FALSE: foundation.BOOL = 0;
 pub const TRUE: foundation.BOOL = 1;
 
+/// Returns a formatter that will print the given error in the following format:
+///
+///   <error-code> (<message-string>[...])
+///
+/// For example:
+///
+///   2 (The system cannot find the file specified.)
+///   5 (Access is denied.)
+///
+/// The error is formatted using FormatMessage into a stack allocated buffer
+/// of 300 bytes. If the message exceeds 300 bytes (Messages can be arbitrarily
+/// long) then "..." is appended to the message.  The message may contain newlines
+/// and carriage returns but any trailing ones are trimmed.
+///
+/// Provide the 's' fmt specifier to omit the error code.
+pub fn fmtError(error_code: u32) FormatError(300) {
+    return .{ .error_code = error_code };
+}
+pub fn FormatError(comptime max_len: usize) type {
+    return struct {
+        error_code: u32,
+        pub fn format(
+            self: @This(),
+            comptime fmt: []const u8,
+            options: std.fmt.FormatOptions,
+            writer: anytype,
+        ) @TypeOf(writer).Error!void {
+            _ = options;
+
+            const with_code = comptime blk: {
+                if (std.mem.eql(u8, fmt, "")) break :blk true;
+                if (std.mem.eql(u8, fmt, "s")) break :blk false;
+                @compileError("expected '{}' or '{s}' but got '{" ++ fmt ++ "}'");
+            };
+            if (with_code) try writer.print("{} (", .{self.error_code});
+            var buf: [max_len]u8 = undefined;
+            const len = win32.system.diagnostics.debug.FormatMessageA(
+                .{ .FROM_SYSTEM = 1, .IGNORE_INSERTS = 1 },
+                null,
+                self.error_code,
+                0,
+                @ptrCast(&buf),
+                buf.len,
+                null,
+            );
+            if (len == 0) {
+                try writer.writeAll("unknown error");
+            }
+            const msg = std.mem.trimRight(u8, buf[0..len], "\r\n");
+            try writer.writeAll(msg);
+            if (len + 1 >= buf.len) {
+                try writer.writeAll("...");
+            }
+            if (with_code) try writer.writeAll(")");
+        }
+    };
+}
+
 /// calls CloseHandle, panics on failure
 pub fn closeHandle(handle: foundation.HANDLE) void {
     if (0 == foundation.CloseHandle(handle)) std.debug.panic(
-        "CloseHandle failed with {}",
-        .{foundation.GetLastError().fmt()},
+        "CloseHandle failed, error={}",
+        .{foundation.GetLastError()},
     );
 }
 
@@ -203,8 +261,8 @@ pub fn scaleDpi(comptime T: type, value: T, dpi: u32) T {
 pub fn dpiFromHwnd(hwnd: HWND) u32 {
     const value = win32.ui.hi_dpi.GetDpiForWindow(hwnd);
     if (value == 0) std.debug.panic(
-        "GetDpiForWindow failed with {}",
-        .{foundation.GetLastError().fmt()},
+        "GetDpiForWindow failed, error={}",
+        .{foundation.GetLastError()},
     );
     return value;
 }
@@ -212,8 +270,8 @@ pub fn dpiFromHwnd(hwnd: HWND) u32 {
 /// calls InvalidateRect, panics on failure
 pub fn invalidateHwnd(hwnd: HWND) void {
     if (0 == win32.graphics.gdi.InvalidateRect(hwnd, null, 0)) std.debug.panic(
-        "InvalidateRect failed with {}",
-        .{foundation.GetLastError().fmt()},
+        "InvalidateRect failed, error={}",
+        .{foundation.GetLastError()},
     );
 }
 
