@@ -218,7 +218,7 @@ pub const has_window_longptr = switch (arch) {
 pub const getWindowLongPtr = switch (unicode_mode) {
     .ansi => getWindowLongPtrA,
     .wide => getWindowLongPtrW,
-    .unpecified => if (builtin.is_test) struct {} else @compileError(
+    .unspecified => if (builtin.is_test) struct {} else @compileError(
         "getWindowLongPtr requires that UNICODE be set to true or false in the root module",
     ),
 };
@@ -226,7 +226,7 @@ pub const getWindowLongPtr = switch (unicode_mode) {
 pub const setWindowLongPtr = switch (unicode_mode) {
     .ansi => setWindowLongPtrA,
     .wide => setWindowLongPtrW,
-    .unpecified => if (builtin.is_test) struct {} else @compileError(
+    .unspecified => if (builtin.is_test) struct {} else @compileError(
         "setWindowLongPtr requires that UNICODE be set to true or false in the root module",
     ),
 };
