@@ -10,6 +10,8 @@ const win32 = struct {
     const HRESULT = mod_root.foundation.HRESULT;
     const HWND = mod_root.foundation.HWND;
     const HANDLE = mod_root.foundation.HANDLE;
+    const LPARAM = mod_root.foundation.LPARAM;
+    const POINT = mod_root.foundation.POINT;
 
     const GetLastError = mod_root.foundation.GetLastError;
     const CloseHandle = mod_root.foundation.CloseHandle;
@@ -250,6 +252,16 @@ pub fn closeHandle(handle: win32.HANDLE) void {
         "CloseHandle",
         win32.GetLastError(),
     );
+}
+
+pub fn xFromLparam(lparam: win32.LPARAM) i16 {
+    return @bitCast(win32.loword(lparam));
+}
+pub fn yFromLparam(lparam: win32.LPARAM) i16 {
+    return @bitCast(win32.hiword(lparam));
+}
+pub fn pointFromLparam(lparam: win32.LPARAM) win32.POINT {
+    return win32.POINT{ .x = xFromLparam(lparam), .y = yFromLparam(lparam) };
 }
 
 pub fn loword(value: anytype) u16 {
