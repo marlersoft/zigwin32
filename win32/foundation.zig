@@ -12928,20 +12928,12 @@ pub const WIN32_ERROR = enum(u32) {
             else => null,
         };
     }
-    pub fn fmt(self: WIN32_ERROR) Fmt { return .{ .value = self }; }
-    pub const Fmt = struct {
-        value: WIN32_ERROR,
-        pub fn format(
-            self: Fmt,
-            comptime fmt_spec: []const u8,
-            options: @import("std").fmt.FormatOptions,
-            writer: anytype,
-        ) !void {
-            _ = fmt_spec;
-            _ = options;
-            try writer.print("{s}({})", .{self.value.tagName() orelse "?", @intFromEnum(self.value)});
-        }
-    };
+    pub const Fmt = @import("zig.zig").FormatError(300);
+    // We use a special fmt implementation for the WIN32_ERROR enum that avoids
+    // getting the tag name. This is because the enum has over 3,000 values which
+    // results in needing over 100Kb to store them as strings.
+    // Instead, we use FormatMessage to access a string for each error.
+    pub fn fmt(self: WIN32_ERROR) Fmt { return .{ .error_code = @intFromEnum(self) }; }
 };
 pub const NO_ERROR = WIN32_ERROR.NO_ERROR;
 pub const WAIT_OBJECT_0 = WIN32_ERROR.NO_ERROR;
