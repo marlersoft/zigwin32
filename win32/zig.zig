@@ -15,6 +15,8 @@ const win32 = struct {
     const CloseHandle = mod_root.foundation.CloseHandle;
     const FormatMessageA = mod_root.system.diagnostics.debug.FormatMessageA;
     const InvalidateRect = mod_root.graphics.gdi.InvalidateRect;
+    const MESSAGEBOX_STYLE = mod_root.ui.windows_and_messaging.MESSAGEBOX_STYLE;
+    const MessageBoxA = mod_root.ui.windows_and_messaging.MessageBoxA;
     const GetWindowLongPtrA = mod_root.ui.windows_and_messaging.GetWindowLongPtrA;
     const GetWindowLongPtrW = mod_root.ui.windows_and_messaging.GetWindowLongPtrW;
     const SetWindowLongPtrA = mod_root.ui.windows_and_messaging.SetWindowLongPtrA;
@@ -194,6 +196,40 @@ pub fn FormatError(comptime max_len: usize) type {
             if (with_code) try writer.writeAll(")");
         }
     };
+}
+
+threadlocal var thread_is_panicing = false;
+
+/// Returns a panic handler that can be set in your root module that will show the panic
+/// message to the user in a message box, then call the default builtin panic handler.
+/// It also handles re-entrancy by skipping the message box if the current thread
+/// is already panicing.
+pub fn messageBoxThenPanic(
+    opt: struct {
+        title: [:0]const u8,
+        style: win32.MESSAGEBOX_STYLE = .{ .ICONASTERISK = 1 },
+        // TODO: add option/logic to include the stacktrace in the messagebox
+    },
+) std.builtin.PanicFn {
+    return struct {
+        pub fn panic(
+            msg: []const u8,
+            error_return_trace: ?*std.builtin.StackTrace,
+            ret_addr: ?usize,
+        ) noreturn {
+            if (!thread_is_panicing) {
+                thread_is_panicing = true;
+                var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
+                const msg_z: [:0]const u8 = if (std.fmt.allocPrintZ(
+                    arena.allocator(),
+                    "{s}",
+                    .{msg},
+                )) |msg_z| msg_z else |_| "failed allocate error message";
+                _ = win32.MessageBoxA(null, msg_z, opt.title, opt.style);
+            }
+            std.builtin.default_panic(msg, error_return_trace, ret_addr);
+        }
+    }.panic;
 }
 
 /// Calls std.debug.panic with a message that indicates what failed and the
