@@ -256,10 +256,10 @@ pub fn closeHandle(handle: win32.HANDLE) void {
 }
 
 pub fn xFromLparam(lparam: win32.LPARAM) i16 {
-    return @bitCast(win32.loword(lparam));
+    return @bitCast(loword(lparam));
 }
 pub fn yFromLparam(lparam: win32.LPARAM) i16 {
-    return @bitCast(win32.hiword(lparam));
+    return @bitCast(hiword(lparam));
 }
 pub fn pointFromLparam(lparam: win32.LPARAM) win32.POINT {
     return win32.POINT{ .x = xFromLparam(lparam), .y = yFromLparam(lparam) };
