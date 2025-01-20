@@ -2,10 +2,27 @@
 const std = @import("std");
 const builtin = @import("builtin");
 const testing = std.testing;
-const win32 = @import("../win32.zig");
-const foundation = win32.foundation;
 
-const HWND = foundation.HWND;
+const mod_root = @import("../win32.zig");
+const win32 = struct {
+    const BOOL = mod_root.foundation.BOOL;
+    const WIN32_ERROR = mod_root.foundation.WIN32_ERROR;
+    const HRESULT = mod_root.foundation.HRESULT;
+    const HWND = mod_root.foundation.HWND;
+    const HANDLE = mod_root.foundation.HANDLE;
+
+    const GetLastError = mod_root.foundation.GetLastError;
+    const CloseHandle = mod_root.foundation.CloseHandle;
+    const FormatMessageA = mod_root.system.diagnostics.debug.FormatMessageA;
+    const InvalidateRect = mod_root.graphics.gdi.InvalidateRect;
+    const MESSAGEBOX_STYLE = mod_root.ui.windows_and_messaging.MESSAGEBOX_STYLE;
+    const MessageBoxA = mod_root.ui.windows_and_messaging.MessageBoxA;
+    const GetWindowLongPtrA = mod_root.ui.windows_and_messaging.GetWindowLongPtrA;
+    const GetWindowLongPtrW = mod_root.ui.windows_and_messaging.GetWindowLongPtrW;
+    const SetWindowLongPtrA = mod_root.ui.windows_and_messaging.SetWindowLongPtrA;
+    const SetWindowLongPtrW = mod_root.ui.windows_and_messaging.SetWindowLongPtrW;
+    const GetDpiForWindow = mod_root.ui.hi_dpi.GetDpiForWindow;
+};
 
 const root = @import("root");
 pub const UnicodeMode = enum { ansi, wide, unspecified };
@@ -111,17 +128,17 @@ pub const PropertyKey = extern struct {
     }
 };
 
-pub fn FAILED(hr: foundation.HRESULT) bool {
+pub fn FAILED(hr: win32.HRESULT) bool {
     return hr < 0;
 }
-pub fn SUCCEEDED(hr: foundation.HRESULT) bool {
+pub fn SUCCEEDED(hr: win32.HRESULT) bool {
     return hr >= 0;
 }
 
 // These constants were removed from the metadata to allow each projection
 // to define them however they like (see https://github.com/microsoft/win32metadata/issues/530)
-pub const FALSE: foundation.BOOL = 0;
-pub const TRUE: foundation.BOOL = 1;
+pub const FALSE: win32.BOOL = 0;
+pub const TRUE: win32.BOOL = 1;
 
 /// Returns a formatter that will print the given error in the following format:
 ///
@@ -159,7 +176,7 @@ pub fn FormatError(comptime max_len: usize) type {
             };
             if (with_code) try writer.print("{} (", .{self.error_code});
             var buf: [max_len]u8 = undefined;
-            const len = win32.system.diagnostics.debug.FormatMessageA(
+            const len = win32.FormatMessageA(
                 .{ .FROM_SYSTEM = 1, .IGNORE_INSERTS = 1 },
                 null,
                 self.error_code,
@@ -181,11 +198,57 @@ pub fn FormatError(comptime max_len: usize) type {
     };
 }
 
+threadlocal var thread_is_panicing = false;
+
+/// Returns a panic handler that can be set in your root module that will show the panic
+/// message to the user in a message box, then call the default builtin panic handler.
+/// It also handles re-entrancy by skipping the message box if the current thread
+/// is already panicing.
+pub fn messageBoxThenPanic(
+    opt: struct {
+        title: [:0]const u8,
+        style: win32.MESSAGEBOX_STYLE = .{ .ICONASTERISK = 1 },
+        // TODO: add option/logic to include the stacktrace in the messagebox
+    },
+) std.builtin.PanicFn {
+    return struct {
+        pub fn panic(
+            msg: []const u8,
+            error_return_trace: ?*std.builtin.StackTrace,
+            ret_addr: ?usize,
+        ) noreturn {
+            if (!thread_is_panicing) {
+                thread_is_panicing = true;
+                var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
+                const msg_z: [:0]const u8 = if (std.fmt.allocPrintZ(
+                    arena.allocator(),
+                    "{s}",
+                    .{msg},
+                )) |msg_z| msg_z else |_| "failed allocate error message";
+                _ = win32.MessageBoxA(null, msg_z, opt.title, opt.style);
+            }
+            std.builtin.default_panic(msg, error_return_trace, ret_addr);
+        }
+    }.panic;
+}
+
+/// Calls std.debug.panic with a message that indicates what failed and the
+/// associated win32 error code.
+pub fn panicWin32(what: []const u8, err: win32.WIN32_ERROR) noreturn {
+    std.debug.panic("{s} failed, error={}", .{ what, err });
+}
+
+/// Calls std.debug.panic with a message that indicates what failed and the
+/// associated hresult error code.
+pub fn panicHresult(what: []const u8, hresult: win32.HRESULT) noreturn {
+    std.debug.panic("{s} failed, hresult=0x{x}", .{ what, @as(u32, @bitCast(hresult)) });
+}
+
 /// calls CloseHandle, panics on failure
-pub fn closeHandle(handle: foundation.HANDLE) void {
-    if (0 == foundation.CloseHandle(handle)) std.debug.panic(
-        "CloseHandle failed, error={}",
-        .{foundation.GetLastError()},
+pub fn closeHandle(handle: win32.HANDLE) void {
+    if (0 == win32.CloseHandle(handle)) panicWin32(
+        "CloseHandle",
+        win32.GetLastError(),
     );
 }
 
@@ -218,7 +281,7 @@ pub const has_window_longptr = switch (arch) {
 pub const getWindowLongPtr = switch (unicode_mode) {
     .ansi => getWindowLongPtrA,
     .wide => getWindowLongPtrW,
-    .unpecified => if (builtin.is_test) struct {} else @compileError(
+    .unspecified => if (builtin.is_test) struct {} else @compileError(
         "getWindowLongPtr requires that UNICODE be set to true or false in the root module",
     ),
 };
@@ -226,26 +289,26 @@ pub const getWindowLongPtr = switch (unicode_mode) {
 pub const setWindowLongPtr = switch (unicode_mode) {
     .ansi => setWindowLongPtrA,
     .wide => setWindowLongPtrW,
-    .unpecified => if (builtin.is_test) struct {} else @compileError(
+    .unspecified => if (builtin.is_test) struct {} else @compileError(
         "setWindowLongPtr requires that UNICODE be set to true or false in the root module",
     ),
 };
 
-pub fn getWindowLongPtrA(hwnd: HWND, index: i32) usize {
+pub fn getWindowLongPtrA(hwnd: win32.HWND, index: i32) usize {
     if (!has_window_longptr) @compileError("this arch does not have GetWindowLongPtr");
-    return @bitCast(win32.ui.windows_and_messaging.GetWindowLongPtrA(hwnd, @enumFromInt(index)));
+    return @bitCast(win32.GetWindowLongPtrA(hwnd, @enumFromInt(index)));
 }
-pub fn getWindowLongPtrW(hwnd: HWND, index: i32) usize {
+pub fn getWindowLongPtrW(hwnd: win32.HWND, index: i32) usize {
     if (!has_window_longptr) @compileError("this arch does not have GetWindowLongPtr");
-    return @bitCast(win32.ui.windows_and_messaging.GetWindowLongPtrW(hwnd, @enumFromInt(index)));
+    return @bitCast(win32.GetWindowLongPtrW(hwnd, @enumFromInt(index)));
 }
-pub fn setWindowLongPtrA(hwnd: HWND, index: i32, value: usize) usize {
+pub fn setWindowLongPtrA(hwnd: win32.HWND, index: i32, value: usize) usize {
     if (!has_window_longptr) @compileError("this arch does not have SetWindowLongPtr");
-    return @bitCast(win32.ui.windows_and_messaging.SetWindowLongPtrA(hwnd, @enumFromInt(index), @bitCast(value)));
+    return @bitCast(win32.SetWindowLongPtrA(hwnd, @enumFromInt(index), @bitCast(value)));
 }
-pub fn setWindowLongPtrW(hwnd: HWND, index: i32, value: usize) usize {
+pub fn setWindowLongPtrW(hwnd: win32.HWND, index: i32, value: usize) usize {
     if (!has_window_longptr) @compileError("this arch does not have SetWindowLongPtr");
-    return @bitCast(win32.ui.windows_and_messaging.SetWindowLongPtrW(hwnd, @enumFromInt(index), @bitCast(value)));
+    return @bitCast(win32.SetWindowLongPtrW(hwnd, @enumFromInt(index), @bitCast(value)));
 }
 
 pub fn scaleDpi(comptime T: type, value: T, dpi: u32) T {
@@ -258,20 +321,17 @@ pub fn scaleDpi(comptime T: type, value: T, dpi: u32) T {
 }
 
 /// calls DpiForWindow, panics on failure
-pub fn dpiFromHwnd(hwnd: HWND) u32 {
-    const value = win32.ui.hi_dpi.GetDpiForWindow(hwnd);
-    if (value == 0) std.debug.panic(
-        "GetDpiForWindow failed, error={}",
-        .{foundation.GetLastError()},
-    );
+pub fn dpiFromHwnd(hwnd: win32.HWND) u32 {
+    const value = win32.GetDpiForWindow(hwnd);
+    if (value == 0) panicWin32("GetDpiForWindow", win32.GetLastError());
     return value;
 }
 
 /// calls InvalidateRect, panics on failure
-pub fn invalidateHwnd(hwnd: HWND) void {
-    if (0 == win32.graphics.gdi.InvalidateRect(hwnd, null, 0)) std.debug.panic(
-        "InvalidateRect failed, error={}",
-        .{foundation.GetLastError()},
+pub fn invalidateHwnd(hwnd: win32.HWND) void {
+    if (0 == win32.InvalidateRect(hwnd, null, 0)) panicWin32(
+        "InvalidateRect",
+        win32.GetLastError(),
     );
 }
 
