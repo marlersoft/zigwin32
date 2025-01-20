@@ -31,6 +31,7 @@ pub const UnicodeMode = enum { ansi, wide, unspecified };
 pub const unicode_mode: UnicodeMode = if (@hasDecl(root, "UNICODE")) (if (root.UNICODE) .wide else .ansi) else .unspecified;
 
 const is_zig_0_11 = std.mem.eql(u8, builtin.zig_version_string, "0.11.0");
+const zig_version_0_13 = std.SemanticVersion{ .major = 0, .minor = 13, .patch = 0 };
 
 pub const L = std.unicode.utf8ToUtf16LeStringLiteral;
 
@@ -353,10 +354,50 @@ pub fn invalidateHwnd(hwnd: win32.HWND) void {
 /// be before it knows the constant's type definition, so we delay the convession to compile-time where the compiler knows
 /// all type definition.
 pub fn typedConst(comptime T: type, comptime value: anytype) T {
-    return typedConst2(T, T, value);
+    return switch (comptime builtin.zig_version.order(zig_version_0_13)) {
+        .gt => typedConst2(T, T, value),
+        .lt, .eq => typedConst2_0_13(T, T, value),
+    };
 }
 
-pub fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptime value: anytype) ReturnType {
+fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptime value: anytype) ReturnType {
+    const target_type_error = @as([]const u8, "typedConst cannot convert to " ++ @typeName(ReturnType));
+    const value_type_error = @as([]const u8, "typedConst cannot convert " ++ @typeName(@TypeOf(value)) ++ " to " ++ @typeName(ReturnType));
+
+    switch (@typeInfo(SwitchType)) {
+        .int => |target_type_info| {
+            if (value >= std.math.maxInt(SwitchType)) {
+                if (target_type_info.signedness == .signed) {
+                    const UnsignedT = @Type(std.builtin.Type{ .int = .{ .signedness = .unsigned, .bits = target_type_info.bits } });
+                    return @as(SwitchType, @bitCast(@as(UnsignedT, value)));
+                }
+            }
+            return value;
+        },
+        .pointer => |target_type_info| switch (target_type_info.size) {
+            .one, .many, .c => {
+                switch (@typeInfo(@TypeOf(value))) {
+                    .comptime_int, .int => {
+                        const usize_value = if (value >= 0) value else @as(usize, @bitCast(@as(isize, value)));
+                        return @as(ReturnType, @ptrFromInt(usize_value));
+                    },
+                    else => @compileError(value_type_error),
+                }
+            },
+            else => target_type_error,
+        },
+        .optional => |target_type_info| switch (@typeInfo(target_type_info.child)) {
+            .pointer => return typedConst2(ReturnType, target_type_info.child, value),
+            else => target_type_error,
+        },
+        .@"enum" => |_| switch (@typeInfo(@TypeOf(value))) {
+            .Int => return @as(ReturnType, @enumFromInt(value)),
+            else => target_type_error,
+        },
+        else => @compileError(target_type_error),
+    }
+}
+fn typedConst2_0_13(comptime ReturnType: type, comptime SwitchType: type, comptime value: anytype) ReturnType {
     const target_type_error = @as([]const u8, "typedConst cannot convert to " ++ @typeName(ReturnType));
     const value_type_error = @as([]const u8, "typedConst cannot convert " ++ @typeName(@TypeOf(value)) ++ " to " ++ @typeName(ReturnType));
 
@@ -383,7 +424,7 @@ pub fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptim
             else => target_type_error,
         },
         .Optional => |target_type_info| switch (@typeInfo(target_type_info.child)) {
-            .Pointer => return typedConst2(ReturnType, target_type_info.child, value),
+            .Pointer => return typedConst2_0_13(ReturnType, target_type_info.child, value),
             else => target_type_error,
         },
         .Enum => |_| switch (@typeInfo(@TypeOf(value))) {
