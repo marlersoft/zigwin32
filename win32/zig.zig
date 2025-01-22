@@ -12,17 +12,35 @@ const win32 = struct {
     const HANDLE = mod_root.foundation.HANDLE;
     const LPARAM = mod_root.foundation.LPARAM;
     const POINT = mod_root.foundation.POINT;
+    const SIZE = mod_root.foundation.SIZE;
+    const RECT = mod_root.foundation.RECT;
+
+    const HDC = mod_root.graphics.gdi.HDC;
+    const HGDIOBJ = mod_root.graphics.gdi.HGDIOBJ;
+    const HBRUSH = mod_root.graphics.gdi.HBRUSH;
+    const PAINTSTRUCT = mod_root.graphics.gdi.PAINTSTRUCT;
 
     const GetLastError = mod_root.foundation.GetLastError;
     const CloseHandle = mod_root.foundation.CloseHandle;
     const FormatMessageA = mod_root.system.diagnostics.debug.FormatMessageA;
+    const DeleteObject = mod_root.graphics.gdi.DeleteObject;
+    const DeleteDC = mod_root.graphics.gdi.DeleteDC;
     const InvalidateRect = mod_root.graphics.gdi.InvalidateRect;
+    const BeginPaint = mod_root.graphics.gdi.BeginPaint;
+    const EndPaint = mod_root.graphics.gdi.EndPaint;
+    const CreateSolidBrush = mod_root.graphics.gdi.CreateSolidBrush;
+    const FillRect = mod_root.graphics.gdi.FillRect;
+    const TextOutA = mod_root.graphics.gdi.TextOutA;
+    const TextOutW = mod_root.graphics.gdi.TextOutW;
+    const GetTextExtentPoint32A = mod_root.graphics.gdi.GetTextExtentPoint32A;
+    const GetTextExtentPoint32W = mod_root.graphics.gdi.GetTextExtentPoint32W;
     const MESSAGEBOX_STYLE = mod_root.ui.windows_and_messaging.MESSAGEBOX_STYLE;
     const MessageBoxA = mod_root.ui.windows_and_messaging.MessageBoxA;
     const GetWindowLongPtrA = mod_root.ui.windows_and_messaging.GetWindowLongPtrA;
     const GetWindowLongPtrW = mod_root.ui.windows_and_messaging.GetWindowLongPtrW;
     const SetWindowLongPtrA = mod_root.ui.windows_and_messaging.SetWindowLongPtrA;
     const SetWindowLongPtrW = mod_root.ui.windows_and_messaging.SetWindowLongPtrW;
+    const GetClientRect = mod_root.ui.windows_and_messaging.GetClientRect;
     const GetDpiForWindow = mod_root.ui.hi_dpi.GetDpiForWindow;
 };
 
@@ -345,12 +363,14 @@ pub fn scaleDpi(comptime T: type, value: T, dpi: u32) T {
     }
 }
 
-/// calls InvalidateRect, panics on failure
-pub fn invalidateHwnd(hwnd: win32.HWND) void {
-    if (0 == win32.InvalidateRect(hwnd, null, 0)) panicWin32(
-        "InvalidateRect",
-        win32.GetLastError(),
-    );
+/// wrapper for GetClientRect, panics on failure
+pub fn getClientSize(hwnd: win32.HWND) win32.SIZE {
+    var rect: win32.RECT = undefined;
+    if (0 == win32.GetClientRect(hwnd, &rect))
+        panicWin32("GetClientRect", win32.GetLastError());
+    std.debug.assert(rect.left == 0);
+    std.debug.assert(rect.top == 0);
+    return .{ .cx = rect.right, .cy = rect.bottom };
 }
 
 /// Converts comptime values to the given type.
@@ -444,4 +464,92 @@ test "typedConst" {
     try testing.expectEqual(@as(usize, @bitCast(@as(isize, -12))), @intFromPtr(typedConst(?*opaque {}, -12)));
     try testing.expectEqual(@as(u32, 0xffffffff), typedConst(u32, 0xffffffff));
     try testing.expectEqual(@as(i32, @bitCast(@as(u32, 0x80000000))), typedConst(i32, 0x80000000));
+}
+
+// =============================================================================
+// GDI function wrappers
+// =============================================================================
+
+/// calls DeleteObject, panics on failure
+pub fn deleteObject(obj: win32.HGDIOBJ) void {
+    if (0 == win32.DeleteObject(obj)) panicWin32("DeleteObject", win32.GetLastError());
+}
+
+/// calls DeleteDC, panics on failure
+pub fn deleteDc(hdc: win32.HDC) void {
+    if (0 == win32.DeleteDC(hdc)) panicWin32("DeleteDC", win32.GetLastError());
+}
+
+/// calls InvalidateRect, panics on failure
+pub fn invalidateHwnd(hwnd: win32.HWND) void {
+    if (0 == win32.InvalidateRect(hwnd, null, 0)) panicWin32("InvalidateRect", win32.GetLastError());
+}
+
+/// calls BeginPaint, panics on failure
+pub fn beginPaint(hwnd: win32.HWND) struct { win32.HDC, win32.PAINTSTRUCT } {
+    var paintstruct: win32.PAINTSTRUCT = undefined;
+    const hdc = win32.BeginPaint(hwnd, &paintstruct) orelse panicWin32(
+        "BeginPaint",
+        win32.GetLastError(),
+    );
+    return .{ hdc, paintstruct };
+}
+/// calls EndPaint, panics on failure
+pub fn endPaint(hwnd: win32.HWND, paintstruct: *const win32.PAINTSTRUCT) void {
+    if (0 == win32.EndPaint(hwnd, paintstruct)) panicWin32(
+        "EndPaint",
+        win32.GetLastError(),
+    );
+}
+
+/// calls CreateSolidBrush, panics on failure
+pub fn createSolidBrush(color: u32) win32.HBRUSH {
+    return win32.CreateSolidBrush(color) orelse panicWin32(
+        "CreateSolidBrush",
+        win32.GetLastError(),
+    );
+}
+
+/// calls FillRect, panics on failure
+pub fn fillRect(hdc: win32.HDC, rect: win32.RECT, brush: win32.HBRUSH) void {
+    if (0 == win32.FillRect(hdc, &rect, brush)) panicWin32(
+        "FillRect",
+        win32.GetLastError(),
+    );
+}
+
+/// calls TextOutA, panics on failure
+pub fn textOutA(hdc: win32.HDC, x: i32, y: i32, msg: []const u8) void {
+    if (0 == win32.TextOutA(hdc, x, y, @ptrCast(msg.ptr), @intCast(msg.len))) panicWin32(
+        "TextOut",
+        win32.GetLastError(),
+    );
+}
+
+/// calls TextOutW, panics on failure
+pub fn textOutW(hdc: win32.HDC, x: i32, y: i32, msg: []const u16) void {
+    if (0 == win32.TextOutW(hdc, x, y, @ptrCast(msg.ptr), @intCast(msg.len))) panicWin32(
+        "TextOut",
+        win32.GetLastError(),
+    );
+}
+
+/// calls GetTextExtentPoint32A, panics on failure
+pub fn getTextExtentA(hdc: win32.HDC, str: []const u8) win32.SIZE {
+    var size: win32.SIZE = undefined;
+    if (0 == win32.GetTextExtentPoint32A(hdc, @ptrCast(str.ptr), @intCast(str.len), &size)) panicWin32(
+        "GetTextExtentPoint32A",
+        win32.GetLastError(),
+    );
+    return size;
+}
+
+/// calls GetTextExtentPoint32W, panics on failure
+pub fn getTextExtentW(hdc: win32.HDC, str: []const u16) win32.SIZE {
+    var size: win32.SIZE = undefined;
+    if (0 == win32.GetTextExtentPoint32W(hdc, @ptrCast(str.ptr), @intCast(str.len), &size)) panicWin32(
+        "GetTextExtentPoint32W",
+        win32.GetLastError(),
+    );
+    return size;
 }
