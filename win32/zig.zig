@@ -324,20 +324,25 @@ pub fn setWindowLongPtrW(hwnd: win32.HWND, index: i32, value: usize) usize {
     return @bitCast(win32.SetWindowLongPtrW(hwnd, @enumFromInt(index), @bitCast(value)));
 }
 
-pub fn scaleDpi(comptime T: type, value: T, dpi: u32) T {
-    std.debug.assert(dpi >= 96);
-    switch (@typeInfo(T)) {
-        .Float => return value * (@as(T, @floatFromInt(dpi)) / @as(T, 96.0)),
-        .Int => return @intFromFloat(@round(@as(f32, @floatFromInt(value)) * (@as(f32, @floatFromInt(dpi)) / 96.0))),
-        else => @compileError("scale_dpi does not support type " ++ @typeName(@TypeOf(value))),
-    }
-}
-
 /// calls DpiForWindow, panics on failure
 pub fn dpiFromHwnd(hwnd: win32.HWND) u32 {
     const value = win32.GetDpiForWindow(hwnd);
     if (value == 0) panicWin32("GetDpiForWindow", win32.GetLastError());
     return value;
+}
+
+/// Converts the given DPI to a floating point scale where 96 returns 1.0, 120 return 1.25 and so on.
+pub fn scaleFromDpi(comptime Float: type, dpi: u32) Float {
+    return @as(Float, @floatFromInt(dpi)) / @as(Float, 96.0);
+}
+
+pub fn scaleDpi(comptime T: type, value: T, dpi: u32) T {
+    std.debug.assert(dpi >= 96);
+    switch (@typeInfo(T)) {
+        .Float => return value * scaleFromDpi(T, dpi),
+        .Int => return @intFromFloat(@round(@as(f32, @floatFromInt(value)) * scaleFromDpi(f32, dpi))),
+        else => @compileError("scale_dpi does not support type " ++ @typeName(@TypeOf(value))),
+    }
 }
 
 /// calls InvalidateRect, panics on failure
