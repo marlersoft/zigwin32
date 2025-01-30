@@ -248,7 +248,10 @@ pub fn messageBoxThenPanic(
                 )) |msg_z| msg_z else |_| "failed allocate error message";
                 _ = win32.MessageBoxA(null, msg_z, opt.title, opt.style);
             }
-            std.builtin.default_panic(msg, error_return_trace, ret_addr);
+            switch (comptime builtin.zig_version.order(zig_version_0_13)) {
+                .gt => std.debug.defaultPanic(msg, error_return_trace, ret_addr),
+                .lt, .eq => std.builtin.default_panic(msg, error_return_trace, ret_addr),
+            }
         }
     }.panic;
 }
@@ -284,22 +287,40 @@ pub fn pointFromLparam(lparam: win32.LPARAM) win32.POINT {
 }
 
 pub fn loword(value: anytype) u16 {
-    switch (@typeInfo(@TypeOf(value))) {
-        .Int => |int| switch (int.signedness) {
-            .signed => return loword(@as(@Type(.{ .Int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
-            .unsigned => return if (int.bits <= 16) value else @intCast(0xffff & value),
+    switch (comptime builtin.zig_version.order(zig_version_0_13)) {
+        .gt => switch (@typeInfo(@TypeOf(value))) {
+            .int => |int| switch (int.signedness) {
+                .signed => return loword(@as(@Type(.{ .int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
+                .unsigned => return if (int.bits <= 16) value else @intCast(0xffff & value),
+            },
+            else => {},
         },
-        else => {},
+        .lt, .eq => switch (@typeInfo(@TypeOf(value))) {
+            .Int => |int| switch (int.signedness) {
+                .signed => return loword(@as(@Type(.{ .Int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
+                .unsigned => return if (int.bits <= 16) value else @intCast(0xffff & value),
+            },
+            else => {},
+        },
     }
     @compileError("unsupported type " ++ @typeName(@TypeOf(value)));
 }
 pub fn hiword(value: anytype) u16 {
-    switch (@typeInfo(@TypeOf(value))) {
-        .Int => |int| switch (int.signedness) {
-            .signed => return hiword(@as(@Type(.{ .Int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
-            .unsigned => return @intCast(0xffff & (value >> 16)),
+    switch (comptime builtin.zig_version.order(zig_version_0_13)) {
+        .gt => switch (@typeInfo(@TypeOf(value))) {
+            .int => |int| switch (int.signedness) {
+                .signed => return hiword(@as(@Type(.{ .int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
+                .unsigned => return @intCast(0xffff & (value >> 16)),
+            },
+            else => {},
         },
-        else => {},
+        .lt, .eq => switch (@typeInfo(@TypeOf(value))) {
+            .Int => |int| switch (int.signedness) {
+                .signed => return hiword(@as(@Type(.{ .Int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
+                .unsigned => return @intCast(0xffff & (value >> 16)),
+            },
+            else => {},
+        },
     }
     @compileError("unsupported type " ++ @typeName(@TypeOf(value)));
 }
@@ -356,11 +377,18 @@ pub fn scaleFromDpi(comptime Float: type, dpi: u32) Float {
 
 pub fn scaleDpi(comptime T: type, value: T, dpi: u32) T {
     std.debug.assert(dpi >= 96);
-    switch (@typeInfo(T)) {
-        .Float => return value * scaleFromDpi(T, dpi),
-        .Int => return @intFromFloat(@round(@as(f32, @floatFromInt(value)) * scaleFromDpi(f32, dpi))),
-        else => @compileError("scale_dpi does not support type " ++ @typeName(@TypeOf(value))),
-    }
+    return switch (comptime builtin.zig_version.order(zig_version_0_13)) {
+        .gt => switch (@typeInfo(T)) {
+            .float => value * scaleFromDpi(T, dpi),
+            .int => @intFromFloat(@round(@as(f32, @floatFromInt(value)) * scaleFromDpi(f32, dpi))),
+            else => @compileError("scale_dpi does not support type " ++ @typeName(@TypeOf(value))),
+        },
+        .lt, .eq => switch (@typeInfo(T)) {
+            .Float => value * scaleFromDpi(T, dpi),
+            .Int => @intFromFloat(@round(@as(f32, @floatFromInt(value)) * scaleFromDpi(f32, dpi))),
+            else => @compileError("scale_dpi does not support type " ++ @typeName(@TypeOf(value))),
+        },
+    };
 }
 
 /// wrapper for GetClientRect, panics on failure
