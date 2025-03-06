@@ -221,6 +221,11 @@ pub fn FormatError(comptime max_len: usize) type {
 
 threadlocal var thread_is_panicing = false;
 
+pub const PanicType = switch (builtin.zig_version.order(zig_version_0_13)) {
+    .lt, .eq => fn ([]const u8, ?*std.builtin.StackTrace, ?usize) noreturn,
+    .gt => type,
+};
+
 /// Returns a panic handler that can be set in your root module that will show the panic
 /// message to the user in a message box, then call the default builtin panic handler.
 /// It also handles re-entrancy by skipping the message box if the current thread
@@ -231,11 +236,32 @@ pub fn messageBoxThenPanic(
         style: win32.MESSAGEBOX_STYLE = .{ .ICONASTERISK = 1 },
         // TODO: add option/logic to include the stacktrace in the messagebox
     },
-) std.builtin.PanicFn {
-    return struct {
+) PanicType {
+    switch (comptime builtin.zig_version.order(zig_version_0_13)) {
+        .lt, .eq => return struct {
+            pub fn panic(
+                msg: []const u8,
+                error_return_trace: ?*std.builtin.StackTrace,
+                ret_addr: ?usize,
+            ) noreturn {
+                if (!thread_is_panicing) {
+                    thread_is_panicing = true;
+                    var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
+                    const msg_z: [:0]const u8 = if (std.fmt.allocPrintZ(
+                        arena.allocator(),
+                        "{s}",
+                        .{msg},
+                    )) |msg_z| msg_z else |_| "failed allocate error message";
+                    _ = win32.MessageBoxA(null, msg_z, opt.title, opt.style);
+                }
+                std.builtin.default_panic(msg, error_return_trace, ret_addr);
+            }
+        }.panic,
+        .gt => {},
+    }
+    return std.debug.FullPanic(struct {
         pub fn panic(
             msg: []const u8,
-            error_return_trace: ?*std.builtin.StackTrace,
             ret_addr: ?usize,
         ) noreturn {
             if (!thread_is_panicing) {
@@ -248,12 +274,9 @@ pub fn messageBoxThenPanic(
                 )) |msg_z| msg_z else |_| "failed allocate error message";
                 _ = win32.MessageBoxA(null, msg_z, opt.title, opt.style);
             }
-            switch (comptime builtin.zig_version.order(zig_version_0_13)) {
-                .gt => std.debug.defaultPanic(msg, error_return_trace, ret_addr),
-                .lt, .eq => std.builtin.default_panic(msg, error_return_trace, ret_addr),
-            }
+            std.builtin.defaultPanic(msg, ret_addr);
         }
-    }.panic;
+    }.panic);
 }
 
 /// Calls std.debug.panic with a message that indicates what failed and the
