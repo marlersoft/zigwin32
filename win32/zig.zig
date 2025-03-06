@@ -274,7 +274,7 @@ pub fn messageBoxThenPanic(
                 )) |msg_z| msg_z else |_| "failed allocate error message";
                 _ = win32.MessageBoxA(null, msg_z, opt.title, opt.style);
             }
-            std.builtin.defaultPanic(msg, ret_addr);
+            std.debug.defaultPanic(msg, ret_addr);
         }
     }.panic);
 }
