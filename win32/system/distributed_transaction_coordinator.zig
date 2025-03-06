@@ -145,12 +145,12 @@ pub const ISOLATIONLEVEL = enum(i32) {
     UNSPECIFIED = -1,
     CHAOS = 16,
     READUNCOMMITTED = 256,
-    // BROWSE = 256, this enum value conflicts with READUNCOMMITTED
     CURSORSTABILITY = 4096,
-    // READCOMMITTED = 4096, this enum value conflicts with CURSORSTABILITY
     REPEATABLEREAD = 65536,
     SERIALIZABLE = 1048576,
-    // ISOLATED = 1048576, this enum value conflicts with SERIALIZABLE
+    pub const BROWSE = .READUNCOMMITTED;
+    pub const READCOMMITTED = .CURSORSTABILITY;
+    pub const ISOLATED = .SERIALIZABLE;
 };
 pub const ISOLATIONLEVEL_UNSPECIFIED = ISOLATIONLEVEL.UNSPECIFIED;
 pub const ISOLATIONLEVEL_CHAOS = ISOLATIONLEVEL.CHAOS;
@@ -212,9 +212,9 @@ pub const XACTTC = enum(i32) {
     NONE = 0,
     SYNC_PHASEONE = 1,
     SYNC_PHASETWO = 2,
-    // SYNC = 2, this enum value conflicts with SYNC_PHASETWO
     ASYNC_PHASEONE = 4,
-    // ASYNC = 4, this enum value conflicts with ASYNC_PHASEONE
+    pub const SYNC = .SYNC_PHASETWO;
+    pub const ASYNC = .ASYNC_PHASEONE;
 };
 pub const XACTTC_NONE = XACTTC.NONE;
 pub const XACTTC_SYNC_PHASEONE = XACTTC.SYNC_PHASEONE;

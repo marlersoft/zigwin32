@@ -2328,10 +2328,10 @@ pub const NDIS_802_11_AUTHENTICATION_MODE = enum(i32) {
     WPA2 = 6,
     WPA2PSK = 7,
     WPA3 = 8,
-    // WPA3Ent192 = 8, this enum value conflicts with WPA3
     WPA3SAE = 9,
     WPA3Ent = 10,
     Max = 11,
+    pub const WPA3Ent192 = .WPA3;
 };
 pub const Ndis802_11AuthModeOpen = NDIS_802_11_AUTHENTICATION_MODE.Open;
 pub const Ndis802_11AuthModeShared = NDIS_802_11_AUTHENTICATION_MODE.Shared;
@@ -2411,17 +2411,17 @@ pub const Ndis802_11PrivFilter8021xWEP = NDIS_802_11_PRIVACY_FILTER.@"8021xWEP";
 
 pub const NDIS_802_11_WEP_STATUS = enum(i32) {
     WEPEnabled = 0,
-    // Encryption1Enabled = 0, this enum value conflicts with WEPEnabled
     WEPDisabled = 1,
-    // EncryptionDisabled = 1, this enum value conflicts with WEPDisabled
     WEPKeyAbsent = 2,
-    // Encryption1KeyAbsent = 2, this enum value conflicts with WEPKeyAbsent
     WEPNotSupported = 3,
-    // EncryptionNotSupported = 3, this enum value conflicts with WEPNotSupported
     Encryption2Enabled = 4,
     Encryption2KeyAbsent = 5,
     Encryption3Enabled = 6,
     Encryption3KeyAbsent = 7,
+    pub const Encryption1Enabled = .WEPEnabled;
+    pub const EncryptionDisabled = .WEPDisabled;
+    pub const Encryption1KeyAbsent = .WEPKeyAbsent;
+    pub const EncryptionNotSupported = .WEPNotSupported;
 };
 pub const Ndis802_11WEPEnabled = NDIS_802_11_WEP_STATUS.WEPEnabled;
 pub const Ndis802_11Encryption1Enabled = NDIS_802_11_WEP_STATUS.WEPEnabled;
@@ -3403,8 +3403,8 @@ pub const NDIS_RECEIVE_HASH_PARAMETERS = extern struct {
 pub const NDIS_PROCESSOR_VENDOR = enum(i32) {
     Unknown = 0,
     GenuinIntel = 1,
-    // GenuineIntel = 1, this enum value conflicts with GenuinIntel
     AuthenticAMD = 2,
+    pub const GenuineIntel = .GenuinIntel;
 };
 pub const NdisProcessorVendorUnknown = NDIS_PROCESSOR_VENDOR.Unknown;
 pub const NdisProcessorVendorGenuinIntel = NDIS_PROCESSOR_VENDOR.GenuinIntel;

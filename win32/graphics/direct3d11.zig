@@ -10606,10 +10606,10 @@ pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT = enum(i32) {
     Y = 0,
     U = 1,
     V = 2,
-    // R = 0, this enum value conflicts with Y
-    // G = 1, this enum value conflicts with U
-    // B = 2, this enum value conflicts with V
     A = 3,
+    pub const R = .Y;
+    pub const G = .U;
+    pub const B = .V;
 };
 pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_Y = D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT.Y;
 pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_U = D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT.U;

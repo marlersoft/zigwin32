@@ -952,8 +952,8 @@ pub const FTP_FLAGS = enum(u32) {
     FTP_TRANSFER_TYPE_ASCII = 1,
     FTP_TRANSFER_TYPE_BINARY = 2,
     FTP_TRANSFER_TYPE_UNKNOWN = 0,
-    // INTERNET_FLAG_TRANSFER_ASCII = 1, this enum value conflicts with FTP_TRANSFER_TYPE_ASCII
-    // INTERNET_FLAG_TRANSFER_BINARY = 2, this enum value conflicts with FTP_TRANSFER_TYPE_BINARY
+    pub const INTERNET_FLAG_TRANSFER_ASCII = .FTP_TRANSFER_TYPE_ASCII;
+    pub const INTERNET_FLAG_TRANSFER_BINARY = .FTP_TRANSFER_TYPE_BINARY;
 };
 pub const FTP_TRANSFER_TYPE_ASCII = FTP_FLAGS.FTP_TRANSFER_TYPE_ASCII;
 pub const FTP_TRANSFER_TYPE_BINARY = FTP_FLAGS.FTP_TRANSFER_TYPE_BINARY;
@@ -1214,8 +1214,8 @@ pub const INTERNET_SCHEME = enum(i32) {
     JAVASCRIPT = 9,
     VBSCRIPT = 10,
     RES = 11,
-    // FIRST = 1, this enum value conflicts with FTP
-    // LAST = 11, this enum value conflicts with RES
+    pub const FIRST = .FTP;
+    pub const LAST = .RES;
 };
 pub const INTERNET_SCHEME_PARTIAL = INTERNET_SCHEME.PARTIAL;
 pub const INTERNET_SCHEME_UNKNOWN = INTERNET_SCHEME.UNKNOWN;
@@ -1384,7 +1384,7 @@ pub const InternetCookieState = enum(i32) {
     LEASH = 3,
     DOWNGRADE = 4,
     REJECT = 5,
-    // MAX = 5, this enum value conflicts with REJECT
+    pub const MAX = .REJECT;
 };
 pub const COOKIE_STATE_UNKNOWN = InternetCookieState.UNKNOWN;
 pub const COOKIE_STATE_ACCEPT = InternetCookieState.ACCEPT;
@@ -2019,7 +2019,7 @@ pub const WININET_SYNC_MODE = enum(i32) {
     ONCE_PER_SESSION = 2,
     ALWAYS = 3,
     AUTOMATIC = 4,
-    // DEFAULT = 4, this enum value conflicts with AUTOMATIC
+    pub const DEFAULT = .AUTOMATIC;
 };
 pub const WININET_SYNC_MODE_NEVER = WININET_SYNC_MODE.NEVER;
 pub const WININET_SYNC_MODE_ON_EXPIRY = WININET_SYNC_MODE.ON_EXPIRY;

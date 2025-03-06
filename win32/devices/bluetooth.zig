@@ -841,8 +841,8 @@ pub const SDP_SPECIFICTYPE = enum(i32) {
     INT64 = 800,
     INT128 = 1056,
     UUID16 = 304,
-    // UUID32 = 544, this enum value conflicts with INT32
     UUID128 = 1072,
+    pub const UUID32 = .INT32;
 };
 pub const SDP_ST_NONE = SDP_SPECIFICTYPE.NONE;
 pub const SDP_ST_UINT8 = SDP_SPECIFICTYPE.UINT8;

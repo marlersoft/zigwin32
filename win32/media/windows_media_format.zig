@@ -550,7 +550,6 @@ pub const WMT_STATUS = enum(i32) {
     BUFFERING_START = 2,
     BUFFERING_STOP = 3,
     EOF = 4,
-    // END_OF_FILE = 4, this enum value conflicts with EOF
     END_OF_SEGMENT = 5,
     END_OF_STREAMING = 6,
     LOCATING = 7,
@@ -598,6 +597,7 @@ pub const WMT_STATUS = enum(i32) {
     PROXIMITY_RESULT = 49,
     PROXIMITY_COMPLETED = 50,
     CONTENT_ENABLER = 51,
+    pub const END_OF_FILE = .EOF;
 };
 pub const WMT_ERROR = WMT_STATUS.ERROR;
 pub const WMT_OPENED = WMT_STATUS.OPENED;

@@ -150,7 +150,6 @@ pub const HCS_NOTIFICATIONS = enum(i32) {
     SystemSaveCompleted = 8,
     SystemRdpEnhancedModeStateChanged = 9,
     SystemShutdownFailed = 10,
-    // SystemShutdownCompleted = 10, this enum value conflicts with SystemShutdownFailed
     SystemGetPropertiesCompleted = 11,
     SystemModifyCompleted = 12,
     SystemCrashInitiated = 13,
@@ -160,6 +159,7 @@ pub const HCS_NOTIFICATIONS = enum(i32) {
     ProcessExited = 65536,
     ServiceDisconnect = 16777216,
     FlagsReserved = -268435456,
+    pub const SystemShutdownCompleted = .SystemShutdownFailed;
 };
 pub const HcsNotificationInvalid = HCS_NOTIFICATIONS.Invalid;
 pub const HcsNotificationSystemExited = HCS_NOTIFICATIONS.SystemExited;

@@ -2261,7 +2261,7 @@ pub const ADDRESS_EVENT = enum(i32) {
     REMOVETERMINAL = 6,
     MSGWAITON = 7,
     MSGWAITOFF = 8,
-    // LASTITEM = 8, this enum value conflicts with MSGWAITOFF
+    pub const LASTITEM = .MSGWAITOFF;
 };
 pub const AE_STATE = ADDRESS_EVENT.STATE;
 pub const AE_CAPSCHANGE = ADDRESS_EVENT.CAPSCHANGE;
@@ -2289,7 +2289,7 @@ pub const CALL_STATE = enum(i32) {
     OFFERING = 4,
     HOLD = 5,
     QUEUED = 6,
-    // LASTITEM = 6, this enum value conflicts with QUEUED
+    pub const LASTITEM = .QUEUED;
 };
 pub const CS_IDLE = CALL_STATE.IDLE;
 pub const CS_INPROGRESS = CALL_STATE.INPROGRESS;
@@ -2328,7 +2328,7 @@ pub const CALL_MEDIA_EVENT = enum(i32) {
     STREAM_NOT_USED = 3,
     STREAM_ACTIVE = 4,
     STREAM_INACTIVE = 5,
-    // LASTITEM = 5, this enum value conflicts with STREAM_INACTIVE
+    pub const LASTITEM = .STREAM_INACTIVE;
 };
 pub const CME_NEW_STREAM = CALL_MEDIA_EVENT.NEW_STREAM;
 pub const CME_STREAM_FAIL = CALL_MEDIA_EVENT.STREAM_FAIL;
@@ -2458,7 +2458,7 @@ pub const TE_PHONEDEVSPECIFIC = TAPI_EVENT.PHONEDEVSPECIFIC;
 pub const CALL_NOTIFICATION_EVENT = enum(i32) {
     OWNER = 0,
     MONITOR = 1,
-    // LASTITEM = 1, this enum value conflicts with MONITOR
+    pub const LASTITEM = .MONITOR;
 };
 pub const CNE_OWNER = CALL_NOTIFICATION_EVENT.OWNER;
 pub const CNE_MONITOR = CALL_NOTIFICATION_EVENT.MONITOR;
@@ -2469,7 +2469,7 @@ pub const CALLHUB_EVENT = enum(i32) {
     CALLLEAVE = 1,
     CALLHUBNEW = 2,
     CALLHUBIDLE = 3,
-    // LASTITEM = 3, this enum value conflicts with CALLHUBIDLE
+    pub const LASTITEM = .CALLHUBIDLE;
 };
 pub const CHE_CALLJOIN = CALLHUB_EVENT.CALLJOIN;
 pub const CHE_CALLLEAVE = CALLHUB_EVENT.CALLLEAVE;
@@ -2532,7 +2532,7 @@ pub const QOS_EVENT = enum(i32) {
     ADMISSIONFAILURE = 2,
     POLICYFAILURE = 3,
     GENERICERROR = 4,
-    // LASTITEM = 4, this enum value conflicts with GENERICERROR
+    pub const LASTITEM = .GENERICERROR;
 };
 pub const QE_NOQOS = QOS_EVENT.NOQOS;
 pub const QE_ADMISSIONFAILURE = QOS_EVENT.ADMISSIONFAILURE;
@@ -2568,7 +2568,7 @@ pub const CALLINFOCHANGE_CAUSE = enum(i32) {
     CALLDATA = 24,
     PRIVILEGE = 25,
     MEDIATYPE = 26,
-    // LASTITEM = 26, this enum value conflicts with MEDIATYPE
+    pub const LASTITEM = .MEDIATYPE;
 };
 pub const CIC_OTHER = CALLINFOCHANGE_CAUSE.OTHER;
 pub const CIC_DEVSPECIFIC = CALLINFOCHANGE_CAUSE.DEVSPECIFIC;
@@ -3094,7 +3094,7 @@ pub const PHONE_EVENT = enum(i32) {
     DIALING = 9,
     ANSWER = 10,
     DISCONNECT = 11,
-    // LASTITEM = 11, this enum value conflicts with DISCONNECT
+    pub const LASTITEM = .DISCONNECT;
 };
 pub const PE_DISPLAY = PHONE_EVENT.DISPLAY;
 pub const PE_LAMPMODE = PHONE_EVENT.LAMPMODE;
@@ -4740,7 +4740,7 @@ pub const TERMINAL_MEDIA_STATE = enum(i32) {
     IDLE = 0,
     ACTIVE = 1,
     PAUSED = 2,
-    // LASTITEM = 2, this enum value conflicts with PAUSED
+    pub const LASTITEM = .PAUSED;
 };
 pub const TMS_IDLE = TERMINAL_MEDIA_STATE.IDLE;
 pub const TMS_ACTIVE = TERMINAL_MEDIA_STATE.ACTIVE;

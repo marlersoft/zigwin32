@@ -2548,7 +2548,7 @@ pub const LSA_FOREST_TRUST_RECORD_TYPE = enum(i32) {
     TopLevelName = 0,
     TopLevelNameEx = 1,
     DomainInfo = 2,
-    // RecordTypeLast = 2, this enum value conflicts with DomainInfo
+    pub const RecordTypeLast = .DomainInfo;
 };
 pub const ForestTrustTopLevelName = LSA_FOREST_TRUST_RECORD_TYPE.TopLevelName;
 pub const ForestTrustTopLevelNameEx = LSA_FOREST_TRUST_RECORD_TYPE.TopLevelNameEx;
@@ -5004,10 +5004,10 @@ pub const SECURITY_USER_DATA = extern struct {
 
 pub const SECPKG_CALL_PACKAGE_MESSAGE_TYPE = enum(i32) {
     MinMessage = 1024,
-    // PinDcMessage = 1024, this enum value conflicts with MinMessage
     UnpinAllDcsMessage = 1025,
     TransferCredMessage = 1026,
-    // MaxMessage = 1026, this enum value conflicts with TransferCredMessage
+    pub const PinDcMessage = .MinMessage;
+    pub const MaxMessage = .TransferCredMessage;
 };
 pub const SecPkgCallPackageMinMessage = SECPKG_CALL_PACKAGE_MESSAGE_TYPE.MinMessage;
 pub const SecPkgCallPackagePinDcMessage = SECPKG_CALL_PACKAGE_MESSAGE_TYPE.MinMessage;

@@ -48,7 +48,6 @@ pub const SHELLDETAILS = extern struct {
 
 pub const PERCEIVED = enum(i32) {
     FIRST = -3,
-    // CUSTOM = -3, this enum value conflicts with FIRST
     UNSPECIFIED = -2,
     FOLDER = -1,
     UNKNOWN = 0,
@@ -62,7 +61,8 @@ pub const PERCEIVED = enum(i32) {
     APPLICATION = 8,
     GAMEMEDIA = 9,
     CONTACTS = 10,
-    // LAST = 10, this enum value conflicts with CONTACTS
+    pub const CUSTOM = .FIRST;
+    pub const LAST = .CONTACTS;
 };
 pub const PERCEIVED_TYPE_FIRST = PERCEIVED.FIRST;
 pub const PERCEIVED_TYPE_CUSTOM = PERCEIVED.FIRST;

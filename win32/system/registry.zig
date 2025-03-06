@@ -925,7 +925,6 @@ pub const REG_VALUE_TYPE = enum(u32) {
     EXPAND_SZ = 2,
     BINARY = 3,
     DWORD = 4,
-    // DWORD_LITTLE_ENDIAN = 4, this enum value conflicts with DWORD
     DWORD_BIG_ENDIAN = 5,
     LINK = 6,
     MULTI_SZ = 7,
@@ -933,7 +932,8 @@ pub const REG_VALUE_TYPE = enum(u32) {
     FULL_RESOURCE_DESCRIPTOR = 9,
     RESOURCE_REQUIREMENTS_LIST = 10,
     QWORD = 11,
-    // QWORD_LITTLE_ENDIAN = 11, this enum value conflicts with QWORD
+    pub const DWORD_LITTLE_ENDIAN = .DWORD;
+    pub const QWORD_LITTLE_ENDIAN = .QWORD;
 };
 pub const REG_NONE = REG_VALUE_TYPE.NONE;
 pub const REG_SZ = REG_VALUE_TYPE.SZ;

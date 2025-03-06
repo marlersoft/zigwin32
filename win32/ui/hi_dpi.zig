@@ -124,7 +124,7 @@ pub const MONITOR_DPI_TYPE = enum(i32) {
     EFFECTIVE_DPI = 0,
     ANGULAR_DPI = 1,
     RAW_DPI = 2,
-    // DEFAULT = 0, this enum value conflicts with EFFECTIVE_DPI
+    pub const DEFAULT = .EFFECTIVE_DPI;
 };
 pub const MDT_EFFECTIVE_DPI = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
 pub const MDT_ANGULAR_DPI = MONITOR_DPI_TYPE.ANGULAR_DPI;

@@ -183,13 +183,13 @@ pub const CLSID_RDPTransportStreamEvents = &CLSID_RDPTransportStreamEvents_Value
 
 pub const CTRL_LEVEL = enum(i32) {
     MIN = 0,
-    // INVALID = 0, this enum value conflicts with MIN
     NONE = 1,
     VIEW = 2,
     INTERACTIVE = 3,
     REQCTRL_VIEW = 4,
     REQCTRL_INTERACTIVE = 5,
-    // MAX = 5, this enum value conflicts with REQCTRL_INTERACTIVE
+    pub const INVALID = .MIN;
+    pub const MAX = .REQCTRL_INTERACTIVE;
 };
 pub const CTRL_LEVEL_MIN = CTRL_LEVEL.MIN;
 pub const CTRL_LEVEL_INVALID = CTRL_LEVEL.MIN;
@@ -202,10 +202,10 @@ pub const CTRL_LEVEL_MAX = CTRL_LEVEL.REQCTRL_INTERACTIVE;
 
 pub const ATTENDEE_DISCONNECT_REASON = enum(i32) {
     MIN = 0,
-    // APP = 0, this enum value conflicts with MIN
     ERR = 1,
     CLI = 2,
-    // MAX = 2, this enum value conflicts with CLI
+    pub const APP = .MIN;
+    pub const MAX = .CLI;
 };
 pub const ATTENDEE_DISCONNECT_REASON_MIN = ATTENDEE_DISCONNECT_REASON.MIN;
 pub const ATTENDEE_DISCONNECT_REASON_APP = ATTENDEE_DISCONNECT_REASON.MIN;
@@ -1651,7 +1651,7 @@ pub const RDPENCOMAPI_CONSTANTS = enum(i32) {
     ATTENDEE_ID_EVERYONE = -1,
     ATTENDEE_ID_HOST = 0,
     CONN_INTERVAL = 50,
-    // ATTENDEE_ID_DEFAULT = -1, this enum value conflicts with ATTENDEE_ID_EVERYONE
+    pub const ATTENDEE_ID_DEFAULT = .ATTENDEE_ID_EVERYONE;
 };
 pub const CONST_MAX_CHANNEL_MESSAGE_SIZE = RDPENCOMAPI_CONSTANTS.MAX_CHANNEL_MESSAGE_SIZE;
 pub const CONST_MAX_CHANNEL_NAME_LEN = RDPENCOMAPI_CONSTANTS.MAX_CHANNEL_NAME_LEN;

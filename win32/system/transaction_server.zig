@@ -229,7 +229,6 @@ pub const MTSAdminErrorCodes = enum(i32) {
     CantCopyFile = -2146368499,
     NoTypeLib = -2146368498,
     NoUser = -2146368497,
-    // InvalidUserids = -2146368496, this enum value conflicts with CoReqCompInstalled
     NoRegistryCLSID = -2146368495,
     BadRegistryProgID = -2146368494,
     AuthenticationLevel = -2146368493,
@@ -259,6 +258,7 @@ pub const MTSAdminErrorCodes = enum(i32) {
     NotDeletable = -2146368469,
     Session = -2146368468,
     CompFileNoRegistrar = -2146368460,
+    pub const InvalidUserids = .CoReqCompInstalled;
 };
 pub const mtsErrObjectErrors = MTSAdminErrorCodes.ObjectErrors;
 pub const mtsErrObjectInvalid = MTSAdminErrorCodes.ObjectInvalid;

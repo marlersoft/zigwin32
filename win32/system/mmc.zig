@@ -1722,8 +1722,8 @@ pub const MMC_CONSOLE_VERB = enum(i32) {
     PRINT = 32775,
     CUT = 32776,
     MAX = 32777,
-    // FIRST = 32768, this enum value conflicts with OPEN
-    // LAST = 32776, this enum value conflicts with CUT
+    pub const FIRST = .OPEN;
+    pub const LAST = .CUT;
 };
 pub const MMC_VERB_NONE = MMC_CONSOLE_VERB.NONE;
 pub const MMC_VERB_OPEN = MMC_CONSOLE_VERB.OPEN;
@@ -2333,7 +2333,7 @@ pub const CCM_INSERTIONPOINTID = enum(i32) {
     PRIMARY_HELP = -1610612732,
     @"3RDPARTY_NEW" = -1879048191,
     @"3RDPARTY_TASK" = -1879048190,
-    // ROOT_MENU = -2147483648, this enum value conflicts with MASK_SHARED
+    pub const ROOT_MENU = .MASK_SHARED;
 };
 pub const CCM_INSERTIONPOINTID_MASK_SPECIAL = CCM_INSERTIONPOINTID.MASK_SPECIAL;
 pub const CCM_INSERTIONPOINTID_MASK_SHARED = CCM_INSERTIONPOINTID.MASK_SHARED;
@@ -3558,8 +3558,8 @@ pub const IconIdentifier = enum(i32) {
     Question = 32514,
     Warning = 32515,
     Information = 32516,
-    // First = 32513, this enum value conflicts with Error
-    // Last = 32516, this enum value conflicts with Information
+    pub const First = .Error;
+    pub const Last = .Information;
 };
 pub const Icon_None = IconIdentifier.None;
 pub const Icon_Error = IconIdentifier.Error;

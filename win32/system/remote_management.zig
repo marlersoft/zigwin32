@@ -1050,11 +1050,11 @@ pub const WSManEnumFlags = enum(i32) {
     ReturnObject = 0,
     ReturnEPR = 2,
     ReturnObjectAndEPR = 4,
-    // HierarchyDeep = 0, this enum value conflicts with ReturnObject
     HierarchyShallow = 32,
     HierarchyDeepBasePropsOnly = 64,
-    // AssociatedInstance = 0, this enum value conflicts with ReturnObject
     AssociationInstance = 128,
+    pub const HierarchyDeep = .ReturnObject;
+    pub const AssociatedInstance = .ReturnObject;
 };
 pub const WSManFlagNonXmlText = WSManEnumFlags.NonXmlText;
 pub const WSManFlagReturnObject = WSManEnumFlags.ReturnObject;

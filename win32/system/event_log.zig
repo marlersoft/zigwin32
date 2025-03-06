@@ -196,9 +196,9 @@ pub const EVT_SUBSCRIBE_FLAGS = enum(i32) {
     ToFutureEvents = 1,
     StartAtOldestRecord = 2,
     StartAfterBookmark = 3,
-    // OriginMask = 3, this enum value conflicts with StartAfterBookmark
     TolerateQueryErrors = 4096,
     Strict = 65536,
+    pub const OriginMask = .StartAfterBookmark;
 };
 pub const EvtSubscribeToFutureEvents = EVT_SUBSCRIBE_FLAGS.ToFutureEvents;
 pub const EvtSubscribeStartAtOldestRecord = EVT_SUBSCRIBE_FLAGS.StartAtOldestRecord;

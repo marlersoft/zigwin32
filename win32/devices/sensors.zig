@@ -298,13 +298,13 @@ pub const CLSID_SensorDataReport = &CLSID_SensorDataReport_Value;
 
 pub const SensorState = enum(i32) {
     MIN = 0,
-    // READY = 0, this enum value conflicts with MIN
     NOT_AVAILABLE = 1,
     NO_DATA = 2,
     INITIALIZING = 3,
     ACCESS_DENIED = 4,
     ERROR = 5,
-    // MAX = 5, this enum value conflicts with ERROR
+    pub const READY = .MIN;
+    pub const MAX = .ERROR;
 };
 pub const SENSOR_STATE_MIN = SensorState.MIN;
 pub const SENSOR_STATE_READY = SensorState.MIN;

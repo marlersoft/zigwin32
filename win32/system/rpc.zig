@@ -1949,8 +1949,8 @@ pub const system_handle_t = enum(i32) {
     SOCKET = 10,
     JOB = 11,
     PIPE = 12,
-    // MAX = 12, this enum value conflicts with PIPE
     INVALID = 255,
+    pub const MAX = .PIPE;
 };
 pub const SYSTEM_HANDLE_FILE = system_handle_t.FILE;
 pub const SYSTEM_HANDLE_SEMAPHORE = system_handle_t.SEMAPHORE;
@@ -2426,13 +2426,13 @@ pub const NDR64_SIZED_CONFORMANT_STRING_FORMAT = extern struct {
 
 pub const EXPR_TOKEN = enum(i32) {
     START = 0,
-    // ILLEGAL = 0, this enum value conflicts with START
     CONST32 = 1,
     CONST64 = 2,
     VAR = 3,
     OPER = 4,
     NOOP = 5,
     END = 6,
+    pub const ILLEGAL = .START;
 };
 pub const FC_EXPR_START = EXPR_TOKEN.START;
 pub const FC_EXPR_ILLEGAL = EXPR_TOKEN.START;

@@ -845,12 +845,12 @@ pub const DOT11_AUTH_ALGORITHM = enum(i32) {
     RSNA = 6,
     RSNA_PSK = 7,
     WPA3 = 8,
-    // WPA3_ENT_192 = 8, this enum value conflicts with WPA3
     WPA3_SAE = 9,
     OWE = 10,
     WPA3_ENT = 11,
     IHV_START = -2147483648,
     IHV_END = -1,
+    pub const WPA3_ENT_192 = .WPA3;
 };
 pub const DOT11_AUTH_ALGO_80211_OPEN = DOT11_AUTH_ALGORITHM.@"80211_OPEN";
 pub const DOT11_AUTH_ALGO_80211_SHARED_KEY = DOT11_AUTH_ALGORITHM.@"80211_SHARED_KEY";
@@ -881,10 +881,10 @@ pub const DOT11_CIPHER_ALGORITHM = enum(i32) {
     BIP_GMAC_256 = 12,
     BIP_CMAC_256 = 13,
     WPA_USE_GROUP = 256,
-    // RSN_USE_GROUP = 256, this enum value conflicts with WPA_USE_GROUP
     WEP = 257,
     IHV_START = -2147483648,
     IHV_END = -1,
+    pub const RSN_USE_GROUP = .WPA_USE_GROUP;
 };
 pub const DOT11_CIPHER_ALGO_NONE = DOT11_CIPHER_ALGORITHM.NONE;
 pub const DOT11_CIPHER_ALGO_WEP40 = DOT11_CIPHER_ALGORITHM.WEP40;
@@ -936,7 +936,6 @@ pub const DOT11_BSSID_LIST = extern struct {
 
 pub const DOT11_PHY_TYPE = enum(i32) {
     unknown = 0,
-    // any = 0, this enum value conflicts with unknown
     fhss = 1,
     dsss = 2,
     irbaseband = 3,
@@ -949,6 +948,7 @@ pub const DOT11_PHY_TYPE = enum(i32) {
     he = 10,
     IHV_start = -2147483648,
     IHV_end = -1,
+    pub const any = .unknown;
 };
 pub const dot11_phy_type_unknown = DOT11_PHY_TYPE.unknown;
 pub const dot11_phy_type_any = DOT11_PHY_TYPE.unknown;
@@ -3857,7 +3857,7 @@ pub const ONEX_NOTIFICATION_TYPE = enum(i32) {
     NotificationTypeResultUpdate = 1,
     NotificationTypeAuthRestarted = 2,
     NotificationTypeEventInvalid = 3,
-    // NumNotifications = 3, this enum value conflicts with NotificationTypeEventInvalid
+    pub const NumNotifications = .NotificationTypeEventInvalid;
 };
 pub const OneXPublicNotificationBase = ONEX_NOTIFICATION_TYPE.PublicNotificationBase;
 pub const OneXNotificationTypeResultUpdate = ONEX_NOTIFICATION_TYPE.NotificationTypeResultUpdate;

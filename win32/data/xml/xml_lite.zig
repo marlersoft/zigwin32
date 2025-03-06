@@ -21,7 +21,7 @@ pub const XmlNodeType = enum(i32) {
     XmlNodeType_Whitespace = 13,
     XmlNodeType_EndElement = 15,
     XmlNodeType_XmlDeclaration = 17,
-    // _XmlNodeType_Last = 17, this enum value conflicts with XmlNodeType_XmlDeclaration
+    pub const _XmlNodeType_Last = .XmlNodeType_XmlDeclaration;
 };
 pub const XmlNodeType_None = XmlNodeType.XmlNodeType_None;
 pub const XmlNodeType_Element = XmlNodeType.XmlNodeType_Element;
@@ -40,7 +40,7 @@ pub const XmlConformanceLevel = enum(i32) {
     XmlConformanceLevel_Auto = 0,
     XmlConformanceLevel_Fragment = 1,
     XmlConformanceLevel_Document = 2,
-    // _XmlConformanceLevel_Last = 2, this enum value conflicts with XmlConformanceLevel_Document
+    pub const _XmlConformanceLevel_Last = .XmlConformanceLevel_Document;
 };
 pub const XmlConformanceLevel_Auto = XmlConformanceLevel.XmlConformanceLevel_Auto;
 pub const XmlConformanceLevel_Fragment = XmlConformanceLevel.XmlConformanceLevel_Fragment;
@@ -50,7 +50,7 @@ pub const _XmlConformanceLevel_Last = XmlConformanceLevel.XmlConformanceLevel_Do
 pub const DtdProcessing = enum(i32) {
     DtdProcessing_Prohibit = 0,
     DtdProcessing_Parse = 1,
-    // _DtdProcessing_Last = 1, this enum value conflicts with DtdProcessing_Parse
+    pub const _DtdProcessing_Last = .DtdProcessing_Parse;
 };
 pub const DtdProcessing_Prohibit = DtdProcessing.DtdProcessing_Prohibit;
 pub const DtdProcessing_Parse = DtdProcessing.DtdProcessing_Parse;
@@ -78,7 +78,7 @@ pub const XmlReaderProperty = enum(i32) {
     XmlReaderProperty_ReadState = 5,
     XmlReaderProperty_MaxElementDepth = 6,
     XmlReaderProperty_MaxEntityExpansion = 7,
-    // _XmlReaderProperty_Last = 7, this enum value conflicts with XmlReaderProperty_MaxEntityExpansion
+    pub const _XmlReaderProperty_Last = .XmlReaderProperty_MaxEntityExpansion;
 };
 pub const XmlReaderProperty_MultiLanguage = XmlReaderProperty.XmlReaderProperty_MultiLanguage;
 pub const XmlReaderProperty_ConformanceLevel = XmlReaderProperty.XmlReaderProperty_ConformanceLevel;
@@ -267,7 +267,7 @@ pub const XmlStandalone = enum(i32) {
     XmlStandalone_Omit = 0,
     XmlStandalone_Yes = 1,
     XmlStandalone_No = 2,
-    // _XmlStandalone_Last = 2, this enum value conflicts with XmlStandalone_No
+    pub const _XmlStandalone_Last = .XmlStandalone_No;
 };
 pub const XmlStandalone_Omit = XmlStandalone.XmlStandalone_Omit;
 pub const XmlStandalone_Yes = XmlStandalone.XmlStandalone_Yes;
@@ -281,7 +281,7 @@ pub const XmlWriterProperty = enum(i32) {
     XmlWriterProperty_OmitXmlDeclaration = 3,
     XmlWriterProperty_ConformanceLevel = 4,
     XmlWriterProperty_CompactEmptyElement = 5,
-    // _XmlWriterProperty_Last = 5, this enum value conflicts with XmlWriterProperty_CompactEmptyElement
+    pub const _XmlWriterProperty_Last = .XmlWriterProperty_CompactEmptyElement;
 };
 pub const XmlWriterProperty_MultiLanguage = XmlWriterProperty.XmlWriterProperty_MultiLanguage;
 pub const XmlWriterProperty_Indent = XmlWriterProperty.XmlWriterProperty_Indent;

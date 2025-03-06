@@ -420,13 +420,13 @@ pub const WICBitmapPaletteType = enum(i32) {
     itmapPaletteTypeFixedHalftone64 = 5,
     itmapPaletteTypeFixedHalftone125 = 6,
     itmapPaletteTypeFixedHalftone216 = 7,
-    // itmapPaletteTypeFixedWebPalette = 7, this enum value conflicts with itmapPaletteTypeFixedHalftone216
     itmapPaletteTypeFixedHalftone252 = 8,
     itmapPaletteTypeFixedHalftone256 = 9,
     itmapPaletteTypeFixedGray4 = 10,
     itmapPaletteTypeFixedGray16 = 11,
     itmapPaletteTypeFixedGray256 = 12,
     ITMAPPALETTETYPE_FORCE_DWORD = 2147483647,
+    pub const itmapPaletteTypeFixedWebPalette = .itmapPaletteTypeFixedHalftone216;
 };
 pub const WICBitmapPaletteTypeCustom = WICBitmapPaletteType.itmapPaletteTypeCustom;
 pub const WICBitmapPaletteTypeMedianCut = WICBitmapPaletteType.itmapPaletteTypeMedianCut;
@@ -446,7 +446,6 @@ pub const WICBITMAPPALETTETYPE_FORCE_DWORD = WICBitmapPaletteType.ITMAPPALETTETY
 
 pub const WICBitmapDitherType = enum(i32) {
     itmapDitherTypeNone = 0,
-    // itmapDitherTypeSolid = 0, this enum value conflicts with itmapDitherTypeNone
     itmapDitherTypeOrdered4x4 = 1,
     itmapDitherTypeOrdered8x8 = 2,
     itmapDitherTypeOrdered16x16 = 3,
@@ -456,6 +455,7 @@ pub const WICBitmapDitherType = enum(i32) {
     itmapDitherTypeDualSpiral8x8 = 7,
     itmapDitherTypeErrorDiffusion = 8,
     ITMAPDITHERTYPE_FORCE_DWORD = 2147483647,
+    pub const itmapDitherTypeSolid = .itmapDitherTypeNone;
 };
 pub const WICBitmapDitherTypeNone = WICBitmapDitherType.itmapDitherTypeNone;
 pub const WICBitmapDitherTypeSolid = WICBitmapDitherType.itmapDitherTypeNone;
@@ -2671,8 +2671,8 @@ pub const WICNamedWhitePoint = enum(i32) {
     WhitePointUnderwater = 128,
     WhitePointCustom = 256,
     WhitePointAutoWhiteBalance = 512,
-    // WhitePointAsShot = 1, this enum value conflicts with WhitePointDefault
     NAMEDWHITEPOINT_FORCE_DWORD = 2147483647,
+    pub const WhitePointAsShot = .WhitePointDefault;
 };
 pub const WICWhitePointDefault = WICNamedWhitePoint.WhitePointDefault;
 pub const WICWhitePointDaylight = WICNamedWhitePoint.WhitePointDaylight;
@@ -3318,9 +3318,9 @@ pub const IWICJpegFrameEncode = extern union {
 
 pub const WICMetadataCreationOptions = enum(i32) {
     Default = 0,
-    // AllowUnknown = 0, this enum value conflicts with Default
     FailUnknown = 65536,
     Mask = -65536,
+    pub const AllowUnknown = .Default;
 };
 pub const WICMetadataCreationDefault = WICMetadataCreationOptions.Default;
 pub const WICMetadataCreationAllowUnknown = WICMetadataCreationOptions.Default;
@@ -3329,12 +3329,12 @@ pub const WICMetadataCreationMask = WICMetadataCreationOptions.Mask;
 
 pub const WICPersistOptions = enum(i32) {
     Default = 0,
-    // LittleEndian = 0, this enum value conflicts with Default
     BigEndian = 1,
     StrictFormat = 2,
     NoCacheStream = 4,
     PreferUTF8 = 8,
     Mask = 65535,
+    pub const LittleEndian = .Default;
 };
 pub const WICPersistOptionDefault = WICPersistOptions.Default;
 pub const WICPersistOptionLittleEndian = WICPersistOptions.Default;

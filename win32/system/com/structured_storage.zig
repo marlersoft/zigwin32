@@ -141,7 +141,7 @@ pub const STGFMT = enum(u32) {
     FILE = 3,
     ANY = 4,
     DOCFILE = 5,
-    // DOCUMENT = 0, this enum value conflicts with STORAGE
+    pub const DOCUMENT = .STORAGE;
 };
 pub const STGFMT_STORAGE = STGFMT.STORAGE;
 pub const STGFMT_NATIVE = STGFMT.NATIVE;

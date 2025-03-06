@@ -1047,9 +1047,9 @@ pub const KS_SEEKING_FLAGS = enum(i32) {
     AbsolutePositioning = 1,
     RelativePositioning = 2,
     IncrementalPositioning = 3,
-    // PositioningBitsMask = 3, this enum value conflicts with IncrementalPositioning
     SeekToKeyFrame = 4,
     ReturnTime = 8,
+    pub const PositioningBitsMask = .IncrementalPositioning;
 };
 pub const KS_SEEKING_NoPositioning = KS_SEEKING_FLAGS.NoPositioning;
 pub const KS_SEEKING_AbsolutePositioning = KS_SEEKING_FLAGS.AbsolutePositioning;
@@ -5225,7 +5225,7 @@ pub const KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY = enum(i32) {
     DIGITALWINDOW_CONFIGCAPS = 42,
     DIGITALWINDOW = 43,
     END = 44,
-    // END2 = 44, this enum value conflicts with END
+    pub const END2 = .END;
 };
 pub const KSPROPERTY_CAMERACONTROL_EXTENDED_PHOTOMODE = KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY.PHOTOMODE;
 pub const KSPROPERTY_CAMERACONTROL_EXTENDED_PHOTOFRAMERATE = KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY.PHOTOFRAMERATE;
@@ -5414,7 +5414,6 @@ pub const KSCAMERA_EXTENDEDPROP_MetadataAlignment_8192 = KSCAMERA_EXTENDEDPROP_M
 
 pub const KSCAMERA_MetadataId = enum(i32) {
     Standard_Start = 1,
-    // PhotoConfirmation = 1, this enum value conflicts with Standard_Start
     UsbVideoHeader = 2,
     CaptureStats = 3,
     CameraExtrinsics = 4,
@@ -5422,8 +5421,9 @@ pub const KSCAMERA_MetadataId = enum(i32) {
     FrameIllumination = 6,
     DigitalWindow = 7,
     BackgroundSegmentationMask = 8,
-    // Standard_End = 8, this enum value conflicts with BackgroundSegmentationMask
     Custom_Start = -2147483648,
+    pub const PhotoConfirmation = .Standard_Start;
+    pub const Standard_End = .BackgroundSegmentationMask;
 };
 pub const MetadataId_Standard_Start = KSCAMERA_MetadataId.Standard_Start;
 pub const MetadataId_PhotoConfirmation = KSCAMERA_MetadataId.Standard_Start;

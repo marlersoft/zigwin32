@@ -526,7 +526,7 @@ pub const IBBM_Union = InkBoundingBoxMode.Union;
 pub const InkExtractFlags = enum(i32) {
     CopyFromOriginal = 0,
     RemoveFromOriginal = 1,
-    // Default = 1, this enum value conflicts with RemoveFromOriginal
+    pub const Default = .RemoveFromOriginal;
 };
 pub const IEF_CopyFromOriginal = InkExtractFlags.CopyFromOriginal;
 pub const IEF_RemoveFromOriginal = InkExtractFlags.RemoveFromOriginal;
@@ -634,7 +634,7 @@ pub const InkClipboardModes = enum(i32) {
     Cut = 1,
     ExtractOnly = 48,
     DelayedCopy = 32,
-    // Default = 0, this enum value conflicts with Copy
+    pub const Default = .Copy;
 };
 pub const ICB_Copy = InkClipboardModes.Copy;
 pub const ICB_Cut = InkClipboardModes.Cut;
@@ -652,7 +652,7 @@ pub const InkClipboardFormats = enum(i32) {
     Bitmap = 64,
     PasteMask = 7,
     CopyMask = 127,
-    // Default = 127, this enum value conflicts with CopyMask
+    pub const Default = .CopyMask;
 };
 pub const ICF_None = InkClipboardFormats.None;
 pub const ICF_InkSerializedFormat = InkClipboardFormats.InkSerializedFormat;
@@ -6813,7 +6813,6 @@ pub const ITextInputPanelRunInfo = extern union {
 
 pub const FLICKDIRECTION = enum(i32) {
     MIN = 0,
-    // RIGHT = 0, this enum value conflicts with MIN
     UPRIGHT = 1,
     UP = 2,
     UPLEFT = 3,
@@ -6822,6 +6821,7 @@ pub const FLICKDIRECTION = enum(i32) {
     DOWN = 6,
     DOWNRIGHT = 7,
     INVALID = 8,
+    pub const RIGHT = .MIN;
 };
 pub const FLICKDIRECTION_MIN = FLICKDIRECTION.MIN;
 pub const FLICKDIRECTION_RIGHT = FLICKDIRECTION.MIN;
@@ -6836,11 +6836,11 @@ pub const FLICKDIRECTION_INVALID = FLICKDIRECTION.INVALID;
 
 pub const FLICKMODE = enum(i32) {
     MIN = 0,
-    // OFF = 0, this enum value conflicts with MIN
     ON = 1,
     LEARNING = 2,
-    // MAX = 2, this enum value conflicts with LEARNING
-    // DEFAULT = 1, this enum value conflicts with ON
+    pub const OFF = .MIN;
+    pub const MAX = .LEARNING;
+    pub const DEFAULT = .ON;
 };
 pub const FLICKMODE_MIN = FLICKMODE.MIN;
 pub const FLICKMODE_OFF = FLICKMODE.MIN;

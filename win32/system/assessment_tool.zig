@@ -37,12 +37,12 @@ pub const WINSAT_OEM_NO_DATA_SUPPLIED = WINSAT_OEM_DATA_TYPE.NO_DATA_SUPPLIED;
 
 pub const WINSAT_ASSESSMENT_STATE = enum(i32) {
     MIN = 0,
-    // UNKNOWN = 0, this enum value conflicts with MIN
     VALID = 1,
     INCOHERENT_WITH_HARDWARE = 2,
     NOT_AVAILABLE = 3,
     INVALID = 4,
-    // MAX = 4, this enum value conflicts with INVALID
+    pub const UNKNOWN = .MIN;
+    pub const MAX = .INVALID;
 };
 pub const WINSAT_ASSESSMENT_STATE_MIN = WINSAT_ASSESSMENT_STATE.MIN;
 pub const WINSAT_ASSESSMENT_STATE_UNKNOWN = WINSAT_ASSESSMENT_STATE.MIN;

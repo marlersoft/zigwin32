@@ -1599,11 +1599,11 @@ pub const IKEEXT_DH_GROUP = enum(i32) {
     GROUP_1 = 1,
     GROUP_2 = 2,
     GROUP_14 = 3,
-    // GROUP_2048 = 3, this enum value conflicts with GROUP_14
     ECP_256 = 4,
     ECP_384 = 5,
     GROUP_24 = 6,
     GROUP_MAX = 7,
+    pub const GROUP_2048 = .GROUP_14;
 };
 pub const IKEEXT_DH_GROUP_NONE = IKEEXT_DH_GROUP.GROUP_NONE;
 pub const IKEEXT_DH_GROUP_1 = IKEEXT_DH_GROUP.GROUP_1;
@@ -2073,12 +2073,12 @@ pub const IPSEC_PFS_GROUP = enum(i32) {
     @"1" = 1,
     @"2" = 2,
     @"2048" = 3,
-    // @"14" = 3, this enum value conflicts with @"2048"
     ECP_256 = 4,
     ECP_384 = 5,
     MM = 6,
     @"24" = 7,
     MAX = 8,
+    pub const @"14" = .@"2048";
 };
 pub const IPSEC_PFS_NONE = IPSEC_PFS_GROUP.NONE;
 pub const IPSEC_PFS_1 = IPSEC_PFS_GROUP.@"1";

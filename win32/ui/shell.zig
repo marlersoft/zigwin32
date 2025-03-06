@@ -4001,7 +4001,6 @@ pub const FWF_ALLOWRTLREADING = FOLDERFLAGS.ALLOWRTLREADING;
 pub const FOLDERVIEWMODE = enum(i32) {
     AUTO = -1,
     FIRST = 1,
-    // ICON = 1, this enum value conflicts with FIRST
     SMALLICON = 2,
     LIST = 3,
     DETAILS = 4,
@@ -4009,7 +4008,8 @@ pub const FOLDERVIEWMODE = enum(i32) {
     TILE = 6,
     THUMBSTRIP = 7,
     CONTENT = 8,
-    // LAST = 8, this enum value conflicts with CONTENT
+    pub const ICON = .FIRST;
+    pub const LAST = .CONTENT;
 };
 pub const FVM_AUTO = FOLDERVIEWMODE.AUTO;
 pub const FVM_FIRST = FOLDERVIEWMODE.FIRST;
@@ -4026,12 +4026,12 @@ pub const FVM_LAST = FOLDERVIEWMODE.CONTENT;
 pub const FOLDERLOGICALVIEWMODE = enum(i32) {
     UNSPECIFIED = -1,
     FIRST = 1,
-    // DETAILS = 1, this enum value conflicts with FIRST
     TILES = 2,
     ICONS = 3,
     LIST = 4,
     CONTENT = 5,
-    // LAST = 5, this enum value conflicts with CONTENT
+    pub const DETAILS = .FIRST;
+    pub const LAST = .CONTENT;
 };
 pub const FLVM_UNSPECIFIED = FOLDERLOGICALVIEWMODE.UNSPECIFIED;
 pub const FLVM_FIRST = FOLDERLOGICALVIEWMODE.FIRST;
@@ -5562,7 +5562,6 @@ pub const STGOP_NEW = STGOP.NEW;
 
 pub const _TRANSFER_SOURCE_FLAGS = enum(i32) {
     NORMAL = 0,
-    // FAIL_EXIST = 0, this enum value conflicts with NORMAL
     RENAME_EXIST = 1,
     OVERWRITE_EXIST = 2,
     ALLOW_DECRYPTION = 4,
@@ -5575,6 +5574,7 @@ pub const _TRANSFER_SOURCE_FLAGS = enum(i32) {
     COPY_LOCALIZED_NAME = 512,
     MOVE_AS_COPY_DELETE = 1024,
     SUSPEND_SHELLEVENTS = 2048,
+    pub const FAIL_EXIST = .NORMAL;
 };
 pub const TSF_NORMAL = _TRANSFER_SOURCE_FLAGS.NORMAL;
 pub const TSF_FAIL_EXIST = _TRANSFER_SOURCE_FLAGS.NORMAL;
@@ -6133,8 +6133,8 @@ pub const SIATTRIBFLAGS = enum(i32) {
     AND = 1,
     OR = 2,
     APPCOMPAT = 3,
-    // MASK = 3, this enum value conflicts with APPCOMPAT
     ALLITEMS = 16384,
+    pub const MASK = .APPCOMPAT;
 };
 pub const SIATTRIBFLAGS_AND = SIATTRIBFLAGS.AND;
 pub const SIATTRIBFLAGS_OR = SIATTRIBFLAGS.OR;
@@ -11441,9 +11441,9 @@ pub const IExplorerCommandProvider = extern union {
 
 pub const CPVIEW = enum(i32) {
     CLASSIC = 0,
-    // ALLITEMS = 0, this enum value conflicts with CLASSIC
     CATEGORY = 1,
-    // HOME = 1, this enum value conflicts with CATEGORY
+    pub const ALLITEMS = .CLASSIC;
+    pub const HOME = .CATEGORY;
 };
 pub const CPVIEW_CLASSIC = CPVIEW.CLASSIC;
 pub const CPVIEW_ALLITEMS = CPVIEW.CLASSIC;
@@ -12030,7 +12030,7 @@ pub const LFF_ALLITEMS = LIBRARYFOLDERFILTER.ALLITEMS;
 pub const LIBRARYOPTIONFLAGS = enum(i32) {
     DEFAULT = 0,
     PINNEDTONAVPANE = 1,
-    // MASK_ALL = 1, this enum value conflicts with PINNEDTONAVPANE
+    pub const MASK_ALL = .PINNEDTONAVPANE;
 };
 pub const LOF_DEFAULT = LIBRARYOPTIONFLAGS.DEFAULT;
 pub const LOF_PINNEDTONAVPANE = LIBRARYOPTIONFLAGS.PINNEDTONAVPANE;
@@ -14827,8 +14827,8 @@ pub const _NSTCECLICKTYPE = enum(i32) {
     LBUTTON = 1,
     MBUTTON = 2,
     RBUTTON = 3,
-    // BUTTON = 3, this enum value conflicts with RBUTTON
     DBLCLICK = 4,
+    pub const BUTTON = .RBUTTON;
 };
 pub const NSTCECT_LBUTTON = _NSTCECLICKTYPE.LBUTTON;
 pub const NSTCECT_MBUTTON = _NSTCECLICKTYPE.MBUTTON;
@@ -19599,8 +19599,6 @@ pub const KNOWN_FOLDER_FLAG = enum(i32) {
     RETURN_FILTER_REDIRECTION_TARGET = 262144,
     FORCE_PACKAGE_REDIRECTION = 131072,
     NO_PACKAGE_REDIRECTION = 65536,
-    // FORCE_APPCONTAINER_REDIRECTION = 131072, this enum value conflicts with FORCE_PACKAGE_REDIRECTION
-    // NO_APPCONTAINER_REDIRECTION = 65536, this enum value conflicts with NO_PACKAGE_REDIRECTION
     CREATE = 32768,
     DONT_VERIFY = 16384,
     DONT_UNEXPAND = 8192,
@@ -19610,6 +19608,8 @@ pub const KNOWN_FOLDER_FLAG = enum(i32) {
     NOT_PARENT_RELATIVE = 512,
     SIMPLE_IDLIST = 256,
     ALIAS_ONLY = -2147483648,
+    pub const FORCE_APPCONTAINER_REDIRECTION = .FORCE_PACKAGE_REDIRECTION;
+    pub const NO_APPCONTAINER_REDIRECTION = .NO_PACKAGE_REDIRECTION;
 };
 pub const KF_FLAG_DEFAULT = KNOWN_FOLDER_FLAG.DEFAULT;
 pub const KF_FLAG_FORCE_APP_DATA_REDIRECTION = KNOWN_FOLDER_FLAG.FORCE_APP_DATA_REDIRECTION;
@@ -23463,8 +23463,8 @@ pub const SYNCMGR_HANDLER_TYPE = enum(i32) {
     FOLDER = 3,
     SERVICE = 4,
     COMPUTER = 5,
-    // MIN = 0, this enum value conflicts with UNSPECIFIED
-    // MAX = 5, this enum value conflicts with COMPUTER
+    pub const MIN = .UNSPECIFIED;
+    pub const MAX = .COMPUTER;
 };
 pub const SYNCMGR_HT_UNSPECIFIED = SYNCMGR_HANDLER_TYPE.UNSPECIFIED;
 pub const SYNCMGR_HT_APPLICATION = SYNCMGR_HANDLER_TYPE.APPLICATION;
@@ -23776,7 +23776,7 @@ pub const SYNCMGR_PROGRESS_STATUS = enum(i32) {
     FAILED = 4,
     CANCELED = 5,
     DISCONNECTED = 6,
-    // MAX = 6, this enum value conflicts with DISCONNECTED
+    pub const MAX = .DISCONNECTED;
 };
 pub const SYNCMGR_PS_UPDATING = SYNCMGR_PROGRESS_STATUS.UPDATING;
 pub const SYNCMGR_PS_UPDATING_INDETERMINATE = SYNCMGR_PROGRESS_STATUS.UPDATING_INDETERMINATE;
@@ -23790,7 +23790,7 @@ pub const SYNCMGR_CANCEL_REQUEST = enum(i32) {
     NONE = 0,
     CANCEL_ITEM = 1,
     CANCEL_ALL = 2,
-    // MAX = 2, this enum value conflicts with CANCEL_ALL
+    pub const MAX = .CANCEL_ALL;
 };
 pub const SYNCMGR_CR_NONE = SYNCMGR_CANCEL_REQUEST.NONE;
 pub const SYNCMGR_CR_CANCEL_ITEM = SYNCMGR_CANCEL_REQUEST.CANCEL_ITEM;
@@ -23801,7 +23801,7 @@ pub const SYNCMGR_EVENT_LEVEL = enum(i32) {
     INFORMATION = 1,
     WARNING = 2,
     ERROR = 3,
-    // MAX = 3, this enum value conflicts with ERROR
+    pub const MAX = .ERROR;
 };
 pub const SYNCMGR_EL_INFORMATION = SYNCMGR_EVENT_LEVEL.INFORMATION;
 pub const SYNCMGR_EL_WARNING = SYNCMGR_EVENT_LEVEL.WARNING;
@@ -23810,7 +23810,7 @@ pub const SYNCMGR_EL_MAX = SYNCMGR_EVENT_LEVEL.ERROR;
 
 pub const SYNCMGR_EVENT_FLAGS = enum(i32) {
     NONE = 0,
-    // VALID = 0, this enum value conflicts with NONE
+    pub const VALID = .NONE;
 };
 pub const SYNCMGR_EF_NONE = SYNCMGR_EVENT_FLAGS.NONE;
 pub const SYNCMGR_EF_VALID = SYNCMGR_EVENT_FLAGS.NONE;
@@ -24010,10 +24010,10 @@ pub const ISyncMgrSyncResult = extern union {
 
 pub const SYNCMGR_CONTROL_FLAGS = enum(i32) {
     NONE = 0,
-    // NOWAIT = 0, this enum value conflicts with NONE
     WAIT = 1,
     NOUI = 2,
     VALID = 3,
+    pub const NOWAIT = .NONE;
 };
 pub const SYNCMGR_CF_NONE = SYNCMGR_CONTROL_FLAGS.NONE;
 pub const SYNCMGR_CF_NOWAIT = SYNCMGR_CONTROL_FLAGS.NONE;
@@ -24024,7 +24024,7 @@ pub const SYNCMGR_CF_VALID = SYNCMGR_CONTROL_FLAGS.VALID;
 pub const SYNCMGR_SYNC_CONTROL_FLAGS = enum(i32) {
     NONE = 0,
     IGNORE_IF_ALREADY_SYNCING = 1,
-    // VALID = 1, this enum value conflicts with IGNORE_IF_ALREADY_SYNCING
+    pub const VALID = .IGNORE_IF_ALREADY_SYNCING;
 };
 pub const SYNCMGR_SCF_NONE = SYNCMGR_SYNC_CONTROL_FLAGS.NONE;
 pub const SYNCMGR_SCF_IGNORE_IF_ALREADY_SYNCING = SYNCMGR_SYNC_CONTROL_FLAGS.IGNORE_IF_ALREADY_SYNCING;
@@ -24034,7 +24034,7 @@ pub const SYNCMGR_UPDATE_REASON = enum(i32) {
     ADDED = 0,
     CHANGED = 1,
     REMOVED = 2,
-    // MAX = 2, this enum value conflicts with REMOVED
+    pub const MAX = .REMOVED;
 };
 pub const SYNCMGR_UR_ADDED = SYNCMGR_UPDATE_REASON.ADDED;
 pub const SYNCMGR_UR_CHANGED = SYNCMGR_UPDATE_REASON.CHANGED;
@@ -24822,7 +24822,6 @@ pub const CLSID_SharedBitmap = &CLSID_SharedBitmap_Value;
 
 pub const WTS_FLAGS = enum(i32) {
     NONE = 0,
-    // EXTRACT = 0, this enum value conflicts with NONE
     INCACHEONLY = 1,
     FASTEXTRACT = 2,
     FORCEEXTRACTION = 4,
@@ -24838,6 +24837,7 @@ pub const WTS_FLAGS = enum(i32) {
     WIDETHUMBNAILS = 16384,
     IDEALCACHESIZEONLY = 32768,
     SCALEUP = 65536,
+    pub const EXTRACT = .NONE;
 };
 pub const WTS_NONE = WTS_FLAGS.NONE;
 pub const WTS_EXTRACT = WTS_FLAGS.NONE;
@@ -25412,7 +25412,7 @@ pub const SYNCMGRLOGLEVEL = enum(i32) {
     INFORMATION = 1,
     WARNING = 2,
     ERROR = 3,
-    // LOGLEVELMAX = 3, this enum value conflicts with ERROR
+    pub const LOGLEVELMAX = .ERROR;
 };
 pub const SYNCMGRLOGLEVEL_INFORMATION = SYNCMGRLOGLEVEL.INFORMATION;
 pub const SYNCMGRLOGLEVEL_WARNING = SYNCMGRLOGLEVEL.WARNING;
@@ -27265,13 +27265,13 @@ pub const SECURELOCKCODE = enum(i32) {
     SET_FORTEZZA = 5,
     SET_SECURE128BIT = 6,
     FIRSTSUGGEST = 7,
-    // SUGGEST_UNSECURE = 7, this enum value conflicts with FIRSTSUGGEST
     SUGGEST_MIXED = 8,
     SUGGEST_SECUREUNKNOWNBIT = 9,
     SUGGEST_SECURE40BIT = 10,
     SUGGEST_SECURE56BIT = 11,
     SUGGEST_FORTEZZA = 12,
     SUGGEST_SECURE128BIT = 13,
+    pub const SUGGEST_UNSECURE = .FIRSTSUGGEST;
 };
 pub const SECURELOCK_NOCHANGE = SECURELOCKCODE.NOCHANGE;
 pub const SECURELOCK_SET_UNSECURE = SECURELOCKCODE.SET_UNSECURE;

@@ -5309,8 +5309,8 @@ pub const GPIOBUTTONS_BUTTON_TYPE = enum(i32) {
     OEM_CUSTOM = 13,
     OEM_CUSTOM2 = 14,
     OEM_CUSTOM3 = 15,
-    // COUNT_MIN = 5, this enum value conflicts with BACK
     COUNT = 16,
+    pub const COUNT_MIN = .BACK;
 };
 pub const GPIO_BUTTON_POWER = GPIOBUTTONS_BUTTON_TYPE.POWER;
 pub const GPIO_BUTTON_WINDOWS = GPIOBUTTONS_BUTTON_TYPE.WINDOWS;
