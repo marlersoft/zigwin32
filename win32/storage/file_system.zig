@@ -7845,387 +7845,656 @@ pub extern "ntdll" fn NtCreateFile(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (93)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const WIN32_FIND_DATA = thismodule.WIN32_FIND_DATAA;
-        pub const NTMS_DRIVEINFORMATION = thismodule.NTMS_DRIVEINFORMATIONA;
-        pub const NTMS_CHANGERINFORMATION = thismodule.NTMS_CHANGERINFORMATIONA;
-        pub const NTMS_PMIDINFORMATION = thismodule.NTMS_PMIDINFORMATIONA;
-        pub const NTMS_PARTITIONINFORMATION = thismodule.NTMS_PARTITIONINFORMATIONA;
-        pub const NTMS_DRIVETYPEINFORMATION = thismodule.NTMS_DRIVETYPEINFORMATIONA;
-        pub const NTMS_CHANGERTYPEINFORMATION = thismodule.NTMS_CHANGERTYPEINFORMATIONA;
-        pub const NTMS_LIBREQUESTINFORMATION = thismodule.NTMS_LIBREQUESTINFORMATIONA;
-        pub const NTMS_OPREQUESTINFORMATION = thismodule.NTMS_OPREQUESTINFORMATIONA;
-        pub const NTMS_OBJECTINFORMATION = thismodule.NTMS_OBJECTINFORMATIONA;
-        pub const NTMS_I1_LIBREQUESTINFORMATION = thismodule.NTMS_I1_LIBREQUESTINFORMATIONA;
-        pub const NTMS_I1_PMIDINFORMATION = thismodule.NTMS_I1_PMIDINFORMATIONA;
-        pub const NTMS_I1_PARTITIONINFORMATION = thismodule.NTMS_I1_PARTITIONINFORMATIONA;
-        pub const NTMS_I1_OPREQUESTINFORMATION = thismodule.NTMS_I1_OPREQUESTINFORMATIONA;
-        pub const NTMS_I1_OBJECTINFORMATION = thismodule.NTMS_I1_OBJECTINFORMATIONA;
-        pub const SearchPath = thismodule.SearchPathA;
-        pub const CreateDirectory = thismodule.CreateDirectoryA;
-        pub const CreateFile = thismodule.CreateFileA;
-        pub const DefineDosDevice = thismodule.DefineDosDeviceA;
-        pub const DeleteFile = thismodule.DeleteFileA;
-        pub const DeleteVolumeMountPoint = thismodule.DeleteVolumeMountPointA;
-        pub const FindFirstChangeNotification = thismodule.FindFirstChangeNotificationA;
-        pub const FindFirstFile = thismodule.FindFirstFileA;
-        pub const FindFirstFileEx = thismodule.FindFirstFileExA;
-        pub const FindFirstVolume = thismodule.FindFirstVolumeA;
-        pub const FindNextFile = thismodule.FindNextFileA;
-        pub const FindNextVolume = thismodule.FindNextVolumeA;
-        pub const GetDiskFreeSpace = thismodule.GetDiskFreeSpaceA;
-        pub const GetDiskFreeSpaceEx = thismodule.GetDiskFreeSpaceExA;
-        pub const GetDiskSpaceInformation = thismodule.GetDiskSpaceInformationA;
-        pub const GetDriveType = thismodule.GetDriveTypeA;
-        pub const GetFileAttributes = thismodule.GetFileAttributesA;
-        pub const GetFileAttributesEx = thismodule.GetFileAttributesExA;
-        pub const GetFinalPathNameByHandle = thismodule.GetFinalPathNameByHandleA;
-        pub const GetFullPathName = thismodule.GetFullPathNameA;
-        pub const GetLogicalDriveStrings = thismodule.GetLogicalDriveStringsA;
-        pub const GetLongPathName = thismodule.GetLongPathNameA;
-        pub const GetShortPathName = thismodule.GetShortPathNameA;
-        pub const GetTempFileName = thismodule.GetTempFileNameA;
-        pub const GetVolumeInformation = thismodule.GetVolumeInformationA;
-        pub const GetVolumePathName = thismodule.GetVolumePathNameA;
-        pub const QueryDosDevice = thismodule.QueryDosDeviceA;
-        pub const RemoveDirectory = thismodule.RemoveDirectoryA;
-        pub const SetFileAttributes = thismodule.SetFileAttributesA;
-        pub const GetTempPath = thismodule.GetTempPathA;
-        pub const GetVolumeNameForVolumeMountPoint = thismodule.GetVolumeNameForVolumeMountPointA;
-        pub const GetVolumePathNamesForVolumeName = thismodule.GetVolumePathNamesForVolumeNameA;
-        pub const GetCompressedFileSize = thismodule.GetCompressedFileSizeA;
-        pub const GetTempPath2 = thismodule.GetTempPath2A;
-        pub const VerFindFile = thismodule.VerFindFileA;
-        pub const VerInstallFile = thismodule.VerInstallFileA;
-        pub const GetFileVersionInfoSize = thismodule.GetFileVersionInfoSizeA;
-        pub const GetFileVersionInfo = thismodule.GetFileVersionInfoA;
-        pub const GetFileVersionInfoSizeEx = thismodule.GetFileVersionInfoSizeExA;
-        pub const GetFileVersionInfoEx = thismodule.GetFileVersionInfoExA;
-        pub const VerLanguageName = thismodule.VerLanguageNameA;
-        pub const VerQueryValue = thismodule.VerQueryValueA;
-        pub const GetExpandedName = thismodule.GetExpandedNameA;
-        pub const LZOpenFile = thismodule.LZOpenFileA;
-        pub const GetBinaryType = thismodule.GetBinaryTypeA;
-        pub const GetLongPathNameTransacted = thismodule.GetLongPathNameTransactedA;
-        pub const SetFileShortName = thismodule.SetFileShortNameA;
-        pub const EncryptFile = thismodule.EncryptFileA;
-        pub const DecryptFile = thismodule.DecryptFileA;
-        pub const FileEncryptionStatus = thismodule.FileEncryptionStatusA;
-        pub const OpenEncryptedFileRaw = thismodule.OpenEncryptedFileRawA;
-        pub const CreateDirectoryEx = thismodule.CreateDirectoryExA;
-        pub const CreateDirectoryTransacted = thismodule.CreateDirectoryTransactedA;
-        pub const RemoveDirectoryTransacted = thismodule.RemoveDirectoryTransactedA;
-        pub const GetFullPathNameTransacted = thismodule.GetFullPathNameTransactedA;
-        pub const CreateFileTransacted = thismodule.CreateFileTransactedA;
-        pub const SetFileAttributesTransacted = thismodule.SetFileAttributesTransactedA;
-        pub const GetFileAttributesTransacted = thismodule.GetFileAttributesTransactedA;
-        pub const GetCompressedFileSizeTransacted = thismodule.GetCompressedFileSizeTransactedA;
-        pub const DeleteFileTransacted = thismodule.DeleteFileTransactedA;
-        pub const CheckNameLegalDOS8Dot3 = thismodule.CheckNameLegalDOS8Dot3A;
-        pub const FindFirstFileTransacted = thismodule.FindFirstFileTransactedA;
-        pub const CopyFile = thismodule.CopyFileA;
-        pub const CopyFileEx = thismodule.CopyFileExA;
-        pub const CopyFileTransacted = thismodule.CopyFileTransactedA;
-        pub const MoveFile = thismodule.MoveFileA;
-        pub const MoveFileEx = thismodule.MoveFileExA;
-        pub const MoveFileWithProgress = thismodule.MoveFileWithProgressA;
-        pub const MoveFileTransacted = thismodule.MoveFileTransactedA;
-        pub const ReplaceFile = thismodule.ReplaceFileA;
-        pub const CreateHardLink = thismodule.CreateHardLinkA;
-        pub const CreateHardLinkTransacted = thismodule.CreateHardLinkTransactedA;
-        pub const SetVolumeLabel = thismodule.SetVolumeLabelA;
-        pub const FindFirstVolumeMountPoint = thismodule.FindFirstVolumeMountPointA;
-        pub const FindNextVolumeMountPoint = thismodule.FindNextVolumeMountPointA;
-        pub const SetVolumeMountPoint = thismodule.SetVolumeMountPointA;
-        pub const CreateSymbolicLink = thismodule.CreateSymbolicLinkA;
-        pub const CreateSymbolicLinkTransacted = thismodule.CreateSymbolicLinkTransactedA;
-    },
-    .wide => struct {
-        pub const WIN32_FIND_DATA = thismodule.WIN32_FIND_DATAW;
-        pub const NTMS_DRIVEINFORMATION = thismodule.NTMS_DRIVEINFORMATIONW;
-        pub const NTMS_CHANGERINFORMATION = thismodule.NTMS_CHANGERINFORMATIONW;
-        pub const NTMS_PMIDINFORMATION = thismodule.NTMS_PMIDINFORMATIONW;
-        pub const NTMS_PARTITIONINFORMATION = thismodule.NTMS_PARTITIONINFORMATIONW;
-        pub const NTMS_DRIVETYPEINFORMATION = thismodule.NTMS_DRIVETYPEINFORMATIONW;
-        pub const NTMS_CHANGERTYPEINFORMATION = thismodule.NTMS_CHANGERTYPEINFORMATIONW;
-        pub const NTMS_LIBREQUESTINFORMATION = thismodule.NTMS_LIBREQUESTINFORMATIONW;
-        pub const NTMS_OPREQUESTINFORMATION = thismodule.NTMS_OPREQUESTINFORMATIONW;
-        pub const NTMS_OBJECTINFORMATION = thismodule.NTMS_OBJECTINFORMATIONW;
-        pub const NTMS_I1_LIBREQUESTINFORMATION = thismodule.NTMS_I1_LIBREQUESTINFORMATIONW;
-        pub const NTMS_I1_PMIDINFORMATION = thismodule.NTMS_I1_PMIDINFORMATIONW;
-        pub const NTMS_I1_PARTITIONINFORMATION = thismodule.NTMS_I1_PARTITIONINFORMATIONW;
-        pub const NTMS_I1_OPREQUESTINFORMATION = thismodule.NTMS_I1_OPREQUESTINFORMATIONW;
-        pub const NTMS_I1_OBJECTINFORMATION = thismodule.NTMS_I1_OBJECTINFORMATIONW;
-        pub const SearchPath = thismodule.SearchPathW;
-        pub const CreateDirectory = thismodule.CreateDirectoryW;
-        pub const CreateFile = thismodule.CreateFileW;
-        pub const DefineDosDevice = thismodule.DefineDosDeviceW;
-        pub const DeleteFile = thismodule.DeleteFileW;
-        pub const DeleteVolumeMountPoint = thismodule.DeleteVolumeMountPointW;
-        pub const FindFirstChangeNotification = thismodule.FindFirstChangeNotificationW;
-        pub const FindFirstFile = thismodule.FindFirstFileW;
-        pub const FindFirstFileEx = thismodule.FindFirstFileExW;
-        pub const FindFirstVolume = thismodule.FindFirstVolumeW;
-        pub const FindNextFile = thismodule.FindNextFileW;
-        pub const FindNextVolume = thismodule.FindNextVolumeW;
-        pub const GetDiskFreeSpace = thismodule.GetDiskFreeSpaceW;
-        pub const GetDiskFreeSpaceEx = thismodule.GetDiskFreeSpaceExW;
-        pub const GetDiskSpaceInformation = thismodule.GetDiskSpaceInformationW;
-        pub const GetDriveType = thismodule.GetDriveTypeW;
-        pub const GetFileAttributes = thismodule.GetFileAttributesW;
-        pub const GetFileAttributesEx = thismodule.GetFileAttributesExW;
-        pub const GetFinalPathNameByHandle = thismodule.GetFinalPathNameByHandleW;
-        pub const GetFullPathName = thismodule.GetFullPathNameW;
-        pub const GetLogicalDriveStrings = thismodule.GetLogicalDriveStringsW;
-        pub const GetLongPathName = thismodule.GetLongPathNameW;
-        pub const GetShortPathName = thismodule.GetShortPathNameW;
-        pub const GetTempFileName = thismodule.GetTempFileNameW;
-        pub const GetVolumeInformation = thismodule.GetVolumeInformationW;
-        pub const GetVolumePathName = thismodule.GetVolumePathNameW;
-        pub const QueryDosDevice = thismodule.QueryDosDeviceW;
-        pub const RemoveDirectory = thismodule.RemoveDirectoryW;
-        pub const SetFileAttributes = thismodule.SetFileAttributesW;
-        pub const GetTempPath = thismodule.GetTempPathW;
-        pub const GetVolumeNameForVolumeMountPoint = thismodule.GetVolumeNameForVolumeMountPointW;
-        pub const GetVolumePathNamesForVolumeName = thismodule.GetVolumePathNamesForVolumeNameW;
-        pub const GetCompressedFileSize = thismodule.GetCompressedFileSizeW;
-        pub const GetTempPath2 = thismodule.GetTempPath2W;
-        pub const VerFindFile = thismodule.VerFindFileW;
-        pub const VerInstallFile = thismodule.VerInstallFileW;
-        pub const GetFileVersionInfoSize = thismodule.GetFileVersionInfoSizeW;
-        pub const GetFileVersionInfo = thismodule.GetFileVersionInfoW;
-        pub const GetFileVersionInfoSizeEx = thismodule.GetFileVersionInfoSizeExW;
-        pub const GetFileVersionInfoEx = thismodule.GetFileVersionInfoExW;
-        pub const VerLanguageName = thismodule.VerLanguageNameW;
-        pub const VerQueryValue = thismodule.VerQueryValueW;
-        pub const GetExpandedName = thismodule.GetExpandedNameW;
-        pub const LZOpenFile = thismodule.LZOpenFileW;
-        pub const GetBinaryType = thismodule.GetBinaryTypeW;
-        pub const GetLongPathNameTransacted = thismodule.GetLongPathNameTransactedW;
-        pub const SetFileShortName = thismodule.SetFileShortNameW;
-        pub const EncryptFile = thismodule.EncryptFileW;
-        pub const DecryptFile = thismodule.DecryptFileW;
-        pub const FileEncryptionStatus = thismodule.FileEncryptionStatusW;
-        pub const OpenEncryptedFileRaw = thismodule.OpenEncryptedFileRawW;
-        pub const CreateDirectoryEx = thismodule.CreateDirectoryExW;
-        pub const CreateDirectoryTransacted = thismodule.CreateDirectoryTransactedW;
-        pub const RemoveDirectoryTransacted = thismodule.RemoveDirectoryTransactedW;
-        pub const GetFullPathNameTransacted = thismodule.GetFullPathNameTransactedW;
-        pub const CreateFileTransacted = thismodule.CreateFileTransactedW;
-        pub const SetFileAttributesTransacted = thismodule.SetFileAttributesTransactedW;
-        pub const GetFileAttributesTransacted = thismodule.GetFileAttributesTransactedW;
-        pub const GetCompressedFileSizeTransacted = thismodule.GetCompressedFileSizeTransactedW;
-        pub const DeleteFileTransacted = thismodule.DeleteFileTransactedW;
-        pub const CheckNameLegalDOS8Dot3 = thismodule.CheckNameLegalDOS8Dot3W;
-        pub const FindFirstFileTransacted = thismodule.FindFirstFileTransactedW;
-        pub const CopyFile = thismodule.CopyFileW;
-        pub const CopyFileEx = thismodule.CopyFileExW;
-        pub const CopyFileTransacted = thismodule.CopyFileTransactedW;
-        pub const MoveFile = thismodule.MoveFileW;
-        pub const MoveFileEx = thismodule.MoveFileExW;
-        pub const MoveFileWithProgress = thismodule.MoveFileWithProgressW;
-        pub const MoveFileTransacted = thismodule.MoveFileTransactedW;
-        pub const ReplaceFile = thismodule.ReplaceFileW;
-        pub const CreateHardLink = thismodule.CreateHardLinkW;
-        pub const CreateHardLinkTransacted = thismodule.CreateHardLinkTransactedW;
-        pub const SetVolumeLabel = thismodule.SetVolumeLabelW;
-        pub const FindFirstVolumeMountPoint = thismodule.FindFirstVolumeMountPointW;
-        pub const FindNextVolumeMountPoint = thismodule.FindNextVolumeMountPointW;
-        pub const SetVolumeMountPoint = thismodule.SetVolumeMountPointW;
-        pub const CreateSymbolicLink = thismodule.CreateSymbolicLinkW;
-        pub const CreateSymbolicLinkTransacted = thismodule.CreateSymbolicLinkTransactedW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const WIN32_FIND_DATA = *opaque{};
-        pub const NTMS_DRIVEINFORMATION = *opaque{};
-        pub const NTMS_CHANGERINFORMATION = *opaque{};
-        pub const NTMS_PMIDINFORMATION = *opaque{};
-        pub const NTMS_PARTITIONINFORMATION = *opaque{};
-        pub const NTMS_DRIVETYPEINFORMATION = *opaque{};
-        pub const NTMS_CHANGERTYPEINFORMATION = *opaque{};
-        pub const NTMS_LIBREQUESTINFORMATION = *opaque{};
-        pub const NTMS_OPREQUESTINFORMATION = *opaque{};
-        pub const NTMS_OBJECTINFORMATION = *opaque{};
-        pub const NTMS_I1_LIBREQUESTINFORMATION = *opaque{};
-        pub const NTMS_I1_PMIDINFORMATION = *opaque{};
-        pub const NTMS_I1_PARTITIONINFORMATION = *opaque{};
-        pub const NTMS_I1_OPREQUESTINFORMATION = *opaque{};
-        pub const NTMS_I1_OBJECTINFORMATION = *opaque{};
-        pub const SearchPath = *opaque{};
-        pub const CreateDirectory = *opaque{};
-        pub const CreateFile = *opaque{};
-        pub const DefineDosDevice = *opaque{};
-        pub const DeleteFile = *opaque{};
-        pub const DeleteVolumeMountPoint = *opaque{};
-        pub const FindFirstChangeNotification = *opaque{};
-        pub const FindFirstFile = *opaque{};
-        pub const FindFirstFileEx = *opaque{};
-        pub const FindFirstVolume = *opaque{};
-        pub const FindNextFile = *opaque{};
-        pub const FindNextVolume = *opaque{};
-        pub const GetDiskFreeSpace = *opaque{};
-        pub const GetDiskFreeSpaceEx = *opaque{};
-        pub const GetDiskSpaceInformation = *opaque{};
-        pub const GetDriveType = *opaque{};
-        pub const GetFileAttributes = *opaque{};
-        pub const GetFileAttributesEx = *opaque{};
-        pub const GetFinalPathNameByHandle = *opaque{};
-        pub const GetFullPathName = *opaque{};
-        pub const GetLogicalDriveStrings = *opaque{};
-        pub const GetLongPathName = *opaque{};
-        pub const GetShortPathName = *opaque{};
-        pub const GetTempFileName = *opaque{};
-        pub const GetVolumeInformation = *opaque{};
-        pub const GetVolumePathName = *opaque{};
-        pub const QueryDosDevice = *opaque{};
-        pub const RemoveDirectory = *opaque{};
-        pub const SetFileAttributes = *opaque{};
-        pub const GetTempPath = *opaque{};
-        pub const GetVolumeNameForVolumeMountPoint = *opaque{};
-        pub const GetVolumePathNamesForVolumeName = *opaque{};
-        pub const GetCompressedFileSize = *opaque{};
-        pub const GetTempPath2 = *opaque{};
-        pub const VerFindFile = *opaque{};
-        pub const VerInstallFile = *opaque{};
-        pub const GetFileVersionInfoSize = *opaque{};
-        pub const GetFileVersionInfo = *opaque{};
-        pub const GetFileVersionInfoSizeEx = *opaque{};
-        pub const GetFileVersionInfoEx = *opaque{};
-        pub const VerLanguageName = *opaque{};
-        pub const VerQueryValue = *opaque{};
-        pub const GetExpandedName = *opaque{};
-        pub const LZOpenFile = *opaque{};
-        pub const GetBinaryType = *opaque{};
-        pub const GetLongPathNameTransacted = *opaque{};
-        pub const SetFileShortName = *opaque{};
-        pub const EncryptFile = *opaque{};
-        pub const DecryptFile = *opaque{};
-        pub const FileEncryptionStatus = *opaque{};
-        pub const OpenEncryptedFileRaw = *opaque{};
-        pub const CreateDirectoryEx = *opaque{};
-        pub const CreateDirectoryTransacted = *opaque{};
-        pub const RemoveDirectoryTransacted = *opaque{};
-        pub const GetFullPathNameTransacted = *opaque{};
-        pub const CreateFileTransacted = *opaque{};
-        pub const SetFileAttributesTransacted = *opaque{};
-        pub const GetFileAttributesTransacted = *opaque{};
-        pub const GetCompressedFileSizeTransacted = *opaque{};
-        pub const DeleteFileTransacted = *opaque{};
-        pub const CheckNameLegalDOS8Dot3 = *opaque{};
-        pub const FindFirstFileTransacted = *opaque{};
-        pub const CopyFile = *opaque{};
-        pub const CopyFileEx = *opaque{};
-        pub const CopyFileTransacted = *opaque{};
-        pub const MoveFile = *opaque{};
-        pub const MoveFileEx = *opaque{};
-        pub const MoveFileWithProgress = *opaque{};
-        pub const MoveFileTransacted = *opaque{};
-        pub const ReplaceFile = *opaque{};
-        pub const CreateHardLink = *opaque{};
-        pub const CreateHardLinkTransacted = *opaque{};
-        pub const SetVolumeLabel = *opaque{};
-        pub const FindFirstVolumeMountPoint = *opaque{};
-        pub const FindNextVolumeMountPoint = *opaque{};
-        pub const SetVolumeMountPoint = *opaque{};
-        pub const CreateSymbolicLink = *opaque{};
-        pub const CreateSymbolicLinkTransacted = *opaque{};
-    } else struct {
-        pub const WIN32_FIND_DATA = @compileError("'WIN32_FIND_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_DRIVEINFORMATION = @compileError("'NTMS_DRIVEINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_CHANGERINFORMATION = @compileError("'NTMS_CHANGERINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_PMIDINFORMATION = @compileError("'NTMS_PMIDINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_PARTITIONINFORMATION = @compileError("'NTMS_PARTITIONINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_DRIVETYPEINFORMATION = @compileError("'NTMS_DRIVETYPEINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_CHANGERTYPEINFORMATION = @compileError("'NTMS_CHANGERTYPEINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_LIBREQUESTINFORMATION = @compileError("'NTMS_LIBREQUESTINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_OPREQUESTINFORMATION = @compileError("'NTMS_OPREQUESTINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_OBJECTINFORMATION = @compileError("'NTMS_OBJECTINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_I1_LIBREQUESTINFORMATION = @compileError("'NTMS_I1_LIBREQUESTINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_I1_PMIDINFORMATION = @compileError("'NTMS_I1_PMIDINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_I1_PARTITIONINFORMATION = @compileError("'NTMS_I1_PARTITIONINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_I1_OPREQUESTINFORMATION = @compileError("'NTMS_I1_OPREQUESTINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const NTMS_I1_OBJECTINFORMATION = @compileError("'NTMS_I1_OBJECTINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const SearchPath = @compileError("'SearchPath' requires that UNICODE be set to true or false in the root module");
-        pub const CreateDirectory = @compileError("'CreateDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const CreateFile = @compileError("'CreateFile' requires that UNICODE be set to true or false in the root module");
-        pub const DefineDosDevice = @compileError("'DefineDosDevice' requires that UNICODE be set to true or false in the root module");
-        pub const DeleteFile = @compileError("'DeleteFile' requires that UNICODE be set to true or false in the root module");
-        pub const DeleteVolumeMountPoint = @compileError("'DeleteVolumeMountPoint' requires that UNICODE be set to true or false in the root module");
-        pub const FindFirstChangeNotification = @compileError("'FindFirstChangeNotification' requires that UNICODE be set to true or false in the root module");
-        pub const FindFirstFile = @compileError("'FindFirstFile' requires that UNICODE be set to true or false in the root module");
-        pub const FindFirstFileEx = @compileError("'FindFirstFileEx' requires that UNICODE be set to true or false in the root module");
-        pub const FindFirstVolume = @compileError("'FindFirstVolume' requires that UNICODE be set to true or false in the root module");
-        pub const FindNextFile = @compileError("'FindNextFile' requires that UNICODE be set to true or false in the root module");
-        pub const FindNextVolume = @compileError("'FindNextVolume' requires that UNICODE be set to true or false in the root module");
-        pub const GetDiskFreeSpace = @compileError("'GetDiskFreeSpace' requires that UNICODE be set to true or false in the root module");
-        pub const GetDiskFreeSpaceEx = @compileError("'GetDiskFreeSpaceEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetDiskSpaceInformation = @compileError("'GetDiskSpaceInformation' requires that UNICODE be set to true or false in the root module");
-        pub const GetDriveType = @compileError("'GetDriveType' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileAttributes = @compileError("'GetFileAttributes' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileAttributesEx = @compileError("'GetFileAttributesEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetFinalPathNameByHandle = @compileError("'GetFinalPathNameByHandle' requires that UNICODE be set to true or false in the root module");
-        pub const GetFullPathName = @compileError("'GetFullPathName' requires that UNICODE be set to true or false in the root module");
-        pub const GetLogicalDriveStrings = @compileError("'GetLogicalDriveStrings' requires that UNICODE be set to true or false in the root module");
-        pub const GetLongPathName = @compileError("'GetLongPathName' requires that UNICODE be set to true or false in the root module");
-        pub const GetShortPathName = @compileError("'GetShortPathName' requires that UNICODE be set to true or false in the root module");
-        pub const GetTempFileName = @compileError("'GetTempFileName' requires that UNICODE be set to true or false in the root module");
-        pub const GetVolumeInformation = @compileError("'GetVolumeInformation' requires that UNICODE be set to true or false in the root module");
-        pub const GetVolumePathName = @compileError("'GetVolumePathName' requires that UNICODE be set to true or false in the root module");
-        pub const QueryDosDevice = @compileError("'QueryDosDevice' requires that UNICODE be set to true or false in the root module");
-        pub const RemoveDirectory = @compileError("'RemoveDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const SetFileAttributes = @compileError("'SetFileAttributes' requires that UNICODE be set to true or false in the root module");
-        pub const GetTempPath = @compileError("'GetTempPath' requires that UNICODE be set to true or false in the root module");
-        pub const GetVolumeNameForVolumeMountPoint = @compileError("'GetVolumeNameForVolumeMountPoint' requires that UNICODE be set to true or false in the root module");
-        pub const GetVolumePathNamesForVolumeName = @compileError("'GetVolumePathNamesForVolumeName' requires that UNICODE be set to true or false in the root module");
-        pub const GetCompressedFileSize = @compileError("'GetCompressedFileSize' requires that UNICODE be set to true or false in the root module");
-        pub const GetTempPath2 = @compileError("'GetTempPath2' requires that UNICODE be set to true or false in the root module");
-        pub const VerFindFile = @compileError("'VerFindFile' requires that UNICODE be set to true or false in the root module");
-        pub const VerInstallFile = @compileError("'VerInstallFile' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileVersionInfoSize = @compileError("'GetFileVersionInfoSize' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileVersionInfo = @compileError("'GetFileVersionInfo' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileVersionInfoSizeEx = @compileError("'GetFileVersionInfoSizeEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileVersionInfoEx = @compileError("'GetFileVersionInfoEx' requires that UNICODE be set to true or false in the root module");
-        pub const VerLanguageName = @compileError("'VerLanguageName' requires that UNICODE be set to true or false in the root module");
-        pub const VerQueryValue = @compileError("'VerQueryValue' requires that UNICODE be set to true or false in the root module");
-        pub const GetExpandedName = @compileError("'GetExpandedName' requires that UNICODE be set to true or false in the root module");
-        pub const LZOpenFile = @compileError("'LZOpenFile' requires that UNICODE be set to true or false in the root module");
-        pub const GetBinaryType = @compileError("'GetBinaryType' requires that UNICODE be set to true or false in the root module");
-        pub const GetLongPathNameTransacted = @compileError("'GetLongPathNameTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const SetFileShortName = @compileError("'SetFileShortName' requires that UNICODE be set to true or false in the root module");
-        pub const EncryptFile = @compileError("'EncryptFile' requires that UNICODE be set to true or false in the root module");
-        pub const DecryptFile = @compileError("'DecryptFile' requires that UNICODE be set to true or false in the root module");
-        pub const FileEncryptionStatus = @compileError("'FileEncryptionStatus' requires that UNICODE be set to true or false in the root module");
-        pub const OpenEncryptedFileRaw = @compileError("'OpenEncryptedFileRaw' requires that UNICODE be set to true or false in the root module");
-        pub const CreateDirectoryEx = @compileError("'CreateDirectoryEx' requires that UNICODE be set to true or false in the root module");
-        pub const CreateDirectoryTransacted = @compileError("'CreateDirectoryTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const RemoveDirectoryTransacted = @compileError("'RemoveDirectoryTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const GetFullPathNameTransacted = @compileError("'GetFullPathNameTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const CreateFileTransacted = @compileError("'CreateFileTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const SetFileAttributesTransacted = @compileError("'SetFileAttributesTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileAttributesTransacted = @compileError("'GetFileAttributesTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const GetCompressedFileSizeTransacted = @compileError("'GetCompressedFileSizeTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const DeleteFileTransacted = @compileError("'DeleteFileTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const CheckNameLegalDOS8Dot3 = @compileError("'CheckNameLegalDOS8Dot3' requires that UNICODE be set to true or false in the root module");
-        pub const FindFirstFileTransacted = @compileError("'FindFirstFileTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const CopyFile = @compileError("'CopyFile' requires that UNICODE be set to true or false in the root module");
-        pub const CopyFileEx = @compileError("'CopyFileEx' requires that UNICODE be set to true or false in the root module");
-        pub const CopyFileTransacted = @compileError("'CopyFileTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const MoveFile = @compileError("'MoveFile' requires that UNICODE be set to true or false in the root module");
-        pub const MoveFileEx = @compileError("'MoveFileEx' requires that UNICODE be set to true or false in the root module");
-        pub const MoveFileWithProgress = @compileError("'MoveFileWithProgress' requires that UNICODE be set to true or false in the root module");
-        pub const MoveFileTransacted = @compileError("'MoveFileTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const ReplaceFile = @compileError("'ReplaceFile' requires that UNICODE be set to true or false in the root module");
-        pub const CreateHardLink = @compileError("'CreateHardLink' requires that UNICODE be set to true or false in the root module");
-        pub const CreateHardLinkTransacted = @compileError("'CreateHardLinkTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const SetVolumeLabel = @compileError("'SetVolumeLabel' requires that UNICODE be set to true or false in the root module");
-        pub const FindFirstVolumeMountPoint = @compileError("'FindFirstVolumeMountPoint' requires that UNICODE be set to true or false in the root module");
-        pub const FindNextVolumeMountPoint = @compileError("'FindNextVolumeMountPoint' requires that UNICODE be set to true or false in the root module");
-        pub const SetVolumeMountPoint = @compileError("'SetVolumeMountPoint' requires that UNICODE be set to true or false in the root module");
-        pub const CreateSymbolicLink = @compileError("'CreateSymbolicLink' requires that UNICODE be set to true or false in the root module");
-        pub const CreateSymbolicLinkTransacted = @compileError("'CreateSymbolicLinkTransacted' requires that UNICODE be set to true or false in the root module");
-    },
+pub const WIN32_FIND_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WIN32_FIND_DATAA,
+    .wide => @This().WIN32_FIND_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WIN32_FIND_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_DRIVEINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_DRIVEINFORMATIONA,
+    .wide => @This().NTMS_DRIVEINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_DRIVEINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_CHANGERINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_CHANGERINFORMATIONA,
+    .wide => @This().NTMS_CHANGERINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_CHANGERINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_PMIDINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_PMIDINFORMATIONA,
+    .wide => @This().NTMS_PMIDINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_PMIDINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_PARTITIONINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_PARTITIONINFORMATIONA,
+    .wide => @This().NTMS_PARTITIONINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_PARTITIONINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_DRIVETYPEINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_DRIVETYPEINFORMATIONA,
+    .wide => @This().NTMS_DRIVETYPEINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_DRIVETYPEINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_CHANGERTYPEINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_CHANGERTYPEINFORMATIONA,
+    .wide => @This().NTMS_CHANGERTYPEINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_CHANGERTYPEINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_LIBREQUESTINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_LIBREQUESTINFORMATIONA,
+    .wide => @This().NTMS_LIBREQUESTINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_LIBREQUESTINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_OPREQUESTINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_OPREQUESTINFORMATIONA,
+    .wide => @This().NTMS_OPREQUESTINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_OPREQUESTINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_OBJECTINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_OBJECTINFORMATIONA,
+    .wide => @This().NTMS_OBJECTINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_OBJECTINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_I1_LIBREQUESTINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_I1_LIBREQUESTINFORMATIONA,
+    .wide => @This().NTMS_I1_LIBREQUESTINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_I1_LIBREQUESTINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_I1_PMIDINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_I1_PMIDINFORMATIONA,
+    .wide => @This().NTMS_I1_PMIDINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_I1_PMIDINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_I1_PARTITIONINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_I1_PARTITIONINFORMATIONA,
+    .wide => @This().NTMS_I1_PARTITIONINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_I1_PARTITIONINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_I1_OPREQUESTINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_I1_OPREQUESTINFORMATIONA,
+    .wide => @This().NTMS_I1_OPREQUESTINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_I1_OPREQUESTINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NTMS_I1_OBJECTINFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NTMS_I1_OBJECTINFORMATIONA,
+    .wide => @This().NTMS_I1_OBJECTINFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NTMS_I1_OBJECTINFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SearchPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SearchPathA,
+    .wide => @This().SearchPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SearchPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateDirectoryA,
+    .wide => @This().CreateDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateFileA,
+    .wide => @This().CreateFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DefineDosDevice = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DefineDosDeviceA,
+    .wide => @This().DefineDosDeviceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DefineDosDevice' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeleteFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeleteFileA,
+    .wide => @This().DeleteFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeleteFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeleteVolumeMountPoint = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeleteVolumeMountPointA,
+    .wide => @This().DeleteVolumeMountPointW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeleteVolumeMountPoint' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindFirstChangeNotification = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindFirstChangeNotificationA,
+    .wide => @This().FindFirstChangeNotificationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindFirstChangeNotification' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindFirstFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindFirstFileA,
+    .wide => @This().FindFirstFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindFirstFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindFirstFileEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindFirstFileExA,
+    .wide => @This().FindFirstFileExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindFirstFileEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindFirstVolume = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindFirstVolumeA,
+    .wide => @This().FindFirstVolumeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindFirstVolume' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindNextFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindNextFileA,
+    .wide => @This().FindNextFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindNextFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindNextVolume = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindNextVolumeA,
+    .wide => @This().FindNextVolumeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindNextVolume' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDiskFreeSpace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDiskFreeSpaceA,
+    .wide => @This().GetDiskFreeSpaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDiskFreeSpace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDiskFreeSpaceEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDiskFreeSpaceExA,
+    .wide => @This().GetDiskFreeSpaceExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDiskFreeSpaceEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDiskSpaceInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDiskSpaceInformationA,
+    .wide => @This().GetDiskSpaceInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDiskSpaceInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDriveType = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDriveTypeA,
+    .wide => @This().GetDriveTypeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDriveType' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFileAttributes = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFileAttributesA,
+    .wide => @This().GetFileAttributesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFileAttributes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFileAttributesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFileAttributesExA,
+    .wide => @This().GetFileAttributesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFileAttributesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFinalPathNameByHandle = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFinalPathNameByHandleA,
+    .wide => @This().GetFinalPathNameByHandleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFinalPathNameByHandle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFullPathName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFullPathNameA,
+    .wide => @This().GetFullPathNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFullPathName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetLogicalDriveStrings = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetLogicalDriveStringsA,
+    .wide => @This().GetLogicalDriveStringsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetLogicalDriveStrings' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetLongPathName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetLongPathNameA,
+    .wide => @This().GetLongPathNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetLongPathName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetShortPathName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetShortPathNameA,
+    .wide => @This().GetShortPathNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetShortPathName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetTempFileName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetTempFileNameA,
+    .wide => @This().GetTempFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetTempFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetVolumeInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetVolumeInformationA,
+    .wide => @This().GetVolumeInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetVolumeInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetVolumePathName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetVolumePathNameA,
+    .wide => @This().GetVolumePathNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetVolumePathName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QueryDosDevice = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().QueryDosDeviceA,
+    .wide => @This().QueryDosDeviceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QueryDosDevice' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveDirectoryA,
+    .wide => @This().RemoveDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetFileAttributes = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetFileAttributesA,
+    .wide => @This().SetFileAttributesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetFileAttributes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetTempPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetTempPathA,
+    .wide => @This().GetTempPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetTempPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetVolumeNameForVolumeMountPoint = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetVolumeNameForVolumeMountPointA,
+    .wide => @This().GetVolumeNameForVolumeMountPointW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetVolumeNameForVolumeMountPoint' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetVolumePathNamesForVolumeName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetVolumePathNamesForVolumeNameA,
+    .wide => @This().GetVolumePathNamesForVolumeNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetVolumePathNamesForVolumeName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCompressedFileSize = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetCompressedFileSizeA,
+    .wide => @This().GetCompressedFileSizeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCompressedFileSize' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetTempPath2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetTempPath2A,
+    .wide => @This().GetTempPath2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetTempPath2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const VerFindFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().VerFindFileA,
+    .wide => @This().VerFindFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'VerFindFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const VerInstallFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().VerInstallFileA,
+    .wide => @This().VerInstallFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'VerInstallFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFileVersionInfoSize = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFileVersionInfoSizeA,
+    .wide => @This().GetFileVersionInfoSizeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFileVersionInfoSize' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFileVersionInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFileVersionInfoA,
+    .wide => @This().GetFileVersionInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFileVersionInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFileVersionInfoSizeEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFileVersionInfoSizeExA,
+    .wide => @This().GetFileVersionInfoSizeExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFileVersionInfoSizeEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFileVersionInfoEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFileVersionInfoExA,
+    .wide => @This().GetFileVersionInfoExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFileVersionInfoEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const VerLanguageName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().VerLanguageNameA,
+    .wide => @This().VerLanguageNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'VerLanguageName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const VerQueryValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().VerQueryValueA,
+    .wide => @This().VerQueryValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'VerQueryValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetExpandedName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetExpandedNameA,
+    .wide => @This().GetExpandedNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetExpandedName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LZOpenFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LZOpenFileA,
+    .wide => @This().LZOpenFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LZOpenFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetBinaryType = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetBinaryTypeA,
+    .wide => @This().GetBinaryTypeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetBinaryType' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetLongPathNameTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetLongPathNameTransactedA,
+    .wide => @This().GetLongPathNameTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetLongPathNameTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetFileShortName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetFileShortNameA,
+    .wide => @This().SetFileShortNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetFileShortName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EncryptFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EncryptFileA,
+    .wide => @This().EncryptFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EncryptFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DecryptFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DecryptFileA,
+    .wide => @This().DecryptFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DecryptFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FileEncryptionStatus = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FileEncryptionStatusA,
+    .wide => @This().FileEncryptionStatusW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FileEncryptionStatus' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenEncryptedFileRaw = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenEncryptedFileRawA,
+    .wide => @This().OpenEncryptedFileRawW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenEncryptedFileRaw' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateDirectoryEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateDirectoryExA,
+    .wide => @This().CreateDirectoryExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateDirectoryEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateDirectoryTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateDirectoryTransactedA,
+    .wide => @This().CreateDirectoryTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateDirectoryTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveDirectoryTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveDirectoryTransactedA,
+    .wide => @This().RemoveDirectoryTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveDirectoryTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFullPathNameTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFullPathNameTransactedA,
+    .wide => @This().GetFullPathNameTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFullPathNameTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateFileTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateFileTransactedA,
+    .wide => @This().CreateFileTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateFileTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetFileAttributesTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetFileAttributesTransactedA,
+    .wide => @This().SetFileAttributesTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetFileAttributesTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFileAttributesTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFileAttributesTransactedA,
+    .wide => @This().GetFileAttributesTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFileAttributesTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCompressedFileSizeTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetCompressedFileSizeTransactedA,
+    .wide => @This().GetCompressedFileSizeTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCompressedFileSizeTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeleteFileTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeleteFileTransactedA,
+    .wide => @This().DeleteFileTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeleteFileTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CheckNameLegalDOS8Dot3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CheckNameLegalDOS8Dot3A,
+    .wide => @This().CheckNameLegalDOS8Dot3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CheckNameLegalDOS8Dot3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindFirstFileTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindFirstFileTransactedA,
+    .wide => @This().FindFirstFileTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindFirstFileTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CopyFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CopyFileA,
+    .wide => @This().CopyFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CopyFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CopyFileEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CopyFileExA,
+    .wide => @This().CopyFileExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CopyFileEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CopyFileTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CopyFileTransactedA,
+    .wide => @This().CopyFileTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CopyFileTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MoveFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MoveFileA,
+    .wide => @This().MoveFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MoveFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MoveFileEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MoveFileExA,
+    .wide => @This().MoveFileExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MoveFileEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MoveFileWithProgress = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MoveFileWithProgressA,
+    .wide => @This().MoveFileWithProgressW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MoveFileWithProgress' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MoveFileTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MoveFileTransactedA,
+    .wide => @This().MoveFileTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MoveFileTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReplaceFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReplaceFileA,
+    .wide => @This().ReplaceFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReplaceFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateHardLink = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateHardLinkA,
+    .wide => @This().CreateHardLinkW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateHardLink' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateHardLinkTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateHardLinkTransactedA,
+    .wide => @This().CreateHardLinkTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateHardLinkTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetVolumeLabel = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetVolumeLabelA,
+    .wide => @This().SetVolumeLabelW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetVolumeLabel' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindFirstVolumeMountPoint = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindFirstVolumeMountPointA,
+    .wide => @This().FindFirstVolumeMountPointW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindFirstVolumeMountPoint' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindNextVolumeMountPoint = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindNextVolumeMountPointA,
+    .wide => @This().FindNextVolumeMountPointW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindNextVolumeMountPoint' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetVolumeMountPoint = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetVolumeMountPointA,
+    .wide => @This().SetVolumeMountPointW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetVolumeMountPoint' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateSymbolicLink = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateSymbolicLinkA,
+    .wide => @This().CreateSymbolicLinkW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateSymbolicLink' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateSymbolicLinkTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateSymbolicLinkTransactedA,
+    .wide => @This().CreateSymbolicLinkTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateSymbolicLinkTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (25)

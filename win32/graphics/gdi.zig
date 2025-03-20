@@ -7463,291 +7463,488 @@ pub extern "user32" fn EnumDisplayMonitors(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (69)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const MONITORINFOEX = thismodule.MONITORINFOEXA;
-        pub const TEXTMETRIC = thismodule.TEXTMETRICA;
-        pub const NEWTEXTMETRIC = thismodule.NEWTEXTMETRICA;
-        pub const LOGFONT = thismodule.LOGFONTA;
-        pub const ENUMLOGFONT = thismodule.ENUMLOGFONTA;
-        pub const ENUMLOGFONTEX = thismodule.ENUMLOGFONTEXA;
-        pub const EXTLOGFONT = thismodule.EXTLOGFONTA;
-        pub const DEVMODE = thismodule.DEVMODEA;
-        pub const DISPLAY_DEVICE = thismodule.DISPLAY_DEVICEA;
-        pub const OUTLINETEXTMETRIC = thismodule.OUTLINETEXTMETRICA;
-        pub const POLYTEXT = thismodule.POLYTEXTA;
-        pub const GCP_RESULTS = thismodule.GCP_RESULTSA;
-        pub const FONTENUMPROC = thismodule.FONTENUMPROCA;
-        pub const AXISINFO = thismodule.AXISINFOA;
-        pub const AXESLIST = thismodule.AXESLISTA;
-        pub const ENUMLOGFONTEXDV = thismodule.ENUMLOGFONTEXDVA;
-        pub const GetObject = thismodule.GetObjectA;
-        pub const AddFontResource = thismodule.AddFontResourceA;
-        pub const CopyMetaFile = thismodule.CopyMetaFileA;
-        pub const CreateDC = thismodule.CreateDCA;
-        pub const CreateFontIndirect = thismodule.CreateFontIndirectA;
-        pub const CreateFont = thismodule.CreateFontA;
-        pub const CreateIC = thismodule.CreateICA;
-        pub const CreateMetaFile = thismodule.CreateMetaFileA;
-        pub const CreateScalableFontResource = thismodule.CreateScalableFontResourceA;
-        pub const EnumFontFamiliesEx = thismodule.EnumFontFamiliesExA;
-        pub const EnumFontFamilies = thismodule.EnumFontFamiliesA;
-        pub const EnumFonts = thismodule.EnumFontsA;
-        pub const GetCharWidth = thismodule.GetCharWidthA;
-        pub const GetCharWidth32 = thismodule.GetCharWidth32A;
-        pub const GetCharWidthFloat = thismodule.GetCharWidthFloatA;
-        pub const GetCharABCWidths = thismodule.GetCharABCWidthsA;
-        pub const GetCharABCWidthsFloat = thismodule.GetCharABCWidthsFloatA;
-        pub const GetGlyphOutline = thismodule.GetGlyphOutlineA;
-        pub const GetMetaFile = thismodule.GetMetaFileA;
-        pub const GetOutlineTextMetrics = thismodule.GetOutlineTextMetricsA;
-        pub const GetTextExtentPoint = thismodule.GetTextExtentPointA;
-        pub const GetTextExtentPoint32 = thismodule.GetTextExtentPoint32A;
-        pub const GetTextExtentExPoint = thismodule.GetTextExtentExPointA;
-        pub const GetCharacterPlacement = thismodule.GetCharacterPlacementA;
-        pub const GetGlyphIndices = thismodule.GetGlyphIndicesA;
-        pub const AddFontResourceEx = thismodule.AddFontResourceExA;
-        pub const RemoveFontResourceEx = thismodule.RemoveFontResourceExA;
-        pub const CreateFontIndirectEx = thismodule.CreateFontIndirectExA;
-        pub const ResetDC = thismodule.ResetDCA;
-        pub const RemoveFontResource = thismodule.RemoveFontResourceA;
-        pub const CopyEnhMetaFile = thismodule.CopyEnhMetaFileA;
-        pub const CreateEnhMetaFile = thismodule.CreateEnhMetaFileA;
-        pub const GetEnhMetaFile = thismodule.GetEnhMetaFileA;
-        pub const GetEnhMetaFileDescription = thismodule.GetEnhMetaFileDescriptionA;
-        pub const GetTextMetrics = thismodule.GetTextMetricsA;
-        pub const TextOut = thismodule.TextOutA;
-        pub const ExtTextOut = thismodule.ExtTextOutA;
-        pub const PolyTextOut = thismodule.PolyTextOutA;
-        pub const GetTextFace = thismodule.GetTextFaceA;
-        pub const GetKerningPairs = thismodule.GetKerningPairsA;
-        pub const DrawText = thismodule.DrawTextA;
-        pub const DrawTextEx = thismodule.DrawTextExA;
-        pub const GrayString = thismodule.GrayStringA;
-        pub const DrawState = thismodule.DrawStateA;
-        pub const TabbedTextOut = thismodule.TabbedTextOutA;
-        pub const GetTabbedTextExtent = thismodule.GetTabbedTextExtentA;
-        pub const LoadBitmap = thismodule.LoadBitmapA;
-        pub const ChangeDisplaySettings = thismodule.ChangeDisplaySettingsA;
-        pub const ChangeDisplaySettingsEx = thismodule.ChangeDisplaySettingsExA;
-        pub const EnumDisplaySettings = thismodule.EnumDisplaySettingsA;
-        pub const EnumDisplaySettingsEx = thismodule.EnumDisplaySettingsExA;
-        pub const EnumDisplayDevices = thismodule.EnumDisplayDevicesA;
-        pub const GetMonitorInfo = thismodule.GetMonitorInfoA;
-    },
-    .wide => struct {
-        pub const MONITORINFOEX = thismodule.MONITORINFOEXW;
-        pub const TEXTMETRIC = thismodule.TEXTMETRICW;
-        pub const NEWTEXTMETRIC = thismodule.NEWTEXTMETRICW;
-        pub const LOGFONT = thismodule.LOGFONTW;
-        pub const ENUMLOGFONT = thismodule.ENUMLOGFONTW;
-        pub const ENUMLOGFONTEX = thismodule.ENUMLOGFONTEXW;
-        pub const EXTLOGFONT = thismodule.EXTLOGFONTW;
-        pub const DEVMODE = thismodule.DEVMODEW;
-        pub const DISPLAY_DEVICE = thismodule.DISPLAY_DEVICEW;
-        pub const OUTLINETEXTMETRIC = thismodule.OUTLINETEXTMETRICW;
-        pub const POLYTEXT = thismodule.POLYTEXTW;
-        pub const GCP_RESULTS = thismodule.GCP_RESULTSW;
-        pub const FONTENUMPROC = thismodule.FONTENUMPROCW;
-        pub const AXISINFO = thismodule.AXISINFOW;
-        pub const AXESLIST = thismodule.AXESLISTW;
-        pub const ENUMLOGFONTEXDV = thismodule.ENUMLOGFONTEXDVW;
-        pub const GetObject = thismodule.GetObjectW;
-        pub const AddFontResource = thismodule.AddFontResourceW;
-        pub const CopyMetaFile = thismodule.CopyMetaFileW;
-        pub const CreateDC = thismodule.CreateDCW;
-        pub const CreateFontIndirect = thismodule.CreateFontIndirectW;
-        pub const CreateFont = thismodule.CreateFontW;
-        pub const CreateIC = thismodule.CreateICW;
-        pub const CreateMetaFile = thismodule.CreateMetaFileW;
-        pub const CreateScalableFontResource = thismodule.CreateScalableFontResourceW;
-        pub const EnumFontFamiliesEx = thismodule.EnumFontFamiliesExW;
-        pub const EnumFontFamilies = thismodule.EnumFontFamiliesW;
-        pub const EnumFonts = thismodule.EnumFontsW;
-        pub const GetCharWidth = thismodule.GetCharWidthW;
-        pub const GetCharWidth32 = thismodule.GetCharWidth32W;
-        pub const GetCharWidthFloat = thismodule.GetCharWidthFloatW;
-        pub const GetCharABCWidths = thismodule.GetCharABCWidthsW;
-        pub const GetCharABCWidthsFloat = thismodule.GetCharABCWidthsFloatW;
-        pub const GetGlyphOutline = thismodule.GetGlyphOutlineW;
-        pub const GetMetaFile = thismodule.GetMetaFileW;
-        pub const GetOutlineTextMetrics = thismodule.GetOutlineTextMetricsW;
-        pub const GetTextExtentPoint = thismodule.GetTextExtentPointW;
-        pub const GetTextExtentPoint32 = thismodule.GetTextExtentPoint32W;
-        pub const GetTextExtentExPoint = thismodule.GetTextExtentExPointW;
-        pub const GetCharacterPlacement = thismodule.GetCharacterPlacementW;
-        pub const GetGlyphIndices = thismodule.GetGlyphIndicesW;
-        pub const AddFontResourceEx = thismodule.AddFontResourceExW;
-        pub const RemoveFontResourceEx = thismodule.RemoveFontResourceExW;
-        pub const CreateFontIndirectEx = thismodule.CreateFontIndirectExW;
-        pub const ResetDC = thismodule.ResetDCW;
-        pub const RemoveFontResource = thismodule.RemoveFontResourceW;
-        pub const CopyEnhMetaFile = thismodule.CopyEnhMetaFileW;
-        pub const CreateEnhMetaFile = thismodule.CreateEnhMetaFileW;
-        pub const GetEnhMetaFile = thismodule.GetEnhMetaFileW;
-        pub const GetEnhMetaFileDescription = thismodule.GetEnhMetaFileDescriptionW;
-        pub const GetTextMetrics = thismodule.GetTextMetricsW;
-        pub const TextOut = thismodule.TextOutW;
-        pub const ExtTextOut = thismodule.ExtTextOutW;
-        pub const PolyTextOut = thismodule.PolyTextOutW;
-        pub const GetTextFace = thismodule.GetTextFaceW;
-        pub const GetKerningPairs = thismodule.GetKerningPairsW;
-        pub const DrawText = thismodule.DrawTextW;
-        pub const DrawTextEx = thismodule.DrawTextExW;
-        pub const GrayString = thismodule.GrayStringW;
-        pub const DrawState = thismodule.DrawStateW;
-        pub const TabbedTextOut = thismodule.TabbedTextOutW;
-        pub const GetTabbedTextExtent = thismodule.GetTabbedTextExtentW;
-        pub const LoadBitmap = thismodule.LoadBitmapW;
-        pub const ChangeDisplaySettings = thismodule.ChangeDisplaySettingsW;
-        pub const ChangeDisplaySettingsEx = thismodule.ChangeDisplaySettingsExW;
-        pub const EnumDisplaySettings = thismodule.EnumDisplaySettingsW;
-        pub const EnumDisplaySettingsEx = thismodule.EnumDisplaySettingsExW;
-        pub const EnumDisplayDevices = thismodule.EnumDisplayDevicesW;
-        pub const GetMonitorInfo = thismodule.GetMonitorInfoW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const MONITORINFOEX = *opaque{};
-        pub const TEXTMETRIC = *opaque{};
-        pub const NEWTEXTMETRIC = *opaque{};
-        pub const LOGFONT = *opaque{};
-        pub const ENUMLOGFONT = *opaque{};
-        pub const ENUMLOGFONTEX = *opaque{};
-        pub const EXTLOGFONT = *opaque{};
-        pub const DEVMODE = *opaque{};
-        pub const DISPLAY_DEVICE = *opaque{};
-        pub const OUTLINETEXTMETRIC = *opaque{};
-        pub const POLYTEXT = *opaque{};
-        pub const GCP_RESULTS = *opaque{};
-        pub const FONTENUMPROC = *opaque{};
-        pub const AXISINFO = *opaque{};
-        pub const AXESLIST = *opaque{};
-        pub const ENUMLOGFONTEXDV = *opaque{};
-        pub const GetObject = *opaque{};
-        pub const AddFontResource = *opaque{};
-        pub const CopyMetaFile = *opaque{};
-        pub const CreateDC = *opaque{};
-        pub const CreateFontIndirect = *opaque{};
-        pub const CreateFont = *opaque{};
-        pub const CreateIC = *opaque{};
-        pub const CreateMetaFile = *opaque{};
-        pub const CreateScalableFontResource = *opaque{};
-        pub const EnumFontFamiliesEx = *opaque{};
-        pub const EnumFontFamilies = *opaque{};
-        pub const EnumFonts = *opaque{};
-        pub const GetCharWidth = *opaque{};
-        pub const GetCharWidth32 = *opaque{};
-        pub const GetCharWidthFloat = *opaque{};
-        pub const GetCharABCWidths = *opaque{};
-        pub const GetCharABCWidthsFloat = *opaque{};
-        pub const GetGlyphOutline = *opaque{};
-        pub const GetMetaFile = *opaque{};
-        pub const GetOutlineTextMetrics = *opaque{};
-        pub const GetTextExtentPoint = *opaque{};
-        pub const GetTextExtentPoint32 = *opaque{};
-        pub const GetTextExtentExPoint = *opaque{};
-        pub const GetCharacterPlacement = *opaque{};
-        pub const GetGlyphIndices = *opaque{};
-        pub const AddFontResourceEx = *opaque{};
-        pub const RemoveFontResourceEx = *opaque{};
-        pub const CreateFontIndirectEx = *opaque{};
-        pub const ResetDC = *opaque{};
-        pub const RemoveFontResource = *opaque{};
-        pub const CopyEnhMetaFile = *opaque{};
-        pub const CreateEnhMetaFile = *opaque{};
-        pub const GetEnhMetaFile = *opaque{};
-        pub const GetEnhMetaFileDescription = *opaque{};
-        pub const GetTextMetrics = *opaque{};
-        pub const TextOut = *opaque{};
-        pub const ExtTextOut = *opaque{};
-        pub const PolyTextOut = *opaque{};
-        pub const GetTextFace = *opaque{};
-        pub const GetKerningPairs = *opaque{};
-        pub const DrawText = *opaque{};
-        pub const DrawTextEx = *opaque{};
-        pub const GrayString = *opaque{};
-        pub const DrawState = *opaque{};
-        pub const TabbedTextOut = *opaque{};
-        pub const GetTabbedTextExtent = *opaque{};
-        pub const LoadBitmap = *opaque{};
-        pub const ChangeDisplaySettings = *opaque{};
-        pub const ChangeDisplaySettingsEx = *opaque{};
-        pub const EnumDisplaySettings = *opaque{};
-        pub const EnumDisplaySettingsEx = *opaque{};
-        pub const EnumDisplayDevices = *opaque{};
-        pub const GetMonitorInfo = *opaque{};
-    } else struct {
-        pub const MONITORINFOEX = @compileError("'MONITORINFOEX' requires that UNICODE be set to true or false in the root module");
-        pub const TEXTMETRIC = @compileError("'TEXTMETRIC' requires that UNICODE be set to true or false in the root module");
-        pub const NEWTEXTMETRIC = @compileError("'NEWTEXTMETRIC' requires that UNICODE be set to true or false in the root module");
-        pub const LOGFONT = @compileError("'LOGFONT' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMLOGFONT = @compileError("'ENUMLOGFONT' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMLOGFONTEX = @compileError("'ENUMLOGFONTEX' requires that UNICODE be set to true or false in the root module");
-        pub const EXTLOGFONT = @compileError("'EXTLOGFONT' requires that UNICODE be set to true or false in the root module");
-        pub const DEVMODE = @compileError("'DEVMODE' requires that UNICODE be set to true or false in the root module");
-        pub const DISPLAY_DEVICE = @compileError("'DISPLAY_DEVICE' requires that UNICODE be set to true or false in the root module");
-        pub const OUTLINETEXTMETRIC = @compileError("'OUTLINETEXTMETRIC' requires that UNICODE be set to true or false in the root module");
-        pub const POLYTEXT = @compileError("'POLYTEXT' requires that UNICODE be set to true or false in the root module");
-        pub const GCP_RESULTS = @compileError("'GCP_RESULTS' requires that UNICODE be set to true or false in the root module");
-        pub const FONTENUMPROC = @compileError("'FONTENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const AXISINFO = @compileError("'AXISINFO' requires that UNICODE be set to true or false in the root module");
-        pub const AXESLIST = @compileError("'AXESLIST' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMLOGFONTEXDV = @compileError("'ENUMLOGFONTEXDV' requires that UNICODE be set to true or false in the root module");
-        pub const GetObject = @compileError("'GetObject' requires that UNICODE be set to true or false in the root module");
-        pub const AddFontResource = @compileError("'AddFontResource' requires that UNICODE be set to true or false in the root module");
-        pub const CopyMetaFile = @compileError("'CopyMetaFile' requires that UNICODE be set to true or false in the root module");
-        pub const CreateDC = @compileError("'CreateDC' requires that UNICODE be set to true or false in the root module");
-        pub const CreateFontIndirect = @compileError("'CreateFontIndirect' requires that UNICODE be set to true or false in the root module");
-        pub const CreateFont = @compileError("'CreateFont' requires that UNICODE be set to true or false in the root module");
-        pub const CreateIC = @compileError("'CreateIC' requires that UNICODE be set to true or false in the root module");
-        pub const CreateMetaFile = @compileError("'CreateMetaFile' requires that UNICODE be set to true or false in the root module");
-        pub const CreateScalableFontResource = @compileError("'CreateScalableFontResource' requires that UNICODE be set to true or false in the root module");
-        pub const EnumFontFamiliesEx = @compileError("'EnumFontFamiliesEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumFontFamilies = @compileError("'EnumFontFamilies' requires that UNICODE be set to true or false in the root module");
-        pub const EnumFonts = @compileError("'EnumFonts' requires that UNICODE be set to true or false in the root module");
-        pub const GetCharWidth = @compileError("'GetCharWidth' requires that UNICODE be set to true or false in the root module");
-        pub const GetCharWidth32 = @compileError("'GetCharWidth32' requires that UNICODE be set to true or false in the root module");
-        pub const GetCharWidthFloat = @compileError("'GetCharWidthFloat' requires that UNICODE be set to true or false in the root module");
-        pub const GetCharABCWidths = @compileError("'GetCharABCWidths' requires that UNICODE be set to true or false in the root module");
-        pub const GetCharABCWidthsFloat = @compileError("'GetCharABCWidthsFloat' requires that UNICODE be set to true or false in the root module");
-        pub const GetGlyphOutline = @compileError("'GetGlyphOutline' requires that UNICODE be set to true or false in the root module");
-        pub const GetMetaFile = @compileError("'GetMetaFile' requires that UNICODE be set to true or false in the root module");
-        pub const GetOutlineTextMetrics = @compileError("'GetOutlineTextMetrics' requires that UNICODE be set to true or false in the root module");
-        pub const GetTextExtentPoint = @compileError("'GetTextExtentPoint' requires that UNICODE be set to true or false in the root module");
-        pub const GetTextExtentPoint32 = @compileError("'GetTextExtentPoint32' requires that UNICODE be set to true or false in the root module");
-        pub const GetTextExtentExPoint = @compileError("'GetTextExtentExPoint' requires that UNICODE be set to true or false in the root module");
-        pub const GetCharacterPlacement = @compileError("'GetCharacterPlacement' requires that UNICODE be set to true or false in the root module");
-        pub const GetGlyphIndices = @compileError("'GetGlyphIndices' requires that UNICODE be set to true or false in the root module");
-        pub const AddFontResourceEx = @compileError("'AddFontResourceEx' requires that UNICODE be set to true or false in the root module");
-        pub const RemoveFontResourceEx = @compileError("'RemoveFontResourceEx' requires that UNICODE be set to true or false in the root module");
-        pub const CreateFontIndirectEx = @compileError("'CreateFontIndirectEx' requires that UNICODE be set to true or false in the root module");
-        pub const ResetDC = @compileError("'ResetDC' requires that UNICODE be set to true or false in the root module");
-        pub const RemoveFontResource = @compileError("'RemoveFontResource' requires that UNICODE be set to true or false in the root module");
-        pub const CopyEnhMetaFile = @compileError("'CopyEnhMetaFile' requires that UNICODE be set to true or false in the root module");
-        pub const CreateEnhMetaFile = @compileError("'CreateEnhMetaFile' requires that UNICODE be set to true or false in the root module");
-        pub const GetEnhMetaFile = @compileError("'GetEnhMetaFile' requires that UNICODE be set to true or false in the root module");
-        pub const GetEnhMetaFileDescription = @compileError("'GetEnhMetaFileDescription' requires that UNICODE be set to true or false in the root module");
-        pub const GetTextMetrics = @compileError("'GetTextMetrics' requires that UNICODE be set to true or false in the root module");
-        pub const TextOut = @compileError("'TextOut' requires that UNICODE be set to true or false in the root module");
-        pub const ExtTextOut = @compileError("'ExtTextOut' requires that UNICODE be set to true or false in the root module");
-        pub const PolyTextOut = @compileError("'PolyTextOut' requires that UNICODE be set to true or false in the root module");
-        pub const GetTextFace = @compileError("'GetTextFace' requires that UNICODE be set to true or false in the root module");
-        pub const GetKerningPairs = @compileError("'GetKerningPairs' requires that UNICODE be set to true or false in the root module");
-        pub const DrawText = @compileError("'DrawText' requires that UNICODE be set to true or false in the root module");
-        pub const DrawTextEx = @compileError("'DrawTextEx' requires that UNICODE be set to true or false in the root module");
-        pub const GrayString = @compileError("'GrayString' requires that UNICODE be set to true or false in the root module");
-        pub const DrawState = @compileError("'DrawState' requires that UNICODE be set to true or false in the root module");
-        pub const TabbedTextOut = @compileError("'TabbedTextOut' requires that UNICODE be set to true or false in the root module");
-        pub const GetTabbedTextExtent = @compileError("'GetTabbedTextExtent' requires that UNICODE be set to true or false in the root module");
-        pub const LoadBitmap = @compileError("'LoadBitmap' requires that UNICODE be set to true or false in the root module");
-        pub const ChangeDisplaySettings = @compileError("'ChangeDisplaySettings' requires that UNICODE be set to true or false in the root module");
-        pub const ChangeDisplaySettingsEx = @compileError("'ChangeDisplaySettingsEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumDisplaySettings = @compileError("'EnumDisplaySettings' requires that UNICODE be set to true or false in the root module");
-        pub const EnumDisplaySettingsEx = @compileError("'EnumDisplaySettingsEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumDisplayDevices = @compileError("'EnumDisplayDevices' requires that UNICODE be set to true or false in the root module");
-        pub const GetMonitorInfo = @compileError("'GetMonitorInfo' requires that UNICODE be set to true or false in the root module");
-    },
+pub const MONITORINFOEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MONITORINFOEXA,
+    .wide => @This().MONITORINFOEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MONITORINFOEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TEXTMETRIC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TEXTMETRICA,
+    .wide => @This().TEXTMETRICW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TEXTMETRIC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NEWTEXTMETRIC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NEWTEXTMETRICA,
+    .wide => @This().NEWTEXTMETRICW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NEWTEXTMETRIC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LOGFONT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LOGFONTA,
+    .wide => @This().LOGFONTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LOGFONT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUMLOGFONT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUMLOGFONTA,
+    .wide => @This().ENUMLOGFONTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUMLOGFONT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUMLOGFONTEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUMLOGFONTEXA,
+    .wide => @This().ENUMLOGFONTEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUMLOGFONTEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EXTLOGFONT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EXTLOGFONTA,
+    .wide => @This().EXTLOGFONTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EXTLOGFONT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DEVMODE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DEVMODEA,
+    .wide => @This().DEVMODEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DEVMODE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DISPLAY_DEVICE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DISPLAY_DEVICEA,
+    .wide => @This().DISPLAY_DEVICEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DISPLAY_DEVICE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OUTLINETEXTMETRIC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OUTLINETEXTMETRICA,
+    .wide => @This().OUTLINETEXTMETRICW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OUTLINETEXTMETRIC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const POLYTEXT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().POLYTEXTA,
+    .wide => @This().POLYTEXTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'POLYTEXT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GCP_RESULTS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GCP_RESULTSA,
+    .wide => @This().GCP_RESULTSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GCP_RESULTS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FONTENUMPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FONTENUMPROCA,
+    .wide => @This().FONTENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FONTENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AXISINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AXISINFOA,
+    .wide => @This().AXISINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AXISINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AXESLIST = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AXESLISTA,
+    .wide => @This().AXESLISTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AXESLIST' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUMLOGFONTEXDV = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUMLOGFONTEXDVA,
+    .wide => @This().ENUMLOGFONTEXDVW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUMLOGFONTEXDV' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetObject = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetObjectA,
+    .wide => @This().GetObjectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetObject' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddFontResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddFontResourceA,
+    .wide => @This().AddFontResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddFontResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CopyMetaFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CopyMetaFileA,
+    .wide => @This().CopyMetaFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CopyMetaFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateDC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateDCA,
+    .wide => @This().CreateDCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateDC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateFontIndirect = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateFontIndirectA,
+    .wide => @This().CreateFontIndirectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateFontIndirect' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateFont = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateFontA,
+    .wide => @This().CreateFontW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateFont' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateIC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateICA,
+    .wide => @This().CreateICW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateIC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateMetaFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateMetaFileA,
+    .wide => @This().CreateMetaFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateMetaFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateScalableFontResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateScalableFontResourceA,
+    .wide => @This().CreateScalableFontResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateScalableFontResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumFontFamiliesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumFontFamiliesExA,
+    .wide => @This().EnumFontFamiliesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumFontFamiliesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumFontFamilies = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumFontFamiliesA,
+    .wide => @This().EnumFontFamiliesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumFontFamilies' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumFonts = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumFontsA,
+    .wide => @This().EnumFontsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumFonts' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCharWidth = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetCharWidthA,
+    .wide => @This().GetCharWidthW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCharWidth' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCharWidth32 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetCharWidth32A,
+    .wide => @This().GetCharWidth32W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCharWidth32' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCharWidthFloat = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetCharWidthFloatA,
+    .wide => @This().GetCharWidthFloatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCharWidthFloat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCharABCWidths = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetCharABCWidthsA,
+    .wide => @This().GetCharABCWidthsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCharABCWidths' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCharABCWidthsFloat = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetCharABCWidthsFloatA,
+    .wide => @This().GetCharABCWidthsFloatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCharABCWidthsFloat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetGlyphOutline = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetGlyphOutlineA,
+    .wide => @This().GetGlyphOutlineW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetGlyphOutline' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetMetaFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetMetaFileA,
+    .wide => @This().GetMetaFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetMetaFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetOutlineTextMetrics = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetOutlineTextMetricsA,
+    .wide => @This().GetOutlineTextMetricsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetOutlineTextMetrics' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetTextExtentPoint = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetTextExtentPointA,
+    .wide => @This().GetTextExtentPointW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetTextExtentPoint' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetTextExtentPoint32 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetTextExtentPoint32A,
+    .wide => @This().GetTextExtentPoint32W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetTextExtentPoint32' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetTextExtentExPoint = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetTextExtentExPointA,
+    .wide => @This().GetTextExtentExPointW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetTextExtentExPoint' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCharacterPlacement = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetCharacterPlacementA,
+    .wide => @This().GetCharacterPlacementW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCharacterPlacement' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetGlyphIndices = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetGlyphIndicesA,
+    .wide => @This().GetGlyphIndicesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetGlyphIndices' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddFontResourceEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddFontResourceExA,
+    .wide => @This().AddFontResourceExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddFontResourceEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveFontResourceEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveFontResourceExA,
+    .wide => @This().RemoveFontResourceExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveFontResourceEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateFontIndirectEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateFontIndirectExA,
+    .wide => @This().CreateFontIndirectExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateFontIndirectEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ResetDC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ResetDCA,
+    .wide => @This().ResetDCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ResetDC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveFontResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveFontResourceA,
+    .wide => @This().RemoveFontResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveFontResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CopyEnhMetaFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CopyEnhMetaFileA,
+    .wide => @This().CopyEnhMetaFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CopyEnhMetaFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateEnhMetaFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateEnhMetaFileA,
+    .wide => @This().CreateEnhMetaFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateEnhMetaFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetEnhMetaFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetEnhMetaFileA,
+    .wide => @This().GetEnhMetaFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetEnhMetaFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetEnhMetaFileDescription = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetEnhMetaFileDescriptionA,
+    .wide => @This().GetEnhMetaFileDescriptionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetEnhMetaFileDescription' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetTextMetrics = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetTextMetricsA,
+    .wide => @This().GetTextMetricsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetTextMetrics' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TextOut = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TextOutA,
+    .wide => @This().TextOutW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TextOut' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExtTextOut = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExtTextOutA,
+    .wide => @This().ExtTextOutW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExtTextOut' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PolyTextOut = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PolyTextOutA,
+    .wide => @This().PolyTextOutW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PolyTextOut' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetTextFace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetTextFaceA,
+    .wide => @This().GetTextFaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetTextFace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetKerningPairs = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetKerningPairsA,
+    .wide => @This().GetKerningPairsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetKerningPairs' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DrawText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DrawTextA,
+    .wide => @This().DrawTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DrawText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DrawTextEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DrawTextExA,
+    .wide => @This().DrawTextExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DrawTextEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GrayString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GrayStringA,
+    .wide => @This().GrayStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GrayString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DrawState = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DrawStateA,
+    .wide => @This().DrawStateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DrawState' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TabbedTextOut = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TabbedTextOutA,
+    .wide => @This().TabbedTextOutW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TabbedTextOut' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetTabbedTextExtent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetTabbedTextExtentA,
+    .wide => @This().GetTabbedTextExtentW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetTabbedTextExtent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadBitmap = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadBitmapA,
+    .wide => @This().LoadBitmapW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadBitmap' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ChangeDisplaySettings = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ChangeDisplaySettingsA,
+    .wide => @This().ChangeDisplaySettingsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ChangeDisplaySettings' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ChangeDisplaySettingsEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ChangeDisplaySettingsExA,
+    .wide => @This().ChangeDisplaySettingsExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ChangeDisplaySettingsEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumDisplaySettings = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumDisplaySettingsA,
+    .wide => @This().EnumDisplaySettingsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumDisplaySettings' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumDisplaySettingsEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumDisplaySettingsExA,
+    .wide => @This().EnumDisplaySettingsExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumDisplaySettingsEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumDisplayDevices = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumDisplayDevicesA,
+    .wide => @This().EnumDisplayDevicesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumDisplayDevices' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetMonitorInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetMonitorInfoA,
+    .wide => @This().GetMonitorInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetMonitorInfo' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (15)

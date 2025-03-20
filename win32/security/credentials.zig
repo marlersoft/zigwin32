@@ -1952,251 +1952,418 @@ pub extern "winscard" fn SCardAudit(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (59)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const CREDENTIAL_ATTRIBUTE = thismodule.CREDENTIAL_ATTRIBUTEA;
-        pub const CREDENTIAL = thismodule.CREDENTIALA;
-        pub const CREDENTIAL_TARGET_INFORMATION = thismodule.CREDENTIAL_TARGET_INFORMATIONA;
-        pub const CREDUI_INFO = thismodule.CREDUI_INFOA;
-        pub const SCARD_READERSTATE = thismodule.SCARD_READERSTATEA;
-        pub const LPOCNCONNPROC = thismodule.LPOCNCONNPROCA;
-        pub const OPENCARD_SEARCH_CRITERIA = thismodule.OPENCARD_SEARCH_CRITERIAA;
-        pub const OPENCARDNAME_EX = thismodule.OPENCARDNAME_EXA;
-        pub const OPENCARDNAME = thismodule.OPENCARDNAMEA;
-        pub const CredWrite = thismodule.CredWriteA;
-        pub const CredRead = thismodule.CredReadA;
-        pub const CredEnumerate = thismodule.CredEnumerateA;
-        pub const CredWriteDomainCredentials = thismodule.CredWriteDomainCredentialsA;
-        pub const CredReadDomainCredentials = thismodule.CredReadDomainCredentialsA;
-        pub const CredDelete = thismodule.CredDeleteA;
-        pub const CredRename = thismodule.CredRenameA;
-        pub const CredGetTargetInfo = thismodule.CredGetTargetInfoA;
-        pub const CredMarshalCredential = thismodule.CredMarshalCredentialA;
-        pub const CredUnmarshalCredential = thismodule.CredUnmarshalCredentialA;
-        pub const CredIsMarshaledCredential = thismodule.CredIsMarshaledCredentialA;
-        pub const CredUnPackAuthenticationBuffer = thismodule.CredUnPackAuthenticationBufferA;
-        pub const CredPackAuthenticationBuffer = thismodule.CredPackAuthenticationBufferA;
-        pub const CredProtect = thismodule.CredProtectA;
-        pub const CredUnprotect = thismodule.CredUnprotectA;
-        pub const CredIsProtected = thismodule.CredIsProtectedA;
-        pub const CredFindBestCredential = thismodule.CredFindBestCredentialA;
-        pub const CredUIPromptForCredentials = thismodule.CredUIPromptForCredentialsA;
-        pub const CredUIPromptForWindowsCredentials = thismodule.CredUIPromptForWindowsCredentialsA;
-        pub const CredUIParseUserName = thismodule.CredUIParseUserNameA;
-        pub const CredUICmdLinePromptForCredentials = thismodule.CredUICmdLinePromptForCredentialsA;
-        pub const CredUIConfirmCredentials = thismodule.CredUIConfirmCredentialsA;
-        pub const SCardListReaderGroups = thismodule.SCardListReaderGroupsA;
-        pub const SCardListReaders = thismodule.SCardListReadersA;
-        pub const SCardListCards = thismodule.SCardListCardsA;
-        pub const SCardListInterfaces = thismodule.SCardListInterfacesA;
-        pub const SCardGetProviderId = thismodule.SCardGetProviderIdA;
-        pub const SCardGetCardTypeProviderName = thismodule.SCardGetCardTypeProviderNameA;
-        pub const SCardIntroduceReaderGroup = thismodule.SCardIntroduceReaderGroupA;
-        pub const SCardForgetReaderGroup = thismodule.SCardForgetReaderGroupA;
-        pub const SCardIntroduceReader = thismodule.SCardIntroduceReaderA;
-        pub const SCardForgetReader = thismodule.SCardForgetReaderA;
-        pub const SCardAddReaderToGroup = thismodule.SCardAddReaderToGroupA;
-        pub const SCardRemoveReaderFromGroup = thismodule.SCardRemoveReaderFromGroupA;
-        pub const SCardIntroduceCardType = thismodule.SCardIntroduceCardTypeA;
-        pub const SCardSetCardTypeProviderName = thismodule.SCardSetCardTypeProviderNameA;
-        pub const SCardForgetCardType = thismodule.SCardForgetCardTypeA;
-        pub const SCardLocateCards = thismodule.SCardLocateCardsA;
-        pub const SCardLocateCardsByATR = thismodule.SCardLocateCardsByATRA;
-        pub const SCardGetStatusChange = thismodule.SCardGetStatusChangeA;
-        pub const SCardConnect = thismodule.SCardConnectA;
-        pub const SCardStatus = thismodule.SCardStatusA;
-        pub const SCardUIDlgSelectCard = thismodule.SCardUIDlgSelectCardA;
-        pub const GetOpenCardName = thismodule.GetOpenCardNameA;
-        pub const SCardReadCache = thismodule.SCardReadCacheA;
-        pub const SCardWriteCache = thismodule.SCardWriteCacheA;
-        pub const SCardGetReaderIcon = thismodule.SCardGetReaderIconA;
-        pub const SCardGetDeviceTypeId = thismodule.SCardGetDeviceTypeIdA;
-        pub const SCardGetReaderDeviceInstanceId = thismodule.SCardGetReaderDeviceInstanceIdA;
-        pub const SCardListReadersWithDeviceInstanceId = thismodule.SCardListReadersWithDeviceInstanceIdA;
-    },
-    .wide => struct {
-        pub const CREDENTIAL_ATTRIBUTE = thismodule.CREDENTIAL_ATTRIBUTEW;
-        pub const CREDENTIAL = thismodule.CREDENTIALW;
-        pub const CREDENTIAL_TARGET_INFORMATION = thismodule.CREDENTIAL_TARGET_INFORMATIONW;
-        pub const CREDUI_INFO = thismodule.CREDUI_INFOW;
-        pub const SCARD_READERSTATE = thismodule.SCARD_READERSTATEW;
-        pub const LPOCNCONNPROC = thismodule.LPOCNCONNPROCW;
-        pub const OPENCARD_SEARCH_CRITERIA = thismodule.OPENCARD_SEARCH_CRITERIAW;
-        pub const OPENCARDNAME_EX = thismodule.OPENCARDNAME_EXW;
-        pub const OPENCARDNAME = thismodule.OPENCARDNAMEW;
-        pub const CredWrite = thismodule.CredWriteW;
-        pub const CredRead = thismodule.CredReadW;
-        pub const CredEnumerate = thismodule.CredEnumerateW;
-        pub const CredWriteDomainCredentials = thismodule.CredWriteDomainCredentialsW;
-        pub const CredReadDomainCredentials = thismodule.CredReadDomainCredentialsW;
-        pub const CredDelete = thismodule.CredDeleteW;
-        pub const CredRename = thismodule.CredRenameW;
-        pub const CredGetTargetInfo = thismodule.CredGetTargetInfoW;
-        pub const CredMarshalCredential = thismodule.CredMarshalCredentialW;
-        pub const CredUnmarshalCredential = thismodule.CredUnmarshalCredentialW;
-        pub const CredIsMarshaledCredential = thismodule.CredIsMarshaledCredentialW;
-        pub const CredUnPackAuthenticationBuffer = thismodule.CredUnPackAuthenticationBufferW;
-        pub const CredPackAuthenticationBuffer = thismodule.CredPackAuthenticationBufferW;
-        pub const CredProtect = thismodule.CredProtectW;
-        pub const CredUnprotect = thismodule.CredUnprotectW;
-        pub const CredIsProtected = thismodule.CredIsProtectedW;
-        pub const CredFindBestCredential = thismodule.CredFindBestCredentialW;
-        pub const CredUIPromptForCredentials = thismodule.CredUIPromptForCredentialsW;
-        pub const CredUIPromptForWindowsCredentials = thismodule.CredUIPromptForWindowsCredentialsW;
-        pub const CredUIParseUserName = thismodule.CredUIParseUserNameW;
-        pub const CredUICmdLinePromptForCredentials = thismodule.CredUICmdLinePromptForCredentialsW;
-        pub const CredUIConfirmCredentials = thismodule.CredUIConfirmCredentialsW;
-        pub const SCardListReaderGroups = thismodule.SCardListReaderGroupsW;
-        pub const SCardListReaders = thismodule.SCardListReadersW;
-        pub const SCardListCards = thismodule.SCardListCardsW;
-        pub const SCardListInterfaces = thismodule.SCardListInterfacesW;
-        pub const SCardGetProviderId = thismodule.SCardGetProviderIdW;
-        pub const SCardGetCardTypeProviderName = thismodule.SCardGetCardTypeProviderNameW;
-        pub const SCardIntroduceReaderGroup = thismodule.SCardIntroduceReaderGroupW;
-        pub const SCardForgetReaderGroup = thismodule.SCardForgetReaderGroupW;
-        pub const SCardIntroduceReader = thismodule.SCardIntroduceReaderW;
-        pub const SCardForgetReader = thismodule.SCardForgetReaderW;
-        pub const SCardAddReaderToGroup = thismodule.SCardAddReaderToGroupW;
-        pub const SCardRemoveReaderFromGroup = thismodule.SCardRemoveReaderFromGroupW;
-        pub const SCardIntroduceCardType = thismodule.SCardIntroduceCardTypeW;
-        pub const SCardSetCardTypeProviderName = thismodule.SCardSetCardTypeProviderNameW;
-        pub const SCardForgetCardType = thismodule.SCardForgetCardTypeW;
-        pub const SCardLocateCards = thismodule.SCardLocateCardsW;
-        pub const SCardLocateCardsByATR = thismodule.SCardLocateCardsByATRW;
-        pub const SCardGetStatusChange = thismodule.SCardGetStatusChangeW;
-        pub const SCardConnect = thismodule.SCardConnectW;
-        pub const SCardStatus = thismodule.SCardStatusW;
-        pub const SCardUIDlgSelectCard = thismodule.SCardUIDlgSelectCardW;
-        pub const GetOpenCardName = thismodule.GetOpenCardNameW;
-        pub const SCardReadCache = thismodule.SCardReadCacheW;
-        pub const SCardWriteCache = thismodule.SCardWriteCacheW;
-        pub const SCardGetReaderIcon = thismodule.SCardGetReaderIconW;
-        pub const SCardGetDeviceTypeId = thismodule.SCardGetDeviceTypeIdW;
-        pub const SCardGetReaderDeviceInstanceId = thismodule.SCardGetReaderDeviceInstanceIdW;
-        pub const SCardListReadersWithDeviceInstanceId = thismodule.SCardListReadersWithDeviceInstanceIdW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const CREDENTIAL_ATTRIBUTE = *opaque{};
-        pub const CREDENTIAL = *opaque{};
-        pub const CREDENTIAL_TARGET_INFORMATION = *opaque{};
-        pub const CREDUI_INFO = *opaque{};
-        pub const SCARD_READERSTATE = *opaque{};
-        pub const LPOCNCONNPROC = *opaque{};
-        pub const OPENCARD_SEARCH_CRITERIA = *opaque{};
-        pub const OPENCARDNAME_EX = *opaque{};
-        pub const OPENCARDNAME = *opaque{};
-        pub const CredWrite = *opaque{};
-        pub const CredRead = *opaque{};
-        pub const CredEnumerate = *opaque{};
-        pub const CredWriteDomainCredentials = *opaque{};
-        pub const CredReadDomainCredentials = *opaque{};
-        pub const CredDelete = *opaque{};
-        pub const CredRename = *opaque{};
-        pub const CredGetTargetInfo = *opaque{};
-        pub const CredMarshalCredential = *opaque{};
-        pub const CredUnmarshalCredential = *opaque{};
-        pub const CredIsMarshaledCredential = *opaque{};
-        pub const CredUnPackAuthenticationBuffer = *opaque{};
-        pub const CredPackAuthenticationBuffer = *opaque{};
-        pub const CredProtect = *opaque{};
-        pub const CredUnprotect = *opaque{};
-        pub const CredIsProtected = *opaque{};
-        pub const CredFindBestCredential = *opaque{};
-        pub const CredUIPromptForCredentials = *opaque{};
-        pub const CredUIPromptForWindowsCredentials = *opaque{};
-        pub const CredUIParseUserName = *opaque{};
-        pub const CredUICmdLinePromptForCredentials = *opaque{};
-        pub const CredUIConfirmCredentials = *opaque{};
-        pub const SCardListReaderGroups = *opaque{};
-        pub const SCardListReaders = *opaque{};
-        pub const SCardListCards = *opaque{};
-        pub const SCardListInterfaces = *opaque{};
-        pub const SCardGetProviderId = *opaque{};
-        pub const SCardGetCardTypeProviderName = *opaque{};
-        pub const SCardIntroduceReaderGroup = *opaque{};
-        pub const SCardForgetReaderGroup = *opaque{};
-        pub const SCardIntroduceReader = *opaque{};
-        pub const SCardForgetReader = *opaque{};
-        pub const SCardAddReaderToGroup = *opaque{};
-        pub const SCardRemoveReaderFromGroup = *opaque{};
-        pub const SCardIntroduceCardType = *opaque{};
-        pub const SCardSetCardTypeProviderName = *opaque{};
-        pub const SCardForgetCardType = *opaque{};
-        pub const SCardLocateCards = *opaque{};
-        pub const SCardLocateCardsByATR = *opaque{};
-        pub const SCardGetStatusChange = *opaque{};
-        pub const SCardConnect = *opaque{};
-        pub const SCardStatus = *opaque{};
-        pub const SCardUIDlgSelectCard = *opaque{};
-        pub const GetOpenCardName = *opaque{};
-        pub const SCardReadCache = *opaque{};
-        pub const SCardWriteCache = *opaque{};
-        pub const SCardGetReaderIcon = *opaque{};
-        pub const SCardGetDeviceTypeId = *opaque{};
-        pub const SCardGetReaderDeviceInstanceId = *opaque{};
-        pub const SCardListReadersWithDeviceInstanceId = *opaque{};
-    } else struct {
-        pub const CREDENTIAL_ATTRIBUTE = @compileError("'CREDENTIAL_ATTRIBUTE' requires that UNICODE be set to true or false in the root module");
-        pub const CREDENTIAL = @compileError("'CREDENTIAL' requires that UNICODE be set to true or false in the root module");
-        pub const CREDENTIAL_TARGET_INFORMATION = @compileError("'CREDENTIAL_TARGET_INFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const CREDUI_INFO = @compileError("'CREDUI_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const SCARD_READERSTATE = @compileError("'SCARD_READERSTATE' requires that UNICODE be set to true or false in the root module");
-        pub const LPOCNCONNPROC = @compileError("'LPOCNCONNPROC' requires that UNICODE be set to true or false in the root module");
-        pub const OPENCARD_SEARCH_CRITERIA = @compileError("'OPENCARD_SEARCH_CRITERIA' requires that UNICODE be set to true or false in the root module");
-        pub const OPENCARDNAME_EX = @compileError("'OPENCARDNAME_EX' requires that UNICODE be set to true or false in the root module");
-        pub const OPENCARDNAME = @compileError("'OPENCARDNAME' requires that UNICODE be set to true or false in the root module");
-        pub const CredWrite = @compileError("'CredWrite' requires that UNICODE be set to true or false in the root module");
-        pub const CredRead = @compileError("'CredRead' requires that UNICODE be set to true or false in the root module");
-        pub const CredEnumerate = @compileError("'CredEnumerate' requires that UNICODE be set to true or false in the root module");
-        pub const CredWriteDomainCredentials = @compileError("'CredWriteDomainCredentials' requires that UNICODE be set to true or false in the root module");
-        pub const CredReadDomainCredentials = @compileError("'CredReadDomainCredentials' requires that UNICODE be set to true or false in the root module");
-        pub const CredDelete = @compileError("'CredDelete' requires that UNICODE be set to true or false in the root module");
-        pub const CredRename = @compileError("'CredRename' requires that UNICODE be set to true or false in the root module");
-        pub const CredGetTargetInfo = @compileError("'CredGetTargetInfo' requires that UNICODE be set to true or false in the root module");
-        pub const CredMarshalCredential = @compileError("'CredMarshalCredential' requires that UNICODE be set to true or false in the root module");
-        pub const CredUnmarshalCredential = @compileError("'CredUnmarshalCredential' requires that UNICODE be set to true or false in the root module");
-        pub const CredIsMarshaledCredential = @compileError("'CredIsMarshaledCredential' requires that UNICODE be set to true or false in the root module");
-        pub const CredUnPackAuthenticationBuffer = @compileError("'CredUnPackAuthenticationBuffer' requires that UNICODE be set to true or false in the root module");
-        pub const CredPackAuthenticationBuffer = @compileError("'CredPackAuthenticationBuffer' requires that UNICODE be set to true or false in the root module");
-        pub const CredProtect = @compileError("'CredProtect' requires that UNICODE be set to true or false in the root module");
-        pub const CredUnprotect = @compileError("'CredUnprotect' requires that UNICODE be set to true or false in the root module");
-        pub const CredIsProtected = @compileError("'CredIsProtected' requires that UNICODE be set to true or false in the root module");
-        pub const CredFindBestCredential = @compileError("'CredFindBestCredential' requires that UNICODE be set to true or false in the root module");
-        pub const CredUIPromptForCredentials = @compileError("'CredUIPromptForCredentials' requires that UNICODE be set to true or false in the root module");
-        pub const CredUIPromptForWindowsCredentials = @compileError("'CredUIPromptForWindowsCredentials' requires that UNICODE be set to true or false in the root module");
-        pub const CredUIParseUserName = @compileError("'CredUIParseUserName' requires that UNICODE be set to true or false in the root module");
-        pub const CredUICmdLinePromptForCredentials = @compileError("'CredUICmdLinePromptForCredentials' requires that UNICODE be set to true or false in the root module");
-        pub const CredUIConfirmCredentials = @compileError("'CredUIConfirmCredentials' requires that UNICODE be set to true or false in the root module");
-        pub const SCardListReaderGroups = @compileError("'SCardListReaderGroups' requires that UNICODE be set to true or false in the root module");
-        pub const SCardListReaders = @compileError("'SCardListReaders' requires that UNICODE be set to true or false in the root module");
-        pub const SCardListCards = @compileError("'SCardListCards' requires that UNICODE be set to true or false in the root module");
-        pub const SCardListInterfaces = @compileError("'SCardListInterfaces' requires that UNICODE be set to true or false in the root module");
-        pub const SCardGetProviderId = @compileError("'SCardGetProviderId' requires that UNICODE be set to true or false in the root module");
-        pub const SCardGetCardTypeProviderName = @compileError("'SCardGetCardTypeProviderName' requires that UNICODE be set to true or false in the root module");
-        pub const SCardIntroduceReaderGroup = @compileError("'SCardIntroduceReaderGroup' requires that UNICODE be set to true or false in the root module");
-        pub const SCardForgetReaderGroup = @compileError("'SCardForgetReaderGroup' requires that UNICODE be set to true or false in the root module");
-        pub const SCardIntroduceReader = @compileError("'SCardIntroduceReader' requires that UNICODE be set to true or false in the root module");
-        pub const SCardForgetReader = @compileError("'SCardForgetReader' requires that UNICODE be set to true or false in the root module");
-        pub const SCardAddReaderToGroup = @compileError("'SCardAddReaderToGroup' requires that UNICODE be set to true or false in the root module");
-        pub const SCardRemoveReaderFromGroup = @compileError("'SCardRemoveReaderFromGroup' requires that UNICODE be set to true or false in the root module");
-        pub const SCardIntroduceCardType = @compileError("'SCardIntroduceCardType' requires that UNICODE be set to true or false in the root module");
-        pub const SCardSetCardTypeProviderName = @compileError("'SCardSetCardTypeProviderName' requires that UNICODE be set to true or false in the root module");
-        pub const SCardForgetCardType = @compileError("'SCardForgetCardType' requires that UNICODE be set to true or false in the root module");
-        pub const SCardLocateCards = @compileError("'SCardLocateCards' requires that UNICODE be set to true or false in the root module");
-        pub const SCardLocateCardsByATR = @compileError("'SCardLocateCardsByATR' requires that UNICODE be set to true or false in the root module");
-        pub const SCardGetStatusChange = @compileError("'SCardGetStatusChange' requires that UNICODE be set to true or false in the root module");
-        pub const SCardConnect = @compileError("'SCardConnect' requires that UNICODE be set to true or false in the root module");
-        pub const SCardStatus = @compileError("'SCardStatus' requires that UNICODE be set to true or false in the root module");
-        pub const SCardUIDlgSelectCard = @compileError("'SCardUIDlgSelectCard' requires that UNICODE be set to true or false in the root module");
-        pub const GetOpenCardName = @compileError("'GetOpenCardName' requires that UNICODE be set to true or false in the root module");
-        pub const SCardReadCache = @compileError("'SCardReadCache' requires that UNICODE be set to true or false in the root module");
-        pub const SCardWriteCache = @compileError("'SCardWriteCache' requires that UNICODE be set to true or false in the root module");
-        pub const SCardGetReaderIcon = @compileError("'SCardGetReaderIcon' requires that UNICODE be set to true or false in the root module");
-        pub const SCardGetDeviceTypeId = @compileError("'SCardGetDeviceTypeId' requires that UNICODE be set to true or false in the root module");
-        pub const SCardGetReaderDeviceInstanceId = @compileError("'SCardGetReaderDeviceInstanceId' requires that UNICODE be set to true or false in the root module");
-        pub const SCardListReadersWithDeviceInstanceId = @compileError("'SCardListReadersWithDeviceInstanceId' requires that UNICODE be set to true or false in the root module");
-    },
+pub const CREDENTIAL_ATTRIBUTE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CREDENTIAL_ATTRIBUTEA,
+    .wide => @This().CREDENTIAL_ATTRIBUTEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CREDENTIAL_ATTRIBUTE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CREDENTIAL = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CREDENTIALA,
+    .wide => @This().CREDENTIALW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CREDENTIAL' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CREDENTIAL_TARGET_INFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CREDENTIAL_TARGET_INFORMATIONA,
+    .wide => @This().CREDENTIAL_TARGET_INFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CREDENTIAL_TARGET_INFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CREDUI_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CREDUI_INFOA,
+    .wide => @This().CREDUI_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CREDUI_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCARD_READERSTATE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCARD_READERSTATEA,
+    .wide => @This().SCARD_READERSTATEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCARD_READERSTATE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LPOCNCONNPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPOCNCONNPROCA,
+    .wide => @This().LPOCNCONNPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPOCNCONNPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OPENCARD_SEARCH_CRITERIA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OPENCARD_SEARCH_CRITERIAA,
+    .wide => @This().OPENCARD_SEARCH_CRITERIAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OPENCARD_SEARCH_CRITERIA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OPENCARDNAME_EX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OPENCARDNAME_EXA,
+    .wide => @This().OPENCARDNAME_EXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OPENCARDNAME_EX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OPENCARDNAME = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OPENCARDNAMEA,
+    .wide => @This().OPENCARDNAMEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OPENCARDNAME' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredWrite = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredWriteA,
+    .wide => @This().CredWriteW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredWrite' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredRead = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredReadA,
+    .wide => @This().CredReadW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredRead' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredEnumerate = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredEnumerateA,
+    .wide => @This().CredEnumerateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredEnumerate' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredWriteDomainCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredWriteDomainCredentialsA,
+    .wide => @This().CredWriteDomainCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredWriteDomainCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredReadDomainCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredReadDomainCredentialsA,
+    .wide => @This().CredReadDomainCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredReadDomainCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredDelete = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredDeleteA,
+    .wide => @This().CredDeleteW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredDelete' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredRename = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredRenameA,
+    .wide => @This().CredRenameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredRename' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredGetTargetInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredGetTargetInfoA,
+    .wide => @This().CredGetTargetInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredGetTargetInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredMarshalCredential = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredMarshalCredentialA,
+    .wide => @This().CredMarshalCredentialW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredMarshalCredential' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredUnmarshalCredential = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUnmarshalCredentialA,
+    .wide => @This().CredUnmarshalCredentialW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredUnmarshalCredential' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredIsMarshaledCredential = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredIsMarshaledCredentialA,
+    .wide => @This().CredIsMarshaledCredentialW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredIsMarshaledCredential' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredUnPackAuthenticationBuffer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUnPackAuthenticationBufferA,
+    .wide => @This().CredUnPackAuthenticationBufferW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredUnPackAuthenticationBuffer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredPackAuthenticationBuffer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredPackAuthenticationBufferA,
+    .wide => @This().CredPackAuthenticationBufferW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredPackAuthenticationBuffer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredProtect = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredProtectA,
+    .wide => @This().CredProtectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredProtect' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredUnprotect = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUnprotectA,
+    .wide => @This().CredUnprotectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredUnprotect' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredIsProtected = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredIsProtectedA,
+    .wide => @This().CredIsProtectedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredIsProtected' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredFindBestCredential = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredFindBestCredentialA,
+    .wide => @This().CredFindBestCredentialW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredFindBestCredential' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredUIPromptForCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUIPromptForCredentialsA,
+    .wide => @This().CredUIPromptForCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredUIPromptForCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredUIPromptForWindowsCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUIPromptForWindowsCredentialsA,
+    .wide => @This().CredUIPromptForWindowsCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredUIPromptForWindowsCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredUIParseUserName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUIParseUserNameA,
+    .wide => @This().CredUIParseUserNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredUIParseUserName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredUICmdLinePromptForCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUICmdLinePromptForCredentialsA,
+    .wide => @This().CredUICmdLinePromptForCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredUICmdLinePromptForCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredUIConfirmCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUIConfirmCredentialsA,
+    .wide => @This().CredUIConfirmCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredUIConfirmCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardListReaderGroups = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardListReaderGroupsA,
+    .wide => @This().SCardListReaderGroupsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardListReaderGroups' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardListReaders = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardListReadersA,
+    .wide => @This().SCardListReadersW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardListReaders' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardListCards = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardListCardsA,
+    .wide => @This().SCardListCardsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardListCards' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardListInterfaces = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardListInterfacesA,
+    .wide => @This().SCardListInterfacesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardListInterfaces' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardGetProviderId = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardGetProviderIdA,
+    .wide => @This().SCardGetProviderIdW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardGetProviderId' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardGetCardTypeProviderName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardGetCardTypeProviderNameA,
+    .wide => @This().SCardGetCardTypeProviderNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardGetCardTypeProviderName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardIntroduceReaderGroup = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardIntroduceReaderGroupA,
+    .wide => @This().SCardIntroduceReaderGroupW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardIntroduceReaderGroup' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardForgetReaderGroup = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardForgetReaderGroupA,
+    .wide => @This().SCardForgetReaderGroupW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardForgetReaderGroup' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardIntroduceReader = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardIntroduceReaderA,
+    .wide => @This().SCardIntroduceReaderW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardIntroduceReader' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardForgetReader = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardForgetReaderA,
+    .wide => @This().SCardForgetReaderW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardForgetReader' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardAddReaderToGroup = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardAddReaderToGroupA,
+    .wide => @This().SCardAddReaderToGroupW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardAddReaderToGroup' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardRemoveReaderFromGroup = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardRemoveReaderFromGroupA,
+    .wide => @This().SCardRemoveReaderFromGroupW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardRemoveReaderFromGroup' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardIntroduceCardType = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardIntroduceCardTypeA,
+    .wide => @This().SCardIntroduceCardTypeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardIntroduceCardType' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardSetCardTypeProviderName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardSetCardTypeProviderNameA,
+    .wide => @This().SCardSetCardTypeProviderNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardSetCardTypeProviderName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardForgetCardType = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardForgetCardTypeA,
+    .wide => @This().SCardForgetCardTypeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardForgetCardType' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardLocateCards = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardLocateCardsA,
+    .wide => @This().SCardLocateCardsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardLocateCards' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardLocateCardsByATR = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardLocateCardsByATRA,
+    .wide => @This().SCardLocateCardsByATRW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardLocateCardsByATR' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardGetStatusChange = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardGetStatusChangeA,
+    .wide => @This().SCardGetStatusChangeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardGetStatusChange' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardConnect = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardConnectA,
+    .wide => @This().SCardConnectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardConnect' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardStatus = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardStatusA,
+    .wide => @This().SCardStatusW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardStatus' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardUIDlgSelectCard = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardUIDlgSelectCardA,
+    .wide => @This().SCardUIDlgSelectCardW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardUIDlgSelectCard' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetOpenCardName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetOpenCardNameA,
+    .wide => @This().GetOpenCardNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetOpenCardName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardReadCache = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardReadCacheA,
+    .wide => @This().SCardReadCacheW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardReadCache' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardWriteCache = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardWriteCacheA,
+    .wide => @This().SCardWriteCacheW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardWriteCache' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardGetReaderIcon = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardGetReaderIconA,
+    .wide => @This().SCardGetReaderIconW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardGetReaderIcon' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardGetDeviceTypeId = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardGetDeviceTypeIdA,
+    .wide => @This().SCardGetDeviceTypeIdW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardGetDeviceTypeId' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardGetReaderDeviceInstanceId = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardGetReaderDeviceInstanceIdA,
+    .wide => @This().SCardGetReaderDeviceInstanceIdW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardGetReaderDeviceInstanceId' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardListReadersWithDeviceInstanceId = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardListReadersWithDeviceInstanceIdA,
+    .wide => @This().SCardListReadersWithDeviceInstanceIdW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardListReadersWithDeviceInstanceId' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (11)

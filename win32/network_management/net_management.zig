@@ -7025,91 +7025,138 @@ pub extern "rtutils" fn MprSetupProtocolFree(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (19)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const TraceRegisterEx = thismodule.TraceRegisterExA;
-        pub const TraceDeregister = thismodule.TraceDeregisterA;
-        pub const TraceDeregisterEx = thismodule.TraceDeregisterExA;
-        pub const TraceGetConsole = thismodule.TraceGetConsoleA;
-        pub const TracePrintf = thismodule.TracePrintfA;
-        pub const TracePrintfEx = thismodule.TracePrintfExA;
-        pub const TraceVprintfEx = thismodule.TraceVprintfExA;
-        pub const TracePutsEx = thismodule.TracePutsExA;
-        pub const TraceDumpEx = thismodule.TraceDumpExA;
-        pub const LogError = thismodule.LogErrorA;
-        pub const LogEvent = thismodule.LogEventA;
-        pub const RouterLogRegister = thismodule.RouterLogRegisterA;
-        pub const RouterLogDeregister = thismodule.RouterLogDeregisterA;
-        pub const RouterLogEvent = thismodule.RouterLogEventA;
-        pub const RouterLogEventData = thismodule.RouterLogEventDataA;
-        pub const RouterLogEventString = thismodule.RouterLogEventStringA;
-        pub const RouterLogEventEx = thismodule.RouterLogEventExA;
-        pub const RouterLogEventValistEx = thismodule.RouterLogEventValistExA;
-        pub const RouterGetErrorString = thismodule.RouterGetErrorStringA;
-    },
-    .wide => struct {
-        pub const TraceRegisterEx = thismodule.TraceRegisterExW;
-        pub const TraceDeregister = thismodule.TraceDeregisterW;
-        pub const TraceDeregisterEx = thismodule.TraceDeregisterExW;
-        pub const TraceGetConsole = thismodule.TraceGetConsoleW;
-        pub const TracePrintf = thismodule.TracePrintfW;
-        pub const TracePrintfEx = thismodule.TracePrintfExW;
-        pub const TraceVprintfEx = thismodule.TraceVprintfExW;
-        pub const TracePutsEx = thismodule.TracePutsExW;
-        pub const TraceDumpEx = thismodule.TraceDumpExW;
-        pub const LogError = thismodule.LogErrorW;
-        pub const LogEvent = thismodule.LogEventW;
-        pub const RouterLogRegister = thismodule.RouterLogRegisterW;
-        pub const RouterLogDeregister = thismodule.RouterLogDeregisterW;
-        pub const RouterLogEvent = thismodule.RouterLogEventW;
-        pub const RouterLogEventData = thismodule.RouterLogEventDataW;
-        pub const RouterLogEventString = thismodule.RouterLogEventStringW;
-        pub const RouterLogEventEx = thismodule.RouterLogEventExW;
-        pub const RouterLogEventValistEx = thismodule.RouterLogEventValistExW;
-        pub const RouterGetErrorString = thismodule.RouterGetErrorStringW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const TraceRegisterEx = *opaque{};
-        pub const TraceDeregister = *opaque{};
-        pub const TraceDeregisterEx = *opaque{};
-        pub const TraceGetConsole = *opaque{};
-        pub const TracePrintf = *opaque{};
-        pub const TracePrintfEx = *opaque{};
-        pub const TraceVprintfEx = *opaque{};
-        pub const TracePutsEx = *opaque{};
-        pub const TraceDumpEx = *opaque{};
-        pub const LogError = *opaque{};
-        pub const LogEvent = *opaque{};
-        pub const RouterLogRegister = *opaque{};
-        pub const RouterLogDeregister = *opaque{};
-        pub const RouterLogEvent = *opaque{};
-        pub const RouterLogEventData = *opaque{};
-        pub const RouterLogEventString = *opaque{};
-        pub const RouterLogEventEx = *opaque{};
-        pub const RouterLogEventValistEx = *opaque{};
-        pub const RouterGetErrorString = *opaque{};
-    } else struct {
-        pub const TraceRegisterEx = @compileError("'TraceRegisterEx' requires that UNICODE be set to true or false in the root module");
-        pub const TraceDeregister = @compileError("'TraceDeregister' requires that UNICODE be set to true or false in the root module");
-        pub const TraceDeregisterEx = @compileError("'TraceDeregisterEx' requires that UNICODE be set to true or false in the root module");
-        pub const TraceGetConsole = @compileError("'TraceGetConsole' requires that UNICODE be set to true or false in the root module");
-        pub const TracePrintf = @compileError("'TracePrintf' requires that UNICODE be set to true or false in the root module");
-        pub const TracePrintfEx = @compileError("'TracePrintfEx' requires that UNICODE be set to true or false in the root module");
-        pub const TraceVprintfEx = @compileError("'TraceVprintfEx' requires that UNICODE be set to true or false in the root module");
-        pub const TracePutsEx = @compileError("'TracePutsEx' requires that UNICODE be set to true or false in the root module");
-        pub const TraceDumpEx = @compileError("'TraceDumpEx' requires that UNICODE be set to true or false in the root module");
-        pub const LogError = @compileError("'LogError' requires that UNICODE be set to true or false in the root module");
-        pub const LogEvent = @compileError("'LogEvent' requires that UNICODE be set to true or false in the root module");
-        pub const RouterLogRegister = @compileError("'RouterLogRegister' requires that UNICODE be set to true or false in the root module");
-        pub const RouterLogDeregister = @compileError("'RouterLogDeregister' requires that UNICODE be set to true or false in the root module");
-        pub const RouterLogEvent = @compileError("'RouterLogEvent' requires that UNICODE be set to true or false in the root module");
-        pub const RouterLogEventData = @compileError("'RouterLogEventData' requires that UNICODE be set to true or false in the root module");
-        pub const RouterLogEventString = @compileError("'RouterLogEventString' requires that UNICODE be set to true or false in the root module");
-        pub const RouterLogEventEx = @compileError("'RouterLogEventEx' requires that UNICODE be set to true or false in the root module");
-        pub const RouterLogEventValistEx = @compileError("'RouterLogEventValistEx' requires that UNICODE be set to true or false in the root module");
-        pub const RouterGetErrorString = @compileError("'RouterGetErrorString' requires that UNICODE be set to true or false in the root module");
-    },
+pub const TraceRegisterEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TraceRegisterExA,
+    .wide => @This().TraceRegisterExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TraceRegisterEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TraceDeregister = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TraceDeregisterA,
+    .wide => @This().TraceDeregisterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TraceDeregister' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TraceDeregisterEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TraceDeregisterExA,
+    .wide => @This().TraceDeregisterExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TraceDeregisterEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TraceGetConsole = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TraceGetConsoleA,
+    .wide => @This().TraceGetConsoleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TraceGetConsole' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TracePrintf = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TracePrintfA,
+    .wide => @This().TracePrintfW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TracePrintf' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TracePrintfEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TracePrintfExA,
+    .wide => @This().TracePrintfExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TracePrintfEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TraceVprintfEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TraceVprintfExA,
+    .wide => @This().TraceVprintfExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TraceVprintfEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TracePutsEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TracePutsExA,
+    .wide => @This().TracePutsExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TracePutsEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TraceDumpEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TraceDumpExA,
+    .wide => @This().TraceDumpExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TraceDumpEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LogError = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LogErrorA,
+    .wide => @This().LogErrorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LogError' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LogEvent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LogEventA,
+    .wide => @This().LogEventW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LogEvent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RouterLogRegister = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RouterLogRegisterA,
+    .wide => @This().RouterLogRegisterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RouterLogRegister' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RouterLogDeregister = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RouterLogDeregisterA,
+    .wide => @This().RouterLogDeregisterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RouterLogDeregister' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RouterLogEvent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RouterLogEventA,
+    .wide => @This().RouterLogEventW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RouterLogEvent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RouterLogEventData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RouterLogEventDataA,
+    .wide => @This().RouterLogEventDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RouterLogEventData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RouterLogEventString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RouterLogEventStringA,
+    .wide => @This().RouterLogEventStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RouterLogEventString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RouterLogEventEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RouterLogEventExA,
+    .wide => @This().RouterLogEventExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RouterLogEventEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RouterLogEventValistEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RouterLogEventValistExA,
+    .wide => @This().RouterLogEventValistExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RouterLogEventValistEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RouterGetErrorString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RouterGetErrorStringA,
+    .wide => @This().RouterGetErrorStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RouterGetErrorString' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (18)

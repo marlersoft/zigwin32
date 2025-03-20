@@ -1389,31 +1389,33 @@ pub extern "kernel32" fn RemoveSecureMemoryCacheCallback(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const CreateFileMapping = thismodule.CreateFileMappingA;
-        pub const OpenFileMapping = thismodule.OpenFileMappingA;
-        pub const CreateFileMappingNuma = thismodule.CreateFileMappingNumaA;
-        pub const IsBadStringPtr = thismodule.IsBadStringPtrA;
-    },
-    .wide => struct {
-        pub const CreateFileMapping = thismodule.CreateFileMappingW;
-        pub const OpenFileMapping = thismodule.OpenFileMappingW;
-        pub const CreateFileMappingNuma = thismodule.CreateFileMappingNumaW;
-        pub const IsBadStringPtr = thismodule.IsBadStringPtrW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const CreateFileMapping = *opaque{};
-        pub const OpenFileMapping = *opaque{};
-        pub const CreateFileMappingNuma = *opaque{};
-        pub const IsBadStringPtr = *opaque{};
-    } else struct {
-        pub const CreateFileMapping = @compileError("'CreateFileMapping' requires that UNICODE be set to true or false in the root module");
-        pub const OpenFileMapping = @compileError("'OpenFileMapping' requires that UNICODE be set to true or false in the root module");
-        pub const CreateFileMappingNuma = @compileError("'CreateFileMappingNuma' requires that UNICODE be set to true or false in the root module");
-        pub const IsBadStringPtr = @compileError("'IsBadStringPtr' requires that UNICODE be set to true or false in the root module");
-    },
+pub const CreateFileMapping = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateFileMappingA,
+    .wide => @This().CreateFileMappingW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateFileMapping' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenFileMapping = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenFileMappingA,
+    .wide => @This().OpenFileMappingW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenFileMapping' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateFileMappingNuma = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateFileMappingNumaA,
+    .wide => @This().CreateFileMappingNumaW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateFileMappingNuma' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IsBadStringPtr = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IsBadStringPtrA,
+    .wide => @This().IsBadStringPtrW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IsBadStringPtr' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)

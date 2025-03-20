@@ -1241,123 +1241,194 @@ pub extern "mpr" fn WNetSetLastErrorW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (27)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const NETRESOURCE = thismodule.NETRESOURCEA;
-        pub const CONNECTDLGSTRUCT = thismodule.CONNECTDLGSTRUCTA;
-        pub const DISCDLGSTRUCT = thismodule.DISCDLGSTRUCTA;
-        pub const UNIVERSAL_NAME_INFO = thismodule.UNIVERSAL_NAME_INFOA;
-        pub const REMOTE_NAME_INFO = thismodule.REMOTE_NAME_INFOA;
-        pub const WNetAddConnection = thismodule.WNetAddConnectionA;
-        pub const WNetAddConnection2 = thismodule.WNetAddConnection2A;
-        pub const WNetAddConnection3 = thismodule.WNetAddConnection3A;
-        pub const WNetAddConnection4 = thismodule.WNetAddConnection4A;
-        pub const WNetCancelConnection = thismodule.WNetCancelConnectionA;
-        pub const WNetCancelConnection2 = thismodule.WNetCancelConnection2A;
-        pub const WNetGetConnection = thismodule.WNetGetConnectionA;
-        pub const WNetUseConnection = thismodule.WNetUseConnectionA;
-        pub const WNetUseConnection4 = thismodule.WNetUseConnection4A;
-        pub const WNetConnectionDialog1 = thismodule.WNetConnectionDialog1A;
-        pub const WNetDisconnectDialog1 = thismodule.WNetDisconnectDialog1A;
-        pub const WNetOpenEnum = thismodule.WNetOpenEnumA;
-        pub const WNetEnumResource = thismodule.WNetEnumResourceA;
-        pub const WNetGetResourceParent = thismodule.WNetGetResourceParentA;
-        pub const WNetGetResourceInformation = thismodule.WNetGetResourceInformationA;
-        pub const WNetGetUniversalName = thismodule.WNetGetUniversalNameA;
-        pub const WNetGetUser = thismodule.WNetGetUserA;
-        pub const WNetGetProviderName = thismodule.WNetGetProviderNameA;
-        pub const WNetGetNetworkInformation = thismodule.WNetGetNetworkInformationA;
-        pub const WNetGetLastError = thismodule.WNetGetLastErrorA;
-        pub const MultinetGetConnectionPerformance = thismodule.MultinetGetConnectionPerformanceA;
-        pub const WNetSetLastError = thismodule.WNetSetLastErrorA;
-    },
-    .wide => struct {
-        pub const NETRESOURCE = thismodule.NETRESOURCEW;
-        pub const CONNECTDLGSTRUCT = thismodule.CONNECTDLGSTRUCTW;
-        pub const DISCDLGSTRUCT = thismodule.DISCDLGSTRUCTW;
-        pub const UNIVERSAL_NAME_INFO = thismodule.UNIVERSAL_NAME_INFOW;
-        pub const REMOTE_NAME_INFO = thismodule.REMOTE_NAME_INFOW;
-        pub const WNetAddConnection = thismodule.WNetAddConnectionW;
-        pub const WNetAddConnection2 = thismodule.WNetAddConnection2W;
-        pub const WNetAddConnection3 = thismodule.WNetAddConnection3W;
-        pub const WNetAddConnection4 = thismodule.WNetAddConnection4W;
-        pub const WNetCancelConnection = thismodule.WNetCancelConnectionW;
-        pub const WNetCancelConnection2 = thismodule.WNetCancelConnection2W;
-        pub const WNetGetConnection = thismodule.WNetGetConnectionW;
-        pub const WNetUseConnection = thismodule.WNetUseConnectionW;
-        pub const WNetUseConnection4 = thismodule.WNetUseConnection4W;
-        pub const WNetConnectionDialog1 = thismodule.WNetConnectionDialog1W;
-        pub const WNetDisconnectDialog1 = thismodule.WNetDisconnectDialog1W;
-        pub const WNetOpenEnum = thismodule.WNetOpenEnumW;
-        pub const WNetEnumResource = thismodule.WNetEnumResourceW;
-        pub const WNetGetResourceParent = thismodule.WNetGetResourceParentW;
-        pub const WNetGetResourceInformation = thismodule.WNetGetResourceInformationW;
-        pub const WNetGetUniversalName = thismodule.WNetGetUniversalNameW;
-        pub const WNetGetUser = thismodule.WNetGetUserW;
-        pub const WNetGetProviderName = thismodule.WNetGetProviderNameW;
-        pub const WNetGetNetworkInformation = thismodule.WNetGetNetworkInformationW;
-        pub const WNetGetLastError = thismodule.WNetGetLastErrorW;
-        pub const MultinetGetConnectionPerformance = thismodule.MultinetGetConnectionPerformanceW;
-        pub const WNetSetLastError = thismodule.WNetSetLastErrorW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const NETRESOURCE = *opaque{};
-        pub const CONNECTDLGSTRUCT = *opaque{};
-        pub const DISCDLGSTRUCT = *opaque{};
-        pub const UNIVERSAL_NAME_INFO = *opaque{};
-        pub const REMOTE_NAME_INFO = *opaque{};
-        pub const WNetAddConnection = *opaque{};
-        pub const WNetAddConnection2 = *opaque{};
-        pub const WNetAddConnection3 = *opaque{};
-        pub const WNetAddConnection4 = *opaque{};
-        pub const WNetCancelConnection = *opaque{};
-        pub const WNetCancelConnection2 = *opaque{};
-        pub const WNetGetConnection = *opaque{};
-        pub const WNetUseConnection = *opaque{};
-        pub const WNetUseConnection4 = *opaque{};
-        pub const WNetConnectionDialog1 = *opaque{};
-        pub const WNetDisconnectDialog1 = *opaque{};
-        pub const WNetOpenEnum = *opaque{};
-        pub const WNetEnumResource = *opaque{};
-        pub const WNetGetResourceParent = *opaque{};
-        pub const WNetGetResourceInformation = *opaque{};
-        pub const WNetGetUniversalName = *opaque{};
-        pub const WNetGetUser = *opaque{};
-        pub const WNetGetProviderName = *opaque{};
-        pub const WNetGetNetworkInformation = *opaque{};
-        pub const WNetGetLastError = *opaque{};
-        pub const MultinetGetConnectionPerformance = *opaque{};
-        pub const WNetSetLastError = *opaque{};
-    } else struct {
-        pub const NETRESOURCE = @compileError("'NETRESOURCE' requires that UNICODE be set to true or false in the root module");
-        pub const CONNECTDLGSTRUCT = @compileError("'CONNECTDLGSTRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const DISCDLGSTRUCT = @compileError("'DISCDLGSTRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const UNIVERSAL_NAME_INFO = @compileError("'UNIVERSAL_NAME_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const REMOTE_NAME_INFO = @compileError("'REMOTE_NAME_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const WNetAddConnection = @compileError("'WNetAddConnection' requires that UNICODE be set to true or false in the root module");
-        pub const WNetAddConnection2 = @compileError("'WNetAddConnection2' requires that UNICODE be set to true or false in the root module");
-        pub const WNetAddConnection3 = @compileError("'WNetAddConnection3' requires that UNICODE be set to true or false in the root module");
-        pub const WNetAddConnection4 = @compileError("'WNetAddConnection4' requires that UNICODE be set to true or false in the root module");
-        pub const WNetCancelConnection = @compileError("'WNetCancelConnection' requires that UNICODE be set to true or false in the root module");
-        pub const WNetCancelConnection2 = @compileError("'WNetCancelConnection2' requires that UNICODE be set to true or false in the root module");
-        pub const WNetGetConnection = @compileError("'WNetGetConnection' requires that UNICODE be set to true or false in the root module");
-        pub const WNetUseConnection = @compileError("'WNetUseConnection' requires that UNICODE be set to true or false in the root module");
-        pub const WNetUseConnection4 = @compileError("'WNetUseConnection4' requires that UNICODE be set to true or false in the root module");
-        pub const WNetConnectionDialog1 = @compileError("'WNetConnectionDialog1' requires that UNICODE be set to true or false in the root module");
-        pub const WNetDisconnectDialog1 = @compileError("'WNetDisconnectDialog1' requires that UNICODE be set to true or false in the root module");
-        pub const WNetOpenEnum = @compileError("'WNetOpenEnum' requires that UNICODE be set to true or false in the root module");
-        pub const WNetEnumResource = @compileError("'WNetEnumResource' requires that UNICODE be set to true or false in the root module");
-        pub const WNetGetResourceParent = @compileError("'WNetGetResourceParent' requires that UNICODE be set to true or false in the root module");
-        pub const WNetGetResourceInformation = @compileError("'WNetGetResourceInformation' requires that UNICODE be set to true or false in the root module");
-        pub const WNetGetUniversalName = @compileError("'WNetGetUniversalName' requires that UNICODE be set to true or false in the root module");
-        pub const WNetGetUser = @compileError("'WNetGetUser' requires that UNICODE be set to true or false in the root module");
-        pub const WNetGetProviderName = @compileError("'WNetGetProviderName' requires that UNICODE be set to true or false in the root module");
-        pub const WNetGetNetworkInformation = @compileError("'WNetGetNetworkInformation' requires that UNICODE be set to true or false in the root module");
-        pub const WNetGetLastError = @compileError("'WNetGetLastError' requires that UNICODE be set to true or false in the root module");
-        pub const MultinetGetConnectionPerformance = @compileError("'MultinetGetConnectionPerformance' requires that UNICODE be set to true or false in the root module");
-        pub const WNetSetLastError = @compileError("'WNetSetLastError' requires that UNICODE be set to true or false in the root module");
-    },
+pub const NETRESOURCE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NETRESOURCEA,
+    .wide => @This().NETRESOURCEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NETRESOURCE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CONNECTDLGSTRUCT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CONNECTDLGSTRUCTA,
+    .wide => @This().CONNECTDLGSTRUCTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CONNECTDLGSTRUCT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DISCDLGSTRUCT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DISCDLGSTRUCTA,
+    .wide => @This().DISCDLGSTRUCTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DISCDLGSTRUCT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UNIVERSAL_NAME_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UNIVERSAL_NAME_INFOA,
+    .wide => @This().UNIVERSAL_NAME_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UNIVERSAL_NAME_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const REMOTE_NAME_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().REMOTE_NAME_INFOA,
+    .wide => @This().REMOTE_NAME_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'REMOTE_NAME_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetAddConnection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetAddConnectionA,
+    .wide => @This().WNetAddConnectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetAddConnection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetAddConnection2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetAddConnection2A,
+    .wide => @This().WNetAddConnection2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetAddConnection2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetAddConnection3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetAddConnection3A,
+    .wide => @This().WNetAddConnection3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetAddConnection3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetAddConnection4 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetAddConnection4A,
+    .wide => @This().WNetAddConnection4W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetAddConnection4' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetCancelConnection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetCancelConnectionA,
+    .wide => @This().WNetCancelConnectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetCancelConnection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetCancelConnection2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetCancelConnection2A,
+    .wide => @This().WNetCancelConnection2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetCancelConnection2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetGetConnection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetGetConnectionA,
+    .wide => @This().WNetGetConnectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetGetConnection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetUseConnection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetUseConnectionA,
+    .wide => @This().WNetUseConnectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetUseConnection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetUseConnection4 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetUseConnection4A,
+    .wide => @This().WNetUseConnection4W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetUseConnection4' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetConnectionDialog1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetConnectionDialog1A,
+    .wide => @This().WNetConnectionDialog1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetConnectionDialog1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetDisconnectDialog1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetDisconnectDialog1A,
+    .wide => @This().WNetDisconnectDialog1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetDisconnectDialog1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetOpenEnum = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetOpenEnumA,
+    .wide => @This().WNetOpenEnumW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetOpenEnum' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetEnumResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetEnumResourceA,
+    .wide => @This().WNetEnumResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetEnumResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetGetResourceParent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetGetResourceParentA,
+    .wide => @This().WNetGetResourceParentW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetGetResourceParent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetGetResourceInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetGetResourceInformationA,
+    .wide => @This().WNetGetResourceInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetGetResourceInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetGetUniversalName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetGetUniversalNameA,
+    .wide => @This().WNetGetUniversalNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetGetUniversalName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetGetUser = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetGetUserA,
+    .wide => @This().WNetGetUserW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetGetUser' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetGetProviderName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetGetProviderNameA,
+    .wide => @This().WNetGetProviderNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetGetProviderName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetGetNetworkInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetGetNetworkInformationA,
+    .wide => @This().WNetGetNetworkInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetGetNetworkInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetGetLastError = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetGetLastErrorA,
+    .wide => @This().WNetGetLastErrorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetGetLastError' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MultinetGetConnectionPerformance = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MultinetGetConnectionPerformanceA,
+    .wide => @This().MultinetGetConnectionPerformanceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MultinetGetConnectionPerformance' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNetSetLastError = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNetSetLastErrorA,
+    .wide => @This().WNetSetLastErrorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNetSetLastError' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)

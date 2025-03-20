@@ -3361,223 +3361,369 @@ pub extern "wldp" fn WldpQueryDeviceSecurityInformation(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (52)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const HW_PROFILE_INFO = thismodule.HW_PROFILE_INFOA;
-        pub const STRENTRY = thismodule.STRENTRYA;
-        pub const STRTABLE = thismodule.STRTABLEA;
-        pub const CABINFO = thismodule.CABINFOA;
-        pub const PERUSERSECTION = thismodule.PERUSERSECTIONA;
-        pub const IMEPRO = thismodule.IMEPROA;
-        pub const GetFirmwareEnvironmentVariable = thismodule.GetFirmwareEnvironmentVariableA;
-        pub const GetFirmwareEnvironmentVariableEx = thismodule.GetFirmwareEnvironmentVariableExA;
-        pub const SetFirmwareEnvironmentVariable = thismodule.SetFirmwareEnvironmentVariableA;
-        pub const SetFirmwareEnvironmentVariableEx = thismodule.SetFirmwareEnvironmentVariableExA;
-        pub const GetProfileInt = thismodule.GetProfileIntA;
-        pub const GetProfileString = thismodule.GetProfileStringA;
-        pub const WriteProfileString = thismodule.WriteProfileStringA;
-        pub const GetProfileSection = thismodule.GetProfileSectionA;
-        pub const WriteProfileSection = thismodule.WriteProfileSectionA;
-        pub const GetPrivateProfileInt = thismodule.GetPrivateProfileIntA;
-        pub const GetPrivateProfileString = thismodule.GetPrivateProfileStringA;
-        pub const WritePrivateProfileString = thismodule.WritePrivateProfileStringA;
-        pub const GetPrivateProfileSection = thismodule.GetPrivateProfileSectionA;
-        pub const WritePrivateProfileSection = thismodule.WritePrivateProfileSectionA;
-        pub const GetPrivateProfileSectionNames = thismodule.GetPrivateProfileSectionNamesA;
-        pub const GetPrivateProfileStruct = thismodule.GetPrivateProfileStructA;
-        pub const WritePrivateProfileStruct = thismodule.WritePrivateProfileStructA;
-        pub const GetComputerName = thismodule.GetComputerNameA;
-        pub const DnsHostnameToComputerName = thismodule.DnsHostnameToComputerNameA;
-        pub const GetUserName = thismodule.GetUserNameA;
-        pub const GetCurrentHwProfile = thismodule.GetCurrentHwProfileA;
-        pub const RunSetupCommand = thismodule.RunSetupCommandA;
-        pub const RebootCheckOnInstall = thismodule.RebootCheckOnInstallA;
-        pub const TranslateInfString = thismodule.TranslateInfStringA;
-        pub const RegInstall = thismodule.RegInstallA;
-        pub const ExecuteCab = thismodule.ExecuteCabA;
-        pub const AdvInstallFile = thismodule.AdvInstallFileA;
-        pub const RegSaveRestore = thismodule.RegSaveRestoreA;
-        pub const RegSaveRestoreOnINF = thismodule.RegSaveRestoreOnINFA;
-        pub const RegRestoreAll = thismodule.RegRestoreAllA;
-        pub const FileSaveRestoreOnINF = thismodule.FileSaveRestoreOnINFA;
-        pub const AddDelBackupEntry = thismodule.AddDelBackupEntryA;
-        pub const FileSaveMarkNotExist = thismodule.FileSaveMarkNotExistA;
-        pub const GetVersionFromFile = thismodule.GetVersionFromFileA;
-        pub const GetVersionFromFileEx = thismodule.GetVersionFromFileExA;
-        pub const DelNode = thismodule.DelNodeA;
-        pub const OpenINFEngine = thismodule.OpenINFEngineA;
-        pub const TranslateInfStringEx = thismodule.TranslateInfStringExA;
-        pub const ExtractFiles = thismodule.ExtractFilesA;
-        pub const UserInstStubWrapper = thismodule.UserInstStubWrapperA;
-        pub const UserUnInstStubWrapper = thismodule.UserUnInstStubWrapperA;
-        pub const SetPerUserSecValues = thismodule.SetPerUserSecValuesA;
-        pub const SendIMEMessageEx = thismodule.SendIMEMessageExA;
-        pub const IMPGetIME = thismodule.IMPGetIMEA;
-        pub const IMPQueryIME = thismodule.IMPQueryIMEA;
-        pub const IMPSetIME = thismodule.IMPSetIMEA;
-    },
-    .wide => struct {
-        pub const HW_PROFILE_INFO = thismodule.HW_PROFILE_INFOW;
-        pub const STRENTRY = thismodule.STRENTRYW;
-        pub const STRTABLE = thismodule.STRTABLEW;
-        pub const CABINFO = thismodule.CABINFOW;
-        pub const PERUSERSECTION = thismodule.PERUSERSECTIONW;
-        pub const IMEPRO = thismodule.IMEPROW;
-        pub const GetFirmwareEnvironmentVariable = thismodule.GetFirmwareEnvironmentVariableW;
-        pub const GetFirmwareEnvironmentVariableEx = thismodule.GetFirmwareEnvironmentVariableExW;
-        pub const SetFirmwareEnvironmentVariable = thismodule.SetFirmwareEnvironmentVariableW;
-        pub const SetFirmwareEnvironmentVariableEx = thismodule.SetFirmwareEnvironmentVariableExW;
-        pub const GetProfileInt = thismodule.GetProfileIntW;
-        pub const GetProfileString = thismodule.GetProfileStringW;
-        pub const WriteProfileString = thismodule.WriteProfileStringW;
-        pub const GetProfileSection = thismodule.GetProfileSectionW;
-        pub const WriteProfileSection = thismodule.WriteProfileSectionW;
-        pub const GetPrivateProfileInt = thismodule.GetPrivateProfileIntW;
-        pub const GetPrivateProfileString = thismodule.GetPrivateProfileStringW;
-        pub const WritePrivateProfileString = thismodule.WritePrivateProfileStringW;
-        pub const GetPrivateProfileSection = thismodule.GetPrivateProfileSectionW;
-        pub const WritePrivateProfileSection = thismodule.WritePrivateProfileSectionW;
-        pub const GetPrivateProfileSectionNames = thismodule.GetPrivateProfileSectionNamesW;
-        pub const GetPrivateProfileStruct = thismodule.GetPrivateProfileStructW;
-        pub const WritePrivateProfileStruct = thismodule.WritePrivateProfileStructW;
-        pub const GetComputerName = thismodule.GetComputerNameW;
-        pub const DnsHostnameToComputerName = thismodule.DnsHostnameToComputerNameW;
-        pub const GetUserName = thismodule.GetUserNameW;
-        pub const GetCurrentHwProfile = thismodule.GetCurrentHwProfileW;
-        pub const RunSetupCommand = thismodule.RunSetupCommandW;
-        pub const RebootCheckOnInstall = thismodule.RebootCheckOnInstallW;
-        pub const TranslateInfString = thismodule.TranslateInfStringW;
-        pub const RegInstall = thismodule.RegInstallW;
-        pub const ExecuteCab = thismodule.ExecuteCabW;
-        pub const AdvInstallFile = thismodule.AdvInstallFileW;
-        pub const RegSaveRestore = thismodule.RegSaveRestoreW;
-        pub const RegSaveRestoreOnINF = thismodule.RegSaveRestoreOnINFW;
-        pub const RegRestoreAll = thismodule.RegRestoreAllW;
-        pub const FileSaveRestoreOnINF = thismodule.FileSaveRestoreOnINFW;
-        pub const AddDelBackupEntry = thismodule.AddDelBackupEntryW;
-        pub const FileSaveMarkNotExist = thismodule.FileSaveMarkNotExistW;
-        pub const GetVersionFromFile = thismodule.GetVersionFromFileW;
-        pub const GetVersionFromFileEx = thismodule.GetVersionFromFileExW;
-        pub const DelNode = thismodule.DelNodeW;
-        pub const OpenINFEngine = thismodule.OpenINFEngineW;
-        pub const TranslateInfStringEx = thismodule.TranslateInfStringExW;
-        pub const ExtractFiles = thismodule.ExtractFilesW;
-        pub const UserInstStubWrapper = thismodule.UserInstStubWrapperW;
-        pub const UserUnInstStubWrapper = thismodule.UserUnInstStubWrapperW;
-        pub const SetPerUserSecValues = thismodule.SetPerUserSecValuesW;
-        pub const SendIMEMessageEx = thismodule.SendIMEMessageExW;
-        pub const IMPGetIME = thismodule.IMPGetIMEW;
-        pub const IMPQueryIME = thismodule.IMPQueryIMEW;
-        pub const IMPSetIME = thismodule.IMPSetIMEW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const HW_PROFILE_INFO = *opaque{};
-        pub const STRENTRY = *opaque{};
-        pub const STRTABLE = *opaque{};
-        pub const CABINFO = *opaque{};
-        pub const PERUSERSECTION = *opaque{};
-        pub const IMEPRO = *opaque{};
-        pub const GetFirmwareEnvironmentVariable = *opaque{};
-        pub const GetFirmwareEnvironmentVariableEx = *opaque{};
-        pub const SetFirmwareEnvironmentVariable = *opaque{};
-        pub const SetFirmwareEnvironmentVariableEx = *opaque{};
-        pub const GetProfileInt = *opaque{};
-        pub const GetProfileString = *opaque{};
-        pub const WriteProfileString = *opaque{};
-        pub const GetProfileSection = *opaque{};
-        pub const WriteProfileSection = *opaque{};
-        pub const GetPrivateProfileInt = *opaque{};
-        pub const GetPrivateProfileString = *opaque{};
-        pub const WritePrivateProfileString = *opaque{};
-        pub const GetPrivateProfileSection = *opaque{};
-        pub const WritePrivateProfileSection = *opaque{};
-        pub const GetPrivateProfileSectionNames = *opaque{};
-        pub const GetPrivateProfileStruct = *opaque{};
-        pub const WritePrivateProfileStruct = *opaque{};
-        pub const GetComputerName = *opaque{};
-        pub const DnsHostnameToComputerName = *opaque{};
-        pub const GetUserName = *opaque{};
-        pub const GetCurrentHwProfile = *opaque{};
-        pub const RunSetupCommand = *opaque{};
-        pub const RebootCheckOnInstall = *opaque{};
-        pub const TranslateInfString = *opaque{};
-        pub const RegInstall = *opaque{};
-        pub const ExecuteCab = *opaque{};
-        pub const AdvInstallFile = *opaque{};
-        pub const RegSaveRestore = *opaque{};
-        pub const RegSaveRestoreOnINF = *opaque{};
-        pub const RegRestoreAll = *opaque{};
-        pub const FileSaveRestoreOnINF = *opaque{};
-        pub const AddDelBackupEntry = *opaque{};
-        pub const FileSaveMarkNotExist = *opaque{};
-        pub const GetVersionFromFile = *opaque{};
-        pub const GetVersionFromFileEx = *opaque{};
-        pub const DelNode = *opaque{};
-        pub const OpenINFEngine = *opaque{};
-        pub const TranslateInfStringEx = *opaque{};
-        pub const ExtractFiles = *opaque{};
-        pub const UserInstStubWrapper = *opaque{};
-        pub const UserUnInstStubWrapper = *opaque{};
-        pub const SetPerUserSecValues = *opaque{};
-        pub const SendIMEMessageEx = *opaque{};
-        pub const IMPGetIME = *opaque{};
-        pub const IMPQueryIME = *opaque{};
-        pub const IMPSetIME = *opaque{};
-    } else struct {
-        pub const HW_PROFILE_INFO = @compileError("'HW_PROFILE_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const STRENTRY = @compileError("'STRENTRY' requires that UNICODE be set to true or false in the root module");
-        pub const STRTABLE = @compileError("'STRTABLE' requires that UNICODE be set to true or false in the root module");
-        pub const CABINFO = @compileError("'CABINFO' requires that UNICODE be set to true or false in the root module");
-        pub const PERUSERSECTION = @compileError("'PERUSERSECTION' requires that UNICODE be set to true or false in the root module");
-        pub const IMEPRO = @compileError("'IMEPRO' requires that UNICODE be set to true or false in the root module");
-        pub const GetFirmwareEnvironmentVariable = @compileError("'GetFirmwareEnvironmentVariable' requires that UNICODE be set to true or false in the root module");
-        pub const GetFirmwareEnvironmentVariableEx = @compileError("'GetFirmwareEnvironmentVariableEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetFirmwareEnvironmentVariable = @compileError("'SetFirmwareEnvironmentVariable' requires that UNICODE be set to true or false in the root module");
-        pub const SetFirmwareEnvironmentVariableEx = @compileError("'SetFirmwareEnvironmentVariableEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetProfileInt = @compileError("'GetProfileInt' requires that UNICODE be set to true or false in the root module");
-        pub const GetProfileString = @compileError("'GetProfileString' requires that UNICODE be set to true or false in the root module");
-        pub const WriteProfileString = @compileError("'WriteProfileString' requires that UNICODE be set to true or false in the root module");
-        pub const GetProfileSection = @compileError("'GetProfileSection' requires that UNICODE be set to true or false in the root module");
-        pub const WriteProfileSection = @compileError("'WriteProfileSection' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrivateProfileInt = @compileError("'GetPrivateProfileInt' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrivateProfileString = @compileError("'GetPrivateProfileString' requires that UNICODE be set to true or false in the root module");
-        pub const WritePrivateProfileString = @compileError("'WritePrivateProfileString' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrivateProfileSection = @compileError("'GetPrivateProfileSection' requires that UNICODE be set to true or false in the root module");
-        pub const WritePrivateProfileSection = @compileError("'WritePrivateProfileSection' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrivateProfileSectionNames = @compileError("'GetPrivateProfileSectionNames' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrivateProfileStruct = @compileError("'GetPrivateProfileStruct' requires that UNICODE be set to true or false in the root module");
-        pub const WritePrivateProfileStruct = @compileError("'WritePrivateProfileStruct' requires that UNICODE be set to true or false in the root module");
-        pub const GetComputerName = @compileError("'GetComputerName' requires that UNICODE be set to true or false in the root module");
-        pub const DnsHostnameToComputerName = @compileError("'DnsHostnameToComputerName' requires that UNICODE be set to true or false in the root module");
-        pub const GetUserName = @compileError("'GetUserName' requires that UNICODE be set to true or false in the root module");
-        pub const GetCurrentHwProfile = @compileError("'GetCurrentHwProfile' requires that UNICODE be set to true or false in the root module");
-        pub const RunSetupCommand = @compileError("'RunSetupCommand' requires that UNICODE be set to true or false in the root module");
-        pub const RebootCheckOnInstall = @compileError("'RebootCheckOnInstall' requires that UNICODE be set to true or false in the root module");
-        pub const TranslateInfString = @compileError("'TranslateInfString' requires that UNICODE be set to true or false in the root module");
-        pub const RegInstall = @compileError("'RegInstall' requires that UNICODE be set to true or false in the root module");
-        pub const ExecuteCab = @compileError("'ExecuteCab' requires that UNICODE be set to true or false in the root module");
-        pub const AdvInstallFile = @compileError("'AdvInstallFile' requires that UNICODE be set to true or false in the root module");
-        pub const RegSaveRestore = @compileError("'RegSaveRestore' requires that UNICODE be set to true or false in the root module");
-        pub const RegSaveRestoreOnINF = @compileError("'RegSaveRestoreOnINF' requires that UNICODE be set to true or false in the root module");
-        pub const RegRestoreAll = @compileError("'RegRestoreAll' requires that UNICODE be set to true or false in the root module");
-        pub const FileSaveRestoreOnINF = @compileError("'FileSaveRestoreOnINF' requires that UNICODE be set to true or false in the root module");
-        pub const AddDelBackupEntry = @compileError("'AddDelBackupEntry' requires that UNICODE be set to true or false in the root module");
-        pub const FileSaveMarkNotExist = @compileError("'FileSaveMarkNotExist' requires that UNICODE be set to true or false in the root module");
-        pub const GetVersionFromFile = @compileError("'GetVersionFromFile' requires that UNICODE be set to true or false in the root module");
-        pub const GetVersionFromFileEx = @compileError("'GetVersionFromFileEx' requires that UNICODE be set to true or false in the root module");
-        pub const DelNode = @compileError("'DelNode' requires that UNICODE be set to true or false in the root module");
-        pub const OpenINFEngine = @compileError("'OpenINFEngine' requires that UNICODE be set to true or false in the root module");
-        pub const TranslateInfStringEx = @compileError("'TranslateInfStringEx' requires that UNICODE be set to true or false in the root module");
-        pub const ExtractFiles = @compileError("'ExtractFiles' requires that UNICODE be set to true or false in the root module");
-        pub const UserInstStubWrapper = @compileError("'UserInstStubWrapper' requires that UNICODE be set to true or false in the root module");
-        pub const UserUnInstStubWrapper = @compileError("'UserUnInstStubWrapper' requires that UNICODE be set to true or false in the root module");
-        pub const SetPerUserSecValues = @compileError("'SetPerUserSecValues' requires that UNICODE be set to true or false in the root module");
-        pub const SendIMEMessageEx = @compileError("'SendIMEMessageEx' requires that UNICODE be set to true or false in the root module");
-        pub const IMPGetIME = @compileError("'IMPGetIME' requires that UNICODE be set to true or false in the root module");
-        pub const IMPQueryIME = @compileError("'IMPQueryIME' requires that UNICODE be set to true or false in the root module");
-        pub const IMPSetIME = @compileError("'IMPSetIME' requires that UNICODE be set to true or false in the root module");
-    },
+pub const HW_PROFILE_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HW_PROFILE_INFOA,
+    .wide => @This().HW_PROFILE_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HW_PROFILE_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const STRENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().STRENTRYA,
+    .wide => @This().STRENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'STRENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const STRTABLE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().STRTABLEA,
+    .wide => @This().STRTABLEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'STRTABLE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CABINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CABINFOA,
+    .wide => @This().CABINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CABINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PERUSERSECTION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PERUSERSECTIONA,
+    .wide => @This().PERUSERSECTIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PERUSERSECTION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IMEPRO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IMEPROA,
+    .wide => @This().IMEPROW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IMEPRO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFirmwareEnvironmentVariable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFirmwareEnvironmentVariableA,
+    .wide => @This().GetFirmwareEnvironmentVariableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFirmwareEnvironmentVariable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFirmwareEnvironmentVariableEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFirmwareEnvironmentVariableExA,
+    .wide => @This().GetFirmwareEnvironmentVariableExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFirmwareEnvironmentVariableEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetFirmwareEnvironmentVariable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetFirmwareEnvironmentVariableA,
+    .wide => @This().SetFirmwareEnvironmentVariableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetFirmwareEnvironmentVariable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetFirmwareEnvironmentVariableEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetFirmwareEnvironmentVariableExA,
+    .wide => @This().SetFirmwareEnvironmentVariableExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetFirmwareEnvironmentVariableEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetProfileInt = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetProfileIntA,
+    .wide => @This().GetProfileIntW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetProfileInt' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetProfileString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetProfileStringA,
+    .wide => @This().GetProfileStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetProfileString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WriteProfileString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WriteProfileStringA,
+    .wide => @This().WriteProfileStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WriteProfileString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetProfileSection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetProfileSectionA,
+    .wide => @This().GetProfileSectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetProfileSection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WriteProfileSection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WriteProfileSectionA,
+    .wide => @This().WriteProfileSectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WriteProfileSection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrivateProfileInt = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrivateProfileIntA,
+    .wide => @This().GetPrivateProfileIntW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrivateProfileInt' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrivateProfileString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrivateProfileStringA,
+    .wide => @This().GetPrivateProfileStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrivateProfileString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WritePrivateProfileString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WritePrivateProfileStringA,
+    .wide => @This().WritePrivateProfileStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WritePrivateProfileString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrivateProfileSection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrivateProfileSectionA,
+    .wide => @This().GetPrivateProfileSectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrivateProfileSection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WritePrivateProfileSection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WritePrivateProfileSectionA,
+    .wide => @This().WritePrivateProfileSectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WritePrivateProfileSection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrivateProfileSectionNames = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrivateProfileSectionNamesA,
+    .wide => @This().GetPrivateProfileSectionNamesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrivateProfileSectionNames' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrivateProfileStruct = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrivateProfileStructA,
+    .wide => @This().GetPrivateProfileStructW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrivateProfileStruct' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WritePrivateProfileStruct = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WritePrivateProfileStructA,
+    .wide => @This().WritePrivateProfileStructW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WritePrivateProfileStruct' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetComputerName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetComputerNameA,
+    .wide => @This().GetComputerNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetComputerName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DnsHostnameToComputerName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DnsHostnameToComputerNameA,
+    .wide => @This().DnsHostnameToComputerNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DnsHostnameToComputerName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetUserName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetUserNameA,
+    .wide => @This().GetUserNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetUserName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCurrentHwProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetCurrentHwProfileA,
+    .wide => @This().GetCurrentHwProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCurrentHwProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RunSetupCommand = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RunSetupCommandA,
+    .wide => @This().RunSetupCommandW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RunSetupCommand' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RebootCheckOnInstall = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RebootCheckOnInstallA,
+    .wide => @This().RebootCheckOnInstallW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RebootCheckOnInstall' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TranslateInfString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TranslateInfStringA,
+    .wide => @This().TranslateInfStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TranslateInfString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegInstall = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegInstallA,
+    .wide => @This().RegInstallW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegInstall' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExecuteCab = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExecuteCabA,
+    .wide => @This().ExecuteCabW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExecuteCab' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AdvInstallFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AdvInstallFileA,
+    .wide => @This().AdvInstallFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AdvInstallFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegSaveRestore = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegSaveRestoreA,
+    .wide => @This().RegSaveRestoreW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegSaveRestore' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegSaveRestoreOnINF = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegSaveRestoreOnINFA,
+    .wide => @This().RegSaveRestoreOnINFW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegSaveRestoreOnINF' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegRestoreAll = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegRestoreAllA,
+    .wide => @This().RegRestoreAllW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegRestoreAll' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FileSaveRestoreOnINF = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FileSaveRestoreOnINFA,
+    .wide => @This().FileSaveRestoreOnINFW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FileSaveRestoreOnINF' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddDelBackupEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddDelBackupEntryA,
+    .wide => @This().AddDelBackupEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddDelBackupEntry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FileSaveMarkNotExist = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FileSaveMarkNotExistA,
+    .wide => @This().FileSaveMarkNotExistW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FileSaveMarkNotExist' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetVersionFromFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetVersionFromFileA,
+    .wide => @This().GetVersionFromFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetVersionFromFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetVersionFromFileEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetVersionFromFileExA,
+    .wide => @This().GetVersionFromFileExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetVersionFromFileEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DelNode = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DelNodeA,
+    .wide => @This().DelNodeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DelNode' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenINFEngine = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenINFEngineA,
+    .wide => @This().OpenINFEngineW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenINFEngine' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TranslateInfStringEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TranslateInfStringExA,
+    .wide => @This().TranslateInfStringExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TranslateInfStringEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExtractFiles = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExtractFilesA,
+    .wide => @This().ExtractFilesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExtractFiles' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UserInstStubWrapper = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UserInstStubWrapperA,
+    .wide => @This().UserInstStubWrapperW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UserInstStubWrapper' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UserUnInstStubWrapper = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UserUnInstStubWrapperA,
+    .wide => @This().UserUnInstStubWrapperW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UserUnInstStubWrapper' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetPerUserSecValues = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetPerUserSecValuesA,
+    .wide => @This().SetPerUserSecValuesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetPerUserSecValues' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SendIMEMessageEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SendIMEMessageExA,
+    .wide => @This().SendIMEMessageExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SendIMEMessageEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IMPGetIME = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IMPGetIMEA,
+    .wide => @This().IMPGetIMEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IMPGetIME' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IMPQueryIME = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IMPQueryIMEA,
+    .wide => @This().IMPQueryIMEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IMPQueryIME' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IMPSetIME = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IMPSetIMEA,
+    .wide => @This().IMPSetIMEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IMPSetIME' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (27)

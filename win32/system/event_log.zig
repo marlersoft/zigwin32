@@ -1005,43 +1005,54 @@ pub extern "advapi32" fn GetEventLogInformation(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (7)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const ClearEventLog = thismodule.ClearEventLogA;
-        pub const BackupEventLog = thismodule.BackupEventLogA;
-        pub const OpenEventLog = thismodule.OpenEventLogA;
-        pub const RegisterEventSource = thismodule.RegisterEventSourceA;
-        pub const OpenBackupEventLog = thismodule.OpenBackupEventLogA;
-        pub const ReadEventLog = thismodule.ReadEventLogA;
-        pub const ReportEvent = thismodule.ReportEventA;
-    },
-    .wide => struct {
-        pub const ClearEventLog = thismodule.ClearEventLogW;
-        pub const BackupEventLog = thismodule.BackupEventLogW;
-        pub const OpenEventLog = thismodule.OpenEventLogW;
-        pub const RegisterEventSource = thismodule.RegisterEventSourceW;
-        pub const OpenBackupEventLog = thismodule.OpenBackupEventLogW;
-        pub const ReadEventLog = thismodule.ReadEventLogW;
-        pub const ReportEvent = thismodule.ReportEventW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const ClearEventLog = *opaque{};
-        pub const BackupEventLog = *opaque{};
-        pub const OpenEventLog = *opaque{};
-        pub const RegisterEventSource = *opaque{};
-        pub const OpenBackupEventLog = *opaque{};
-        pub const ReadEventLog = *opaque{};
-        pub const ReportEvent = *opaque{};
-    } else struct {
-        pub const ClearEventLog = @compileError("'ClearEventLog' requires that UNICODE be set to true or false in the root module");
-        pub const BackupEventLog = @compileError("'BackupEventLog' requires that UNICODE be set to true or false in the root module");
-        pub const OpenEventLog = @compileError("'OpenEventLog' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterEventSource = @compileError("'RegisterEventSource' requires that UNICODE be set to true or false in the root module");
-        pub const OpenBackupEventLog = @compileError("'OpenBackupEventLog' requires that UNICODE be set to true or false in the root module");
-        pub const ReadEventLog = @compileError("'ReadEventLog' requires that UNICODE be set to true or false in the root module");
-        pub const ReportEvent = @compileError("'ReportEvent' requires that UNICODE be set to true or false in the root module");
-    },
+pub const ClearEventLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ClearEventLogA,
+    .wide => @This().ClearEventLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ClearEventLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BackupEventLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BackupEventLogA,
+    .wide => @This().BackupEventLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BackupEventLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenEventLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenEventLogA,
+    .wide => @This().OpenEventLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenEventLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterEventSource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterEventSourceA,
+    .wide => @This().RegisterEventSourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterEventSource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenBackupEventLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenBackupEventLogA,
+    .wide => @This().OpenBackupEventLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenBackupEventLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReadEventLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReadEventLogA,
+    .wide => @This().ReadEventLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReadEventLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportEvent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportEventA,
+    .wide => @This().ReportEventW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportEvent' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)

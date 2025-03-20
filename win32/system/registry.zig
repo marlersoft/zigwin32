@@ -1993,159 +1993,257 @@ pub extern "api-ms-win-core-state-helpers-l1-1-0" fn GetRegistryValueWithFallbac
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (36)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const pvalue = thismodule.pvalueA;
-        pub const VALENT = thismodule.VALENTA;
-        pub const RegConnectRegistry = thismodule.RegConnectRegistryA;
-        pub const RegConnectRegistryEx = thismodule.RegConnectRegistryExA;
-        pub const RegCreateKey = thismodule.RegCreateKeyA;
-        pub const RegCreateKeyEx = thismodule.RegCreateKeyExA;
-        pub const RegCreateKeyTransacted = thismodule.RegCreateKeyTransactedA;
-        pub const RegDeleteKey = thismodule.RegDeleteKeyA;
-        pub const RegDeleteKeyEx = thismodule.RegDeleteKeyExA;
-        pub const RegDeleteKeyTransacted = thismodule.RegDeleteKeyTransactedA;
-        pub const RegDeleteValue = thismodule.RegDeleteValueA;
-        pub const RegEnumKey = thismodule.RegEnumKeyA;
-        pub const RegEnumKeyEx = thismodule.RegEnumKeyExA;
-        pub const RegEnumValue = thismodule.RegEnumValueA;
-        pub const RegLoadKey = thismodule.RegLoadKeyA;
-        pub const RegOpenKey = thismodule.RegOpenKeyA;
-        pub const RegOpenKeyEx = thismodule.RegOpenKeyExA;
-        pub const RegOpenKeyTransacted = thismodule.RegOpenKeyTransactedA;
-        pub const RegQueryInfoKey = thismodule.RegQueryInfoKeyA;
-        pub const RegQueryValue = thismodule.RegQueryValueA;
-        pub const RegQueryMultipleValues = thismodule.RegQueryMultipleValuesA;
-        pub const RegQueryValueEx = thismodule.RegQueryValueExA;
-        pub const RegReplaceKey = thismodule.RegReplaceKeyA;
-        pub const RegRestoreKey = thismodule.RegRestoreKeyA;
-        pub const RegSaveKey = thismodule.RegSaveKeyA;
-        pub const RegSetValue = thismodule.RegSetValueA;
-        pub const RegSetValueEx = thismodule.RegSetValueExA;
-        pub const RegUnLoadKey = thismodule.RegUnLoadKeyA;
-        pub const RegDeleteKeyValue = thismodule.RegDeleteKeyValueA;
-        pub const RegSetKeyValue = thismodule.RegSetKeyValueA;
-        pub const RegDeleteTree = thismodule.RegDeleteTreeA;
-        pub const RegCopyTree = thismodule.RegCopyTreeA;
-        pub const RegGetValue = thismodule.RegGetValueA;
-        pub const RegLoadMUIString = thismodule.RegLoadMUIStringA;
-        pub const RegLoadAppKey = thismodule.RegLoadAppKeyA;
-        pub const RegSaveKeyEx = thismodule.RegSaveKeyExA;
-    },
-    .wide => struct {
-        pub const pvalue = thismodule.pvalueW;
-        pub const VALENT = thismodule.VALENTW;
-        pub const RegConnectRegistry = thismodule.RegConnectRegistryW;
-        pub const RegConnectRegistryEx = thismodule.RegConnectRegistryExW;
-        pub const RegCreateKey = thismodule.RegCreateKeyW;
-        pub const RegCreateKeyEx = thismodule.RegCreateKeyExW;
-        pub const RegCreateKeyTransacted = thismodule.RegCreateKeyTransactedW;
-        pub const RegDeleteKey = thismodule.RegDeleteKeyW;
-        pub const RegDeleteKeyEx = thismodule.RegDeleteKeyExW;
-        pub const RegDeleteKeyTransacted = thismodule.RegDeleteKeyTransactedW;
-        pub const RegDeleteValue = thismodule.RegDeleteValueW;
-        pub const RegEnumKey = thismodule.RegEnumKeyW;
-        pub const RegEnumKeyEx = thismodule.RegEnumKeyExW;
-        pub const RegEnumValue = thismodule.RegEnumValueW;
-        pub const RegLoadKey = thismodule.RegLoadKeyW;
-        pub const RegOpenKey = thismodule.RegOpenKeyW;
-        pub const RegOpenKeyEx = thismodule.RegOpenKeyExW;
-        pub const RegOpenKeyTransacted = thismodule.RegOpenKeyTransactedW;
-        pub const RegQueryInfoKey = thismodule.RegQueryInfoKeyW;
-        pub const RegQueryValue = thismodule.RegQueryValueW;
-        pub const RegQueryMultipleValues = thismodule.RegQueryMultipleValuesW;
-        pub const RegQueryValueEx = thismodule.RegQueryValueExW;
-        pub const RegReplaceKey = thismodule.RegReplaceKeyW;
-        pub const RegRestoreKey = thismodule.RegRestoreKeyW;
-        pub const RegSaveKey = thismodule.RegSaveKeyW;
-        pub const RegSetValue = thismodule.RegSetValueW;
-        pub const RegSetValueEx = thismodule.RegSetValueExW;
-        pub const RegUnLoadKey = thismodule.RegUnLoadKeyW;
-        pub const RegDeleteKeyValue = thismodule.RegDeleteKeyValueW;
-        pub const RegSetKeyValue = thismodule.RegSetKeyValueW;
-        pub const RegDeleteTree = thismodule.RegDeleteTreeW;
-        pub const RegCopyTree = thismodule.RegCopyTreeW;
-        pub const RegGetValue = thismodule.RegGetValueW;
-        pub const RegLoadMUIString = thismodule.RegLoadMUIStringW;
-        pub const RegLoadAppKey = thismodule.RegLoadAppKeyW;
-        pub const RegSaveKeyEx = thismodule.RegSaveKeyExW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const pvalue = *opaque{};
-        pub const VALENT = *opaque{};
-        pub const RegConnectRegistry = *opaque{};
-        pub const RegConnectRegistryEx = *opaque{};
-        pub const RegCreateKey = *opaque{};
-        pub const RegCreateKeyEx = *opaque{};
-        pub const RegCreateKeyTransacted = *opaque{};
-        pub const RegDeleteKey = *opaque{};
-        pub const RegDeleteKeyEx = *opaque{};
-        pub const RegDeleteKeyTransacted = *opaque{};
-        pub const RegDeleteValue = *opaque{};
-        pub const RegEnumKey = *opaque{};
-        pub const RegEnumKeyEx = *opaque{};
-        pub const RegEnumValue = *opaque{};
-        pub const RegLoadKey = *opaque{};
-        pub const RegOpenKey = *opaque{};
-        pub const RegOpenKeyEx = *opaque{};
-        pub const RegOpenKeyTransacted = *opaque{};
-        pub const RegQueryInfoKey = *opaque{};
-        pub const RegQueryValue = *opaque{};
-        pub const RegQueryMultipleValues = *opaque{};
-        pub const RegQueryValueEx = *opaque{};
-        pub const RegReplaceKey = *opaque{};
-        pub const RegRestoreKey = *opaque{};
-        pub const RegSaveKey = *opaque{};
-        pub const RegSetValue = *opaque{};
-        pub const RegSetValueEx = *opaque{};
-        pub const RegUnLoadKey = *opaque{};
-        pub const RegDeleteKeyValue = *opaque{};
-        pub const RegSetKeyValue = *opaque{};
-        pub const RegDeleteTree = *opaque{};
-        pub const RegCopyTree = *opaque{};
-        pub const RegGetValue = *opaque{};
-        pub const RegLoadMUIString = *opaque{};
-        pub const RegLoadAppKey = *opaque{};
-        pub const RegSaveKeyEx = *opaque{};
-    } else struct {
-        pub const pvalue = @compileError("'pvalue' requires that UNICODE be set to true or false in the root module");
-        pub const VALENT = @compileError("'VALENT' requires that UNICODE be set to true or false in the root module");
-        pub const RegConnectRegistry = @compileError("'RegConnectRegistry' requires that UNICODE be set to true or false in the root module");
-        pub const RegConnectRegistryEx = @compileError("'RegConnectRegistryEx' requires that UNICODE be set to true or false in the root module");
-        pub const RegCreateKey = @compileError("'RegCreateKey' requires that UNICODE be set to true or false in the root module");
-        pub const RegCreateKeyEx = @compileError("'RegCreateKeyEx' requires that UNICODE be set to true or false in the root module");
-        pub const RegCreateKeyTransacted = @compileError("'RegCreateKeyTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const RegDeleteKey = @compileError("'RegDeleteKey' requires that UNICODE be set to true or false in the root module");
-        pub const RegDeleteKeyEx = @compileError("'RegDeleteKeyEx' requires that UNICODE be set to true or false in the root module");
-        pub const RegDeleteKeyTransacted = @compileError("'RegDeleteKeyTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const RegDeleteValue = @compileError("'RegDeleteValue' requires that UNICODE be set to true or false in the root module");
-        pub const RegEnumKey = @compileError("'RegEnumKey' requires that UNICODE be set to true or false in the root module");
-        pub const RegEnumKeyEx = @compileError("'RegEnumKeyEx' requires that UNICODE be set to true or false in the root module");
-        pub const RegEnumValue = @compileError("'RegEnumValue' requires that UNICODE be set to true or false in the root module");
-        pub const RegLoadKey = @compileError("'RegLoadKey' requires that UNICODE be set to true or false in the root module");
-        pub const RegOpenKey = @compileError("'RegOpenKey' requires that UNICODE be set to true or false in the root module");
-        pub const RegOpenKeyEx = @compileError("'RegOpenKeyEx' requires that UNICODE be set to true or false in the root module");
-        pub const RegOpenKeyTransacted = @compileError("'RegOpenKeyTransacted' requires that UNICODE be set to true or false in the root module");
-        pub const RegQueryInfoKey = @compileError("'RegQueryInfoKey' requires that UNICODE be set to true or false in the root module");
-        pub const RegQueryValue = @compileError("'RegQueryValue' requires that UNICODE be set to true or false in the root module");
-        pub const RegQueryMultipleValues = @compileError("'RegQueryMultipleValues' requires that UNICODE be set to true or false in the root module");
-        pub const RegQueryValueEx = @compileError("'RegQueryValueEx' requires that UNICODE be set to true or false in the root module");
-        pub const RegReplaceKey = @compileError("'RegReplaceKey' requires that UNICODE be set to true or false in the root module");
-        pub const RegRestoreKey = @compileError("'RegRestoreKey' requires that UNICODE be set to true or false in the root module");
-        pub const RegSaveKey = @compileError("'RegSaveKey' requires that UNICODE be set to true or false in the root module");
-        pub const RegSetValue = @compileError("'RegSetValue' requires that UNICODE be set to true or false in the root module");
-        pub const RegSetValueEx = @compileError("'RegSetValueEx' requires that UNICODE be set to true or false in the root module");
-        pub const RegUnLoadKey = @compileError("'RegUnLoadKey' requires that UNICODE be set to true or false in the root module");
-        pub const RegDeleteKeyValue = @compileError("'RegDeleteKeyValue' requires that UNICODE be set to true or false in the root module");
-        pub const RegSetKeyValue = @compileError("'RegSetKeyValue' requires that UNICODE be set to true or false in the root module");
-        pub const RegDeleteTree = @compileError("'RegDeleteTree' requires that UNICODE be set to true or false in the root module");
-        pub const RegCopyTree = @compileError("'RegCopyTree' requires that UNICODE be set to true or false in the root module");
-        pub const RegGetValue = @compileError("'RegGetValue' requires that UNICODE be set to true or false in the root module");
-        pub const RegLoadMUIString = @compileError("'RegLoadMUIString' requires that UNICODE be set to true or false in the root module");
-        pub const RegLoadAppKey = @compileError("'RegLoadAppKey' requires that UNICODE be set to true or false in the root module");
-        pub const RegSaveKeyEx = @compileError("'RegSaveKeyEx' requires that UNICODE be set to true or false in the root module");
-    },
+pub const pvalue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().pvalueA,
+    .wide => @This().pvalueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'pvalue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const VALENT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().VALENTA,
+    .wide => @This().VALENTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'VALENT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegConnectRegistry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegConnectRegistryA,
+    .wide => @This().RegConnectRegistryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegConnectRegistry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegConnectRegistryEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegConnectRegistryExA,
+    .wide => @This().RegConnectRegistryExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegConnectRegistryEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegCreateKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegCreateKeyA,
+    .wide => @This().RegCreateKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegCreateKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegCreateKeyEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegCreateKeyExA,
+    .wide => @This().RegCreateKeyExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegCreateKeyEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegCreateKeyTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegCreateKeyTransactedA,
+    .wide => @This().RegCreateKeyTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegCreateKeyTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegDeleteKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegDeleteKeyA,
+    .wide => @This().RegDeleteKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegDeleteKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegDeleteKeyEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegDeleteKeyExA,
+    .wide => @This().RegDeleteKeyExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegDeleteKeyEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegDeleteKeyTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegDeleteKeyTransactedA,
+    .wide => @This().RegDeleteKeyTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegDeleteKeyTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegDeleteValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegDeleteValueA,
+    .wide => @This().RegDeleteValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegDeleteValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegEnumKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegEnumKeyA,
+    .wide => @This().RegEnumKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegEnumKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegEnumKeyEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegEnumKeyExA,
+    .wide => @This().RegEnumKeyExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegEnumKeyEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegEnumValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegEnumValueA,
+    .wide => @This().RegEnumValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegEnumValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegLoadKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegLoadKeyA,
+    .wide => @This().RegLoadKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegLoadKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegOpenKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegOpenKeyA,
+    .wide => @This().RegOpenKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegOpenKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegOpenKeyEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegOpenKeyExA,
+    .wide => @This().RegOpenKeyExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegOpenKeyEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegOpenKeyTransacted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegOpenKeyTransactedA,
+    .wide => @This().RegOpenKeyTransactedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegOpenKeyTransacted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegQueryInfoKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegQueryInfoKeyA,
+    .wide => @This().RegQueryInfoKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegQueryInfoKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegQueryValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegQueryValueA,
+    .wide => @This().RegQueryValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegQueryValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegQueryMultipleValues = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegQueryMultipleValuesA,
+    .wide => @This().RegQueryMultipleValuesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegQueryMultipleValues' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegQueryValueEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegQueryValueExA,
+    .wide => @This().RegQueryValueExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegQueryValueEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegReplaceKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegReplaceKeyA,
+    .wide => @This().RegReplaceKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegReplaceKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegRestoreKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegRestoreKeyA,
+    .wide => @This().RegRestoreKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegRestoreKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegSaveKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegSaveKeyA,
+    .wide => @This().RegSaveKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegSaveKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegSetValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegSetValueA,
+    .wide => @This().RegSetValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegSetValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegSetValueEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegSetValueExA,
+    .wide => @This().RegSetValueExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegSetValueEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegUnLoadKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegUnLoadKeyA,
+    .wide => @This().RegUnLoadKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegUnLoadKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegDeleteKeyValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegDeleteKeyValueA,
+    .wide => @This().RegDeleteKeyValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegDeleteKeyValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegSetKeyValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegSetKeyValueA,
+    .wide => @This().RegSetKeyValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegSetKeyValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegDeleteTree = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegDeleteTreeA,
+    .wide => @This().RegDeleteTreeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegDeleteTree' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegCopyTree = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegCopyTreeA,
+    .wide => @This().RegCopyTreeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegCopyTree' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegGetValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegGetValueA,
+    .wide => @This().RegGetValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegGetValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegLoadMUIString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegLoadMUIStringA,
+    .wide => @This().RegLoadMUIStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegLoadMUIString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegLoadAppKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegLoadAppKeyA,
+    .wide => @This().RegLoadAppKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegLoadAppKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegSaveKeyEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegSaveKeyExA,
+    .wide => @This().RegSaveKeyExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegSaveKeyEx' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)

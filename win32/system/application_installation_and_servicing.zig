@@ -8042,547 +8042,936 @@ pub extern "kernel32" fn QueryActCtxSettingsW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (133)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const INSTALLUI_HANDLER = thismodule.INSTALLUI_HANDLERA;
-        pub const MSIPATCHSEQUENCEINFO = thismodule.MSIPATCHSEQUENCEINFOA;
-        pub const PATCH_OLD_FILE_INFO_ = thismodule.PATCH_OLD_FILE_INFO_A;
-        pub const ACTCTX = thismodule.ACTCTXA;
-        pub const MsiSetExternalUI = thismodule.MsiSetExternalUIA;
-        pub const MsiEnableLog = thismodule.MsiEnableLogA;
-        pub const MsiQueryProductState = thismodule.MsiQueryProductStateA;
-        pub const MsiGetProductInfo = thismodule.MsiGetProductInfoA;
-        pub const MsiGetProductInfoEx = thismodule.MsiGetProductInfoExA;
-        pub const MsiInstallProduct = thismodule.MsiInstallProductA;
-        pub const MsiConfigureProduct = thismodule.MsiConfigureProductA;
-        pub const MsiConfigureProductEx = thismodule.MsiConfigureProductExA;
-        pub const MsiReinstallProduct = thismodule.MsiReinstallProductA;
-        pub const MsiAdvertiseProductEx = thismodule.MsiAdvertiseProductExA;
-        pub const MsiAdvertiseProduct = thismodule.MsiAdvertiseProductA;
-        pub const MsiProcessAdvertiseScript = thismodule.MsiProcessAdvertiseScriptA;
-        pub const MsiAdvertiseScript = thismodule.MsiAdvertiseScriptA;
-        pub const MsiGetProductInfoFromScript = thismodule.MsiGetProductInfoFromScriptA;
-        pub const MsiGetProductCode = thismodule.MsiGetProductCodeA;
-        pub const MsiGetUserInfo = thismodule.MsiGetUserInfoA;
-        pub const MsiCollectUserInfo = thismodule.MsiCollectUserInfoA;
-        pub const MsiApplyPatch = thismodule.MsiApplyPatchA;
-        pub const MsiGetPatchInfo = thismodule.MsiGetPatchInfoA;
-        pub const MsiEnumPatches = thismodule.MsiEnumPatchesA;
-        pub const MsiRemovePatches = thismodule.MsiRemovePatchesA;
-        pub const MsiExtractPatchXMLData = thismodule.MsiExtractPatchXMLDataA;
-        pub const MsiGetPatchInfoEx = thismodule.MsiGetPatchInfoExA;
-        pub const MsiApplyMultiplePatches = thismodule.MsiApplyMultiplePatchesA;
-        pub const MsiDeterminePatchSequence = thismodule.MsiDeterminePatchSequenceA;
-        pub const MsiDetermineApplicablePatches = thismodule.MsiDetermineApplicablePatchesA;
-        pub const MsiEnumPatchesEx = thismodule.MsiEnumPatchesExA;
-        pub const MsiQueryFeatureState = thismodule.MsiQueryFeatureStateA;
-        pub const MsiQueryFeatureStateEx = thismodule.MsiQueryFeatureStateExA;
-        pub const MsiUseFeature = thismodule.MsiUseFeatureA;
-        pub const MsiUseFeatureEx = thismodule.MsiUseFeatureExA;
-        pub const MsiGetFeatureUsage = thismodule.MsiGetFeatureUsageA;
-        pub const MsiConfigureFeature = thismodule.MsiConfigureFeatureA;
-        pub const MsiReinstallFeature = thismodule.MsiReinstallFeatureA;
-        pub const MsiProvideComponent = thismodule.MsiProvideComponentA;
-        pub const MsiProvideQualifiedComponent = thismodule.MsiProvideQualifiedComponentA;
-        pub const MsiProvideQualifiedComponentEx = thismodule.MsiProvideQualifiedComponentExA;
-        pub const MsiGetComponentPath = thismodule.MsiGetComponentPathA;
-        pub const MsiGetComponentPathEx = thismodule.MsiGetComponentPathExA;
-        pub const MsiProvideAssembly = thismodule.MsiProvideAssemblyA;
-        pub const MsiQueryComponentState = thismodule.MsiQueryComponentStateA;
-        pub const MsiEnumProducts = thismodule.MsiEnumProductsA;
-        pub const MsiEnumProductsEx = thismodule.MsiEnumProductsExA;
-        pub const MsiEnumRelatedProducts = thismodule.MsiEnumRelatedProductsA;
-        pub const MsiEnumFeatures = thismodule.MsiEnumFeaturesA;
-        pub const MsiEnumComponents = thismodule.MsiEnumComponentsA;
-        pub const MsiEnumComponentsEx = thismodule.MsiEnumComponentsExA;
-        pub const MsiEnumClients = thismodule.MsiEnumClientsA;
-        pub const MsiEnumClientsEx = thismodule.MsiEnumClientsExA;
-        pub const MsiEnumComponentQualifiers = thismodule.MsiEnumComponentQualifiersA;
-        pub const MsiOpenProduct = thismodule.MsiOpenProductA;
-        pub const MsiOpenPackage = thismodule.MsiOpenPackageA;
-        pub const MsiOpenPackageEx = thismodule.MsiOpenPackageExA;
-        pub const MsiGetPatchFileList = thismodule.MsiGetPatchFileListA;
-        pub const MsiGetProductProperty = thismodule.MsiGetProductPropertyA;
-        pub const MsiVerifyPackage = thismodule.MsiVerifyPackageA;
-        pub const MsiGetFeatureInfo = thismodule.MsiGetFeatureInfoA;
-        pub const MsiInstallMissingComponent = thismodule.MsiInstallMissingComponentA;
-        pub const MsiInstallMissingFile = thismodule.MsiInstallMissingFileA;
-        pub const MsiLocateComponent = thismodule.MsiLocateComponentA;
-        pub const MsiSourceListClearAll = thismodule.MsiSourceListClearAllA;
-        pub const MsiSourceListAddSource = thismodule.MsiSourceListAddSourceA;
-        pub const MsiSourceListForceResolution = thismodule.MsiSourceListForceResolutionA;
-        pub const MsiSourceListAddSourceEx = thismodule.MsiSourceListAddSourceExA;
-        pub const MsiSourceListAddMediaDisk = thismodule.MsiSourceListAddMediaDiskA;
-        pub const MsiSourceListClearSource = thismodule.MsiSourceListClearSourceA;
-        pub const MsiSourceListClearMediaDisk = thismodule.MsiSourceListClearMediaDiskA;
-        pub const MsiSourceListClearAllEx = thismodule.MsiSourceListClearAllExA;
-        pub const MsiSourceListForceResolutionEx = thismodule.MsiSourceListForceResolutionExA;
-        pub const MsiSourceListSetInfo = thismodule.MsiSourceListSetInfoA;
-        pub const MsiSourceListGetInfo = thismodule.MsiSourceListGetInfoA;
-        pub const MsiSourceListEnumSources = thismodule.MsiSourceListEnumSourcesA;
-        pub const MsiSourceListEnumMediaDisks = thismodule.MsiSourceListEnumMediaDisksA;
-        pub const MsiGetFileVersion = thismodule.MsiGetFileVersionA;
-        pub const MsiGetFileHash = thismodule.MsiGetFileHashA;
-        pub const MsiGetFileSignatureInformation = thismodule.MsiGetFileSignatureInformationA;
-        pub const MsiGetShortcutTarget = thismodule.MsiGetShortcutTargetA;
-        pub const MsiIsProductElevated = thismodule.MsiIsProductElevatedA;
-        pub const MsiNotifySidChange = thismodule.MsiNotifySidChangeA;
-        pub const MsiBeginTransaction = thismodule.MsiBeginTransactionA;
-        pub const MsiDatabaseOpenView = thismodule.MsiDatabaseOpenViewA;
-        pub const MsiViewGetError = thismodule.MsiViewGetErrorA;
-        pub const MsiDatabaseGetPrimaryKeys = thismodule.MsiDatabaseGetPrimaryKeysA;
-        pub const MsiDatabaseIsTablePersistent = thismodule.MsiDatabaseIsTablePersistentA;
-        pub const MsiGetSummaryInformation = thismodule.MsiGetSummaryInformationA;
-        pub const MsiSummaryInfoSetProperty = thismodule.MsiSummaryInfoSetPropertyA;
-        pub const MsiSummaryInfoGetProperty = thismodule.MsiSummaryInfoGetPropertyA;
-        pub const MsiOpenDatabase = thismodule.MsiOpenDatabaseA;
-        pub const MsiDatabaseImport = thismodule.MsiDatabaseImportA;
-        pub const MsiDatabaseExport = thismodule.MsiDatabaseExportA;
-        pub const MsiDatabaseMerge = thismodule.MsiDatabaseMergeA;
-        pub const MsiDatabaseGenerateTransform = thismodule.MsiDatabaseGenerateTransformA;
-        pub const MsiDatabaseApplyTransform = thismodule.MsiDatabaseApplyTransformA;
-        pub const MsiCreateTransformSummaryInfo = thismodule.MsiCreateTransformSummaryInfoA;
-        pub const MsiRecordSetString = thismodule.MsiRecordSetStringA;
-        pub const MsiRecordGetString = thismodule.MsiRecordGetStringA;
-        pub const MsiRecordSetStream = thismodule.MsiRecordSetStreamA;
-        pub const MsiSetProperty = thismodule.MsiSetPropertyA;
-        pub const MsiGetProperty = thismodule.MsiGetPropertyA;
-        pub const MsiFormatRecord = thismodule.MsiFormatRecordA;
-        pub const MsiDoAction = thismodule.MsiDoActionA;
-        pub const MsiSequence = thismodule.MsiSequenceA;
-        pub const MsiEvaluateCondition = thismodule.MsiEvaluateConditionA;
-        pub const MsiGetFeatureState = thismodule.MsiGetFeatureStateA;
-        pub const MsiSetFeatureState = thismodule.MsiSetFeatureStateA;
-        pub const MsiSetFeatureAttributes = thismodule.MsiSetFeatureAttributesA;
-        pub const MsiGetComponentState = thismodule.MsiGetComponentStateA;
-        pub const MsiSetComponentState = thismodule.MsiSetComponentStateA;
-        pub const MsiGetFeatureCost = thismodule.MsiGetFeatureCostA;
-        pub const MsiEnumComponentCosts = thismodule.MsiEnumComponentCostsA;
-        pub const MsiGetFeatureValidStates = thismodule.MsiGetFeatureValidStatesA;
-        pub const MsiGetSourcePath = thismodule.MsiGetSourcePathA;
-        pub const MsiGetTargetPath = thismodule.MsiGetTargetPathA;
-        pub const MsiSetTargetPath = thismodule.MsiSetTargetPathA;
-        pub const MsiPreviewDialog = thismodule.MsiPreviewDialogA;
-        pub const MsiPreviewBillboard = thismodule.MsiPreviewBillboardA;
-        pub const CreatePatchFile = thismodule.CreatePatchFileA;
-        pub const CreatePatchFileEx = thismodule.CreatePatchFileExA;
-        pub const ExtractPatchHeaderToFile = thismodule.ExtractPatchHeaderToFileA;
-        pub const TestApplyPatchToFile = thismodule.TestApplyPatchToFileA;
-        pub const ApplyPatchToFile = thismodule.ApplyPatchToFileA;
-        pub const ApplyPatchToFileEx = thismodule.ApplyPatchToFileExA;
-        pub const GetFilePatchSignature = thismodule.GetFilePatchSignatureA;
-        pub const GetDeltaInfo = thismodule.GetDeltaInfoA;
-        pub const ApplyDelta = thismodule.ApplyDeltaA;
-        pub const CreateDelta = thismodule.CreateDeltaA;
-        pub const GetDeltaSignature = thismodule.GetDeltaSignatureA;
-        pub const CreateActCtx = thismodule.CreateActCtxA;
-        pub const FindActCtxSectionString = thismodule.FindActCtxSectionStringA;
-    },
-    .wide => struct {
-        pub const INSTALLUI_HANDLER = thismodule.INSTALLUI_HANDLERW;
-        pub const MSIPATCHSEQUENCEINFO = thismodule.MSIPATCHSEQUENCEINFOW;
-        pub const PATCH_OLD_FILE_INFO_ = thismodule.PATCH_OLD_FILE_INFO_W;
-        pub const ACTCTX = thismodule.ACTCTXW;
-        pub const MsiSetExternalUI = thismodule.MsiSetExternalUIW;
-        pub const MsiEnableLog = thismodule.MsiEnableLogW;
-        pub const MsiQueryProductState = thismodule.MsiQueryProductStateW;
-        pub const MsiGetProductInfo = thismodule.MsiGetProductInfoW;
-        pub const MsiGetProductInfoEx = thismodule.MsiGetProductInfoExW;
-        pub const MsiInstallProduct = thismodule.MsiInstallProductW;
-        pub const MsiConfigureProduct = thismodule.MsiConfigureProductW;
-        pub const MsiConfigureProductEx = thismodule.MsiConfigureProductExW;
-        pub const MsiReinstallProduct = thismodule.MsiReinstallProductW;
-        pub const MsiAdvertiseProductEx = thismodule.MsiAdvertiseProductExW;
-        pub const MsiAdvertiseProduct = thismodule.MsiAdvertiseProductW;
-        pub const MsiProcessAdvertiseScript = thismodule.MsiProcessAdvertiseScriptW;
-        pub const MsiAdvertiseScript = thismodule.MsiAdvertiseScriptW;
-        pub const MsiGetProductInfoFromScript = thismodule.MsiGetProductInfoFromScriptW;
-        pub const MsiGetProductCode = thismodule.MsiGetProductCodeW;
-        pub const MsiGetUserInfo = thismodule.MsiGetUserInfoW;
-        pub const MsiCollectUserInfo = thismodule.MsiCollectUserInfoW;
-        pub const MsiApplyPatch = thismodule.MsiApplyPatchW;
-        pub const MsiGetPatchInfo = thismodule.MsiGetPatchInfoW;
-        pub const MsiEnumPatches = thismodule.MsiEnumPatchesW;
-        pub const MsiRemovePatches = thismodule.MsiRemovePatchesW;
-        pub const MsiExtractPatchXMLData = thismodule.MsiExtractPatchXMLDataW;
-        pub const MsiGetPatchInfoEx = thismodule.MsiGetPatchInfoExW;
-        pub const MsiApplyMultiplePatches = thismodule.MsiApplyMultiplePatchesW;
-        pub const MsiDeterminePatchSequence = thismodule.MsiDeterminePatchSequenceW;
-        pub const MsiDetermineApplicablePatches = thismodule.MsiDetermineApplicablePatchesW;
-        pub const MsiEnumPatchesEx = thismodule.MsiEnumPatchesExW;
-        pub const MsiQueryFeatureState = thismodule.MsiQueryFeatureStateW;
-        pub const MsiQueryFeatureStateEx = thismodule.MsiQueryFeatureStateExW;
-        pub const MsiUseFeature = thismodule.MsiUseFeatureW;
-        pub const MsiUseFeatureEx = thismodule.MsiUseFeatureExW;
-        pub const MsiGetFeatureUsage = thismodule.MsiGetFeatureUsageW;
-        pub const MsiConfigureFeature = thismodule.MsiConfigureFeatureW;
-        pub const MsiReinstallFeature = thismodule.MsiReinstallFeatureW;
-        pub const MsiProvideComponent = thismodule.MsiProvideComponentW;
-        pub const MsiProvideQualifiedComponent = thismodule.MsiProvideQualifiedComponentW;
-        pub const MsiProvideQualifiedComponentEx = thismodule.MsiProvideQualifiedComponentExW;
-        pub const MsiGetComponentPath = thismodule.MsiGetComponentPathW;
-        pub const MsiGetComponentPathEx = thismodule.MsiGetComponentPathExW;
-        pub const MsiProvideAssembly = thismodule.MsiProvideAssemblyW;
-        pub const MsiQueryComponentState = thismodule.MsiQueryComponentStateW;
-        pub const MsiEnumProducts = thismodule.MsiEnumProductsW;
-        pub const MsiEnumProductsEx = thismodule.MsiEnumProductsExW;
-        pub const MsiEnumRelatedProducts = thismodule.MsiEnumRelatedProductsW;
-        pub const MsiEnumFeatures = thismodule.MsiEnumFeaturesW;
-        pub const MsiEnumComponents = thismodule.MsiEnumComponentsW;
-        pub const MsiEnumComponentsEx = thismodule.MsiEnumComponentsExW;
-        pub const MsiEnumClients = thismodule.MsiEnumClientsW;
-        pub const MsiEnumClientsEx = thismodule.MsiEnumClientsExW;
-        pub const MsiEnumComponentQualifiers = thismodule.MsiEnumComponentQualifiersW;
-        pub const MsiOpenProduct = thismodule.MsiOpenProductW;
-        pub const MsiOpenPackage = thismodule.MsiOpenPackageW;
-        pub const MsiOpenPackageEx = thismodule.MsiOpenPackageExW;
-        pub const MsiGetPatchFileList = thismodule.MsiGetPatchFileListW;
-        pub const MsiGetProductProperty = thismodule.MsiGetProductPropertyW;
-        pub const MsiVerifyPackage = thismodule.MsiVerifyPackageW;
-        pub const MsiGetFeatureInfo = thismodule.MsiGetFeatureInfoW;
-        pub const MsiInstallMissingComponent = thismodule.MsiInstallMissingComponentW;
-        pub const MsiInstallMissingFile = thismodule.MsiInstallMissingFileW;
-        pub const MsiLocateComponent = thismodule.MsiLocateComponentW;
-        pub const MsiSourceListClearAll = thismodule.MsiSourceListClearAllW;
-        pub const MsiSourceListAddSource = thismodule.MsiSourceListAddSourceW;
-        pub const MsiSourceListForceResolution = thismodule.MsiSourceListForceResolutionW;
-        pub const MsiSourceListAddSourceEx = thismodule.MsiSourceListAddSourceExW;
-        pub const MsiSourceListAddMediaDisk = thismodule.MsiSourceListAddMediaDiskW;
-        pub const MsiSourceListClearSource = thismodule.MsiSourceListClearSourceW;
-        pub const MsiSourceListClearMediaDisk = thismodule.MsiSourceListClearMediaDiskW;
-        pub const MsiSourceListClearAllEx = thismodule.MsiSourceListClearAllExW;
-        pub const MsiSourceListForceResolutionEx = thismodule.MsiSourceListForceResolutionExW;
-        pub const MsiSourceListSetInfo = thismodule.MsiSourceListSetInfoW;
-        pub const MsiSourceListGetInfo = thismodule.MsiSourceListGetInfoW;
-        pub const MsiSourceListEnumSources = thismodule.MsiSourceListEnumSourcesW;
-        pub const MsiSourceListEnumMediaDisks = thismodule.MsiSourceListEnumMediaDisksW;
-        pub const MsiGetFileVersion = thismodule.MsiGetFileVersionW;
-        pub const MsiGetFileHash = thismodule.MsiGetFileHashW;
-        pub const MsiGetFileSignatureInformation = thismodule.MsiGetFileSignatureInformationW;
-        pub const MsiGetShortcutTarget = thismodule.MsiGetShortcutTargetW;
-        pub const MsiIsProductElevated = thismodule.MsiIsProductElevatedW;
-        pub const MsiNotifySidChange = thismodule.MsiNotifySidChangeW;
-        pub const MsiBeginTransaction = thismodule.MsiBeginTransactionW;
-        pub const MsiDatabaseOpenView = thismodule.MsiDatabaseOpenViewW;
-        pub const MsiViewGetError = thismodule.MsiViewGetErrorW;
-        pub const MsiDatabaseGetPrimaryKeys = thismodule.MsiDatabaseGetPrimaryKeysW;
-        pub const MsiDatabaseIsTablePersistent = thismodule.MsiDatabaseIsTablePersistentW;
-        pub const MsiGetSummaryInformation = thismodule.MsiGetSummaryInformationW;
-        pub const MsiSummaryInfoSetProperty = thismodule.MsiSummaryInfoSetPropertyW;
-        pub const MsiSummaryInfoGetProperty = thismodule.MsiSummaryInfoGetPropertyW;
-        pub const MsiOpenDatabase = thismodule.MsiOpenDatabaseW;
-        pub const MsiDatabaseImport = thismodule.MsiDatabaseImportW;
-        pub const MsiDatabaseExport = thismodule.MsiDatabaseExportW;
-        pub const MsiDatabaseMerge = thismodule.MsiDatabaseMergeW;
-        pub const MsiDatabaseGenerateTransform = thismodule.MsiDatabaseGenerateTransformW;
-        pub const MsiDatabaseApplyTransform = thismodule.MsiDatabaseApplyTransformW;
-        pub const MsiCreateTransformSummaryInfo = thismodule.MsiCreateTransformSummaryInfoW;
-        pub const MsiRecordSetString = thismodule.MsiRecordSetStringW;
-        pub const MsiRecordGetString = thismodule.MsiRecordGetStringW;
-        pub const MsiRecordSetStream = thismodule.MsiRecordSetStreamW;
-        pub const MsiSetProperty = thismodule.MsiSetPropertyW;
-        pub const MsiGetProperty = thismodule.MsiGetPropertyW;
-        pub const MsiFormatRecord = thismodule.MsiFormatRecordW;
-        pub const MsiDoAction = thismodule.MsiDoActionW;
-        pub const MsiSequence = thismodule.MsiSequenceW;
-        pub const MsiEvaluateCondition = thismodule.MsiEvaluateConditionW;
-        pub const MsiGetFeatureState = thismodule.MsiGetFeatureStateW;
-        pub const MsiSetFeatureState = thismodule.MsiSetFeatureStateW;
-        pub const MsiSetFeatureAttributes = thismodule.MsiSetFeatureAttributesW;
-        pub const MsiGetComponentState = thismodule.MsiGetComponentStateW;
-        pub const MsiSetComponentState = thismodule.MsiSetComponentStateW;
-        pub const MsiGetFeatureCost = thismodule.MsiGetFeatureCostW;
-        pub const MsiEnumComponentCosts = thismodule.MsiEnumComponentCostsW;
-        pub const MsiGetFeatureValidStates = thismodule.MsiGetFeatureValidStatesW;
-        pub const MsiGetSourcePath = thismodule.MsiGetSourcePathW;
-        pub const MsiGetTargetPath = thismodule.MsiGetTargetPathW;
-        pub const MsiSetTargetPath = thismodule.MsiSetTargetPathW;
-        pub const MsiPreviewDialog = thismodule.MsiPreviewDialogW;
-        pub const MsiPreviewBillboard = thismodule.MsiPreviewBillboardW;
-        pub const CreatePatchFile = thismodule.CreatePatchFileW;
-        pub const CreatePatchFileEx = thismodule.CreatePatchFileExW;
-        pub const ExtractPatchHeaderToFile = thismodule.ExtractPatchHeaderToFileW;
-        pub const TestApplyPatchToFile = thismodule.TestApplyPatchToFileW;
-        pub const ApplyPatchToFile = thismodule.ApplyPatchToFileW;
-        pub const ApplyPatchToFileEx = thismodule.ApplyPatchToFileExW;
-        pub const GetFilePatchSignature = thismodule.GetFilePatchSignatureW;
-        pub const GetDeltaInfo = thismodule.GetDeltaInfoW;
-        pub const ApplyDelta = thismodule.ApplyDeltaW;
-        pub const CreateDelta = thismodule.CreateDeltaW;
-        pub const GetDeltaSignature = thismodule.GetDeltaSignatureW;
-        pub const CreateActCtx = thismodule.CreateActCtxW;
-        pub const FindActCtxSectionString = thismodule.FindActCtxSectionStringW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const INSTALLUI_HANDLER = *opaque{};
-        pub const MSIPATCHSEQUENCEINFO = *opaque{};
-        pub const PATCH_OLD_FILE_INFO_ = *opaque{};
-        pub const ACTCTX = *opaque{};
-        pub const MsiSetExternalUI = *opaque{};
-        pub const MsiEnableLog = *opaque{};
-        pub const MsiQueryProductState = *opaque{};
-        pub const MsiGetProductInfo = *opaque{};
-        pub const MsiGetProductInfoEx = *opaque{};
-        pub const MsiInstallProduct = *opaque{};
-        pub const MsiConfigureProduct = *opaque{};
-        pub const MsiConfigureProductEx = *opaque{};
-        pub const MsiReinstallProduct = *opaque{};
-        pub const MsiAdvertiseProductEx = *opaque{};
-        pub const MsiAdvertiseProduct = *opaque{};
-        pub const MsiProcessAdvertiseScript = *opaque{};
-        pub const MsiAdvertiseScript = *opaque{};
-        pub const MsiGetProductInfoFromScript = *opaque{};
-        pub const MsiGetProductCode = *opaque{};
-        pub const MsiGetUserInfo = *opaque{};
-        pub const MsiCollectUserInfo = *opaque{};
-        pub const MsiApplyPatch = *opaque{};
-        pub const MsiGetPatchInfo = *opaque{};
-        pub const MsiEnumPatches = *opaque{};
-        pub const MsiRemovePatches = *opaque{};
-        pub const MsiExtractPatchXMLData = *opaque{};
-        pub const MsiGetPatchInfoEx = *opaque{};
-        pub const MsiApplyMultiplePatches = *opaque{};
-        pub const MsiDeterminePatchSequence = *opaque{};
-        pub const MsiDetermineApplicablePatches = *opaque{};
-        pub const MsiEnumPatchesEx = *opaque{};
-        pub const MsiQueryFeatureState = *opaque{};
-        pub const MsiQueryFeatureStateEx = *opaque{};
-        pub const MsiUseFeature = *opaque{};
-        pub const MsiUseFeatureEx = *opaque{};
-        pub const MsiGetFeatureUsage = *opaque{};
-        pub const MsiConfigureFeature = *opaque{};
-        pub const MsiReinstallFeature = *opaque{};
-        pub const MsiProvideComponent = *opaque{};
-        pub const MsiProvideQualifiedComponent = *opaque{};
-        pub const MsiProvideQualifiedComponentEx = *opaque{};
-        pub const MsiGetComponentPath = *opaque{};
-        pub const MsiGetComponentPathEx = *opaque{};
-        pub const MsiProvideAssembly = *opaque{};
-        pub const MsiQueryComponentState = *opaque{};
-        pub const MsiEnumProducts = *opaque{};
-        pub const MsiEnumProductsEx = *opaque{};
-        pub const MsiEnumRelatedProducts = *opaque{};
-        pub const MsiEnumFeatures = *opaque{};
-        pub const MsiEnumComponents = *opaque{};
-        pub const MsiEnumComponentsEx = *opaque{};
-        pub const MsiEnumClients = *opaque{};
-        pub const MsiEnumClientsEx = *opaque{};
-        pub const MsiEnumComponentQualifiers = *opaque{};
-        pub const MsiOpenProduct = *opaque{};
-        pub const MsiOpenPackage = *opaque{};
-        pub const MsiOpenPackageEx = *opaque{};
-        pub const MsiGetPatchFileList = *opaque{};
-        pub const MsiGetProductProperty = *opaque{};
-        pub const MsiVerifyPackage = *opaque{};
-        pub const MsiGetFeatureInfo = *opaque{};
-        pub const MsiInstallMissingComponent = *opaque{};
-        pub const MsiInstallMissingFile = *opaque{};
-        pub const MsiLocateComponent = *opaque{};
-        pub const MsiSourceListClearAll = *opaque{};
-        pub const MsiSourceListAddSource = *opaque{};
-        pub const MsiSourceListForceResolution = *opaque{};
-        pub const MsiSourceListAddSourceEx = *opaque{};
-        pub const MsiSourceListAddMediaDisk = *opaque{};
-        pub const MsiSourceListClearSource = *opaque{};
-        pub const MsiSourceListClearMediaDisk = *opaque{};
-        pub const MsiSourceListClearAllEx = *opaque{};
-        pub const MsiSourceListForceResolutionEx = *opaque{};
-        pub const MsiSourceListSetInfo = *opaque{};
-        pub const MsiSourceListGetInfo = *opaque{};
-        pub const MsiSourceListEnumSources = *opaque{};
-        pub const MsiSourceListEnumMediaDisks = *opaque{};
-        pub const MsiGetFileVersion = *opaque{};
-        pub const MsiGetFileHash = *opaque{};
-        pub const MsiGetFileSignatureInformation = *opaque{};
-        pub const MsiGetShortcutTarget = *opaque{};
-        pub const MsiIsProductElevated = *opaque{};
-        pub const MsiNotifySidChange = *opaque{};
-        pub const MsiBeginTransaction = *opaque{};
-        pub const MsiDatabaseOpenView = *opaque{};
-        pub const MsiViewGetError = *opaque{};
-        pub const MsiDatabaseGetPrimaryKeys = *opaque{};
-        pub const MsiDatabaseIsTablePersistent = *opaque{};
-        pub const MsiGetSummaryInformation = *opaque{};
-        pub const MsiSummaryInfoSetProperty = *opaque{};
-        pub const MsiSummaryInfoGetProperty = *opaque{};
-        pub const MsiOpenDatabase = *opaque{};
-        pub const MsiDatabaseImport = *opaque{};
-        pub const MsiDatabaseExport = *opaque{};
-        pub const MsiDatabaseMerge = *opaque{};
-        pub const MsiDatabaseGenerateTransform = *opaque{};
-        pub const MsiDatabaseApplyTransform = *opaque{};
-        pub const MsiCreateTransformSummaryInfo = *opaque{};
-        pub const MsiRecordSetString = *opaque{};
-        pub const MsiRecordGetString = *opaque{};
-        pub const MsiRecordSetStream = *opaque{};
-        pub const MsiSetProperty = *opaque{};
-        pub const MsiGetProperty = *opaque{};
-        pub const MsiFormatRecord = *opaque{};
-        pub const MsiDoAction = *opaque{};
-        pub const MsiSequence = *opaque{};
-        pub const MsiEvaluateCondition = *opaque{};
-        pub const MsiGetFeatureState = *opaque{};
-        pub const MsiSetFeatureState = *opaque{};
-        pub const MsiSetFeatureAttributes = *opaque{};
-        pub const MsiGetComponentState = *opaque{};
-        pub const MsiSetComponentState = *opaque{};
-        pub const MsiGetFeatureCost = *opaque{};
-        pub const MsiEnumComponentCosts = *opaque{};
-        pub const MsiGetFeatureValidStates = *opaque{};
-        pub const MsiGetSourcePath = *opaque{};
-        pub const MsiGetTargetPath = *opaque{};
-        pub const MsiSetTargetPath = *opaque{};
-        pub const MsiPreviewDialog = *opaque{};
-        pub const MsiPreviewBillboard = *opaque{};
-        pub const CreatePatchFile = *opaque{};
-        pub const CreatePatchFileEx = *opaque{};
-        pub const ExtractPatchHeaderToFile = *opaque{};
-        pub const TestApplyPatchToFile = *opaque{};
-        pub const ApplyPatchToFile = *opaque{};
-        pub const ApplyPatchToFileEx = *opaque{};
-        pub const GetFilePatchSignature = *opaque{};
-        pub const GetDeltaInfo = *opaque{};
-        pub const ApplyDelta = *opaque{};
-        pub const CreateDelta = *opaque{};
-        pub const GetDeltaSignature = *opaque{};
-        pub const CreateActCtx = *opaque{};
-        pub const FindActCtxSectionString = *opaque{};
-    } else struct {
-        pub const INSTALLUI_HANDLER = @compileError("'INSTALLUI_HANDLER' requires that UNICODE be set to true or false in the root module");
-        pub const MSIPATCHSEQUENCEINFO = @compileError("'MSIPATCHSEQUENCEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const PATCH_OLD_FILE_INFO_ = @compileError("'PATCH_OLD_FILE_INFO_' requires that UNICODE be set to true or false in the root module");
-        pub const ACTCTX = @compileError("'ACTCTX' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSetExternalUI = @compileError("'MsiSetExternalUI' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnableLog = @compileError("'MsiEnableLog' requires that UNICODE be set to true or false in the root module");
-        pub const MsiQueryProductState = @compileError("'MsiQueryProductState' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetProductInfo = @compileError("'MsiGetProductInfo' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetProductInfoEx = @compileError("'MsiGetProductInfoEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiInstallProduct = @compileError("'MsiInstallProduct' requires that UNICODE be set to true or false in the root module");
-        pub const MsiConfigureProduct = @compileError("'MsiConfigureProduct' requires that UNICODE be set to true or false in the root module");
-        pub const MsiConfigureProductEx = @compileError("'MsiConfigureProductEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiReinstallProduct = @compileError("'MsiReinstallProduct' requires that UNICODE be set to true or false in the root module");
-        pub const MsiAdvertiseProductEx = @compileError("'MsiAdvertiseProductEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiAdvertiseProduct = @compileError("'MsiAdvertiseProduct' requires that UNICODE be set to true or false in the root module");
-        pub const MsiProcessAdvertiseScript = @compileError("'MsiProcessAdvertiseScript' requires that UNICODE be set to true or false in the root module");
-        pub const MsiAdvertiseScript = @compileError("'MsiAdvertiseScript' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetProductInfoFromScript = @compileError("'MsiGetProductInfoFromScript' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetProductCode = @compileError("'MsiGetProductCode' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetUserInfo = @compileError("'MsiGetUserInfo' requires that UNICODE be set to true or false in the root module");
-        pub const MsiCollectUserInfo = @compileError("'MsiCollectUserInfo' requires that UNICODE be set to true or false in the root module");
-        pub const MsiApplyPatch = @compileError("'MsiApplyPatch' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetPatchInfo = @compileError("'MsiGetPatchInfo' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnumPatches = @compileError("'MsiEnumPatches' requires that UNICODE be set to true or false in the root module");
-        pub const MsiRemovePatches = @compileError("'MsiRemovePatches' requires that UNICODE be set to true or false in the root module");
-        pub const MsiExtractPatchXMLData = @compileError("'MsiExtractPatchXMLData' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetPatchInfoEx = @compileError("'MsiGetPatchInfoEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiApplyMultiplePatches = @compileError("'MsiApplyMultiplePatches' requires that UNICODE be set to true or false in the root module");
-        pub const MsiDeterminePatchSequence = @compileError("'MsiDeterminePatchSequence' requires that UNICODE be set to true or false in the root module");
-        pub const MsiDetermineApplicablePatches = @compileError("'MsiDetermineApplicablePatches' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnumPatchesEx = @compileError("'MsiEnumPatchesEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiQueryFeatureState = @compileError("'MsiQueryFeatureState' requires that UNICODE be set to true or false in the root module");
-        pub const MsiQueryFeatureStateEx = @compileError("'MsiQueryFeatureStateEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiUseFeature = @compileError("'MsiUseFeature' requires that UNICODE be set to true or false in the root module");
-        pub const MsiUseFeatureEx = @compileError("'MsiUseFeatureEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetFeatureUsage = @compileError("'MsiGetFeatureUsage' requires that UNICODE be set to true or false in the root module");
-        pub const MsiConfigureFeature = @compileError("'MsiConfigureFeature' requires that UNICODE be set to true or false in the root module");
-        pub const MsiReinstallFeature = @compileError("'MsiReinstallFeature' requires that UNICODE be set to true or false in the root module");
-        pub const MsiProvideComponent = @compileError("'MsiProvideComponent' requires that UNICODE be set to true or false in the root module");
-        pub const MsiProvideQualifiedComponent = @compileError("'MsiProvideQualifiedComponent' requires that UNICODE be set to true or false in the root module");
-        pub const MsiProvideQualifiedComponentEx = @compileError("'MsiProvideQualifiedComponentEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetComponentPath = @compileError("'MsiGetComponentPath' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetComponentPathEx = @compileError("'MsiGetComponentPathEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiProvideAssembly = @compileError("'MsiProvideAssembly' requires that UNICODE be set to true or false in the root module");
-        pub const MsiQueryComponentState = @compileError("'MsiQueryComponentState' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnumProducts = @compileError("'MsiEnumProducts' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnumProductsEx = @compileError("'MsiEnumProductsEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnumRelatedProducts = @compileError("'MsiEnumRelatedProducts' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnumFeatures = @compileError("'MsiEnumFeatures' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnumComponents = @compileError("'MsiEnumComponents' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnumComponentsEx = @compileError("'MsiEnumComponentsEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnumClients = @compileError("'MsiEnumClients' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnumClientsEx = @compileError("'MsiEnumClientsEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnumComponentQualifiers = @compileError("'MsiEnumComponentQualifiers' requires that UNICODE be set to true or false in the root module");
-        pub const MsiOpenProduct = @compileError("'MsiOpenProduct' requires that UNICODE be set to true or false in the root module");
-        pub const MsiOpenPackage = @compileError("'MsiOpenPackage' requires that UNICODE be set to true or false in the root module");
-        pub const MsiOpenPackageEx = @compileError("'MsiOpenPackageEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetPatchFileList = @compileError("'MsiGetPatchFileList' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetProductProperty = @compileError("'MsiGetProductProperty' requires that UNICODE be set to true or false in the root module");
-        pub const MsiVerifyPackage = @compileError("'MsiVerifyPackage' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetFeatureInfo = @compileError("'MsiGetFeatureInfo' requires that UNICODE be set to true or false in the root module");
-        pub const MsiInstallMissingComponent = @compileError("'MsiInstallMissingComponent' requires that UNICODE be set to true or false in the root module");
-        pub const MsiInstallMissingFile = @compileError("'MsiInstallMissingFile' requires that UNICODE be set to true or false in the root module");
-        pub const MsiLocateComponent = @compileError("'MsiLocateComponent' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListClearAll = @compileError("'MsiSourceListClearAll' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListAddSource = @compileError("'MsiSourceListAddSource' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListForceResolution = @compileError("'MsiSourceListForceResolution' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListAddSourceEx = @compileError("'MsiSourceListAddSourceEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListAddMediaDisk = @compileError("'MsiSourceListAddMediaDisk' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListClearSource = @compileError("'MsiSourceListClearSource' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListClearMediaDisk = @compileError("'MsiSourceListClearMediaDisk' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListClearAllEx = @compileError("'MsiSourceListClearAllEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListForceResolutionEx = @compileError("'MsiSourceListForceResolutionEx' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListSetInfo = @compileError("'MsiSourceListSetInfo' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListGetInfo = @compileError("'MsiSourceListGetInfo' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListEnumSources = @compileError("'MsiSourceListEnumSources' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSourceListEnumMediaDisks = @compileError("'MsiSourceListEnumMediaDisks' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetFileVersion = @compileError("'MsiGetFileVersion' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetFileHash = @compileError("'MsiGetFileHash' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetFileSignatureInformation = @compileError("'MsiGetFileSignatureInformation' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetShortcutTarget = @compileError("'MsiGetShortcutTarget' requires that UNICODE be set to true or false in the root module");
-        pub const MsiIsProductElevated = @compileError("'MsiIsProductElevated' requires that UNICODE be set to true or false in the root module");
-        pub const MsiNotifySidChange = @compileError("'MsiNotifySidChange' requires that UNICODE be set to true or false in the root module");
-        pub const MsiBeginTransaction = @compileError("'MsiBeginTransaction' requires that UNICODE be set to true or false in the root module");
-        pub const MsiDatabaseOpenView = @compileError("'MsiDatabaseOpenView' requires that UNICODE be set to true or false in the root module");
-        pub const MsiViewGetError = @compileError("'MsiViewGetError' requires that UNICODE be set to true or false in the root module");
-        pub const MsiDatabaseGetPrimaryKeys = @compileError("'MsiDatabaseGetPrimaryKeys' requires that UNICODE be set to true or false in the root module");
-        pub const MsiDatabaseIsTablePersistent = @compileError("'MsiDatabaseIsTablePersistent' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetSummaryInformation = @compileError("'MsiGetSummaryInformation' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSummaryInfoSetProperty = @compileError("'MsiSummaryInfoSetProperty' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSummaryInfoGetProperty = @compileError("'MsiSummaryInfoGetProperty' requires that UNICODE be set to true or false in the root module");
-        pub const MsiOpenDatabase = @compileError("'MsiOpenDatabase' requires that UNICODE be set to true or false in the root module");
-        pub const MsiDatabaseImport = @compileError("'MsiDatabaseImport' requires that UNICODE be set to true or false in the root module");
-        pub const MsiDatabaseExport = @compileError("'MsiDatabaseExport' requires that UNICODE be set to true or false in the root module");
-        pub const MsiDatabaseMerge = @compileError("'MsiDatabaseMerge' requires that UNICODE be set to true or false in the root module");
-        pub const MsiDatabaseGenerateTransform = @compileError("'MsiDatabaseGenerateTransform' requires that UNICODE be set to true or false in the root module");
-        pub const MsiDatabaseApplyTransform = @compileError("'MsiDatabaseApplyTransform' requires that UNICODE be set to true or false in the root module");
-        pub const MsiCreateTransformSummaryInfo = @compileError("'MsiCreateTransformSummaryInfo' requires that UNICODE be set to true or false in the root module");
-        pub const MsiRecordSetString = @compileError("'MsiRecordSetString' requires that UNICODE be set to true or false in the root module");
-        pub const MsiRecordGetString = @compileError("'MsiRecordGetString' requires that UNICODE be set to true or false in the root module");
-        pub const MsiRecordSetStream = @compileError("'MsiRecordSetStream' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSetProperty = @compileError("'MsiSetProperty' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetProperty = @compileError("'MsiGetProperty' requires that UNICODE be set to true or false in the root module");
-        pub const MsiFormatRecord = @compileError("'MsiFormatRecord' requires that UNICODE be set to true or false in the root module");
-        pub const MsiDoAction = @compileError("'MsiDoAction' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSequence = @compileError("'MsiSequence' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEvaluateCondition = @compileError("'MsiEvaluateCondition' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetFeatureState = @compileError("'MsiGetFeatureState' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSetFeatureState = @compileError("'MsiSetFeatureState' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSetFeatureAttributes = @compileError("'MsiSetFeatureAttributes' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetComponentState = @compileError("'MsiGetComponentState' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSetComponentState = @compileError("'MsiSetComponentState' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetFeatureCost = @compileError("'MsiGetFeatureCost' requires that UNICODE be set to true or false in the root module");
-        pub const MsiEnumComponentCosts = @compileError("'MsiEnumComponentCosts' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetFeatureValidStates = @compileError("'MsiGetFeatureValidStates' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetSourcePath = @compileError("'MsiGetSourcePath' requires that UNICODE be set to true or false in the root module");
-        pub const MsiGetTargetPath = @compileError("'MsiGetTargetPath' requires that UNICODE be set to true or false in the root module");
-        pub const MsiSetTargetPath = @compileError("'MsiSetTargetPath' requires that UNICODE be set to true or false in the root module");
-        pub const MsiPreviewDialog = @compileError("'MsiPreviewDialog' requires that UNICODE be set to true or false in the root module");
-        pub const MsiPreviewBillboard = @compileError("'MsiPreviewBillboard' requires that UNICODE be set to true or false in the root module");
-        pub const CreatePatchFile = @compileError("'CreatePatchFile' requires that UNICODE be set to true or false in the root module");
-        pub const CreatePatchFileEx = @compileError("'CreatePatchFileEx' requires that UNICODE be set to true or false in the root module");
-        pub const ExtractPatchHeaderToFile = @compileError("'ExtractPatchHeaderToFile' requires that UNICODE be set to true or false in the root module");
-        pub const TestApplyPatchToFile = @compileError("'TestApplyPatchToFile' requires that UNICODE be set to true or false in the root module");
-        pub const ApplyPatchToFile = @compileError("'ApplyPatchToFile' requires that UNICODE be set to true or false in the root module");
-        pub const ApplyPatchToFileEx = @compileError("'ApplyPatchToFileEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetFilePatchSignature = @compileError("'GetFilePatchSignature' requires that UNICODE be set to true or false in the root module");
-        pub const GetDeltaInfo = @compileError("'GetDeltaInfo' requires that UNICODE be set to true or false in the root module");
-        pub const ApplyDelta = @compileError("'ApplyDelta' requires that UNICODE be set to true or false in the root module");
-        pub const CreateDelta = @compileError("'CreateDelta' requires that UNICODE be set to true or false in the root module");
-        pub const GetDeltaSignature = @compileError("'GetDeltaSignature' requires that UNICODE be set to true or false in the root module");
-        pub const CreateActCtx = @compileError("'CreateActCtx' requires that UNICODE be set to true or false in the root module");
-        pub const FindActCtxSectionString = @compileError("'FindActCtxSectionString' requires that UNICODE be set to true or false in the root module");
-    },
+pub const INSTALLUI_HANDLER = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().INSTALLUI_HANDLERA,
+    .wide => @This().INSTALLUI_HANDLERW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INSTALLUI_HANDLER' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MSIPATCHSEQUENCEINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MSIPATCHSEQUENCEINFOA,
+    .wide => @This().MSIPATCHSEQUENCEINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MSIPATCHSEQUENCEINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PATCH_OLD_FILE_INFO_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PATCH_OLD_FILE_INFO_A,
+    .wide => @This().PATCH_OLD_FILE_INFO_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PATCH_OLD_FILE_INFO_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACTCTX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACTCTXA,
+    .wide => @This().ACTCTXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACTCTX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSetExternalUI = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSetExternalUIA,
+    .wide => @This().MsiSetExternalUIW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSetExternalUI' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnableLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnableLogA,
+    .wide => @This().MsiEnableLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnableLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiQueryProductState = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiQueryProductStateA,
+    .wide => @This().MsiQueryProductStateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiQueryProductState' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetProductInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetProductInfoA,
+    .wide => @This().MsiGetProductInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetProductInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetProductInfoEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetProductInfoExA,
+    .wide => @This().MsiGetProductInfoExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetProductInfoEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiInstallProduct = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiInstallProductA,
+    .wide => @This().MsiInstallProductW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiInstallProduct' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiConfigureProduct = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiConfigureProductA,
+    .wide => @This().MsiConfigureProductW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiConfigureProduct' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiConfigureProductEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiConfigureProductExA,
+    .wide => @This().MsiConfigureProductExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiConfigureProductEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiReinstallProduct = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiReinstallProductA,
+    .wide => @This().MsiReinstallProductW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiReinstallProduct' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiAdvertiseProductEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiAdvertiseProductExA,
+    .wide => @This().MsiAdvertiseProductExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiAdvertiseProductEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiAdvertiseProduct = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiAdvertiseProductA,
+    .wide => @This().MsiAdvertiseProductW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiAdvertiseProduct' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiProcessAdvertiseScript = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiProcessAdvertiseScriptA,
+    .wide => @This().MsiProcessAdvertiseScriptW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiProcessAdvertiseScript' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiAdvertiseScript = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiAdvertiseScriptA,
+    .wide => @This().MsiAdvertiseScriptW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiAdvertiseScript' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetProductInfoFromScript = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetProductInfoFromScriptA,
+    .wide => @This().MsiGetProductInfoFromScriptW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetProductInfoFromScript' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetProductCode = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetProductCodeA,
+    .wide => @This().MsiGetProductCodeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetProductCode' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetUserInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetUserInfoA,
+    .wide => @This().MsiGetUserInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetUserInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiCollectUserInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiCollectUserInfoA,
+    .wide => @This().MsiCollectUserInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiCollectUserInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiApplyPatch = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiApplyPatchA,
+    .wide => @This().MsiApplyPatchW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiApplyPatch' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetPatchInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetPatchInfoA,
+    .wide => @This().MsiGetPatchInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetPatchInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnumPatches = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnumPatchesA,
+    .wide => @This().MsiEnumPatchesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnumPatches' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiRemovePatches = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiRemovePatchesA,
+    .wide => @This().MsiRemovePatchesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiRemovePatches' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiExtractPatchXMLData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiExtractPatchXMLDataA,
+    .wide => @This().MsiExtractPatchXMLDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiExtractPatchXMLData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetPatchInfoEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetPatchInfoExA,
+    .wide => @This().MsiGetPatchInfoExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetPatchInfoEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiApplyMultiplePatches = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiApplyMultiplePatchesA,
+    .wide => @This().MsiApplyMultiplePatchesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiApplyMultiplePatches' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiDeterminePatchSequence = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiDeterminePatchSequenceA,
+    .wide => @This().MsiDeterminePatchSequenceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiDeterminePatchSequence' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiDetermineApplicablePatches = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiDetermineApplicablePatchesA,
+    .wide => @This().MsiDetermineApplicablePatchesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiDetermineApplicablePatches' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnumPatchesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnumPatchesExA,
+    .wide => @This().MsiEnumPatchesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnumPatchesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiQueryFeatureState = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiQueryFeatureStateA,
+    .wide => @This().MsiQueryFeatureStateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiQueryFeatureState' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiQueryFeatureStateEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiQueryFeatureStateExA,
+    .wide => @This().MsiQueryFeatureStateExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiQueryFeatureStateEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiUseFeature = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiUseFeatureA,
+    .wide => @This().MsiUseFeatureW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiUseFeature' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiUseFeatureEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiUseFeatureExA,
+    .wide => @This().MsiUseFeatureExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiUseFeatureEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetFeatureUsage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetFeatureUsageA,
+    .wide => @This().MsiGetFeatureUsageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetFeatureUsage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiConfigureFeature = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiConfigureFeatureA,
+    .wide => @This().MsiConfigureFeatureW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiConfigureFeature' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiReinstallFeature = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiReinstallFeatureA,
+    .wide => @This().MsiReinstallFeatureW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiReinstallFeature' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiProvideComponent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiProvideComponentA,
+    .wide => @This().MsiProvideComponentW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiProvideComponent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiProvideQualifiedComponent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiProvideQualifiedComponentA,
+    .wide => @This().MsiProvideQualifiedComponentW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiProvideQualifiedComponent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiProvideQualifiedComponentEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiProvideQualifiedComponentExA,
+    .wide => @This().MsiProvideQualifiedComponentExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiProvideQualifiedComponentEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetComponentPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetComponentPathA,
+    .wide => @This().MsiGetComponentPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetComponentPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetComponentPathEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetComponentPathExA,
+    .wide => @This().MsiGetComponentPathExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetComponentPathEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiProvideAssembly = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiProvideAssemblyA,
+    .wide => @This().MsiProvideAssemblyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiProvideAssembly' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiQueryComponentState = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiQueryComponentStateA,
+    .wide => @This().MsiQueryComponentStateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiQueryComponentState' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnumProducts = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnumProductsA,
+    .wide => @This().MsiEnumProductsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnumProducts' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnumProductsEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnumProductsExA,
+    .wide => @This().MsiEnumProductsExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnumProductsEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnumRelatedProducts = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnumRelatedProductsA,
+    .wide => @This().MsiEnumRelatedProductsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnumRelatedProducts' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnumFeatures = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnumFeaturesA,
+    .wide => @This().MsiEnumFeaturesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnumFeatures' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnumComponents = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnumComponentsA,
+    .wide => @This().MsiEnumComponentsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnumComponents' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnumComponentsEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnumComponentsExA,
+    .wide => @This().MsiEnumComponentsExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnumComponentsEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnumClients = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnumClientsA,
+    .wide => @This().MsiEnumClientsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnumClients' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnumClientsEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnumClientsExA,
+    .wide => @This().MsiEnumClientsExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnumClientsEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnumComponentQualifiers = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnumComponentQualifiersA,
+    .wide => @This().MsiEnumComponentQualifiersW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnumComponentQualifiers' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiOpenProduct = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiOpenProductA,
+    .wide => @This().MsiOpenProductW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiOpenProduct' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiOpenPackage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiOpenPackageA,
+    .wide => @This().MsiOpenPackageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiOpenPackage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiOpenPackageEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiOpenPackageExA,
+    .wide => @This().MsiOpenPackageExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiOpenPackageEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetPatchFileList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetPatchFileListA,
+    .wide => @This().MsiGetPatchFileListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetPatchFileList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetProductProperty = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetProductPropertyA,
+    .wide => @This().MsiGetProductPropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetProductProperty' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiVerifyPackage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiVerifyPackageA,
+    .wide => @This().MsiVerifyPackageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiVerifyPackage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetFeatureInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetFeatureInfoA,
+    .wide => @This().MsiGetFeatureInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetFeatureInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiInstallMissingComponent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiInstallMissingComponentA,
+    .wide => @This().MsiInstallMissingComponentW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiInstallMissingComponent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiInstallMissingFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiInstallMissingFileA,
+    .wide => @This().MsiInstallMissingFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiInstallMissingFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiLocateComponent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiLocateComponentA,
+    .wide => @This().MsiLocateComponentW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiLocateComponent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListClearAll = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListClearAllA,
+    .wide => @This().MsiSourceListClearAllW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListClearAll' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListAddSource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListAddSourceA,
+    .wide => @This().MsiSourceListAddSourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListAddSource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListForceResolution = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListForceResolutionA,
+    .wide => @This().MsiSourceListForceResolutionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListForceResolution' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListAddSourceEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListAddSourceExA,
+    .wide => @This().MsiSourceListAddSourceExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListAddSourceEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListAddMediaDisk = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListAddMediaDiskA,
+    .wide => @This().MsiSourceListAddMediaDiskW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListAddMediaDisk' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListClearSource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListClearSourceA,
+    .wide => @This().MsiSourceListClearSourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListClearSource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListClearMediaDisk = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListClearMediaDiskA,
+    .wide => @This().MsiSourceListClearMediaDiskW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListClearMediaDisk' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListClearAllEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListClearAllExA,
+    .wide => @This().MsiSourceListClearAllExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListClearAllEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListForceResolutionEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListForceResolutionExA,
+    .wide => @This().MsiSourceListForceResolutionExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListForceResolutionEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListSetInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListSetInfoA,
+    .wide => @This().MsiSourceListSetInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListSetInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListGetInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListGetInfoA,
+    .wide => @This().MsiSourceListGetInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListGetInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListEnumSources = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListEnumSourcesA,
+    .wide => @This().MsiSourceListEnumSourcesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListEnumSources' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSourceListEnumMediaDisks = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSourceListEnumMediaDisksA,
+    .wide => @This().MsiSourceListEnumMediaDisksW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSourceListEnumMediaDisks' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetFileVersion = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetFileVersionA,
+    .wide => @This().MsiGetFileVersionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetFileVersion' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetFileHash = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetFileHashA,
+    .wide => @This().MsiGetFileHashW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetFileHash' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetFileSignatureInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetFileSignatureInformationA,
+    .wide => @This().MsiGetFileSignatureInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetFileSignatureInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetShortcutTarget = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetShortcutTargetA,
+    .wide => @This().MsiGetShortcutTargetW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetShortcutTarget' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiIsProductElevated = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiIsProductElevatedA,
+    .wide => @This().MsiIsProductElevatedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiIsProductElevated' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiNotifySidChange = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiNotifySidChangeA,
+    .wide => @This().MsiNotifySidChangeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiNotifySidChange' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiBeginTransaction = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiBeginTransactionA,
+    .wide => @This().MsiBeginTransactionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiBeginTransaction' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiDatabaseOpenView = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiDatabaseOpenViewA,
+    .wide => @This().MsiDatabaseOpenViewW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiDatabaseOpenView' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiViewGetError = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiViewGetErrorA,
+    .wide => @This().MsiViewGetErrorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiViewGetError' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiDatabaseGetPrimaryKeys = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiDatabaseGetPrimaryKeysA,
+    .wide => @This().MsiDatabaseGetPrimaryKeysW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiDatabaseGetPrimaryKeys' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiDatabaseIsTablePersistent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiDatabaseIsTablePersistentA,
+    .wide => @This().MsiDatabaseIsTablePersistentW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiDatabaseIsTablePersistent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetSummaryInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetSummaryInformationA,
+    .wide => @This().MsiGetSummaryInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetSummaryInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSummaryInfoSetProperty = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSummaryInfoSetPropertyA,
+    .wide => @This().MsiSummaryInfoSetPropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSummaryInfoSetProperty' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSummaryInfoGetProperty = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSummaryInfoGetPropertyA,
+    .wide => @This().MsiSummaryInfoGetPropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSummaryInfoGetProperty' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiOpenDatabase = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiOpenDatabaseA,
+    .wide => @This().MsiOpenDatabaseW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiOpenDatabase' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiDatabaseImport = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiDatabaseImportA,
+    .wide => @This().MsiDatabaseImportW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiDatabaseImport' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiDatabaseExport = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiDatabaseExportA,
+    .wide => @This().MsiDatabaseExportW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiDatabaseExport' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiDatabaseMerge = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiDatabaseMergeA,
+    .wide => @This().MsiDatabaseMergeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiDatabaseMerge' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiDatabaseGenerateTransform = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiDatabaseGenerateTransformA,
+    .wide => @This().MsiDatabaseGenerateTransformW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiDatabaseGenerateTransform' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiDatabaseApplyTransform = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiDatabaseApplyTransformA,
+    .wide => @This().MsiDatabaseApplyTransformW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiDatabaseApplyTransform' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiCreateTransformSummaryInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiCreateTransformSummaryInfoA,
+    .wide => @This().MsiCreateTransformSummaryInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiCreateTransformSummaryInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiRecordSetString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiRecordSetStringA,
+    .wide => @This().MsiRecordSetStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiRecordSetString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiRecordGetString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiRecordGetStringA,
+    .wide => @This().MsiRecordGetStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiRecordGetString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiRecordSetStream = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiRecordSetStreamA,
+    .wide => @This().MsiRecordSetStreamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiRecordSetStream' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSetProperty = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSetPropertyA,
+    .wide => @This().MsiSetPropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSetProperty' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetProperty = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetPropertyA,
+    .wide => @This().MsiGetPropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetProperty' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiFormatRecord = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiFormatRecordA,
+    .wide => @This().MsiFormatRecordW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiFormatRecord' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiDoAction = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiDoActionA,
+    .wide => @This().MsiDoActionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiDoAction' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSequence = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSequenceA,
+    .wide => @This().MsiSequenceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSequence' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEvaluateCondition = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEvaluateConditionA,
+    .wide => @This().MsiEvaluateConditionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEvaluateCondition' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetFeatureState = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetFeatureStateA,
+    .wide => @This().MsiGetFeatureStateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetFeatureState' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSetFeatureState = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSetFeatureStateA,
+    .wide => @This().MsiSetFeatureStateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSetFeatureState' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSetFeatureAttributes = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSetFeatureAttributesA,
+    .wide => @This().MsiSetFeatureAttributesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSetFeatureAttributes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetComponentState = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetComponentStateA,
+    .wide => @This().MsiGetComponentStateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetComponentState' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSetComponentState = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSetComponentStateA,
+    .wide => @This().MsiSetComponentStateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSetComponentState' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetFeatureCost = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetFeatureCostA,
+    .wide => @This().MsiGetFeatureCostW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetFeatureCost' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiEnumComponentCosts = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiEnumComponentCostsA,
+    .wide => @This().MsiEnumComponentCostsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiEnumComponentCosts' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetFeatureValidStates = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetFeatureValidStatesA,
+    .wide => @This().MsiGetFeatureValidStatesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetFeatureValidStates' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetSourcePath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetSourcePathA,
+    .wide => @This().MsiGetSourcePathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetSourcePath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiGetTargetPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiGetTargetPathA,
+    .wide => @This().MsiGetTargetPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiGetTargetPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiSetTargetPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiSetTargetPathA,
+    .wide => @This().MsiSetTargetPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiSetTargetPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiPreviewDialog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiPreviewDialogA,
+    .wide => @This().MsiPreviewDialogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiPreviewDialog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MsiPreviewBillboard = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MsiPreviewBillboardA,
+    .wide => @This().MsiPreviewBillboardW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MsiPreviewBillboard' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreatePatchFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreatePatchFileA,
+    .wide => @This().CreatePatchFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreatePatchFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreatePatchFileEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreatePatchFileExA,
+    .wide => @This().CreatePatchFileExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreatePatchFileEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExtractPatchHeaderToFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExtractPatchHeaderToFileA,
+    .wide => @This().ExtractPatchHeaderToFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExtractPatchHeaderToFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TestApplyPatchToFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TestApplyPatchToFileA,
+    .wide => @This().TestApplyPatchToFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TestApplyPatchToFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ApplyPatchToFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ApplyPatchToFileA,
+    .wide => @This().ApplyPatchToFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ApplyPatchToFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ApplyPatchToFileEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ApplyPatchToFileExA,
+    .wide => @This().ApplyPatchToFileExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ApplyPatchToFileEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFilePatchSignature = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFilePatchSignatureA,
+    .wide => @This().GetFilePatchSignatureW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFilePatchSignature' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDeltaInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDeltaInfoA,
+    .wide => @This().GetDeltaInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDeltaInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ApplyDelta = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ApplyDeltaA,
+    .wide => @This().ApplyDeltaW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ApplyDelta' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateDelta = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateDeltaA,
+    .wide => @This().CreateDeltaW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateDelta' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDeltaSignature = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDeltaSignatureA,
+    .wide => @This().GetDeltaSignatureW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDeltaSignature' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateActCtx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateActCtxA,
+    .wide => @This().CreateActCtxW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateActCtx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindActCtxSectionString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindActCtxSectionStringA,
+    .wide => @This().FindActCtxSectionStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindActCtxSectionString' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (19)

@@ -2552,71 +2552,103 @@ pub extern "wldap32" fn ber_scanf(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (14)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const ldapcontrol = thismodule.ldapcontrolA;
-        pub const ldapmod = thismodule.ldapmodA;
-        pub const ldapapiinfo = thismodule.ldapapiinfoA;
-        pub const LDAPAPIFeatureInfo = thismodule.LDAPAPIFeatureInfoA;
-        pub const ldapsortkey = thismodule.ldapsortkeyA;
-        pub const ldap_sasl_bind = thismodule.ldap_sasl_bindA;
-        pub const ldap_sasl_bind_s = thismodule.ldap_sasl_bind_sA;
-        pub const ldap_check_filter = thismodule.ldap_check_filterA;
-        pub const ldap_parse_extended_result = thismodule.ldap_parse_extended_resultA;
-        pub const ldap_encode_sort_control = thismodule.ldap_encode_sort_controlA;
-        pub const ldap_create_vlv_control = thismodule.ldap_create_vlv_controlA;
-        pub const ldap_parse_vlv_control = thismodule.ldap_parse_vlv_controlA;
-        pub const ldap_start_tls_s = thismodule.ldap_start_tls_sA;
-        pub const ldap_extended_operation_s = thismodule.ldap_extended_operation_sA;
-    },
-    .wide => struct {
-        pub const ldapcontrol = thismodule.ldapcontrolW;
-        pub const ldapmod = thismodule.ldapmodW;
-        pub const ldapapiinfo = thismodule.ldapapiinfoW;
-        pub const LDAPAPIFeatureInfo = thismodule.LDAPAPIFeatureInfoW;
-        pub const ldapsortkey = thismodule.ldapsortkeyW;
-        pub const ldap_sasl_bind = thismodule.ldap_sasl_bindW;
-        pub const ldap_sasl_bind_s = thismodule.ldap_sasl_bind_sW;
-        pub const ldap_check_filter = thismodule.ldap_check_filterW;
-        pub const ldap_parse_extended_result = thismodule.ldap_parse_extended_resultW;
-        pub const ldap_encode_sort_control = thismodule.ldap_encode_sort_controlW;
-        pub const ldap_create_vlv_control = thismodule.ldap_create_vlv_controlW;
-        pub const ldap_parse_vlv_control = thismodule.ldap_parse_vlv_controlW;
-        pub const ldap_start_tls_s = thismodule.ldap_start_tls_sW;
-        pub const ldap_extended_operation_s = thismodule.ldap_extended_operation_sW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const ldapcontrol = *opaque{};
-        pub const ldapmod = *opaque{};
-        pub const ldapapiinfo = *opaque{};
-        pub const LDAPAPIFeatureInfo = *opaque{};
-        pub const ldapsortkey = *opaque{};
-        pub const ldap_sasl_bind = *opaque{};
-        pub const ldap_sasl_bind_s = *opaque{};
-        pub const ldap_check_filter = *opaque{};
-        pub const ldap_parse_extended_result = *opaque{};
-        pub const ldap_encode_sort_control = *opaque{};
-        pub const ldap_create_vlv_control = *opaque{};
-        pub const ldap_parse_vlv_control = *opaque{};
-        pub const ldap_start_tls_s = *opaque{};
-        pub const ldap_extended_operation_s = *opaque{};
-    } else struct {
-        pub const ldapcontrol = @compileError("'ldapcontrol' requires that UNICODE be set to true or false in the root module");
-        pub const ldapmod = @compileError("'ldapmod' requires that UNICODE be set to true or false in the root module");
-        pub const ldapapiinfo = @compileError("'ldapapiinfo' requires that UNICODE be set to true or false in the root module");
-        pub const LDAPAPIFeatureInfo = @compileError("'LDAPAPIFeatureInfo' requires that UNICODE be set to true or false in the root module");
-        pub const ldapsortkey = @compileError("'ldapsortkey' requires that UNICODE be set to true or false in the root module");
-        pub const ldap_sasl_bind = @compileError("'ldap_sasl_bind' requires that UNICODE be set to true or false in the root module");
-        pub const ldap_sasl_bind_s = @compileError("'ldap_sasl_bind_s' requires that UNICODE be set to true or false in the root module");
-        pub const ldap_check_filter = @compileError("'ldap_check_filter' requires that UNICODE be set to true or false in the root module");
-        pub const ldap_parse_extended_result = @compileError("'ldap_parse_extended_result' requires that UNICODE be set to true or false in the root module");
-        pub const ldap_encode_sort_control = @compileError("'ldap_encode_sort_control' requires that UNICODE be set to true or false in the root module");
-        pub const ldap_create_vlv_control = @compileError("'ldap_create_vlv_control' requires that UNICODE be set to true or false in the root module");
-        pub const ldap_parse_vlv_control = @compileError("'ldap_parse_vlv_control' requires that UNICODE be set to true or false in the root module");
-        pub const ldap_start_tls_s = @compileError("'ldap_start_tls_s' requires that UNICODE be set to true or false in the root module");
-        pub const ldap_extended_operation_s = @compileError("'ldap_extended_operation_s' requires that UNICODE be set to true or false in the root module");
-    },
+pub const ldapcontrol = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldapcontrolA,
+    .wide => @This().ldapcontrolW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldapcontrol' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ldapmod = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldapmodA,
+    .wide => @This().ldapmodW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldapmod' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ldapapiinfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldapapiinfoA,
+    .wide => @This().ldapapiinfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldapapiinfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LDAPAPIFeatureInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LDAPAPIFeatureInfoA,
+    .wide => @This().LDAPAPIFeatureInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LDAPAPIFeatureInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ldapsortkey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldapsortkeyA,
+    .wide => @This().ldapsortkeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldapsortkey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ldap_sasl_bind = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldap_sasl_bindA,
+    .wide => @This().ldap_sasl_bindW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldap_sasl_bind' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ldap_sasl_bind_s = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldap_sasl_bind_sA,
+    .wide => @This().ldap_sasl_bind_sW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldap_sasl_bind_s' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ldap_check_filter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldap_check_filterA,
+    .wide => @This().ldap_check_filterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldap_check_filter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ldap_parse_extended_result = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldap_parse_extended_resultA,
+    .wide => @This().ldap_parse_extended_resultW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldap_parse_extended_result' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ldap_encode_sort_control = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldap_encode_sort_controlA,
+    .wide => @This().ldap_encode_sort_controlW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldap_encode_sort_control' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ldap_create_vlv_control = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldap_create_vlv_controlA,
+    .wide => @This().ldap_create_vlv_controlW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldap_create_vlv_control' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ldap_parse_vlv_control = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldap_parse_vlv_controlA,
+    .wide => @This().ldap_parse_vlv_controlW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldap_parse_vlv_control' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ldap_start_tls_s = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldap_start_tls_sA,
+    .wide => @This().ldap_start_tls_sW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldap_start_tls_s' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ldap_extended_operation_s = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ldap_extended_operation_sA,
+    .wide => @This().ldap_extended_operation_sW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ldap_extended_operation_s' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)

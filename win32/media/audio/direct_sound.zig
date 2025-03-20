@@ -1698,27 +1698,26 @@ pub extern "dsound" fn GetDeviceID(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (3)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const LPDSENUMCALLBACK = thismodule.LPDSENUMCALLBACKA;
-        pub const DirectSoundEnumerate = thismodule.DirectSoundEnumerateA;
-        pub const DirectSoundCaptureEnumerate = thismodule.DirectSoundCaptureEnumerateA;
-    },
-    .wide => struct {
-        pub const LPDSENUMCALLBACK = thismodule.LPDSENUMCALLBACKW;
-        pub const DirectSoundEnumerate = thismodule.DirectSoundEnumerateW;
-        pub const DirectSoundCaptureEnumerate = thismodule.DirectSoundCaptureEnumerateW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const LPDSENUMCALLBACK = *opaque{};
-        pub const DirectSoundEnumerate = *opaque{};
-        pub const DirectSoundCaptureEnumerate = *opaque{};
-    } else struct {
-        pub const LPDSENUMCALLBACK = @compileError("'LPDSENUMCALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const DirectSoundEnumerate = @compileError("'DirectSoundEnumerate' requires that UNICODE be set to true or false in the root module");
-        pub const DirectSoundCaptureEnumerate = @compileError("'DirectSoundCaptureEnumerate' requires that UNICODE be set to true or false in the root module");
-    },
+pub const LPDSENUMCALLBACK = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().LPDSENUMCALLBACKA,
+    .wide => @This().LPDSENUMCALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPDSENUMCALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DirectSoundEnumerate = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().DirectSoundEnumerateA,
+    .wide => @This().DirectSoundEnumerateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DirectSoundEnumerate' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DirectSoundCaptureEnumerate = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().DirectSoundCaptureEnumerateA,
+    .wide => @This().DirectSoundCaptureEnumerateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DirectSoundCaptureEnumerate' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (10)

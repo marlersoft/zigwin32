@@ -9780,119 +9780,187 @@ pub extern "oledlg" fn OleUIUpdateLinksA(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (26)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const OLEUIINSERTOBJECT = thismodule.OLEUIINSERTOBJECTA;
-        pub const OLEUIPASTEENTRY = thismodule.OLEUIPASTEENTRYA;
-        pub const OLEUIPASTESPECIAL = thismodule.OLEUIPASTESPECIALA;
-        pub const IOleUILinkContainer = thismodule.IOleUILinkContainerA;
-        pub const OLEUIEDITLINKS = thismodule.OLEUIEDITLINKSA;
-        pub const OLEUICHANGEICON = thismodule.OLEUICHANGEICONA;
-        pub const OLEUICONVERT = thismodule.OLEUICONVERTA;
-        pub const OLEUIBUSY = thismodule.OLEUIBUSYA;
-        pub const OLEUICHANGESOURCE = thismodule.OLEUICHANGESOURCEA;
-        pub const IOleUIObjInfo = thismodule.IOleUIObjInfoA;
-        pub const IOleUILinkInfo = thismodule.IOleUILinkInfoA;
-        pub const OLEUIGNRLPROPS = thismodule.OLEUIGNRLPROPSA;
-        pub const OLEUIVIEWPROPS = thismodule.OLEUIVIEWPROPSA;
-        pub const OLEUILINKPROPS = thismodule.OLEUILINKPROPSA;
-        pub const OLEUIOBJECTPROPS = thismodule.OLEUIOBJECTPROPSA;
-        pub const OleUIAddVerbMenu = thismodule.OleUIAddVerbMenuA;
-        pub const OleUIInsertObject = thismodule.OleUIInsertObjectA;
-        pub const OleUIPasteSpecial = thismodule.OleUIPasteSpecialA;
-        pub const OleUIEditLinks = thismodule.OleUIEditLinksA;
-        pub const OleUIChangeIcon = thismodule.OleUIChangeIconA;
-        pub const OleUIConvert = thismodule.OleUIConvertA;
-        pub const OleUIBusy = thismodule.OleUIBusyA;
-        pub const OleUIChangeSource = thismodule.OleUIChangeSourceA;
-        pub const OleUIObjectProperties = thismodule.OleUIObjectPropertiesA;
-        pub const OleUIPromptUser = thismodule.OleUIPromptUserA;
-        pub const OleUIUpdateLinks = thismodule.OleUIUpdateLinksA;
-    },
-    .wide => struct {
-        pub const OLEUIINSERTOBJECT = thismodule.OLEUIINSERTOBJECTW;
-        pub const OLEUIPASTEENTRY = thismodule.OLEUIPASTEENTRYW;
-        pub const OLEUIPASTESPECIAL = thismodule.OLEUIPASTESPECIALW;
-        pub const IOleUILinkContainer = thismodule.IOleUILinkContainerW;
-        pub const OLEUIEDITLINKS = thismodule.OLEUIEDITLINKSW;
-        pub const OLEUICHANGEICON = thismodule.OLEUICHANGEICONW;
-        pub const OLEUICONVERT = thismodule.OLEUICONVERTW;
-        pub const OLEUIBUSY = thismodule.OLEUIBUSYW;
-        pub const OLEUICHANGESOURCE = thismodule.OLEUICHANGESOURCEW;
-        pub const IOleUIObjInfo = thismodule.IOleUIObjInfoW;
-        pub const IOleUILinkInfo = thismodule.IOleUILinkInfoW;
-        pub const OLEUIGNRLPROPS = thismodule.OLEUIGNRLPROPSW;
-        pub const OLEUIVIEWPROPS = thismodule.OLEUIVIEWPROPSW;
-        pub const OLEUILINKPROPS = thismodule.OLEUILINKPROPSW;
-        pub const OLEUIOBJECTPROPS = thismodule.OLEUIOBJECTPROPSW;
-        pub const OleUIAddVerbMenu = thismodule.OleUIAddVerbMenuW;
-        pub const OleUIInsertObject = thismodule.OleUIInsertObjectW;
-        pub const OleUIPasteSpecial = thismodule.OleUIPasteSpecialW;
-        pub const OleUIEditLinks = thismodule.OleUIEditLinksW;
-        pub const OleUIChangeIcon = thismodule.OleUIChangeIconW;
-        pub const OleUIConvert = thismodule.OleUIConvertW;
-        pub const OleUIBusy = thismodule.OleUIBusyW;
-        pub const OleUIChangeSource = thismodule.OleUIChangeSourceW;
-        pub const OleUIObjectProperties = thismodule.OleUIObjectPropertiesW;
-        pub const OleUIPromptUser = thismodule.OleUIPromptUserW;
-        pub const OleUIUpdateLinks = thismodule.OleUIUpdateLinksW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const OLEUIINSERTOBJECT = *opaque{};
-        pub const OLEUIPASTEENTRY = *opaque{};
-        pub const OLEUIPASTESPECIAL = *opaque{};
-        pub const IOleUILinkContainer = *opaque{};
-        pub const OLEUIEDITLINKS = *opaque{};
-        pub const OLEUICHANGEICON = *opaque{};
-        pub const OLEUICONVERT = *opaque{};
-        pub const OLEUIBUSY = *opaque{};
-        pub const OLEUICHANGESOURCE = *opaque{};
-        pub const IOleUIObjInfo = *opaque{};
-        pub const IOleUILinkInfo = *opaque{};
-        pub const OLEUIGNRLPROPS = *opaque{};
-        pub const OLEUIVIEWPROPS = *opaque{};
-        pub const OLEUILINKPROPS = *opaque{};
-        pub const OLEUIOBJECTPROPS = *opaque{};
-        pub const OleUIAddVerbMenu = *opaque{};
-        pub const OleUIInsertObject = *opaque{};
-        pub const OleUIPasteSpecial = *opaque{};
-        pub const OleUIEditLinks = *opaque{};
-        pub const OleUIChangeIcon = *opaque{};
-        pub const OleUIConvert = *opaque{};
-        pub const OleUIBusy = *opaque{};
-        pub const OleUIChangeSource = *opaque{};
-        pub const OleUIObjectProperties = *opaque{};
-        pub const OleUIPromptUser = *opaque{};
-        pub const OleUIUpdateLinks = *opaque{};
-    } else struct {
-        pub const OLEUIINSERTOBJECT = @compileError("'OLEUIINSERTOBJECT' requires that UNICODE be set to true or false in the root module");
-        pub const OLEUIPASTEENTRY = @compileError("'OLEUIPASTEENTRY' requires that UNICODE be set to true or false in the root module");
-        pub const OLEUIPASTESPECIAL = @compileError("'OLEUIPASTESPECIAL' requires that UNICODE be set to true or false in the root module");
-        pub const IOleUILinkContainer = @compileError("'IOleUILinkContainer' requires that UNICODE be set to true or false in the root module");
-        pub const OLEUIEDITLINKS = @compileError("'OLEUIEDITLINKS' requires that UNICODE be set to true or false in the root module");
-        pub const OLEUICHANGEICON = @compileError("'OLEUICHANGEICON' requires that UNICODE be set to true or false in the root module");
-        pub const OLEUICONVERT = @compileError("'OLEUICONVERT' requires that UNICODE be set to true or false in the root module");
-        pub const OLEUIBUSY = @compileError("'OLEUIBUSY' requires that UNICODE be set to true or false in the root module");
-        pub const OLEUICHANGESOURCE = @compileError("'OLEUICHANGESOURCE' requires that UNICODE be set to true or false in the root module");
-        pub const IOleUIObjInfo = @compileError("'IOleUIObjInfo' requires that UNICODE be set to true or false in the root module");
-        pub const IOleUILinkInfo = @compileError("'IOleUILinkInfo' requires that UNICODE be set to true or false in the root module");
-        pub const OLEUIGNRLPROPS = @compileError("'OLEUIGNRLPROPS' requires that UNICODE be set to true or false in the root module");
-        pub const OLEUIVIEWPROPS = @compileError("'OLEUIVIEWPROPS' requires that UNICODE be set to true or false in the root module");
-        pub const OLEUILINKPROPS = @compileError("'OLEUILINKPROPS' requires that UNICODE be set to true or false in the root module");
-        pub const OLEUIOBJECTPROPS = @compileError("'OLEUIOBJECTPROPS' requires that UNICODE be set to true or false in the root module");
-        pub const OleUIAddVerbMenu = @compileError("'OleUIAddVerbMenu' requires that UNICODE be set to true or false in the root module");
-        pub const OleUIInsertObject = @compileError("'OleUIInsertObject' requires that UNICODE be set to true or false in the root module");
-        pub const OleUIPasteSpecial = @compileError("'OleUIPasteSpecial' requires that UNICODE be set to true or false in the root module");
-        pub const OleUIEditLinks = @compileError("'OleUIEditLinks' requires that UNICODE be set to true or false in the root module");
-        pub const OleUIChangeIcon = @compileError("'OleUIChangeIcon' requires that UNICODE be set to true or false in the root module");
-        pub const OleUIConvert = @compileError("'OleUIConvert' requires that UNICODE be set to true or false in the root module");
-        pub const OleUIBusy = @compileError("'OleUIBusy' requires that UNICODE be set to true or false in the root module");
-        pub const OleUIChangeSource = @compileError("'OleUIChangeSource' requires that UNICODE be set to true or false in the root module");
-        pub const OleUIObjectProperties = @compileError("'OleUIObjectProperties' requires that UNICODE be set to true or false in the root module");
-        pub const OleUIPromptUser = @compileError("'OleUIPromptUser' requires that UNICODE be set to true or false in the root module");
-        pub const OleUIUpdateLinks = @compileError("'OleUIUpdateLinks' requires that UNICODE be set to true or false in the root module");
-    },
+pub const OLEUIINSERTOBJECT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OLEUIINSERTOBJECTA,
+    .wide => @This().OLEUIINSERTOBJECTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OLEUIINSERTOBJECT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OLEUIPASTEENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OLEUIPASTEENTRYA,
+    .wide => @This().OLEUIPASTEENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OLEUIPASTEENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OLEUIPASTESPECIAL = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OLEUIPASTESPECIALA,
+    .wide => @This().OLEUIPASTESPECIALW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OLEUIPASTESPECIAL' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IOleUILinkContainer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IOleUILinkContainerA,
+    .wide => @This().IOleUILinkContainerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IOleUILinkContainer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OLEUIEDITLINKS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OLEUIEDITLINKSA,
+    .wide => @This().OLEUIEDITLINKSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OLEUIEDITLINKS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OLEUICHANGEICON = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OLEUICHANGEICONA,
+    .wide => @This().OLEUICHANGEICONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OLEUICHANGEICON' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OLEUICONVERT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OLEUICONVERTA,
+    .wide => @This().OLEUICONVERTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OLEUICONVERT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OLEUIBUSY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OLEUIBUSYA,
+    .wide => @This().OLEUIBUSYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OLEUIBUSY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OLEUICHANGESOURCE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OLEUICHANGESOURCEA,
+    .wide => @This().OLEUICHANGESOURCEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OLEUICHANGESOURCE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IOleUIObjInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IOleUIObjInfoA,
+    .wide => @This().IOleUIObjInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IOleUIObjInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IOleUILinkInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IOleUILinkInfoA,
+    .wide => @This().IOleUILinkInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IOleUILinkInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OLEUIGNRLPROPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OLEUIGNRLPROPSA,
+    .wide => @This().OLEUIGNRLPROPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OLEUIGNRLPROPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OLEUIVIEWPROPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OLEUIVIEWPROPSA,
+    .wide => @This().OLEUIVIEWPROPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OLEUIVIEWPROPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OLEUILINKPROPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OLEUILINKPROPSA,
+    .wide => @This().OLEUILINKPROPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OLEUILINKPROPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OLEUIOBJECTPROPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OLEUIOBJECTPROPSA,
+    .wide => @This().OLEUIOBJECTPROPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OLEUIOBJECTPROPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OleUIAddVerbMenu = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OleUIAddVerbMenuA,
+    .wide => @This().OleUIAddVerbMenuW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OleUIAddVerbMenu' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OleUIInsertObject = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OleUIInsertObjectA,
+    .wide => @This().OleUIInsertObjectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OleUIInsertObject' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OleUIPasteSpecial = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OleUIPasteSpecialA,
+    .wide => @This().OleUIPasteSpecialW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OleUIPasteSpecial' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OleUIEditLinks = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OleUIEditLinksA,
+    .wide => @This().OleUIEditLinksW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OleUIEditLinks' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OleUIChangeIcon = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OleUIChangeIconA,
+    .wide => @This().OleUIChangeIconW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OleUIChangeIcon' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OleUIConvert = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OleUIConvertA,
+    .wide => @This().OleUIConvertW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OleUIConvert' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OleUIBusy = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OleUIBusyA,
+    .wide => @This().OleUIBusyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OleUIBusy' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OleUIChangeSource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OleUIChangeSourceA,
+    .wide => @This().OleUIChangeSourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OleUIChangeSource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OleUIObjectProperties = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OleUIObjectPropertiesA,
+    .wide => @This().OleUIObjectPropertiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OleUIObjectProperties' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OleUIPromptUser = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OleUIPromptUserA,
+    .wide => @This().OleUIPromptUserW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OleUIPromptUser' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OleUIUpdateLinks = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OleUIUpdateLinksA,
+    .wide => @This().OleUIUpdateLinksW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OleUIUpdateLinks' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (87)

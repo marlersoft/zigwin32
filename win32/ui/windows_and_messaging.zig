@@ -8674,451 +8674,768 @@ pub extern "mrmsupport" fn MrmGetPriFileContentChecksum(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (109)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const PROPENUMPROC = thismodule.PROPENUMPROCA;
-        pub const PROPENUMPROCEX = thismodule.PROPENUMPROCEXA;
-        pub const NAMEENUMPROC = thismodule.NAMEENUMPROCA;
-        pub const CBT_CREATEWND = thismodule.CBT_CREATEWNDA;
-        pub const WNDCLASSEX = thismodule.WNDCLASSEXA;
-        pub const WNDCLASS = thismodule.WNDCLASSA;
-        pub const CREATESTRUCT = thismodule.CREATESTRUCTA;
-        pub const MENUITEMINFO = thismodule.MENUITEMINFOA;
-        pub const MSGBOXPARAMS = thismodule.MSGBOXPARAMSA;
-        pub const ICONINFOEX = thismodule.ICONINFOEXA;
-        pub const MDICREATESTRUCT = thismodule.MDICREATESTRUCTA;
-        pub const NONCLIENTMETRICS = thismodule.NONCLIENTMETRICSA;
-        pub const ICONMETRICS = thismodule.ICONMETRICSA;
-        pub const LoadString = thismodule.LoadStringA;
-        pub const wvsprintf = thismodule.wvsprintfA;
-        pub const wsprintf = thismodule.wsprintfA;
-        pub const RegisterWindowMessage = thismodule.RegisterWindowMessageA;
-        pub const GetMessage = thismodule.GetMessageA;
-        pub const DispatchMessage = thismodule.DispatchMessageA;
-        pub const PeekMessage = thismodule.PeekMessageA;
-        pub const SendMessage = thismodule.SendMessageA;
-        pub const SendMessageTimeout = thismodule.SendMessageTimeoutA;
-        pub const SendNotifyMessage = thismodule.SendNotifyMessageA;
-        pub const SendMessageCallback = thismodule.SendMessageCallbackA;
-        pub const RegisterDeviceNotification = thismodule.RegisterDeviceNotificationA;
-        pub const PostMessage = thismodule.PostMessageA;
-        pub const PostThreadMessage = thismodule.PostThreadMessageA;
-        pub const DefWindowProc = thismodule.DefWindowProcA;
-        pub const CallWindowProc = thismodule.CallWindowProcA;
-        pub const RegisterClass = thismodule.RegisterClassA;
-        pub const UnregisterClass = thismodule.UnregisterClassA;
-        pub const GetClassInfo = thismodule.GetClassInfoA;
-        pub const RegisterClassEx = thismodule.RegisterClassExA;
-        pub const GetClassInfoEx = thismodule.GetClassInfoExA;
-        pub const CreateWindowEx = thismodule.CreateWindowExA;
-        pub const CreateDialogParam = thismodule.CreateDialogParamA;
-        pub const CreateDialogIndirectParam = thismodule.CreateDialogIndirectParamA;
-        pub const DialogBoxParam = thismodule.DialogBoxParamA;
-        pub const DialogBoxIndirectParam = thismodule.DialogBoxIndirectParamA;
-        pub const SetDlgItemText = thismodule.SetDlgItemTextA;
-        pub const GetDlgItemText = thismodule.GetDlgItemTextA;
-        pub const SendDlgItemMessage = thismodule.SendDlgItemMessageA;
-        pub const DefDlgProc = thismodule.DefDlgProcA;
-        pub const CallMsgFilter = thismodule.CallMsgFilterA;
-        pub const CharToOem = thismodule.CharToOemA;
-        pub const OemToChar = thismodule.OemToCharA;
-        pub const CharToOemBuff = thismodule.CharToOemBuffA;
-        pub const OemToCharBuff = thismodule.OemToCharBuffA;
-        pub const CharUpper = thismodule.CharUpperA;
-        pub const CharUpperBuff = thismodule.CharUpperBuffA;
-        pub const CharLower = thismodule.CharLowerA;
-        pub const CharLowerBuff = thismodule.CharLowerBuffA;
-        pub const CharNext = thismodule.CharNextA;
-        pub const CharPrev = thismodule.CharPrevA;
-        pub const IsCharAlpha = thismodule.IsCharAlphaA;
-        pub const IsCharAlphaNumeric = thismodule.IsCharAlphaNumericA;
-        pub const IsCharUpper = thismodule.IsCharUpperA;
-        pub const LoadAccelerators = thismodule.LoadAcceleratorsA;
-        pub const CreateAcceleratorTable = thismodule.CreateAcceleratorTableA;
-        pub const CopyAcceleratorTable = thismodule.CopyAcceleratorTableA;
-        pub const TranslateAccelerator = thismodule.TranslateAcceleratorA;
-        pub const LoadMenu = thismodule.LoadMenuA;
-        pub const LoadMenuIndirect = thismodule.LoadMenuIndirectA;
-        pub const ChangeMenu = thismodule.ChangeMenuA;
-        pub const GetMenuString = thismodule.GetMenuStringA;
-        pub const InsertMenu = thismodule.InsertMenuA;
-        pub const AppendMenu = thismodule.AppendMenuA;
-        pub const ModifyMenu = thismodule.ModifyMenuA;
-        pub const InsertMenuItem = thismodule.InsertMenuItemA;
-        pub const GetMenuItemInfo = thismodule.GetMenuItemInfoA;
-        pub const SetMenuItemInfo = thismodule.SetMenuItemInfoA;
-        pub const SetProp = thismodule.SetPropA;
-        pub const GetProp = thismodule.GetPropA;
-        pub const RemoveProp = thismodule.RemovePropA;
-        pub const EnumPropsEx = thismodule.EnumPropsExA;
-        pub const EnumProps = thismodule.EnumPropsA;
-        pub const SetWindowText = thismodule.SetWindowTextA;
-        pub const GetWindowText = thismodule.GetWindowTextA;
-        pub const GetWindowTextLength = thismodule.GetWindowTextLengthA;
-        pub const MessageBox = thismodule.MessageBoxA;
-        pub const MessageBoxEx = thismodule.MessageBoxExA;
-        pub const MessageBoxIndirect = thismodule.MessageBoxIndirectA;
-        pub const GetWindowLong = thismodule.GetWindowLongA;
-        pub const SetWindowLong = thismodule.SetWindowLongA;
-        pub const GetWindowLongPtr = thismodule.GetWindowLongPtrA;
-        pub const SetWindowLongPtr = thismodule.SetWindowLongPtrA;
-        pub const GetClassLong = thismodule.GetClassLongA;
-        pub const SetClassLong = thismodule.SetClassLongA;
-        pub const GetClassLongPtr = thismodule.GetClassLongPtrA;
-        pub const SetClassLongPtr = thismodule.SetClassLongPtrA;
-        pub const FindWindow = thismodule.FindWindowA;
-        pub const FindWindowEx = thismodule.FindWindowExA;
-        pub const GetClassName = thismodule.GetClassNameA;
-        pub const SetWindowsHook = thismodule.SetWindowsHookA;
-        pub const SetWindowsHookEx = thismodule.SetWindowsHookExA;
-        pub const LoadCursor = thismodule.LoadCursorA;
-        pub const LoadCursorFromFile = thismodule.LoadCursorFromFileA;
-        pub const LoadIcon = thismodule.LoadIconA;
-        pub const PrivateExtractIcons = thismodule.PrivateExtractIconsA;
-        pub const LoadImage = thismodule.LoadImageA;
-        pub const GetIconInfoEx = thismodule.GetIconInfoExA;
-        pub const IsDialogMessage = thismodule.IsDialogMessageA;
-        pub const DefFrameProc = thismodule.DefFrameProcA;
-        pub const DefMDIChildProc = thismodule.DefMDIChildProcA;
-        pub const CreateMDIWindow = thismodule.CreateMDIWindowA;
-        pub const SystemParametersInfo = thismodule.SystemParametersInfoA;
-        pub const GetWindowModuleFileName = thismodule.GetWindowModuleFileNameA;
-        pub const RealGetWindowClass = thismodule.RealGetWindowClassA;
-        pub const GetAltTabInfo = thismodule.GetAltTabInfoA;
-    },
-    .wide => struct {
-        pub const PROPENUMPROC = thismodule.PROPENUMPROCW;
-        pub const PROPENUMPROCEX = thismodule.PROPENUMPROCEXW;
-        pub const NAMEENUMPROC = thismodule.NAMEENUMPROCW;
-        pub const CBT_CREATEWND = thismodule.CBT_CREATEWNDW;
-        pub const WNDCLASSEX = thismodule.WNDCLASSEXW;
-        pub const WNDCLASS = thismodule.WNDCLASSW;
-        pub const CREATESTRUCT = thismodule.CREATESTRUCTW;
-        pub const MENUITEMINFO = thismodule.MENUITEMINFOW;
-        pub const MSGBOXPARAMS = thismodule.MSGBOXPARAMSW;
-        pub const ICONINFOEX = thismodule.ICONINFOEXW;
-        pub const MDICREATESTRUCT = thismodule.MDICREATESTRUCTW;
-        pub const NONCLIENTMETRICS = thismodule.NONCLIENTMETRICSW;
-        pub const ICONMETRICS = thismodule.ICONMETRICSW;
-        pub const LoadString = thismodule.LoadStringW;
-        pub const wvsprintf = thismodule.wvsprintfW;
-        pub const wsprintf = thismodule.wsprintfW;
-        pub const RegisterWindowMessage = thismodule.RegisterWindowMessageW;
-        pub const GetMessage = thismodule.GetMessageW;
-        pub const DispatchMessage = thismodule.DispatchMessageW;
-        pub const PeekMessage = thismodule.PeekMessageW;
-        pub const SendMessage = thismodule.SendMessageW;
-        pub const SendMessageTimeout = thismodule.SendMessageTimeoutW;
-        pub const SendNotifyMessage = thismodule.SendNotifyMessageW;
-        pub const SendMessageCallback = thismodule.SendMessageCallbackW;
-        pub const RegisterDeviceNotification = thismodule.RegisterDeviceNotificationW;
-        pub const PostMessage = thismodule.PostMessageW;
-        pub const PostThreadMessage = thismodule.PostThreadMessageW;
-        pub const DefWindowProc = thismodule.DefWindowProcW;
-        pub const CallWindowProc = thismodule.CallWindowProcW;
-        pub const RegisterClass = thismodule.RegisterClassW;
-        pub const UnregisterClass = thismodule.UnregisterClassW;
-        pub const GetClassInfo = thismodule.GetClassInfoW;
-        pub const RegisterClassEx = thismodule.RegisterClassExW;
-        pub const GetClassInfoEx = thismodule.GetClassInfoExW;
-        pub const CreateWindowEx = thismodule.CreateWindowExW;
-        pub const CreateDialogParam = thismodule.CreateDialogParamW;
-        pub const CreateDialogIndirectParam = thismodule.CreateDialogIndirectParamW;
-        pub const DialogBoxParam = thismodule.DialogBoxParamW;
-        pub const DialogBoxIndirectParam = thismodule.DialogBoxIndirectParamW;
-        pub const SetDlgItemText = thismodule.SetDlgItemTextW;
-        pub const GetDlgItemText = thismodule.GetDlgItemTextW;
-        pub const SendDlgItemMessage = thismodule.SendDlgItemMessageW;
-        pub const DefDlgProc = thismodule.DefDlgProcW;
-        pub const CallMsgFilter = thismodule.CallMsgFilterW;
-        pub const CharToOem = thismodule.CharToOemW;
-        pub const OemToChar = thismodule.OemToCharW;
-        pub const CharToOemBuff = thismodule.CharToOemBuffW;
-        pub const OemToCharBuff = thismodule.OemToCharBuffW;
-        pub const CharUpper = thismodule.CharUpperW;
-        pub const CharUpperBuff = thismodule.CharUpperBuffW;
-        pub const CharLower = thismodule.CharLowerW;
-        pub const CharLowerBuff = thismodule.CharLowerBuffW;
-        pub const CharNext = thismodule.CharNextW;
-        pub const CharPrev = thismodule.CharPrevW;
-        pub const IsCharAlpha = thismodule.IsCharAlphaW;
-        pub const IsCharAlphaNumeric = thismodule.IsCharAlphaNumericW;
-        pub const IsCharUpper = thismodule.IsCharUpperW;
-        pub const LoadAccelerators = thismodule.LoadAcceleratorsW;
-        pub const CreateAcceleratorTable = thismodule.CreateAcceleratorTableW;
-        pub const CopyAcceleratorTable = thismodule.CopyAcceleratorTableW;
-        pub const TranslateAccelerator = thismodule.TranslateAcceleratorW;
-        pub const LoadMenu = thismodule.LoadMenuW;
-        pub const LoadMenuIndirect = thismodule.LoadMenuIndirectW;
-        pub const ChangeMenu = thismodule.ChangeMenuW;
-        pub const GetMenuString = thismodule.GetMenuStringW;
-        pub const InsertMenu = thismodule.InsertMenuW;
-        pub const AppendMenu = thismodule.AppendMenuW;
-        pub const ModifyMenu = thismodule.ModifyMenuW;
-        pub const InsertMenuItem = thismodule.InsertMenuItemW;
-        pub const GetMenuItemInfo = thismodule.GetMenuItemInfoW;
-        pub const SetMenuItemInfo = thismodule.SetMenuItemInfoW;
-        pub const SetProp = thismodule.SetPropW;
-        pub const GetProp = thismodule.GetPropW;
-        pub const RemoveProp = thismodule.RemovePropW;
-        pub const EnumPropsEx = thismodule.EnumPropsExW;
-        pub const EnumProps = thismodule.EnumPropsW;
-        pub const SetWindowText = thismodule.SetWindowTextW;
-        pub const GetWindowText = thismodule.GetWindowTextW;
-        pub const GetWindowTextLength = thismodule.GetWindowTextLengthW;
-        pub const MessageBox = thismodule.MessageBoxW;
-        pub const MessageBoxEx = thismodule.MessageBoxExW;
-        pub const MessageBoxIndirect = thismodule.MessageBoxIndirectW;
-        pub const GetWindowLong = thismodule.GetWindowLongW;
-        pub const SetWindowLong = thismodule.SetWindowLongW;
-        pub const GetWindowLongPtr = thismodule.GetWindowLongPtrW;
-        pub const SetWindowLongPtr = thismodule.SetWindowLongPtrW;
-        pub const GetClassLong = thismodule.GetClassLongW;
-        pub const SetClassLong = thismodule.SetClassLongW;
-        pub const GetClassLongPtr = thismodule.GetClassLongPtrW;
-        pub const SetClassLongPtr = thismodule.SetClassLongPtrW;
-        pub const FindWindow = thismodule.FindWindowW;
-        pub const FindWindowEx = thismodule.FindWindowExW;
-        pub const GetClassName = thismodule.GetClassNameW;
-        pub const SetWindowsHook = thismodule.SetWindowsHookW;
-        pub const SetWindowsHookEx = thismodule.SetWindowsHookExW;
-        pub const LoadCursor = thismodule.LoadCursorW;
-        pub const LoadCursorFromFile = thismodule.LoadCursorFromFileW;
-        pub const LoadIcon = thismodule.LoadIconW;
-        pub const PrivateExtractIcons = thismodule.PrivateExtractIconsW;
-        pub const LoadImage = thismodule.LoadImageW;
-        pub const GetIconInfoEx = thismodule.GetIconInfoExW;
-        pub const IsDialogMessage = thismodule.IsDialogMessageW;
-        pub const DefFrameProc = thismodule.DefFrameProcW;
-        pub const DefMDIChildProc = thismodule.DefMDIChildProcW;
-        pub const CreateMDIWindow = thismodule.CreateMDIWindowW;
-        pub const SystemParametersInfo = thismodule.SystemParametersInfoW;
-        pub const GetWindowModuleFileName = thismodule.GetWindowModuleFileNameW;
-        pub const RealGetWindowClass = thismodule.RealGetWindowClassW;
-        pub const GetAltTabInfo = thismodule.GetAltTabInfoW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const PROPENUMPROC = *opaque{};
-        pub const PROPENUMPROCEX = *opaque{};
-        pub const NAMEENUMPROC = *opaque{};
-        pub const CBT_CREATEWND = *opaque{};
-        pub const WNDCLASSEX = *opaque{};
-        pub const WNDCLASS = *opaque{};
-        pub const CREATESTRUCT = *opaque{};
-        pub const MENUITEMINFO = *opaque{};
-        pub const MSGBOXPARAMS = *opaque{};
-        pub const ICONINFOEX = *opaque{};
-        pub const MDICREATESTRUCT = *opaque{};
-        pub const NONCLIENTMETRICS = *opaque{};
-        pub const ICONMETRICS = *opaque{};
-        pub const LoadString = *opaque{};
-        pub const wvsprintf = *opaque{};
-        pub const wsprintf = *opaque{};
-        pub const RegisterWindowMessage = *opaque{};
-        pub const GetMessage = *opaque{};
-        pub const DispatchMessage = *opaque{};
-        pub const PeekMessage = *opaque{};
-        pub const SendMessage = *opaque{};
-        pub const SendMessageTimeout = *opaque{};
-        pub const SendNotifyMessage = *opaque{};
-        pub const SendMessageCallback = *opaque{};
-        pub const RegisterDeviceNotification = *opaque{};
-        pub const PostMessage = *opaque{};
-        pub const PostThreadMessage = *opaque{};
-        pub const DefWindowProc = *opaque{};
-        pub const CallWindowProc = *opaque{};
-        pub const RegisterClass = *opaque{};
-        pub const UnregisterClass = *opaque{};
-        pub const GetClassInfo = *opaque{};
-        pub const RegisterClassEx = *opaque{};
-        pub const GetClassInfoEx = *opaque{};
-        pub const CreateWindowEx = *opaque{};
-        pub const CreateDialogParam = *opaque{};
-        pub const CreateDialogIndirectParam = *opaque{};
-        pub const DialogBoxParam = *opaque{};
-        pub const DialogBoxIndirectParam = *opaque{};
-        pub const SetDlgItemText = *opaque{};
-        pub const GetDlgItemText = *opaque{};
-        pub const SendDlgItemMessage = *opaque{};
-        pub const DefDlgProc = *opaque{};
-        pub const CallMsgFilter = *opaque{};
-        pub const CharToOem = *opaque{};
-        pub const OemToChar = *opaque{};
-        pub const CharToOemBuff = *opaque{};
-        pub const OemToCharBuff = *opaque{};
-        pub const CharUpper = *opaque{};
-        pub const CharUpperBuff = *opaque{};
-        pub const CharLower = *opaque{};
-        pub const CharLowerBuff = *opaque{};
-        pub const CharNext = *opaque{};
-        pub const CharPrev = *opaque{};
-        pub const IsCharAlpha = *opaque{};
-        pub const IsCharAlphaNumeric = *opaque{};
-        pub const IsCharUpper = *opaque{};
-        pub const LoadAccelerators = *opaque{};
-        pub const CreateAcceleratorTable = *opaque{};
-        pub const CopyAcceleratorTable = *opaque{};
-        pub const TranslateAccelerator = *opaque{};
-        pub const LoadMenu = *opaque{};
-        pub const LoadMenuIndirect = *opaque{};
-        pub const ChangeMenu = *opaque{};
-        pub const GetMenuString = *opaque{};
-        pub const InsertMenu = *opaque{};
-        pub const AppendMenu = *opaque{};
-        pub const ModifyMenu = *opaque{};
-        pub const InsertMenuItem = *opaque{};
-        pub const GetMenuItemInfo = *opaque{};
-        pub const SetMenuItemInfo = *opaque{};
-        pub const SetProp = *opaque{};
-        pub const GetProp = *opaque{};
-        pub const RemoveProp = *opaque{};
-        pub const EnumPropsEx = *opaque{};
-        pub const EnumProps = *opaque{};
-        pub const SetWindowText = *opaque{};
-        pub const GetWindowText = *opaque{};
-        pub const GetWindowTextLength = *opaque{};
-        pub const MessageBox = *opaque{};
-        pub const MessageBoxEx = *opaque{};
-        pub const MessageBoxIndirect = *opaque{};
-        pub const GetWindowLong = *opaque{};
-        pub const SetWindowLong = *opaque{};
-        pub const GetWindowLongPtr = *opaque{};
-        pub const SetWindowLongPtr = *opaque{};
-        pub const GetClassLong = *opaque{};
-        pub const SetClassLong = *opaque{};
-        pub const GetClassLongPtr = *opaque{};
-        pub const SetClassLongPtr = *opaque{};
-        pub const FindWindow = *opaque{};
-        pub const FindWindowEx = *opaque{};
-        pub const GetClassName = *opaque{};
-        pub const SetWindowsHook = *opaque{};
-        pub const SetWindowsHookEx = *opaque{};
-        pub const LoadCursor = *opaque{};
-        pub const LoadCursorFromFile = *opaque{};
-        pub const LoadIcon = *opaque{};
-        pub const PrivateExtractIcons = *opaque{};
-        pub const LoadImage = *opaque{};
-        pub const GetIconInfoEx = *opaque{};
-        pub const IsDialogMessage = *opaque{};
-        pub const DefFrameProc = *opaque{};
-        pub const DefMDIChildProc = *opaque{};
-        pub const CreateMDIWindow = *opaque{};
-        pub const SystemParametersInfo = *opaque{};
-        pub const GetWindowModuleFileName = *opaque{};
-        pub const RealGetWindowClass = *opaque{};
-        pub const GetAltTabInfo = *opaque{};
-    } else struct {
-        pub const PROPENUMPROC = @compileError("'PROPENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const PROPENUMPROCEX = @compileError("'PROPENUMPROCEX' requires that UNICODE be set to true or false in the root module");
-        pub const NAMEENUMPROC = @compileError("'NAMEENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const CBT_CREATEWND = @compileError("'CBT_CREATEWND' requires that UNICODE be set to true or false in the root module");
-        pub const WNDCLASSEX = @compileError("'WNDCLASSEX' requires that UNICODE be set to true or false in the root module");
-        pub const WNDCLASS = @compileError("'WNDCLASS' requires that UNICODE be set to true or false in the root module");
-        pub const CREATESTRUCT = @compileError("'CREATESTRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const MENUITEMINFO = @compileError("'MENUITEMINFO' requires that UNICODE be set to true or false in the root module");
-        pub const MSGBOXPARAMS = @compileError("'MSGBOXPARAMS' requires that UNICODE be set to true or false in the root module");
-        pub const ICONINFOEX = @compileError("'ICONINFOEX' requires that UNICODE be set to true or false in the root module");
-        pub const MDICREATESTRUCT = @compileError("'MDICREATESTRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const NONCLIENTMETRICS = @compileError("'NONCLIENTMETRICS' requires that UNICODE be set to true or false in the root module");
-        pub const ICONMETRICS = @compileError("'ICONMETRICS' requires that UNICODE be set to true or false in the root module");
-        pub const LoadString = @compileError("'LoadString' requires that UNICODE be set to true or false in the root module");
-        pub const wvsprintf = @compileError("'wvsprintf' requires that UNICODE be set to true or false in the root module");
-        pub const wsprintf = @compileError("'wsprintf' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterWindowMessage = @compileError("'RegisterWindowMessage' requires that UNICODE be set to true or false in the root module");
-        pub const GetMessage = @compileError("'GetMessage' requires that UNICODE be set to true or false in the root module");
-        pub const DispatchMessage = @compileError("'DispatchMessage' requires that UNICODE be set to true or false in the root module");
-        pub const PeekMessage = @compileError("'PeekMessage' requires that UNICODE be set to true or false in the root module");
-        pub const SendMessage = @compileError("'SendMessage' requires that UNICODE be set to true or false in the root module");
-        pub const SendMessageTimeout = @compileError("'SendMessageTimeout' requires that UNICODE be set to true or false in the root module");
-        pub const SendNotifyMessage = @compileError("'SendNotifyMessage' requires that UNICODE be set to true or false in the root module");
-        pub const SendMessageCallback = @compileError("'SendMessageCallback' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterDeviceNotification = @compileError("'RegisterDeviceNotification' requires that UNICODE be set to true or false in the root module");
-        pub const PostMessage = @compileError("'PostMessage' requires that UNICODE be set to true or false in the root module");
-        pub const PostThreadMessage = @compileError("'PostThreadMessage' requires that UNICODE be set to true or false in the root module");
-        pub const DefWindowProc = @compileError("'DefWindowProc' requires that UNICODE be set to true or false in the root module");
-        pub const CallWindowProc = @compileError("'CallWindowProc' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterClass = @compileError("'RegisterClass' requires that UNICODE be set to true or false in the root module");
-        pub const UnregisterClass = @compileError("'UnregisterClass' requires that UNICODE be set to true or false in the root module");
-        pub const GetClassInfo = @compileError("'GetClassInfo' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterClassEx = @compileError("'RegisterClassEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetClassInfoEx = @compileError("'GetClassInfoEx' requires that UNICODE be set to true or false in the root module");
-        pub const CreateWindowEx = @compileError("'CreateWindowEx' requires that UNICODE be set to true or false in the root module");
-        pub const CreateDialogParam = @compileError("'CreateDialogParam' requires that UNICODE be set to true or false in the root module");
-        pub const CreateDialogIndirectParam = @compileError("'CreateDialogIndirectParam' requires that UNICODE be set to true or false in the root module");
-        pub const DialogBoxParam = @compileError("'DialogBoxParam' requires that UNICODE be set to true or false in the root module");
-        pub const DialogBoxIndirectParam = @compileError("'DialogBoxIndirectParam' requires that UNICODE be set to true or false in the root module");
-        pub const SetDlgItemText = @compileError("'SetDlgItemText' requires that UNICODE be set to true or false in the root module");
-        pub const GetDlgItemText = @compileError("'GetDlgItemText' requires that UNICODE be set to true or false in the root module");
-        pub const SendDlgItemMessage = @compileError("'SendDlgItemMessage' requires that UNICODE be set to true or false in the root module");
-        pub const DefDlgProc = @compileError("'DefDlgProc' requires that UNICODE be set to true or false in the root module");
-        pub const CallMsgFilter = @compileError("'CallMsgFilter' requires that UNICODE be set to true or false in the root module");
-        pub const CharToOem = @compileError("'CharToOem' requires that UNICODE be set to true or false in the root module");
-        pub const OemToChar = @compileError("'OemToChar' requires that UNICODE be set to true or false in the root module");
-        pub const CharToOemBuff = @compileError("'CharToOemBuff' requires that UNICODE be set to true or false in the root module");
-        pub const OemToCharBuff = @compileError("'OemToCharBuff' requires that UNICODE be set to true or false in the root module");
-        pub const CharUpper = @compileError("'CharUpper' requires that UNICODE be set to true or false in the root module");
-        pub const CharUpperBuff = @compileError("'CharUpperBuff' requires that UNICODE be set to true or false in the root module");
-        pub const CharLower = @compileError("'CharLower' requires that UNICODE be set to true or false in the root module");
-        pub const CharLowerBuff = @compileError("'CharLowerBuff' requires that UNICODE be set to true or false in the root module");
-        pub const CharNext = @compileError("'CharNext' requires that UNICODE be set to true or false in the root module");
-        pub const CharPrev = @compileError("'CharPrev' requires that UNICODE be set to true or false in the root module");
-        pub const IsCharAlpha = @compileError("'IsCharAlpha' requires that UNICODE be set to true or false in the root module");
-        pub const IsCharAlphaNumeric = @compileError("'IsCharAlphaNumeric' requires that UNICODE be set to true or false in the root module");
-        pub const IsCharUpper = @compileError("'IsCharUpper' requires that UNICODE be set to true or false in the root module");
-        pub const LoadAccelerators = @compileError("'LoadAccelerators' requires that UNICODE be set to true or false in the root module");
-        pub const CreateAcceleratorTable = @compileError("'CreateAcceleratorTable' requires that UNICODE be set to true or false in the root module");
-        pub const CopyAcceleratorTable = @compileError("'CopyAcceleratorTable' requires that UNICODE be set to true or false in the root module");
-        pub const TranslateAccelerator = @compileError("'TranslateAccelerator' requires that UNICODE be set to true or false in the root module");
-        pub const LoadMenu = @compileError("'LoadMenu' requires that UNICODE be set to true or false in the root module");
-        pub const LoadMenuIndirect = @compileError("'LoadMenuIndirect' requires that UNICODE be set to true or false in the root module");
-        pub const ChangeMenu = @compileError("'ChangeMenu' requires that UNICODE be set to true or false in the root module");
-        pub const GetMenuString = @compileError("'GetMenuString' requires that UNICODE be set to true or false in the root module");
-        pub const InsertMenu = @compileError("'InsertMenu' requires that UNICODE be set to true or false in the root module");
-        pub const AppendMenu = @compileError("'AppendMenu' requires that UNICODE be set to true or false in the root module");
-        pub const ModifyMenu = @compileError("'ModifyMenu' requires that UNICODE be set to true or false in the root module");
-        pub const InsertMenuItem = @compileError("'InsertMenuItem' requires that UNICODE be set to true or false in the root module");
-        pub const GetMenuItemInfo = @compileError("'GetMenuItemInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetMenuItemInfo = @compileError("'SetMenuItemInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetProp = @compileError("'SetProp' requires that UNICODE be set to true or false in the root module");
-        pub const GetProp = @compileError("'GetProp' requires that UNICODE be set to true or false in the root module");
-        pub const RemoveProp = @compileError("'RemoveProp' requires that UNICODE be set to true or false in the root module");
-        pub const EnumPropsEx = @compileError("'EnumPropsEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumProps = @compileError("'EnumProps' requires that UNICODE be set to true or false in the root module");
-        pub const SetWindowText = @compileError("'SetWindowText' requires that UNICODE be set to true or false in the root module");
-        pub const GetWindowText = @compileError("'GetWindowText' requires that UNICODE be set to true or false in the root module");
-        pub const GetWindowTextLength = @compileError("'GetWindowTextLength' requires that UNICODE be set to true or false in the root module");
-        pub const MessageBox = @compileError("'MessageBox' requires that UNICODE be set to true or false in the root module");
-        pub const MessageBoxEx = @compileError("'MessageBoxEx' requires that UNICODE be set to true or false in the root module");
-        pub const MessageBoxIndirect = @compileError("'MessageBoxIndirect' requires that UNICODE be set to true or false in the root module");
-        pub const GetWindowLong = @compileError("'GetWindowLong' requires that UNICODE be set to true or false in the root module");
-        pub const SetWindowLong = @compileError("'SetWindowLong' requires that UNICODE be set to true or false in the root module");
-        pub const GetWindowLongPtr = @compileError("'GetWindowLongPtr' requires that UNICODE be set to true or false in the root module");
-        pub const SetWindowLongPtr = @compileError("'SetWindowLongPtr' requires that UNICODE be set to true or false in the root module");
-        pub const GetClassLong = @compileError("'GetClassLong' requires that UNICODE be set to true or false in the root module");
-        pub const SetClassLong = @compileError("'SetClassLong' requires that UNICODE be set to true or false in the root module");
-        pub const GetClassLongPtr = @compileError("'GetClassLongPtr' requires that UNICODE be set to true or false in the root module");
-        pub const SetClassLongPtr = @compileError("'SetClassLongPtr' requires that UNICODE be set to true or false in the root module");
-        pub const FindWindow = @compileError("'FindWindow' requires that UNICODE be set to true or false in the root module");
-        pub const FindWindowEx = @compileError("'FindWindowEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetClassName = @compileError("'GetClassName' requires that UNICODE be set to true or false in the root module");
-        pub const SetWindowsHook = @compileError("'SetWindowsHook' requires that UNICODE be set to true or false in the root module");
-        pub const SetWindowsHookEx = @compileError("'SetWindowsHookEx' requires that UNICODE be set to true or false in the root module");
-        pub const LoadCursor = @compileError("'LoadCursor' requires that UNICODE be set to true or false in the root module");
-        pub const LoadCursorFromFile = @compileError("'LoadCursorFromFile' requires that UNICODE be set to true or false in the root module");
-        pub const LoadIcon = @compileError("'LoadIcon' requires that UNICODE be set to true or false in the root module");
-        pub const PrivateExtractIcons = @compileError("'PrivateExtractIcons' requires that UNICODE be set to true or false in the root module");
-        pub const LoadImage = @compileError("'LoadImage' requires that UNICODE be set to true or false in the root module");
-        pub const GetIconInfoEx = @compileError("'GetIconInfoEx' requires that UNICODE be set to true or false in the root module");
-        pub const IsDialogMessage = @compileError("'IsDialogMessage' requires that UNICODE be set to true or false in the root module");
-        pub const DefFrameProc = @compileError("'DefFrameProc' requires that UNICODE be set to true or false in the root module");
-        pub const DefMDIChildProc = @compileError("'DefMDIChildProc' requires that UNICODE be set to true or false in the root module");
-        pub const CreateMDIWindow = @compileError("'CreateMDIWindow' requires that UNICODE be set to true or false in the root module");
-        pub const SystemParametersInfo = @compileError("'SystemParametersInfo' requires that UNICODE be set to true or false in the root module");
-        pub const GetWindowModuleFileName = @compileError("'GetWindowModuleFileName' requires that UNICODE be set to true or false in the root module");
-        pub const RealGetWindowClass = @compileError("'RealGetWindowClass' requires that UNICODE be set to true or false in the root module");
-        pub const GetAltTabInfo = @compileError("'GetAltTabInfo' requires that UNICODE be set to true or false in the root module");
-    },
+pub const PROPENUMPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PROPENUMPROCA,
+    .wide => @This().PROPENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PROPENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PROPENUMPROCEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PROPENUMPROCEXA,
+    .wide => @This().PROPENUMPROCEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PROPENUMPROCEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NAMEENUMPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NAMEENUMPROCA,
+    .wide => @This().NAMEENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NAMEENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CBT_CREATEWND = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CBT_CREATEWNDA,
+    .wide => @This().CBT_CREATEWNDW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CBT_CREATEWND' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNDCLASSEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNDCLASSEXA,
+    .wide => @This().WNDCLASSEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNDCLASSEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WNDCLASS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WNDCLASSA,
+    .wide => @This().WNDCLASSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WNDCLASS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CREATESTRUCT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CREATESTRUCTA,
+    .wide => @This().CREATESTRUCTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CREATESTRUCT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MENUITEMINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MENUITEMINFOA,
+    .wide => @This().MENUITEMINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MENUITEMINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MSGBOXPARAMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MSGBOXPARAMSA,
+    .wide => @This().MSGBOXPARAMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MSGBOXPARAMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ICONINFOEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ICONINFOEXA,
+    .wide => @This().ICONINFOEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ICONINFOEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MDICREATESTRUCT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MDICREATESTRUCTA,
+    .wide => @This().MDICREATESTRUCTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MDICREATESTRUCT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NONCLIENTMETRICS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NONCLIENTMETRICSA,
+    .wide => @This().NONCLIENTMETRICSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NONCLIENTMETRICS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ICONMETRICS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ICONMETRICSA,
+    .wide => @This().ICONMETRICSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ICONMETRICS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadStringA,
+    .wide => @This().LoadStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const wvsprintf = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().wvsprintfA,
+    .wide => @This().wvsprintfW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'wvsprintf' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const wsprintf = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().wsprintfA,
+    .wide => @This().wsprintfW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'wsprintf' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterWindowMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterWindowMessageA,
+    .wide => @This().RegisterWindowMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterWindowMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetMessageA,
+    .wide => @This().GetMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DispatchMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DispatchMessageA,
+    .wide => @This().DispatchMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DispatchMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PeekMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PeekMessageA,
+    .wide => @This().PeekMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PeekMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SendMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SendMessageA,
+    .wide => @This().SendMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SendMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SendMessageTimeout = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SendMessageTimeoutA,
+    .wide => @This().SendMessageTimeoutW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SendMessageTimeout' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SendNotifyMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SendNotifyMessageA,
+    .wide => @This().SendNotifyMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SendNotifyMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SendMessageCallback = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SendMessageCallbackA,
+    .wide => @This().SendMessageCallbackW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SendMessageCallback' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterDeviceNotification = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterDeviceNotificationA,
+    .wide => @This().RegisterDeviceNotificationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterDeviceNotification' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PostMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PostMessageA,
+    .wide => @This().PostMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PostMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PostThreadMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PostThreadMessageA,
+    .wide => @This().PostThreadMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PostThreadMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DefWindowProc = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DefWindowProcA,
+    .wide => @This().DefWindowProcW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DefWindowProc' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CallWindowProc = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CallWindowProcA,
+    .wide => @This().CallWindowProcW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CallWindowProc' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterClass = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterClassA,
+    .wide => @This().RegisterClassW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterClass' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UnregisterClass = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UnregisterClassA,
+    .wide => @This().UnregisterClassW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UnregisterClass' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetClassInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetClassInfoA,
+    .wide => @This().GetClassInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetClassInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterClassEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterClassExA,
+    .wide => @This().RegisterClassExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterClassEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetClassInfoEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetClassInfoExA,
+    .wide => @This().GetClassInfoExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetClassInfoEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateWindowEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateWindowExA,
+    .wide => @This().CreateWindowExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateWindowEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateDialogParam = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateDialogParamA,
+    .wide => @This().CreateDialogParamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateDialogParam' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateDialogIndirectParam = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateDialogIndirectParamA,
+    .wide => @This().CreateDialogIndirectParamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateDialogIndirectParam' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DialogBoxParam = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DialogBoxParamA,
+    .wide => @This().DialogBoxParamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DialogBoxParam' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DialogBoxIndirectParam = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DialogBoxIndirectParamA,
+    .wide => @This().DialogBoxIndirectParamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DialogBoxIndirectParam' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetDlgItemText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetDlgItemTextA,
+    .wide => @This().SetDlgItemTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetDlgItemText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDlgItemText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDlgItemTextA,
+    .wide => @This().GetDlgItemTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDlgItemText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SendDlgItemMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SendDlgItemMessageA,
+    .wide => @This().SendDlgItemMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SendDlgItemMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DefDlgProc = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DefDlgProcA,
+    .wide => @This().DefDlgProcW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DefDlgProc' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CallMsgFilter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CallMsgFilterA,
+    .wide => @This().CallMsgFilterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CallMsgFilter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CharToOem = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CharToOemA,
+    .wide => @This().CharToOemW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CharToOem' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OemToChar = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OemToCharA,
+    .wide => @This().OemToCharW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OemToChar' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CharToOemBuff = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CharToOemBuffA,
+    .wide => @This().CharToOemBuffW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CharToOemBuff' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OemToCharBuff = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OemToCharBuffA,
+    .wide => @This().OemToCharBuffW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OemToCharBuff' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CharUpper = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CharUpperA,
+    .wide => @This().CharUpperW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CharUpper' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CharUpperBuff = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CharUpperBuffA,
+    .wide => @This().CharUpperBuffW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CharUpperBuff' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CharLower = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CharLowerA,
+    .wide => @This().CharLowerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CharLower' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CharLowerBuff = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CharLowerBuffA,
+    .wide => @This().CharLowerBuffW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CharLowerBuff' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CharNext = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CharNextA,
+    .wide => @This().CharNextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CharNext' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CharPrev = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CharPrevA,
+    .wide => @This().CharPrevW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CharPrev' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IsCharAlpha = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IsCharAlphaA,
+    .wide => @This().IsCharAlphaW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IsCharAlpha' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IsCharAlphaNumeric = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IsCharAlphaNumericA,
+    .wide => @This().IsCharAlphaNumericW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IsCharAlphaNumeric' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IsCharUpper = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IsCharUpperA,
+    .wide => @This().IsCharUpperW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IsCharUpper' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadAccelerators = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadAcceleratorsA,
+    .wide => @This().LoadAcceleratorsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadAccelerators' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateAcceleratorTable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateAcceleratorTableA,
+    .wide => @This().CreateAcceleratorTableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateAcceleratorTable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CopyAcceleratorTable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CopyAcceleratorTableA,
+    .wide => @This().CopyAcceleratorTableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CopyAcceleratorTable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TranslateAccelerator = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TranslateAcceleratorA,
+    .wide => @This().TranslateAcceleratorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TranslateAccelerator' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadMenu = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadMenuA,
+    .wide => @This().LoadMenuW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadMenu' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadMenuIndirect = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadMenuIndirectA,
+    .wide => @This().LoadMenuIndirectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadMenuIndirect' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ChangeMenu = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ChangeMenuA,
+    .wide => @This().ChangeMenuW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ChangeMenu' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetMenuString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetMenuStringA,
+    .wide => @This().GetMenuStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetMenuString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InsertMenu = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InsertMenuA,
+    .wide => @This().InsertMenuW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InsertMenu' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AppendMenu = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AppendMenuA,
+    .wide => @This().AppendMenuW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AppendMenu' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ModifyMenu = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ModifyMenuA,
+    .wide => @This().ModifyMenuW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ModifyMenu' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InsertMenuItem = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InsertMenuItemA,
+    .wide => @This().InsertMenuItemW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InsertMenuItem' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetMenuItemInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetMenuItemInfoA,
+    .wide => @This().GetMenuItemInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetMenuItemInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetMenuItemInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetMenuItemInfoA,
+    .wide => @This().SetMenuItemInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetMenuItemInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetProp = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetPropA,
+    .wide => @This().SetPropW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetProp' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetProp = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPropA,
+    .wide => @This().GetPropW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetProp' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveProp = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemovePropA,
+    .wide => @This().RemovePropW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveProp' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumPropsEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumPropsExA,
+    .wide => @This().EnumPropsExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumPropsEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumProps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumPropsA,
+    .wide => @This().EnumPropsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumProps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetWindowText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetWindowTextA,
+    .wide => @This().SetWindowTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetWindowText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetWindowText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetWindowTextA,
+    .wide => @This().GetWindowTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetWindowText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetWindowTextLength = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetWindowTextLengthA,
+    .wide => @This().GetWindowTextLengthW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetWindowTextLength' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MessageBox = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MessageBoxA,
+    .wide => @This().MessageBoxW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MessageBox' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MessageBoxEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MessageBoxExA,
+    .wide => @This().MessageBoxExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MessageBoxEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MessageBoxIndirect = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MessageBoxIndirectA,
+    .wide => @This().MessageBoxIndirectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MessageBoxIndirect' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetWindowLong = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetWindowLongA,
+    .wide => @This().GetWindowLongW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetWindowLong' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetWindowLong = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetWindowLongA,
+    .wide => @This().SetWindowLongW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetWindowLong' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetWindowLongPtr = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetWindowLongPtrA,
+    .wide => @This().GetWindowLongPtrW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetWindowLongPtr' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetWindowLongPtr = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetWindowLongPtrA,
+    .wide => @This().SetWindowLongPtrW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetWindowLongPtr' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetClassLong = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetClassLongA,
+    .wide => @This().GetClassLongW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetClassLong' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetClassLong = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetClassLongA,
+    .wide => @This().SetClassLongW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetClassLong' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetClassLongPtr = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetClassLongPtrA,
+    .wide => @This().GetClassLongPtrW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetClassLongPtr' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetClassLongPtr = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetClassLongPtrA,
+    .wide => @This().SetClassLongPtrW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetClassLongPtr' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindWindow = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindWindowA,
+    .wide => @This().FindWindowW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindWindow' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindWindowEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindWindowExA,
+    .wide => @This().FindWindowExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindWindowEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetClassName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetClassNameA,
+    .wide => @This().GetClassNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetClassName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetWindowsHook = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetWindowsHookA,
+    .wide => @This().SetWindowsHookW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetWindowsHook' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetWindowsHookEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetWindowsHookExA,
+    .wide => @This().SetWindowsHookExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetWindowsHookEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadCursor = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadCursorA,
+    .wide => @This().LoadCursorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadCursor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadCursorFromFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadCursorFromFileA,
+    .wide => @This().LoadCursorFromFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadCursorFromFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadIcon = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadIconA,
+    .wide => @This().LoadIconW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadIcon' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PrivateExtractIcons = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PrivateExtractIconsA,
+    .wide => @This().PrivateExtractIconsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PrivateExtractIcons' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadImage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadImageA,
+    .wide => @This().LoadImageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadImage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetIconInfoEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetIconInfoExA,
+    .wide => @This().GetIconInfoExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetIconInfoEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IsDialogMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IsDialogMessageA,
+    .wide => @This().IsDialogMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IsDialogMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DefFrameProc = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DefFrameProcA,
+    .wide => @This().DefFrameProcW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DefFrameProc' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DefMDIChildProc = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DefMDIChildProcA,
+    .wide => @This().DefMDIChildProcW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DefMDIChildProc' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateMDIWindow = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateMDIWindowA,
+    .wide => @This().CreateMDIWindowW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateMDIWindow' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SystemParametersInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SystemParametersInfoA,
+    .wide => @This().SystemParametersInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SystemParametersInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetWindowModuleFileName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetWindowModuleFileNameA,
+    .wide => @This().GetWindowModuleFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetWindowModuleFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RealGetWindowClass = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RealGetWindowClassA,
+    .wide => @This().RealGetWindowClassW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RealGetWindowClass' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetAltTabInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetAltTabInfoA,
+    .wide => @This().GetAltTabInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetAltTabInfo' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (24)

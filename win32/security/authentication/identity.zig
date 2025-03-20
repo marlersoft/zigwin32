@@ -8586,243 +8586,404 @@ pub extern "api-ms-win-core-slapi-l1-1-0" fn SLQueryLicenseValueFromApp(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (57)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const SecPkgInfo = thismodule.SecPkgInfoA;
-        pub const SecPkgCredentials_Names = thismodule.SecPkgCredentials_NamesA;
-        pub const SecPkgCredentials_SSIProvider = thismodule.SecPkgCredentials_SSIProviderA;
-        pub const SecPkgContext_Names = thismodule.SecPkgContext_NamesA;
-        pub const SecPkgContext_KeyInfo = thismodule.SecPkgContext_KeyInfoA;
-        pub const SecPkgContext_Authority = thismodule.SecPkgContext_AuthorityA;
-        pub const SecPkgContext_ProtoInfo = thismodule.SecPkgContext_ProtoInfoA;
-        pub const SecPkgContext_PackageInfo = thismodule.SecPkgContext_PackageInfoA;
-        pub const SecPkgContext_NegotiationInfo = thismodule.SecPkgContext_NegotiationInfoA;
-        pub const SecPkgContext_NativeNames = thismodule.SecPkgContext_NativeNamesA;
-        pub const SecPkgContext_CredentialName = thismodule.SecPkgContext_CredentialNameA;
-        pub const ACQUIRE_CREDENTIALS_HANDLE_FN_ = thismodule.ACQUIRE_CREDENTIALS_HANDLE_FN_A;
-        pub const ADD_CREDENTIALS_FN_ = thismodule.ADD_CREDENTIALS_FN_A;
-        pub const CHANGE_PASSWORD_FN_ = thismodule.CHANGE_PASSWORD_FN_A;
-        pub const INITIALIZE_SECURITY_CONTEXT_FN_ = thismodule.INITIALIZE_SECURITY_CONTEXT_FN_A;
-        pub const QUERY_CONTEXT_ATTRIBUTES_FN_ = thismodule.QUERY_CONTEXT_ATTRIBUTES_FN_A;
-        pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_ = thismodule.QUERY_CONTEXT_ATTRIBUTES_EX_FN_A;
-        pub const SET_CONTEXT_ATTRIBUTES_FN_ = thismodule.SET_CONTEXT_ATTRIBUTES_FN_A;
-        pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_ = thismodule.QUERY_CREDENTIALS_ATTRIBUTES_FN_A;
-        pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_ = thismodule.QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A;
-        pub const SET_CREDENTIALS_ATTRIBUTES_FN_ = thismodule.SET_CREDENTIALS_ATTRIBUTES_FN_A;
-        pub const ENUMERATE_SECURITY_PACKAGES_FN_ = thismodule.ENUMERATE_SECURITY_PACKAGES_FN_A;
-        pub const QUERY_SECURITY_PACKAGE_INFO_FN_ = thismodule.QUERY_SECURITY_PACKAGE_INFO_FN_A;
-        pub const IMPORT_SECURITY_CONTEXT_FN_ = thismodule.IMPORT_SECURITY_CONTEXT_FN_A;
-        pub const SecurityFunctionTable = thismodule.SecurityFunctionTableA;
-        pub const INIT_SECURITY_INTERFACE_ = thismodule.INIT_SECURITY_INTERFACE_A;
-        pub const SEC_WINNT_AUTH_IDENTITY_EX = thismodule.SEC_WINNT_AUTH_IDENTITY_EXA;
-        pub const SSL_EMPTY_CACHE_FN_ = thismodule.SSL_EMPTY_CACHE_FN_A;
-        pub const AuditLookupCategoryName = thismodule.AuditLookupCategoryNameA;
-        pub const AuditLookupSubCategoryName = thismodule.AuditLookupSubCategoryNameA;
-        pub const AuditSetGlobalSacl = thismodule.AuditSetGlobalSaclA;
-        pub const AuditQueryGlobalSacl = thismodule.AuditQueryGlobalSaclA;
-        pub const AcquireCredentialsHandle = thismodule.AcquireCredentialsHandleA;
-        pub const AddCredentials = thismodule.AddCredentialsA;
-        pub const ChangeAccountPassword = thismodule.ChangeAccountPasswordA;
-        pub const InitializeSecurityContext = thismodule.InitializeSecurityContextA;
-        pub const QueryContextAttributes = thismodule.QueryContextAttributesA;
-        pub const QueryContextAttributesEx = thismodule.QueryContextAttributesExA;
-        pub const SetContextAttributes = thismodule.SetContextAttributesA;
-        pub const QueryCredentialsAttributes = thismodule.QueryCredentialsAttributesA;
-        pub const QueryCredentialsAttributesEx = thismodule.QueryCredentialsAttributesExA;
-        pub const SetCredentialsAttributes = thismodule.SetCredentialsAttributesA;
-        pub const EnumerateSecurityPackages = thismodule.EnumerateSecurityPackagesA;
-        pub const QuerySecurityPackageInfo = thismodule.QuerySecurityPackageInfoA;
-        pub const ImportSecurityContext = thismodule.ImportSecurityContextA;
-        pub const InitSecurityInterface = thismodule.InitSecurityInterfaceA;
-        pub const SaslEnumerateProfiles = thismodule.SaslEnumerateProfilesA;
-        pub const SaslGetProfilePackage = thismodule.SaslGetProfilePackageA;
-        pub const SaslIdentifyPackage = thismodule.SaslIdentifyPackageA;
-        pub const SaslInitializeSecurityContext = thismodule.SaslInitializeSecurityContextA;
-        pub const SspiPromptForCredentials = thismodule.SspiPromptForCredentialsA;
-        pub const AddSecurityPackage = thismodule.AddSecurityPackageA;
-        pub const DeleteSecurityPackage = thismodule.DeleteSecurityPackageA;
-        pub const SslEmptyCache = thismodule.SslEmptyCacheA;
-        pub const GetUserNameEx = thismodule.GetUserNameExA;
-        pub const GetComputerObjectName = thismodule.GetComputerObjectNameA;
-        pub const TranslateName = thismodule.TranslateNameA;
-    },
-    .wide => struct {
-        pub const SecPkgInfo = thismodule.SecPkgInfoW;
-        pub const SecPkgCredentials_Names = thismodule.SecPkgCredentials_NamesW;
-        pub const SecPkgCredentials_SSIProvider = thismodule.SecPkgCredentials_SSIProviderW;
-        pub const SecPkgContext_Names = thismodule.SecPkgContext_NamesW;
-        pub const SecPkgContext_KeyInfo = thismodule.SecPkgContext_KeyInfoW;
-        pub const SecPkgContext_Authority = thismodule.SecPkgContext_AuthorityW;
-        pub const SecPkgContext_ProtoInfo = thismodule.SecPkgContext_ProtoInfoW;
-        pub const SecPkgContext_PackageInfo = thismodule.SecPkgContext_PackageInfoW;
-        pub const SecPkgContext_NegotiationInfo = thismodule.SecPkgContext_NegotiationInfoW;
-        pub const SecPkgContext_NativeNames = thismodule.SecPkgContext_NativeNamesW;
-        pub const SecPkgContext_CredentialName = thismodule.SecPkgContext_CredentialNameW;
-        pub const ACQUIRE_CREDENTIALS_HANDLE_FN_ = thismodule.ACQUIRE_CREDENTIALS_HANDLE_FN_W;
-        pub const ADD_CREDENTIALS_FN_ = thismodule.ADD_CREDENTIALS_FN_W;
-        pub const CHANGE_PASSWORD_FN_ = thismodule.CHANGE_PASSWORD_FN_W;
-        pub const INITIALIZE_SECURITY_CONTEXT_FN_ = thismodule.INITIALIZE_SECURITY_CONTEXT_FN_W;
-        pub const QUERY_CONTEXT_ATTRIBUTES_FN_ = thismodule.QUERY_CONTEXT_ATTRIBUTES_FN_W;
-        pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_ = thismodule.QUERY_CONTEXT_ATTRIBUTES_EX_FN_W;
-        pub const SET_CONTEXT_ATTRIBUTES_FN_ = thismodule.SET_CONTEXT_ATTRIBUTES_FN_W;
-        pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_ = thismodule.QUERY_CREDENTIALS_ATTRIBUTES_FN_W;
-        pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_ = thismodule.QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W;
-        pub const SET_CREDENTIALS_ATTRIBUTES_FN_ = thismodule.SET_CREDENTIALS_ATTRIBUTES_FN_W;
-        pub const ENUMERATE_SECURITY_PACKAGES_FN_ = thismodule.ENUMERATE_SECURITY_PACKAGES_FN_W;
-        pub const QUERY_SECURITY_PACKAGE_INFO_FN_ = thismodule.QUERY_SECURITY_PACKAGE_INFO_FN_W;
-        pub const IMPORT_SECURITY_CONTEXT_FN_ = thismodule.IMPORT_SECURITY_CONTEXT_FN_W;
-        pub const SecurityFunctionTable = thismodule.SecurityFunctionTableW;
-        pub const INIT_SECURITY_INTERFACE_ = thismodule.INIT_SECURITY_INTERFACE_W;
-        pub const SEC_WINNT_AUTH_IDENTITY_EX = thismodule.SEC_WINNT_AUTH_IDENTITY_EXW;
-        pub const SSL_EMPTY_CACHE_FN_ = thismodule.SSL_EMPTY_CACHE_FN_W;
-        pub const AuditLookupCategoryName = thismodule.AuditLookupCategoryNameW;
-        pub const AuditLookupSubCategoryName = thismodule.AuditLookupSubCategoryNameW;
-        pub const AuditSetGlobalSacl = thismodule.AuditSetGlobalSaclW;
-        pub const AuditQueryGlobalSacl = thismodule.AuditQueryGlobalSaclW;
-        pub const AcquireCredentialsHandle = thismodule.AcquireCredentialsHandleW;
-        pub const AddCredentials = thismodule.AddCredentialsW;
-        pub const ChangeAccountPassword = thismodule.ChangeAccountPasswordW;
-        pub const InitializeSecurityContext = thismodule.InitializeSecurityContextW;
-        pub const QueryContextAttributes = thismodule.QueryContextAttributesW;
-        pub const QueryContextAttributesEx = thismodule.QueryContextAttributesExW;
-        pub const SetContextAttributes = thismodule.SetContextAttributesW;
-        pub const QueryCredentialsAttributes = thismodule.QueryCredentialsAttributesW;
-        pub const QueryCredentialsAttributesEx = thismodule.QueryCredentialsAttributesExW;
-        pub const SetCredentialsAttributes = thismodule.SetCredentialsAttributesW;
-        pub const EnumerateSecurityPackages = thismodule.EnumerateSecurityPackagesW;
-        pub const QuerySecurityPackageInfo = thismodule.QuerySecurityPackageInfoW;
-        pub const ImportSecurityContext = thismodule.ImportSecurityContextW;
-        pub const InitSecurityInterface = thismodule.InitSecurityInterfaceW;
-        pub const SaslEnumerateProfiles = thismodule.SaslEnumerateProfilesW;
-        pub const SaslGetProfilePackage = thismodule.SaslGetProfilePackageW;
-        pub const SaslIdentifyPackage = thismodule.SaslIdentifyPackageW;
-        pub const SaslInitializeSecurityContext = thismodule.SaslInitializeSecurityContextW;
-        pub const SspiPromptForCredentials = thismodule.SspiPromptForCredentialsW;
-        pub const AddSecurityPackage = thismodule.AddSecurityPackageW;
-        pub const DeleteSecurityPackage = thismodule.DeleteSecurityPackageW;
-        pub const SslEmptyCache = thismodule.SslEmptyCacheW;
-        pub const GetUserNameEx = thismodule.GetUserNameExW;
-        pub const GetComputerObjectName = thismodule.GetComputerObjectNameW;
-        pub const TranslateName = thismodule.TranslateNameW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const SecPkgInfo = *opaque{};
-        pub const SecPkgCredentials_Names = *opaque{};
-        pub const SecPkgCredentials_SSIProvider = *opaque{};
-        pub const SecPkgContext_Names = *opaque{};
-        pub const SecPkgContext_KeyInfo = *opaque{};
-        pub const SecPkgContext_Authority = *opaque{};
-        pub const SecPkgContext_ProtoInfo = *opaque{};
-        pub const SecPkgContext_PackageInfo = *opaque{};
-        pub const SecPkgContext_NegotiationInfo = *opaque{};
-        pub const SecPkgContext_NativeNames = *opaque{};
-        pub const SecPkgContext_CredentialName = *opaque{};
-        pub const ACQUIRE_CREDENTIALS_HANDLE_FN_ = *opaque{};
-        pub const ADD_CREDENTIALS_FN_ = *opaque{};
-        pub const CHANGE_PASSWORD_FN_ = *opaque{};
-        pub const INITIALIZE_SECURITY_CONTEXT_FN_ = *opaque{};
-        pub const QUERY_CONTEXT_ATTRIBUTES_FN_ = *opaque{};
-        pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_ = *opaque{};
-        pub const SET_CONTEXT_ATTRIBUTES_FN_ = *opaque{};
-        pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_ = *opaque{};
-        pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_ = *opaque{};
-        pub const SET_CREDENTIALS_ATTRIBUTES_FN_ = *opaque{};
-        pub const ENUMERATE_SECURITY_PACKAGES_FN_ = *opaque{};
-        pub const QUERY_SECURITY_PACKAGE_INFO_FN_ = *opaque{};
-        pub const IMPORT_SECURITY_CONTEXT_FN_ = *opaque{};
-        pub const SecurityFunctionTable = *opaque{};
-        pub const INIT_SECURITY_INTERFACE_ = *opaque{};
-        pub const SEC_WINNT_AUTH_IDENTITY_EX = *opaque{};
-        pub const SSL_EMPTY_CACHE_FN_ = *opaque{};
-        pub const AuditLookupCategoryName = *opaque{};
-        pub const AuditLookupSubCategoryName = *opaque{};
-        pub const AuditSetGlobalSacl = *opaque{};
-        pub const AuditQueryGlobalSacl = *opaque{};
-        pub const AcquireCredentialsHandle = *opaque{};
-        pub const AddCredentials = *opaque{};
-        pub const ChangeAccountPassword = *opaque{};
-        pub const InitializeSecurityContext = *opaque{};
-        pub const QueryContextAttributes = *opaque{};
-        pub const QueryContextAttributesEx = *opaque{};
-        pub const SetContextAttributes = *opaque{};
-        pub const QueryCredentialsAttributes = *opaque{};
-        pub const QueryCredentialsAttributesEx = *opaque{};
-        pub const SetCredentialsAttributes = *opaque{};
-        pub const EnumerateSecurityPackages = *opaque{};
-        pub const QuerySecurityPackageInfo = *opaque{};
-        pub const ImportSecurityContext = *opaque{};
-        pub const InitSecurityInterface = *opaque{};
-        pub const SaslEnumerateProfiles = *opaque{};
-        pub const SaslGetProfilePackage = *opaque{};
-        pub const SaslIdentifyPackage = *opaque{};
-        pub const SaslInitializeSecurityContext = *opaque{};
-        pub const SspiPromptForCredentials = *opaque{};
-        pub const AddSecurityPackage = *opaque{};
-        pub const DeleteSecurityPackage = *opaque{};
-        pub const SslEmptyCache = *opaque{};
-        pub const GetUserNameEx = *opaque{};
-        pub const GetComputerObjectName = *opaque{};
-        pub const TranslateName = *opaque{};
-    } else struct {
-        pub const SecPkgInfo = @compileError("'SecPkgInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SecPkgCredentials_Names = @compileError("'SecPkgCredentials_Names' requires that UNICODE be set to true or false in the root module");
-        pub const SecPkgCredentials_SSIProvider = @compileError("'SecPkgCredentials_SSIProvider' requires that UNICODE be set to true or false in the root module");
-        pub const SecPkgContext_Names = @compileError("'SecPkgContext_Names' requires that UNICODE be set to true or false in the root module");
-        pub const SecPkgContext_KeyInfo = @compileError("'SecPkgContext_KeyInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SecPkgContext_Authority = @compileError("'SecPkgContext_Authority' requires that UNICODE be set to true or false in the root module");
-        pub const SecPkgContext_ProtoInfo = @compileError("'SecPkgContext_ProtoInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SecPkgContext_PackageInfo = @compileError("'SecPkgContext_PackageInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SecPkgContext_NegotiationInfo = @compileError("'SecPkgContext_NegotiationInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SecPkgContext_NativeNames = @compileError("'SecPkgContext_NativeNames' requires that UNICODE be set to true or false in the root module");
-        pub const SecPkgContext_CredentialName = @compileError("'SecPkgContext_CredentialName' requires that UNICODE be set to true or false in the root module");
-        pub const ACQUIRE_CREDENTIALS_HANDLE_FN_ = @compileError("'ACQUIRE_CREDENTIALS_HANDLE_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const ADD_CREDENTIALS_FN_ = @compileError("'ADD_CREDENTIALS_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const CHANGE_PASSWORD_FN_ = @compileError("'CHANGE_PASSWORD_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const INITIALIZE_SECURITY_CONTEXT_FN_ = @compileError("'INITIALIZE_SECURITY_CONTEXT_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const QUERY_CONTEXT_ATTRIBUTES_FN_ = @compileError("'QUERY_CONTEXT_ATTRIBUTES_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_ = @compileError("'QUERY_CONTEXT_ATTRIBUTES_EX_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const SET_CONTEXT_ATTRIBUTES_FN_ = @compileError("'SET_CONTEXT_ATTRIBUTES_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_ = @compileError("'QUERY_CREDENTIALS_ATTRIBUTES_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_ = @compileError("'QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const SET_CREDENTIALS_ATTRIBUTES_FN_ = @compileError("'SET_CREDENTIALS_ATTRIBUTES_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMERATE_SECURITY_PACKAGES_FN_ = @compileError("'ENUMERATE_SECURITY_PACKAGES_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const QUERY_SECURITY_PACKAGE_INFO_FN_ = @compileError("'QUERY_SECURITY_PACKAGE_INFO_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const IMPORT_SECURITY_CONTEXT_FN_ = @compileError("'IMPORT_SECURITY_CONTEXT_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const SecurityFunctionTable = @compileError("'SecurityFunctionTable' requires that UNICODE be set to true or false in the root module");
-        pub const INIT_SECURITY_INTERFACE_ = @compileError("'INIT_SECURITY_INTERFACE_' requires that UNICODE be set to true or false in the root module");
-        pub const SEC_WINNT_AUTH_IDENTITY_EX = @compileError("'SEC_WINNT_AUTH_IDENTITY_EX' requires that UNICODE be set to true or false in the root module");
-        pub const SSL_EMPTY_CACHE_FN_ = @compileError("'SSL_EMPTY_CACHE_FN_' requires that UNICODE be set to true or false in the root module");
-        pub const AuditLookupCategoryName = @compileError("'AuditLookupCategoryName' requires that UNICODE be set to true or false in the root module");
-        pub const AuditLookupSubCategoryName = @compileError("'AuditLookupSubCategoryName' requires that UNICODE be set to true or false in the root module");
-        pub const AuditSetGlobalSacl = @compileError("'AuditSetGlobalSacl' requires that UNICODE be set to true or false in the root module");
-        pub const AuditQueryGlobalSacl = @compileError("'AuditQueryGlobalSacl' requires that UNICODE be set to true or false in the root module");
-        pub const AcquireCredentialsHandle = @compileError("'AcquireCredentialsHandle' requires that UNICODE be set to true or false in the root module");
-        pub const AddCredentials = @compileError("'AddCredentials' requires that UNICODE be set to true or false in the root module");
-        pub const ChangeAccountPassword = @compileError("'ChangeAccountPassword' requires that UNICODE be set to true or false in the root module");
-        pub const InitializeSecurityContext = @compileError("'InitializeSecurityContext' requires that UNICODE be set to true or false in the root module");
-        pub const QueryContextAttributes = @compileError("'QueryContextAttributes' requires that UNICODE be set to true or false in the root module");
-        pub const QueryContextAttributesEx = @compileError("'QueryContextAttributesEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetContextAttributes = @compileError("'SetContextAttributes' requires that UNICODE be set to true or false in the root module");
-        pub const QueryCredentialsAttributes = @compileError("'QueryCredentialsAttributes' requires that UNICODE be set to true or false in the root module");
-        pub const QueryCredentialsAttributesEx = @compileError("'QueryCredentialsAttributesEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetCredentialsAttributes = @compileError("'SetCredentialsAttributes' requires that UNICODE be set to true or false in the root module");
-        pub const EnumerateSecurityPackages = @compileError("'EnumerateSecurityPackages' requires that UNICODE be set to true or false in the root module");
-        pub const QuerySecurityPackageInfo = @compileError("'QuerySecurityPackageInfo' requires that UNICODE be set to true or false in the root module");
-        pub const ImportSecurityContext = @compileError("'ImportSecurityContext' requires that UNICODE be set to true or false in the root module");
-        pub const InitSecurityInterface = @compileError("'InitSecurityInterface' requires that UNICODE be set to true or false in the root module");
-        pub const SaslEnumerateProfiles = @compileError("'SaslEnumerateProfiles' requires that UNICODE be set to true or false in the root module");
-        pub const SaslGetProfilePackage = @compileError("'SaslGetProfilePackage' requires that UNICODE be set to true or false in the root module");
-        pub const SaslIdentifyPackage = @compileError("'SaslIdentifyPackage' requires that UNICODE be set to true or false in the root module");
-        pub const SaslInitializeSecurityContext = @compileError("'SaslInitializeSecurityContext' requires that UNICODE be set to true or false in the root module");
-        pub const SspiPromptForCredentials = @compileError("'SspiPromptForCredentials' requires that UNICODE be set to true or false in the root module");
-        pub const AddSecurityPackage = @compileError("'AddSecurityPackage' requires that UNICODE be set to true or false in the root module");
-        pub const DeleteSecurityPackage = @compileError("'DeleteSecurityPackage' requires that UNICODE be set to true or false in the root module");
-        pub const SslEmptyCache = @compileError("'SslEmptyCache' requires that UNICODE be set to true or false in the root module");
-        pub const GetUserNameEx = @compileError("'GetUserNameEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetComputerObjectName = @compileError("'GetComputerObjectName' requires that UNICODE be set to true or false in the root module");
-        pub const TranslateName = @compileError("'TranslateName' requires that UNICODE be set to true or false in the root module");
-    },
+pub const SecPkgInfo = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SecPkgInfoA,
+    .wide => @This().SecPkgInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SecPkgInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SecPkgCredentials_Names = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SecPkgCredentials_NamesA,
+    .wide => @This().SecPkgCredentials_NamesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SecPkgCredentials_Names' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SecPkgCredentials_SSIProvider = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SecPkgCredentials_SSIProviderA,
+    .wide => @This().SecPkgCredentials_SSIProviderW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SecPkgCredentials_SSIProvider' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SecPkgContext_Names = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SecPkgContext_NamesA,
+    .wide => @This().SecPkgContext_NamesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SecPkgContext_Names' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SecPkgContext_KeyInfo = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SecPkgContext_KeyInfoA,
+    .wide => @This().SecPkgContext_KeyInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SecPkgContext_KeyInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SecPkgContext_Authority = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SecPkgContext_AuthorityA,
+    .wide => @This().SecPkgContext_AuthorityW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SecPkgContext_Authority' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SecPkgContext_ProtoInfo = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SecPkgContext_ProtoInfoA,
+    .wide => @This().SecPkgContext_ProtoInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SecPkgContext_ProtoInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SecPkgContext_PackageInfo = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SecPkgContext_PackageInfoA,
+    .wide => @This().SecPkgContext_PackageInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SecPkgContext_PackageInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SecPkgContext_NegotiationInfo = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SecPkgContext_NegotiationInfoA,
+    .wide => @This().SecPkgContext_NegotiationInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SecPkgContext_NegotiationInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SecPkgContext_NativeNames = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SecPkgContext_NativeNamesA,
+    .wide => @This().SecPkgContext_NativeNamesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SecPkgContext_NativeNames' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SecPkgContext_CredentialName = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SecPkgContext_CredentialNameA,
+    .wide => @This().SecPkgContext_CredentialNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SecPkgContext_CredentialName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACQUIRE_CREDENTIALS_HANDLE_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ACQUIRE_CREDENTIALS_HANDLE_FN_A,
+    .wide => @This().ACQUIRE_CREDENTIALS_HANDLE_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACQUIRE_CREDENTIALS_HANDLE_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ADD_CREDENTIALS_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ADD_CREDENTIALS_FN_A,
+    .wide => @This().ADD_CREDENTIALS_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ADD_CREDENTIALS_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CHANGE_PASSWORD_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().CHANGE_PASSWORD_FN_A,
+    .wide => @This().CHANGE_PASSWORD_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CHANGE_PASSWORD_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const INITIALIZE_SECURITY_CONTEXT_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().INITIALIZE_SECURITY_CONTEXT_FN_A,
+    .wide => @This().INITIALIZE_SECURITY_CONTEXT_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INITIALIZE_SECURITY_CONTEXT_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QUERY_CONTEXT_ATTRIBUTES_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().QUERY_CONTEXT_ATTRIBUTES_FN_A,
+    .wide => @This().QUERY_CONTEXT_ATTRIBUTES_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QUERY_CONTEXT_ATTRIBUTES_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().QUERY_CONTEXT_ATTRIBUTES_EX_FN_A,
+    .wide => @This().QUERY_CONTEXT_ATTRIBUTES_EX_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QUERY_CONTEXT_ATTRIBUTES_EX_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SET_CONTEXT_ATTRIBUTES_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SET_CONTEXT_ATTRIBUTES_FN_A,
+    .wide => @This().SET_CONTEXT_ATTRIBUTES_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SET_CONTEXT_ATTRIBUTES_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().QUERY_CREDENTIALS_ATTRIBUTES_FN_A,
+    .wide => @This().QUERY_CREDENTIALS_ATTRIBUTES_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QUERY_CREDENTIALS_ATTRIBUTES_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A,
+    .wide => @This().QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SET_CREDENTIALS_ATTRIBUTES_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SET_CREDENTIALS_ATTRIBUTES_FN_A,
+    .wide => @This().SET_CREDENTIALS_ATTRIBUTES_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SET_CREDENTIALS_ATTRIBUTES_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUMERATE_SECURITY_PACKAGES_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ENUMERATE_SECURITY_PACKAGES_FN_A,
+    .wide => @This().ENUMERATE_SECURITY_PACKAGES_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUMERATE_SECURITY_PACKAGES_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QUERY_SECURITY_PACKAGE_INFO_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().QUERY_SECURITY_PACKAGE_INFO_FN_A,
+    .wide => @This().QUERY_SECURITY_PACKAGE_INFO_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QUERY_SECURITY_PACKAGE_INFO_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IMPORT_SECURITY_CONTEXT_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().IMPORT_SECURITY_CONTEXT_FN_A,
+    .wide => @This().IMPORT_SECURITY_CONTEXT_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IMPORT_SECURITY_CONTEXT_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SecurityFunctionTable = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SecurityFunctionTableA,
+    .wide => @This().SecurityFunctionTableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SecurityFunctionTable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const INIT_SECURITY_INTERFACE_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().INIT_SECURITY_INTERFACE_A,
+    .wide => @This().INIT_SECURITY_INTERFACE_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INIT_SECURITY_INTERFACE_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SEC_WINNT_AUTH_IDENTITY_EX = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SEC_WINNT_AUTH_IDENTITY_EXA,
+    .wide => @This().SEC_WINNT_AUTH_IDENTITY_EXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SEC_WINNT_AUTH_IDENTITY_EX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SSL_EMPTY_CACHE_FN_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SSL_EMPTY_CACHE_FN_A,
+    .wide => @This().SSL_EMPTY_CACHE_FN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SSL_EMPTY_CACHE_FN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AuditLookupCategoryName = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().AuditLookupCategoryNameA,
+    .wide => @This().AuditLookupCategoryNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AuditLookupCategoryName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AuditLookupSubCategoryName = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().AuditLookupSubCategoryNameA,
+    .wide => @This().AuditLookupSubCategoryNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AuditLookupSubCategoryName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AuditSetGlobalSacl = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().AuditSetGlobalSaclA,
+    .wide => @This().AuditSetGlobalSaclW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AuditSetGlobalSacl' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AuditQueryGlobalSacl = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().AuditQueryGlobalSaclA,
+    .wide => @This().AuditQueryGlobalSaclW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AuditQueryGlobalSacl' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AcquireCredentialsHandle = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().AcquireCredentialsHandleA,
+    .wide => @This().AcquireCredentialsHandleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AcquireCredentialsHandle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddCredentials = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().AddCredentialsA,
+    .wide => @This().AddCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ChangeAccountPassword = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ChangeAccountPasswordA,
+    .wide => @This().ChangeAccountPasswordW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ChangeAccountPassword' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InitializeSecurityContext = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().InitializeSecurityContextA,
+    .wide => @This().InitializeSecurityContextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InitializeSecurityContext' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QueryContextAttributes = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().QueryContextAttributesA,
+    .wide => @This().QueryContextAttributesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QueryContextAttributes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QueryContextAttributesEx = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().QueryContextAttributesExA,
+    .wide => @This().QueryContextAttributesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QueryContextAttributesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetContextAttributes = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SetContextAttributesA,
+    .wide => @This().SetContextAttributesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetContextAttributes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QueryCredentialsAttributes = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().QueryCredentialsAttributesA,
+    .wide => @This().QueryCredentialsAttributesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QueryCredentialsAttributes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QueryCredentialsAttributesEx = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().QueryCredentialsAttributesExA,
+    .wide => @This().QueryCredentialsAttributesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QueryCredentialsAttributesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetCredentialsAttributes = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SetCredentialsAttributesA,
+    .wide => @This().SetCredentialsAttributesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetCredentialsAttributes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumerateSecurityPackages = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().EnumerateSecurityPackagesA,
+    .wide => @This().EnumerateSecurityPackagesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumerateSecurityPackages' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QuerySecurityPackageInfo = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().QuerySecurityPackageInfoA,
+    .wide => @This().QuerySecurityPackageInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QuerySecurityPackageInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImportSecurityContext = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImportSecurityContextA,
+    .wide => @This().ImportSecurityContextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImportSecurityContext' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InitSecurityInterface = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().InitSecurityInterfaceA,
+    .wide => @This().InitSecurityInterfaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InitSecurityInterface' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SaslEnumerateProfiles = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SaslEnumerateProfilesA,
+    .wide => @This().SaslEnumerateProfilesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SaslEnumerateProfiles' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SaslGetProfilePackage = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SaslGetProfilePackageA,
+    .wide => @This().SaslGetProfilePackageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SaslGetProfilePackage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SaslIdentifyPackage = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SaslIdentifyPackageA,
+    .wide => @This().SaslIdentifyPackageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SaslIdentifyPackage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SaslInitializeSecurityContext = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SaslInitializeSecurityContextA,
+    .wide => @This().SaslInitializeSecurityContextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SaslInitializeSecurityContext' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SspiPromptForCredentials = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SspiPromptForCredentialsA,
+    .wide => @This().SspiPromptForCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SspiPromptForCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddSecurityPackage = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().AddSecurityPackageA,
+    .wide => @This().AddSecurityPackageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddSecurityPackage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeleteSecurityPackage = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().DeleteSecurityPackageA,
+    .wide => @This().DeleteSecurityPackageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeleteSecurityPackage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SslEmptyCache = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().SslEmptyCacheA,
+    .wide => @This().SslEmptyCacheW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SslEmptyCache' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetUserNameEx = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().GetUserNameExA,
+    .wide => @This().GetUserNameExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetUserNameEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetComputerObjectName = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().GetComputerObjectNameA,
+    .wide => @This().GetComputerObjectNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetComputerObjectName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TranslateName = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().TranslateNameA,
+    .wide => @This().TranslateNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TranslateName' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (45)

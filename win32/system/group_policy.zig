@@ -4281,31 +4281,33 @@ pub extern "gpedit" fn ExportRSoPData(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const GROUP_POLICY_OBJECT = thismodule.GROUP_POLICY_OBJECTA;
-        pub const GetGPOList = thismodule.GetGPOListA;
-        pub const FreeGPOList = thismodule.FreeGPOListA;
-        pub const GetAppliedGPOList = thismodule.GetAppliedGPOListA;
-    },
-    .wide => struct {
-        pub const GROUP_POLICY_OBJECT = thismodule.GROUP_POLICY_OBJECTW;
-        pub const GetGPOList = thismodule.GetGPOListW;
-        pub const FreeGPOList = thismodule.FreeGPOListW;
-        pub const GetAppliedGPOList = thismodule.GetAppliedGPOListW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const GROUP_POLICY_OBJECT = *opaque{};
-        pub const GetGPOList = *opaque{};
-        pub const FreeGPOList = *opaque{};
-        pub const GetAppliedGPOList = *opaque{};
-    } else struct {
-        pub const GROUP_POLICY_OBJECT = @compileError("'GROUP_POLICY_OBJECT' requires that UNICODE be set to true or false in the root module");
-        pub const GetGPOList = @compileError("'GetGPOList' requires that UNICODE be set to true or false in the root module");
-        pub const FreeGPOList = @compileError("'FreeGPOList' requires that UNICODE be set to true or false in the root module");
-        pub const GetAppliedGPOList = @compileError("'GetAppliedGPOList' requires that UNICODE be set to true or false in the root module");
-    },
+pub const GROUP_POLICY_OBJECT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GROUP_POLICY_OBJECTA,
+    .wide => @This().GROUP_POLICY_OBJECTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GROUP_POLICY_OBJECT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetGPOList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetGPOListA,
+    .wide => @This().GetGPOListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetGPOList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FreeGPOList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FreeGPOListA,
+    .wide => @This().FreeGPOListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FreeGPOList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetAppliedGPOList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetAppliedGPOListA,
+    .wide => @This().GetAppliedGPOListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetAppliedGPOList' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (26)

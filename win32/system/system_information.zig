@@ -1303,67 +1303,96 @@ pub extern "kernel32" fn VerifyVersionInfoW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const OSVERSIONINFO = thismodule.OSVERSIONINFOA;
-        pub const OSVERSIONINFOEX = thismodule.OSVERSIONINFOEXA;
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = thismodule.PGET_SYSTEM_WOW64_DIRECTORY_A;
-        pub const GetSystemDirectory = thismodule.GetSystemDirectoryA;
-        pub const GetWindowsDirectory = thismodule.GetWindowsDirectoryA;
-        pub const GetSystemWindowsDirectory = thismodule.GetSystemWindowsDirectoryA;
-        pub const GetComputerNameEx = thismodule.GetComputerNameExA;
-        pub const SetComputerNameEx = thismodule.SetComputerNameExA;
-        pub const GetVersionEx = thismodule.GetVersionExA;
-        pub const SetComputerName = thismodule.SetComputerNameA;
-        pub const GetSystemWow64Directory = thismodule.GetSystemWow64DirectoryA;
-        pub const GetSystemWow64Directory2 = thismodule.GetSystemWow64Directory2A;
-        pub const VerifyVersionInfo = thismodule.VerifyVersionInfoA;
-    },
-    .wide => struct {
-        pub const OSVERSIONINFO = thismodule.OSVERSIONINFOW;
-        pub const OSVERSIONINFOEX = thismodule.OSVERSIONINFOEXW;
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = thismodule.PGET_SYSTEM_WOW64_DIRECTORY_W;
-        pub const GetSystemDirectory = thismodule.GetSystemDirectoryW;
-        pub const GetWindowsDirectory = thismodule.GetWindowsDirectoryW;
-        pub const GetSystemWindowsDirectory = thismodule.GetSystemWindowsDirectoryW;
-        pub const GetComputerNameEx = thismodule.GetComputerNameExW;
-        pub const SetComputerNameEx = thismodule.SetComputerNameExW;
-        pub const GetVersionEx = thismodule.GetVersionExW;
-        pub const SetComputerName = thismodule.SetComputerNameW;
-        pub const GetSystemWow64Directory = thismodule.GetSystemWow64DirectoryW;
-        pub const GetSystemWow64Directory2 = thismodule.GetSystemWow64Directory2W;
-        pub const VerifyVersionInfo = thismodule.VerifyVersionInfoW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const OSVERSIONINFO = *opaque{};
-        pub const OSVERSIONINFOEX = *opaque{};
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = *opaque{};
-        pub const GetSystemDirectory = *opaque{};
-        pub const GetWindowsDirectory = *opaque{};
-        pub const GetSystemWindowsDirectory = *opaque{};
-        pub const GetComputerNameEx = *opaque{};
-        pub const SetComputerNameEx = *opaque{};
-        pub const GetVersionEx = *opaque{};
-        pub const SetComputerName = *opaque{};
-        pub const GetSystemWow64Directory = *opaque{};
-        pub const GetSystemWow64Directory2 = *opaque{};
-        pub const VerifyVersionInfo = *opaque{};
-    } else struct {
-        pub const OSVERSIONINFO = @compileError("'OSVERSIONINFO' requires that UNICODE be set to true or false in the root module");
-        pub const OSVERSIONINFOEX = @compileError("'OSVERSIONINFOEX' requires that UNICODE be set to true or false in the root module");
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = @compileError("'PGET_SYSTEM_WOW64_DIRECTORY_' requires that UNICODE be set to true or false in the root module");
-        pub const GetSystemDirectory = @compileError("'GetSystemDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetWindowsDirectory = @compileError("'GetWindowsDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetSystemWindowsDirectory = @compileError("'GetSystemWindowsDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetComputerNameEx = @compileError("'GetComputerNameEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetComputerNameEx = @compileError("'SetComputerNameEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetVersionEx = @compileError("'GetVersionEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetComputerName = @compileError("'SetComputerName' requires that UNICODE be set to true or false in the root module");
-        pub const GetSystemWow64Directory = @compileError("'GetSystemWow64Directory' requires that UNICODE be set to true or false in the root module");
-        pub const GetSystemWow64Directory2 = @compileError("'GetSystemWow64Directory2' requires that UNICODE be set to true or false in the root module");
-        pub const VerifyVersionInfo = @compileError("'VerifyVersionInfo' requires that UNICODE be set to true or false in the root module");
-    },
+pub const OSVERSIONINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OSVERSIONINFOA,
+    .wide => @This().OSVERSIONINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OSVERSIONINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OSVERSIONINFOEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OSVERSIONINFOEXA,
+    .wide => @This().OSVERSIONINFOEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OSVERSIONINFOEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PGET_SYSTEM_WOW64_DIRECTORY_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PGET_SYSTEM_WOW64_DIRECTORY_A,
+    .wide => @This().PGET_SYSTEM_WOW64_DIRECTORY_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PGET_SYSTEM_WOW64_DIRECTORY_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetSystemDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetSystemDirectoryA,
+    .wide => @This().GetSystemDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetSystemDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetWindowsDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetWindowsDirectoryA,
+    .wide => @This().GetWindowsDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetWindowsDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetSystemWindowsDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetSystemWindowsDirectoryA,
+    .wide => @This().GetSystemWindowsDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetSystemWindowsDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetComputerNameEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetComputerNameExA,
+    .wide => @This().GetComputerNameExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetComputerNameEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetComputerNameEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetComputerNameExA,
+    .wide => @This().SetComputerNameExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetComputerNameEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetVersionEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetVersionExA,
+    .wide => @This().GetVersionExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetVersionEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetComputerName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetComputerNameA,
+    .wide => @This().SetComputerNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetComputerName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetSystemWow64Directory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetSystemWow64DirectoryA,
+    .wide => @This().GetSystemWow64DirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetSystemWow64Directory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetSystemWow64Directory2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetSystemWow64Directory2A,
+    .wide => @This().GetSystemWow64Directory2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetSystemWow64Directory2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const VerifyVersionInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().VerifyVersionInfoA,
+    .wide => @This().VerifyVersionInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'VerifyVersionInfo' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (10)

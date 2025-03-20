@@ -3839,23 +3839,19 @@ pub extern "iphlpapi" fn PfTestPacket(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const ConvertInterfaceNameToLuid = thismodule.ConvertInterfaceNameToLuidA;
-        pub const ConvertInterfaceLuidToName = thismodule.ConvertInterfaceLuidToNameA;
-    },
-    .wide => struct {
-        pub const ConvertInterfaceNameToLuid = thismodule.ConvertInterfaceNameToLuidW;
-        pub const ConvertInterfaceLuidToName = thismodule.ConvertInterfaceLuidToNameW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const ConvertInterfaceNameToLuid = *opaque{};
-        pub const ConvertInterfaceLuidToName = *opaque{};
-    } else struct {
-        pub const ConvertInterfaceNameToLuid = @compileError("'ConvertInterfaceNameToLuid' requires that UNICODE be set to true or false in the root module");
-        pub const ConvertInterfaceLuidToName = @compileError("'ConvertInterfaceLuidToName' requires that UNICODE be set to true or false in the root module");
-    },
+pub const ConvertInterfaceNameToLuid = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ConvertInterfaceNameToLuidA,
+    .wide => @This().ConvertInterfaceNameToLuidW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ConvertInterfaceNameToLuid' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ConvertInterfaceLuidToName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ConvertInterfaceLuidToNameA,
+    .wide => @This().ConvertInterfaceLuidToNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ConvertInterfaceLuidToName' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (41)

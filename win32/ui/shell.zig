@@ -33426,835 +33426,1440 @@ pub extern "api-ms-win-core-psm-appnotify-l1-1-1" fn UnregisterAppConstrainedCha
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (205)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const MULTIKEYHELP = thismodule.MULTIKEYHELPA;
-        pub const HELPWININFO = thismodule.HELPWININFOA;
-        pub const IShellLink = thismodule.IShellLinkA;
-        pub const IExtractIcon = thismodule.IExtractIconA;
-        pub const BROWSEINFO = thismodule.BROWSEINFOA;
-        pub const FILEDESCRIPTOR = thismodule.FILEDESCRIPTORA;
-        pub const FILEGROUPDESCRIPTOR = thismodule.FILEGROUPDESCRIPTORA;
-        pub const SHELLSTATE = thismodule.SHELLSTATEA;
-        pub const INewShortcutHook = thismodule.INewShortcutHookA;
-        pub const ICopyHook = thismodule.ICopyHookA;
-        pub const DRAGINFO = thismodule.DRAGINFOA;
-        pub const SHFILEOPSTRUCT = thismodule.SHFILEOPSTRUCTA;
-        pub const SHNAMEMAPPING = thismodule.SHNAMEMAPPINGA;
-        pub const SHELLEXECUTEINFO = thismodule.SHELLEXECUTEINFOA;
-        pub const NOTIFYICONDATA = thismodule.NOTIFYICONDATAA;
-        pub const SHFILEINFO = thismodule.SHFILEINFOA;
-        pub const OPEN_PRINTER_PROPS_INFO = thismodule.OPEN_PRINTER_PROPS_INFOA;
-        pub const PARSEDURL = thismodule.PARSEDURLA;
-        pub const NEWCPLINFO = thismodule.NEWCPLINFOA;
-        pub const PROFILEINFO = thismodule.PROFILEINFOA;
-        pub const urlinvokecommandinfo = thismodule.urlinvokecommandinfoA;
-        pub const IUniformResourceLocator = thismodule.IUniformResourceLocatorA;
-        pub const LoadUserProfile = thismodule.LoadUserProfileA;
-        pub const GetProfilesDirectory = thismodule.GetProfilesDirectoryA;
-        pub const DeleteProfile = thismodule.DeleteProfileA;
-        pub const GetDefaultUserProfileDirectory = thismodule.GetDefaultUserProfileDirectoryA;
-        pub const GetAllUsersProfileDirectory = thismodule.GetAllUsersProfileDirectoryA;
-        pub const GetUserProfileDirectory = thismodule.GetUserProfileDirectoryA;
-        pub const WinHelp = thismodule.WinHelpA;
-        pub const SHGetIconOverlayIndex = thismodule.SHGetIconOverlayIndexA;
-        pub const ILCreateFromPath = thismodule.ILCreateFromPathA;
-        pub const SHGetPathFromIDList = thismodule.SHGetPathFromIDListA;
-        pub const SHCreateDirectoryEx = thismodule.SHCreateDirectoryExA;
-        pub const SHGetSpecialFolderPath = thismodule.SHGetSpecialFolderPathA;
-        pub const SHGetFolderPath = thismodule.SHGetFolderPathA;
-        pub const SHSetFolderPath = thismodule.SHSetFolderPathA;
-        pub const SHGetFolderPathAndSubDir = thismodule.SHGetFolderPathAndSubDirA;
-        pub const SHBrowseForFolder = thismodule.SHBrowseForFolderA;
-        pub const SHUpdateImage = thismodule.SHUpdateImageA;
-        pub const SHGetDataFromIDList = thismodule.SHGetDataFromIDListA;
-        pub const SHDefExtractIcon = thismodule.SHDefExtractIconA;
-        pub const SHPathPrepareForWrite = thismodule.SHPathPrepareForWriteA;
-        pub const PathIsSlow = thismodule.PathIsSlowA;
-        pub const DragQueryFile = thismodule.DragQueryFileA;
-        pub const ShellExecute = thismodule.ShellExecuteA;
-        pub const FindExecutable = thismodule.FindExecutableA;
-        pub const ShellAbout = thismodule.ShellAboutA;
-        pub const ExtractAssociatedIcon = thismodule.ExtractAssociatedIconA;
-        pub const ExtractAssociatedIconEx = thismodule.ExtractAssociatedIconExA;
-        pub const ExtractIcon = thismodule.ExtractIconA;
-        pub const DoEnvironmentSubst = thismodule.DoEnvironmentSubstA;
-        pub const ExtractIconEx = thismodule.ExtractIconExA;
-        pub const SHFileOperation = thismodule.SHFileOperationA;
-        pub const ShellExecuteEx = thismodule.ShellExecuteExA;
-        pub const SHQueryRecycleBin = thismodule.SHQueryRecycleBinA;
-        pub const SHEmptyRecycleBin = thismodule.SHEmptyRecycleBinA;
-        pub const Shell_NotifyIcon = thismodule.Shell_NotifyIconA;
-        pub const SHGetFileInfo = thismodule.SHGetFileInfoA;
-        pub const SHGetDiskFreeSpaceEx = thismodule.SHGetDiskFreeSpaceExA;
-        pub const SHGetNewLinkInfo = thismodule.SHGetNewLinkInfoA;
-        pub const SHInvokePrinterCommand = thismodule.SHInvokePrinterCommandA;
-        pub const ShellMessageBox = thismodule.ShellMessageBoxA;
-        pub const IsLFNDrive = thismodule.IsLFNDriveA;
-        pub const StrChr = thismodule.StrChrA;
-        pub const StrChrI = thismodule.StrChrIA;
-        pub const StrCmpN = thismodule.StrCmpNA;
-        pub const StrCmpNI = thismodule.StrCmpNIA;
-        pub const StrCSpn = thismodule.StrCSpnA;
-        pub const StrCSpnI = thismodule.StrCSpnIA;
-        pub const StrDup = thismodule.StrDupA;
-        pub const StrFormatByteSize = thismodule.StrFormatByteSizeA;
-        pub const StrFormatKBSize = thismodule.StrFormatKBSizeA;
-        pub const StrFromTimeInterval = thismodule.StrFromTimeIntervalA;
-        pub const StrIsIntlEqual = thismodule.StrIsIntlEqualA;
-        pub const StrNCat = thismodule.StrNCatA;
-        pub const StrPBrk = thismodule.StrPBrkA;
-        pub const StrRChr = thismodule.StrRChrA;
-        pub const StrRChrI = thismodule.StrRChrIA;
-        pub const StrRStrI = thismodule.StrRStrIA;
-        pub const StrSpn = thismodule.StrSpnA;
-        pub const StrStr = thismodule.StrStrA;
-        pub const StrStrI = thismodule.StrStrIA;
-        pub const StrToInt = thismodule.StrToIntA;
-        pub const StrToIntEx = thismodule.StrToIntExA;
-        pub const StrToInt64Ex = thismodule.StrToInt64ExA;
-        pub const StrTrim = thismodule.StrTrimA;
-        pub const StrCatBuff = thismodule.StrCatBuffA;
-        pub const ChrCmpI = thismodule.ChrCmpIA;
-        pub const wvnsprintf = thismodule.wvnsprintfA;
-        pub const wnsprintf = thismodule.wnsprintfA;
-        pub const StrRetToStr = thismodule.StrRetToStrA;
-        pub const StrRetToBuf = thismodule.StrRetToBufA;
-        pub const SHStrDup = thismodule.SHStrDupA;
-        pub const IsCharSpace = thismodule.IsCharSpaceA;
-        pub const StrCmpC = thismodule.StrCmpCA;
-        pub const StrCmpIC = thismodule.StrCmpICA;
-        pub const StrCmpNC = thismodule.StrCmpNCA;
-        pub const StrCmpNIC = thismodule.StrCmpNICA;
-        pub const IntlStrEqWorker = thismodule.IntlStrEqWorkerA;
-        pub const PathAddBackslash = thismodule.PathAddBackslashA;
-        pub const PathAddExtension = thismodule.PathAddExtensionA;
-        pub const PathAppend = thismodule.PathAppendA;
-        pub const PathBuildRoot = thismodule.PathBuildRootA;
-        pub const PathCanonicalize = thismodule.PathCanonicalizeA;
-        pub const PathCombine = thismodule.PathCombineA;
-        pub const PathCompactPath = thismodule.PathCompactPathA;
-        pub const PathCompactPathEx = thismodule.PathCompactPathExA;
-        pub const PathCommonPrefix = thismodule.PathCommonPrefixA;
-        pub const PathFileExists = thismodule.PathFileExistsA;
-        pub const PathFindExtension = thismodule.PathFindExtensionA;
-        pub const PathFindFileName = thismodule.PathFindFileNameA;
-        pub const PathFindNextComponent = thismodule.PathFindNextComponentA;
-        pub const PathFindOnPath = thismodule.PathFindOnPathA;
-        pub const PathFindSuffixArray = thismodule.PathFindSuffixArrayA;
-        pub const PathGetArgs = thismodule.PathGetArgsA;
-        pub const PathIsLFNFileSpec = thismodule.PathIsLFNFileSpecA;
-        pub const PathGetCharType = thismodule.PathGetCharTypeA;
-        pub const PathGetDriveNumber = thismodule.PathGetDriveNumberA;
-        pub const PathIsDirectory = thismodule.PathIsDirectoryA;
-        pub const PathIsDirectoryEmpty = thismodule.PathIsDirectoryEmptyA;
-        pub const PathIsFileSpec = thismodule.PathIsFileSpecA;
-        pub const PathIsPrefix = thismodule.PathIsPrefixA;
-        pub const PathIsRelative = thismodule.PathIsRelativeA;
-        pub const PathIsRoot = thismodule.PathIsRootA;
-        pub const PathIsSameRoot = thismodule.PathIsSameRootA;
-        pub const PathIsUNC = thismodule.PathIsUNCA;
-        pub const PathIsNetworkPath = thismodule.PathIsNetworkPathA;
-        pub const PathIsUNCServer = thismodule.PathIsUNCServerA;
-        pub const PathIsUNCServerShare = thismodule.PathIsUNCServerShareA;
-        pub const PathIsContentType = thismodule.PathIsContentTypeA;
-        pub const PathIsURL = thismodule.PathIsURLA;
-        pub const PathMakePretty = thismodule.PathMakePrettyA;
-        pub const PathMatchSpec = thismodule.PathMatchSpecA;
-        pub const PathMatchSpecEx = thismodule.PathMatchSpecExA;
-        pub const PathParseIconLocation = thismodule.PathParseIconLocationA;
-        pub const PathQuoteSpaces = thismodule.PathQuoteSpacesA;
-        pub const PathRelativePathTo = thismodule.PathRelativePathToA;
-        pub const PathRemoveArgs = thismodule.PathRemoveArgsA;
-        pub const PathRemoveBackslash = thismodule.PathRemoveBackslashA;
-        pub const PathRemoveBlanks = thismodule.PathRemoveBlanksA;
-        pub const PathRemoveExtension = thismodule.PathRemoveExtensionA;
-        pub const PathRemoveFileSpec = thismodule.PathRemoveFileSpecA;
-        pub const PathRenameExtension = thismodule.PathRenameExtensionA;
-        pub const PathSearchAndQualify = thismodule.PathSearchAndQualifyA;
-        pub const PathSetDlgItemPath = thismodule.PathSetDlgItemPathA;
-        pub const PathSkipRoot = thismodule.PathSkipRootA;
-        pub const PathStripPath = thismodule.PathStripPathA;
-        pub const PathStripToRoot = thismodule.PathStripToRootA;
-        pub const PathUnquoteSpaces = thismodule.PathUnquoteSpacesA;
-        pub const PathMakeSystemFolder = thismodule.PathMakeSystemFolderA;
-        pub const PathUnmakeSystemFolder = thismodule.PathUnmakeSystemFolderA;
-        pub const PathIsSystemFolder = thismodule.PathIsSystemFolderA;
-        pub const PathUndecorate = thismodule.PathUndecorateA;
-        pub const PathUnExpandEnvStrings = thismodule.PathUnExpandEnvStringsA;
-        pub const UrlCompare = thismodule.UrlCompareA;
-        pub const UrlCombine = thismodule.UrlCombineA;
-        pub const UrlCanonicalize = thismodule.UrlCanonicalizeA;
-        pub const UrlIsOpaque = thismodule.UrlIsOpaqueA;
-        pub const UrlIsNoHistory = thismodule.UrlIsNoHistoryA;
-        pub const UrlIs = thismodule.UrlIsA;
-        pub const UrlGetLocation = thismodule.UrlGetLocationA;
-        pub const UrlUnescape = thismodule.UrlUnescapeA;
-        pub const UrlEscape = thismodule.UrlEscapeA;
-        pub const UrlCreateFromPath = thismodule.UrlCreateFromPathA;
-        pub const PathCreateFromUrl = thismodule.PathCreateFromUrlA;
-        pub const UrlHash = thismodule.UrlHashA;
-        pub const UrlGetPart = thismodule.UrlGetPartA;
-        pub const UrlApplyScheme = thismodule.UrlApplySchemeA;
-        pub const ParseURL = thismodule.ParseURLA;
-        pub const SHDeleteEmptyKey = thismodule.SHDeleteEmptyKeyA;
-        pub const SHDeleteKey = thismodule.SHDeleteKeyA;
-        pub const SHDeleteValue = thismodule.SHDeleteValueA;
-        pub const SHGetValue = thismodule.SHGetValueA;
-        pub const SHSetValue = thismodule.SHSetValueA;
-        pub const SHRegGetValue = thismodule.SHRegGetValueA;
-        pub const SHQueryValueEx = thismodule.SHQueryValueExA;
-        pub const SHEnumKeyEx = thismodule.SHEnumKeyExA;
-        pub const SHEnumValue = thismodule.SHEnumValueA;
-        pub const SHQueryInfoKey = thismodule.SHQueryInfoKeyA;
-        pub const SHCopyKey = thismodule.SHCopyKeyA;
-        pub const SHRegGetPath = thismodule.SHRegGetPathA;
-        pub const SHRegSetPath = thismodule.SHRegSetPathA;
-        pub const SHRegCreateUSKey = thismodule.SHRegCreateUSKeyA;
-        pub const SHRegOpenUSKey = thismodule.SHRegOpenUSKeyA;
-        pub const SHRegQueryUSValue = thismodule.SHRegQueryUSValueA;
-        pub const SHRegWriteUSValue = thismodule.SHRegWriteUSValueA;
-        pub const SHRegDeleteUSValue = thismodule.SHRegDeleteUSValueA;
-        pub const SHRegDeleteEmptyUSKey = thismodule.SHRegDeleteEmptyUSKeyA;
-        pub const SHRegEnumUSKey = thismodule.SHRegEnumUSKeyA;
-        pub const SHRegEnumUSValue = thismodule.SHRegEnumUSValueA;
-        pub const SHRegQueryInfoUSKey = thismodule.SHRegQueryInfoUSKeyA;
-        pub const SHRegGetUSValue = thismodule.SHRegGetUSValueA;
-        pub const SHRegSetUSValue = thismodule.SHRegSetUSValueA;
-        pub const SHRegGetBoolUSValue = thismodule.SHRegGetBoolUSValueA;
-        pub const AssocQueryString = thismodule.AssocQueryStringA;
-        pub const AssocQueryStringByKey = thismodule.AssocQueryStringByKeyA;
-        pub const AssocQueryKey = thismodule.AssocQueryKeyA;
-        pub const SHOpenRegStream = thismodule.SHOpenRegStreamA;
-        pub const SHOpenRegStream2 = thismodule.SHOpenRegStream2A;
-        pub const SHCreateStreamOnFile = thismodule.SHCreateStreamOnFileA;
-        pub const GetAcceptLanguages = thismodule.GetAcceptLanguagesA;
-        pub const SHFormatDateTime = thismodule.SHFormatDateTimeA;
-        pub const SHMessageBoxCheck = thismodule.SHMessageBoxCheckA;
-        pub const SHSendMessageBroadcast = thismodule.SHSendMessageBroadcastA;
-        pub const SHStripMneumonic = thismodule.SHStripMneumonicA;
-    },
-    .wide => struct {
-        pub const MULTIKEYHELP = thismodule.MULTIKEYHELPW;
-        pub const HELPWININFO = thismodule.HELPWININFOW;
-        pub const IShellLink = thismodule.IShellLinkW;
-        pub const IExtractIcon = thismodule.IExtractIconW;
-        pub const BROWSEINFO = thismodule.BROWSEINFOW;
-        pub const FILEDESCRIPTOR = thismodule.FILEDESCRIPTORW;
-        pub const FILEGROUPDESCRIPTOR = thismodule.FILEGROUPDESCRIPTORW;
-        pub const SHELLSTATE = thismodule.SHELLSTATEW;
-        pub const INewShortcutHook = thismodule.INewShortcutHookW;
-        pub const ICopyHook = thismodule.ICopyHookW;
-        pub const DRAGINFO = thismodule.DRAGINFOW;
-        pub const SHFILEOPSTRUCT = thismodule.SHFILEOPSTRUCTW;
-        pub const SHNAMEMAPPING = thismodule.SHNAMEMAPPINGW;
-        pub const SHELLEXECUTEINFO = thismodule.SHELLEXECUTEINFOW;
-        pub const NOTIFYICONDATA = thismodule.NOTIFYICONDATAW;
-        pub const SHFILEINFO = thismodule.SHFILEINFOW;
-        pub const OPEN_PRINTER_PROPS_INFO = thismodule.OPEN_PRINTER_PROPS_INFOW;
-        pub const PARSEDURL = thismodule.PARSEDURLW;
-        pub const NEWCPLINFO = thismodule.NEWCPLINFOW;
-        pub const PROFILEINFO = thismodule.PROFILEINFOW;
-        pub const urlinvokecommandinfo = thismodule.urlinvokecommandinfoW;
-        pub const IUniformResourceLocator = thismodule.IUniformResourceLocatorW;
-        pub const LoadUserProfile = thismodule.LoadUserProfileW;
-        pub const GetProfilesDirectory = thismodule.GetProfilesDirectoryW;
-        pub const DeleteProfile = thismodule.DeleteProfileW;
-        pub const GetDefaultUserProfileDirectory = thismodule.GetDefaultUserProfileDirectoryW;
-        pub const GetAllUsersProfileDirectory = thismodule.GetAllUsersProfileDirectoryW;
-        pub const GetUserProfileDirectory = thismodule.GetUserProfileDirectoryW;
-        pub const WinHelp = thismodule.WinHelpW;
-        pub const SHGetIconOverlayIndex = thismodule.SHGetIconOverlayIndexW;
-        pub const ILCreateFromPath = thismodule.ILCreateFromPathW;
-        pub const SHGetPathFromIDList = thismodule.SHGetPathFromIDListW;
-        pub const SHCreateDirectoryEx = thismodule.SHCreateDirectoryExW;
-        pub const SHGetSpecialFolderPath = thismodule.SHGetSpecialFolderPathW;
-        pub const SHGetFolderPath = thismodule.SHGetFolderPathW;
-        pub const SHSetFolderPath = thismodule.SHSetFolderPathW;
-        pub const SHGetFolderPathAndSubDir = thismodule.SHGetFolderPathAndSubDirW;
-        pub const SHBrowseForFolder = thismodule.SHBrowseForFolderW;
-        pub const SHUpdateImage = thismodule.SHUpdateImageW;
-        pub const SHGetDataFromIDList = thismodule.SHGetDataFromIDListW;
-        pub const SHDefExtractIcon = thismodule.SHDefExtractIconW;
-        pub const SHPathPrepareForWrite = thismodule.SHPathPrepareForWriteW;
-        pub const PathIsSlow = thismodule.PathIsSlowW;
-        pub const DragQueryFile = thismodule.DragQueryFileW;
-        pub const ShellExecute = thismodule.ShellExecuteW;
-        pub const FindExecutable = thismodule.FindExecutableW;
-        pub const ShellAbout = thismodule.ShellAboutW;
-        pub const ExtractAssociatedIcon = thismodule.ExtractAssociatedIconW;
-        pub const ExtractAssociatedIconEx = thismodule.ExtractAssociatedIconExW;
-        pub const ExtractIcon = thismodule.ExtractIconW;
-        pub const DoEnvironmentSubst = thismodule.DoEnvironmentSubstW;
-        pub const ExtractIconEx = thismodule.ExtractIconExW;
-        pub const SHFileOperation = thismodule.SHFileOperationW;
-        pub const ShellExecuteEx = thismodule.ShellExecuteExW;
-        pub const SHQueryRecycleBin = thismodule.SHQueryRecycleBinW;
-        pub const SHEmptyRecycleBin = thismodule.SHEmptyRecycleBinW;
-        pub const Shell_NotifyIcon = thismodule.Shell_NotifyIconW;
-        pub const SHGetFileInfo = thismodule.SHGetFileInfoW;
-        pub const SHGetDiskFreeSpaceEx = thismodule.SHGetDiskFreeSpaceExW;
-        pub const SHGetNewLinkInfo = thismodule.SHGetNewLinkInfoW;
-        pub const SHInvokePrinterCommand = thismodule.SHInvokePrinterCommandW;
-        pub const ShellMessageBox = thismodule.ShellMessageBoxW;
-        pub const IsLFNDrive = thismodule.IsLFNDriveW;
-        pub const StrChr = thismodule.StrChrW;
-        pub const StrChrI = thismodule.StrChrIW;
-        pub const StrCmpN = thismodule.StrCmpNW;
-        pub const StrCmpNI = thismodule.StrCmpNIW;
-        pub const StrCSpn = thismodule.StrCSpnW;
-        pub const StrCSpnI = thismodule.StrCSpnIW;
-        pub const StrDup = thismodule.StrDupW;
-        pub const StrFormatByteSize = thismodule.StrFormatByteSizeW;
-        pub const StrFormatKBSize = thismodule.StrFormatKBSizeW;
-        pub const StrFromTimeInterval = thismodule.StrFromTimeIntervalW;
-        pub const StrIsIntlEqual = thismodule.StrIsIntlEqualW;
-        pub const StrNCat = thismodule.StrNCatW;
-        pub const StrPBrk = thismodule.StrPBrkW;
-        pub const StrRChr = thismodule.StrRChrW;
-        pub const StrRChrI = thismodule.StrRChrIW;
-        pub const StrRStrI = thismodule.StrRStrIW;
-        pub const StrSpn = thismodule.StrSpnW;
-        pub const StrStr = thismodule.StrStrW;
-        pub const StrStrI = thismodule.StrStrIW;
-        pub const StrToInt = thismodule.StrToIntW;
-        pub const StrToIntEx = thismodule.StrToIntExW;
-        pub const StrToInt64Ex = thismodule.StrToInt64ExW;
-        pub const StrTrim = thismodule.StrTrimW;
-        pub const StrCatBuff = thismodule.StrCatBuffW;
-        pub const ChrCmpI = thismodule.ChrCmpIW;
-        pub const wvnsprintf = thismodule.wvnsprintfW;
-        pub const wnsprintf = thismodule.wnsprintfW;
-        pub const StrRetToStr = thismodule.StrRetToStrW;
-        pub const StrRetToBuf = thismodule.StrRetToBufW;
-        pub const SHStrDup = thismodule.SHStrDupW;
-        pub const IsCharSpace = thismodule.IsCharSpaceW;
-        pub const StrCmpC = thismodule.StrCmpCW;
-        pub const StrCmpIC = thismodule.StrCmpICW;
-        pub const StrCmpNC = thismodule.StrCmpNCW;
-        pub const StrCmpNIC = thismodule.StrCmpNICW;
-        pub const IntlStrEqWorker = thismodule.IntlStrEqWorkerW;
-        pub const PathAddBackslash = thismodule.PathAddBackslashW;
-        pub const PathAddExtension = thismodule.PathAddExtensionW;
-        pub const PathAppend = thismodule.PathAppendW;
-        pub const PathBuildRoot = thismodule.PathBuildRootW;
-        pub const PathCanonicalize = thismodule.PathCanonicalizeW;
-        pub const PathCombine = thismodule.PathCombineW;
-        pub const PathCompactPath = thismodule.PathCompactPathW;
-        pub const PathCompactPathEx = thismodule.PathCompactPathExW;
-        pub const PathCommonPrefix = thismodule.PathCommonPrefixW;
-        pub const PathFileExists = thismodule.PathFileExistsW;
-        pub const PathFindExtension = thismodule.PathFindExtensionW;
-        pub const PathFindFileName = thismodule.PathFindFileNameW;
-        pub const PathFindNextComponent = thismodule.PathFindNextComponentW;
-        pub const PathFindOnPath = thismodule.PathFindOnPathW;
-        pub const PathFindSuffixArray = thismodule.PathFindSuffixArrayW;
-        pub const PathGetArgs = thismodule.PathGetArgsW;
-        pub const PathIsLFNFileSpec = thismodule.PathIsLFNFileSpecW;
-        pub const PathGetCharType = thismodule.PathGetCharTypeW;
-        pub const PathGetDriveNumber = thismodule.PathGetDriveNumberW;
-        pub const PathIsDirectory = thismodule.PathIsDirectoryW;
-        pub const PathIsDirectoryEmpty = thismodule.PathIsDirectoryEmptyW;
-        pub const PathIsFileSpec = thismodule.PathIsFileSpecW;
-        pub const PathIsPrefix = thismodule.PathIsPrefixW;
-        pub const PathIsRelative = thismodule.PathIsRelativeW;
-        pub const PathIsRoot = thismodule.PathIsRootW;
-        pub const PathIsSameRoot = thismodule.PathIsSameRootW;
-        pub const PathIsUNC = thismodule.PathIsUNCW;
-        pub const PathIsNetworkPath = thismodule.PathIsNetworkPathW;
-        pub const PathIsUNCServer = thismodule.PathIsUNCServerW;
-        pub const PathIsUNCServerShare = thismodule.PathIsUNCServerShareW;
-        pub const PathIsContentType = thismodule.PathIsContentTypeW;
-        pub const PathIsURL = thismodule.PathIsURLW;
-        pub const PathMakePretty = thismodule.PathMakePrettyW;
-        pub const PathMatchSpec = thismodule.PathMatchSpecW;
-        pub const PathMatchSpecEx = thismodule.PathMatchSpecExW;
-        pub const PathParseIconLocation = thismodule.PathParseIconLocationW;
-        pub const PathQuoteSpaces = thismodule.PathQuoteSpacesW;
-        pub const PathRelativePathTo = thismodule.PathRelativePathToW;
-        pub const PathRemoveArgs = thismodule.PathRemoveArgsW;
-        pub const PathRemoveBackslash = thismodule.PathRemoveBackslashW;
-        pub const PathRemoveBlanks = thismodule.PathRemoveBlanksW;
-        pub const PathRemoveExtension = thismodule.PathRemoveExtensionW;
-        pub const PathRemoveFileSpec = thismodule.PathRemoveFileSpecW;
-        pub const PathRenameExtension = thismodule.PathRenameExtensionW;
-        pub const PathSearchAndQualify = thismodule.PathSearchAndQualifyW;
-        pub const PathSetDlgItemPath = thismodule.PathSetDlgItemPathW;
-        pub const PathSkipRoot = thismodule.PathSkipRootW;
-        pub const PathStripPath = thismodule.PathStripPathW;
-        pub const PathStripToRoot = thismodule.PathStripToRootW;
-        pub const PathUnquoteSpaces = thismodule.PathUnquoteSpacesW;
-        pub const PathMakeSystemFolder = thismodule.PathMakeSystemFolderW;
-        pub const PathUnmakeSystemFolder = thismodule.PathUnmakeSystemFolderW;
-        pub const PathIsSystemFolder = thismodule.PathIsSystemFolderW;
-        pub const PathUndecorate = thismodule.PathUndecorateW;
-        pub const PathUnExpandEnvStrings = thismodule.PathUnExpandEnvStringsW;
-        pub const UrlCompare = thismodule.UrlCompareW;
-        pub const UrlCombine = thismodule.UrlCombineW;
-        pub const UrlCanonicalize = thismodule.UrlCanonicalizeW;
-        pub const UrlIsOpaque = thismodule.UrlIsOpaqueW;
-        pub const UrlIsNoHistory = thismodule.UrlIsNoHistoryW;
-        pub const UrlIs = thismodule.UrlIsW;
-        pub const UrlGetLocation = thismodule.UrlGetLocationW;
-        pub const UrlUnescape = thismodule.UrlUnescapeW;
-        pub const UrlEscape = thismodule.UrlEscapeW;
-        pub const UrlCreateFromPath = thismodule.UrlCreateFromPathW;
-        pub const PathCreateFromUrl = thismodule.PathCreateFromUrlW;
-        pub const UrlHash = thismodule.UrlHashW;
-        pub const UrlGetPart = thismodule.UrlGetPartW;
-        pub const UrlApplyScheme = thismodule.UrlApplySchemeW;
-        pub const ParseURL = thismodule.ParseURLW;
-        pub const SHDeleteEmptyKey = thismodule.SHDeleteEmptyKeyW;
-        pub const SHDeleteKey = thismodule.SHDeleteKeyW;
-        pub const SHDeleteValue = thismodule.SHDeleteValueW;
-        pub const SHGetValue = thismodule.SHGetValueW;
-        pub const SHSetValue = thismodule.SHSetValueW;
-        pub const SHRegGetValue = thismodule.SHRegGetValueW;
-        pub const SHQueryValueEx = thismodule.SHQueryValueExW;
-        pub const SHEnumKeyEx = thismodule.SHEnumKeyExW;
-        pub const SHEnumValue = thismodule.SHEnumValueW;
-        pub const SHQueryInfoKey = thismodule.SHQueryInfoKeyW;
-        pub const SHCopyKey = thismodule.SHCopyKeyW;
-        pub const SHRegGetPath = thismodule.SHRegGetPathW;
-        pub const SHRegSetPath = thismodule.SHRegSetPathW;
-        pub const SHRegCreateUSKey = thismodule.SHRegCreateUSKeyW;
-        pub const SHRegOpenUSKey = thismodule.SHRegOpenUSKeyW;
-        pub const SHRegQueryUSValue = thismodule.SHRegQueryUSValueW;
-        pub const SHRegWriteUSValue = thismodule.SHRegWriteUSValueW;
-        pub const SHRegDeleteUSValue = thismodule.SHRegDeleteUSValueW;
-        pub const SHRegDeleteEmptyUSKey = thismodule.SHRegDeleteEmptyUSKeyW;
-        pub const SHRegEnumUSKey = thismodule.SHRegEnumUSKeyW;
-        pub const SHRegEnumUSValue = thismodule.SHRegEnumUSValueW;
-        pub const SHRegQueryInfoUSKey = thismodule.SHRegQueryInfoUSKeyW;
-        pub const SHRegGetUSValue = thismodule.SHRegGetUSValueW;
-        pub const SHRegSetUSValue = thismodule.SHRegSetUSValueW;
-        pub const SHRegGetBoolUSValue = thismodule.SHRegGetBoolUSValueW;
-        pub const AssocQueryString = thismodule.AssocQueryStringW;
-        pub const AssocQueryStringByKey = thismodule.AssocQueryStringByKeyW;
-        pub const AssocQueryKey = thismodule.AssocQueryKeyW;
-        pub const SHOpenRegStream = thismodule.SHOpenRegStreamW;
-        pub const SHOpenRegStream2 = thismodule.SHOpenRegStream2W;
-        pub const SHCreateStreamOnFile = thismodule.SHCreateStreamOnFileW;
-        pub const GetAcceptLanguages = thismodule.GetAcceptLanguagesW;
-        pub const SHFormatDateTime = thismodule.SHFormatDateTimeW;
-        pub const SHMessageBoxCheck = thismodule.SHMessageBoxCheckW;
-        pub const SHSendMessageBroadcast = thismodule.SHSendMessageBroadcastW;
-        pub const SHStripMneumonic = thismodule.SHStripMneumonicW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const MULTIKEYHELP = *opaque{};
-        pub const HELPWININFO = *opaque{};
-        pub const IShellLink = *opaque{};
-        pub const IExtractIcon = *opaque{};
-        pub const BROWSEINFO = *opaque{};
-        pub const FILEDESCRIPTOR = *opaque{};
-        pub const FILEGROUPDESCRIPTOR = *opaque{};
-        pub const SHELLSTATE = *opaque{};
-        pub const INewShortcutHook = *opaque{};
-        pub const ICopyHook = *opaque{};
-        pub const DRAGINFO = *opaque{};
-        pub const SHFILEOPSTRUCT = *opaque{};
-        pub const SHNAMEMAPPING = *opaque{};
-        pub const SHELLEXECUTEINFO = *opaque{};
-        pub const NOTIFYICONDATA = *opaque{};
-        pub const SHFILEINFO = *opaque{};
-        pub const OPEN_PRINTER_PROPS_INFO = *opaque{};
-        pub const PARSEDURL = *opaque{};
-        pub const NEWCPLINFO = *opaque{};
-        pub const PROFILEINFO = *opaque{};
-        pub const urlinvokecommandinfo = *opaque{};
-        pub const IUniformResourceLocator = *opaque{};
-        pub const LoadUserProfile = *opaque{};
-        pub const GetProfilesDirectory = *opaque{};
-        pub const DeleteProfile = *opaque{};
-        pub const GetDefaultUserProfileDirectory = *opaque{};
-        pub const GetAllUsersProfileDirectory = *opaque{};
-        pub const GetUserProfileDirectory = *opaque{};
-        pub const WinHelp = *opaque{};
-        pub const SHGetIconOverlayIndex = *opaque{};
-        pub const ILCreateFromPath = *opaque{};
-        pub const SHGetPathFromIDList = *opaque{};
-        pub const SHCreateDirectoryEx = *opaque{};
-        pub const SHGetSpecialFolderPath = *opaque{};
-        pub const SHGetFolderPath = *opaque{};
-        pub const SHSetFolderPath = *opaque{};
-        pub const SHGetFolderPathAndSubDir = *opaque{};
-        pub const SHBrowseForFolder = *opaque{};
-        pub const SHUpdateImage = *opaque{};
-        pub const SHGetDataFromIDList = *opaque{};
-        pub const SHDefExtractIcon = *opaque{};
-        pub const SHPathPrepareForWrite = *opaque{};
-        pub const PathIsSlow = *opaque{};
-        pub const DragQueryFile = *opaque{};
-        pub const ShellExecute = *opaque{};
-        pub const FindExecutable = *opaque{};
-        pub const ShellAbout = *opaque{};
-        pub const ExtractAssociatedIcon = *opaque{};
-        pub const ExtractAssociatedIconEx = *opaque{};
-        pub const ExtractIcon = *opaque{};
-        pub const DoEnvironmentSubst = *opaque{};
-        pub const ExtractIconEx = *opaque{};
-        pub const SHFileOperation = *opaque{};
-        pub const ShellExecuteEx = *opaque{};
-        pub const SHQueryRecycleBin = *opaque{};
-        pub const SHEmptyRecycleBin = *opaque{};
-        pub const Shell_NotifyIcon = *opaque{};
-        pub const SHGetFileInfo = *opaque{};
-        pub const SHGetDiskFreeSpaceEx = *opaque{};
-        pub const SHGetNewLinkInfo = *opaque{};
-        pub const SHInvokePrinterCommand = *opaque{};
-        pub const ShellMessageBox = *opaque{};
-        pub const IsLFNDrive = *opaque{};
-        pub const StrChr = *opaque{};
-        pub const StrChrI = *opaque{};
-        pub const StrCmpN = *opaque{};
-        pub const StrCmpNI = *opaque{};
-        pub const StrCSpn = *opaque{};
-        pub const StrCSpnI = *opaque{};
-        pub const StrDup = *opaque{};
-        pub const StrFormatByteSize = *opaque{};
-        pub const StrFormatKBSize = *opaque{};
-        pub const StrFromTimeInterval = *opaque{};
-        pub const StrIsIntlEqual = *opaque{};
-        pub const StrNCat = *opaque{};
-        pub const StrPBrk = *opaque{};
-        pub const StrRChr = *opaque{};
-        pub const StrRChrI = *opaque{};
-        pub const StrRStrI = *opaque{};
-        pub const StrSpn = *opaque{};
-        pub const StrStr = *opaque{};
-        pub const StrStrI = *opaque{};
-        pub const StrToInt = *opaque{};
-        pub const StrToIntEx = *opaque{};
-        pub const StrToInt64Ex = *opaque{};
-        pub const StrTrim = *opaque{};
-        pub const StrCatBuff = *opaque{};
-        pub const ChrCmpI = *opaque{};
-        pub const wvnsprintf = *opaque{};
-        pub const wnsprintf = *opaque{};
-        pub const StrRetToStr = *opaque{};
-        pub const StrRetToBuf = *opaque{};
-        pub const SHStrDup = *opaque{};
-        pub const IsCharSpace = *opaque{};
-        pub const StrCmpC = *opaque{};
-        pub const StrCmpIC = *opaque{};
-        pub const StrCmpNC = *opaque{};
-        pub const StrCmpNIC = *opaque{};
-        pub const IntlStrEqWorker = *opaque{};
-        pub const PathAddBackslash = *opaque{};
-        pub const PathAddExtension = *opaque{};
-        pub const PathAppend = *opaque{};
-        pub const PathBuildRoot = *opaque{};
-        pub const PathCanonicalize = *opaque{};
-        pub const PathCombine = *opaque{};
-        pub const PathCompactPath = *opaque{};
-        pub const PathCompactPathEx = *opaque{};
-        pub const PathCommonPrefix = *opaque{};
-        pub const PathFileExists = *opaque{};
-        pub const PathFindExtension = *opaque{};
-        pub const PathFindFileName = *opaque{};
-        pub const PathFindNextComponent = *opaque{};
-        pub const PathFindOnPath = *opaque{};
-        pub const PathFindSuffixArray = *opaque{};
-        pub const PathGetArgs = *opaque{};
-        pub const PathIsLFNFileSpec = *opaque{};
-        pub const PathGetCharType = *opaque{};
-        pub const PathGetDriveNumber = *opaque{};
-        pub const PathIsDirectory = *opaque{};
-        pub const PathIsDirectoryEmpty = *opaque{};
-        pub const PathIsFileSpec = *opaque{};
-        pub const PathIsPrefix = *opaque{};
-        pub const PathIsRelative = *opaque{};
-        pub const PathIsRoot = *opaque{};
-        pub const PathIsSameRoot = *opaque{};
-        pub const PathIsUNC = *opaque{};
-        pub const PathIsNetworkPath = *opaque{};
-        pub const PathIsUNCServer = *opaque{};
-        pub const PathIsUNCServerShare = *opaque{};
-        pub const PathIsContentType = *opaque{};
-        pub const PathIsURL = *opaque{};
-        pub const PathMakePretty = *opaque{};
-        pub const PathMatchSpec = *opaque{};
-        pub const PathMatchSpecEx = *opaque{};
-        pub const PathParseIconLocation = *opaque{};
-        pub const PathQuoteSpaces = *opaque{};
-        pub const PathRelativePathTo = *opaque{};
-        pub const PathRemoveArgs = *opaque{};
-        pub const PathRemoveBackslash = *opaque{};
-        pub const PathRemoveBlanks = *opaque{};
-        pub const PathRemoveExtension = *opaque{};
-        pub const PathRemoveFileSpec = *opaque{};
-        pub const PathRenameExtension = *opaque{};
-        pub const PathSearchAndQualify = *opaque{};
-        pub const PathSetDlgItemPath = *opaque{};
-        pub const PathSkipRoot = *opaque{};
-        pub const PathStripPath = *opaque{};
-        pub const PathStripToRoot = *opaque{};
-        pub const PathUnquoteSpaces = *opaque{};
-        pub const PathMakeSystemFolder = *opaque{};
-        pub const PathUnmakeSystemFolder = *opaque{};
-        pub const PathIsSystemFolder = *opaque{};
-        pub const PathUndecorate = *opaque{};
-        pub const PathUnExpandEnvStrings = *opaque{};
-        pub const UrlCompare = *opaque{};
-        pub const UrlCombine = *opaque{};
-        pub const UrlCanonicalize = *opaque{};
-        pub const UrlIsOpaque = *opaque{};
-        pub const UrlIsNoHistory = *opaque{};
-        pub const UrlIs = *opaque{};
-        pub const UrlGetLocation = *opaque{};
-        pub const UrlUnescape = *opaque{};
-        pub const UrlEscape = *opaque{};
-        pub const UrlCreateFromPath = *opaque{};
-        pub const PathCreateFromUrl = *opaque{};
-        pub const UrlHash = *opaque{};
-        pub const UrlGetPart = *opaque{};
-        pub const UrlApplyScheme = *opaque{};
-        pub const ParseURL = *opaque{};
-        pub const SHDeleteEmptyKey = *opaque{};
-        pub const SHDeleteKey = *opaque{};
-        pub const SHDeleteValue = *opaque{};
-        pub const SHGetValue = *opaque{};
-        pub const SHSetValue = *opaque{};
-        pub const SHRegGetValue = *opaque{};
-        pub const SHQueryValueEx = *opaque{};
-        pub const SHEnumKeyEx = *opaque{};
-        pub const SHEnumValue = *opaque{};
-        pub const SHQueryInfoKey = *opaque{};
-        pub const SHCopyKey = *opaque{};
-        pub const SHRegGetPath = *opaque{};
-        pub const SHRegSetPath = *opaque{};
-        pub const SHRegCreateUSKey = *opaque{};
-        pub const SHRegOpenUSKey = *opaque{};
-        pub const SHRegQueryUSValue = *opaque{};
-        pub const SHRegWriteUSValue = *opaque{};
-        pub const SHRegDeleteUSValue = *opaque{};
-        pub const SHRegDeleteEmptyUSKey = *opaque{};
-        pub const SHRegEnumUSKey = *opaque{};
-        pub const SHRegEnumUSValue = *opaque{};
-        pub const SHRegQueryInfoUSKey = *opaque{};
-        pub const SHRegGetUSValue = *opaque{};
-        pub const SHRegSetUSValue = *opaque{};
-        pub const SHRegGetBoolUSValue = *opaque{};
-        pub const AssocQueryString = *opaque{};
-        pub const AssocQueryStringByKey = *opaque{};
-        pub const AssocQueryKey = *opaque{};
-        pub const SHOpenRegStream = *opaque{};
-        pub const SHOpenRegStream2 = *opaque{};
-        pub const SHCreateStreamOnFile = *opaque{};
-        pub const GetAcceptLanguages = *opaque{};
-        pub const SHFormatDateTime = *opaque{};
-        pub const SHMessageBoxCheck = *opaque{};
-        pub const SHSendMessageBroadcast = *opaque{};
-        pub const SHStripMneumonic = *opaque{};
-    } else struct {
-        pub const MULTIKEYHELP = @compileError("'MULTIKEYHELP' requires that UNICODE be set to true or false in the root module");
-        pub const HELPWININFO = @compileError("'HELPWININFO' requires that UNICODE be set to true or false in the root module");
-        pub const IShellLink = @compileError("'IShellLink' requires that UNICODE be set to true or false in the root module");
-        pub const IExtractIcon = @compileError("'IExtractIcon' requires that UNICODE be set to true or false in the root module");
-        pub const BROWSEINFO = @compileError("'BROWSEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const FILEDESCRIPTOR = @compileError("'FILEDESCRIPTOR' requires that UNICODE be set to true or false in the root module");
-        pub const FILEGROUPDESCRIPTOR = @compileError("'FILEGROUPDESCRIPTOR' requires that UNICODE be set to true or false in the root module");
-        pub const SHELLSTATE = @compileError("'SHELLSTATE' requires that UNICODE be set to true or false in the root module");
-        pub const INewShortcutHook = @compileError("'INewShortcutHook' requires that UNICODE be set to true or false in the root module");
-        pub const ICopyHook = @compileError("'ICopyHook' requires that UNICODE be set to true or false in the root module");
-        pub const DRAGINFO = @compileError("'DRAGINFO' requires that UNICODE be set to true or false in the root module");
-        pub const SHFILEOPSTRUCT = @compileError("'SHFILEOPSTRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const SHNAMEMAPPING = @compileError("'SHNAMEMAPPING' requires that UNICODE be set to true or false in the root module");
-        pub const SHELLEXECUTEINFO = @compileError("'SHELLEXECUTEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const NOTIFYICONDATA = @compileError("'NOTIFYICONDATA' requires that UNICODE be set to true or false in the root module");
-        pub const SHFILEINFO = @compileError("'SHFILEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const OPEN_PRINTER_PROPS_INFO = @compileError("'OPEN_PRINTER_PROPS_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const PARSEDURL = @compileError("'PARSEDURL' requires that UNICODE be set to true or false in the root module");
-        pub const NEWCPLINFO = @compileError("'NEWCPLINFO' requires that UNICODE be set to true or false in the root module");
-        pub const PROFILEINFO = @compileError("'PROFILEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const urlinvokecommandinfo = @compileError("'urlinvokecommandinfo' requires that UNICODE be set to true or false in the root module");
-        pub const IUniformResourceLocator = @compileError("'IUniformResourceLocator' requires that UNICODE be set to true or false in the root module");
-        pub const LoadUserProfile = @compileError("'LoadUserProfile' requires that UNICODE be set to true or false in the root module");
-        pub const GetProfilesDirectory = @compileError("'GetProfilesDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const DeleteProfile = @compileError("'DeleteProfile' requires that UNICODE be set to true or false in the root module");
-        pub const GetDefaultUserProfileDirectory = @compileError("'GetDefaultUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetAllUsersProfileDirectory = @compileError("'GetAllUsersProfileDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetUserProfileDirectory = @compileError("'GetUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const WinHelp = @compileError("'WinHelp' requires that UNICODE be set to true or false in the root module");
-        pub const SHGetIconOverlayIndex = @compileError("'SHGetIconOverlayIndex' requires that UNICODE be set to true or false in the root module");
-        pub const ILCreateFromPath = @compileError("'ILCreateFromPath' requires that UNICODE be set to true or false in the root module");
-        pub const SHGetPathFromIDList = @compileError("'SHGetPathFromIDList' requires that UNICODE be set to true or false in the root module");
-        pub const SHCreateDirectoryEx = @compileError("'SHCreateDirectoryEx' requires that UNICODE be set to true or false in the root module");
-        pub const SHGetSpecialFolderPath = @compileError("'SHGetSpecialFolderPath' requires that UNICODE be set to true or false in the root module");
-        pub const SHGetFolderPath = @compileError("'SHGetFolderPath' requires that UNICODE be set to true or false in the root module");
-        pub const SHSetFolderPath = @compileError("'SHSetFolderPath' requires that UNICODE be set to true or false in the root module");
-        pub const SHGetFolderPathAndSubDir = @compileError("'SHGetFolderPathAndSubDir' requires that UNICODE be set to true or false in the root module");
-        pub const SHBrowseForFolder = @compileError("'SHBrowseForFolder' requires that UNICODE be set to true or false in the root module");
-        pub const SHUpdateImage = @compileError("'SHUpdateImage' requires that UNICODE be set to true or false in the root module");
-        pub const SHGetDataFromIDList = @compileError("'SHGetDataFromIDList' requires that UNICODE be set to true or false in the root module");
-        pub const SHDefExtractIcon = @compileError("'SHDefExtractIcon' requires that UNICODE be set to true or false in the root module");
-        pub const SHPathPrepareForWrite = @compileError("'SHPathPrepareForWrite' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsSlow = @compileError("'PathIsSlow' requires that UNICODE be set to true or false in the root module");
-        pub const DragQueryFile = @compileError("'DragQueryFile' requires that UNICODE be set to true or false in the root module");
-        pub const ShellExecute = @compileError("'ShellExecute' requires that UNICODE be set to true or false in the root module");
-        pub const FindExecutable = @compileError("'FindExecutable' requires that UNICODE be set to true or false in the root module");
-        pub const ShellAbout = @compileError("'ShellAbout' requires that UNICODE be set to true or false in the root module");
-        pub const ExtractAssociatedIcon = @compileError("'ExtractAssociatedIcon' requires that UNICODE be set to true or false in the root module");
-        pub const ExtractAssociatedIconEx = @compileError("'ExtractAssociatedIconEx' requires that UNICODE be set to true or false in the root module");
-        pub const ExtractIcon = @compileError("'ExtractIcon' requires that UNICODE be set to true or false in the root module");
-        pub const DoEnvironmentSubst = @compileError("'DoEnvironmentSubst' requires that UNICODE be set to true or false in the root module");
-        pub const ExtractIconEx = @compileError("'ExtractIconEx' requires that UNICODE be set to true or false in the root module");
-        pub const SHFileOperation = @compileError("'SHFileOperation' requires that UNICODE be set to true or false in the root module");
-        pub const ShellExecuteEx = @compileError("'ShellExecuteEx' requires that UNICODE be set to true or false in the root module");
-        pub const SHQueryRecycleBin = @compileError("'SHQueryRecycleBin' requires that UNICODE be set to true or false in the root module");
-        pub const SHEmptyRecycleBin = @compileError("'SHEmptyRecycleBin' requires that UNICODE be set to true or false in the root module");
-        pub const Shell_NotifyIcon = @compileError("'Shell_NotifyIcon' requires that UNICODE be set to true or false in the root module");
-        pub const SHGetFileInfo = @compileError("'SHGetFileInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SHGetDiskFreeSpaceEx = @compileError("'SHGetDiskFreeSpaceEx' requires that UNICODE be set to true or false in the root module");
-        pub const SHGetNewLinkInfo = @compileError("'SHGetNewLinkInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SHInvokePrinterCommand = @compileError("'SHInvokePrinterCommand' requires that UNICODE be set to true or false in the root module");
-        pub const ShellMessageBox = @compileError("'ShellMessageBox' requires that UNICODE be set to true or false in the root module");
-        pub const IsLFNDrive = @compileError("'IsLFNDrive' requires that UNICODE be set to true or false in the root module");
-        pub const StrChr = @compileError("'StrChr' requires that UNICODE be set to true or false in the root module");
-        pub const StrChrI = @compileError("'StrChrI' requires that UNICODE be set to true or false in the root module");
-        pub const StrCmpN = @compileError("'StrCmpN' requires that UNICODE be set to true or false in the root module");
-        pub const StrCmpNI = @compileError("'StrCmpNI' requires that UNICODE be set to true or false in the root module");
-        pub const StrCSpn = @compileError("'StrCSpn' requires that UNICODE be set to true or false in the root module");
-        pub const StrCSpnI = @compileError("'StrCSpnI' requires that UNICODE be set to true or false in the root module");
-        pub const StrDup = @compileError("'StrDup' requires that UNICODE be set to true or false in the root module");
-        pub const StrFormatByteSize = @compileError("'StrFormatByteSize' requires that UNICODE be set to true or false in the root module");
-        pub const StrFormatKBSize = @compileError("'StrFormatKBSize' requires that UNICODE be set to true or false in the root module");
-        pub const StrFromTimeInterval = @compileError("'StrFromTimeInterval' requires that UNICODE be set to true or false in the root module");
-        pub const StrIsIntlEqual = @compileError("'StrIsIntlEqual' requires that UNICODE be set to true or false in the root module");
-        pub const StrNCat = @compileError("'StrNCat' requires that UNICODE be set to true or false in the root module");
-        pub const StrPBrk = @compileError("'StrPBrk' requires that UNICODE be set to true or false in the root module");
-        pub const StrRChr = @compileError("'StrRChr' requires that UNICODE be set to true or false in the root module");
-        pub const StrRChrI = @compileError("'StrRChrI' requires that UNICODE be set to true or false in the root module");
-        pub const StrRStrI = @compileError("'StrRStrI' requires that UNICODE be set to true or false in the root module");
-        pub const StrSpn = @compileError("'StrSpn' requires that UNICODE be set to true or false in the root module");
-        pub const StrStr = @compileError("'StrStr' requires that UNICODE be set to true or false in the root module");
-        pub const StrStrI = @compileError("'StrStrI' requires that UNICODE be set to true or false in the root module");
-        pub const StrToInt = @compileError("'StrToInt' requires that UNICODE be set to true or false in the root module");
-        pub const StrToIntEx = @compileError("'StrToIntEx' requires that UNICODE be set to true or false in the root module");
-        pub const StrToInt64Ex = @compileError("'StrToInt64Ex' requires that UNICODE be set to true or false in the root module");
-        pub const StrTrim = @compileError("'StrTrim' requires that UNICODE be set to true or false in the root module");
-        pub const StrCatBuff = @compileError("'StrCatBuff' requires that UNICODE be set to true or false in the root module");
-        pub const ChrCmpI = @compileError("'ChrCmpI' requires that UNICODE be set to true or false in the root module");
-        pub const wvnsprintf = @compileError("'wvnsprintf' requires that UNICODE be set to true or false in the root module");
-        pub const wnsprintf = @compileError("'wnsprintf' requires that UNICODE be set to true or false in the root module");
-        pub const StrRetToStr = @compileError("'StrRetToStr' requires that UNICODE be set to true or false in the root module");
-        pub const StrRetToBuf = @compileError("'StrRetToBuf' requires that UNICODE be set to true or false in the root module");
-        pub const SHStrDup = @compileError("'SHStrDup' requires that UNICODE be set to true or false in the root module");
-        pub const IsCharSpace = @compileError("'IsCharSpace' requires that UNICODE be set to true or false in the root module");
-        pub const StrCmpC = @compileError("'StrCmpC' requires that UNICODE be set to true or false in the root module");
-        pub const StrCmpIC = @compileError("'StrCmpIC' requires that UNICODE be set to true or false in the root module");
-        pub const StrCmpNC = @compileError("'StrCmpNC' requires that UNICODE be set to true or false in the root module");
-        pub const StrCmpNIC = @compileError("'StrCmpNIC' requires that UNICODE be set to true or false in the root module");
-        pub const IntlStrEqWorker = @compileError("'IntlStrEqWorker' requires that UNICODE be set to true or false in the root module");
-        pub const PathAddBackslash = @compileError("'PathAddBackslash' requires that UNICODE be set to true or false in the root module");
-        pub const PathAddExtension = @compileError("'PathAddExtension' requires that UNICODE be set to true or false in the root module");
-        pub const PathAppend = @compileError("'PathAppend' requires that UNICODE be set to true or false in the root module");
-        pub const PathBuildRoot = @compileError("'PathBuildRoot' requires that UNICODE be set to true or false in the root module");
-        pub const PathCanonicalize = @compileError("'PathCanonicalize' requires that UNICODE be set to true or false in the root module");
-        pub const PathCombine = @compileError("'PathCombine' requires that UNICODE be set to true or false in the root module");
-        pub const PathCompactPath = @compileError("'PathCompactPath' requires that UNICODE be set to true or false in the root module");
-        pub const PathCompactPathEx = @compileError("'PathCompactPathEx' requires that UNICODE be set to true or false in the root module");
-        pub const PathCommonPrefix = @compileError("'PathCommonPrefix' requires that UNICODE be set to true or false in the root module");
-        pub const PathFileExists = @compileError("'PathFileExists' requires that UNICODE be set to true or false in the root module");
-        pub const PathFindExtension = @compileError("'PathFindExtension' requires that UNICODE be set to true or false in the root module");
-        pub const PathFindFileName = @compileError("'PathFindFileName' requires that UNICODE be set to true or false in the root module");
-        pub const PathFindNextComponent = @compileError("'PathFindNextComponent' requires that UNICODE be set to true or false in the root module");
-        pub const PathFindOnPath = @compileError("'PathFindOnPath' requires that UNICODE be set to true or false in the root module");
-        pub const PathFindSuffixArray = @compileError("'PathFindSuffixArray' requires that UNICODE be set to true or false in the root module");
-        pub const PathGetArgs = @compileError("'PathGetArgs' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsLFNFileSpec = @compileError("'PathIsLFNFileSpec' requires that UNICODE be set to true or false in the root module");
-        pub const PathGetCharType = @compileError("'PathGetCharType' requires that UNICODE be set to true or false in the root module");
-        pub const PathGetDriveNumber = @compileError("'PathGetDriveNumber' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsDirectory = @compileError("'PathIsDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsDirectoryEmpty = @compileError("'PathIsDirectoryEmpty' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsFileSpec = @compileError("'PathIsFileSpec' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsPrefix = @compileError("'PathIsPrefix' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsRelative = @compileError("'PathIsRelative' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsRoot = @compileError("'PathIsRoot' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsSameRoot = @compileError("'PathIsSameRoot' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsUNC = @compileError("'PathIsUNC' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsNetworkPath = @compileError("'PathIsNetworkPath' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsUNCServer = @compileError("'PathIsUNCServer' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsUNCServerShare = @compileError("'PathIsUNCServerShare' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsContentType = @compileError("'PathIsContentType' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsURL = @compileError("'PathIsURL' requires that UNICODE be set to true or false in the root module");
-        pub const PathMakePretty = @compileError("'PathMakePretty' requires that UNICODE be set to true or false in the root module");
-        pub const PathMatchSpec = @compileError("'PathMatchSpec' requires that UNICODE be set to true or false in the root module");
-        pub const PathMatchSpecEx = @compileError("'PathMatchSpecEx' requires that UNICODE be set to true or false in the root module");
-        pub const PathParseIconLocation = @compileError("'PathParseIconLocation' requires that UNICODE be set to true or false in the root module");
-        pub const PathQuoteSpaces = @compileError("'PathQuoteSpaces' requires that UNICODE be set to true or false in the root module");
-        pub const PathRelativePathTo = @compileError("'PathRelativePathTo' requires that UNICODE be set to true or false in the root module");
-        pub const PathRemoveArgs = @compileError("'PathRemoveArgs' requires that UNICODE be set to true or false in the root module");
-        pub const PathRemoveBackslash = @compileError("'PathRemoveBackslash' requires that UNICODE be set to true or false in the root module");
-        pub const PathRemoveBlanks = @compileError("'PathRemoveBlanks' requires that UNICODE be set to true or false in the root module");
-        pub const PathRemoveExtension = @compileError("'PathRemoveExtension' requires that UNICODE be set to true or false in the root module");
-        pub const PathRemoveFileSpec = @compileError("'PathRemoveFileSpec' requires that UNICODE be set to true or false in the root module");
-        pub const PathRenameExtension = @compileError("'PathRenameExtension' requires that UNICODE be set to true or false in the root module");
-        pub const PathSearchAndQualify = @compileError("'PathSearchAndQualify' requires that UNICODE be set to true or false in the root module");
-        pub const PathSetDlgItemPath = @compileError("'PathSetDlgItemPath' requires that UNICODE be set to true or false in the root module");
-        pub const PathSkipRoot = @compileError("'PathSkipRoot' requires that UNICODE be set to true or false in the root module");
-        pub const PathStripPath = @compileError("'PathStripPath' requires that UNICODE be set to true or false in the root module");
-        pub const PathStripToRoot = @compileError("'PathStripToRoot' requires that UNICODE be set to true or false in the root module");
-        pub const PathUnquoteSpaces = @compileError("'PathUnquoteSpaces' requires that UNICODE be set to true or false in the root module");
-        pub const PathMakeSystemFolder = @compileError("'PathMakeSystemFolder' requires that UNICODE be set to true or false in the root module");
-        pub const PathUnmakeSystemFolder = @compileError("'PathUnmakeSystemFolder' requires that UNICODE be set to true or false in the root module");
-        pub const PathIsSystemFolder = @compileError("'PathIsSystemFolder' requires that UNICODE be set to true or false in the root module");
-        pub const PathUndecorate = @compileError("'PathUndecorate' requires that UNICODE be set to true or false in the root module");
-        pub const PathUnExpandEnvStrings = @compileError("'PathUnExpandEnvStrings' requires that UNICODE be set to true or false in the root module");
-        pub const UrlCompare = @compileError("'UrlCompare' requires that UNICODE be set to true or false in the root module");
-        pub const UrlCombine = @compileError("'UrlCombine' requires that UNICODE be set to true or false in the root module");
-        pub const UrlCanonicalize = @compileError("'UrlCanonicalize' requires that UNICODE be set to true or false in the root module");
-        pub const UrlIsOpaque = @compileError("'UrlIsOpaque' requires that UNICODE be set to true or false in the root module");
-        pub const UrlIsNoHistory = @compileError("'UrlIsNoHistory' requires that UNICODE be set to true or false in the root module");
-        pub const UrlIs = @compileError("'UrlIs' requires that UNICODE be set to true or false in the root module");
-        pub const UrlGetLocation = @compileError("'UrlGetLocation' requires that UNICODE be set to true or false in the root module");
-        pub const UrlUnescape = @compileError("'UrlUnescape' requires that UNICODE be set to true or false in the root module");
-        pub const UrlEscape = @compileError("'UrlEscape' requires that UNICODE be set to true or false in the root module");
-        pub const UrlCreateFromPath = @compileError("'UrlCreateFromPath' requires that UNICODE be set to true or false in the root module");
-        pub const PathCreateFromUrl = @compileError("'PathCreateFromUrl' requires that UNICODE be set to true or false in the root module");
-        pub const UrlHash = @compileError("'UrlHash' requires that UNICODE be set to true or false in the root module");
-        pub const UrlGetPart = @compileError("'UrlGetPart' requires that UNICODE be set to true or false in the root module");
-        pub const UrlApplyScheme = @compileError("'UrlApplyScheme' requires that UNICODE be set to true or false in the root module");
-        pub const ParseURL = @compileError("'ParseURL' requires that UNICODE be set to true or false in the root module");
-        pub const SHDeleteEmptyKey = @compileError("'SHDeleteEmptyKey' requires that UNICODE be set to true or false in the root module");
-        pub const SHDeleteKey = @compileError("'SHDeleteKey' requires that UNICODE be set to true or false in the root module");
-        pub const SHDeleteValue = @compileError("'SHDeleteValue' requires that UNICODE be set to true or false in the root module");
-        pub const SHGetValue = @compileError("'SHGetValue' requires that UNICODE be set to true or false in the root module");
-        pub const SHSetValue = @compileError("'SHSetValue' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegGetValue = @compileError("'SHRegGetValue' requires that UNICODE be set to true or false in the root module");
-        pub const SHQueryValueEx = @compileError("'SHQueryValueEx' requires that UNICODE be set to true or false in the root module");
-        pub const SHEnumKeyEx = @compileError("'SHEnumKeyEx' requires that UNICODE be set to true or false in the root module");
-        pub const SHEnumValue = @compileError("'SHEnumValue' requires that UNICODE be set to true or false in the root module");
-        pub const SHQueryInfoKey = @compileError("'SHQueryInfoKey' requires that UNICODE be set to true or false in the root module");
-        pub const SHCopyKey = @compileError("'SHCopyKey' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegGetPath = @compileError("'SHRegGetPath' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegSetPath = @compileError("'SHRegSetPath' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegCreateUSKey = @compileError("'SHRegCreateUSKey' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegOpenUSKey = @compileError("'SHRegOpenUSKey' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegQueryUSValue = @compileError("'SHRegQueryUSValue' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegWriteUSValue = @compileError("'SHRegWriteUSValue' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegDeleteUSValue = @compileError("'SHRegDeleteUSValue' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegDeleteEmptyUSKey = @compileError("'SHRegDeleteEmptyUSKey' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegEnumUSKey = @compileError("'SHRegEnumUSKey' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegEnumUSValue = @compileError("'SHRegEnumUSValue' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegQueryInfoUSKey = @compileError("'SHRegQueryInfoUSKey' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegGetUSValue = @compileError("'SHRegGetUSValue' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegSetUSValue = @compileError("'SHRegSetUSValue' requires that UNICODE be set to true or false in the root module");
-        pub const SHRegGetBoolUSValue = @compileError("'SHRegGetBoolUSValue' requires that UNICODE be set to true or false in the root module");
-        pub const AssocQueryString = @compileError("'AssocQueryString' requires that UNICODE be set to true or false in the root module");
-        pub const AssocQueryStringByKey = @compileError("'AssocQueryStringByKey' requires that UNICODE be set to true or false in the root module");
-        pub const AssocQueryKey = @compileError("'AssocQueryKey' requires that UNICODE be set to true or false in the root module");
-        pub const SHOpenRegStream = @compileError("'SHOpenRegStream' requires that UNICODE be set to true or false in the root module");
-        pub const SHOpenRegStream2 = @compileError("'SHOpenRegStream2' requires that UNICODE be set to true or false in the root module");
-        pub const SHCreateStreamOnFile = @compileError("'SHCreateStreamOnFile' requires that UNICODE be set to true or false in the root module");
-        pub const GetAcceptLanguages = @compileError("'GetAcceptLanguages' requires that UNICODE be set to true or false in the root module");
-        pub const SHFormatDateTime = @compileError("'SHFormatDateTime' requires that UNICODE be set to true or false in the root module");
-        pub const SHMessageBoxCheck = @compileError("'SHMessageBoxCheck' requires that UNICODE be set to true or false in the root module");
-        pub const SHSendMessageBroadcast = @compileError("'SHSendMessageBroadcast' requires that UNICODE be set to true or false in the root module");
-        pub const SHStripMneumonic = @compileError("'SHStripMneumonic' requires that UNICODE be set to true or false in the root module");
-    },
+pub const MULTIKEYHELP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MULTIKEYHELPA,
+    .wide => @This().MULTIKEYHELPW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MULTIKEYHELP' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const HELPWININFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HELPWININFOA,
+    .wide => @This().HELPWININFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HELPWININFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IShellLink = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IShellLinkA,
+    .wide => @This().IShellLinkW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IShellLink' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IExtractIcon = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IExtractIconA,
+    .wide => @This().IExtractIconW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IExtractIcon' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BROWSEINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BROWSEINFOA,
+    .wide => @This().BROWSEINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BROWSEINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FILEDESCRIPTOR = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FILEDESCRIPTORA,
+    .wide => @This().FILEDESCRIPTORW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FILEDESCRIPTOR' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FILEGROUPDESCRIPTOR = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FILEGROUPDESCRIPTORA,
+    .wide => @This().FILEGROUPDESCRIPTORW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FILEGROUPDESCRIPTOR' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHELLSTATE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHELLSTATEA,
+    .wide => @This().SHELLSTATEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHELLSTATE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const INewShortcutHook = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().INewShortcutHookA,
+    .wide => @This().INewShortcutHookW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INewShortcutHook' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ICopyHook = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ICopyHookA,
+    .wide => @This().ICopyHookW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ICopyHook' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DRAGINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DRAGINFOA,
+    .wide => @This().DRAGINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DRAGINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHFILEOPSTRUCT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHFILEOPSTRUCTA,
+    .wide => @This().SHFILEOPSTRUCTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHFILEOPSTRUCT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHNAMEMAPPING = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHNAMEMAPPINGA,
+    .wide => @This().SHNAMEMAPPINGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHNAMEMAPPING' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHELLEXECUTEINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHELLEXECUTEINFOA,
+    .wide => @This().SHELLEXECUTEINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHELLEXECUTEINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NOTIFYICONDATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NOTIFYICONDATAA,
+    .wide => @This().NOTIFYICONDATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NOTIFYICONDATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHFILEINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHFILEINFOA,
+    .wide => @This().SHFILEINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHFILEINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OPEN_PRINTER_PROPS_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OPEN_PRINTER_PROPS_INFOA,
+    .wide => @This().OPEN_PRINTER_PROPS_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OPEN_PRINTER_PROPS_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PARSEDURL = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PARSEDURLA,
+    .wide => @This().PARSEDURLW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PARSEDURL' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NEWCPLINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NEWCPLINFOA,
+    .wide => @This().NEWCPLINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NEWCPLINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PROFILEINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PROFILEINFOA,
+    .wide => @This().PROFILEINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PROFILEINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const urlinvokecommandinfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().urlinvokecommandinfoA,
+    .wide => @This().urlinvokecommandinfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'urlinvokecommandinfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IUniformResourceLocator = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IUniformResourceLocatorA,
+    .wide => @This().IUniformResourceLocatorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IUniformResourceLocator' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadUserProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadUserProfileA,
+    .wide => @This().LoadUserProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadUserProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetProfilesDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetProfilesDirectoryA,
+    .wide => @This().GetProfilesDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetProfilesDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeleteProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeleteProfileA,
+    .wide => @This().DeleteProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeleteProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDefaultUserProfileDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDefaultUserProfileDirectoryA,
+    .wide => @This().GetDefaultUserProfileDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDefaultUserProfileDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetAllUsersProfileDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetAllUsersProfileDirectoryA,
+    .wide => @This().GetAllUsersProfileDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetAllUsersProfileDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetUserProfileDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetUserProfileDirectoryA,
+    .wide => @This().GetUserProfileDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetUserProfileDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WinHelp = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WinHelpA,
+    .wide => @This().WinHelpW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WinHelp' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHGetIconOverlayIndex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHGetIconOverlayIndexA,
+    .wide => @This().SHGetIconOverlayIndexW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHGetIconOverlayIndex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ILCreateFromPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ILCreateFromPathA,
+    .wide => @This().ILCreateFromPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ILCreateFromPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHGetPathFromIDList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHGetPathFromIDListA,
+    .wide => @This().SHGetPathFromIDListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHGetPathFromIDList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHCreateDirectoryEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHCreateDirectoryExA,
+    .wide => @This().SHCreateDirectoryExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHCreateDirectoryEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHGetSpecialFolderPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHGetSpecialFolderPathA,
+    .wide => @This().SHGetSpecialFolderPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHGetSpecialFolderPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHGetFolderPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHGetFolderPathA,
+    .wide => @This().SHGetFolderPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHGetFolderPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHSetFolderPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHSetFolderPathA,
+    .wide => @This().SHSetFolderPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHSetFolderPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHGetFolderPathAndSubDir = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHGetFolderPathAndSubDirA,
+    .wide => @This().SHGetFolderPathAndSubDirW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHGetFolderPathAndSubDir' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHBrowseForFolder = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHBrowseForFolderA,
+    .wide => @This().SHBrowseForFolderW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHBrowseForFolder' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHUpdateImage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHUpdateImageA,
+    .wide => @This().SHUpdateImageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHUpdateImage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHGetDataFromIDList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHGetDataFromIDListA,
+    .wide => @This().SHGetDataFromIDListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHGetDataFromIDList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHDefExtractIcon = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHDefExtractIconA,
+    .wide => @This().SHDefExtractIconW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHDefExtractIcon' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHPathPrepareForWrite = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHPathPrepareForWriteA,
+    .wide => @This().SHPathPrepareForWriteW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHPathPrepareForWrite' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsSlow = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsSlowA,
+    .wide => @This().PathIsSlowW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsSlow' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DragQueryFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DragQueryFileA,
+    .wide => @This().DragQueryFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DragQueryFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ShellExecute = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ShellExecuteA,
+    .wide => @This().ShellExecuteW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ShellExecute' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindExecutable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindExecutableA,
+    .wide => @This().FindExecutableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindExecutable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ShellAbout = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ShellAboutA,
+    .wide => @This().ShellAboutW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ShellAbout' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExtractAssociatedIcon = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExtractAssociatedIconA,
+    .wide => @This().ExtractAssociatedIconW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExtractAssociatedIcon' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExtractAssociatedIconEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExtractAssociatedIconExA,
+    .wide => @This().ExtractAssociatedIconExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExtractAssociatedIconEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExtractIcon = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExtractIconA,
+    .wide => @This().ExtractIconW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExtractIcon' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DoEnvironmentSubst = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DoEnvironmentSubstA,
+    .wide => @This().DoEnvironmentSubstW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DoEnvironmentSubst' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExtractIconEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExtractIconExA,
+    .wide => @This().ExtractIconExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExtractIconEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHFileOperation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHFileOperationA,
+    .wide => @This().SHFileOperationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHFileOperation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ShellExecuteEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ShellExecuteExA,
+    .wide => @This().ShellExecuteExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ShellExecuteEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHQueryRecycleBin = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHQueryRecycleBinA,
+    .wide => @This().SHQueryRecycleBinW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHQueryRecycleBin' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHEmptyRecycleBin = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHEmptyRecycleBinA,
+    .wide => @This().SHEmptyRecycleBinW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHEmptyRecycleBin' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const Shell_NotifyIcon = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().Shell_NotifyIconA,
+    .wide => @This().Shell_NotifyIconW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'Shell_NotifyIcon' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHGetFileInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHGetFileInfoA,
+    .wide => @This().SHGetFileInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHGetFileInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHGetDiskFreeSpaceEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHGetDiskFreeSpaceExA,
+    .wide => @This().SHGetDiskFreeSpaceExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHGetDiskFreeSpaceEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHGetNewLinkInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHGetNewLinkInfoA,
+    .wide => @This().SHGetNewLinkInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHGetNewLinkInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHInvokePrinterCommand = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHInvokePrinterCommandA,
+    .wide => @This().SHInvokePrinterCommandW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHInvokePrinterCommand' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ShellMessageBox = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ShellMessageBoxA,
+    .wide => @This().ShellMessageBoxW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ShellMessageBox' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IsLFNDrive = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IsLFNDriveA,
+    .wide => @This().IsLFNDriveW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IsLFNDrive' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrChr = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrChrA,
+    .wide => @This().StrChrW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrChr' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrChrI = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrChrIA,
+    .wide => @This().StrChrIW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrChrI' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrCmpN = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrCmpNA,
+    .wide => @This().StrCmpNW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrCmpN' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrCmpNI = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrCmpNIA,
+    .wide => @This().StrCmpNIW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrCmpNI' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrCSpn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrCSpnA,
+    .wide => @This().StrCSpnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrCSpn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrCSpnI = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrCSpnIA,
+    .wide => @This().StrCSpnIW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrCSpnI' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrDup = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrDupA,
+    .wide => @This().StrDupW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrDup' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrFormatByteSize = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrFormatByteSizeA,
+    .wide => @This().StrFormatByteSizeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrFormatByteSize' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrFormatKBSize = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrFormatKBSizeA,
+    .wide => @This().StrFormatKBSizeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrFormatKBSize' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrFromTimeInterval = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrFromTimeIntervalA,
+    .wide => @This().StrFromTimeIntervalW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrFromTimeInterval' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrIsIntlEqual = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrIsIntlEqualA,
+    .wide => @This().StrIsIntlEqualW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrIsIntlEqual' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrNCat = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrNCatA,
+    .wide => @This().StrNCatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrNCat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrPBrk = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrPBrkA,
+    .wide => @This().StrPBrkW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrPBrk' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrRChr = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrRChrA,
+    .wide => @This().StrRChrW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrRChr' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrRChrI = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrRChrIA,
+    .wide => @This().StrRChrIW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrRChrI' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrRStrI = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrRStrIA,
+    .wide => @This().StrRStrIW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrRStrI' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrSpn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrSpnA,
+    .wide => @This().StrSpnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrSpn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrStr = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrStrA,
+    .wide => @This().StrStrW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrStr' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrStrI = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrStrIA,
+    .wide => @This().StrStrIW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrStrI' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrToInt = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrToIntA,
+    .wide => @This().StrToIntW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrToInt' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrToIntEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrToIntExA,
+    .wide => @This().StrToIntExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrToIntEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrToInt64Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrToInt64ExA,
+    .wide => @This().StrToInt64ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrToInt64Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrTrim = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrTrimA,
+    .wide => @This().StrTrimW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrTrim' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrCatBuff = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrCatBuffA,
+    .wide => @This().StrCatBuffW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrCatBuff' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ChrCmpI = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ChrCmpIA,
+    .wide => @This().ChrCmpIW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ChrCmpI' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const wvnsprintf = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().wvnsprintfA,
+    .wide => @This().wvnsprintfW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'wvnsprintf' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const wnsprintf = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().wnsprintfA,
+    .wide => @This().wnsprintfW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'wnsprintf' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrRetToStr = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrRetToStrA,
+    .wide => @This().StrRetToStrW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrRetToStr' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrRetToBuf = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrRetToBufA,
+    .wide => @This().StrRetToBufW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrRetToBuf' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHStrDup = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHStrDupA,
+    .wide => @This().SHStrDupW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHStrDup' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IsCharSpace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IsCharSpaceA,
+    .wide => @This().IsCharSpaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IsCharSpace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrCmpC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrCmpCA,
+    .wide => @This().StrCmpCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrCmpC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrCmpIC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrCmpICA,
+    .wide => @This().StrCmpICW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrCmpIC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrCmpNC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrCmpNCA,
+    .wide => @This().StrCmpNCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrCmpNC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StrCmpNIC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StrCmpNICA,
+    .wide => @This().StrCmpNICW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StrCmpNIC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IntlStrEqWorker = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IntlStrEqWorkerA,
+    .wide => @This().IntlStrEqWorkerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IntlStrEqWorker' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathAddBackslash = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathAddBackslashA,
+    .wide => @This().PathAddBackslashW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathAddBackslash' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathAddExtension = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathAddExtensionA,
+    .wide => @This().PathAddExtensionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathAddExtension' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathAppend = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathAppendA,
+    .wide => @This().PathAppendW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathAppend' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathBuildRoot = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathBuildRootA,
+    .wide => @This().PathBuildRootW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathBuildRoot' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathCanonicalize = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathCanonicalizeA,
+    .wide => @This().PathCanonicalizeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathCanonicalize' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathCombine = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathCombineA,
+    .wide => @This().PathCombineW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathCombine' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathCompactPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathCompactPathA,
+    .wide => @This().PathCompactPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathCompactPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathCompactPathEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathCompactPathExA,
+    .wide => @This().PathCompactPathExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathCompactPathEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathCommonPrefix = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathCommonPrefixA,
+    .wide => @This().PathCommonPrefixW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathCommonPrefix' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathFileExists = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathFileExistsA,
+    .wide => @This().PathFileExistsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathFileExists' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathFindExtension = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathFindExtensionA,
+    .wide => @This().PathFindExtensionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathFindExtension' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathFindFileName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathFindFileNameA,
+    .wide => @This().PathFindFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathFindFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathFindNextComponent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathFindNextComponentA,
+    .wide => @This().PathFindNextComponentW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathFindNextComponent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathFindOnPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathFindOnPathA,
+    .wide => @This().PathFindOnPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathFindOnPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathFindSuffixArray = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathFindSuffixArrayA,
+    .wide => @This().PathFindSuffixArrayW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathFindSuffixArray' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathGetArgs = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathGetArgsA,
+    .wide => @This().PathGetArgsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathGetArgs' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsLFNFileSpec = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsLFNFileSpecA,
+    .wide => @This().PathIsLFNFileSpecW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsLFNFileSpec' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathGetCharType = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathGetCharTypeA,
+    .wide => @This().PathGetCharTypeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathGetCharType' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathGetDriveNumber = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathGetDriveNumberA,
+    .wide => @This().PathGetDriveNumberW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathGetDriveNumber' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsDirectoryA,
+    .wide => @This().PathIsDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsDirectoryEmpty = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsDirectoryEmptyA,
+    .wide => @This().PathIsDirectoryEmptyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsDirectoryEmpty' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsFileSpec = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsFileSpecA,
+    .wide => @This().PathIsFileSpecW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsFileSpec' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsPrefix = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsPrefixA,
+    .wide => @This().PathIsPrefixW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsPrefix' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsRelative = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsRelativeA,
+    .wide => @This().PathIsRelativeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsRelative' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsRoot = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsRootA,
+    .wide => @This().PathIsRootW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsRoot' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsSameRoot = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsSameRootA,
+    .wide => @This().PathIsSameRootW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsSameRoot' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsUNC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsUNCA,
+    .wide => @This().PathIsUNCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsUNC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsNetworkPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsNetworkPathA,
+    .wide => @This().PathIsNetworkPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsNetworkPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsUNCServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsUNCServerA,
+    .wide => @This().PathIsUNCServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsUNCServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsUNCServerShare = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsUNCServerShareA,
+    .wide => @This().PathIsUNCServerShareW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsUNCServerShare' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsContentType = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsContentTypeA,
+    .wide => @This().PathIsContentTypeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsContentType' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsURL = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsURLA,
+    .wide => @This().PathIsURLW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsURL' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathMakePretty = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathMakePrettyA,
+    .wide => @This().PathMakePrettyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathMakePretty' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathMatchSpec = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathMatchSpecA,
+    .wide => @This().PathMatchSpecW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathMatchSpec' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathMatchSpecEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathMatchSpecExA,
+    .wide => @This().PathMatchSpecExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathMatchSpecEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathParseIconLocation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathParseIconLocationA,
+    .wide => @This().PathParseIconLocationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathParseIconLocation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathQuoteSpaces = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathQuoteSpacesA,
+    .wide => @This().PathQuoteSpacesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathQuoteSpaces' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathRelativePathTo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathRelativePathToA,
+    .wide => @This().PathRelativePathToW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathRelativePathTo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathRemoveArgs = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathRemoveArgsA,
+    .wide => @This().PathRemoveArgsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathRemoveArgs' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathRemoveBackslash = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathRemoveBackslashA,
+    .wide => @This().PathRemoveBackslashW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathRemoveBackslash' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathRemoveBlanks = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathRemoveBlanksA,
+    .wide => @This().PathRemoveBlanksW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathRemoveBlanks' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathRemoveExtension = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathRemoveExtensionA,
+    .wide => @This().PathRemoveExtensionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathRemoveExtension' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathRemoveFileSpec = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathRemoveFileSpecA,
+    .wide => @This().PathRemoveFileSpecW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathRemoveFileSpec' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathRenameExtension = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathRenameExtensionA,
+    .wide => @This().PathRenameExtensionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathRenameExtension' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathSearchAndQualify = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathSearchAndQualifyA,
+    .wide => @This().PathSearchAndQualifyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathSearchAndQualify' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathSetDlgItemPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathSetDlgItemPathA,
+    .wide => @This().PathSetDlgItemPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathSetDlgItemPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathSkipRoot = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathSkipRootA,
+    .wide => @This().PathSkipRootW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathSkipRoot' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathStripPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathStripPathA,
+    .wide => @This().PathStripPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathStripPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathStripToRoot = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathStripToRootA,
+    .wide => @This().PathStripToRootW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathStripToRoot' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathUnquoteSpaces = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathUnquoteSpacesA,
+    .wide => @This().PathUnquoteSpacesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathUnquoteSpaces' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathMakeSystemFolder = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathMakeSystemFolderA,
+    .wide => @This().PathMakeSystemFolderW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathMakeSystemFolder' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathUnmakeSystemFolder = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathUnmakeSystemFolderA,
+    .wide => @This().PathUnmakeSystemFolderW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathUnmakeSystemFolder' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathIsSystemFolder = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathIsSystemFolderA,
+    .wide => @This().PathIsSystemFolderW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathIsSystemFolder' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathUndecorate = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathUndecorateA,
+    .wide => @This().PathUndecorateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathUndecorate' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathUnExpandEnvStrings = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathUnExpandEnvStringsA,
+    .wide => @This().PathUnExpandEnvStringsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathUnExpandEnvStrings' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlCompare = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlCompareA,
+    .wide => @This().UrlCompareW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlCompare' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlCombine = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlCombineA,
+    .wide => @This().UrlCombineW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlCombine' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlCanonicalize = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlCanonicalizeA,
+    .wide => @This().UrlCanonicalizeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlCanonicalize' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlIsOpaque = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlIsOpaqueA,
+    .wide => @This().UrlIsOpaqueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlIsOpaque' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlIsNoHistory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlIsNoHistoryA,
+    .wide => @This().UrlIsNoHistoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlIsNoHistory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlIs = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlIsA,
+    .wide => @This().UrlIsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlIs' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlGetLocation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlGetLocationA,
+    .wide => @This().UrlGetLocationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlGetLocation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlUnescape = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlUnescapeA,
+    .wide => @This().UrlUnescapeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlUnescape' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlEscape = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlEscapeA,
+    .wide => @This().UrlEscapeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlEscape' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlCreateFromPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlCreateFromPathA,
+    .wide => @This().UrlCreateFromPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlCreateFromPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PathCreateFromUrl = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PathCreateFromUrlA,
+    .wide => @This().PathCreateFromUrlW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PathCreateFromUrl' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlHash = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlHashA,
+    .wide => @This().UrlHashW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlHash' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlGetPart = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlGetPartA,
+    .wide => @This().UrlGetPartW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlGetPart' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UrlApplyScheme = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UrlApplySchemeA,
+    .wide => @This().UrlApplySchemeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UrlApplyScheme' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ParseURL = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ParseURLA,
+    .wide => @This().ParseURLW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ParseURL' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHDeleteEmptyKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHDeleteEmptyKeyA,
+    .wide => @This().SHDeleteEmptyKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHDeleteEmptyKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHDeleteKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHDeleteKeyA,
+    .wide => @This().SHDeleteKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHDeleteKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHDeleteValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHDeleteValueA,
+    .wide => @This().SHDeleteValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHDeleteValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHGetValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHGetValueA,
+    .wide => @This().SHGetValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHGetValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHSetValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHSetValueA,
+    .wide => @This().SHSetValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHSetValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegGetValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegGetValueA,
+    .wide => @This().SHRegGetValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegGetValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHQueryValueEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHQueryValueExA,
+    .wide => @This().SHQueryValueExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHQueryValueEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHEnumKeyEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHEnumKeyExA,
+    .wide => @This().SHEnumKeyExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHEnumKeyEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHEnumValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHEnumValueA,
+    .wide => @This().SHEnumValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHEnumValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHQueryInfoKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHQueryInfoKeyA,
+    .wide => @This().SHQueryInfoKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHQueryInfoKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHCopyKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHCopyKeyA,
+    .wide => @This().SHCopyKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHCopyKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegGetPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegGetPathA,
+    .wide => @This().SHRegGetPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegGetPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegSetPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegSetPathA,
+    .wide => @This().SHRegSetPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegSetPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegCreateUSKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegCreateUSKeyA,
+    .wide => @This().SHRegCreateUSKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegCreateUSKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegOpenUSKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegOpenUSKeyA,
+    .wide => @This().SHRegOpenUSKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegOpenUSKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegQueryUSValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegQueryUSValueA,
+    .wide => @This().SHRegQueryUSValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegQueryUSValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegWriteUSValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegWriteUSValueA,
+    .wide => @This().SHRegWriteUSValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegWriteUSValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegDeleteUSValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegDeleteUSValueA,
+    .wide => @This().SHRegDeleteUSValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegDeleteUSValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegDeleteEmptyUSKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegDeleteEmptyUSKeyA,
+    .wide => @This().SHRegDeleteEmptyUSKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegDeleteEmptyUSKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegEnumUSKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegEnumUSKeyA,
+    .wide => @This().SHRegEnumUSKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegEnumUSKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegEnumUSValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegEnumUSValueA,
+    .wide => @This().SHRegEnumUSValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegEnumUSValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegQueryInfoUSKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegQueryInfoUSKeyA,
+    .wide => @This().SHRegQueryInfoUSKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegQueryInfoUSKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegGetUSValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegGetUSValueA,
+    .wide => @This().SHRegGetUSValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegGetUSValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegSetUSValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegSetUSValueA,
+    .wide => @This().SHRegSetUSValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegSetUSValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHRegGetBoolUSValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHRegGetBoolUSValueA,
+    .wide => @This().SHRegGetBoolUSValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHRegGetBoolUSValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AssocQueryString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AssocQueryStringA,
+    .wide => @This().AssocQueryStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AssocQueryString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AssocQueryStringByKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AssocQueryStringByKeyA,
+    .wide => @This().AssocQueryStringByKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AssocQueryStringByKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AssocQueryKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AssocQueryKeyA,
+    .wide => @This().AssocQueryKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AssocQueryKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHOpenRegStream = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHOpenRegStreamA,
+    .wide => @This().SHOpenRegStreamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHOpenRegStream' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHOpenRegStream2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHOpenRegStream2A,
+    .wide => @This().SHOpenRegStream2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHOpenRegStream2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHCreateStreamOnFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHCreateStreamOnFileA,
+    .wide => @This().SHCreateStreamOnFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHCreateStreamOnFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetAcceptLanguages = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetAcceptLanguagesA,
+    .wide => @This().GetAcceptLanguagesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetAcceptLanguages' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHFormatDateTime = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHFormatDateTimeA,
+    .wide => @This().SHFormatDateTimeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHFormatDateTime' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHMessageBoxCheck = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHMessageBoxCheckA,
+    .wide => @This().SHMessageBoxCheckW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHMessageBoxCheck' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHSendMessageBroadcast = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHSendMessageBroadcastA,
+    .wide => @This().SHSendMessageBroadcastW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHSendMessageBroadcast' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SHStripMneumonic = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SHStripMneumonicA,
+    .wide => @This().SHStripMneumonicW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SHStripMneumonic' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (107)

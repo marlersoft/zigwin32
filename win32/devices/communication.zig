@@ -776,35 +776,40 @@ pub extern "kernel32" fn SetDefaultCommConfigW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (5)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const BuildCommDCB = thismodule.BuildCommDCBA;
-        pub const BuildCommDCBAndTimeouts = thismodule.BuildCommDCBAndTimeoutsA;
-        pub const CommConfigDialog = thismodule.CommConfigDialogA;
-        pub const GetDefaultCommConfig = thismodule.GetDefaultCommConfigA;
-        pub const SetDefaultCommConfig = thismodule.SetDefaultCommConfigA;
-    },
-    .wide => struct {
-        pub const BuildCommDCB = thismodule.BuildCommDCBW;
-        pub const BuildCommDCBAndTimeouts = thismodule.BuildCommDCBAndTimeoutsW;
-        pub const CommConfigDialog = thismodule.CommConfigDialogW;
-        pub const GetDefaultCommConfig = thismodule.GetDefaultCommConfigW;
-        pub const SetDefaultCommConfig = thismodule.SetDefaultCommConfigW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const BuildCommDCB = *opaque{};
-        pub const BuildCommDCBAndTimeouts = *opaque{};
-        pub const CommConfigDialog = *opaque{};
-        pub const GetDefaultCommConfig = *opaque{};
-        pub const SetDefaultCommConfig = *opaque{};
-    } else struct {
-        pub const BuildCommDCB = @compileError("'BuildCommDCB' requires that UNICODE be set to true or false in the root module");
-        pub const BuildCommDCBAndTimeouts = @compileError("'BuildCommDCBAndTimeouts' requires that UNICODE be set to true or false in the root module");
-        pub const CommConfigDialog = @compileError("'CommConfigDialog' requires that UNICODE be set to true or false in the root module");
-        pub const GetDefaultCommConfig = @compileError("'GetDefaultCommConfig' requires that UNICODE be set to true or false in the root module");
-        pub const SetDefaultCommConfig = @compileError("'SetDefaultCommConfig' requires that UNICODE be set to true or false in the root module");
-    },
+pub const BuildCommDCB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BuildCommDCBA,
+    .wide => @This().BuildCommDCBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BuildCommDCB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BuildCommDCBAndTimeouts = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BuildCommDCBAndTimeoutsA,
+    .wide => @This().BuildCommDCBAndTimeoutsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BuildCommDCBAndTimeouts' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CommConfigDialog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CommConfigDialogA,
+    .wide => @This().CommConfigDialogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CommConfigDialog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDefaultCommConfig = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDefaultCommConfigA,
+    .wide => @This().GetDefaultCommConfigW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDefaultCommConfig' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetDefaultCommConfig = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetDefaultCommConfigA,
+    .wide => @This().SetDefaultCommConfigW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetDefaultCommConfig' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)

@@ -1755,183 +1755,299 @@ pub extern "iscsidsc" fn ReportRadiusServerListA(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (42)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const ISCSI_TARGET_MAPPING = thismodule.ISCSI_TARGET_MAPPINGA;
-        pub const ISCSI_TARGET_PORTAL = thismodule.ISCSI_TARGET_PORTALA;
-        pub const ISCSI_TARGET_PORTAL_INFO = thismodule.ISCSI_TARGET_PORTAL_INFOA;
-        pub const ISCSI_TARGET_PORTAL_INFO_EX = thismodule.ISCSI_TARGET_PORTAL_INFO_EXA;
-        pub const ISCSI_TARGET_PORTAL_GROUP = thismodule.ISCSI_TARGET_PORTAL_GROUPA;
-        pub const ISCSI_CONNECTION_INFO = thismodule.ISCSI_CONNECTION_INFOA;
-        pub const ISCSI_SESSION_INFO = thismodule.ISCSI_SESSION_INFOA;
-        pub const ISCSI_DEVICE_ON_SESSION = thismodule.ISCSI_DEVICE_ON_SESSIONA;
-        pub const PERSISTENT_ISCSI_LOGIN_INFO = thismodule.PERSISTENT_ISCSI_LOGIN_INFOA;
-        pub const GetIScsiTargetInformation = thismodule.GetIScsiTargetInformationA;
-        pub const AddIScsiConnection = thismodule.AddIScsiConnectionA;
-        pub const ReportIScsiTargets = thismodule.ReportIScsiTargetsA;
-        pub const AddIScsiStaticTarget = thismodule.AddIScsiStaticTargetA;
-        pub const RemoveIScsiStaticTarget = thismodule.RemoveIScsiStaticTargetA;
-        pub const AddIScsiSendTargetPortal = thismodule.AddIScsiSendTargetPortalA;
-        pub const RemoveIScsiSendTargetPortal = thismodule.RemoveIScsiSendTargetPortalA;
-        pub const RefreshIScsiSendTargetPortal = thismodule.RefreshIScsiSendTargetPortalA;
-        pub const ReportIScsiSendTargetPortals = thismodule.ReportIScsiSendTargetPortalsA;
-        pub const ReportIScsiSendTargetPortalsEx = thismodule.ReportIScsiSendTargetPortalsExA;
-        pub const LoginIScsiTarget = thismodule.LoginIScsiTargetA;
-        pub const ReportIScsiPersistentLogins = thismodule.ReportIScsiPersistentLoginsA;
-        pub const RemoveIScsiPersistentTarget = thismodule.RemoveIScsiPersistentTargetA;
-        pub const ReportIScsiInitiatorList = thismodule.ReportIScsiInitiatorListA;
-        pub const ReportActiveIScsiTargetMappings = thismodule.ReportActiveIScsiTargetMappingsA;
-        pub const SetIScsiTunnelModeOuterAddress = thismodule.SetIScsiTunnelModeOuterAddressA;
-        pub const SetIScsiIKEInfo = thismodule.SetIScsiIKEInfoA;
-        pub const GetIScsiIKEInfo = thismodule.GetIScsiIKEInfoA;
-        pub const SetIScsiInitiatorNodeName = thismodule.SetIScsiInitiatorNodeNameA;
-        pub const GetIScsiInitiatorNodeName = thismodule.GetIScsiInitiatorNodeNameA;
-        pub const AddISNSServer = thismodule.AddISNSServerA;
-        pub const RemoveISNSServer = thismodule.RemoveISNSServerA;
-        pub const RefreshISNSServer = thismodule.RefreshISNSServerA;
-        pub const ReportISNSServerList = thismodule.ReportISNSServerListA;
-        pub const GetIScsiSessionList = thismodule.GetIScsiSessionListA;
-        pub const GetDevicesForIScsiSession = thismodule.GetDevicesForIScsiSessionA;
-        pub const AddPersistentIScsiDevice = thismodule.AddPersistentIScsiDeviceA;
-        pub const RemovePersistentIScsiDevice = thismodule.RemovePersistentIScsiDeviceA;
-        pub const ReportPersistentIScsiDevices = thismodule.ReportPersistentIScsiDevicesA;
-        pub const ReportIScsiTargetPortals = thismodule.ReportIScsiTargetPortalsA;
-        pub const AddRadiusServer = thismodule.AddRadiusServerA;
-        pub const RemoveRadiusServer = thismodule.RemoveRadiusServerA;
-        pub const ReportRadiusServerList = thismodule.ReportRadiusServerListA;
-    },
-    .wide => struct {
-        pub const ISCSI_TARGET_MAPPING = thismodule.ISCSI_TARGET_MAPPINGW;
-        pub const ISCSI_TARGET_PORTAL = thismodule.ISCSI_TARGET_PORTALW;
-        pub const ISCSI_TARGET_PORTAL_INFO = thismodule.ISCSI_TARGET_PORTAL_INFOW;
-        pub const ISCSI_TARGET_PORTAL_INFO_EX = thismodule.ISCSI_TARGET_PORTAL_INFO_EXW;
-        pub const ISCSI_TARGET_PORTAL_GROUP = thismodule.ISCSI_TARGET_PORTAL_GROUPW;
-        pub const ISCSI_CONNECTION_INFO = thismodule.ISCSI_CONNECTION_INFOW;
-        pub const ISCSI_SESSION_INFO = thismodule.ISCSI_SESSION_INFOW;
-        pub const ISCSI_DEVICE_ON_SESSION = thismodule.ISCSI_DEVICE_ON_SESSIONW;
-        pub const PERSISTENT_ISCSI_LOGIN_INFO = thismodule.PERSISTENT_ISCSI_LOGIN_INFOW;
-        pub const GetIScsiTargetInformation = thismodule.GetIScsiTargetInformationW;
-        pub const AddIScsiConnection = thismodule.AddIScsiConnectionW;
-        pub const ReportIScsiTargets = thismodule.ReportIScsiTargetsW;
-        pub const AddIScsiStaticTarget = thismodule.AddIScsiStaticTargetW;
-        pub const RemoveIScsiStaticTarget = thismodule.RemoveIScsiStaticTargetW;
-        pub const AddIScsiSendTargetPortal = thismodule.AddIScsiSendTargetPortalW;
-        pub const RemoveIScsiSendTargetPortal = thismodule.RemoveIScsiSendTargetPortalW;
-        pub const RefreshIScsiSendTargetPortal = thismodule.RefreshIScsiSendTargetPortalW;
-        pub const ReportIScsiSendTargetPortals = thismodule.ReportIScsiSendTargetPortalsW;
-        pub const ReportIScsiSendTargetPortalsEx = thismodule.ReportIScsiSendTargetPortalsExW;
-        pub const LoginIScsiTarget = thismodule.LoginIScsiTargetW;
-        pub const ReportIScsiPersistentLogins = thismodule.ReportIScsiPersistentLoginsW;
-        pub const RemoveIScsiPersistentTarget = thismodule.RemoveIScsiPersistentTargetW;
-        pub const ReportIScsiInitiatorList = thismodule.ReportIScsiInitiatorListW;
-        pub const ReportActiveIScsiTargetMappings = thismodule.ReportActiveIScsiTargetMappingsW;
-        pub const SetIScsiTunnelModeOuterAddress = thismodule.SetIScsiTunnelModeOuterAddressW;
-        pub const SetIScsiIKEInfo = thismodule.SetIScsiIKEInfoW;
-        pub const GetIScsiIKEInfo = thismodule.GetIScsiIKEInfoW;
-        pub const SetIScsiInitiatorNodeName = thismodule.SetIScsiInitiatorNodeNameW;
-        pub const GetIScsiInitiatorNodeName = thismodule.GetIScsiInitiatorNodeNameW;
-        pub const AddISNSServer = thismodule.AddISNSServerW;
-        pub const RemoveISNSServer = thismodule.RemoveISNSServerW;
-        pub const RefreshISNSServer = thismodule.RefreshISNSServerW;
-        pub const ReportISNSServerList = thismodule.ReportISNSServerListW;
-        pub const GetIScsiSessionList = thismodule.GetIScsiSessionListW;
-        pub const GetDevicesForIScsiSession = thismodule.GetDevicesForIScsiSessionW;
-        pub const AddPersistentIScsiDevice = thismodule.AddPersistentIScsiDeviceW;
-        pub const RemovePersistentIScsiDevice = thismodule.RemovePersistentIScsiDeviceW;
-        pub const ReportPersistentIScsiDevices = thismodule.ReportPersistentIScsiDevicesW;
-        pub const ReportIScsiTargetPortals = thismodule.ReportIScsiTargetPortalsW;
-        pub const AddRadiusServer = thismodule.AddRadiusServerW;
-        pub const RemoveRadiusServer = thismodule.RemoveRadiusServerW;
-        pub const ReportRadiusServerList = thismodule.ReportRadiusServerListW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const ISCSI_TARGET_MAPPING = *opaque{};
-        pub const ISCSI_TARGET_PORTAL = *opaque{};
-        pub const ISCSI_TARGET_PORTAL_INFO = *opaque{};
-        pub const ISCSI_TARGET_PORTAL_INFO_EX = *opaque{};
-        pub const ISCSI_TARGET_PORTAL_GROUP = *opaque{};
-        pub const ISCSI_CONNECTION_INFO = *opaque{};
-        pub const ISCSI_SESSION_INFO = *opaque{};
-        pub const ISCSI_DEVICE_ON_SESSION = *opaque{};
-        pub const PERSISTENT_ISCSI_LOGIN_INFO = *opaque{};
-        pub const GetIScsiTargetInformation = *opaque{};
-        pub const AddIScsiConnection = *opaque{};
-        pub const ReportIScsiTargets = *opaque{};
-        pub const AddIScsiStaticTarget = *opaque{};
-        pub const RemoveIScsiStaticTarget = *opaque{};
-        pub const AddIScsiSendTargetPortal = *opaque{};
-        pub const RemoveIScsiSendTargetPortal = *opaque{};
-        pub const RefreshIScsiSendTargetPortal = *opaque{};
-        pub const ReportIScsiSendTargetPortals = *opaque{};
-        pub const ReportIScsiSendTargetPortalsEx = *opaque{};
-        pub const LoginIScsiTarget = *opaque{};
-        pub const ReportIScsiPersistentLogins = *opaque{};
-        pub const RemoveIScsiPersistentTarget = *opaque{};
-        pub const ReportIScsiInitiatorList = *opaque{};
-        pub const ReportActiveIScsiTargetMappings = *opaque{};
-        pub const SetIScsiTunnelModeOuterAddress = *opaque{};
-        pub const SetIScsiIKEInfo = *opaque{};
-        pub const GetIScsiIKEInfo = *opaque{};
-        pub const SetIScsiInitiatorNodeName = *opaque{};
-        pub const GetIScsiInitiatorNodeName = *opaque{};
-        pub const AddISNSServer = *opaque{};
-        pub const RemoveISNSServer = *opaque{};
-        pub const RefreshISNSServer = *opaque{};
-        pub const ReportISNSServerList = *opaque{};
-        pub const GetIScsiSessionList = *opaque{};
-        pub const GetDevicesForIScsiSession = *opaque{};
-        pub const AddPersistentIScsiDevice = *opaque{};
-        pub const RemovePersistentIScsiDevice = *opaque{};
-        pub const ReportPersistentIScsiDevices = *opaque{};
-        pub const ReportIScsiTargetPortals = *opaque{};
-        pub const AddRadiusServer = *opaque{};
-        pub const RemoveRadiusServer = *opaque{};
-        pub const ReportRadiusServerList = *opaque{};
-    } else struct {
-        pub const ISCSI_TARGET_MAPPING = @compileError("'ISCSI_TARGET_MAPPING' requires that UNICODE be set to true or false in the root module");
-        pub const ISCSI_TARGET_PORTAL = @compileError("'ISCSI_TARGET_PORTAL' requires that UNICODE be set to true or false in the root module");
-        pub const ISCSI_TARGET_PORTAL_INFO = @compileError("'ISCSI_TARGET_PORTAL_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const ISCSI_TARGET_PORTAL_INFO_EX = @compileError("'ISCSI_TARGET_PORTAL_INFO_EX' requires that UNICODE be set to true or false in the root module");
-        pub const ISCSI_TARGET_PORTAL_GROUP = @compileError("'ISCSI_TARGET_PORTAL_GROUP' requires that UNICODE be set to true or false in the root module");
-        pub const ISCSI_CONNECTION_INFO = @compileError("'ISCSI_CONNECTION_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const ISCSI_SESSION_INFO = @compileError("'ISCSI_SESSION_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const ISCSI_DEVICE_ON_SESSION = @compileError("'ISCSI_DEVICE_ON_SESSION' requires that UNICODE be set to true or false in the root module");
-        pub const PERSISTENT_ISCSI_LOGIN_INFO = @compileError("'PERSISTENT_ISCSI_LOGIN_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const GetIScsiTargetInformation = @compileError("'GetIScsiTargetInformation' requires that UNICODE be set to true or false in the root module");
-        pub const AddIScsiConnection = @compileError("'AddIScsiConnection' requires that UNICODE be set to true or false in the root module");
-        pub const ReportIScsiTargets = @compileError("'ReportIScsiTargets' requires that UNICODE be set to true or false in the root module");
-        pub const AddIScsiStaticTarget = @compileError("'AddIScsiStaticTarget' requires that UNICODE be set to true or false in the root module");
-        pub const RemoveIScsiStaticTarget = @compileError("'RemoveIScsiStaticTarget' requires that UNICODE be set to true or false in the root module");
-        pub const AddIScsiSendTargetPortal = @compileError("'AddIScsiSendTargetPortal' requires that UNICODE be set to true or false in the root module");
-        pub const RemoveIScsiSendTargetPortal = @compileError("'RemoveIScsiSendTargetPortal' requires that UNICODE be set to true or false in the root module");
-        pub const RefreshIScsiSendTargetPortal = @compileError("'RefreshIScsiSendTargetPortal' requires that UNICODE be set to true or false in the root module");
-        pub const ReportIScsiSendTargetPortals = @compileError("'ReportIScsiSendTargetPortals' requires that UNICODE be set to true or false in the root module");
-        pub const ReportIScsiSendTargetPortalsEx = @compileError("'ReportIScsiSendTargetPortalsEx' requires that UNICODE be set to true or false in the root module");
-        pub const LoginIScsiTarget = @compileError("'LoginIScsiTarget' requires that UNICODE be set to true or false in the root module");
-        pub const ReportIScsiPersistentLogins = @compileError("'ReportIScsiPersistentLogins' requires that UNICODE be set to true or false in the root module");
-        pub const RemoveIScsiPersistentTarget = @compileError("'RemoveIScsiPersistentTarget' requires that UNICODE be set to true or false in the root module");
-        pub const ReportIScsiInitiatorList = @compileError("'ReportIScsiInitiatorList' requires that UNICODE be set to true or false in the root module");
-        pub const ReportActiveIScsiTargetMappings = @compileError("'ReportActiveIScsiTargetMappings' requires that UNICODE be set to true or false in the root module");
-        pub const SetIScsiTunnelModeOuterAddress = @compileError("'SetIScsiTunnelModeOuterAddress' requires that UNICODE be set to true or false in the root module");
-        pub const SetIScsiIKEInfo = @compileError("'SetIScsiIKEInfo' requires that UNICODE be set to true or false in the root module");
-        pub const GetIScsiIKEInfo = @compileError("'GetIScsiIKEInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetIScsiInitiatorNodeName = @compileError("'SetIScsiInitiatorNodeName' requires that UNICODE be set to true or false in the root module");
-        pub const GetIScsiInitiatorNodeName = @compileError("'GetIScsiInitiatorNodeName' requires that UNICODE be set to true or false in the root module");
-        pub const AddISNSServer = @compileError("'AddISNSServer' requires that UNICODE be set to true or false in the root module");
-        pub const RemoveISNSServer = @compileError("'RemoveISNSServer' requires that UNICODE be set to true or false in the root module");
-        pub const RefreshISNSServer = @compileError("'RefreshISNSServer' requires that UNICODE be set to true or false in the root module");
-        pub const ReportISNSServerList = @compileError("'ReportISNSServerList' requires that UNICODE be set to true or false in the root module");
-        pub const GetIScsiSessionList = @compileError("'GetIScsiSessionList' requires that UNICODE be set to true or false in the root module");
-        pub const GetDevicesForIScsiSession = @compileError("'GetDevicesForIScsiSession' requires that UNICODE be set to true or false in the root module");
-        pub const AddPersistentIScsiDevice = @compileError("'AddPersistentIScsiDevice' requires that UNICODE be set to true or false in the root module");
-        pub const RemovePersistentIScsiDevice = @compileError("'RemovePersistentIScsiDevice' requires that UNICODE be set to true or false in the root module");
-        pub const ReportPersistentIScsiDevices = @compileError("'ReportPersistentIScsiDevices' requires that UNICODE be set to true or false in the root module");
-        pub const ReportIScsiTargetPortals = @compileError("'ReportIScsiTargetPortals' requires that UNICODE be set to true or false in the root module");
-        pub const AddRadiusServer = @compileError("'AddRadiusServer' requires that UNICODE be set to true or false in the root module");
-        pub const RemoveRadiusServer = @compileError("'RemoveRadiusServer' requires that UNICODE be set to true or false in the root module");
-        pub const ReportRadiusServerList = @compileError("'ReportRadiusServerList' requires that UNICODE be set to true or false in the root module");
-    },
+pub const ISCSI_TARGET_MAPPING = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_TARGET_MAPPINGA,
+    .wide => @This().ISCSI_TARGET_MAPPINGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_TARGET_MAPPING' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ISCSI_TARGET_PORTAL = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_TARGET_PORTALA,
+    .wide => @This().ISCSI_TARGET_PORTALW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_TARGET_PORTAL' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ISCSI_TARGET_PORTAL_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_TARGET_PORTAL_INFOA,
+    .wide => @This().ISCSI_TARGET_PORTAL_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_TARGET_PORTAL_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ISCSI_TARGET_PORTAL_INFO_EX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_TARGET_PORTAL_INFO_EXA,
+    .wide => @This().ISCSI_TARGET_PORTAL_INFO_EXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_TARGET_PORTAL_INFO_EX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ISCSI_TARGET_PORTAL_GROUP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_TARGET_PORTAL_GROUPA,
+    .wide => @This().ISCSI_TARGET_PORTAL_GROUPW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_TARGET_PORTAL_GROUP' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ISCSI_CONNECTION_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_CONNECTION_INFOA,
+    .wide => @This().ISCSI_CONNECTION_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_CONNECTION_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ISCSI_SESSION_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_SESSION_INFOA,
+    .wide => @This().ISCSI_SESSION_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_SESSION_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ISCSI_DEVICE_ON_SESSION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_DEVICE_ON_SESSIONA,
+    .wide => @This().ISCSI_DEVICE_ON_SESSIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_DEVICE_ON_SESSION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PERSISTENT_ISCSI_LOGIN_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PERSISTENT_ISCSI_LOGIN_INFOA,
+    .wide => @This().PERSISTENT_ISCSI_LOGIN_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PERSISTENT_ISCSI_LOGIN_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetIScsiTargetInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetIScsiTargetInformationA,
+    .wide => @This().GetIScsiTargetInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetIScsiTargetInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddIScsiConnection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddIScsiConnectionA,
+    .wide => @This().AddIScsiConnectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddIScsiConnection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportIScsiTargets = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportIScsiTargetsA,
+    .wide => @This().ReportIScsiTargetsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportIScsiTargets' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddIScsiStaticTarget = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddIScsiStaticTargetA,
+    .wide => @This().AddIScsiStaticTargetW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddIScsiStaticTarget' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveIScsiStaticTarget = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveIScsiStaticTargetA,
+    .wide => @This().RemoveIScsiStaticTargetW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveIScsiStaticTarget' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddIScsiSendTargetPortal = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddIScsiSendTargetPortalA,
+    .wide => @This().AddIScsiSendTargetPortalW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddIScsiSendTargetPortal' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveIScsiSendTargetPortal = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveIScsiSendTargetPortalA,
+    .wide => @This().RemoveIScsiSendTargetPortalW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveIScsiSendTargetPortal' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RefreshIScsiSendTargetPortal = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RefreshIScsiSendTargetPortalA,
+    .wide => @This().RefreshIScsiSendTargetPortalW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RefreshIScsiSendTargetPortal' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportIScsiSendTargetPortals = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportIScsiSendTargetPortalsA,
+    .wide => @This().ReportIScsiSendTargetPortalsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportIScsiSendTargetPortals' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportIScsiSendTargetPortalsEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportIScsiSendTargetPortalsExA,
+    .wide => @This().ReportIScsiSendTargetPortalsExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportIScsiSendTargetPortalsEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoginIScsiTarget = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoginIScsiTargetA,
+    .wide => @This().LoginIScsiTargetW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoginIScsiTarget' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportIScsiPersistentLogins = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportIScsiPersistentLoginsA,
+    .wide => @This().ReportIScsiPersistentLoginsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportIScsiPersistentLogins' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveIScsiPersistentTarget = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveIScsiPersistentTargetA,
+    .wide => @This().RemoveIScsiPersistentTargetW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveIScsiPersistentTarget' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportIScsiInitiatorList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportIScsiInitiatorListA,
+    .wide => @This().ReportIScsiInitiatorListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportIScsiInitiatorList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportActiveIScsiTargetMappings = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportActiveIScsiTargetMappingsA,
+    .wide => @This().ReportActiveIScsiTargetMappingsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportActiveIScsiTargetMappings' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetIScsiTunnelModeOuterAddress = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetIScsiTunnelModeOuterAddressA,
+    .wide => @This().SetIScsiTunnelModeOuterAddressW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetIScsiTunnelModeOuterAddress' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetIScsiIKEInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetIScsiIKEInfoA,
+    .wide => @This().SetIScsiIKEInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetIScsiIKEInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetIScsiIKEInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetIScsiIKEInfoA,
+    .wide => @This().GetIScsiIKEInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetIScsiIKEInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetIScsiInitiatorNodeName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetIScsiInitiatorNodeNameA,
+    .wide => @This().SetIScsiInitiatorNodeNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetIScsiInitiatorNodeName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetIScsiInitiatorNodeName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetIScsiInitiatorNodeNameA,
+    .wide => @This().GetIScsiInitiatorNodeNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetIScsiInitiatorNodeName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddISNSServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddISNSServerA,
+    .wide => @This().AddISNSServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddISNSServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveISNSServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveISNSServerA,
+    .wide => @This().RemoveISNSServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveISNSServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RefreshISNSServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RefreshISNSServerA,
+    .wide => @This().RefreshISNSServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RefreshISNSServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportISNSServerList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportISNSServerListA,
+    .wide => @This().ReportISNSServerListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportISNSServerList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetIScsiSessionList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetIScsiSessionListA,
+    .wide => @This().GetIScsiSessionListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetIScsiSessionList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDevicesForIScsiSession = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDevicesForIScsiSessionA,
+    .wide => @This().GetDevicesForIScsiSessionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDevicesForIScsiSession' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddPersistentIScsiDevice = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddPersistentIScsiDeviceA,
+    .wide => @This().AddPersistentIScsiDeviceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddPersistentIScsiDevice' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemovePersistentIScsiDevice = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemovePersistentIScsiDeviceA,
+    .wide => @This().RemovePersistentIScsiDeviceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemovePersistentIScsiDevice' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportPersistentIScsiDevices = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportPersistentIScsiDevicesA,
+    .wide => @This().ReportPersistentIScsiDevicesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportPersistentIScsiDevices' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportIScsiTargetPortals = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportIScsiTargetPortalsA,
+    .wide => @This().ReportIScsiTargetPortalsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportIScsiTargetPortals' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddRadiusServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddRadiusServerA,
+    .wide => @This().AddRadiusServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddRadiusServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveRadiusServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveRadiusServerA,
+    .wide => @This().RemoveRadiusServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveRadiusServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportRadiusServerList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportRadiusServerListA,
+    .wide => @This().ReportRadiusServerListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportRadiusServerList' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)

@@ -43561,31 +43561,33 @@ pub extern "dbghelp" fn SymGetSymPrev(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const OutputDebugString = thismodule.OutputDebugStringA;
-        pub const FatalAppExit = thismodule.FatalAppExitA;
-        pub const MapFileAndCheckSum = thismodule.MapFileAndCheckSumA;
-        pub const FormatMessage = thismodule.FormatMessageA;
-    },
-    .wide => struct {
-        pub const OutputDebugString = thismodule.OutputDebugStringW;
-        pub const FatalAppExit = thismodule.FatalAppExitW;
-        pub const MapFileAndCheckSum = thismodule.MapFileAndCheckSumW;
-        pub const FormatMessage = thismodule.FormatMessageW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const OutputDebugString = *opaque{};
-        pub const FatalAppExit = *opaque{};
-        pub const MapFileAndCheckSum = *opaque{};
-        pub const FormatMessage = *opaque{};
-    } else struct {
-        pub const OutputDebugString = @compileError("'OutputDebugString' requires that UNICODE be set to true or false in the root module");
-        pub const FatalAppExit = @compileError("'FatalAppExit' requires that UNICODE be set to true or false in the root module");
-        pub const MapFileAndCheckSum = @compileError("'MapFileAndCheckSum' requires that UNICODE be set to true or false in the root module");
-        pub const FormatMessage = @compileError("'FormatMessage' requires that UNICODE be set to true or false in the root module");
-    },
+pub const OutputDebugString = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().OutputDebugStringA,
+    .wide => @This().OutputDebugStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OutputDebugString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FatalAppExit = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().FatalAppExitA,
+    .wide => @This().FatalAppExitW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FatalAppExit' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MapFileAndCheckSum = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().MapFileAndCheckSumA,
+    .wide => @This().MapFileAndCheckSumW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MapFileAndCheckSum' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FormatMessage = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().FormatMessageA,
+    .wide => @This().FormatMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FormatMessage' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (39)

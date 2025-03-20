@@ -10032,291 +10032,488 @@ pub extern "netapi32" fn DsGetDcCloseW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (69)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const DSBROWSEINFO = thismodule.DSBROWSEINFOA;
-        pub const DSBITEM = thismodule.DSBITEMA;
-        pub const DS_NAME_RESULT_ITEM = thismodule.DS_NAME_RESULT_ITEMA;
-        pub const DS_NAME_RESULT = thismodule.DS_NAME_RESULTA;
-        pub const DS_REPSYNCALL_SYNC = thismodule.DS_REPSYNCALL_SYNCA;
-        pub const DS_REPSYNCALL_ERRINFO = thismodule.DS_REPSYNCALL_ERRINFOA;
-        pub const DS_REPSYNCALL_UPDATE = thismodule.DS_REPSYNCALL_UPDATEA;
-        pub const DS_SCHEMA_GUID_MAP = thismodule.DS_SCHEMA_GUID_MAPA;
-        pub const DS_DOMAIN_CONTROLLER_INFO_1 = thismodule.DS_DOMAIN_CONTROLLER_INFO_1A;
-        pub const DS_DOMAIN_CONTROLLER_INFO_2 = thismodule.DS_DOMAIN_CONTROLLER_INFO_2A;
-        pub const DS_DOMAIN_CONTROLLER_INFO_3 = thismodule.DS_DOMAIN_CONTROLLER_INFO_3A;
-        pub const DOMAIN_CONTROLLER_INFO = thismodule.DOMAIN_CONTROLLER_INFOA;
-        pub const DS_DOMAIN_TRUSTS = thismodule.DS_DOMAIN_TRUSTSA;
-        pub const DsBrowseForContainer = thismodule.DsBrowseForContainerA;
-        pub const DsMakeSpn = thismodule.DsMakeSpnA;
-        pub const DsCrackSpn = thismodule.DsCrackSpnA;
-        pub const DsQuoteRdnValue = thismodule.DsQuoteRdnValueA;
-        pub const DsUnquoteRdnValue = thismodule.DsUnquoteRdnValueA;
-        pub const DsCrackUnquotedMangledRdn = thismodule.DsCrackUnquotedMangledRdnA;
-        pub const DsIsMangledRdnValue = thismodule.DsIsMangledRdnValueA;
-        pub const DsIsMangledDn = thismodule.DsIsMangledDnA;
-        pub const DsCrackSpn2 = thismodule.DsCrackSpn2A;
-        pub const DsBind = thismodule.DsBindA;
-        pub const DsBindWithCred = thismodule.DsBindWithCredA;
-        pub const DsBindWithSpn = thismodule.DsBindWithSpnA;
-        pub const DsBindWithSpnEx = thismodule.DsBindWithSpnExA;
-        pub const DsBindByInstance = thismodule.DsBindByInstanceA;
-        pub const DsBindToISTG = thismodule.DsBindToISTGA;
-        pub const DsUnBind = thismodule.DsUnBindA;
-        pub const DsMakePasswordCredentials = thismodule.DsMakePasswordCredentialsA;
-        pub const DsCrackNames = thismodule.DsCrackNamesA;
-        pub const DsFreeNameResult = thismodule.DsFreeNameResultA;
-        pub const DsGetSpn = thismodule.DsGetSpnA;
-        pub const DsFreeSpnArray = thismodule.DsFreeSpnArrayA;
-        pub const DsWriteAccountSpn = thismodule.DsWriteAccountSpnA;
-        pub const DsClientMakeSpnForTargetServer = thismodule.DsClientMakeSpnForTargetServerA;
-        pub const DsServerRegisterSpn = thismodule.DsServerRegisterSpnA;
-        pub const DsReplicaSync = thismodule.DsReplicaSyncA;
-        pub const DsReplicaAdd = thismodule.DsReplicaAddA;
-        pub const DsReplicaDel = thismodule.DsReplicaDelA;
-        pub const DsReplicaModify = thismodule.DsReplicaModifyA;
-        pub const DsReplicaUpdateRefs = thismodule.DsReplicaUpdateRefsA;
-        pub const DsReplicaSyncAll = thismodule.DsReplicaSyncAllA;
-        pub const DsRemoveDsServer = thismodule.DsRemoveDsServerA;
-        pub const DsRemoveDsDomain = thismodule.DsRemoveDsDomainA;
-        pub const DsListSites = thismodule.DsListSitesA;
-        pub const DsListServersInSite = thismodule.DsListServersInSiteA;
-        pub const DsListDomainsInSite = thismodule.DsListDomainsInSiteA;
-        pub const DsListServersForDomainInSite = thismodule.DsListServersForDomainInSiteA;
-        pub const DsListInfoForServer = thismodule.DsListInfoForServerA;
-        pub const DsListRoles = thismodule.DsListRolesA;
-        pub const DsQuerySitesByCost = thismodule.DsQuerySitesByCostA;
-        pub const DsMapSchemaGuids = thismodule.DsMapSchemaGuidsA;
-        pub const DsFreeSchemaGuidMap = thismodule.DsFreeSchemaGuidMapA;
-        pub const DsGetDomainControllerInfo = thismodule.DsGetDomainControllerInfoA;
-        pub const DsFreeDomainControllerInfo = thismodule.DsFreeDomainControllerInfoA;
-        pub const DsReplicaVerifyObjects = thismodule.DsReplicaVerifyObjectsA;
-        pub const DsAddSidHistory = thismodule.DsAddSidHistoryA;
-        pub const DsInheritSecurityIdentity = thismodule.DsInheritSecurityIdentityA;
-        pub const DsGetDcName = thismodule.DsGetDcNameA;
-        pub const DsGetSiteName = thismodule.DsGetSiteNameA;
-        pub const DsValidateSubnetName = thismodule.DsValidateSubnetNameA;
-        pub const DsAddressToSiteNames = thismodule.DsAddressToSiteNamesA;
-        pub const DsAddressToSiteNamesEx = thismodule.DsAddressToSiteNamesExA;
-        pub const DsEnumerateDomainTrusts = thismodule.DsEnumerateDomainTrustsA;
-        pub const DsGetDcSiteCoverage = thismodule.DsGetDcSiteCoverageA;
-        pub const DsDeregisterDnsHostRecords = thismodule.DsDeregisterDnsHostRecordsA;
-        pub const DsGetDcOpen = thismodule.DsGetDcOpenA;
-        pub const DsGetDcNext = thismodule.DsGetDcNextA;
-    },
-    .wide => struct {
-        pub const DSBROWSEINFO = thismodule.DSBROWSEINFOW;
-        pub const DSBITEM = thismodule.DSBITEMW;
-        pub const DS_NAME_RESULT_ITEM = thismodule.DS_NAME_RESULT_ITEMW;
-        pub const DS_NAME_RESULT = thismodule.DS_NAME_RESULTW;
-        pub const DS_REPSYNCALL_SYNC = thismodule.DS_REPSYNCALL_SYNCW;
-        pub const DS_REPSYNCALL_ERRINFO = thismodule.DS_REPSYNCALL_ERRINFOW;
-        pub const DS_REPSYNCALL_UPDATE = thismodule.DS_REPSYNCALL_UPDATEW;
-        pub const DS_SCHEMA_GUID_MAP = thismodule.DS_SCHEMA_GUID_MAPW;
-        pub const DS_DOMAIN_CONTROLLER_INFO_1 = thismodule.DS_DOMAIN_CONTROLLER_INFO_1W;
-        pub const DS_DOMAIN_CONTROLLER_INFO_2 = thismodule.DS_DOMAIN_CONTROLLER_INFO_2W;
-        pub const DS_DOMAIN_CONTROLLER_INFO_3 = thismodule.DS_DOMAIN_CONTROLLER_INFO_3W;
-        pub const DOMAIN_CONTROLLER_INFO = thismodule.DOMAIN_CONTROLLER_INFOW;
-        pub const DS_DOMAIN_TRUSTS = thismodule.DS_DOMAIN_TRUSTSW;
-        pub const DsBrowseForContainer = thismodule.DsBrowseForContainerW;
-        pub const DsMakeSpn = thismodule.DsMakeSpnW;
-        pub const DsCrackSpn = thismodule.DsCrackSpnW;
-        pub const DsQuoteRdnValue = thismodule.DsQuoteRdnValueW;
-        pub const DsUnquoteRdnValue = thismodule.DsUnquoteRdnValueW;
-        pub const DsCrackUnquotedMangledRdn = thismodule.DsCrackUnquotedMangledRdnW;
-        pub const DsIsMangledRdnValue = thismodule.DsIsMangledRdnValueW;
-        pub const DsIsMangledDn = thismodule.DsIsMangledDnW;
-        pub const DsCrackSpn2 = thismodule.DsCrackSpn2W;
-        pub const DsBind = thismodule.DsBindW;
-        pub const DsBindWithCred = thismodule.DsBindWithCredW;
-        pub const DsBindWithSpn = thismodule.DsBindWithSpnW;
-        pub const DsBindWithSpnEx = thismodule.DsBindWithSpnExW;
-        pub const DsBindByInstance = thismodule.DsBindByInstanceW;
-        pub const DsBindToISTG = thismodule.DsBindToISTGW;
-        pub const DsUnBind = thismodule.DsUnBindW;
-        pub const DsMakePasswordCredentials = thismodule.DsMakePasswordCredentialsW;
-        pub const DsCrackNames = thismodule.DsCrackNamesW;
-        pub const DsFreeNameResult = thismodule.DsFreeNameResultW;
-        pub const DsGetSpn = thismodule.DsGetSpnW;
-        pub const DsFreeSpnArray = thismodule.DsFreeSpnArrayW;
-        pub const DsWriteAccountSpn = thismodule.DsWriteAccountSpnW;
-        pub const DsClientMakeSpnForTargetServer = thismodule.DsClientMakeSpnForTargetServerW;
-        pub const DsServerRegisterSpn = thismodule.DsServerRegisterSpnW;
-        pub const DsReplicaSync = thismodule.DsReplicaSyncW;
-        pub const DsReplicaAdd = thismodule.DsReplicaAddW;
-        pub const DsReplicaDel = thismodule.DsReplicaDelW;
-        pub const DsReplicaModify = thismodule.DsReplicaModifyW;
-        pub const DsReplicaUpdateRefs = thismodule.DsReplicaUpdateRefsW;
-        pub const DsReplicaSyncAll = thismodule.DsReplicaSyncAllW;
-        pub const DsRemoveDsServer = thismodule.DsRemoveDsServerW;
-        pub const DsRemoveDsDomain = thismodule.DsRemoveDsDomainW;
-        pub const DsListSites = thismodule.DsListSitesW;
-        pub const DsListServersInSite = thismodule.DsListServersInSiteW;
-        pub const DsListDomainsInSite = thismodule.DsListDomainsInSiteW;
-        pub const DsListServersForDomainInSite = thismodule.DsListServersForDomainInSiteW;
-        pub const DsListInfoForServer = thismodule.DsListInfoForServerW;
-        pub const DsListRoles = thismodule.DsListRolesW;
-        pub const DsQuerySitesByCost = thismodule.DsQuerySitesByCostW;
-        pub const DsMapSchemaGuids = thismodule.DsMapSchemaGuidsW;
-        pub const DsFreeSchemaGuidMap = thismodule.DsFreeSchemaGuidMapW;
-        pub const DsGetDomainControllerInfo = thismodule.DsGetDomainControllerInfoW;
-        pub const DsFreeDomainControllerInfo = thismodule.DsFreeDomainControllerInfoW;
-        pub const DsReplicaVerifyObjects = thismodule.DsReplicaVerifyObjectsW;
-        pub const DsAddSidHistory = thismodule.DsAddSidHistoryW;
-        pub const DsInheritSecurityIdentity = thismodule.DsInheritSecurityIdentityW;
-        pub const DsGetDcName = thismodule.DsGetDcNameW;
-        pub const DsGetSiteName = thismodule.DsGetSiteNameW;
-        pub const DsValidateSubnetName = thismodule.DsValidateSubnetNameW;
-        pub const DsAddressToSiteNames = thismodule.DsAddressToSiteNamesW;
-        pub const DsAddressToSiteNamesEx = thismodule.DsAddressToSiteNamesExW;
-        pub const DsEnumerateDomainTrusts = thismodule.DsEnumerateDomainTrustsW;
-        pub const DsGetDcSiteCoverage = thismodule.DsGetDcSiteCoverageW;
-        pub const DsDeregisterDnsHostRecords = thismodule.DsDeregisterDnsHostRecordsW;
-        pub const DsGetDcOpen = thismodule.DsGetDcOpenW;
-        pub const DsGetDcNext = thismodule.DsGetDcNextW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const DSBROWSEINFO = *opaque{};
-        pub const DSBITEM = *opaque{};
-        pub const DS_NAME_RESULT_ITEM = *opaque{};
-        pub const DS_NAME_RESULT = *opaque{};
-        pub const DS_REPSYNCALL_SYNC = *opaque{};
-        pub const DS_REPSYNCALL_ERRINFO = *opaque{};
-        pub const DS_REPSYNCALL_UPDATE = *opaque{};
-        pub const DS_SCHEMA_GUID_MAP = *opaque{};
-        pub const DS_DOMAIN_CONTROLLER_INFO_1 = *opaque{};
-        pub const DS_DOMAIN_CONTROLLER_INFO_2 = *opaque{};
-        pub const DS_DOMAIN_CONTROLLER_INFO_3 = *opaque{};
-        pub const DOMAIN_CONTROLLER_INFO = *opaque{};
-        pub const DS_DOMAIN_TRUSTS = *opaque{};
-        pub const DsBrowseForContainer = *opaque{};
-        pub const DsMakeSpn = *opaque{};
-        pub const DsCrackSpn = *opaque{};
-        pub const DsQuoteRdnValue = *opaque{};
-        pub const DsUnquoteRdnValue = *opaque{};
-        pub const DsCrackUnquotedMangledRdn = *opaque{};
-        pub const DsIsMangledRdnValue = *opaque{};
-        pub const DsIsMangledDn = *opaque{};
-        pub const DsCrackSpn2 = *opaque{};
-        pub const DsBind = *opaque{};
-        pub const DsBindWithCred = *opaque{};
-        pub const DsBindWithSpn = *opaque{};
-        pub const DsBindWithSpnEx = *opaque{};
-        pub const DsBindByInstance = *opaque{};
-        pub const DsBindToISTG = *opaque{};
-        pub const DsUnBind = *opaque{};
-        pub const DsMakePasswordCredentials = *opaque{};
-        pub const DsCrackNames = *opaque{};
-        pub const DsFreeNameResult = *opaque{};
-        pub const DsGetSpn = *opaque{};
-        pub const DsFreeSpnArray = *opaque{};
-        pub const DsWriteAccountSpn = *opaque{};
-        pub const DsClientMakeSpnForTargetServer = *opaque{};
-        pub const DsServerRegisterSpn = *opaque{};
-        pub const DsReplicaSync = *opaque{};
-        pub const DsReplicaAdd = *opaque{};
-        pub const DsReplicaDel = *opaque{};
-        pub const DsReplicaModify = *opaque{};
-        pub const DsReplicaUpdateRefs = *opaque{};
-        pub const DsReplicaSyncAll = *opaque{};
-        pub const DsRemoveDsServer = *opaque{};
-        pub const DsRemoveDsDomain = *opaque{};
-        pub const DsListSites = *opaque{};
-        pub const DsListServersInSite = *opaque{};
-        pub const DsListDomainsInSite = *opaque{};
-        pub const DsListServersForDomainInSite = *opaque{};
-        pub const DsListInfoForServer = *opaque{};
-        pub const DsListRoles = *opaque{};
-        pub const DsQuerySitesByCost = *opaque{};
-        pub const DsMapSchemaGuids = *opaque{};
-        pub const DsFreeSchemaGuidMap = *opaque{};
-        pub const DsGetDomainControllerInfo = *opaque{};
-        pub const DsFreeDomainControllerInfo = *opaque{};
-        pub const DsReplicaVerifyObjects = *opaque{};
-        pub const DsAddSidHistory = *opaque{};
-        pub const DsInheritSecurityIdentity = *opaque{};
-        pub const DsGetDcName = *opaque{};
-        pub const DsGetSiteName = *opaque{};
-        pub const DsValidateSubnetName = *opaque{};
-        pub const DsAddressToSiteNames = *opaque{};
-        pub const DsAddressToSiteNamesEx = *opaque{};
-        pub const DsEnumerateDomainTrusts = *opaque{};
-        pub const DsGetDcSiteCoverage = *opaque{};
-        pub const DsDeregisterDnsHostRecords = *opaque{};
-        pub const DsGetDcOpen = *opaque{};
-        pub const DsGetDcNext = *opaque{};
-    } else struct {
-        pub const DSBROWSEINFO = @compileError("'DSBROWSEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const DSBITEM = @compileError("'DSBITEM' requires that UNICODE be set to true or false in the root module");
-        pub const DS_NAME_RESULT_ITEM = @compileError("'DS_NAME_RESULT_ITEM' requires that UNICODE be set to true or false in the root module");
-        pub const DS_NAME_RESULT = @compileError("'DS_NAME_RESULT' requires that UNICODE be set to true or false in the root module");
-        pub const DS_REPSYNCALL_SYNC = @compileError("'DS_REPSYNCALL_SYNC' requires that UNICODE be set to true or false in the root module");
-        pub const DS_REPSYNCALL_ERRINFO = @compileError("'DS_REPSYNCALL_ERRINFO' requires that UNICODE be set to true or false in the root module");
-        pub const DS_REPSYNCALL_UPDATE = @compileError("'DS_REPSYNCALL_UPDATE' requires that UNICODE be set to true or false in the root module");
-        pub const DS_SCHEMA_GUID_MAP = @compileError("'DS_SCHEMA_GUID_MAP' requires that UNICODE be set to true or false in the root module");
-        pub const DS_DOMAIN_CONTROLLER_INFO_1 = @compileError("'DS_DOMAIN_CONTROLLER_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const DS_DOMAIN_CONTROLLER_INFO_2 = @compileError("'DS_DOMAIN_CONTROLLER_INFO_2' requires that UNICODE be set to true or false in the root module");
-        pub const DS_DOMAIN_CONTROLLER_INFO_3 = @compileError("'DS_DOMAIN_CONTROLLER_INFO_3' requires that UNICODE be set to true or false in the root module");
-        pub const DOMAIN_CONTROLLER_INFO = @compileError("'DOMAIN_CONTROLLER_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const DS_DOMAIN_TRUSTS = @compileError("'DS_DOMAIN_TRUSTS' requires that UNICODE be set to true or false in the root module");
-        pub const DsBrowseForContainer = @compileError("'DsBrowseForContainer' requires that UNICODE be set to true or false in the root module");
-        pub const DsMakeSpn = @compileError("'DsMakeSpn' requires that UNICODE be set to true or false in the root module");
-        pub const DsCrackSpn = @compileError("'DsCrackSpn' requires that UNICODE be set to true or false in the root module");
-        pub const DsQuoteRdnValue = @compileError("'DsQuoteRdnValue' requires that UNICODE be set to true or false in the root module");
-        pub const DsUnquoteRdnValue = @compileError("'DsUnquoteRdnValue' requires that UNICODE be set to true or false in the root module");
-        pub const DsCrackUnquotedMangledRdn = @compileError("'DsCrackUnquotedMangledRdn' requires that UNICODE be set to true or false in the root module");
-        pub const DsIsMangledRdnValue = @compileError("'DsIsMangledRdnValue' requires that UNICODE be set to true or false in the root module");
-        pub const DsIsMangledDn = @compileError("'DsIsMangledDn' requires that UNICODE be set to true or false in the root module");
-        pub const DsCrackSpn2 = @compileError("'DsCrackSpn2' requires that UNICODE be set to true or false in the root module");
-        pub const DsBind = @compileError("'DsBind' requires that UNICODE be set to true or false in the root module");
-        pub const DsBindWithCred = @compileError("'DsBindWithCred' requires that UNICODE be set to true or false in the root module");
-        pub const DsBindWithSpn = @compileError("'DsBindWithSpn' requires that UNICODE be set to true or false in the root module");
-        pub const DsBindWithSpnEx = @compileError("'DsBindWithSpnEx' requires that UNICODE be set to true or false in the root module");
-        pub const DsBindByInstance = @compileError("'DsBindByInstance' requires that UNICODE be set to true or false in the root module");
-        pub const DsBindToISTG = @compileError("'DsBindToISTG' requires that UNICODE be set to true or false in the root module");
-        pub const DsUnBind = @compileError("'DsUnBind' requires that UNICODE be set to true or false in the root module");
-        pub const DsMakePasswordCredentials = @compileError("'DsMakePasswordCredentials' requires that UNICODE be set to true or false in the root module");
-        pub const DsCrackNames = @compileError("'DsCrackNames' requires that UNICODE be set to true or false in the root module");
-        pub const DsFreeNameResult = @compileError("'DsFreeNameResult' requires that UNICODE be set to true or false in the root module");
-        pub const DsGetSpn = @compileError("'DsGetSpn' requires that UNICODE be set to true or false in the root module");
-        pub const DsFreeSpnArray = @compileError("'DsFreeSpnArray' requires that UNICODE be set to true or false in the root module");
-        pub const DsWriteAccountSpn = @compileError("'DsWriteAccountSpn' requires that UNICODE be set to true or false in the root module");
-        pub const DsClientMakeSpnForTargetServer = @compileError("'DsClientMakeSpnForTargetServer' requires that UNICODE be set to true or false in the root module");
-        pub const DsServerRegisterSpn = @compileError("'DsServerRegisterSpn' requires that UNICODE be set to true or false in the root module");
-        pub const DsReplicaSync = @compileError("'DsReplicaSync' requires that UNICODE be set to true or false in the root module");
-        pub const DsReplicaAdd = @compileError("'DsReplicaAdd' requires that UNICODE be set to true or false in the root module");
-        pub const DsReplicaDel = @compileError("'DsReplicaDel' requires that UNICODE be set to true or false in the root module");
-        pub const DsReplicaModify = @compileError("'DsReplicaModify' requires that UNICODE be set to true or false in the root module");
-        pub const DsReplicaUpdateRefs = @compileError("'DsReplicaUpdateRefs' requires that UNICODE be set to true or false in the root module");
-        pub const DsReplicaSyncAll = @compileError("'DsReplicaSyncAll' requires that UNICODE be set to true or false in the root module");
-        pub const DsRemoveDsServer = @compileError("'DsRemoveDsServer' requires that UNICODE be set to true or false in the root module");
-        pub const DsRemoveDsDomain = @compileError("'DsRemoveDsDomain' requires that UNICODE be set to true or false in the root module");
-        pub const DsListSites = @compileError("'DsListSites' requires that UNICODE be set to true or false in the root module");
-        pub const DsListServersInSite = @compileError("'DsListServersInSite' requires that UNICODE be set to true or false in the root module");
-        pub const DsListDomainsInSite = @compileError("'DsListDomainsInSite' requires that UNICODE be set to true or false in the root module");
-        pub const DsListServersForDomainInSite = @compileError("'DsListServersForDomainInSite' requires that UNICODE be set to true or false in the root module");
-        pub const DsListInfoForServer = @compileError("'DsListInfoForServer' requires that UNICODE be set to true or false in the root module");
-        pub const DsListRoles = @compileError("'DsListRoles' requires that UNICODE be set to true or false in the root module");
-        pub const DsQuerySitesByCost = @compileError("'DsQuerySitesByCost' requires that UNICODE be set to true or false in the root module");
-        pub const DsMapSchemaGuids = @compileError("'DsMapSchemaGuids' requires that UNICODE be set to true or false in the root module");
-        pub const DsFreeSchemaGuidMap = @compileError("'DsFreeSchemaGuidMap' requires that UNICODE be set to true or false in the root module");
-        pub const DsGetDomainControllerInfo = @compileError("'DsGetDomainControllerInfo' requires that UNICODE be set to true or false in the root module");
-        pub const DsFreeDomainControllerInfo = @compileError("'DsFreeDomainControllerInfo' requires that UNICODE be set to true or false in the root module");
-        pub const DsReplicaVerifyObjects = @compileError("'DsReplicaVerifyObjects' requires that UNICODE be set to true or false in the root module");
-        pub const DsAddSidHistory = @compileError("'DsAddSidHistory' requires that UNICODE be set to true or false in the root module");
-        pub const DsInheritSecurityIdentity = @compileError("'DsInheritSecurityIdentity' requires that UNICODE be set to true or false in the root module");
-        pub const DsGetDcName = @compileError("'DsGetDcName' requires that UNICODE be set to true or false in the root module");
-        pub const DsGetSiteName = @compileError("'DsGetSiteName' requires that UNICODE be set to true or false in the root module");
-        pub const DsValidateSubnetName = @compileError("'DsValidateSubnetName' requires that UNICODE be set to true or false in the root module");
-        pub const DsAddressToSiteNames = @compileError("'DsAddressToSiteNames' requires that UNICODE be set to true or false in the root module");
-        pub const DsAddressToSiteNamesEx = @compileError("'DsAddressToSiteNamesEx' requires that UNICODE be set to true or false in the root module");
-        pub const DsEnumerateDomainTrusts = @compileError("'DsEnumerateDomainTrusts' requires that UNICODE be set to true or false in the root module");
-        pub const DsGetDcSiteCoverage = @compileError("'DsGetDcSiteCoverage' requires that UNICODE be set to true or false in the root module");
-        pub const DsDeregisterDnsHostRecords = @compileError("'DsDeregisterDnsHostRecords' requires that UNICODE be set to true or false in the root module");
-        pub const DsGetDcOpen = @compileError("'DsGetDcOpen' requires that UNICODE be set to true or false in the root module");
-        pub const DsGetDcNext = @compileError("'DsGetDcNext' requires that UNICODE be set to true or false in the root module");
-    },
+pub const DSBROWSEINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DSBROWSEINFOA,
+    .wide => @This().DSBROWSEINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DSBROWSEINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DSBITEM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DSBITEMA,
+    .wide => @This().DSBITEMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DSBITEM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DS_NAME_RESULT_ITEM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DS_NAME_RESULT_ITEMA,
+    .wide => @This().DS_NAME_RESULT_ITEMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DS_NAME_RESULT_ITEM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DS_NAME_RESULT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DS_NAME_RESULTA,
+    .wide => @This().DS_NAME_RESULTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DS_NAME_RESULT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DS_REPSYNCALL_SYNC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DS_REPSYNCALL_SYNCA,
+    .wide => @This().DS_REPSYNCALL_SYNCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DS_REPSYNCALL_SYNC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DS_REPSYNCALL_ERRINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DS_REPSYNCALL_ERRINFOA,
+    .wide => @This().DS_REPSYNCALL_ERRINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DS_REPSYNCALL_ERRINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DS_REPSYNCALL_UPDATE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DS_REPSYNCALL_UPDATEA,
+    .wide => @This().DS_REPSYNCALL_UPDATEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DS_REPSYNCALL_UPDATE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DS_SCHEMA_GUID_MAP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DS_SCHEMA_GUID_MAPA,
+    .wide => @This().DS_SCHEMA_GUID_MAPW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DS_SCHEMA_GUID_MAP' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DS_DOMAIN_CONTROLLER_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DS_DOMAIN_CONTROLLER_INFO_1A,
+    .wide => @This().DS_DOMAIN_CONTROLLER_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DS_DOMAIN_CONTROLLER_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DS_DOMAIN_CONTROLLER_INFO_2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DS_DOMAIN_CONTROLLER_INFO_2A,
+    .wide => @This().DS_DOMAIN_CONTROLLER_INFO_2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DS_DOMAIN_CONTROLLER_INFO_2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DS_DOMAIN_CONTROLLER_INFO_3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DS_DOMAIN_CONTROLLER_INFO_3A,
+    .wide => @This().DS_DOMAIN_CONTROLLER_INFO_3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DS_DOMAIN_CONTROLLER_INFO_3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DOMAIN_CONTROLLER_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DOMAIN_CONTROLLER_INFOA,
+    .wide => @This().DOMAIN_CONTROLLER_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DOMAIN_CONTROLLER_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DS_DOMAIN_TRUSTS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DS_DOMAIN_TRUSTSA,
+    .wide => @This().DS_DOMAIN_TRUSTSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DS_DOMAIN_TRUSTS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsBrowseForContainer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsBrowseForContainerA,
+    .wide => @This().DsBrowseForContainerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsBrowseForContainer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsMakeSpn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsMakeSpnA,
+    .wide => @This().DsMakeSpnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsMakeSpn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsCrackSpn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsCrackSpnA,
+    .wide => @This().DsCrackSpnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsCrackSpn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsQuoteRdnValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsQuoteRdnValueA,
+    .wide => @This().DsQuoteRdnValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsQuoteRdnValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsUnquoteRdnValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsUnquoteRdnValueA,
+    .wide => @This().DsUnquoteRdnValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsUnquoteRdnValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsCrackUnquotedMangledRdn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsCrackUnquotedMangledRdnA,
+    .wide => @This().DsCrackUnquotedMangledRdnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsCrackUnquotedMangledRdn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsIsMangledRdnValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsIsMangledRdnValueA,
+    .wide => @This().DsIsMangledRdnValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsIsMangledRdnValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsIsMangledDn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsIsMangledDnA,
+    .wide => @This().DsIsMangledDnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsIsMangledDn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsCrackSpn2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsCrackSpn2A,
+    .wide => @This().DsCrackSpn2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsCrackSpn2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsBind = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsBindA,
+    .wide => @This().DsBindW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsBind' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsBindWithCred = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsBindWithCredA,
+    .wide => @This().DsBindWithCredW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsBindWithCred' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsBindWithSpn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsBindWithSpnA,
+    .wide => @This().DsBindWithSpnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsBindWithSpn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsBindWithSpnEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsBindWithSpnExA,
+    .wide => @This().DsBindWithSpnExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsBindWithSpnEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsBindByInstance = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsBindByInstanceA,
+    .wide => @This().DsBindByInstanceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsBindByInstance' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsBindToISTG = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsBindToISTGA,
+    .wide => @This().DsBindToISTGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsBindToISTG' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsUnBind = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsUnBindA,
+    .wide => @This().DsUnBindW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsUnBind' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsMakePasswordCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsMakePasswordCredentialsA,
+    .wide => @This().DsMakePasswordCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsMakePasswordCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsCrackNames = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsCrackNamesA,
+    .wide => @This().DsCrackNamesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsCrackNames' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsFreeNameResult = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsFreeNameResultA,
+    .wide => @This().DsFreeNameResultW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsFreeNameResult' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsGetSpn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsGetSpnA,
+    .wide => @This().DsGetSpnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsGetSpn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsFreeSpnArray = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsFreeSpnArrayA,
+    .wide => @This().DsFreeSpnArrayW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsFreeSpnArray' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsWriteAccountSpn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsWriteAccountSpnA,
+    .wide => @This().DsWriteAccountSpnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsWriteAccountSpn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsClientMakeSpnForTargetServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsClientMakeSpnForTargetServerA,
+    .wide => @This().DsClientMakeSpnForTargetServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsClientMakeSpnForTargetServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsServerRegisterSpn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsServerRegisterSpnA,
+    .wide => @This().DsServerRegisterSpnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsServerRegisterSpn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsReplicaSync = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsReplicaSyncA,
+    .wide => @This().DsReplicaSyncW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsReplicaSync' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsReplicaAdd = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsReplicaAddA,
+    .wide => @This().DsReplicaAddW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsReplicaAdd' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsReplicaDel = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsReplicaDelA,
+    .wide => @This().DsReplicaDelW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsReplicaDel' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsReplicaModify = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsReplicaModifyA,
+    .wide => @This().DsReplicaModifyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsReplicaModify' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsReplicaUpdateRefs = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsReplicaUpdateRefsA,
+    .wide => @This().DsReplicaUpdateRefsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsReplicaUpdateRefs' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsReplicaSyncAll = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsReplicaSyncAllA,
+    .wide => @This().DsReplicaSyncAllW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsReplicaSyncAll' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsRemoveDsServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsRemoveDsServerA,
+    .wide => @This().DsRemoveDsServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsRemoveDsServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsRemoveDsDomain = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsRemoveDsDomainA,
+    .wide => @This().DsRemoveDsDomainW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsRemoveDsDomain' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsListSites = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsListSitesA,
+    .wide => @This().DsListSitesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsListSites' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsListServersInSite = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsListServersInSiteA,
+    .wide => @This().DsListServersInSiteW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsListServersInSite' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsListDomainsInSite = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsListDomainsInSiteA,
+    .wide => @This().DsListDomainsInSiteW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsListDomainsInSite' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsListServersForDomainInSite = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsListServersForDomainInSiteA,
+    .wide => @This().DsListServersForDomainInSiteW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsListServersForDomainInSite' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsListInfoForServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsListInfoForServerA,
+    .wide => @This().DsListInfoForServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsListInfoForServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsListRoles = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsListRolesA,
+    .wide => @This().DsListRolesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsListRoles' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsQuerySitesByCost = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsQuerySitesByCostA,
+    .wide => @This().DsQuerySitesByCostW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsQuerySitesByCost' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsMapSchemaGuids = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsMapSchemaGuidsA,
+    .wide => @This().DsMapSchemaGuidsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsMapSchemaGuids' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsFreeSchemaGuidMap = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsFreeSchemaGuidMapA,
+    .wide => @This().DsFreeSchemaGuidMapW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsFreeSchemaGuidMap' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsGetDomainControllerInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsGetDomainControllerInfoA,
+    .wide => @This().DsGetDomainControllerInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsGetDomainControllerInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsFreeDomainControllerInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsFreeDomainControllerInfoA,
+    .wide => @This().DsFreeDomainControllerInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsFreeDomainControllerInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsReplicaVerifyObjects = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsReplicaVerifyObjectsA,
+    .wide => @This().DsReplicaVerifyObjectsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsReplicaVerifyObjects' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsAddSidHistory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsAddSidHistoryA,
+    .wide => @This().DsAddSidHistoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsAddSidHistory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsInheritSecurityIdentity = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsInheritSecurityIdentityA,
+    .wide => @This().DsInheritSecurityIdentityW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsInheritSecurityIdentity' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsGetDcName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsGetDcNameA,
+    .wide => @This().DsGetDcNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsGetDcName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsGetSiteName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsGetSiteNameA,
+    .wide => @This().DsGetSiteNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsGetSiteName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsValidateSubnetName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsValidateSubnetNameA,
+    .wide => @This().DsValidateSubnetNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsValidateSubnetName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsAddressToSiteNames = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsAddressToSiteNamesA,
+    .wide => @This().DsAddressToSiteNamesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsAddressToSiteNames' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsAddressToSiteNamesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsAddressToSiteNamesExA,
+    .wide => @This().DsAddressToSiteNamesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsAddressToSiteNamesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsEnumerateDomainTrusts = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsEnumerateDomainTrustsA,
+    .wide => @This().DsEnumerateDomainTrustsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsEnumerateDomainTrusts' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsGetDcSiteCoverage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsGetDcSiteCoverageA,
+    .wide => @This().DsGetDcSiteCoverageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsGetDcSiteCoverage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsDeregisterDnsHostRecords = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsDeregisterDnsHostRecordsA,
+    .wide => @This().DsDeregisterDnsHostRecordsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsDeregisterDnsHostRecords' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsGetDcOpen = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsGetDcOpenA,
+    .wide => @This().DsGetDcOpenW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsGetDcOpen' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DsGetDcNext = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DsGetDcNextA,
+    .wide => @This().DsGetDcNextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DsGetDcNext' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (35)

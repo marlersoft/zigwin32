@@ -3276,91 +3276,138 @@ pub extern "ntdll" fn NtSetInformationThread(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (19)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const STARTUPINFO = thismodule.STARTUPINFOA;
-        pub const STARTUPINFOEX = thismodule.STARTUPINFOEXA;
-        pub const CreateMutex = thismodule.CreateMutexA;
-        pub const CreateEvent = thismodule.CreateEventA;
-        pub const OpenEvent = thismodule.OpenEventA;
-        pub const CreateMutexEx = thismodule.CreateMutexExA;
-        pub const CreateEventEx = thismodule.CreateEventExA;
-        pub const CreateSemaphoreEx = thismodule.CreateSemaphoreExA;
-        pub const CreateSemaphore = thismodule.CreateSemaphoreA;
-        pub const CreateProcess = thismodule.CreateProcessA;
-        pub const GetStartupInfo = thismodule.GetStartupInfoA;
-        pub const CreateProcessAsUser = thismodule.CreateProcessAsUserA;
-        pub const CreatePrivateNamespace = thismodule.CreatePrivateNamespaceA;
-        pub const OpenPrivateNamespace = thismodule.OpenPrivateNamespaceA;
-        pub const CreateBoundaryDescriptor = thismodule.CreateBoundaryDescriptorA;
-        pub const AvSetMmThreadCharacteristics = thismodule.AvSetMmThreadCharacteristicsA;
-        pub const AvSetMmMaxThreadCharacteristics = thismodule.AvSetMmMaxThreadCharacteristicsA;
-        pub const AvRtCreateThreadOrderingGroupEx = thismodule.AvRtCreateThreadOrderingGroupExA;
-        pub const QueryFullProcessImageName = thismodule.QueryFullProcessImageNameA;
-    },
-    .wide => struct {
-        pub const STARTUPINFO = thismodule.STARTUPINFOW;
-        pub const STARTUPINFOEX = thismodule.STARTUPINFOEXW;
-        pub const CreateMutex = thismodule.CreateMutexW;
-        pub const CreateEvent = thismodule.CreateEventW;
-        pub const OpenEvent = thismodule.OpenEventW;
-        pub const CreateMutexEx = thismodule.CreateMutexExW;
-        pub const CreateEventEx = thismodule.CreateEventExW;
-        pub const CreateSemaphoreEx = thismodule.CreateSemaphoreExW;
-        pub const CreateSemaphore = thismodule.CreateSemaphoreW;
-        pub const CreateProcess = thismodule.CreateProcessW;
-        pub const GetStartupInfo = thismodule.GetStartupInfoW;
-        pub const CreateProcessAsUser = thismodule.CreateProcessAsUserW;
-        pub const CreatePrivateNamespace = thismodule.CreatePrivateNamespaceW;
-        pub const OpenPrivateNamespace = thismodule.OpenPrivateNamespaceW;
-        pub const CreateBoundaryDescriptor = thismodule.CreateBoundaryDescriptorW;
-        pub const AvSetMmThreadCharacteristics = thismodule.AvSetMmThreadCharacteristicsW;
-        pub const AvSetMmMaxThreadCharacteristics = thismodule.AvSetMmMaxThreadCharacteristicsW;
-        pub const AvRtCreateThreadOrderingGroupEx = thismodule.AvRtCreateThreadOrderingGroupExW;
-        pub const QueryFullProcessImageName = thismodule.QueryFullProcessImageNameW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const STARTUPINFO = *opaque{};
-        pub const STARTUPINFOEX = *opaque{};
-        pub const CreateMutex = *opaque{};
-        pub const CreateEvent = *opaque{};
-        pub const OpenEvent = *opaque{};
-        pub const CreateMutexEx = *opaque{};
-        pub const CreateEventEx = *opaque{};
-        pub const CreateSemaphoreEx = *opaque{};
-        pub const CreateSemaphore = *opaque{};
-        pub const CreateProcess = *opaque{};
-        pub const GetStartupInfo = *opaque{};
-        pub const CreateProcessAsUser = *opaque{};
-        pub const CreatePrivateNamespace = *opaque{};
-        pub const OpenPrivateNamespace = *opaque{};
-        pub const CreateBoundaryDescriptor = *opaque{};
-        pub const AvSetMmThreadCharacteristics = *opaque{};
-        pub const AvSetMmMaxThreadCharacteristics = *opaque{};
-        pub const AvRtCreateThreadOrderingGroupEx = *opaque{};
-        pub const QueryFullProcessImageName = *opaque{};
-    } else struct {
-        pub const STARTUPINFO = @compileError("'STARTUPINFO' requires that UNICODE be set to true or false in the root module");
-        pub const STARTUPINFOEX = @compileError("'STARTUPINFOEX' requires that UNICODE be set to true or false in the root module");
-        pub const CreateMutex = @compileError("'CreateMutex' requires that UNICODE be set to true or false in the root module");
-        pub const CreateEvent = @compileError("'CreateEvent' requires that UNICODE be set to true or false in the root module");
-        pub const OpenEvent = @compileError("'OpenEvent' requires that UNICODE be set to true or false in the root module");
-        pub const CreateMutexEx = @compileError("'CreateMutexEx' requires that UNICODE be set to true or false in the root module");
-        pub const CreateEventEx = @compileError("'CreateEventEx' requires that UNICODE be set to true or false in the root module");
-        pub const CreateSemaphoreEx = @compileError("'CreateSemaphoreEx' requires that UNICODE be set to true or false in the root module");
-        pub const CreateSemaphore = @compileError("'CreateSemaphore' requires that UNICODE be set to true or false in the root module");
-        pub const CreateProcess = @compileError("'CreateProcess' requires that UNICODE be set to true or false in the root module");
-        pub const GetStartupInfo = @compileError("'GetStartupInfo' requires that UNICODE be set to true or false in the root module");
-        pub const CreateProcessAsUser = @compileError("'CreateProcessAsUser' requires that UNICODE be set to true or false in the root module");
-        pub const CreatePrivateNamespace = @compileError("'CreatePrivateNamespace' requires that UNICODE be set to true or false in the root module");
-        pub const OpenPrivateNamespace = @compileError("'OpenPrivateNamespace' requires that UNICODE be set to true or false in the root module");
-        pub const CreateBoundaryDescriptor = @compileError("'CreateBoundaryDescriptor' requires that UNICODE be set to true or false in the root module");
-        pub const AvSetMmThreadCharacteristics = @compileError("'AvSetMmThreadCharacteristics' requires that UNICODE be set to true or false in the root module");
-        pub const AvSetMmMaxThreadCharacteristics = @compileError("'AvSetMmMaxThreadCharacteristics' requires that UNICODE be set to true or false in the root module");
-        pub const AvRtCreateThreadOrderingGroupEx = @compileError("'AvRtCreateThreadOrderingGroupEx' requires that UNICODE be set to true or false in the root module");
-        pub const QueryFullProcessImageName = @compileError("'QueryFullProcessImageName' requires that UNICODE be set to true or false in the root module");
-    },
+pub const STARTUPINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().STARTUPINFOA,
+    .wide => @This().STARTUPINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'STARTUPINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const STARTUPINFOEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().STARTUPINFOEXA,
+    .wide => @This().STARTUPINFOEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'STARTUPINFOEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateMutex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateMutexA,
+    .wide => @This().CreateMutexW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateMutex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateEvent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateEventA,
+    .wide => @This().CreateEventW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateEvent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenEvent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenEventA,
+    .wide => @This().OpenEventW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenEvent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateMutexEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateMutexExA,
+    .wide => @This().CreateMutexExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateMutexEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateEventEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateEventExA,
+    .wide => @This().CreateEventExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateEventEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateSemaphoreEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateSemaphoreExA,
+    .wide => @This().CreateSemaphoreExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateSemaphoreEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateSemaphore = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateSemaphoreA,
+    .wide => @This().CreateSemaphoreW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateSemaphore' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateProcess = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateProcessA,
+    .wide => @This().CreateProcessW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateProcess' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetStartupInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetStartupInfoA,
+    .wide => @This().GetStartupInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetStartupInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateProcessAsUser = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateProcessAsUserA,
+    .wide => @This().CreateProcessAsUserW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateProcessAsUser' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreatePrivateNamespace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreatePrivateNamespaceA,
+    .wide => @This().CreatePrivateNamespaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreatePrivateNamespace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenPrivateNamespace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenPrivateNamespaceA,
+    .wide => @This().OpenPrivateNamespaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenPrivateNamespace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateBoundaryDescriptor = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateBoundaryDescriptorA,
+    .wide => @This().CreateBoundaryDescriptorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateBoundaryDescriptor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AvSetMmThreadCharacteristics = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AvSetMmThreadCharacteristicsA,
+    .wide => @This().AvSetMmThreadCharacteristicsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AvSetMmThreadCharacteristics' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AvSetMmMaxThreadCharacteristics = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AvSetMmMaxThreadCharacteristicsA,
+    .wide => @This().AvSetMmMaxThreadCharacteristicsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AvSetMmMaxThreadCharacteristics' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AvRtCreateThreadOrderingGroupEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AvRtCreateThreadOrderingGroupExA,
+    .wide => @This().AvRtCreateThreadOrderingGroupExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AvRtCreateThreadOrderingGroupEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QueryFullProcessImageName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().QueryFullProcessImageNameA,
+    .wide => @This().QueryFullProcessImageNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QueryFullProcessImageName' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (23)

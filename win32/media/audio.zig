@@ -5962,239 +5962,397 @@ pub extern "msacm32" fn acmStreamUnprepareHeader(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (56)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const WAVEOUTCAPS = thismodule.WAVEOUTCAPSA;
-        pub const WAVEOUTCAPS2 = thismodule.WAVEOUTCAPS2A;
-        pub const WAVEINCAPS = thismodule.WAVEINCAPSA;
-        pub const WAVEINCAPS2 = thismodule.WAVEINCAPS2A;
-        pub const MIDIOUTCAPS = thismodule.MIDIOUTCAPSA;
-        pub const MIDIOUTCAPS2 = thismodule.MIDIOUTCAPS2A;
-        pub const MIDIINCAPS = thismodule.MIDIINCAPSA;
-        pub const MIDIINCAPS2 = thismodule.MIDIINCAPS2A;
-        pub const AUXCAPS = thismodule.AUXCAPSA;
-        pub const AUXCAPS2 = thismodule.AUXCAPS2A;
-        pub const MIXERCAPS = thismodule.MIXERCAPSA;
-        pub const MIXERCAPS2 = thismodule.MIXERCAPS2A;
-        pub const MIXERLINE = thismodule.MIXERLINEA;
-        pub const MIXERCONTROL = thismodule.MIXERCONTROLA;
-        pub const MIXERLINECONTROLS = thismodule.MIXERLINECONTROLSA;
-        pub const MIXERCONTROLDETAILS_LISTTEXT = thismodule.MIXERCONTROLDETAILS_LISTTEXTA;
-        pub const ACMDRIVERDETAILS = thismodule.ACMDRIVERDETAILSA;
-        pub const ACMFORMATTAGDETAILS = thismodule.ACMFORMATTAGDETAILSA;
-        pub const ACMFORMATTAGENUMCB = thismodule.ACMFORMATTAGENUMCBA;
-        pub const ACMFORMATENUMCB = thismodule.ACMFORMATENUMCBA;
-        pub const ACMFORMATCHOOSEHOOKPROC = thismodule.ACMFORMATCHOOSEHOOKPROCA;
-        pub const ACMFORMATCHOOSE = thismodule.ACMFORMATCHOOSEA;
-        pub const ACMFILTERTAGDETAILS = thismodule.ACMFILTERTAGDETAILSA;
-        pub const ACMFILTERTAGENUMCB = thismodule.ACMFILTERTAGENUMCBA;
-        pub const ACMFILTERDETAILS = thismodule.ACMFILTERDETAILSA;
-        pub const ACMFILTERENUMCB = thismodule.ACMFILTERENUMCBA;
-        pub const ACMFILTERCHOOSEHOOKPROC = thismodule.ACMFILTERCHOOSEHOOKPROCA;
-        pub const ACMFILTERCHOOSE = thismodule.ACMFILTERCHOOSEA;
-        pub const tACMDRVOPENDESC = thismodule.tACMDRVOPENDESCA;
-        pub const sndPlaySound = thismodule.sndPlaySoundA;
-        pub const PlaySound = thismodule.PlaySoundA;
-        pub const waveOutGetDevCaps = thismodule.waveOutGetDevCapsA;
-        pub const waveOutGetErrorText = thismodule.waveOutGetErrorTextA;
-        pub const waveInGetDevCaps = thismodule.waveInGetDevCapsA;
-        pub const waveInGetErrorText = thismodule.waveInGetErrorTextA;
-        pub const midiOutGetDevCaps = thismodule.midiOutGetDevCapsA;
-        pub const midiOutGetErrorText = thismodule.midiOutGetErrorTextA;
-        pub const midiInGetDevCaps = thismodule.midiInGetDevCapsA;
-        pub const midiInGetErrorText = thismodule.midiInGetErrorTextA;
-        pub const auxGetDevCaps = thismodule.auxGetDevCapsA;
-        pub const mixerGetDevCaps = thismodule.mixerGetDevCapsA;
-        pub const mixerGetLineInfo = thismodule.mixerGetLineInfoA;
-        pub const mixerGetLineControls = thismodule.mixerGetLineControlsA;
-        pub const mixerGetControlDetails = thismodule.mixerGetControlDetailsA;
-        pub const acmDriverAdd = thismodule.acmDriverAddA;
-        pub const acmDriverDetails = thismodule.acmDriverDetailsA;
-        pub const acmFormatTagDetails = thismodule.acmFormatTagDetailsA;
-        pub const acmFormatTagEnum = thismodule.acmFormatTagEnumA;
-        pub const acmFormatDetails = thismodule.acmFormatDetailsA;
-        pub const acmFormatEnum = thismodule.acmFormatEnumA;
-        pub const acmFormatChoose = thismodule.acmFormatChooseA;
-        pub const acmFilterTagDetails = thismodule.acmFilterTagDetailsA;
-        pub const acmFilterTagEnum = thismodule.acmFilterTagEnumA;
-        pub const acmFilterDetails = thismodule.acmFilterDetailsA;
-        pub const acmFilterEnum = thismodule.acmFilterEnumA;
-        pub const acmFilterChoose = thismodule.acmFilterChooseA;
-    },
-    .wide => struct {
-        pub const WAVEOUTCAPS = thismodule.WAVEOUTCAPSW;
-        pub const WAVEOUTCAPS2 = thismodule.WAVEOUTCAPS2W;
-        pub const WAVEINCAPS = thismodule.WAVEINCAPSW;
-        pub const WAVEINCAPS2 = thismodule.WAVEINCAPS2W;
-        pub const MIDIOUTCAPS = thismodule.MIDIOUTCAPSW;
-        pub const MIDIOUTCAPS2 = thismodule.MIDIOUTCAPS2W;
-        pub const MIDIINCAPS = thismodule.MIDIINCAPSW;
-        pub const MIDIINCAPS2 = thismodule.MIDIINCAPS2W;
-        pub const AUXCAPS = thismodule.AUXCAPSW;
-        pub const AUXCAPS2 = thismodule.AUXCAPS2W;
-        pub const MIXERCAPS = thismodule.MIXERCAPSW;
-        pub const MIXERCAPS2 = thismodule.MIXERCAPS2W;
-        pub const MIXERLINE = thismodule.MIXERLINEW;
-        pub const MIXERCONTROL = thismodule.MIXERCONTROLW;
-        pub const MIXERLINECONTROLS = thismodule.MIXERLINECONTROLSW;
-        pub const MIXERCONTROLDETAILS_LISTTEXT = thismodule.MIXERCONTROLDETAILS_LISTTEXTW;
-        pub const ACMDRIVERDETAILS = thismodule.ACMDRIVERDETAILSW;
-        pub const ACMFORMATTAGDETAILS = thismodule.ACMFORMATTAGDETAILSW;
-        pub const ACMFORMATTAGENUMCB = thismodule.ACMFORMATTAGENUMCBW;
-        pub const ACMFORMATENUMCB = thismodule.ACMFORMATENUMCBW;
-        pub const ACMFORMATCHOOSEHOOKPROC = thismodule.ACMFORMATCHOOSEHOOKPROCW;
-        pub const ACMFORMATCHOOSE = thismodule.ACMFORMATCHOOSEW;
-        pub const ACMFILTERTAGDETAILS = thismodule.ACMFILTERTAGDETAILSW;
-        pub const ACMFILTERTAGENUMCB = thismodule.ACMFILTERTAGENUMCBW;
-        pub const ACMFILTERDETAILS = thismodule.ACMFILTERDETAILSW;
-        pub const ACMFILTERENUMCB = thismodule.ACMFILTERENUMCBW;
-        pub const ACMFILTERCHOOSEHOOKPROC = thismodule.ACMFILTERCHOOSEHOOKPROCW;
-        pub const ACMFILTERCHOOSE = thismodule.ACMFILTERCHOOSEW;
-        pub const tACMDRVOPENDESC = thismodule.tACMDRVOPENDESCW;
-        pub const sndPlaySound = thismodule.sndPlaySoundW;
-        pub const PlaySound = thismodule.PlaySoundW;
-        pub const waveOutGetDevCaps = thismodule.waveOutGetDevCapsW;
-        pub const waveOutGetErrorText = thismodule.waveOutGetErrorTextW;
-        pub const waveInGetDevCaps = thismodule.waveInGetDevCapsW;
-        pub const waveInGetErrorText = thismodule.waveInGetErrorTextW;
-        pub const midiOutGetDevCaps = thismodule.midiOutGetDevCapsW;
-        pub const midiOutGetErrorText = thismodule.midiOutGetErrorTextW;
-        pub const midiInGetDevCaps = thismodule.midiInGetDevCapsW;
-        pub const midiInGetErrorText = thismodule.midiInGetErrorTextW;
-        pub const auxGetDevCaps = thismodule.auxGetDevCapsW;
-        pub const mixerGetDevCaps = thismodule.mixerGetDevCapsW;
-        pub const mixerGetLineInfo = thismodule.mixerGetLineInfoW;
-        pub const mixerGetLineControls = thismodule.mixerGetLineControlsW;
-        pub const mixerGetControlDetails = thismodule.mixerGetControlDetailsW;
-        pub const acmDriverAdd = thismodule.acmDriverAddW;
-        pub const acmDriverDetails = thismodule.acmDriverDetailsW;
-        pub const acmFormatTagDetails = thismodule.acmFormatTagDetailsW;
-        pub const acmFormatTagEnum = thismodule.acmFormatTagEnumW;
-        pub const acmFormatDetails = thismodule.acmFormatDetailsW;
-        pub const acmFormatEnum = thismodule.acmFormatEnumW;
-        pub const acmFormatChoose = thismodule.acmFormatChooseW;
-        pub const acmFilterTagDetails = thismodule.acmFilterTagDetailsW;
-        pub const acmFilterTagEnum = thismodule.acmFilterTagEnumW;
-        pub const acmFilterDetails = thismodule.acmFilterDetailsW;
-        pub const acmFilterEnum = thismodule.acmFilterEnumW;
-        pub const acmFilterChoose = thismodule.acmFilterChooseW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const WAVEOUTCAPS = *opaque{};
-        pub const WAVEOUTCAPS2 = *opaque{};
-        pub const WAVEINCAPS = *opaque{};
-        pub const WAVEINCAPS2 = *opaque{};
-        pub const MIDIOUTCAPS = *opaque{};
-        pub const MIDIOUTCAPS2 = *opaque{};
-        pub const MIDIINCAPS = *opaque{};
-        pub const MIDIINCAPS2 = *opaque{};
-        pub const AUXCAPS = *opaque{};
-        pub const AUXCAPS2 = *opaque{};
-        pub const MIXERCAPS = *opaque{};
-        pub const MIXERCAPS2 = *opaque{};
-        pub const MIXERLINE = *opaque{};
-        pub const MIXERCONTROL = *opaque{};
-        pub const MIXERLINECONTROLS = *opaque{};
-        pub const MIXERCONTROLDETAILS_LISTTEXT = *opaque{};
-        pub const ACMDRIVERDETAILS = *opaque{};
-        pub const ACMFORMATTAGDETAILS = *opaque{};
-        pub const ACMFORMATTAGENUMCB = *opaque{};
-        pub const ACMFORMATENUMCB = *opaque{};
-        pub const ACMFORMATCHOOSEHOOKPROC = *opaque{};
-        pub const ACMFORMATCHOOSE = *opaque{};
-        pub const ACMFILTERTAGDETAILS = *opaque{};
-        pub const ACMFILTERTAGENUMCB = *opaque{};
-        pub const ACMFILTERDETAILS = *opaque{};
-        pub const ACMFILTERENUMCB = *opaque{};
-        pub const ACMFILTERCHOOSEHOOKPROC = *opaque{};
-        pub const ACMFILTERCHOOSE = *opaque{};
-        pub const tACMDRVOPENDESC = *opaque{};
-        pub const sndPlaySound = *opaque{};
-        pub const PlaySound = *opaque{};
-        pub const waveOutGetDevCaps = *opaque{};
-        pub const waveOutGetErrorText = *opaque{};
-        pub const waveInGetDevCaps = *opaque{};
-        pub const waveInGetErrorText = *opaque{};
-        pub const midiOutGetDevCaps = *opaque{};
-        pub const midiOutGetErrorText = *opaque{};
-        pub const midiInGetDevCaps = *opaque{};
-        pub const midiInGetErrorText = *opaque{};
-        pub const auxGetDevCaps = *opaque{};
-        pub const mixerGetDevCaps = *opaque{};
-        pub const mixerGetLineInfo = *opaque{};
-        pub const mixerGetLineControls = *opaque{};
-        pub const mixerGetControlDetails = *opaque{};
-        pub const acmDriverAdd = *opaque{};
-        pub const acmDriverDetails = *opaque{};
-        pub const acmFormatTagDetails = *opaque{};
-        pub const acmFormatTagEnum = *opaque{};
-        pub const acmFormatDetails = *opaque{};
-        pub const acmFormatEnum = *opaque{};
-        pub const acmFormatChoose = *opaque{};
-        pub const acmFilterTagDetails = *opaque{};
-        pub const acmFilterTagEnum = *opaque{};
-        pub const acmFilterDetails = *opaque{};
-        pub const acmFilterEnum = *opaque{};
-        pub const acmFilterChoose = *opaque{};
-    } else struct {
-        pub const WAVEOUTCAPS = @compileError("'WAVEOUTCAPS' requires that UNICODE be set to true or false in the root module");
-        pub const WAVEOUTCAPS2 = @compileError("'WAVEOUTCAPS2' requires that UNICODE be set to true or false in the root module");
-        pub const WAVEINCAPS = @compileError("'WAVEINCAPS' requires that UNICODE be set to true or false in the root module");
-        pub const WAVEINCAPS2 = @compileError("'WAVEINCAPS2' requires that UNICODE be set to true or false in the root module");
-        pub const MIDIOUTCAPS = @compileError("'MIDIOUTCAPS' requires that UNICODE be set to true or false in the root module");
-        pub const MIDIOUTCAPS2 = @compileError("'MIDIOUTCAPS2' requires that UNICODE be set to true or false in the root module");
-        pub const MIDIINCAPS = @compileError("'MIDIINCAPS' requires that UNICODE be set to true or false in the root module");
-        pub const MIDIINCAPS2 = @compileError("'MIDIINCAPS2' requires that UNICODE be set to true or false in the root module");
-        pub const AUXCAPS = @compileError("'AUXCAPS' requires that UNICODE be set to true or false in the root module");
-        pub const AUXCAPS2 = @compileError("'AUXCAPS2' requires that UNICODE be set to true or false in the root module");
-        pub const MIXERCAPS = @compileError("'MIXERCAPS' requires that UNICODE be set to true or false in the root module");
-        pub const MIXERCAPS2 = @compileError("'MIXERCAPS2' requires that UNICODE be set to true or false in the root module");
-        pub const MIXERLINE = @compileError("'MIXERLINE' requires that UNICODE be set to true or false in the root module");
-        pub const MIXERCONTROL = @compileError("'MIXERCONTROL' requires that UNICODE be set to true or false in the root module");
-        pub const MIXERLINECONTROLS = @compileError("'MIXERLINECONTROLS' requires that UNICODE be set to true or false in the root module");
-        pub const MIXERCONTROLDETAILS_LISTTEXT = @compileError("'MIXERCONTROLDETAILS_LISTTEXT' requires that UNICODE be set to true or false in the root module");
-        pub const ACMDRIVERDETAILS = @compileError("'ACMDRIVERDETAILS' requires that UNICODE be set to true or false in the root module");
-        pub const ACMFORMATTAGDETAILS = @compileError("'ACMFORMATTAGDETAILS' requires that UNICODE be set to true or false in the root module");
-        pub const ACMFORMATTAGENUMCB = @compileError("'ACMFORMATTAGENUMCB' requires that UNICODE be set to true or false in the root module");
-        pub const ACMFORMATENUMCB = @compileError("'ACMFORMATENUMCB' requires that UNICODE be set to true or false in the root module");
-        pub const ACMFORMATCHOOSEHOOKPROC = @compileError("'ACMFORMATCHOOSEHOOKPROC' requires that UNICODE be set to true or false in the root module");
-        pub const ACMFORMATCHOOSE = @compileError("'ACMFORMATCHOOSE' requires that UNICODE be set to true or false in the root module");
-        pub const ACMFILTERTAGDETAILS = @compileError("'ACMFILTERTAGDETAILS' requires that UNICODE be set to true or false in the root module");
-        pub const ACMFILTERTAGENUMCB = @compileError("'ACMFILTERTAGENUMCB' requires that UNICODE be set to true or false in the root module");
-        pub const ACMFILTERDETAILS = @compileError("'ACMFILTERDETAILS' requires that UNICODE be set to true or false in the root module");
-        pub const ACMFILTERENUMCB = @compileError("'ACMFILTERENUMCB' requires that UNICODE be set to true or false in the root module");
-        pub const ACMFILTERCHOOSEHOOKPROC = @compileError("'ACMFILTERCHOOSEHOOKPROC' requires that UNICODE be set to true or false in the root module");
-        pub const ACMFILTERCHOOSE = @compileError("'ACMFILTERCHOOSE' requires that UNICODE be set to true or false in the root module");
-        pub const tACMDRVOPENDESC = @compileError("'tACMDRVOPENDESC' requires that UNICODE be set to true or false in the root module");
-        pub const sndPlaySound = @compileError("'sndPlaySound' requires that UNICODE be set to true or false in the root module");
-        pub const PlaySound = @compileError("'PlaySound' requires that UNICODE be set to true or false in the root module");
-        pub const waveOutGetDevCaps = @compileError("'waveOutGetDevCaps' requires that UNICODE be set to true or false in the root module");
-        pub const waveOutGetErrorText = @compileError("'waveOutGetErrorText' requires that UNICODE be set to true or false in the root module");
-        pub const waveInGetDevCaps = @compileError("'waveInGetDevCaps' requires that UNICODE be set to true or false in the root module");
-        pub const waveInGetErrorText = @compileError("'waveInGetErrorText' requires that UNICODE be set to true or false in the root module");
-        pub const midiOutGetDevCaps = @compileError("'midiOutGetDevCaps' requires that UNICODE be set to true or false in the root module");
-        pub const midiOutGetErrorText = @compileError("'midiOutGetErrorText' requires that UNICODE be set to true or false in the root module");
-        pub const midiInGetDevCaps = @compileError("'midiInGetDevCaps' requires that UNICODE be set to true or false in the root module");
-        pub const midiInGetErrorText = @compileError("'midiInGetErrorText' requires that UNICODE be set to true or false in the root module");
-        pub const auxGetDevCaps = @compileError("'auxGetDevCaps' requires that UNICODE be set to true or false in the root module");
-        pub const mixerGetDevCaps = @compileError("'mixerGetDevCaps' requires that UNICODE be set to true or false in the root module");
-        pub const mixerGetLineInfo = @compileError("'mixerGetLineInfo' requires that UNICODE be set to true or false in the root module");
-        pub const mixerGetLineControls = @compileError("'mixerGetLineControls' requires that UNICODE be set to true or false in the root module");
-        pub const mixerGetControlDetails = @compileError("'mixerGetControlDetails' requires that UNICODE be set to true or false in the root module");
-        pub const acmDriverAdd = @compileError("'acmDriverAdd' requires that UNICODE be set to true or false in the root module");
-        pub const acmDriverDetails = @compileError("'acmDriverDetails' requires that UNICODE be set to true or false in the root module");
-        pub const acmFormatTagDetails = @compileError("'acmFormatTagDetails' requires that UNICODE be set to true or false in the root module");
-        pub const acmFormatTagEnum = @compileError("'acmFormatTagEnum' requires that UNICODE be set to true or false in the root module");
-        pub const acmFormatDetails = @compileError("'acmFormatDetails' requires that UNICODE be set to true or false in the root module");
-        pub const acmFormatEnum = @compileError("'acmFormatEnum' requires that UNICODE be set to true or false in the root module");
-        pub const acmFormatChoose = @compileError("'acmFormatChoose' requires that UNICODE be set to true or false in the root module");
-        pub const acmFilterTagDetails = @compileError("'acmFilterTagDetails' requires that UNICODE be set to true or false in the root module");
-        pub const acmFilterTagEnum = @compileError("'acmFilterTagEnum' requires that UNICODE be set to true or false in the root module");
-        pub const acmFilterDetails = @compileError("'acmFilterDetails' requires that UNICODE be set to true or false in the root module");
-        pub const acmFilterEnum = @compileError("'acmFilterEnum' requires that UNICODE be set to true or false in the root module");
-        pub const acmFilterChoose = @compileError("'acmFilterChoose' requires that UNICODE be set to true or false in the root module");
-    },
+pub const WAVEOUTCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WAVEOUTCAPSA,
+    .wide => @This().WAVEOUTCAPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WAVEOUTCAPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WAVEOUTCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WAVEOUTCAPS2A,
+    .wide => @This().WAVEOUTCAPS2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WAVEOUTCAPS2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WAVEINCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WAVEINCAPSA,
+    .wide => @This().WAVEINCAPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WAVEINCAPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WAVEINCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WAVEINCAPS2A,
+    .wide => @This().WAVEINCAPS2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WAVEINCAPS2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIDIOUTCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIDIOUTCAPSA,
+    .wide => @This().MIDIOUTCAPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIDIOUTCAPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIDIOUTCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIDIOUTCAPS2A,
+    .wide => @This().MIDIOUTCAPS2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIDIOUTCAPS2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIDIINCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIDIINCAPSA,
+    .wide => @This().MIDIINCAPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIDIINCAPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIDIINCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIDIINCAPS2A,
+    .wide => @This().MIDIINCAPS2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIDIINCAPS2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AUXCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AUXCAPSA,
+    .wide => @This().AUXCAPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AUXCAPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AUXCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AUXCAPS2A,
+    .wide => @This().AUXCAPS2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AUXCAPS2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIXERCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIXERCAPSA,
+    .wide => @This().MIXERCAPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIXERCAPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIXERCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIXERCAPS2A,
+    .wide => @This().MIXERCAPS2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIXERCAPS2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIXERLINE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIXERLINEA,
+    .wide => @This().MIXERLINEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIXERLINE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIXERCONTROL = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIXERCONTROLA,
+    .wide => @This().MIXERCONTROLW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIXERCONTROL' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIXERLINECONTROLS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIXERLINECONTROLSA,
+    .wide => @This().MIXERLINECONTROLSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIXERLINECONTROLS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIXERCONTROLDETAILS_LISTTEXT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIXERCONTROLDETAILS_LISTTEXTA,
+    .wide => @This().MIXERCONTROLDETAILS_LISTTEXTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIXERCONTROLDETAILS_LISTTEXT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMDRIVERDETAILS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMDRIVERDETAILSA,
+    .wide => @This().ACMDRIVERDETAILSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMDRIVERDETAILS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFORMATTAGDETAILS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFORMATTAGDETAILSA,
+    .wide => @This().ACMFORMATTAGDETAILSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFORMATTAGDETAILS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFORMATTAGENUMCB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFORMATTAGENUMCBA,
+    .wide => @This().ACMFORMATTAGENUMCBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFORMATTAGENUMCB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFORMATENUMCB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFORMATENUMCBA,
+    .wide => @This().ACMFORMATENUMCBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFORMATENUMCB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFORMATCHOOSEHOOKPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFORMATCHOOSEHOOKPROCA,
+    .wide => @This().ACMFORMATCHOOSEHOOKPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFORMATCHOOSEHOOKPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFORMATCHOOSE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFORMATCHOOSEA,
+    .wide => @This().ACMFORMATCHOOSEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFORMATCHOOSE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFILTERTAGDETAILS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFILTERTAGDETAILSA,
+    .wide => @This().ACMFILTERTAGDETAILSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFILTERTAGDETAILS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFILTERTAGENUMCB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFILTERTAGENUMCBA,
+    .wide => @This().ACMFILTERTAGENUMCBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFILTERTAGENUMCB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFILTERDETAILS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFILTERDETAILSA,
+    .wide => @This().ACMFILTERDETAILSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFILTERDETAILS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFILTERENUMCB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFILTERENUMCBA,
+    .wide => @This().ACMFILTERENUMCBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFILTERENUMCB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFILTERCHOOSEHOOKPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFILTERCHOOSEHOOKPROCA,
+    .wide => @This().ACMFILTERCHOOSEHOOKPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFILTERCHOOSEHOOKPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFILTERCHOOSE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFILTERCHOOSEA,
+    .wide => @This().ACMFILTERCHOOSEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFILTERCHOOSE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const tACMDRVOPENDESC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().tACMDRVOPENDESCA,
+    .wide => @This().tACMDRVOPENDESCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'tACMDRVOPENDESC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const sndPlaySound = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().sndPlaySoundA,
+    .wide => @This().sndPlaySoundW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'sndPlaySound' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PlaySound = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PlaySoundA,
+    .wide => @This().PlaySoundW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PlaySound' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const waveOutGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().waveOutGetDevCapsA,
+    .wide => @This().waveOutGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'waveOutGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const waveOutGetErrorText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().waveOutGetErrorTextA,
+    .wide => @This().waveOutGetErrorTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'waveOutGetErrorText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const waveInGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().waveInGetDevCapsA,
+    .wide => @This().waveInGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'waveInGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const waveInGetErrorText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().waveInGetErrorTextA,
+    .wide => @This().waveInGetErrorTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'waveInGetErrorText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const midiOutGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().midiOutGetDevCapsA,
+    .wide => @This().midiOutGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'midiOutGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const midiOutGetErrorText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().midiOutGetErrorTextA,
+    .wide => @This().midiOutGetErrorTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'midiOutGetErrorText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const midiInGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().midiInGetDevCapsA,
+    .wide => @This().midiInGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'midiInGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const midiInGetErrorText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().midiInGetErrorTextA,
+    .wide => @This().midiInGetErrorTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'midiInGetErrorText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const auxGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().auxGetDevCapsA,
+    .wide => @This().auxGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'auxGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mixerGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mixerGetDevCapsA,
+    .wide => @This().mixerGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mixerGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mixerGetLineInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mixerGetLineInfoA,
+    .wide => @This().mixerGetLineInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mixerGetLineInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mixerGetLineControls = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mixerGetLineControlsA,
+    .wide => @This().mixerGetLineControlsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mixerGetLineControls' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mixerGetControlDetails = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mixerGetControlDetailsA,
+    .wide => @This().mixerGetControlDetailsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mixerGetControlDetails' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmDriverAdd = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmDriverAddA,
+    .wide => @This().acmDriverAddW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmDriverAdd' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmDriverDetails = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmDriverDetailsA,
+    .wide => @This().acmDriverDetailsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmDriverDetails' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFormatTagDetails = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFormatTagDetailsA,
+    .wide => @This().acmFormatTagDetailsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFormatTagDetails' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFormatTagEnum = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFormatTagEnumA,
+    .wide => @This().acmFormatTagEnumW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFormatTagEnum' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFormatDetails = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFormatDetailsA,
+    .wide => @This().acmFormatDetailsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFormatDetails' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFormatEnum = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFormatEnumA,
+    .wide => @This().acmFormatEnumW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFormatEnum' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFormatChoose = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFormatChooseA,
+    .wide => @This().acmFormatChooseW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFormatChoose' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFilterTagDetails = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFilterTagDetailsA,
+    .wide => @This().acmFilterTagDetailsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFilterTagDetails' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFilterTagEnum = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFilterTagEnumA,
+    .wide => @This().acmFilterTagEnumW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFilterTagEnum' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFilterDetails = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFilterDetailsA,
+    .wide => @This().acmFilterDetailsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFilterDetails' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFilterEnum = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFilterEnumA,
+    .wide => @This().acmFilterEnumW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFilterEnum' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFilterChoose = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFilterChooseA,
+    .wide => @This().acmFilterChooseW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFilterChoose' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (23)

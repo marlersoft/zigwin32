@@ -8216,251 +8216,418 @@ pub extern "sti" fn StiCreateInstanceW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (59)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const FAX_LOG_CATEGORY = thismodule.FAX_LOG_CATEGORYA;
-        pub const FAX_CONFIGURATION = thismodule.FAX_CONFIGURATIONA;
-        pub const FAX_DEVICE_STATUS = thismodule.FAX_DEVICE_STATUSA;
-        pub const FAX_JOB_ENTRY = thismodule.FAX_JOB_ENTRYA;
-        pub const FAX_PORT_INFO = thismodule.FAX_PORT_INFOA;
-        pub const FAX_ROUTING_METHOD = thismodule.FAX_ROUTING_METHODA;
-        pub const FAX_GLOBAL_ROUTING_INFO = thismodule.FAX_GLOBAL_ROUTING_INFOA;
-        pub const FAX_COVERPAGE_INFO = thismodule.FAX_COVERPAGE_INFOA;
-        pub const FAX_JOB_PARAM = thismodule.FAX_JOB_PARAMA;
-        pub const FAX_EVENT = thismodule.FAX_EVENTA;
-        pub const FAX_PRINT_INFO = thismodule.FAX_PRINT_INFOA;
-        pub const FAX_CONTEXT_INFO = thismodule.FAX_CONTEXT_INFOA;
-        pub const PFAXCONNECTFAXSERVER = thismodule.PFAXCONNECTFAXSERVERA;
-        pub const PFAXCOMPLETEJOBPARAMS = thismodule.PFAXCOMPLETEJOBPARAMSA;
-        pub const PFAXSENDDOCUMENT = thismodule.PFAXSENDDOCUMENTA;
-        pub const PFAX_RECIPIENT_CALLBACK = thismodule.PFAX_RECIPIENT_CALLBACKA;
-        pub const PFAXSENDDOCUMENTFORBROADCAST = thismodule.PFAXSENDDOCUMENTFORBROADCASTA;
-        pub const PFAXENUMJOBS = thismodule.PFAXENUMJOBSA;
-        pub const PFAXGETJOB = thismodule.PFAXGETJOBA;
-        pub const PFAXSETJOB = thismodule.PFAXSETJOBA;
-        pub const PFAXGETDEVICESTATUS = thismodule.PFAXGETDEVICESTATUSA;
-        pub const PFAXGETCONFIGURATION = thismodule.PFAXGETCONFIGURATIONA;
-        pub const PFAXSETCONFIGURATION = thismodule.PFAXSETCONFIGURATIONA;
-        pub const PFAXGETLOGGINGCATEGORIES = thismodule.PFAXGETLOGGINGCATEGORIESA;
-        pub const PFAXSETLOGGINGCATEGORIES = thismodule.PFAXSETLOGGINGCATEGORIESA;
-        pub const PFAXENUMPORTS = thismodule.PFAXENUMPORTSA;
-        pub const PFAXGETPORT = thismodule.PFAXGETPORTA;
-        pub const PFAXSETPORT = thismodule.PFAXSETPORTA;
-        pub const PFAXENUMROUTINGMETHODS = thismodule.PFAXENUMROUTINGMETHODSA;
-        pub const PFAXENABLEROUTINGMETHOD = thismodule.PFAXENABLEROUTINGMETHODA;
-        pub const PFAXENUMGLOBALROUTINGINFO = thismodule.PFAXENUMGLOBALROUTINGINFOA;
-        pub const PFAXSETGLOBALROUTINGINFO = thismodule.PFAXSETGLOBALROUTINGINFOA;
-        pub const PFAXGETROUTINGINFO = thismodule.PFAXGETROUTINGINFOA;
-        pub const PFAXSETROUTINGINFO = thismodule.PFAXSETROUTINGINFOA;
-        pub const PFAXSTARTPRINTJOB = thismodule.PFAXSTARTPRINTJOBA;
-        pub const PFAXPRINTCOVERPAGE = thismodule.PFAXPRINTCOVERPAGEA;
-        pub const FaxConnectFaxServer = thismodule.FaxConnectFaxServerA;
-        pub const FaxCompleteJobParams = thismodule.FaxCompleteJobParamsA;
-        pub const FaxSendDocument = thismodule.FaxSendDocumentA;
-        pub const FaxSendDocumentForBroadcast = thismodule.FaxSendDocumentForBroadcastA;
-        pub const FaxEnumJobs = thismodule.FaxEnumJobsA;
-        pub const FaxGetJob = thismodule.FaxGetJobA;
-        pub const FaxSetJob = thismodule.FaxSetJobA;
-        pub const FaxGetDeviceStatus = thismodule.FaxGetDeviceStatusA;
-        pub const FaxGetConfiguration = thismodule.FaxGetConfigurationA;
-        pub const FaxSetConfiguration = thismodule.FaxSetConfigurationA;
-        pub const FaxGetLoggingCategories = thismodule.FaxGetLoggingCategoriesA;
-        pub const FaxSetLoggingCategories = thismodule.FaxSetLoggingCategoriesA;
-        pub const FaxEnumPorts = thismodule.FaxEnumPortsA;
-        pub const FaxGetPort = thismodule.FaxGetPortA;
-        pub const FaxSetPort = thismodule.FaxSetPortA;
-        pub const FaxEnumRoutingMethods = thismodule.FaxEnumRoutingMethodsA;
-        pub const FaxEnableRoutingMethod = thismodule.FaxEnableRoutingMethodA;
-        pub const FaxEnumGlobalRoutingInfo = thismodule.FaxEnumGlobalRoutingInfoA;
-        pub const FaxSetGlobalRoutingInfo = thismodule.FaxSetGlobalRoutingInfoA;
-        pub const FaxGetRoutingInfo = thismodule.FaxGetRoutingInfoA;
-        pub const FaxSetRoutingInfo = thismodule.FaxSetRoutingInfoA;
-        pub const FaxStartPrintJob = thismodule.FaxStartPrintJobA;
-        pub const FaxPrintCoverPage = thismodule.FaxPrintCoverPageA;
-    },
-    .wide => struct {
-        pub const FAX_LOG_CATEGORY = thismodule.FAX_LOG_CATEGORYW;
-        pub const FAX_CONFIGURATION = thismodule.FAX_CONFIGURATIONW;
-        pub const FAX_DEVICE_STATUS = thismodule.FAX_DEVICE_STATUSW;
-        pub const FAX_JOB_ENTRY = thismodule.FAX_JOB_ENTRYW;
-        pub const FAX_PORT_INFO = thismodule.FAX_PORT_INFOW;
-        pub const FAX_ROUTING_METHOD = thismodule.FAX_ROUTING_METHODW;
-        pub const FAX_GLOBAL_ROUTING_INFO = thismodule.FAX_GLOBAL_ROUTING_INFOW;
-        pub const FAX_COVERPAGE_INFO = thismodule.FAX_COVERPAGE_INFOW;
-        pub const FAX_JOB_PARAM = thismodule.FAX_JOB_PARAMW;
-        pub const FAX_EVENT = thismodule.FAX_EVENTW;
-        pub const FAX_PRINT_INFO = thismodule.FAX_PRINT_INFOW;
-        pub const FAX_CONTEXT_INFO = thismodule.FAX_CONTEXT_INFOW;
-        pub const PFAXCONNECTFAXSERVER = thismodule.PFAXCONNECTFAXSERVERW;
-        pub const PFAXCOMPLETEJOBPARAMS = thismodule.PFAXCOMPLETEJOBPARAMSW;
-        pub const PFAXSENDDOCUMENT = thismodule.PFAXSENDDOCUMENTW;
-        pub const PFAX_RECIPIENT_CALLBACK = thismodule.PFAX_RECIPIENT_CALLBACKW;
-        pub const PFAXSENDDOCUMENTFORBROADCAST = thismodule.PFAXSENDDOCUMENTFORBROADCASTW;
-        pub const PFAXENUMJOBS = thismodule.PFAXENUMJOBSW;
-        pub const PFAXGETJOB = thismodule.PFAXGETJOBW;
-        pub const PFAXSETJOB = thismodule.PFAXSETJOBW;
-        pub const PFAXGETDEVICESTATUS = thismodule.PFAXGETDEVICESTATUSW;
-        pub const PFAXGETCONFIGURATION = thismodule.PFAXGETCONFIGURATIONW;
-        pub const PFAXSETCONFIGURATION = thismodule.PFAXSETCONFIGURATIONW;
-        pub const PFAXGETLOGGINGCATEGORIES = thismodule.PFAXGETLOGGINGCATEGORIESW;
-        pub const PFAXSETLOGGINGCATEGORIES = thismodule.PFAXSETLOGGINGCATEGORIESW;
-        pub const PFAXENUMPORTS = thismodule.PFAXENUMPORTSW;
-        pub const PFAXGETPORT = thismodule.PFAXGETPORTW;
-        pub const PFAXSETPORT = thismodule.PFAXSETPORTW;
-        pub const PFAXENUMROUTINGMETHODS = thismodule.PFAXENUMROUTINGMETHODSW;
-        pub const PFAXENABLEROUTINGMETHOD = thismodule.PFAXENABLEROUTINGMETHODW;
-        pub const PFAXENUMGLOBALROUTINGINFO = thismodule.PFAXENUMGLOBALROUTINGINFOW;
-        pub const PFAXSETGLOBALROUTINGINFO = thismodule.PFAXSETGLOBALROUTINGINFOW;
-        pub const PFAXGETROUTINGINFO = thismodule.PFAXGETROUTINGINFOW;
-        pub const PFAXSETROUTINGINFO = thismodule.PFAXSETROUTINGINFOW;
-        pub const PFAXSTARTPRINTJOB = thismodule.PFAXSTARTPRINTJOBW;
-        pub const PFAXPRINTCOVERPAGE = thismodule.PFAXPRINTCOVERPAGEW;
-        pub const FaxConnectFaxServer = thismodule.FaxConnectFaxServerW;
-        pub const FaxCompleteJobParams = thismodule.FaxCompleteJobParamsW;
-        pub const FaxSendDocument = thismodule.FaxSendDocumentW;
-        pub const FaxSendDocumentForBroadcast = thismodule.FaxSendDocumentForBroadcastW;
-        pub const FaxEnumJobs = thismodule.FaxEnumJobsW;
-        pub const FaxGetJob = thismodule.FaxGetJobW;
-        pub const FaxSetJob = thismodule.FaxSetJobW;
-        pub const FaxGetDeviceStatus = thismodule.FaxGetDeviceStatusW;
-        pub const FaxGetConfiguration = thismodule.FaxGetConfigurationW;
-        pub const FaxSetConfiguration = thismodule.FaxSetConfigurationW;
-        pub const FaxGetLoggingCategories = thismodule.FaxGetLoggingCategoriesW;
-        pub const FaxSetLoggingCategories = thismodule.FaxSetLoggingCategoriesW;
-        pub const FaxEnumPorts = thismodule.FaxEnumPortsW;
-        pub const FaxGetPort = thismodule.FaxGetPortW;
-        pub const FaxSetPort = thismodule.FaxSetPortW;
-        pub const FaxEnumRoutingMethods = thismodule.FaxEnumRoutingMethodsW;
-        pub const FaxEnableRoutingMethod = thismodule.FaxEnableRoutingMethodW;
-        pub const FaxEnumGlobalRoutingInfo = thismodule.FaxEnumGlobalRoutingInfoW;
-        pub const FaxSetGlobalRoutingInfo = thismodule.FaxSetGlobalRoutingInfoW;
-        pub const FaxGetRoutingInfo = thismodule.FaxGetRoutingInfoW;
-        pub const FaxSetRoutingInfo = thismodule.FaxSetRoutingInfoW;
-        pub const FaxStartPrintJob = thismodule.FaxStartPrintJobW;
-        pub const FaxPrintCoverPage = thismodule.FaxPrintCoverPageW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const FAX_LOG_CATEGORY = *opaque{};
-        pub const FAX_CONFIGURATION = *opaque{};
-        pub const FAX_DEVICE_STATUS = *opaque{};
-        pub const FAX_JOB_ENTRY = *opaque{};
-        pub const FAX_PORT_INFO = *opaque{};
-        pub const FAX_ROUTING_METHOD = *opaque{};
-        pub const FAX_GLOBAL_ROUTING_INFO = *opaque{};
-        pub const FAX_COVERPAGE_INFO = *opaque{};
-        pub const FAX_JOB_PARAM = *opaque{};
-        pub const FAX_EVENT = *opaque{};
-        pub const FAX_PRINT_INFO = *opaque{};
-        pub const FAX_CONTEXT_INFO = *opaque{};
-        pub const PFAXCONNECTFAXSERVER = *opaque{};
-        pub const PFAXCOMPLETEJOBPARAMS = *opaque{};
-        pub const PFAXSENDDOCUMENT = *opaque{};
-        pub const PFAX_RECIPIENT_CALLBACK = *opaque{};
-        pub const PFAXSENDDOCUMENTFORBROADCAST = *opaque{};
-        pub const PFAXENUMJOBS = *opaque{};
-        pub const PFAXGETJOB = *opaque{};
-        pub const PFAXSETJOB = *opaque{};
-        pub const PFAXGETDEVICESTATUS = *opaque{};
-        pub const PFAXGETCONFIGURATION = *opaque{};
-        pub const PFAXSETCONFIGURATION = *opaque{};
-        pub const PFAXGETLOGGINGCATEGORIES = *opaque{};
-        pub const PFAXSETLOGGINGCATEGORIES = *opaque{};
-        pub const PFAXENUMPORTS = *opaque{};
-        pub const PFAXGETPORT = *opaque{};
-        pub const PFAXSETPORT = *opaque{};
-        pub const PFAXENUMROUTINGMETHODS = *opaque{};
-        pub const PFAXENABLEROUTINGMETHOD = *opaque{};
-        pub const PFAXENUMGLOBALROUTINGINFO = *opaque{};
-        pub const PFAXSETGLOBALROUTINGINFO = *opaque{};
-        pub const PFAXGETROUTINGINFO = *opaque{};
-        pub const PFAXSETROUTINGINFO = *opaque{};
-        pub const PFAXSTARTPRINTJOB = *opaque{};
-        pub const PFAXPRINTCOVERPAGE = *opaque{};
-        pub const FaxConnectFaxServer = *opaque{};
-        pub const FaxCompleteJobParams = *opaque{};
-        pub const FaxSendDocument = *opaque{};
-        pub const FaxSendDocumentForBroadcast = *opaque{};
-        pub const FaxEnumJobs = *opaque{};
-        pub const FaxGetJob = *opaque{};
-        pub const FaxSetJob = *opaque{};
-        pub const FaxGetDeviceStatus = *opaque{};
-        pub const FaxGetConfiguration = *opaque{};
-        pub const FaxSetConfiguration = *opaque{};
-        pub const FaxGetLoggingCategories = *opaque{};
-        pub const FaxSetLoggingCategories = *opaque{};
-        pub const FaxEnumPorts = *opaque{};
-        pub const FaxGetPort = *opaque{};
-        pub const FaxSetPort = *opaque{};
-        pub const FaxEnumRoutingMethods = *opaque{};
-        pub const FaxEnableRoutingMethod = *opaque{};
-        pub const FaxEnumGlobalRoutingInfo = *opaque{};
-        pub const FaxSetGlobalRoutingInfo = *opaque{};
-        pub const FaxGetRoutingInfo = *opaque{};
-        pub const FaxSetRoutingInfo = *opaque{};
-        pub const FaxStartPrintJob = *opaque{};
-        pub const FaxPrintCoverPage = *opaque{};
-    } else struct {
-        pub const FAX_LOG_CATEGORY = @compileError("'FAX_LOG_CATEGORY' requires that UNICODE be set to true or false in the root module");
-        pub const FAX_CONFIGURATION = @compileError("'FAX_CONFIGURATION' requires that UNICODE be set to true or false in the root module");
-        pub const FAX_DEVICE_STATUS = @compileError("'FAX_DEVICE_STATUS' requires that UNICODE be set to true or false in the root module");
-        pub const FAX_JOB_ENTRY = @compileError("'FAX_JOB_ENTRY' requires that UNICODE be set to true or false in the root module");
-        pub const FAX_PORT_INFO = @compileError("'FAX_PORT_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const FAX_ROUTING_METHOD = @compileError("'FAX_ROUTING_METHOD' requires that UNICODE be set to true or false in the root module");
-        pub const FAX_GLOBAL_ROUTING_INFO = @compileError("'FAX_GLOBAL_ROUTING_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const FAX_COVERPAGE_INFO = @compileError("'FAX_COVERPAGE_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const FAX_JOB_PARAM = @compileError("'FAX_JOB_PARAM' requires that UNICODE be set to true or false in the root module");
-        pub const FAX_EVENT = @compileError("'FAX_EVENT' requires that UNICODE be set to true or false in the root module");
-        pub const FAX_PRINT_INFO = @compileError("'FAX_PRINT_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const FAX_CONTEXT_INFO = @compileError("'FAX_CONTEXT_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXCONNECTFAXSERVER = @compileError("'PFAXCONNECTFAXSERVER' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXCOMPLETEJOBPARAMS = @compileError("'PFAXCOMPLETEJOBPARAMS' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXSENDDOCUMENT = @compileError("'PFAXSENDDOCUMENT' requires that UNICODE be set to true or false in the root module");
-        pub const PFAX_RECIPIENT_CALLBACK = @compileError("'PFAX_RECIPIENT_CALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXSENDDOCUMENTFORBROADCAST = @compileError("'PFAXSENDDOCUMENTFORBROADCAST' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXENUMJOBS = @compileError("'PFAXENUMJOBS' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXGETJOB = @compileError("'PFAXGETJOB' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXSETJOB = @compileError("'PFAXSETJOB' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXGETDEVICESTATUS = @compileError("'PFAXGETDEVICESTATUS' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXGETCONFIGURATION = @compileError("'PFAXGETCONFIGURATION' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXSETCONFIGURATION = @compileError("'PFAXSETCONFIGURATION' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXGETLOGGINGCATEGORIES = @compileError("'PFAXGETLOGGINGCATEGORIES' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXSETLOGGINGCATEGORIES = @compileError("'PFAXSETLOGGINGCATEGORIES' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXENUMPORTS = @compileError("'PFAXENUMPORTS' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXGETPORT = @compileError("'PFAXGETPORT' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXSETPORT = @compileError("'PFAXSETPORT' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXENUMROUTINGMETHODS = @compileError("'PFAXENUMROUTINGMETHODS' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXENABLEROUTINGMETHOD = @compileError("'PFAXENABLEROUTINGMETHOD' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXENUMGLOBALROUTINGINFO = @compileError("'PFAXENUMGLOBALROUTINGINFO' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXSETGLOBALROUTINGINFO = @compileError("'PFAXSETGLOBALROUTINGINFO' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXGETROUTINGINFO = @compileError("'PFAXGETROUTINGINFO' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXSETROUTINGINFO = @compileError("'PFAXSETROUTINGINFO' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXSTARTPRINTJOB = @compileError("'PFAXSTARTPRINTJOB' requires that UNICODE be set to true or false in the root module");
-        pub const PFAXPRINTCOVERPAGE = @compileError("'PFAXPRINTCOVERPAGE' requires that UNICODE be set to true or false in the root module");
-        pub const FaxConnectFaxServer = @compileError("'FaxConnectFaxServer' requires that UNICODE be set to true or false in the root module");
-        pub const FaxCompleteJobParams = @compileError("'FaxCompleteJobParams' requires that UNICODE be set to true or false in the root module");
-        pub const FaxSendDocument = @compileError("'FaxSendDocument' requires that UNICODE be set to true or false in the root module");
-        pub const FaxSendDocumentForBroadcast = @compileError("'FaxSendDocumentForBroadcast' requires that UNICODE be set to true or false in the root module");
-        pub const FaxEnumJobs = @compileError("'FaxEnumJobs' requires that UNICODE be set to true or false in the root module");
-        pub const FaxGetJob = @compileError("'FaxGetJob' requires that UNICODE be set to true or false in the root module");
-        pub const FaxSetJob = @compileError("'FaxSetJob' requires that UNICODE be set to true or false in the root module");
-        pub const FaxGetDeviceStatus = @compileError("'FaxGetDeviceStatus' requires that UNICODE be set to true or false in the root module");
-        pub const FaxGetConfiguration = @compileError("'FaxGetConfiguration' requires that UNICODE be set to true or false in the root module");
-        pub const FaxSetConfiguration = @compileError("'FaxSetConfiguration' requires that UNICODE be set to true or false in the root module");
-        pub const FaxGetLoggingCategories = @compileError("'FaxGetLoggingCategories' requires that UNICODE be set to true or false in the root module");
-        pub const FaxSetLoggingCategories = @compileError("'FaxSetLoggingCategories' requires that UNICODE be set to true or false in the root module");
-        pub const FaxEnumPorts = @compileError("'FaxEnumPorts' requires that UNICODE be set to true or false in the root module");
-        pub const FaxGetPort = @compileError("'FaxGetPort' requires that UNICODE be set to true or false in the root module");
-        pub const FaxSetPort = @compileError("'FaxSetPort' requires that UNICODE be set to true or false in the root module");
-        pub const FaxEnumRoutingMethods = @compileError("'FaxEnumRoutingMethods' requires that UNICODE be set to true or false in the root module");
-        pub const FaxEnableRoutingMethod = @compileError("'FaxEnableRoutingMethod' requires that UNICODE be set to true or false in the root module");
-        pub const FaxEnumGlobalRoutingInfo = @compileError("'FaxEnumGlobalRoutingInfo' requires that UNICODE be set to true or false in the root module");
-        pub const FaxSetGlobalRoutingInfo = @compileError("'FaxSetGlobalRoutingInfo' requires that UNICODE be set to true or false in the root module");
-        pub const FaxGetRoutingInfo = @compileError("'FaxGetRoutingInfo' requires that UNICODE be set to true or false in the root module");
-        pub const FaxSetRoutingInfo = @compileError("'FaxSetRoutingInfo' requires that UNICODE be set to true or false in the root module");
-        pub const FaxStartPrintJob = @compileError("'FaxStartPrintJob' requires that UNICODE be set to true or false in the root module");
-        pub const FaxPrintCoverPage = @compileError("'FaxPrintCoverPage' requires that UNICODE be set to true or false in the root module");
-    },
+pub const FAX_LOG_CATEGORY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FAX_LOG_CATEGORYA,
+    .wide => @This().FAX_LOG_CATEGORYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FAX_LOG_CATEGORY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FAX_CONFIGURATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FAX_CONFIGURATIONA,
+    .wide => @This().FAX_CONFIGURATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FAX_CONFIGURATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FAX_DEVICE_STATUS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FAX_DEVICE_STATUSA,
+    .wide => @This().FAX_DEVICE_STATUSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FAX_DEVICE_STATUS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FAX_JOB_ENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FAX_JOB_ENTRYA,
+    .wide => @This().FAX_JOB_ENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FAX_JOB_ENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FAX_PORT_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FAX_PORT_INFOA,
+    .wide => @This().FAX_PORT_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FAX_PORT_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FAX_ROUTING_METHOD = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FAX_ROUTING_METHODA,
+    .wide => @This().FAX_ROUTING_METHODW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FAX_ROUTING_METHOD' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FAX_GLOBAL_ROUTING_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FAX_GLOBAL_ROUTING_INFOA,
+    .wide => @This().FAX_GLOBAL_ROUTING_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FAX_GLOBAL_ROUTING_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FAX_COVERPAGE_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FAX_COVERPAGE_INFOA,
+    .wide => @This().FAX_COVERPAGE_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FAX_COVERPAGE_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FAX_JOB_PARAM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FAX_JOB_PARAMA,
+    .wide => @This().FAX_JOB_PARAMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FAX_JOB_PARAM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FAX_EVENT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FAX_EVENTA,
+    .wide => @This().FAX_EVENTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FAX_EVENT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FAX_PRINT_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FAX_PRINT_INFOA,
+    .wide => @This().FAX_PRINT_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FAX_PRINT_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FAX_CONTEXT_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FAX_CONTEXT_INFOA,
+    .wide => @This().FAX_CONTEXT_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FAX_CONTEXT_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXCONNECTFAXSERVER = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXCONNECTFAXSERVERA,
+    .wide => @This().PFAXCONNECTFAXSERVERW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXCONNECTFAXSERVER' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXCOMPLETEJOBPARAMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXCOMPLETEJOBPARAMSA,
+    .wide => @This().PFAXCOMPLETEJOBPARAMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXCOMPLETEJOBPARAMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXSENDDOCUMENT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXSENDDOCUMENTA,
+    .wide => @This().PFAXSENDDOCUMENTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXSENDDOCUMENT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAX_RECIPIENT_CALLBACK = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAX_RECIPIENT_CALLBACKA,
+    .wide => @This().PFAX_RECIPIENT_CALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAX_RECIPIENT_CALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXSENDDOCUMENTFORBROADCAST = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXSENDDOCUMENTFORBROADCASTA,
+    .wide => @This().PFAXSENDDOCUMENTFORBROADCASTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXSENDDOCUMENTFORBROADCAST' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXENUMJOBS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXENUMJOBSA,
+    .wide => @This().PFAXENUMJOBSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXENUMJOBS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXGETJOB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXGETJOBA,
+    .wide => @This().PFAXGETJOBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXGETJOB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXSETJOB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXSETJOBA,
+    .wide => @This().PFAXSETJOBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXSETJOB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXGETDEVICESTATUS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXGETDEVICESTATUSA,
+    .wide => @This().PFAXGETDEVICESTATUSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXGETDEVICESTATUS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXGETCONFIGURATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXGETCONFIGURATIONA,
+    .wide => @This().PFAXGETCONFIGURATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXGETCONFIGURATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXSETCONFIGURATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXSETCONFIGURATIONA,
+    .wide => @This().PFAXSETCONFIGURATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXSETCONFIGURATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXGETLOGGINGCATEGORIES = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXGETLOGGINGCATEGORIESA,
+    .wide => @This().PFAXGETLOGGINGCATEGORIESW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXGETLOGGINGCATEGORIES' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXSETLOGGINGCATEGORIES = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXSETLOGGINGCATEGORIESA,
+    .wide => @This().PFAXSETLOGGINGCATEGORIESW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXSETLOGGINGCATEGORIES' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXENUMPORTS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXENUMPORTSA,
+    .wide => @This().PFAXENUMPORTSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXENUMPORTS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXGETPORT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXGETPORTA,
+    .wide => @This().PFAXGETPORTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXGETPORT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXSETPORT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXSETPORTA,
+    .wide => @This().PFAXSETPORTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXSETPORT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXENUMROUTINGMETHODS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXENUMROUTINGMETHODSA,
+    .wide => @This().PFAXENUMROUTINGMETHODSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXENUMROUTINGMETHODS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXENABLEROUTINGMETHOD = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXENABLEROUTINGMETHODA,
+    .wide => @This().PFAXENABLEROUTINGMETHODW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXENABLEROUTINGMETHOD' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXENUMGLOBALROUTINGINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXENUMGLOBALROUTINGINFOA,
+    .wide => @This().PFAXENUMGLOBALROUTINGINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXENUMGLOBALROUTINGINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXSETGLOBALROUTINGINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXSETGLOBALROUTINGINFOA,
+    .wide => @This().PFAXSETGLOBALROUTINGINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXSETGLOBALROUTINGINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXGETROUTINGINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXGETROUTINGINFOA,
+    .wide => @This().PFAXGETROUTINGINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXGETROUTINGINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXSETROUTINGINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXSETROUTINGINFOA,
+    .wide => @This().PFAXSETROUTINGINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXSETROUTINGINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXSTARTPRINTJOB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXSTARTPRINTJOBA,
+    .wide => @This().PFAXSTARTPRINTJOBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXSTARTPRINTJOB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PFAXPRINTCOVERPAGE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PFAXPRINTCOVERPAGEA,
+    .wide => @This().PFAXPRINTCOVERPAGEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PFAXPRINTCOVERPAGE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxConnectFaxServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxConnectFaxServerA,
+    .wide => @This().FaxConnectFaxServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxConnectFaxServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxCompleteJobParams = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxCompleteJobParamsA,
+    .wide => @This().FaxCompleteJobParamsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxCompleteJobParams' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxSendDocument = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxSendDocumentA,
+    .wide => @This().FaxSendDocumentW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxSendDocument' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxSendDocumentForBroadcast = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxSendDocumentForBroadcastA,
+    .wide => @This().FaxSendDocumentForBroadcastW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxSendDocumentForBroadcast' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxEnumJobs = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxEnumJobsA,
+    .wide => @This().FaxEnumJobsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxEnumJobs' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxGetJob = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxGetJobA,
+    .wide => @This().FaxGetJobW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxGetJob' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxSetJob = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxSetJobA,
+    .wide => @This().FaxSetJobW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxSetJob' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxGetDeviceStatus = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxGetDeviceStatusA,
+    .wide => @This().FaxGetDeviceStatusW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxGetDeviceStatus' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxGetConfiguration = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxGetConfigurationA,
+    .wide => @This().FaxGetConfigurationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxGetConfiguration' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxSetConfiguration = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxSetConfigurationA,
+    .wide => @This().FaxSetConfigurationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxSetConfiguration' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxGetLoggingCategories = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxGetLoggingCategoriesA,
+    .wide => @This().FaxGetLoggingCategoriesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxGetLoggingCategories' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxSetLoggingCategories = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxSetLoggingCategoriesA,
+    .wide => @This().FaxSetLoggingCategoriesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxSetLoggingCategories' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxEnumPorts = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxEnumPortsA,
+    .wide => @This().FaxEnumPortsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxEnumPorts' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxGetPort = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxGetPortA,
+    .wide => @This().FaxGetPortW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxGetPort' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxSetPort = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxSetPortA,
+    .wide => @This().FaxSetPortW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxSetPort' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxEnumRoutingMethods = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxEnumRoutingMethodsA,
+    .wide => @This().FaxEnumRoutingMethodsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxEnumRoutingMethods' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxEnableRoutingMethod = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxEnableRoutingMethodA,
+    .wide => @This().FaxEnableRoutingMethodW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxEnableRoutingMethod' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxEnumGlobalRoutingInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxEnumGlobalRoutingInfoA,
+    .wide => @This().FaxEnumGlobalRoutingInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxEnumGlobalRoutingInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxSetGlobalRoutingInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxSetGlobalRoutingInfoA,
+    .wide => @This().FaxSetGlobalRoutingInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxSetGlobalRoutingInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxGetRoutingInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxGetRoutingInfoA,
+    .wide => @This().FaxGetRoutingInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxGetRoutingInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxSetRoutingInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxSetRoutingInfoA,
+    .wide => @This().FaxSetRoutingInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxSetRoutingInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxStartPrintJob = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxStartPrintJobA,
+    .wide => @This().FaxStartPrintJobW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxStartPrintJob' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FaxPrintCoverPage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FaxPrintCoverPageA,
+    .wide => @This().FaxPrintCoverPageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FaxPrintCoverPage' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (20)

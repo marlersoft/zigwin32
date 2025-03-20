@@ -493,55 +493,75 @@ pub extern "vertdll" fn EnclaveGetEnclaveInformation(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (10)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const GetCommandLine = thismodule.GetCommandLineA;
-        pub const FreeEnvironmentStrings = thismodule.FreeEnvironmentStringsA;
-        pub const GetEnvironmentVariable = thismodule.GetEnvironmentVariableA;
-        pub const SetEnvironmentVariable = thismodule.SetEnvironmentVariableA;
-        pub const ExpandEnvironmentStrings = thismodule.ExpandEnvironmentStringsA;
-        pub const SetCurrentDirectory = thismodule.SetCurrentDirectoryA;
-        pub const GetCurrentDirectory = thismodule.GetCurrentDirectoryA;
-        pub const NeedCurrentDirectoryForExePath = thismodule.NeedCurrentDirectoryForExePathA;
-        pub const ExpandEnvironmentStringsForUser = thismodule.ExpandEnvironmentStringsForUserA;
-        pub const LoadEnclaveImage = thismodule.LoadEnclaveImageA;
-    },
-    .wide => struct {
-        pub const GetCommandLine = thismodule.GetCommandLineW;
-        pub const FreeEnvironmentStrings = thismodule.FreeEnvironmentStringsW;
-        pub const GetEnvironmentVariable = thismodule.GetEnvironmentVariableW;
-        pub const SetEnvironmentVariable = thismodule.SetEnvironmentVariableW;
-        pub const ExpandEnvironmentStrings = thismodule.ExpandEnvironmentStringsW;
-        pub const SetCurrentDirectory = thismodule.SetCurrentDirectoryW;
-        pub const GetCurrentDirectory = thismodule.GetCurrentDirectoryW;
-        pub const NeedCurrentDirectoryForExePath = thismodule.NeedCurrentDirectoryForExePathW;
-        pub const ExpandEnvironmentStringsForUser = thismodule.ExpandEnvironmentStringsForUserW;
-        pub const LoadEnclaveImage = thismodule.LoadEnclaveImageW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const GetCommandLine = *opaque{};
-        pub const FreeEnvironmentStrings = *opaque{};
-        pub const GetEnvironmentVariable = *opaque{};
-        pub const SetEnvironmentVariable = *opaque{};
-        pub const ExpandEnvironmentStrings = *opaque{};
-        pub const SetCurrentDirectory = *opaque{};
-        pub const GetCurrentDirectory = *opaque{};
-        pub const NeedCurrentDirectoryForExePath = *opaque{};
-        pub const ExpandEnvironmentStringsForUser = *opaque{};
-        pub const LoadEnclaveImage = *opaque{};
-    } else struct {
-        pub const GetCommandLine = @compileError("'GetCommandLine' requires that UNICODE be set to true or false in the root module");
-        pub const FreeEnvironmentStrings = @compileError("'FreeEnvironmentStrings' requires that UNICODE be set to true or false in the root module");
-        pub const GetEnvironmentVariable = @compileError("'GetEnvironmentVariable' requires that UNICODE be set to true or false in the root module");
-        pub const SetEnvironmentVariable = @compileError("'SetEnvironmentVariable' requires that UNICODE be set to true or false in the root module");
-        pub const ExpandEnvironmentStrings = @compileError("'ExpandEnvironmentStrings' requires that UNICODE be set to true or false in the root module");
-        pub const SetCurrentDirectory = @compileError("'SetCurrentDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetCurrentDirectory = @compileError("'GetCurrentDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const NeedCurrentDirectoryForExePath = @compileError("'NeedCurrentDirectoryForExePath' requires that UNICODE be set to true or false in the root module");
-        pub const ExpandEnvironmentStringsForUser = @compileError("'ExpandEnvironmentStringsForUser' requires that UNICODE be set to true or false in the root module");
-        pub const LoadEnclaveImage = @compileError("'LoadEnclaveImage' requires that UNICODE be set to true or false in the root module");
-    },
+pub const GetCommandLine = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetCommandLineA,
+    .wide => @This().GetCommandLineW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCommandLine' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FreeEnvironmentStrings = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FreeEnvironmentStringsA,
+    .wide => @This().FreeEnvironmentStringsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FreeEnvironmentStrings' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetEnvironmentVariable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetEnvironmentVariableA,
+    .wide => @This().GetEnvironmentVariableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetEnvironmentVariable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetEnvironmentVariable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetEnvironmentVariableA,
+    .wide => @This().SetEnvironmentVariableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetEnvironmentVariable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExpandEnvironmentStrings = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExpandEnvironmentStringsA,
+    .wide => @This().ExpandEnvironmentStringsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExpandEnvironmentStrings' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetCurrentDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetCurrentDirectoryA,
+    .wide => @This().SetCurrentDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetCurrentDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCurrentDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetCurrentDirectoryA,
+    .wide => @This().GetCurrentDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCurrentDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NeedCurrentDirectoryForExePath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NeedCurrentDirectoryForExePathA,
+    .wide => @This().NeedCurrentDirectoryForExePathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NeedCurrentDirectoryForExePath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExpandEnvironmentStringsForUser = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExpandEnvironmentStringsForUserA,
+    .wide => @This().ExpandEnvironmentStringsForUserW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExpandEnvironmentStringsForUser' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadEnclaveImage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadEnclaveImageA,
+    .wide => @This().LoadEnclaveImageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadEnclaveImage' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)

@@ -1630,119 +1630,187 @@ pub extern "mscms" fn ColorProfileGetDisplayUserScope(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (26)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const LOGCOLORSPACE = thismodule.LOGCOLORSPACEA;
-        pub const ICMENUMPROC = thismodule.ICMENUMPROCA;
-        pub const ENUMTYPE = thismodule.ENUMTYPEA;
-        pub const PCMSCALLBACK = thismodule.PCMSCALLBACKA;
-        pub const COLORMATCHSETUP = thismodule.COLORMATCHSETUPA;
-        pub const GetLogColorSpace = thismodule.GetLogColorSpaceA;
-        pub const CreateColorSpace = thismodule.CreateColorSpaceA;
-        pub const GetICMProfile = thismodule.GetICMProfileA;
-        pub const SetICMProfile = thismodule.SetICMProfileA;
-        pub const EnumICMProfiles = thismodule.EnumICMProfilesA;
-        pub const UpdateICMRegKey = thismodule.UpdateICMRegKeyA;
-        pub const OpenColorProfile = thismodule.OpenColorProfileA;
-        pub const CreateProfileFromLogColorSpace = thismodule.CreateProfileFromLogColorSpaceA;
-        pub const CreateColorTransform = thismodule.CreateColorTransformA;
-        pub const RegisterCMM = thismodule.RegisterCMMA;
-        pub const UnregisterCMM = thismodule.UnregisterCMMA;
-        pub const GetColorDirectory = thismodule.GetColorDirectoryA;
-        pub const InstallColorProfile = thismodule.InstallColorProfileA;
-        pub const UninstallColorProfile = thismodule.UninstallColorProfileA;
-        pub const EnumColorProfiles = thismodule.EnumColorProfilesA;
-        pub const SetStandardColorSpaceProfile = thismodule.SetStandardColorSpaceProfileA;
-        pub const GetStandardColorSpaceProfile = thismodule.GetStandardColorSpaceProfileA;
-        pub const AssociateColorProfileWithDevice = thismodule.AssociateColorProfileWithDeviceA;
-        pub const DisassociateColorProfileFromDevice = thismodule.DisassociateColorProfileFromDeviceA;
-        pub const SetupColorMatching = thismodule.SetupColorMatchingA;
-        pub const WcsOpenColorProfile = thismodule.WcsOpenColorProfileA;
-    },
-    .wide => struct {
-        pub const LOGCOLORSPACE = thismodule.LOGCOLORSPACEW;
-        pub const ICMENUMPROC = thismodule.ICMENUMPROCW;
-        pub const ENUMTYPE = thismodule.ENUMTYPEW;
-        pub const PCMSCALLBACK = thismodule.PCMSCALLBACKW;
-        pub const COLORMATCHSETUP = thismodule.COLORMATCHSETUPW;
-        pub const GetLogColorSpace = thismodule.GetLogColorSpaceW;
-        pub const CreateColorSpace = thismodule.CreateColorSpaceW;
-        pub const GetICMProfile = thismodule.GetICMProfileW;
-        pub const SetICMProfile = thismodule.SetICMProfileW;
-        pub const EnumICMProfiles = thismodule.EnumICMProfilesW;
-        pub const UpdateICMRegKey = thismodule.UpdateICMRegKeyW;
-        pub const OpenColorProfile = thismodule.OpenColorProfileW;
-        pub const CreateProfileFromLogColorSpace = thismodule.CreateProfileFromLogColorSpaceW;
-        pub const CreateColorTransform = thismodule.CreateColorTransformW;
-        pub const RegisterCMM = thismodule.RegisterCMMW;
-        pub const UnregisterCMM = thismodule.UnregisterCMMW;
-        pub const GetColorDirectory = thismodule.GetColorDirectoryW;
-        pub const InstallColorProfile = thismodule.InstallColorProfileW;
-        pub const UninstallColorProfile = thismodule.UninstallColorProfileW;
-        pub const EnumColorProfiles = thismodule.EnumColorProfilesW;
-        pub const SetStandardColorSpaceProfile = thismodule.SetStandardColorSpaceProfileW;
-        pub const GetStandardColorSpaceProfile = thismodule.GetStandardColorSpaceProfileW;
-        pub const AssociateColorProfileWithDevice = thismodule.AssociateColorProfileWithDeviceW;
-        pub const DisassociateColorProfileFromDevice = thismodule.DisassociateColorProfileFromDeviceW;
-        pub const SetupColorMatching = thismodule.SetupColorMatchingW;
-        pub const WcsOpenColorProfile = thismodule.WcsOpenColorProfileW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const LOGCOLORSPACE = *opaque{};
-        pub const ICMENUMPROC = *opaque{};
-        pub const ENUMTYPE = *opaque{};
-        pub const PCMSCALLBACK = *opaque{};
-        pub const COLORMATCHSETUP = *opaque{};
-        pub const GetLogColorSpace = *opaque{};
-        pub const CreateColorSpace = *opaque{};
-        pub const GetICMProfile = *opaque{};
-        pub const SetICMProfile = *opaque{};
-        pub const EnumICMProfiles = *opaque{};
-        pub const UpdateICMRegKey = *opaque{};
-        pub const OpenColorProfile = *opaque{};
-        pub const CreateProfileFromLogColorSpace = *opaque{};
-        pub const CreateColorTransform = *opaque{};
-        pub const RegisterCMM = *opaque{};
-        pub const UnregisterCMM = *opaque{};
-        pub const GetColorDirectory = *opaque{};
-        pub const InstallColorProfile = *opaque{};
-        pub const UninstallColorProfile = *opaque{};
-        pub const EnumColorProfiles = *opaque{};
-        pub const SetStandardColorSpaceProfile = *opaque{};
-        pub const GetStandardColorSpaceProfile = *opaque{};
-        pub const AssociateColorProfileWithDevice = *opaque{};
-        pub const DisassociateColorProfileFromDevice = *opaque{};
-        pub const SetupColorMatching = *opaque{};
-        pub const WcsOpenColorProfile = *opaque{};
-    } else struct {
-        pub const LOGCOLORSPACE = @compileError("'LOGCOLORSPACE' requires that UNICODE be set to true or false in the root module");
-        pub const ICMENUMPROC = @compileError("'ICMENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMTYPE = @compileError("'ENUMTYPE' requires that UNICODE be set to true or false in the root module");
-        pub const PCMSCALLBACK = @compileError("'PCMSCALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const COLORMATCHSETUP = @compileError("'COLORMATCHSETUP' requires that UNICODE be set to true or false in the root module");
-        pub const GetLogColorSpace = @compileError("'GetLogColorSpace' requires that UNICODE be set to true or false in the root module");
-        pub const CreateColorSpace = @compileError("'CreateColorSpace' requires that UNICODE be set to true or false in the root module");
-        pub const GetICMProfile = @compileError("'GetICMProfile' requires that UNICODE be set to true or false in the root module");
-        pub const SetICMProfile = @compileError("'SetICMProfile' requires that UNICODE be set to true or false in the root module");
-        pub const EnumICMProfiles = @compileError("'EnumICMProfiles' requires that UNICODE be set to true or false in the root module");
-        pub const UpdateICMRegKey = @compileError("'UpdateICMRegKey' requires that UNICODE be set to true or false in the root module");
-        pub const OpenColorProfile = @compileError("'OpenColorProfile' requires that UNICODE be set to true or false in the root module");
-        pub const CreateProfileFromLogColorSpace = @compileError("'CreateProfileFromLogColorSpace' requires that UNICODE be set to true or false in the root module");
-        pub const CreateColorTransform = @compileError("'CreateColorTransform' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterCMM = @compileError("'RegisterCMM' requires that UNICODE be set to true or false in the root module");
-        pub const UnregisterCMM = @compileError("'UnregisterCMM' requires that UNICODE be set to true or false in the root module");
-        pub const GetColorDirectory = @compileError("'GetColorDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const InstallColorProfile = @compileError("'InstallColorProfile' requires that UNICODE be set to true or false in the root module");
-        pub const UninstallColorProfile = @compileError("'UninstallColorProfile' requires that UNICODE be set to true or false in the root module");
-        pub const EnumColorProfiles = @compileError("'EnumColorProfiles' requires that UNICODE be set to true or false in the root module");
-        pub const SetStandardColorSpaceProfile = @compileError("'SetStandardColorSpaceProfile' requires that UNICODE be set to true or false in the root module");
-        pub const GetStandardColorSpaceProfile = @compileError("'GetStandardColorSpaceProfile' requires that UNICODE be set to true or false in the root module");
-        pub const AssociateColorProfileWithDevice = @compileError("'AssociateColorProfileWithDevice' requires that UNICODE be set to true or false in the root module");
-        pub const DisassociateColorProfileFromDevice = @compileError("'DisassociateColorProfileFromDevice' requires that UNICODE be set to true or false in the root module");
-        pub const SetupColorMatching = @compileError("'SetupColorMatching' requires that UNICODE be set to true or false in the root module");
-        pub const WcsOpenColorProfile = @compileError("'WcsOpenColorProfile' requires that UNICODE be set to true or false in the root module");
-    },
+pub const LOGCOLORSPACE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LOGCOLORSPACEA,
+    .wide => @This().LOGCOLORSPACEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LOGCOLORSPACE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ICMENUMPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ICMENUMPROCA,
+    .wide => @This().ICMENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ICMENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUMTYPE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUMTYPEA,
+    .wide => @This().ENUMTYPEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUMTYPE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PCMSCALLBACK = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PCMSCALLBACKA,
+    .wide => @This().PCMSCALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PCMSCALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const COLORMATCHSETUP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().COLORMATCHSETUPA,
+    .wide => @This().COLORMATCHSETUPW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'COLORMATCHSETUP' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetLogColorSpace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetLogColorSpaceA,
+    .wide => @This().GetLogColorSpaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetLogColorSpace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateColorSpace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateColorSpaceA,
+    .wide => @This().CreateColorSpaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateColorSpace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetICMProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetICMProfileA,
+    .wide => @This().GetICMProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetICMProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetICMProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetICMProfileA,
+    .wide => @This().SetICMProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetICMProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumICMProfiles = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumICMProfilesA,
+    .wide => @This().EnumICMProfilesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumICMProfiles' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UpdateICMRegKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UpdateICMRegKeyA,
+    .wide => @This().UpdateICMRegKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UpdateICMRegKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenColorProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenColorProfileA,
+    .wide => @This().OpenColorProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenColorProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateProfileFromLogColorSpace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateProfileFromLogColorSpaceA,
+    .wide => @This().CreateProfileFromLogColorSpaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateProfileFromLogColorSpace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateColorTransform = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateColorTransformA,
+    .wide => @This().CreateColorTransformW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateColorTransform' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterCMM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterCMMA,
+    .wide => @This().RegisterCMMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterCMM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UnregisterCMM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UnregisterCMMA,
+    .wide => @This().UnregisterCMMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UnregisterCMM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetColorDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetColorDirectoryA,
+    .wide => @This().GetColorDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetColorDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InstallColorProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InstallColorProfileA,
+    .wide => @This().InstallColorProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InstallColorProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UninstallColorProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UninstallColorProfileA,
+    .wide => @This().UninstallColorProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UninstallColorProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumColorProfiles = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumColorProfilesA,
+    .wide => @This().EnumColorProfilesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumColorProfiles' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetStandardColorSpaceProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetStandardColorSpaceProfileA,
+    .wide => @This().SetStandardColorSpaceProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetStandardColorSpaceProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetStandardColorSpaceProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetStandardColorSpaceProfileA,
+    .wide => @This().GetStandardColorSpaceProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetStandardColorSpaceProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AssociateColorProfileWithDevice = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AssociateColorProfileWithDeviceA,
+    .wide => @This().AssociateColorProfileWithDeviceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AssociateColorProfileWithDevice' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DisassociateColorProfileFromDevice = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DisassociateColorProfileFromDeviceA,
+    .wide => @This().DisassociateColorProfileFromDeviceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DisassociateColorProfileFromDevice' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupColorMatching = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupColorMatchingA,
+    .wide => @This().SetupColorMatchingW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupColorMatching' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WcsOpenColorProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WcsOpenColorProfileA,
+    .wide => @This().WcsOpenColorProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WcsOpenColorProfile' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (18)

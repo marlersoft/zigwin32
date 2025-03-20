@@ -8950,427 +8950,726 @@ pub extern "spoolss" fn RemovePrintDeviceObject(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (103)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const PRINTER_INFO_1 = thismodule.PRINTER_INFO_1A;
-        pub const PRINTER_INFO_2 = thismodule.PRINTER_INFO_2A;
-        pub const PRINTER_INFO_4 = thismodule.PRINTER_INFO_4A;
-        pub const PRINTER_INFO_5 = thismodule.PRINTER_INFO_5A;
-        pub const PRINTER_INFO_7 = thismodule.PRINTER_INFO_7A;
-        pub const PRINTER_INFO_8 = thismodule.PRINTER_INFO_8A;
-        pub const PRINTER_INFO_9 = thismodule.PRINTER_INFO_9A;
-        pub const JOB_INFO_1 = thismodule.JOB_INFO_1A;
-        pub const JOB_INFO_2 = thismodule.JOB_INFO_2A;
-        pub const JOB_INFO_4 = thismodule.JOB_INFO_4A;
-        pub const ADDJOB_INFO_1 = thismodule.ADDJOB_INFO_1A;
-        pub const DRIVER_INFO_1 = thismodule.DRIVER_INFO_1A;
-        pub const DRIVER_INFO_2 = thismodule.DRIVER_INFO_2A;
-        pub const DRIVER_INFO_3 = thismodule.DRIVER_INFO_3A;
-        pub const DRIVER_INFO_4 = thismodule.DRIVER_INFO_4A;
-        pub const DRIVER_INFO_5 = thismodule.DRIVER_INFO_5A;
-        pub const DRIVER_INFO_6 = thismodule.DRIVER_INFO_6A;
-        pub const DRIVER_INFO_8 = thismodule.DRIVER_INFO_8A;
-        pub const DOC_INFO_1 = thismodule.DOC_INFO_1A;
-        pub const FORM_INFO_1 = thismodule.FORM_INFO_1A;
-        pub const FORM_INFO_2 = thismodule.FORM_INFO_2A;
-        pub const DOC_INFO_2 = thismodule.DOC_INFO_2A;
-        pub const DOC_INFO_3 = thismodule.DOC_INFO_3A;
-        pub const PRINTPROCESSOR_INFO_1 = thismodule.PRINTPROCESSOR_INFO_1A;
-        pub const PORT_INFO_1 = thismodule.PORT_INFO_1A;
-        pub const PORT_INFO_2 = thismodule.PORT_INFO_2A;
-        pub const PORT_INFO_3 = thismodule.PORT_INFO_3A;
-        pub const MONITOR_INFO_1 = thismodule.MONITOR_INFO_1A;
-        pub const MONITOR_INFO_2 = thismodule.MONITOR_INFO_2A;
-        pub const DATATYPES_INFO_1 = thismodule.DATATYPES_INFO_1A;
-        pub const PRINTER_DEFAULTS = thismodule.PRINTER_DEFAULTSA;
-        pub const PRINTER_ENUM_VALUES = thismodule.PRINTER_ENUM_VALUESA;
-        pub const PROVIDOR_INFO_1 = thismodule.PROVIDOR_INFO_1A;
-        pub const PROVIDOR_INFO_2 = thismodule.PROVIDOR_INFO_2A;
-        pub const PRINTER_OPTIONS = thismodule.PRINTER_OPTIONSA;
-        pub const PRINTER_CONNECTION_INFO_1 = thismodule.PRINTER_CONNECTION_INFO_1A;
-        pub const CORE_PRINTER_DRIVER = thismodule.CORE_PRINTER_DRIVERA;
-        pub const CommonPropertySheetUI = thismodule.CommonPropertySheetUIA;
-        pub const EnumPrinters = thismodule.EnumPrintersA;
-        pub const OpenPrinter = thismodule.OpenPrinterA;
-        pub const ResetPrinter = thismodule.ResetPrinterA;
-        pub const SetJob = thismodule.SetJobA;
-        pub const GetJob = thismodule.GetJobA;
-        pub const EnumJobs = thismodule.EnumJobsA;
-        pub const AddPrinter = thismodule.AddPrinterA;
-        pub const SetPrinter = thismodule.SetPrinterA;
-        pub const GetPrinter = thismodule.GetPrinterA;
-        pub const AddPrinterDriver = thismodule.AddPrinterDriverA;
-        pub const AddPrinterDriverEx = thismodule.AddPrinterDriverExA;
-        pub const EnumPrinterDrivers = thismodule.EnumPrinterDriversA;
-        pub const GetPrinterDriver = thismodule.GetPrinterDriverA;
-        pub const GetPrinterDriverDirectory = thismodule.GetPrinterDriverDirectoryA;
-        pub const DeletePrinterDriver = thismodule.DeletePrinterDriverA;
-        pub const DeletePrinterDriverEx = thismodule.DeletePrinterDriverExA;
-        pub const AddPrintProcessor = thismodule.AddPrintProcessorA;
-        pub const EnumPrintProcessors = thismodule.EnumPrintProcessorsA;
-        pub const GetPrintProcessorDirectory = thismodule.GetPrintProcessorDirectoryA;
-        pub const EnumPrintProcessorDatatypes = thismodule.EnumPrintProcessorDatatypesA;
-        pub const DeletePrintProcessor = thismodule.DeletePrintProcessorA;
-        pub const StartDocPrinter = thismodule.StartDocPrinterA;
-        pub const AddJob = thismodule.AddJobA;
-        pub const DocumentProperties = thismodule.DocumentPropertiesA;
-        pub const AdvancedDocumentProperties = thismodule.AdvancedDocumentPropertiesA;
-        pub const GetPrinterData = thismodule.GetPrinterDataA;
-        pub const GetPrinterDataEx = thismodule.GetPrinterDataExA;
-        pub const EnumPrinterData = thismodule.EnumPrinterDataA;
-        pub const EnumPrinterDataEx = thismodule.EnumPrinterDataExA;
-        pub const EnumPrinterKey = thismodule.EnumPrinterKeyA;
-        pub const SetPrinterData = thismodule.SetPrinterDataA;
-        pub const SetPrinterDataEx = thismodule.SetPrinterDataExA;
-        pub const DeletePrinterData = thismodule.DeletePrinterDataA;
-        pub const DeletePrinterDataEx = thismodule.DeletePrinterDataExA;
-        pub const DeletePrinterKey = thismodule.DeletePrinterKeyA;
-        pub const PrinterMessageBox = thismodule.PrinterMessageBoxA;
-        pub const AddForm = thismodule.AddFormA;
-        pub const DeleteForm = thismodule.DeleteFormA;
-        pub const GetForm = thismodule.GetFormA;
-        pub const SetForm = thismodule.SetFormA;
-        pub const EnumForms = thismodule.EnumFormsA;
-        pub const EnumMonitors = thismodule.EnumMonitorsA;
-        pub const AddMonitor = thismodule.AddMonitorA;
-        pub const DeleteMonitor = thismodule.DeleteMonitorA;
-        pub const EnumPorts = thismodule.EnumPortsA;
-        pub const AddPort = thismodule.AddPortA;
-        pub const ConfigurePort = thismodule.ConfigurePortA;
-        pub const DeletePort = thismodule.DeletePortA;
-        pub const GetDefaultPrinter = thismodule.GetDefaultPrinterA;
-        pub const SetDefaultPrinter = thismodule.SetDefaultPrinterA;
-        pub const SetPort = thismodule.SetPortA;
-        pub const AddPrinterConnection = thismodule.AddPrinterConnectionA;
-        pub const DeletePrinterConnection = thismodule.DeletePrinterConnectionA;
-        pub const AddPrintProvidor = thismodule.AddPrintProvidorA;
-        pub const DeletePrintProvidor = thismodule.DeletePrintProvidorA;
-        pub const IsValidDevmode = thismodule.IsValidDevmodeA;
-        pub const OpenPrinter2 = thismodule.OpenPrinter2A;
-        pub const AddPrinterConnection2 = thismodule.AddPrinterConnection2A;
-        pub const InstallPrinterDriverFromPackage = thismodule.InstallPrinterDriverFromPackageA;
-        pub const UploadPrinterDriverPackage = thismodule.UploadPrinterDriverPackageA;
-        pub const GetCorePrinterDrivers = thismodule.GetCorePrinterDriversA;
-        pub const CorePrinterDriverInstalled = thismodule.CorePrinterDriverInstalledA;
-        pub const GetPrinterDriverPackagePath = thismodule.GetPrinterDriverPackagePathA;
-        pub const DeletePrinterDriverPackage = thismodule.DeletePrinterDriverPackageA;
-        pub const GetPrinterDriver2 = thismodule.GetPrinterDriver2A;
-    },
-    .wide => struct {
-        pub const PRINTER_INFO_1 = thismodule.PRINTER_INFO_1W;
-        pub const PRINTER_INFO_2 = thismodule.PRINTER_INFO_2W;
-        pub const PRINTER_INFO_4 = thismodule.PRINTER_INFO_4W;
-        pub const PRINTER_INFO_5 = thismodule.PRINTER_INFO_5W;
-        pub const PRINTER_INFO_7 = thismodule.PRINTER_INFO_7W;
-        pub const PRINTER_INFO_8 = thismodule.PRINTER_INFO_8W;
-        pub const PRINTER_INFO_9 = thismodule.PRINTER_INFO_9W;
-        pub const JOB_INFO_1 = thismodule.JOB_INFO_1W;
-        pub const JOB_INFO_2 = thismodule.JOB_INFO_2W;
-        pub const JOB_INFO_4 = thismodule.JOB_INFO_4W;
-        pub const ADDJOB_INFO_1 = thismodule.ADDJOB_INFO_1W;
-        pub const DRIVER_INFO_1 = thismodule.DRIVER_INFO_1W;
-        pub const DRIVER_INFO_2 = thismodule.DRIVER_INFO_2W;
-        pub const DRIVER_INFO_3 = thismodule.DRIVER_INFO_3W;
-        pub const DRIVER_INFO_4 = thismodule.DRIVER_INFO_4W;
-        pub const DRIVER_INFO_5 = thismodule.DRIVER_INFO_5W;
-        pub const DRIVER_INFO_6 = thismodule.DRIVER_INFO_6W;
-        pub const DRIVER_INFO_8 = thismodule.DRIVER_INFO_8W;
-        pub const DOC_INFO_1 = thismodule.DOC_INFO_1W;
-        pub const FORM_INFO_1 = thismodule.FORM_INFO_1W;
-        pub const FORM_INFO_2 = thismodule.FORM_INFO_2W;
-        pub const DOC_INFO_2 = thismodule.DOC_INFO_2W;
-        pub const DOC_INFO_3 = thismodule.DOC_INFO_3W;
-        pub const PRINTPROCESSOR_INFO_1 = thismodule.PRINTPROCESSOR_INFO_1W;
-        pub const PORT_INFO_1 = thismodule.PORT_INFO_1W;
-        pub const PORT_INFO_2 = thismodule.PORT_INFO_2W;
-        pub const PORT_INFO_3 = thismodule.PORT_INFO_3W;
-        pub const MONITOR_INFO_1 = thismodule.MONITOR_INFO_1W;
-        pub const MONITOR_INFO_2 = thismodule.MONITOR_INFO_2W;
-        pub const DATATYPES_INFO_1 = thismodule.DATATYPES_INFO_1W;
-        pub const PRINTER_DEFAULTS = thismodule.PRINTER_DEFAULTSW;
-        pub const PRINTER_ENUM_VALUES = thismodule.PRINTER_ENUM_VALUESW;
-        pub const PROVIDOR_INFO_1 = thismodule.PROVIDOR_INFO_1W;
-        pub const PROVIDOR_INFO_2 = thismodule.PROVIDOR_INFO_2W;
-        pub const PRINTER_OPTIONS = thismodule.PRINTER_OPTIONSW;
-        pub const PRINTER_CONNECTION_INFO_1 = thismodule.PRINTER_CONNECTION_INFO_1W;
-        pub const CORE_PRINTER_DRIVER = thismodule.CORE_PRINTER_DRIVERW;
-        pub const CommonPropertySheetUI = thismodule.CommonPropertySheetUIW;
-        pub const EnumPrinters = thismodule.EnumPrintersW;
-        pub const OpenPrinter = thismodule.OpenPrinterW;
-        pub const ResetPrinter = thismodule.ResetPrinterW;
-        pub const SetJob = thismodule.SetJobW;
-        pub const GetJob = thismodule.GetJobW;
-        pub const EnumJobs = thismodule.EnumJobsW;
-        pub const AddPrinter = thismodule.AddPrinterW;
-        pub const SetPrinter = thismodule.SetPrinterW;
-        pub const GetPrinter = thismodule.GetPrinterW;
-        pub const AddPrinterDriver = thismodule.AddPrinterDriverW;
-        pub const AddPrinterDriverEx = thismodule.AddPrinterDriverExW;
-        pub const EnumPrinterDrivers = thismodule.EnumPrinterDriversW;
-        pub const GetPrinterDriver = thismodule.GetPrinterDriverW;
-        pub const GetPrinterDriverDirectory = thismodule.GetPrinterDriverDirectoryW;
-        pub const DeletePrinterDriver = thismodule.DeletePrinterDriverW;
-        pub const DeletePrinterDriverEx = thismodule.DeletePrinterDriverExW;
-        pub const AddPrintProcessor = thismodule.AddPrintProcessorW;
-        pub const EnumPrintProcessors = thismodule.EnumPrintProcessorsW;
-        pub const GetPrintProcessorDirectory = thismodule.GetPrintProcessorDirectoryW;
-        pub const EnumPrintProcessorDatatypes = thismodule.EnumPrintProcessorDatatypesW;
-        pub const DeletePrintProcessor = thismodule.DeletePrintProcessorW;
-        pub const StartDocPrinter = thismodule.StartDocPrinterW;
-        pub const AddJob = thismodule.AddJobW;
-        pub const DocumentProperties = thismodule.DocumentPropertiesW;
-        pub const AdvancedDocumentProperties = thismodule.AdvancedDocumentPropertiesW;
-        pub const GetPrinterData = thismodule.GetPrinterDataW;
-        pub const GetPrinterDataEx = thismodule.GetPrinterDataExW;
-        pub const EnumPrinterData = thismodule.EnumPrinterDataW;
-        pub const EnumPrinterDataEx = thismodule.EnumPrinterDataExW;
-        pub const EnumPrinterKey = thismodule.EnumPrinterKeyW;
-        pub const SetPrinterData = thismodule.SetPrinterDataW;
-        pub const SetPrinterDataEx = thismodule.SetPrinterDataExW;
-        pub const DeletePrinterData = thismodule.DeletePrinterDataW;
-        pub const DeletePrinterDataEx = thismodule.DeletePrinterDataExW;
-        pub const DeletePrinterKey = thismodule.DeletePrinterKeyW;
-        pub const PrinterMessageBox = thismodule.PrinterMessageBoxW;
-        pub const AddForm = thismodule.AddFormW;
-        pub const DeleteForm = thismodule.DeleteFormW;
-        pub const GetForm = thismodule.GetFormW;
-        pub const SetForm = thismodule.SetFormW;
-        pub const EnumForms = thismodule.EnumFormsW;
-        pub const EnumMonitors = thismodule.EnumMonitorsW;
-        pub const AddMonitor = thismodule.AddMonitorW;
-        pub const DeleteMonitor = thismodule.DeleteMonitorW;
-        pub const EnumPorts = thismodule.EnumPortsW;
-        pub const AddPort = thismodule.AddPortW;
-        pub const ConfigurePort = thismodule.ConfigurePortW;
-        pub const DeletePort = thismodule.DeletePortW;
-        pub const GetDefaultPrinter = thismodule.GetDefaultPrinterW;
-        pub const SetDefaultPrinter = thismodule.SetDefaultPrinterW;
-        pub const SetPort = thismodule.SetPortW;
-        pub const AddPrinterConnection = thismodule.AddPrinterConnectionW;
-        pub const DeletePrinterConnection = thismodule.DeletePrinterConnectionW;
-        pub const AddPrintProvidor = thismodule.AddPrintProvidorW;
-        pub const DeletePrintProvidor = thismodule.DeletePrintProvidorW;
-        pub const IsValidDevmode = thismodule.IsValidDevmodeW;
-        pub const OpenPrinter2 = thismodule.OpenPrinter2W;
-        pub const AddPrinterConnection2 = thismodule.AddPrinterConnection2W;
-        pub const InstallPrinterDriverFromPackage = thismodule.InstallPrinterDriverFromPackageW;
-        pub const UploadPrinterDriverPackage = thismodule.UploadPrinterDriverPackageW;
-        pub const GetCorePrinterDrivers = thismodule.GetCorePrinterDriversW;
-        pub const CorePrinterDriverInstalled = thismodule.CorePrinterDriverInstalledW;
-        pub const GetPrinterDriverPackagePath = thismodule.GetPrinterDriverPackagePathW;
-        pub const DeletePrinterDriverPackage = thismodule.DeletePrinterDriverPackageW;
-        pub const GetPrinterDriver2 = thismodule.GetPrinterDriver2W;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const PRINTER_INFO_1 = *opaque{};
-        pub const PRINTER_INFO_2 = *opaque{};
-        pub const PRINTER_INFO_4 = *opaque{};
-        pub const PRINTER_INFO_5 = *opaque{};
-        pub const PRINTER_INFO_7 = *opaque{};
-        pub const PRINTER_INFO_8 = *opaque{};
-        pub const PRINTER_INFO_9 = *opaque{};
-        pub const JOB_INFO_1 = *opaque{};
-        pub const JOB_INFO_2 = *opaque{};
-        pub const JOB_INFO_4 = *opaque{};
-        pub const ADDJOB_INFO_1 = *opaque{};
-        pub const DRIVER_INFO_1 = *opaque{};
-        pub const DRIVER_INFO_2 = *opaque{};
-        pub const DRIVER_INFO_3 = *opaque{};
-        pub const DRIVER_INFO_4 = *opaque{};
-        pub const DRIVER_INFO_5 = *opaque{};
-        pub const DRIVER_INFO_6 = *opaque{};
-        pub const DRIVER_INFO_8 = *opaque{};
-        pub const DOC_INFO_1 = *opaque{};
-        pub const FORM_INFO_1 = *opaque{};
-        pub const FORM_INFO_2 = *opaque{};
-        pub const DOC_INFO_2 = *opaque{};
-        pub const DOC_INFO_3 = *opaque{};
-        pub const PRINTPROCESSOR_INFO_1 = *opaque{};
-        pub const PORT_INFO_1 = *opaque{};
-        pub const PORT_INFO_2 = *opaque{};
-        pub const PORT_INFO_3 = *opaque{};
-        pub const MONITOR_INFO_1 = *opaque{};
-        pub const MONITOR_INFO_2 = *opaque{};
-        pub const DATATYPES_INFO_1 = *opaque{};
-        pub const PRINTER_DEFAULTS = *opaque{};
-        pub const PRINTER_ENUM_VALUES = *opaque{};
-        pub const PROVIDOR_INFO_1 = *opaque{};
-        pub const PROVIDOR_INFO_2 = *opaque{};
-        pub const PRINTER_OPTIONS = *opaque{};
-        pub const PRINTER_CONNECTION_INFO_1 = *opaque{};
-        pub const CORE_PRINTER_DRIVER = *opaque{};
-        pub const CommonPropertySheetUI = *opaque{};
-        pub const EnumPrinters = *opaque{};
-        pub const OpenPrinter = *opaque{};
-        pub const ResetPrinter = *opaque{};
-        pub const SetJob = *opaque{};
-        pub const GetJob = *opaque{};
-        pub const EnumJobs = *opaque{};
-        pub const AddPrinter = *opaque{};
-        pub const SetPrinter = *opaque{};
-        pub const GetPrinter = *opaque{};
-        pub const AddPrinterDriver = *opaque{};
-        pub const AddPrinterDriverEx = *opaque{};
-        pub const EnumPrinterDrivers = *opaque{};
-        pub const GetPrinterDriver = *opaque{};
-        pub const GetPrinterDriverDirectory = *opaque{};
-        pub const DeletePrinterDriver = *opaque{};
-        pub const DeletePrinterDriverEx = *opaque{};
-        pub const AddPrintProcessor = *opaque{};
-        pub const EnumPrintProcessors = *opaque{};
-        pub const GetPrintProcessorDirectory = *opaque{};
-        pub const EnumPrintProcessorDatatypes = *opaque{};
-        pub const DeletePrintProcessor = *opaque{};
-        pub const StartDocPrinter = *opaque{};
-        pub const AddJob = *opaque{};
-        pub const DocumentProperties = *opaque{};
-        pub const AdvancedDocumentProperties = *opaque{};
-        pub const GetPrinterData = *opaque{};
-        pub const GetPrinterDataEx = *opaque{};
-        pub const EnumPrinterData = *opaque{};
-        pub const EnumPrinterDataEx = *opaque{};
-        pub const EnumPrinterKey = *opaque{};
-        pub const SetPrinterData = *opaque{};
-        pub const SetPrinterDataEx = *opaque{};
-        pub const DeletePrinterData = *opaque{};
-        pub const DeletePrinterDataEx = *opaque{};
-        pub const DeletePrinterKey = *opaque{};
-        pub const PrinterMessageBox = *opaque{};
-        pub const AddForm = *opaque{};
-        pub const DeleteForm = *opaque{};
-        pub const GetForm = *opaque{};
-        pub const SetForm = *opaque{};
-        pub const EnumForms = *opaque{};
-        pub const EnumMonitors = *opaque{};
-        pub const AddMonitor = *opaque{};
-        pub const DeleteMonitor = *opaque{};
-        pub const EnumPorts = *opaque{};
-        pub const AddPort = *opaque{};
-        pub const ConfigurePort = *opaque{};
-        pub const DeletePort = *opaque{};
-        pub const GetDefaultPrinter = *opaque{};
-        pub const SetDefaultPrinter = *opaque{};
-        pub const SetPort = *opaque{};
-        pub const AddPrinterConnection = *opaque{};
-        pub const DeletePrinterConnection = *opaque{};
-        pub const AddPrintProvidor = *opaque{};
-        pub const DeletePrintProvidor = *opaque{};
-        pub const IsValidDevmode = *opaque{};
-        pub const OpenPrinter2 = *opaque{};
-        pub const AddPrinterConnection2 = *opaque{};
-        pub const InstallPrinterDriverFromPackage = *opaque{};
-        pub const UploadPrinterDriverPackage = *opaque{};
-        pub const GetCorePrinterDrivers = *opaque{};
-        pub const CorePrinterDriverInstalled = *opaque{};
-        pub const GetPrinterDriverPackagePath = *opaque{};
-        pub const DeletePrinterDriverPackage = *opaque{};
-        pub const GetPrinterDriver2 = *opaque{};
-    } else struct {
-        pub const PRINTER_INFO_1 = @compileError("'PRINTER_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTER_INFO_2 = @compileError("'PRINTER_INFO_2' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTER_INFO_4 = @compileError("'PRINTER_INFO_4' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTER_INFO_5 = @compileError("'PRINTER_INFO_5' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTER_INFO_7 = @compileError("'PRINTER_INFO_7' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTER_INFO_8 = @compileError("'PRINTER_INFO_8' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTER_INFO_9 = @compileError("'PRINTER_INFO_9' requires that UNICODE be set to true or false in the root module");
-        pub const JOB_INFO_1 = @compileError("'JOB_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const JOB_INFO_2 = @compileError("'JOB_INFO_2' requires that UNICODE be set to true or false in the root module");
-        pub const JOB_INFO_4 = @compileError("'JOB_INFO_4' requires that UNICODE be set to true or false in the root module");
-        pub const ADDJOB_INFO_1 = @compileError("'ADDJOB_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const DRIVER_INFO_1 = @compileError("'DRIVER_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const DRIVER_INFO_2 = @compileError("'DRIVER_INFO_2' requires that UNICODE be set to true or false in the root module");
-        pub const DRIVER_INFO_3 = @compileError("'DRIVER_INFO_3' requires that UNICODE be set to true or false in the root module");
-        pub const DRIVER_INFO_4 = @compileError("'DRIVER_INFO_4' requires that UNICODE be set to true or false in the root module");
-        pub const DRIVER_INFO_5 = @compileError("'DRIVER_INFO_5' requires that UNICODE be set to true or false in the root module");
-        pub const DRIVER_INFO_6 = @compileError("'DRIVER_INFO_6' requires that UNICODE be set to true or false in the root module");
-        pub const DRIVER_INFO_8 = @compileError("'DRIVER_INFO_8' requires that UNICODE be set to true or false in the root module");
-        pub const DOC_INFO_1 = @compileError("'DOC_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const FORM_INFO_1 = @compileError("'FORM_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const FORM_INFO_2 = @compileError("'FORM_INFO_2' requires that UNICODE be set to true or false in the root module");
-        pub const DOC_INFO_2 = @compileError("'DOC_INFO_2' requires that UNICODE be set to true or false in the root module");
-        pub const DOC_INFO_3 = @compileError("'DOC_INFO_3' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTPROCESSOR_INFO_1 = @compileError("'PRINTPROCESSOR_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const PORT_INFO_1 = @compileError("'PORT_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const PORT_INFO_2 = @compileError("'PORT_INFO_2' requires that UNICODE be set to true or false in the root module");
-        pub const PORT_INFO_3 = @compileError("'PORT_INFO_3' requires that UNICODE be set to true or false in the root module");
-        pub const MONITOR_INFO_1 = @compileError("'MONITOR_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const MONITOR_INFO_2 = @compileError("'MONITOR_INFO_2' requires that UNICODE be set to true or false in the root module");
-        pub const DATATYPES_INFO_1 = @compileError("'DATATYPES_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTER_DEFAULTS = @compileError("'PRINTER_DEFAULTS' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTER_ENUM_VALUES = @compileError("'PRINTER_ENUM_VALUES' requires that UNICODE be set to true or false in the root module");
-        pub const PROVIDOR_INFO_1 = @compileError("'PROVIDOR_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const PROVIDOR_INFO_2 = @compileError("'PROVIDOR_INFO_2' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTER_OPTIONS = @compileError("'PRINTER_OPTIONS' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTER_CONNECTION_INFO_1 = @compileError("'PRINTER_CONNECTION_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const CORE_PRINTER_DRIVER = @compileError("'CORE_PRINTER_DRIVER' requires that UNICODE be set to true or false in the root module");
-        pub const CommonPropertySheetUI = @compileError("'CommonPropertySheetUI' requires that UNICODE be set to true or false in the root module");
-        pub const EnumPrinters = @compileError("'EnumPrinters' requires that UNICODE be set to true or false in the root module");
-        pub const OpenPrinter = @compileError("'OpenPrinter' requires that UNICODE be set to true or false in the root module");
-        pub const ResetPrinter = @compileError("'ResetPrinter' requires that UNICODE be set to true or false in the root module");
-        pub const SetJob = @compileError("'SetJob' requires that UNICODE be set to true or false in the root module");
-        pub const GetJob = @compileError("'GetJob' requires that UNICODE be set to true or false in the root module");
-        pub const EnumJobs = @compileError("'EnumJobs' requires that UNICODE be set to true or false in the root module");
-        pub const AddPrinter = @compileError("'AddPrinter' requires that UNICODE be set to true or false in the root module");
-        pub const SetPrinter = @compileError("'SetPrinter' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrinter = @compileError("'GetPrinter' requires that UNICODE be set to true or false in the root module");
-        pub const AddPrinterDriver = @compileError("'AddPrinterDriver' requires that UNICODE be set to true or false in the root module");
-        pub const AddPrinterDriverEx = @compileError("'AddPrinterDriverEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumPrinterDrivers = @compileError("'EnumPrinterDrivers' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrinterDriver = @compileError("'GetPrinterDriver' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrinterDriverDirectory = @compileError("'GetPrinterDriverDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const DeletePrinterDriver = @compileError("'DeletePrinterDriver' requires that UNICODE be set to true or false in the root module");
-        pub const DeletePrinterDriverEx = @compileError("'DeletePrinterDriverEx' requires that UNICODE be set to true or false in the root module");
-        pub const AddPrintProcessor = @compileError("'AddPrintProcessor' requires that UNICODE be set to true or false in the root module");
-        pub const EnumPrintProcessors = @compileError("'EnumPrintProcessors' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrintProcessorDirectory = @compileError("'GetPrintProcessorDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const EnumPrintProcessorDatatypes = @compileError("'EnumPrintProcessorDatatypes' requires that UNICODE be set to true or false in the root module");
-        pub const DeletePrintProcessor = @compileError("'DeletePrintProcessor' requires that UNICODE be set to true or false in the root module");
-        pub const StartDocPrinter = @compileError("'StartDocPrinter' requires that UNICODE be set to true or false in the root module");
-        pub const AddJob = @compileError("'AddJob' requires that UNICODE be set to true or false in the root module");
-        pub const DocumentProperties = @compileError("'DocumentProperties' requires that UNICODE be set to true or false in the root module");
-        pub const AdvancedDocumentProperties = @compileError("'AdvancedDocumentProperties' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrinterData = @compileError("'GetPrinterData' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrinterDataEx = @compileError("'GetPrinterDataEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumPrinterData = @compileError("'EnumPrinterData' requires that UNICODE be set to true or false in the root module");
-        pub const EnumPrinterDataEx = @compileError("'EnumPrinterDataEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumPrinterKey = @compileError("'EnumPrinterKey' requires that UNICODE be set to true or false in the root module");
-        pub const SetPrinterData = @compileError("'SetPrinterData' requires that UNICODE be set to true or false in the root module");
-        pub const SetPrinterDataEx = @compileError("'SetPrinterDataEx' requires that UNICODE be set to true or false in the root module");
-        pub const DeletePrinterData = @compileError("'DeletePrinterData' requires that UNICODE be set to true or false in the root module");
-        pub const DeletePrinterDataEx = @compileError("'DeletePrinterDataEx' requires that UNICODE be set to true or false in the root module");
-        pub const DeletePrinterKey = @compileError("'DeletePrinterKey' requires that UNICODE be set to true or false in the root module");
-        pub const PrinterMessageBox = @compileError("'PrinterMessageBox' requires that UNICODE be set to true or false in the root module");
-        pub const AddForm = @compileError("'AddForm' requires that UNICODE be set to true or false in the root module");
-        pub const DeleteForm = @compileError("'DeleteForm' requires that UNICODE be set to true or false in the root module");
-        pub const GetForm = @compileError("'GetForm' requires that UNICODE be set to true or false in the root module");
-        pub const SetForm = @compileError("'SetForm' requires that UNICODE be set to true or false in the root module");
-        pub const EnumForms = @compileError("'EnumForms' requires that UNICODE be set to true or false in the root module");
-        pub const EnumMonitors = @compileError("'EnumMonitors' requires that UNICODE be set to true or false in the root module");
-        pub const AddMonitor = @compileError("'AddMonitor' requires that UNICODE be set to true or false in the root module");
-        pub const DeleteMonitor = @compileError("'DeleteMonitor' requires that UNICODE be set to true or false in the root module");
-        pub const EnumPorts = @compileError("'EnumPorts' requires that UNICODE be set to true or false in the root module");
-        pub const AddPort = @compileError("'AddPort' requires that UNICODE be set to true or false in the root module");
-        pub const ConfigurePort = @compileError("'ConfigurePort' requires that UNICODE be set to true or false in the root module");
-        pub const DeletePort = @compileError("'DeletePort' requires that UNICODE be set to true or false in the root module");
-        pub const GetDefaultPrinter = @compileError("'GetDefaultPrinter' requires that UNICODE be set to true or false in the root module");
-        pub const SetDefaultPrinter = @compileError("'SetDefaultPrinter' requires that UNICODE be set to true or false in the root module");
-        pub const SetPort = @compileError("'SetPort' requires that UNICODE be set to true or false in the root module");
-        pub const AddPrinterConnection = @compileError("'AddPrinterConnection' requires that UNICODE be set to true or false in the root module");
-        pub const DeletePrinterConnection = @compileError("'DeletePrinterConnection' requires that UNICODE be set to true or false in the root module");
-        pub const AddPrintProvidor = @compileError("'AddPrintProvidor' requires that UNICODE be set to true or false in the root module");
-        pub const DeletePrintProvidor = @compileError("'DeletePrintProvidor' requires that UNICODE be set to true or false in the root module");
-        pub const IsValidDevmode = @compileError("'IsValidDevmode' requires that UNICODE be set to true or false in the root module");
-        pub const OpenPrinter2 = @compileError("'OpenPrinter2' requires that UNICODE be set to true or false in the root module");
-        pub const AddPrinterConnection2 = @compileError("'AddPrinterConnection2' requires that UNICODE be set to true or false in the root module");
-        pub const InstallPrinterDriverFromPackage = @compileError("'InstallPrinterDriverFromPackage' requires that UNICODE be set to true or false in the root module");
-        pub const UploadPrinterDriverPackage = @compileError("'UploadPrinterDriverPackage' requires that UNICODE be set to true or false in the root module");
-        pub const GetCorePrinterDrivers = @compileError("'GetCorePrinterDrivers' requires that UNICODE be set to true or false in the root module");
-        pub const CorePrinterDriverInstalled = @compileError("'CorePrinterDriverInstalled' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrinterDriverPackagePath = @compileError("'GetPrinterDriverPackagePath' requires that UNICODE be set to true or false in the root module");
-        pub const DeletePrinterDriverPackage = @compileError("'DeletePrinterDriverPackage' requires that UNICODE be set to true or false in the root module");
-        pub const GetPrinterDriver2 = @compileError("'GetPrinterDriver2' requires that UNICODE be set to true or false in the root module");
-    },
+pub const PRINTER_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTER_INFO_1A,
+    .wide => @This().PRINTER_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTER_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTER_INFO_2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTER_INFO_2A,
+    .wide => @This().PRINTER_INFO_2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTER_INFO_2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTER_INFO_4 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTER_INFO_4A,
+    .wide => @This().PRINTER_INFO_4W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTER_INFO_4' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTER_INFO_5 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTER_INFO_5A,
+    .wide => @This().PRINTER_INFO_5W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTER_INFO_5' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTER_INFO_7 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTER_INFO_7A,
+    .wide => @This().PRINTER_INFO_7W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTER_INFO_7' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTER_INFO_8 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTER_INFO_8A,
+    .wide => @This().PRINTER_INFO_8W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTER_INFO_8' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTER_INFO_9 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTER_INFO_9A,
+    .wide => @This().PRINTER_INFO_9W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTER_INFO_9' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JOB_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JOB_INFO_1A,
+    .wide => @This().JOB_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JOB_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JOB_INFO_2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JOB_INFO_2A,
+    .wide => @This().JOB_INFO_2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JOB_INFO_2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JOB_INFO_4 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JOB_INFO_4A,
+    .wide => @This().JOB_INFO_4W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JOB_INFO_4' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ADDJOB_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ADDJOB_INFO_1A,
+    .wide => @This().ADDJOB_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ADDJOB_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DRIVER_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DRIVER_INFO_1A,
+    .wide => @This().DRIVER_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DRIVER_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DRIVER_INFO_2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DRIVER_INFO_2A,
+    .wide => @This().DRIVER_INFO_2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DRIVER_INFO_2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DRIVER_INFO_3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DRIVER_INFO_3A,
+    .wide => @This().DRIVER_INFO_3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DRIVER_INFO_3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DRIVER_INFO_4 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DRIVER_INFO_4A,
+    .wide => @This().DRIVER_INFO_4W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DRIVER_INFO_4' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DRIVER_INFO_5 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DRIVER_INFO_5A,
+    .wide => @This().DRIVER_INFO_5W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DRIVER_INFO_5' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DRIVER_INFO_6 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DRIVER_INFO_6A,
+    .wide => @This().DRIVER_INFO_6W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DRIVER_INFO_6' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DRIVER_INFO_8 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DRIVER_INFO_8A,
+    .wide => @This().DRIVER_INFO_8W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DRIVER_INFO_8' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DOC_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DOC_INFO_1A,
+    .wide => @This().DOC_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DOC_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FORM_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FORM_INFO_1A,
+    .wide => @This().FORM_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FORM_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FORM_INFO_2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FORM_INFO_2A,
+    .wide => @This().FORM_INFO_2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FORM_INFO_2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DOC_INFO_2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DOC_INFO_2A,
+    .wide => @This().DOC_INFO_2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DOC_INFO_2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DOC_INFO_3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DOC_INFO_3A,
+    .wide => @This().DOC_INFO_3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DOC_INFO_3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTPROCESSOR_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTPROCESSOR_INFO_1A,
+    .wide => @This().PRINTPROCESSOR_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTPROCESSOR_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PORT_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PORT_INFO_1A,
+    .wide => @This().PORT_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PORT_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PORT_INFO_2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PORT_INFO_2A,
+    .wide => @This().PORT_INFO_2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PORT_INFO_2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PORT_INFO_3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PORT_INFO_3A,
+    .wide => @This().PORT_INFO_3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PORT_INFO_3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MONITOR_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MONITOR_INFO_1A,
+    .wide => @This().MONITOR_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MONITOR_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MONITOR_INFO_2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MONITOR_INFO_2A,
+    .wide => @This().MONITOR_INFO_2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MONITOR_INFO_2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DATATYPES_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DATATYPES_INFO_1A,
+    .wide => @This().DATATYPES_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DATATYPES_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTER_DEFAULTS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTER_DEFAULTSA,
+    .wide => @This().PRINTER_DEFAULTSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTER_DEFAULTS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTER_ENUM_VALUES = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTER_ENUM_VALUESA,
+    .wide => @This().PRINTER_ENUM_VALUESW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTER_ENUM_VALUES' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PROVIDOR_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PROVIDOR_INFO_1A,
+    .wide => @This().PROVIDOR_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PROVIDOR_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PROVIDOR_INFO_2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PROVIDOR_INFO_2A,
+    .wide => @This().PROVIDOR_INFO_2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PROVIDOR_INFO_2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTER_OPTIONS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTER_OPTIONSA,
+    .wide => @This().PRINTER_OPTIONSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTER_OPTIONS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTER_CONNECTION_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTER_CONNECTION_INFO_1A,
+    .wide => @This().PRINTER_CONNECTION_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTER_CONNECTION_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CORE_PRINTER_DRIVER = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CORE_PRINTER_DRIVERA,
+    .wide => @This().CORE_PRINTER_DRIVERW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CORE_PRINTER_DRIVER' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CommonPropertySheetUI = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CommonPropertySheetUIA,
+    .wide => @This().CommonPropertySheetUIW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CommonPropertySheetUI' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumPrinters = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumPrintersA,
+    .wide => @This().EnumPrintersW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumPrinters' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenPrinter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenPrinterA,
+    .wide => @This().OpenPrinterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenPrinter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ResetPrinter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ResetPrinterA,
+    .wide => @This().ResetPrinterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ResetPrinter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetJob = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetJobA,
+    .wide => @This().SetJobW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetJob' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetJob = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetJobA,
+    .wide => @This().GetJobW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetJob' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumJobs = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumJobsA,
+    .wide => @This().EnumJobsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumJobs' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddPrinter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddPrinterA,
+    .wide => @This().AddPrinterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddPrinter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetPrinter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetPrinterA,
+    .wide => @This().SetPrinterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetPrinter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrinter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrinterA,
+    .wide => @This().GetPrinterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrinter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddPrinterDriver = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddPrinterDriverA,
+    .wide => @This().AddPrinterDriverW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddPrinterDriver' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddPrinterDriverEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddPrinterDriverExA,
+    .wide => @This().AddPrinterDriverExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddPrinterDriverEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumPrinterDrivers = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumPrinterDriversA,
+    .wide => @This().EnumPrinterDriversW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumPrinterDrivers' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrinterDriver = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrinterDriverA,
+    .wide => @This().GetPrinterDriverW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrinterDriver' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrinterDriverDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrinterDriverDirectoryA,
+    .wide => @This().GetPrinterDriverDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrinterDriverDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeletePrinterDriver = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeletePrinterDriverA,
+    .wide => @This().DeletePrinterDriverW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeletePrinterDriver' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeletePrinterDriverEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeletePrinterDriverExA,
+    .wide => @This().DeletePrinterDriverExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeletePrinterDriverEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddPrintProcessor = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddPrintProcessorA,
+    .wide => @This().AddPrintProcessorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddPrintProcessor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumPrintProcessors = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumPrintProcessorsA,
+    .wide => @This().EnumPrintProcessorsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumPrintProcessors' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrintProcessorDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrintProcessorDirectoryA,
+    .wide => @This().GetPrintProcessorDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrintProcessorDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumPrintProcessorDatatypes = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumPrintProcessorDatatypesA,
+    .wide => @This().EnumPrintProcessorDatatypesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumPrintProcessorDatatypes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeletePrintProcessor = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeletePrintProcessorA,
+    .wide => @This().DeletePrintProcessorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeletePrintProcessor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StartDocPrinter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StartDocPrinterA,
+    .wide => @This().StartDocPrinterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StartDocPrinter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddJob = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddJobA,
+    .wide => @This().AddJobW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddJob' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DocumentProperties = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DocumentPropertiesA,
+    .wide => @This().DocumentPropertiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DocumentProperties' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AdvancedDocumentProperties = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AdvancedDocumentPropertiesA,
+    .wide => @This().AdvancedDocumentPropertiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AdvancedDocumentProperties' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrinterData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrinterDataA,
+    .wide => @This().GetPrinterDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrinterData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrinterDataEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrinterDataExA,
+    .wide => @This().GetPrinterDataExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrinterDataEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumPrinterData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumPrinterDataA,
+    .wide => @This().EnumPrinterDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumPrinterData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumPrinterDataEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumPrinterDataExA,
+    .wide => @This().EnumPrinterDataExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumPrinterDataEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumPrinterKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumPrinterKeyA,
+    .wide => @This().EnumPrinterKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumPrinterKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetPrinterData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetPrinterDataA,
+    .wide => @This().SetPrinterDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetPrinterData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetPrinterDataEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetPrinterDataExA,
+    .wide => @This().SetPrinterDataExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetPrinterDataEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeletePrinterData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeletePrinterDataA,
+    .wide => @This().DeletePrinterDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeletePrinterData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeletePrinterDataEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeletePrinterDataExA,
+    .wide => @This().DeletePrinterDataExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeletePrinterDataEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeletePrinterKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeletePrinterKeyA,
+    .wide => @This().DeletePrinterKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeletePrinterKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PrinterMessageBox = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PrinterMessageBoxA,
+    .wide => @This().PrinterMessageBoxW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PrinterMessageBox' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddForm = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddFormA,
+    .wide => @This().AddFormW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddForm' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeleteForm = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeleteFormA,
+    .wide => @This().DeleteFormW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeleteForm' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetForm = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetFormA,
+    .wide => @This().GetFormW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetForm' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetForm = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetFormA,
+    .wide => @This().SetFormW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetForm' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumForms = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumFormsA,
+    .wide => @This().EnumFormsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumForms' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumMonitors = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumMonitorsA,
+    .wide => @This().EnumMonitorsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumMonitors' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddMonitor = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddMonitorA,
+    .wide => @This().AddMonitorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddMonitor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeleteMonitor = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeleteMonitorA,
+    .wide => @This().DeleteMonitorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeleteMonitor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumPorts = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumPortsA,
+    .wide => @This().EnumPortsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumPorts' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddPort = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddPortA,
+    .wide => @This().AddPortW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddPort' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ConfigurePort = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ConfigurePortA,
+    .wide => @This().ConfigurePortW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ConfigurePort' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeletePort = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeletePortA,
+    .wide => @This().DeletePortW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeletePort' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDefaultPrinter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDefaultPrinterA,
+    .wide => @This().GetDefaultPrinterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDefaultPrinter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetDefaultPrinter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetDefaultPrinterA,
+    .wide => @This().SetDefaultPrinterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetDefaultPrinter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetPort = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetPortA,
+    .wide => @This().SetPortW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetPort' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddPrinterConnection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddPrinterConnectionA,
+    .wide => @This().AddPrinterConnectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddPrinterConnection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeletePrinterConnection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeletePrinterConnectionA,
+    .wide => @This().DeletePrinterConnectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeletePrinterConnection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddPrintProvidor = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddPrintProvidorA,
+    .wide => @This().AddPrintProvidorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddPrintProvidor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeletePrintProvidor = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeletePrintProvidorA,
+    .wide => @This().DeletePrintProvidorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeletePrintProvidor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IsValidDevmode = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IsValidDevmodeA,
+    .wide => @This().IsValidDevmodeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IsValidDevmode' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenPrinter2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenPrinter2A,
+    .wide => @This().OpenPrinter2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenPrinter2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddPrinterConnection2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddPrinterConnection2A,
+    .wide => @This().AddPrinterConnection2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddPrinterConnection2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InstallPrinterDriverFromPackage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InstallPrinterDriverFromPackageA,
+    .wide => @This().InstallPrinterDriverFromPackageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InstallPrinterDriverFromPackage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UploadPrinterDriverPackage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UploadPrinterDriverPackageA,
+    .wide => @This().UploadPrinterDriverPackageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UploadPrinterDriverPackage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCorePrinterDrivers = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetCorePrinterDriversA,
+    .wide => @This().GetCorePrinterDriversW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCorePrinterDrivers' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CorePrinterDriverInstalled = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CorePrinterDriverInstalledA,
+    .wide => @This().CorePrinterDriverInstalledW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CorePrinterDriverInstalled' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrinterDriverPackagePath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrinterDriverPackagePathA,
+    .wide => @This().GetPrinterDriverPackagePathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrinterDriverPackagePath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeletePrinterDriverPackage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeletePrinterDriverPackageA,
+    .wide => @This().DeletePrinterDriverPackageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeletePrinterDriverPackage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetPrinterDriver2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetPrinterDriver2A,
+    .wide => @This().GetPrinterDriver2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetPrinterDriver2' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (42)

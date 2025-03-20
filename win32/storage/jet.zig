@@ -3841,355 +3841,600 @@ pub extern "esent" fn JetGetSessionParameter(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (85)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const JET_RSTMAP_ = thismodule.JET_RSTMAP_A;
-        pub const CONVERT_ = thismodule.CONVERT_A;
-        pub const JET_COLUMNBASE_ = thismodule.JET_COLUMNBASE_A;
-        pub const JET_COLUMNCREATE_ = thismodule.JET_COLUMNCREATE_A;
-        pub const JET_USERDEFINEDDEFAULT_ = thismodule.JET_USERDEFINEDDEFAULT_A;
-        pub const JET_CONDITIONALCOLUMN_ = thismodule.JET_CONDITIONALCOLUMN_A;
-        pub const JET_INDEXCREATE_ = thismodule.JET_INDEXCREATE_A;
-        pub const JET_INDEXCREATE2_ = thismodule.JET_INDEXCREATE2_A;
-        pub const JET_INDEXCREATE3_ = thismodule.JET_INDEXCREATE3_A;
-        pub const JET_TABLECREATE_ = thismodule.JET_TABLECREATE_A;
-        pub const JET_TABLECREATE2_ = thismodule.JET_TABLECREATE2_A;
-        pub const JET_TABLECREATE3_ = thismodule.JET_TABLECREATE3_A;
-        pub const JET_TABLECREATE4_ = thismodule.JET_TABLECREATE4_A;
-        pub const JET_RSTINFO_ = thismodule.JET_RSTINFO_A;
-        pub const JET_SETSYSPARAM_ = thismodule.JET_SETSYSPARAM_A;
-        pub const JET_LOGINFO_ = thismodule.JET_LOGINFO_A;
-        pub const JET_INSTANCE_INFO_ = thismodule.JET_INSTANCE_INFO_A;
-        pub const JetInit3 = thismodule.JetInit3A;
-        pub const JetCreateInstance = thismodule.JetCreateInstanceA;
-        pub const JetCreateInstance2 = thismodule.JetCreateInstance2A;
-        pub const JetSetSystemParameter = thismodule.JetSetSystemParameterA;
-        pub const JetGetSystemParameter = thismodule.JetGetSystemParameterA;
-        pub const JetEnableMultiInstance = thismodule.JetEnableMultiInstanceA;
-        pub const JetBeginSession = thismodule.JetBeginSessionA;
-        pub const JetCreateDatabase = thismodule.JetCreateDatabaseA;
-        pub const JetCreateDatabase2 = thismodule.JetCreateDatabase2A;
-        pub const JetAttachDatabase = thismodule.JetAttachDatabaseA;
-        pub const JetAttachDatabase2 = thismodule.JetAttachDatabase2A;
-        pub const JetDetachDatabase = thismodule.JetDetachDatabaseA;
-        pub const JetDetachDatabase2 = thismodule.JetDetachDatabase2A;
-        pub const JetGetObjectInfo = thismodule.JetGetObjectInfoA;
-        pub const JetGetTableInfo = thismodule.JetGetTableInfoA;
-        pub const JetCreateTable = thismodule.JetCreateTableA;
-        pub const JetCreateTableColumnIndex = thismodule.JetCreateTableColumnIndexA;
-        pub const JetCreateTableColumnIndex2 = thismodule.JetCreateTableColumnIndex2A;
-        pub const JetCreateTableColumnIndex3 = thismodule.JetCreateTableColumnIndex3A;
-        pub const JetCreateTableColumnIndex4 = thismodule.JetCreateTableColumnIndex4A;
-        pub const JetDeleteTable = thismodule.JetDeleteTableA;
-        pub const JetRenameTable = thismodule.JetRenameTableA;
-        pub const JetGetTableColumnInfo = thismodule.JetGetTableColumnInfoA;
-        pub const JetGetColumnInfo = thismodule.JetGetColumnInfoA;
-        pub const JetAddColumn = thismodule.JetAddColumnA;
-        pub const JetDeleteColumn = thismodule.JetDeleteColumnA;
-        pub const JetDeleteColumn2 = thismodule.JetDeleteColumn2A;
-        pub const JetRenameColumn = thismodule.JetRenameColumnA;
-        pub const JetSetColumnDefaultValue = thismodule.JetSetColumnDefaultValueA;
-        pub const JetGetTableIndexInfo = thismodule.JetGetTableIndexInfoA;
-        pub const JetGetIndexInfo = thismodule.JetGetIndexInfoA;
-        pub const JetCreateIndex = thismodule.JetCreateIndexA;
-        pub const JetCreateIndex2 = thismodule.JetCreateIndex2A;
-        pub const JetCreateIndex3 = thismodule.JetCreateIndex3A;
-        pub const JetCreateIndex4 = thismodule.JetCreateIndex4A;
-        pub const JetDeleteIndex = thismodule.JetDeleteIndexA;
-        pub const JetGetDatabaseInfo = thismodule.JetGetDatabaseInfoA;
-        pub const JetGetDatabaseFileInfo = thismodule.JetGetDatabaseFileInfoA;
-        pub const JetOpenDatabase = thismodule.JetOpenDatabaseA;
-        pub const JetOpenTable = thismodule.JetOpenTableA;
-        pub const JetGetCurrentIndex = thismodule.JetGetCurrentIndexA;
-        pub const JetSetCurrentIndex = thismodule.JetSetCurrentIndexA;
-        pub const JetSetCurrentIndex2 = thismodule.JetSetCurrentIndex2A;
-        pub const JetSetCurrentIndex3 = thismodule.JetSetCurrentIndex3A;
-        pub const JetSetCurrentIndex4 = thismodule.JetSetCurrentIndex4A;
-        pub const JetCompact = thismodule.JetCompactA;
-        pub const JetDefragment = thismodule.JetDefragmentA;
-        pub const JetDefragment2 = thismodule.JetDefragment2A;
-        pub const JetDefragment3 = thismodule.JetDefragment3A;
-        pub const JetSetDatabaseSize = thismodule.JetSetDatabaseSizeA;
-        pub const JetBackup = thismodule.JetBackupA;
-        pub const JetBackupInstance = thismodule.JetBackupInstanceA;
-        pub const JetRestore = thismodule.JetRestoreA;
-        pub const JetRestore2 = thismodule.JetRestore2A;
-        pub const JetRestoreInstance = thismodule.JetRestoreInstanceA;
-        pub const JetGetAttachInfo = thismodule.JetGetAttachInfoA;
-        pub const JetGetAttachInfoInstance = thismodule.JetGetAttachInfoInstanceA;
-        pub const JetOpenFile = thismodule.JetOpenFileA;
-        pub const JetOpenFileInstance = thismodule.JetOpenFileInstanceA;
-        pub const JetGetLogInfo = thismodule.JetGetLogInfoA;
-        pub const JetGetLogInfoInstance = thismodule.JetGetLogInfoInstanceA;
-        pub const JetGetLogInfoInstance2 = thismodule.JetGetLogInfoInstance2A;
-        pub const JetGetTruncateLogInfoInstance = thismodule.JetGetTruncateLogInfoInstanceA;
-        pub const JetExternalRestore = thismodule.JetExternalRestoreA;
-        pub const JetExternalRestore2 = thismodule.JetExternalRestore2A;
-        pub const JetGetInstanceInfo = thismodule.JetGetInstanceInfoA;
-        pub const JetOSSnapshotFreeze = thismodule.JetOSSnapshotFreezeA;
-        pub const JetOSSnapshotGetFreezeInfo = thismodule.JetOSSnapshotGetFreezeInfoA;
-    },
-    .wide => struct {
-        pub const JET_RSTMAP_ = thismodule.JET_RSTMAP_W;
-        pub const CONVERT_ = thismodule.CONVERT_W;
-        pub const JET_COLUMNBASE_ = thismodule.JET_COLUMNBASE_W;
-        pub const JET_COLUMNCREATE_ = thismodule.JET_COLUMNCREATE_W;
-        pub const JET_USERDEFINEDDEFAULT_ = thismodule.JET_USERDEFINEDDEFAULT_W;
-        pub const JET_CONDITIONALCOLUMN_ = thismodule.JET_CONDITIONALCOLUMN_W;
-        pub const JET_INDEXCREATE_ = thismodule.JET_INDEXCREATE_W;
-        pub const JET_INDEXCREATE2_ = thismodule.JET_INDEXCREATE2_W;
-        pub const JET_INDEXCREATE3_ = thismodule.JET_INDEXCREATE3_W;
-        pub const JET_TABLECREATE_ = thismodule.JET_TABLECREATE_W;
-        pub const JET_TABLECREATE2_ = thismodule.JET_TABLECREATE2_W;
-        pub const JET_TABLECREATE3_ = thismodule.JET_TABLECREATE3_W;
-        pub const JET_TABLECREATE4_ = thismodule.JET_TABLECREATE4_W;
-        pub const JET_RSTINFO_ = thismodule.JET_RSTINFO_W;
-        pub const JET_SETSYSPARAM_ = thismodule.JET_SETSYSPARAM_W;
-        pub const JET_LOGINFO_ = thismodule.JET_LOGINFO_W;
-        pub const JET_INSTANCE_INFO_ = thismodule.JET_INSTANCE_INFO_W;
-        pub const JetInit3 = thismodule.JetInit3W;
-        pub const JetCreateInstance = thismodule.JetCreateInstanceW;
-        pub const JetCreateInstance2 = thismodule.JetCreateInstance2W;
-        pub const JetSetSystemParameter = thismodule.JetSetSystemParameterW;
-        pub const JetGetSystemParameter = thismodule.JetGetSystemParameterW;
-        pub const JetEnableMultiInstance = thismodule.JetEnableMultiInstanceW;
-        pub const JetBeginSession = thismodule.JetBeginSessionW;
-        pub const JetCreateDatabase = thismodule.JetCreateDatabaseW;
-        pub const JetCreateDatabase2 = thismodule.JetCreateDatabase2W;
-        pub const JetAttachDatabase = thismodule.JetAttachDatabaseW;
-        pub const JetAttachDatabase2 = thismodule.JetAttachDatabase2W;
-        pub const JetDetachDatabase = thismodule.JetDetachDatabaseW;
-        pub const JetDetachDatabase2 = thismodule.JetDetachDatabase2W;
-        pub const JetGetObjectInfo = thismodule.JetGetObjectInfoW;
-        pub const JetGetTableInfo = thismodule.JetGetTableInfoW;
-        pub const JetCreateTable = thismodule.JetCreateTableW;
-        pub const JetCreateTableColumnIndex = thismodule.JetCreateTableColumnIndexW;
-        pub const JetCreateTableColumnIndex2 = thismodule.JetCreateTableColumnIndex2W;
-        pub const JetCreateTableColumnIndex3 = thismodule.JetCreateTableColumnIndex3W;
-        pub const JetCreateTableColumnIndex4 = thismodule.JetCreateTableColumnIndex4W;
-        pub const JetDeleteTable = thismodule.JetDeleteTableW;
-        pub const JetRenameTable = thismodule.JetRenameTableW;
-        pub const JetGetTableColumnInfo = thismodule.JetGetTableColumnInfoW;
-        pub const JetGetColumnInfo = thismodule.JetGetColumnInfoW;
-        pub const JetAddColumn = thismodule.JetAddColumnW;
-        pub const JetDeleteColumn = thismodule.JetDeleteColumnW;
-        pub const JetDeleteColumn2 = thismodule.JetDeleteColumn2W;
-        pub const JetRenameColumn = thismodule.JetRenameColumnW;
-        pub const JetSetColumnDefaultValue = thismodule.JetSetColumnDefaultValueW;
-        pub const JetGetTableIndexInfo = thismodule.JetGetTableIndexInfoW;
-        pub const JetGetIndexInfo = thismodule.JetGetIndexInfoW;
-        pub const JetCreateIndex = thismodule.JetCreateIndexW;
-        pub const JetCreateIndex2 = thismodule.JetCreateIndex2W;
-        pub const JetCreateIndex3 = thismodule.JetCreateIndex3W;
-        pub const JetCreateIndex4 = thismodule.JetCreateIndex4W;
-        pub const JetDeleteIndex = thismodule.JetDeleteIndexW;
-        pub const JetGetDatabaseInfo = thismodule.JetGetDatabaseInfoW;
-        pub const JetGetDatabaseFileInfo = thismodule.JetGetDatabaseFileInfoW;
-        pub const JetOpenDatabase = thismodule.JetOpenDatabaseW;
-        pub const JetOpenTable = thismodule.JetOpenTableW;
-        pub const JetGetCurrentIndex = thismodule.JetGetCurrentIndexW;
-        pub const JetSetCurrentIndex = thismodule.JetSetCurrentIndexW;
-        pub const JetSetCurrentIndex2 = thismodule.JetSetCurrentIndex2W;
-        pub const JetSetCurrentIndex3 = thismodule.JetSetCurrentIndex3W;
-        pub const JetSetCurrentIndex4 = thismodule.JetSetCurrentIndex4W;
-        pub const JetCompact = thismodule.JetCompactW;
-        pub const JetDefragment = thismodule.JetDefragmentW;
-        pub const JetDefragment2 = thismodule.JetDefragment2W;
-        pub const JetDefragment3 = thismodule.JetDefragment3W;
-        pub const JetSetDatabaseSize = thismodule.JetSetDatabaseSizeW;
-        pub const JetBackup = thismodule.JetBackupW;
-        pub const JetBackupInstance = thismodule.JetBackupInstanceW;
-        pub const JetRestore = thismodule.JetRestoreW;
-        pub const JetRestore2 = thismodule.JetRestore2W;
-        pub const JetRestoreInstance = thismodule.JetRestoreInstanceW;
-        pub const JetGetAttachInfo = thismodule.JetGetAttachInfoW;
-        pub const JetGetAttachInfoInstance = thismodule.JetGetAttachInfoInstanceW;
-        pub const JetOpenFile = thismodule.JetOpenFileW;
-        pub const JetOpenFileInstance = thismodule.JetOpenFileInstanceW;
-        pub const JetGetLogInfo = thismodule.JetGetLogInfoW;
-        pub const JetGetLogInfoInstance = thismodule.JetGetLogInfoInstanceW;
-        pub const JetGetLogInfoInstance2 = thismodule.JetGetLogInfoInstance2W;
-        pub const JetGetTruncateLogInfoInstance = thismodule.JetGetTruncateLogInfoInstanceW;
-        pub const JetExternalRestore = thismodule.JetExternalRestoreW;
-        pub const JetExternalRestore2 = thismodule.JetExternalRestore2W;
-        pub const JetGetInstanceInfo = thismodule.JetGetInstanceInfoW;
-        pub const JetOSSnapshotFreeze = thismodule.JetOSSnapshotFreezeW;
-        pub const JetOSSnapshotGetFreezeInfo = thismodule.JetOSSnapshotGetFreezeInfoW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const JET_RSTMAP_ = *opaque{};
-        pub const CONVERT_ = *opaque{};
-        pub const JET_COLUMNBASE_ = *opaque{};
-        pub const JET_COLUMNCREATE_ = *opaque{};
-        pub const JET_USERDEFINEDDEFAULT_ = *opaque{};
-        pub const JET_CONDITIONALCOLUMN_ = *opaque{};
-        pub const JET_INDEXCREATE_ = *opaque{};
-        pub const JET_INDEXCREATE2_ = *opaque{};
-        pub const JET_INDEXCREATE3_ = *opaque{};
-        pub const JET_TABLECREATE_ = *opaque{};
-        pub const JET_TABLECREATE2_ = *opaque{};
-        pub const JET_TABLECREATE3_ = *opaque{};
-        pub const JET_TABLECREATE4_ = *opaque{};
-        pub const JET_RSTINFO_ = *opaque{};
-        pub const JET_SETSYSPARAM_ = *opaque{};
-        pub const JET_LOGINFO_ = *opaque{};
-        pub const JET_INSTANCE_INFO_ = *opaque{};
-        pub const JetInit3 = *opaque{};
-        pub const JetCreateInstance = *opaque{};
-        pub const JetCreateInstance2 = *opaque{};
-        pub const JetSetSystemParameter = *opaque{};
-        pub const JetGetSystemParameter = *opaque{};
-        pub const JetEnableMultiInstance = *opaque{};
-        pub const JetBeginSession = *opaque{};
-        pub const JetCreateDatabase = *opaque{};
-        pub const JetCreateDatabase2 = *opaque{};
-        pub const JetAttachDatabase = *opaque{};
-        pub const JetAttachDatabase2 = *opaque{};
-        pub const JetDetachDatabase = *opaque{};
-        pub const JetDetachDatabase2 = *opaque{};
-        pub const JetGetObjectInfo = *opaque{};
-        pub const JetGetTableInfo = *opaque{};
-        pub const JetCreateTable = *opaque{};
-        pub const JetCreateTableColumnIndex = *opaque{};
-        pub const JetCreateTableColumnIndex2 = *opaque{};
-        pub const JetCreateTableColumnIndex3 = *opaque{};
-        pub const JetCreateTableColumnIndex4 = *opaque{};
-        pub const JetDeleteTable = *opaque{};
-        pub const JetRenameTable = *opaque{};
-        pub const JetGetTableColumnInfo = *opaque{};
-        pub const JetGetColumnInfo = *opaque{};
-        pub const JetAddColumn = *opaque{};
-        pub const JetDeleteColumn = *opaque{};
-        pub const JetDeleteColumn2 = *opaque{};
-        pub const JetRenameColumn = *opaque{};
-        pub const JetSetColumnDefaultValue = *opaque{};
-        pub const JetGetTableIndexInfo = *opaque{};
-        pub const JetGetIndexInfo = *opaque{};
-        pub const JetCreateIndex = *opaque{};
-        pub const JetCreateIndex2 = *opaque{};
-        pub const JetCreateIndex3 = *opaque{};
-        pub const JetCreateIndex4 = *opaque{};
-        pub const JetDeleteIndex = *opaque{};
-        pub const JetGetDatabaseInfo = *opaque{};
-        pub const JetGetDatabaseFileInfo = *opaque{};
-        pub const JetOpenDatabase = *opaque{};
-        pub const JetOpenTable = *opaque{};
-        pub const JetGetCurrentIndex = *opaque{};
-        pub const JetSetCurrentIndex = *opaque{};
-        pub const JetSetCurrentIndex2 = *opaque{};
-        pub const JetSetCurrentIndex3 = *opaque{};
-        pub const JetSetCurrentIndex4 = *opaque{};
-        pub const JetCompact = *opaque{};
-        pub const JetDefragment = *opaque{};
-        pub const JetDefragment2 = *opaque{};
-        pub const JetDefragment3 = *opaque{};
-        pub const JetSetDatabaseSize = *opaque{};
-        pub const JetBackup = *opaque{};
-        pub const JetBackupInstance = *opaque{};
-        pub const JetRestore = *opaque{};
-        pub const JetRestore2 = *opaque{};
-        pub const JetRestoreInstance = *opaque{};
-        pub const JetGetAttachInfo = *opaque{};
-        pub const JetGetAttachInfoInstance = *opaque{};
-        pub const JetOpenFile = *opaque{};
-        pub const JetOpenFileInstance = *opaque{};
-        pub const JetGetLogInfo = *opaque{};
-        pub const JetGetLogInfoInstance = *opaque{};
-        pub const JetGetLogInfoInstance2 = *opaque{};
-        pub const JetGetTruncateLogInfoInstance = *opaque{};
-        pub const JetExternalRestore = *opaque{};
-        pub const JetExternalRestore2 = *opaque{};
-        pub const JetGetInstanceInfo = *opaque{};
-        pub const JetOSSnapshotFreeze = *opaque{};
-        pub const JetOSSnapshotGetFreezeInfo = *opaque{};
-    } else struct {
-        pub const JET_RSTMAP_ = @compileError("'JET_RSTMAP_' requires that UNICODE be set to true or false in the root module");
-        pub const CONVERT_ = @compileError("'CONVERT_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_COLUMNBASE_ = @compileError("'JET_COLUMNBASE_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_COLUMNCREATE_ = @compileError("'JET_COLUMNCREATE_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_USERDEFINEDDEFAULT_ = @compileError("'JET_USERDEFINEDDEFAULT_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_CONDITIONALCOLUMN_ = @compileError("'JET_CONDITIONALCOLUMN_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_INDEXCREATE_ = @compileError("'JET_INDEXCREATE_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_INDEXCREATE2_ = @compileError("'JET_INDEXCREATE2_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_INDEXCREATE3_ = @compileError("'JET_INDEXCREATE3_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_TABLECREATE_ = @compileError("'JET_TABLECREATE_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_TABLECREATE2_ = @compileError("'JET_TABLECREATE2_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_TABLECREATE3_ = @compileError("'JET_TABLECREATE3_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_TABLECREATE4_ = @compileError("'JET_TABLECREATE4_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_RSTINFO_ = @compileError("'JET_RSTINFO_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_SETSYSPARAM_ = @compileError("'JET_SETSYSPARAM_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_LOGINFO_ = @compileError("'JET_LOGINFO_' requires that UNICODE be set to true or false in the root module");
-        pub const JET_INSTANCE_INFO_ = @compileError("'JET_INSTANCE_INFO_' requires that UNICODE be set to true or false in the root module");
-        pub const JetInit3 = @compileError("'JetInit3' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateInstance = @compileError("'JetCreateInstance' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateInstance2 = @compileError("'JetCreateInstance2' requires that UNICODE be set to true or false in the root module");
-        pub const JetSetSystemParameter = @compileError("'JetSetSystemParameter' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetSystemParameter = @compileError("'JetGetSystemParameter' requires that UNICODE be set to true or false in the root module");
-        pub const JetEnableMultiInstance = @compileError("'JetEnableMultiInstance' requires that UNICODE be set to true or false in the root module");
-        pub const JetBeginSession = @compileError("'JetBeginSession' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateDatabase = @compileError("'JetCreateDatabase' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateDatabase2 = @compileError("'JetCreateDatabase2' requires that UNICODE be set to true or false in the root module");
-        pub const JetAttachDatabase = @compileError("'JetAttachDatabase' requires that UNICODE be set to true or false in the root module");
-        pub const JetAttachDatabase2 = @compileError("'JetAttachDatabase2' requires that UNICODE be set to true or false in the root module");
-        pub const JetDetachDatabase = @compileError("'JetDetachDatabase' requires that UNICODE be set to true or false in the root module");
-        pub const JetDetachDatabase2 = @compileError("'JetDetachDatabase2' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetObjectInfo = @compileError("'JetGetObjectInfo' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetTableInfo = @compileError("'JetGetTableInfo' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateTable = @compileError("'JetCreateTable' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateTableColumnIndex = @compileError("'JetCreateTableColumnIndex' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateTableColumnIndex2 = @compileError("'JetCreateTableColumnIndex2' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateTableColumnIndex3 = @compileError("'JetCreateTableColumnIndex3' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateTableColumnIndex4 = @compileError("'JetCreateTableColumnIndex4' requires that UNICODE be set to true or false in the root module");
-        pub const JetDeleteTable = @compileError("'JetDeleteTable' requires that UNICODE be set to true or false in the root module");
-        pub const JetRenameTable = @compileError("'JetRenameTable' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetTableColumnInfo = @compileError("'JetGetTableColumnInfo' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetColumnInfo = @compileError("'JetGetColumnInfo' requires that UNICODE be set to true or false in the root module");
-        pub const JetAddColumn = @compileError("'JetAddColumn' requires that UNICODE be set to true or false in the root module");
-        pub const JetDeleteColumn = @compileError("'JetDeleteColumn' requires that UNICODE be set to true or false in the root module");
-        pub const JetDeleteColumn2 = @compileError("'JetDeleteColumn2' requires that UNICODE be set to true or false in the root module");
-        pub const JetRenameColumn = @compileError("'JetRenameColumn' requires that UNICODE be set to true or false in the root module");
-        pub const JetSetColumnDefaultValue = @compileError("'JetSetColumnDefaultValue' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetTableIndexInfo = @compileError("'JetGetTableIndexInfo' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetIndexInfo = @compileError("'JetGetIndexInfo' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateIndex = @compileError("'JetCreateIndex' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateIndex2 = @compileError("'JetCreateIndex2' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateIndex3 = @compileError("'JetCreateIndex3' requires that UNICODE be set to true or false in the root module");
-        pub const JetCreateIndex4 = @compileError("'JetCreateIndex4' requires that UNICODE be set to true or false in the root module");
-        pub const JetDeleteIndex = @compileError("'JetDeleteIndex' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetDatabaseInfo = @compileError("'JetGetDatabaseInfo' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetDatabaseFileInfo = @compileError("'JetGetDatabaseFileInfo' requires that UNICODE be set to true or false in the root module");
-        pub const JetOpenDatabase = @compileError("'JetOpenDatabase' requires that UNICODE be set to true or false in the root module");
-        pub const JetOpenTable = @compileError("'JetOpenTable' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetCurrentIndex = @compileError("'JetGetCurrentIndex' requires that UNICODE be set to true or false in the root module");
-        pub const JetSetCurrentIndex = @compileError("'JetSetCurrentIndex' requires that UNICODE be set to true or false in the root module");
-        pub const JetSetCurrentIndex2 = @compileError("'JetSetCurrentIndex2' requires that UNICODE be set to true or false in the root module");
-        pub const JetSetCurrentIndex3 = @compileError("'JetSetCurrentIndex3' requires that UNICODE be set to true or false in the root module");
-        pub const JetSetCurrentIndex4 = @compileError("'JetSetCurrentIndex4' requires that UNICODE be set to true or false in the root module");
-        pub const JetCompact = @compileError("'JetCompact' requires that UNICODE be set to true or false in the root module");
-        pub const JetDefragment = @compileError("'JetDefragment' requires that UNICODE be set to true or false in the root module");
-        pub const JetDefragment2 = @compileError("'JetDefragment2' requires that UNICODE be set to true or false in the root module");
-        pub const JetDefragment3 = @compileError("'JetDefragment3' requires that UNICODE be set to true or false in the root module");
-        pub const JetSetDatabaseSize = @compileError("'JetSetDatabaseSize' requires that UNICODE be set to true or false in the root module");
-        pub const JetBackup = @compileError("'JetBackup' requires that UNICODE be set to true or false in the root module");
-        pub const JetBackupInstance = @compileError("'JetBackupInstance' requires that UNICODE be set to true or false in the root module");
-        pub const JetRestore = @compileError("'JetRestore' requires that UNICODE be set to true or false in the root module");
-        pub const JetRestore2 = @compileError("'JetRestore2' requires that UNICODE be set to true or false in the root module");
-        pub const JetRestoreInstance = @compileError("'JetRestoreInstance' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetAttachInfo = @compileError("'JetGetAttachInfo' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetAttachInfoInstance = @compileError("'JetGetAttachInfoInstance' requires that UNICODE be set to true or false in the root module");
-        pub const JetOpenFile = @compileError("'JetOpenFile' requires that UNICODE be set to true or false in the root module");
-        pub const JetOpenFileInstance = @compileError("'JetOpenFileInstance' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetLogInfo = @compileError("'JetGetLogInfo' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetLogInfoInstance = @compileError("'JetGetLogInfoInstance' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetLogInfoInstance2 = @compileError("'JetGetLogInfoInstance2' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetTruncateLogInfoInstance = @compileError("'JetGetTruncateLogInfoInstance' requires that UNICODE be set to true or false in the root module");
-        pub const JetExternalRestore = @compileError("'JetExternalRestore' requires that UNICODE be set to true or false in the root module");
-        pub const JetExternalRestore2 = @compileError("'JetExternalRestore2' requires that UNICODE be set to true or false in the root module");
-        pub const JetGetInstanceInfo = @compileError("'JetGetInstanceInfo' requires that UNICODE be set to true or false in the root module");
-        pub const JetOSSnapshotFreeze = @compileError("'JetOSSnapshotFreeze' requires that UNICODE be set to true or false in the root module");
-        pub const JetOSSnapshotGetFreezeInfo = @compileError("'JetOSSnapshotGetFreezeInfo' requires that UNICODE be set to true or false in the root module");
-    },
+pub const JET_RSTMAP_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_RSTMAP_A,
+    .wide => @This().JET_RSTMAP_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_RSTMAP_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CONVERT_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CONVERT_A,
+    .wide => @This().CONVERT_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CONVERT_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_COLUMNBASE_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_COLUMNBASE_A,
+    .wide => @This().JET_COLUMNBASE_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_COLUMNBASE_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_COLUMNCREATE_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_COLUMNCREATE_A,
+    .wide => @This().JET_COLUMNCREATE_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_COLUMNCREATE_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_USERDEFINEDDEFAULT_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_USERDEFINEDDEFAULT_A,
+    .wide => @This().JET_USERDEFINEDDEFAULT_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_USERDEFINEDDEFAULT_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_CONDITIONALCOLUMN_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_CONDITIONALCOLUMN_A,
+    .wide => @This().JET_CONDITIONALCOLUMN_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_CONDITIONALCOLUMN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_INDEXCREATE_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_INDEXCREATE_A,
+    .wide => @This().JET_INDEXCREATE_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_INDEXCREATE_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_INDEXCREATE2_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_INDEXCREATE2_A,
+    .wide => @This().JET_INDEXCREATE2_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_INDEXCREATE2_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_INDEXCREATE3_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_INDEXCREATE3_A,
+    .wide => @This().JET_INDEXCREATE3_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_INDEXCREATE3_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_TABLECREATE_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_TABLECREATE_A,
+    .wide => @This().JET_TABLECREATE_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_TABLECREATE_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_TABLECREATE2_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_TABLECREATE2_A,
+    .wide => @This().JET_TABLECREATE2_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_TABLECREATE2_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_TABLECREATE3_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_TABLECREATE3_A,
+    .wide => @This().JET_TABLECREATE3_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_TABLECREATE3_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_TABLECREATE4_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_TABLECREATE4_A,
+    .wide => @This().JET_TABLECREATE4_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_TABLECREATE4_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_RSTINFO_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_RSTINFO_A,
+    .wide => @This().JET_RSTINFO_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_RSTINFO_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_SETSYSPARAM_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_SETSYSPARAM_A,
+    .wide => @This().JET_SETSYSPARAM_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_SETSYSPARAM_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_LOGINFO_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_LOGINFO_A,
+    .wide => @This().JET_LOGINFO_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_LOGINFO_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_INSTANCE_INFO_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_INSTANCE_INFO_A,
+    .wide => @This().JET_INSTANCE_INFO_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_INSTANCE_INFO_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetInit3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetInit3A,
+    .wide => @This().JetInit3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetInit3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateInstance = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateInstanceA,
+    .wide => @This().JetCreateInstanceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateInstance' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateInstance2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateInstance2A,
+    .wide => @This().JetCreateInstance2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateInstance2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetSetSystemParameter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetSetSystemParameterA,
+    .wide => @This().JetSetSystemParameterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetSetSystemParameter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetSystemParameter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetSystemParameterA,
+    .wide => @This().JetGetSystemParameterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetSystemParameter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetEnableMultiInstance = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetEnableMultiInstanceA,
+    .wide => @This().JetEnableMultiInstanceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetEnableMultiInstance' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetBeginSession = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetBeginSessionA,
+    .wide => @This().JetBeginSessionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetBeginSession' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateDatabase = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateDatabaseA,
+    .wide => @This().JetCreateDatabaseW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateDatabase' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateDatabase2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateDatabase2A,
+    .wide => @This().JetCreateDatabase2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateDatabase2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetAttachDatabase = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetAttachDatabaseA,
+    .wide => @This().JetAttachDatabaseW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetAttachDatabase' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetAttachDatabase2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetAttachDatabase2A,
+    .wide => @This().JetAttachDatabase2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetAttachDatabase2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetDetachDatabase = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetDetachDatabaseA,
+    .wide => @This().JetDetachDatabaseW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetDetachDatabase' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetDetachDatabase2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetDetachDatabase2A,
+    .wide => @This().JetDetachDatabase2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetDetachDatabase2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetObjectInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetObjectInfoA,
+    .wide => @This().JetGetObjectInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetObjectInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetTableInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetTableInfoA,
+    .wide => @This().JetGetTableInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetTableInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateTable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateTableA,
+    .wide => @This().JetCreateTableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateTable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateTableColumnIndex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateTableColumnIndexA,
+    .wide => @This().JetCreateTableColumnIndexW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateTableColumnIndex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateTableColumnIndex2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateTableColumnIndex2A,
+    .wide => @This().JetCreateTableColumnIndex2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateTableColumnIndex2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateTableColumnIndex3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateTableColumnIndex3A,
+    .wide => @This().JetCreateTableColumnIndex3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateTableColumnIndex3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateTableColumnIndex4 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateTableColumnIndex4A,
+    .wide => @This().JetCreateTableColumnIndex4W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateTableColumnIndex4' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetDeleteTable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetDeleteTableA,
+    .wide => @This().JetDeleteTableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetDeleteTable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetRenameTable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetRenameTableA,
+    .wide => @This().JetRenameTableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetRenameTable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetTableColumnInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetTableColumnInfoA,
+    .wide => @This().JetGetTableColumnInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetTableColumnInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetColumnInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetColumnInfoA,
+    .wide => @This().JetGetColumnInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetColumnInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetAddColumn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetAddColumnA,
+    .wide => @This().JetAddColumnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetAddColumn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetDeleteColumn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetDeleteColumnA,
+    .wide => @This().JetDeleteColumnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetDeleteColumn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetDeleteColumn2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetDeleteColumn2A,
+    .wide => @This().JetDeleteColumn2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetDeleteColumn2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetRenameColumn = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetRenameColumnA,
+    .wide => @This().JetRenameColumnW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetRenameColumn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetSetColumnDefaultValue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetSetColumnDefaultValueA,
+    .wide => @This().JetSetColumnDefaultValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetSetColumnDefaultValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetTableIndexInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetTableIndexInfoA,
+    .wide => @This().JetGetTableIndexInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetTableIndexInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetIndexInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetIndexInfoA,
+    .wide => @This().JetGetIndexInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetIndexInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateIndex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateIndexA,
+    .wide => @This().JetCreateIndexW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateIndex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateIndex2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateIndex2A,
+    .wide => @This().JetCreateIndex2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateIndex2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateIndex3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateIndex3A,
+    .wide => @This().JetCreateIndex3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateIndex3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCreateIndex4 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCreateIndex4A,
+    .wide => @This().JetCreateIndex4W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCreateIndex4' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetDeleteIndex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetDeleteIndexA,
+    .wide => @This().JetDeleteIndexW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetDeleteIndex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetDatabaseInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetDatabaseInfoA,
+    .wide => @This().JetGetDatabaseInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetDatabaseInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetDatabaseFileInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetDatabaseFileInfoA,
+    .wide => @This().JetGetDatabaseFileInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetDatabaseFileInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetOpenDatabase = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetOpenDatabaseA,
+    .wide => @This().JetOpenDatabaseW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetOpenDatabase' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetOpenTable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetOpenTableA,
+    .wide => @This().JetOpenTableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetOpenTable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetCurrentIndex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetCurrentIndexA,
+    .wide => @This().JetGetCurrentIndexW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetCurrentIndex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetSetCurrentIndex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetSetCurrentIndexA,
+    .wide => @This().JetSetCurrentIndexW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetSetCurrentIndex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetSetCurrentIndex2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetSetCurrentIndex2A,
+    .wide => @This().JetSetCurrentIndex2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetSetCurrentIndex2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetSetCurrentIndex3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetSetCurrentIndex3A,
+    .wide => @This().JetSetCurrentIndex3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetSetCurrentIndex3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetSetCurrentIndex4 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetSetCurrentIndex4A,
+    .wide => @This().JetSetCurrentIndex4W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetSetCurrentIndex4' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetCompact = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetCompactA,
+    .wide => @This().JetCompactW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetCompact' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetDefragment = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetDefragmentA,
+    .wide => @This().JetDefragmentW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetDefragment' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetDefragment2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetDefragment2A,
+    .wide => @This().JetDefragment2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetDefragment2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetDefragment3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetDefragment3A,
+    .wide => @This().JetDefragment3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetDefragment3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetSetDatabaseSize = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetSetDatabaseSizeA,
+    .wide => @This().JetSetDatabaseSizeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetSetDatabaseSize' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetBackup = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetBackupA,
+    .wide => @This().JetBackupW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetBackup' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetBackupInstance = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetBackupInstanceA,
+    .wide => @This().JetBackupInstanceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetBackupInstance' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetRestore = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetRestoreA,
+    .wide => @This().JetRestoreW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetRestore' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetRestore2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetRestore2A,
+    .wide => @This().JetRestore2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetRestore2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetRestoreInstance = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetRestoreInstanceA,
+    .wide => @This().JetRestoreInstanceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetRestoreInstance' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetAttachInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetAttachInfoA,
+    .wide => @This().JetGetAttachInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetAttachInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetAttachInfoInstance = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetAttachInfoInstanceA,
+    .wide => @This().JetGetAttachInfoInstanceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetAttachInfoInstance' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetOpenFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetOpenFileA,
+    .wide => @This().JetOpenFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetOpenFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetOpenFileInstance = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetOpenFileInstanceA,
+    .wide => @This().JetOpenFileInstanceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetOpenFileInstance' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetLogInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetLogInfoA,
+    .wide => @This().JetGetLogInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetLogInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetLogInfoInstance = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetLogInfoInstanceA,
+    .wide => @This().JetGetLogInfoInstanceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetLogInfoInstance' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetLogInfoInstance2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetLogInfoInstance2A,
+    .wide => @This().JetGetLogInfoInstance2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetLogInfoInstance2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetTruncateLogInfoInstance = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetTruncateLogInfoInstanceA,
+    .wide => @This().JetGetTruncateLogInfoInstanceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetTruncateLogInfoInstance' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetExternalRestore = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetExternalRestoreA,
+    .wide => @This().JetExternalRestoreW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetExternalRestore' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetExternalRestore2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetExternalRestore2A,
+    .wide => @This().JetExternalRestore2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetExternalRestore2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetGetInstanceInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetGetInstanceInfoA,
+    .wide => @This().JetGetInstanceInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetGetInstanceInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetOSSnapshotFreeze = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetOSSnapshotFreezeA,
+    .wide => @This().JetOSSnapshotFreezeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetOSSnapshotFreeze' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JetOSSnapshotGetFreezeInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JetOSSnapshotGetFreezeInfoA,
+    .wide => @This().JetOSSnapshotGetFreezeInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JetOSSnapshotGetFreezeInfo' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)

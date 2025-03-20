@@ -5733,103 +5733,159 @@ pub extern "hid" fn HidD_GetMsGenreDescriptor(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (22)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const DIACTION = thismodule.DIACTIONA;
-        pub const DIACTIONFORMAT = thismodule.DIACTIONFORMATA;
-        pub const DICONFIGUREDEVICESPARAMS = thismodule.DICONFIGUREDEVICESPARAMSA;
-        pub const DIDEVICEIMAGEINFO = thismodule.DIDEVICEIMAGEINFOA;
-        pub const DIDEVICEIMAGEINFOHEADER = thismodule.DIDEVICEIMAGEINFOHEADERA;
-        pub const DIDEVICEOBJECTINSTANCE_DX3 = thismodule.DIDEVICEOBJECTINSTANCE_DX3A;
-        pub const DIDEVICEOBJECTINSTANCE = thismodule.DIDEVICEOBJECTINSTANCEA;
-        pub const LPDIENUMDEVICEOBJECTSCALLBACK = thismodule.LPDIENUMDEVICEOBJECTSCALLBACKA;
-        pub const DIDEVICEINSTANCE_DX3 = thismodule.DIDEVICEINSTANCE_DX3A;
-        pub const DIDEVICEINSTANCE = thismodule.DIDEVICEINSTANCEA;
-        pub const IDirectInputDevice = thismodule.IDirectInputDeviceA;
-        pub const DIEFFECTINFO = thismodule.DIEFFECTINFOA;
-        pub const LPDIENUMEFFECTSCALLBACK = thismodule.LPDIENUMEFFECTSCALLBACKA;
-        pub const IDirectInputDevice2 = thismodule.IDirectInputDevice2A;
-        pub const IDirectInputDevice7 = thismodule.IDirectInputDevice7A;
-        pub const IDirectInputDevice8 = thismodule.IDirectInputDevice8A;
-        pub const LPDIENUMDEVICESCALLBACK = thismodule.LPDIENUMDEVICESCALLBACKA;
-        pub const LPDIENUMDEVICESBYSEMANTICSCB = thismodule.LPDIENUMDEVICESBYSEMANTICSCBA;
-        pub const IDirectInput = thismodule.IDirectInputA;
-        pub const IDirectInput2 = thismodule.IDirectInput2A;
-        pub const IDirectInput7 = thismodule.IDirectInput7A;
-        pub const IDirectInput8 = thismodule.IDirectInput8A;
-    },
-    .wide => struct {
-        pub const DIACTION = thismodule.DIACTIONW;
-        pub const DIACTIONFORMAT = thismodule.DIACTIONFORMATW;
-        pub const DICONFIGUREDEVICESPARAMS = thismodule.DICONFIGUREDEVICESPARAMSW;
-        pub const DIDEVICEIMAGEINFO = thismodule.DIDEVICEIMAGEINFOW;
-        pub const DIDEVICEIMAGEINFOHEADER = thismodule.DIDEVICEIMAGEINFOHEADERW;
-        pub const DIDEVICEOBJECTINSTANCE_DX3 = thismodule.DIDEVICEOBJECTINSTANCE_DX3W;
-        pub const DIDEVICEOBJECTINSTANCE = thismodule.DIDEVICEOBJECTINSTANCEW;
-        pub const LPDIENUMDEVICEOBJECTSCALLBACK = thismodule.LPDIENUMDEVICEOBJECTSCALLBACKW;
-        pub const DIDEVICEINSTANCE_DX3 = thismodule.DIDEVICEINSTANCE_DX3W;
-        pub const DIDEVICEINSTANCE = thismodule.DIDEVICEINSTANCEW;
-        pub const IDirectInputDevice = thismodule.IDirectInputDeviceW;
-        pub const DIEFFECTINFO = thismodule.DIEFFECTINFOW;
-        pub const LPDIENUMEFFECTSCALLBACK = thismodule.LPDIENUMEFFECTSCALLBACKW;
-        pub const IDirectInputDevice2 = thismodule.IDirectInputDevice2W;
-        pub const IDirectInputDevice7 = thismodule.IDirectInputDevice7W;
-        pub const IDirectInputDevice8 = thismodule.IDirectInputDevice8W;
-        pub const LPDIENUMDEVICESCALLBACK = thismodule.LPDIENUMDEVICESCALLBACKW;
-        pub const LPDIENUMDEVICESBYSEMANTICSCB = thismodule.LPDIENUMDEVICESBYSEMANTICSCBW;
-        pub const IDirectInput = thismodule.IDirectInputW;
-        pub const IDirectInput2 = thismodule.IDirectInput2W;
-        pub const IDirectInput7 = thismodule.IDirectInput7W;
-        pub const IDirectInput8 = thismodule.IDirectInput8W;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const DIACTION = *opaque{};
-        pub const DIACTIONFORMAT = *opaque{};
-        pub const DICONFIGUREDEVICESPARAMS = *opaque{};
-        pub const DIDEVICEIMAGEINFO = *opaque{};
-        pub const DIDEVICEIMAGEINFOHEADER = *opaque{};
-        pub const DIDEVICEOBJECTINSTANCE_DX3 = *opaque{};
-        pub const DIDEVICEOBJECTINSTANCE = *opaque{};
-        pub const LPDIENUMDEVICEOBJECTSCALLBACK = *opaque{};
-        pub const DIDEVICEINSTANCE_DX3 = *opaque{};
-        pub const DIDEVICEINSTANCE = *opaque{};
-        pub const IDirectInputDevice = *opaque{};
-        pub const DIEFFECTINFO = *opaque{};
-        pub const LPDIENUMEFFECTSCALLBACK = *opaque{};
-        pub const IDirectInputDevice2 = *opaque{};
-        pub const IDirectInputDevice7 = *opaque{};
-        pub const IDirectInputDevice8 = *opaque{};
-        pub const LPDIENUMDEVICESCALLBACK = *opaque{};
-        pub const LPDIENUMDEVICESBYSEMANTICSCB = *opaque{};
-        pub const IDirectInput = *opaque{};
-        pub const IDirectInput2 = *opaque{};
-        pub const IDirectInput7 = *opaque{};
-        pub const IDirectInput8 = *opaque{};
-    } else struct {
-        pub const DIACTION = @compileError("'DIACTION' requires that UNICODE be set to true or false in the root module");
-        pub const DIACTIONFORMAT = @compileError("'DIACTIONFORMAT' requires that UNICODE be set to true or false in the root module");
-        pub const DICONFIGUREDEVICESPARAMS = @compileError("'DICONFIGUREDEVICESPARAMS' requires that UNICODE be set to true or false in the root module");
-        pub const DIDEVICEIMAGEINFO = @compileError("'DIDEVICEIMAGEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const DIDEVICEIMAGEINFOHEADER = @compileError("'DIDEVICEIMAGEINFOHEADER' requires that UNICODE be set to true or false in the root module");
-        pub const DIDEVICEOBJECTINSTANCE_DX3 = @compileError("'DIDEVICEOBJECTINSTANCE_DX3' requires that UNICODE be set to true or false in the root module");
-        pub const DIDEVICEOBJECTINSTANCE = @compileError("'DIDEVICEOBJECTINSTANCE' requires that UNICODE be set to true or false in the root module");
-        pub const LPDIENUMDEVICEOBJECTSCALLBACK = @compileError("'LPDIENUMDEVICEOBJECTSCALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const DIDEVICEINSTANCE_DX3 = @compileError("'DIDEVICEINSTANCE_DX3' requires that UNICODE be set to true or false in the root module");
-        pub const DIDEVICEINSTANCE = @compileError("'DIDEVICEINSTANCE' requires that UNICODE be set to true or false in the root module");
-        pub const IDirectInputDevice = @compileError("'IDirectInputDevice' requires that UNICODE be set to true or false in the root module");
-        pub const DIEFFECTINFO = @compileError("'DIEFFECTINFO' requires that UNICODE be set to true or false in the root module");
-        pub const LPDIENUMEFFECTSCALLBACK = @compileError("'LPDIENUMEFFECTSCALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const IDirectInputDevice2 = @compileError("'IDirectInputDevice2' requires that UNICODE be set to true or false in the root module");
-        pub const IDirectInputDevice7 = @compileError("'IDirectInputDevice7' requires that UNICODE be set to true or false in the root module");
-        pub const IDirectInputDevice8 = @compileError("'IDirectInputDevice8' requires that UNICODE be set to true or false in the root module");
-        pub const LPDIENUMDEVICESCALLBACK = @compileError("'LPDIENUMDEVICESCALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const LPDIENUMDEVICESBYSEMANTICSCB = @compileError("'LPDIENUMDEVICESBYSEMANTICSCB' requires that UNICODE be set to true or false in the root module");
-        pub const IDirectInput = @compileError("'IDirectInput' requires that UNICODE be set to true or false in the root module");
-        pub const IDirectInput2 = @compileError("'IDirectInput2' requires that UNICODE be set to true or false in the root module");
-        pub const IDirectInput7 = @compileError("'IDirectInput7' requires that UNICODE be set to true or false in the root module");
-        pub const IDirectInput8 = @compileError("'IDirectInput8' requires that UNICODE be set to true or false in the root module");
-    },
+pub const DIACTION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DIACTIONA,
+    .wide => @This().DIACTIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DIACTION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DIACTIONFORMAT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DIACTIONFORMATA,
+    .wide => @This().DIACTIONFORMATW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DIACTIONFORMAT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DICONFIGUREDEVICESPARAMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DICONFIGUREDEVICESPARAMSA,
+    .wide => @This().DICONFIGUREDEVICESPARAMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DICONFIGUREDEVICESPARAMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DIDEVICEIMAGEINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DIDEVICEIMAGEINFOA,
+    .wide => @This().DIDEVICEIMAGEINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DIDEVICEIMAGEINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DIDEVICEIMAGEINFOHEADER = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DIDEVICEIMAGEINFOHEADERA,
+    .wide => @This().DIDEVICEIMAGEINFOHEADERW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DIDEVICEIMAGEINFOHEADER' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DIDEVICEOBJECTINSTANCE_DX3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DIDEVICEOBJECTINSTANCE_DX3A,
+    .wide => @This().DIDEVICEOBJECTINSTANCE_DX3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DIDEVICEOBJECTINSTANCE_DX3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DIDEVICEOBJECTINSTANCE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DIDEVICEOBJECTINSTANCEA,
+    .wide => @This().DIDEVICEOBJECTINSTANCEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DIDEVICEOBJECTINSTANCE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LPDIENUMDEVICEOBJECTSCALLBACK = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPDIENUMDEVICEOBJECTSCALLBACKA,
+    .wide => @This().LPDIENUMDEVICEOBJECTSCALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPDIENUMDEVICEOBJECTSCALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DIDEVICEINSTANCE_DX3 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DIDEVICEINSTANCE_DX3A,
+    .wide => @This().DIDEVICEINSTANCE_DX3W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DIDEVICEINSTANCE_DX3' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DIDEVICEINSTANCE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DIDEVICEINSTANCEA,
+    .wide => @This().DIDEVICEINSTANCEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DIDEVICEINSTANCE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IDirectInputDevice = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IDirectInputDeviceA,
+    .wide => @This().IDirectInputDeviceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IDirectInputDevice' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DIEFFECTINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DIEFFECTINFOA,
+    .wide => @This().DIEFFECTINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DIEFFECTINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LPDIENUMEFFECTSCALLBACK = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPDIENUMEFFECTSCALLBACKA,
+    .wide => @This().LPDIENUMEFFECTSCALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPDIENUMEFFECTSCALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IDirectInputDevice2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IDirectInputDevice2A,
+    .wide => @This().IDirectInputDevice2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IDirectInputDevice2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IDirectInputDevice7 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IDirectInputDevice7A,
+    .wide => @This().IDirectInputDevice7W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IDirectInputDevice7' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IDirectInputDevice8 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IDirectInputDevice8A,
+    .wide => @This().IDirectInputDevice8W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IDirectInputDevice8' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LPDIENUMDEVICESCALLBACK = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPDIENUMDEVICESCALLBACKA,
+    .wide => @This().LPDIENUMDEVICESCALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPDIENUMDEVICESCALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LPDIENUMDEVICESBYSEMANTICSCB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPDIENUMDEVICESBYSEMANTICSCBA,
+    .wide => @This().LPDIENUMDEVICESBYSEMANTICSCBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPDIENUMDEVICESBYSEMANTICSCB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IDirectInput = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IDirectInputA,
+    .wide => @This().IDirectInputW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IDirectInput' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IDirectInput2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IDirectInput2A,
+    .wide => @This().IDirectInput2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IDirectInput2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IDirectInput7 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IDirectInput7A,
+    .wide => @This().IDirectInput7W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IDirectInput7' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IDirectInput8 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IDirectInput8A,
+    .wide => @This().IDirectInput8W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IDirectInput8' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (17)

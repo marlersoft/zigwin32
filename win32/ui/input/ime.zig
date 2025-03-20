@@ -4134,115 +4134,180 @@ pub extern "imm32" fn ImmGetIMCCSize(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (25)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const REGISTERWORD = thismodule.REGISTERWORDA;
-        pub const STYLEBUF = thismodule.STYLEBUFA;
-        pub const IMEMENUITEMINFO = thismodule.IMEMENUITEMINFOA;
-        pub const REGISTERWORDENUMPROC = thismodule.REGISTERWORDENUMPROCA;
-        pub const IEnumRegisterWord = thismodule.IEnumRegisterWordA;
-        pub const ImmInstallIME = thismodule.ImmInstallIMEA;
-        pub const ImmGetDescription = thismodule.ImmGetDescriptionA;
-        pub const ImmGetIMEFileName = thismodule.ImmGetIMEFileNameA;
-        pub const ImmGetCompositionString = thismodule.ImmGetCompositionStringA;
-        pub const ImmSetCompositionString = thismodule.ImmSetCompositionStringA;
-        pub const ImmGetCandidateListCount = thismodule.ImmGetCandidateListCountA;
-        pub const ImmGetCandidateList = thismodule.ImmGetCandidateListA;
-        pub const ImmGetGuideLine = thismodule.ImmGetGuideLineA;
-        pub const ImmGetCompositionFont = thismodule.ImmGetCompositionFontA;
-        pub const ImmSetCompositionFont = thismodule.ImmSetCompositionFontA;
-        pub const ImmConfigureIME = thismodule.ImmConfigureIMEA;
-        pub const ImmEscape = thismodule.ImmEscapeA;
-        pub const ImmGetConversionList = thismodule.ImmGetConversionListA;
-        pub const ImmIsUIMessage = thismodule.ImmIsUIMessageA;
-        pub const ImmRegisterWord = thismodule.ImmRegisterWordA;
-        pub const ImmUnregisterWord = thismodule.ImmUnregisterWordA;
-        pub const ImmGetRegisterWordStyle = thismodule.ImmGetRegisterWordStyleA;
-        pub const ImmEnumRegisterWord = thismodule.ImmEnumRegisterWordA;
-        pub const ImmGetImeMenuItems = thismodule.ImmGetImeMenuItemsA;
-        pub const ImmRequestMessage = thismodule.ImmRequestMessageA;
-    },
-    .wide => struct {
-        pub const REGISTERWORD = thismodule.REGISTERWORDW;
-        pub const STYLEBUF = thismodule.STYLEBUFW;
-        pub const IMEMENUITEMINFO = thismodule.IMEMENUITEMINFOW;
-        pub const REGISTERWORDENUMPROC = thismodule.REGISTERWORDENUMPROCW;
-        pub const IEnumRegisterWord = thismodule.IEnumRegisterWordW;
-        pub const ImmInstallIME = thismodule.ImmInstallIMEW;
-        pub const ImmGetDescription = thismodule.ImmGetDescriptionW;
-        pub const ImmGetIMEFileName = thismodule.ImmGetIMEFileNameW;
-        pub const ImmGetCompositionString = thismodule.ImmGetCompositionStringW;
-        pub const ImmSetCompositionString = thismodule.ImmSetCompositionStringW;
-        pub const ImmGetCandidateListCount = thismodule.ImmGetCandidateListCountW;
-        pub const ImmGetCandidateList = thismodule.ImmGetCandidateListW;
-        pub const ImmGetGuideLine = thismodule.ImmGetGuideLineW;
-        pub const ImmGetCompositionFont = thismodule.ImmGetCompositionFontW;
-        pub const ImmSetCompositionFont = thismodule.ImmSetCompositionFontW;
-        pub const ImmConfigureIME = thismodule.ImmConfigureIMEW;
-        pub const ImmEscape = thismodule.ImmEscapeW;
-        pub const ImmGetConversionList = thismodule.ImmGetConversionListW;
-        pub const ImmIsUIMessage = thismodule.ImmIsUIMessageW;
-        pub const ImmRegisterWord = thismodule.ImmRegisterWordW;
-        pub const ImmUnregisterWord = thismodule.ImmUnregisterWordW;
-        pub const ImmGetRegisterWordStyle = thismodule.ImmGetRegisterWordStyleW;
-        pub const ImmEnumRegisterWord = thismodule.ImmEnumRegisterWordW;
-        pub const ImmGetImeMenuItems = thismodule.ImmGetImeMenuItemsW;
-        pub const ImmRequestMessage = thismodule.ImmRequestMessageW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const REGISTERWORD = *opaque{};
-        pub const STYLEBUF = *opaque{};
-        pub const IMEMENUITEMINFO = *opaque{};
-        pub const REGISTERWORDENUMPROC = *opaque{};
-        pub const IEnumRegisterWord = *opaque{};
-        pub const ImmInstallIME = *opaque{};
-        pub const ImmGetDescription = *opaque{};
-        pub const ImmGetIMEFileName = *opaque{};
-        pub const ImmGetCompositionString = *opaque{};
-        pub const ImmSetCompositionString = *opaque{};
-        pub const ImmGetCandidateListCount = *opaque{};
-        pub const ImmGetCandidateList = *opaque{};
-        pub const ImmGetGuideLine = *opaque{};
-        pub const ImmGetCompositionFont = *opaque{};
-        pub const ImmSetCompositionFont = *opaque{};
-        pub const ImmConfigureIME = *opaque{};
-        pub const ImmEscape = *opaque{};
-        pub const ImmGetConversionList = *opaque{};
-        pub const ImmIsUIMessage = *opaque{};
-        pub const ImmRegisterWord = *opaque{};
-        pub const ImmUnregisterWord = *opaque{};
-        pub const ImmGetRegisterWordStyle = *opaque{};
-        pub const ImmEnumRegisterWord = *opaque{};
-        pub const ImmGetImeMenuItems = *opaque{};
-        pub const ImmRequestMessage = *opaque{};
-    } else struct {
-        pub const REGISTERWORD = @compileError("'REGISTERWORD' requires that UNICODE be set to true or false in the root module");
-        pub const STYLEBUF = @compileError("'STYLEBUF' requires that UNICODE be set to true or false in the root module");
-        pub const IMEMENUITEMINFO = @compileError("'IMEMENUITEMINFO' requires that UNICODE be set to true or false in the root module");
-        pub const REGISTERWORDENUMPROC = @compileError("'REGISTERWORDENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const IEnumRegisterWord = @compileError("'IEnumRegisterWord' requires that UNICODE be set to true or false in the root module");
-        pub const ImmInstallIME = @compileError("'ImmInstallIME' requires that UNICODE be set to true or false in the root module");
-        pub const ImmGetDescription = @compileError("'ImmGetDescription' requires that UNICODE be set to true or false in the root module");
-        pub const ImmGetIMEFileName = @compileError("'ImmGetIMEFileName' requires that UNICODE be set to true or false in the root module");
-        pub const ImmGetCompositionString = @compileError("'ImmGetCompositionString' requires that UNICODE be set to true or false in the root module");
-        pub const ImmSetCompositionString = @compileError("'ImmSetCompositionString' requires that UNICODE be set to true or false in the root module");
-        pub const ImmGetCandidateListCount = @compileError("'ImmGetCandidateListCount' requires that UNICODE be set to true or false in the root module");
-        pub const ImmGetCandidateList = @compileError("'ImmGetCandidateList' requires that UNICODE be set to true or false in the root module");
-        pub const ImmGetGuideLine = @compileError("'ImmGetGuideLine' requires that UNICODE be set to true or false in the root module");
-        pub const ImmGetCompositionFont = @compileError("'ImmGetCompositionFont' requires that UNICODE be set to true or false in the root module");
-        pub const ImmSetCompositionFont = @compileError("'ImmSetCompositionFont' requires that UNICODE be set to true or false in the root module");
-        pub const ImmConfigureIME = @compileError("'ImmConfigureIME' requires that UNICODE be set to true or false in the root module");
-        pub const ImmEscape = @compileError("'ImmEscape' requires that UNICODE be set to true or false in the root module");
-        pub const ImmGetConversionList = @compileError("'ImmGetConversionList' requires that UNICODE be set to true or false in the root module");
-        pub const ImmIsUIMessage = @compileError("'ImmIsUIMessage' requires that UNICODE be set to true or false in the root module");
-        pub const ImmRegisterWord = @compileError("'ImmRegisterWord' requires that UNICODE be set to true or false in the root module");
-        pub const ImmUnregisterWord = @compileError("'ImmUnregisterWord' requires that UNICODE be set to true or false in the root module");
-        pub const ImmGetRegisterWordStyle = @compileError("'ImmGetRegisterWordStyle' requires that UNICODE be set to true or false in the root module");
-        pub const ImmEnumRegisterWord = @compileError("'ImmEnumRegisterWord' requires that UNICODE be set to true or false in the root module");
-        pub const ImmGetImeMenuItems = @compileError("'ImmGetImeMenuItems' requires that UNICODE be set to true or false in the root module");
-        pub const ImmRequestMessage = @compileError("'ImmRequestMessage' requires that UNICODE be set to true or false in the root module");
-    },
+pub const REGISTERWORD = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().REGISTERWORDA,
+    .wide => @This().REGISTERWORDW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'REGISTERWORD' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const STYLEBUF = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().STYLEBUFA,
+    .wide => @This().STYLEBUFW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'STYLEBUF' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IMEMENUITEMINFO = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().IMEMENUITEMINFOA,
+    .wide => @This().IMEMENUITEMINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IMEMENUITEMINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const REGISTERWORDENUMPROC = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().REGISTERWORDENUMPROCA,
+    .wide => @This().REGISTERWORDENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'REGISTERWORDENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IEnumRegisterWord = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().IEnumRegisterWordA,
+    .wide => @This().IEnumRegisterWordW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IEnumRegisterWord' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmInstallIME = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmInstallIMEA,
+    .wide => @This().ImmInstallIMEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmInstallIME' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetDescription = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetDescriptionA,
+    .wide => @This().ImmGetDescriptionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetDescription' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetIMEFileName = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetIMEFileNameA,
+    .wide => @This().ImmGetIMEFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetIMEFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetCompositionString = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetCompositionStringA,
+    .wide => @This().ImmGetCompositionStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetCompositionString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmSetCompositionString = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmSetCompositionStringA,
+    .wide => @This().ImmSetCompositionStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmSetCompositionString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetCandidateListCount = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetCandidateListCountA,
+    .wide => @This().ImmGetCandidateListCountW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetCandidateListCount' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetCandidateList = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetCandidateListA,
+    .wide => @This().ImmGetCandidateListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetCandidateList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetGuideLine = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetGuideLineA,
+    .wide => @This().ImmGetGuideLineW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetGuideLine' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetCompositionFont = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetCompositionFontA,
+    .wide => @This().ImmGetCompositionFontW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetCompositionFont' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmSetCompositionFont = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmSetCompositionFontA,
+    .wide => @This().ImmSetCompositionFontW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmSetCompositionFont' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmConfigureIME = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmConfigureIMEA,
+    .wide => @This().ImmConfigureIMEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmConfigureIME' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmEscape = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmEscapeA,
+    .wide => @This().ImmEscapeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmEscape' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetConversionList = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetConversionListA,
+    .wide => @This().ImmGetConversionListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetConversionList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmIsUIMessage = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmIsUIMessageA,
+    .wide => @This().ImmIsUIMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmIsUIMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmRegisterWord = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmRegisterWordA,
+    .wide => @This().ImmRegisterWordW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmRegisterWord' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmUnregisterWord = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmUnregisterWordA,
+    .wide => @This().ImmUnregisterWordW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmUnregisterWord' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetRegisterWordStyle = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetRegisterWordStyleA,
+    .wide => @This().ImmGetRegisterWordStyleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetRegisterWordStyle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmEnumRegisterWord = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmEnumRegisterWordA,
+    .wide => @This().ImmEnumRegisterWordW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmEnumRegisterWord' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetImeMenuItems = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetImeMenuItemsA,
+    .wide => @This().ImmGetImeMenuItemsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetImeMenuItems' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmRequestMessage = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmRequestMessageA,
+    .wide => @This().ImmRequestMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmRequestMessage' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (24)

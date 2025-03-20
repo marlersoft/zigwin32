@@ -45,19 +45,12 @@ pub extern "kernel32" fn SetMailslotInfo(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const CreateMailslot = thismodule.CreateMailslotA;
-    },
-    .wide => struct {
-        pub const CreateMailslot = thismodule.CreateMailslotW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const CreateMailslot = *opaque{};
-    } else struct {
-        pub const CreateMailslot = @compileError("'CreateMailslot' requires that UNICODE be set to true or false in the root module");
-    },
+pub const CreateMailslot = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateMailslotA,
+    .wide => @This().CreateMailslotW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateMailslot' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)

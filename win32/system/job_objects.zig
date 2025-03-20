@@ -791,23 +791,19 @@ pub extern "kernel32" fn CreateJobSet(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const CreateJobObject = thismodule.CreateJobObjectA;
-        pub const OpenJobObject = thismodule.OpenJobObjectA;
-    },
-    .wide => struct {
-        pub const CreateJobObject = thismodule.CreateJobObjectW;
-        pub const OpenJobObject = thismodule.OpenJobObjectW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const CreateJobObject = *opaque{};
-        pub const OpenJobObject = *opaque{};
-    } else struct {
-        pub const CreateJobObject = @compileError("'CreateJobObject' requires that UNICODE be set to true or false in the root module");
-        pub const OpenJobObject = @compileError("'OpenJobObject' requires that UNICODE be set to true or false in the root module");
-    },
+pub const CreateJobObject = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateJobObjectA,
+    .wide => @This().CreateJobObjectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateJobObject' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenJobObject = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenJobObjectA,
+    .wide => @This().OpenJobObjectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenJobObject' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)

@@ -1478,19 +1478,12 @@ pub const MIDIOPENDESC = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = thismodule.LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA;
-    },
-    .wide => struct {
-        pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = thismodule.LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = *opaque{};
-    } else struct {
-        pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = @compileError("'LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK' requires that UNICODE be set to true or false in the root module");
-    },
+pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA,
+    .wide => @This().LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (16)

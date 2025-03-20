@@ -309,47 +309,61 @@ pub extern "kernel32" fn K32GetProcessImageFileNameW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (8)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const PENUM_PAGE_FILE_CALLBACK = thismodule.PENUM_PAGE_FILE_CALLBACKA;
-        pub const K32GetModuleBaseName = thismodule.K32GetModuleBaseNameA;
-        pub const K32GetModuleFileNameEx = thismodule.K32GetModuleFileNameExA;
-        pub const K32GetMappedFileName = thismodule.K32GetMappedFileNameA;
-        pub const K32GetDeviceDriverBaseName = thismodule.K32GetDeviceDriverBaseNameA;
-        pub const K32GetDeviceDriverFileName = thismodule.K32GetDeviceDriverFileNameA;
-        pub const K32EnumPageFiles = thismodule.K32EnumPageFilesA;
-        pub const K32GetProcessImageFileName = thismodule.K32GetProcessImageFileNameA;
-    },
-    .wide => struct {
-        pub const PENUM_PAGE_FILE_CALLBACK = thismodule.PENUM_PAGE_FILE_CALLBACKW;
-        pub const K32GetModuleBaseName = thismodule.K32GetModuleBaseNameW;
-        pub const K32GetModuleFileNameEx = thismodule.K32GetModuleFileNameExW;
-        pub const K32GetMappedFileName = thismodule.K32GetMappedFileNameW;
-        pub const K32GetDeviceDriverBaseName = thismodule.K32GetDeviceDriverBaseNameW;
-        pub const K32GetDeviceDriverFileName = thismodule.K32GetDeviceDriverFileNameW;
-        pub const K32EnumPageFiles = thismodule.K32EnumPageFilesW;
-        pub const K32GetProcessImageFileName = thismodule.K32GetProcessImageFileNameW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const PENUM_PAGE_FILE_CALLBACK = *opaque{};
-        pub const K32GetModuleBaseName = *opaque{};
-        pub const K32GetModuleFileNameEx = *opaque{};
-        pub const K32GetMappedFileName = *opaque{};
-        pub const K32GetDeviceDriverBaseName = *opaque{};
-        pub const K32GetDeviceDriverFileName = *opaque{};
-        pub const K32EnumPageFiles = *opaque{};
-        pub const K32GetProcessImageFileName = *opaque{};
-    } else struct {
-        pub const PENUM_PAGE_FILE_CALLBACK = @compileError("'PENUM_PAGE_FILE_CALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const K32GetModuleBaseName = @compileError("'K32GetModuleBaseName' requires that UNICODE be set to true or false in the root module");
-        pub const K32GetModuleFileNameEx = @compileError("'K32GetModuleFileNameEx' requires that UNICODE be set to true or false in the root module");
-        pub const K32GetMappedFileName = @compileError("'K32GetMappedFileName' requires that UNICODE be set to true or false in the root module");
-        pub const K32GetDeviceDriverBaseName = @compileError("'K32GetDeviceDriverBaseName' requires that UNICODE be set to true or false in the root module");
-        pub const K32GetDeviceDriverFileName = @compileError("'K32GetDeviceDriverFileName' requires that UNICODE be set to true or false in the root module");
-        pub const K32EnumPageFiles = @compileError("'K32EnumPageFiles' requires that UNICODE be set to true or false in the root module");
-        pub const K32GetProcessImageFileName = @compileError("'K32GetProcessImageFileName' requires that UNICODE be set to true or false in the root module");
-    },
+pub const PENUM_PAGE_FILE_CALLBACK = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PENUM_PAGE_FILE_CALLBACKA,
+    .wide => @This().PENUM_PAGE_FILE_CALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PENUM_PAGE_FILE_CALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetModuleBaseName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetModuleBaseNameA,
+    .wide => @This().K32GetModuleBaseNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetModuleBaseName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetModuleFileNameEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetModuleFileNameExA,
+    .wide => @This().K32GetModuleFileNameExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetModuleFileNameEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetMappedFileName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetMappedFileNameA,
+    .wide => @This().K32GetMappedFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetMappedFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetDeviceDriverBaseName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetDeviceDriverBaseNameA,
+    .wide => @This().K32GetDeviceDriverBaseNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetDeviceDriverBaseName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetDeviceDriverFileName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetDeviceDriverFileNameA,
+    .wide => @This().K32GetDeviceDriverFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetDeviceDriverFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32EnumPageFiles = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32EnumPageFilesA,
+    .wide => @This().K32EnumPageFilesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32EnumPageFiles' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetProcessImageFileName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetProcessImageFileNameA,
+    .wide => @This().K32GetProcessImageFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetProcessImageFileName' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)

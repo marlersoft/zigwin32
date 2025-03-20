@@ -2634,23 +2634,19 @@ pub extern "xolehlp" fn DtcGetTransactionManagerExW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const DTC_GET_TRANSACTION_MANAGER_EX_ = thismodule.DTC_GET_TRANSACTION_MANAGER_EX_A;
-        pub const DtcGetTransactionManagerEx = thismodule.DtcGetTransactionManagerExA;
-    },
-    .wide => struct {
-        pub const DTC_GET_TRANSACTION_MANAGER_EX_ = thismodule.DTC_GET_TRANSACTION_MANAGER_EX_W;
-        pub const DtcGetTransactionManagerEx = thismodule.DtcGetTransactionManagerExW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const DTC_GET_TRANSACTION_MANAGER_EX_ = *opaque{};
-        pub const DtcGetTransactionManagerEx = *opaque{};
-    } else struct {
-        pub const DTC_GET_TRANSACTION_MANAGER_EX_ = @compileError("'DTC_GET_TRANSACTION_MANAGER_EX_' requires that UNICODE be set to true or false in the root module");
-        pub const DtcGetTransactionManagerEx = @compileError("'DtcGetTransactionManagerEx' requires that UNICODE be set to true or false in the root module");
-    },
+pub const DTC_GET_TRANSACTION_MANAGER_EX_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DTC_GET_TRANSACTION_MANAGER_EX_A,
+    .wide => @This().DTC_GET_TRANSACTION_MANAGER_EX_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DTC_GET_TRANSACTION_MANAGER_EX_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DtcGetTransactionManagerEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DtcGetTransactionManagerExA,
+    .wide => @This().DtcGetTransactionManagerExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DtcGetTransactionManagerEx' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (10)

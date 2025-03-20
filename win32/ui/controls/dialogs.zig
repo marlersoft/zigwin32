@@ -1520,95 +1520,145 @@ pub extern "comdlg32" fn PageSetupDlgW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (20)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const OPENFILENAME_NT4 = thismodule.OPENFILENAME_NT4A;
-        pub const OPENFILENAME = thismodule.OPENFILENAMEA;
-        pub const OFNOTIFY = thismodule.OFNOTIFYA;
-        pub const OFNOTIFYEX = thismodule.OFNOTIFYEXA;
-        pub const CHOOSECOLOR = thismodule.CHOOSECOLORA;
-        pub const FINDREPLACE = thismodule.FINDREPLACEA;
-        pub const CHOOSEFONT = thismodule.CHOOSEFONTA;
-        pub const PRINTDLG = thismodule.PRINTDLGA;
-        pub const PRINTDLGEX = thismodule.PRINTDLGEXA;
-        pub const PAGESETUPDLG = thismodule.PAGESETUPDLGA;
-        pub const GetOpenFileName = thismodule.GetOpenFileNameA;
-        pub const GetSaveFileName = thismodule.GetSaveFileNameA;
-        pub const GetFileTitle = thismodule.GetFileTitleA;
-        pub const ChooseColor = thismodule.ChooseColorA;
-        pub const FindText = thismodule.FindTextA;
-        pub const ReplaceText = thismodule.ReplaceTextA;
-        pub const ChooseFont = thismodule.ChooseFontA;
-        pub const PrintDlg = thismodule.PrintDlgA;
-        pub const PrintDlgEx = thismodule.PrintDlgExA;
-        pub const PageSetupDlg = thismodule.PageSetupDlgA;
-    },
-    .wide => struct {
-        pub const OPENFILENAME_NT4 = thismodule.OPENFILENAME_NT4W;
-        pub const OPENFILENAME = thismodule.OPENFILENAMEW;
-        pub const OFNOTIFY = thismodule.OFNOTIFYW;
-        pub const OFNOTIFYEX = thismodule.OFNOTIFYEXW;
-        pub const CHOOSECOLOR = thismodule.CHOOSECOLORW;
-        pub const FINDREPLACE = thismodule.FINDREPLACEW;
-        pub const CHOOSEFONT = thismodule.CHOOSEFONTW;
-        pub const PRINTDLG = thismodule.PRINTDLGW;
-        pub const PRINTDLGEX = thismodule.PRINTDLGEXW;
-        pub const PAGESETUPDLG = thismodule.PAGESETUPDLGW;
-        pub const GetOpenFileName = thismodule.GetOpenFileNameW;
-        pub const GetSaveFileName = thismodule.GetSaveFileNameW;
-        pub const GetFileTitle = thismodule.GetFileTitleW;
-        pub const ChooseColor = thismodule.ChooseColorW;
-        pub const FindText = thismodule.FindTextW;
-        pub const ReplaceText = thismodule.ReplaceTextW;
-        pub const ChooseFont = thismodule.ChooseFontW;
-        pub const PrintDlg = thismodule.PrintDlgW;
-        pub const PrintDlgEx = thismodule.PrintDlgExW;
-        pub const PageSetupDlg = thismodule.PageSetupDlgW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const OPENFILENAME_NT4 = *opaque{};
-        pub const OPENFILENAME = *opaque{};
-        pub const OFNOTIFY = *opaque{};
-        pub const OFNOTIFYEX = *opaque{};
-        pub const CHOOSECOLOR = *opaque{};
-        pub const FINDREPLACE = *opaque{};
-        pub const CHOOSEFONT = *opaque{};
-        pub const PRINTDLG = *opaque{};
-        pub const PRINTDLGEX = *opaque{};
-        pub const PAGESETUPDLG = *opaque{};
-        pub const GetOpenFileName = *opaque{};
-        pub const GetSaveFileName = *opaque{};
-        pub const GetFileTitle = *opaque{};
-        pub const ChooseColor = *opaque{};
-        pub const FindText = *opaque{};
-        pub const ReplaceText = *opaque{};
-        pub const ChooseFont = *opaque{};
-        pub const PrintDlg = *opaque{};
-        pub const PrintDlgEx = *opaque{};
-        pub const PageSetupDlg = *opaque{};
-    } else struct {
-        pub const OPENFILENAME_NT4 = @compileError("'OPENFILENAME_NT4' requires that UNICODE be set to true or false in the root module");
-        pub const OPENFILENAME = @compileError("'OPENFILENAME' requires that UNICODE be set to true or false in the root module");
-        pub const OFNOTIFY = @compileError("'OFNOTIFY' requires that UNICODE be set to true or false in the root module");
-        pub const OFNOTIFYEX = @compileError("'OFNOTIFYEX' requires that UNICODE be set to true or false in the root module");
-        pub const CHOOSECOLOR = @compileError("'CHOOSECOLOR' requires that UNICODE be set to true or false in the root module");
-        pub const FINDREPLACE = @compileError("'FINDREPLACE' requires that UNICODE be set to true or false in the root module");
-        pub const CHOOSEFONT = @compileError("'CHOOSEFONT' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTDLG = @compileError("'PRINTDLG' requires that UNICODE be set to true or false in the root module");
-        pub const PRINTDLGEX = @compileError("'PRINTDLGEX' requires that UNICODE be set to true or false in the root module");
-        pub const PAGESETUPDLG = @compileError("'PAGESETUPDLG' requires that UNICODE be set to true or false in the root module");
-        pub const GetOpenFileName = @compileError("'GetOpenFileName' requires that UNICODE be set to true or false in the root module");
-        pub const GetSaveFileName = @compileError("'GetSaveFileName' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileTitle = @compileError("'GetFileTitle' requires that UNICODE be set to true or false in the root module");
-        pub const ChooseColor = @compileError("'ChooseColor' requires that UNICODE be set to true or false in the root module");
-        pub const FindText = @compileError("'FindText' requires that UNICODE be set to true or false in the root module");
-        pub const ReplaceText = @compileError("'ReplaceText' requires that UNICODE be set to true or false in the root module");
-        pub const ChooseFont = @compileError("'ChooseFont' requires that UNICODE be set to true or false in the root module");
-        pub const PrintDlg = @compileError("'PrintDlg' requires that UNICODE be set to true or false in the root module");
-        pub const PrintDlgEx = @compileError("'PrintDlgEx' requires that UNICODE be set to true or false in the root module");
-        pub const PageSetupDlg = @compileError("'PageSetupDlg' requires that UNICODE be set to true or false in the root module");
-    },
+pub const OPENFILENAME_NT4 = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().OPENFILENAME_NT4A,
+    .wide => @This().OPENFILENAME_NT4W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OPENFILENAME_NT4' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OPENFILENAME = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().OPENFILENAMEA,
+    .wide => @This().OPENFILENAMEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OPENFILENAME' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OFNOTIFY = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().OFNOTIFYA,
+    .wide => @This().OFNOTIFYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OFNOTIFY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OFNOTIFYEX = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().OFNOTIFYEXA,
+    .wide => @This().OFNOTIFYEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OFNOTIFYEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CHOOSECOLOR = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().CHOOSECOLORA,
+    .wide => @This().CHOOSECOLORW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CHOOSECOLOR' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FINDREPLACE = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().FINDREPLACEA,
+    .wide => @This().FINDREPLACEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FINDREPLACE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CHOOSEFONT = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().CHOOSEFONTA,
+    .wide => @This().CHOOSEFONTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CHOOSEFONT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTDLG = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTDLGA,
+    .wide => @This().PRINTDLGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTDLG' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PRINTDLGEX = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().PRINTDLGEXA,
+    .wide => @This().PRINTDLGEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PRINTDLGEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PAGESETUPDLG = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().PAGESETUPDLGA,
+    .wide => @This().PAGESETUPDLGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PAGESETUPDLG' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetOpenFileName = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().GetOpenFileNameA,
+    .wide => @This().GetOpenFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetOpenFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetSaveFileName = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().GetSaveFileNameA,
+    .wide => @This().GetSaveFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetSaveFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFileTitle = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().GetFileTitleA,
+    .wide => @This().GetFileTitleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFileTitle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ChooseColor = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ChooseColorA,
+    .wide => @This().ChooseColorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ChooseColor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindText = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().FindTextA,
+    .wide => @This().FindTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReplaceText = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ReplaceTextA,
+    .wide => @This().ReplaceTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReplaceText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ChooseFont = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ChooseFontA,
+    .wide => @This().ChooseFontW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ChooseFont' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PrintDlg = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().PrintDlgA,
+    .wide => @This().PrintDlgW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PrintDlg' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PrintDlgEx = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().PrintDlgExA,
+    .wide => @This().PrintDlgExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PrintDlgEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PageSetupDlg = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().PageSetupDlgA,
+    .wide => @This().PageSetupDlgW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PageSetupDlg' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (19)

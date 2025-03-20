@@ -5216,255 +5216,425 @@ pub extern "rtm" fn RtmReferenceHandles(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (60)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const RASCONN = thismodule.RASCONNA;
-        pub const RASCONNSTATUS = thismodule.RASCONNSTATUSA;
-        pub const RASDIALPARAMS = thismodule.RASDIALPARAMSA;
-        pub const RASENTRYNAME = thismodule.RASENTRYNAMEA;
-        pub const RASAMB = thismodule.RASAMBA;
-        pub const RASPPPNBF = thismodule.RASPPPNBFA;
-        pub const RASPPPIP = thismodule.RASPPPIPA;
-        pub const RASPPPLCP = thismodule.RASPPPLCPA;
-        pub const RASDEVINFO = thismodule.RASDEVINFOA;
-        pub const RASENTRY = thismodule.RASENTRYA;
-        pub const RASADFUNC = thismodule.RASADFUNCA;
-        pub const RASSUBENTRY = thismodule.RASSUBENTRYA;
-        pub const RASCREDENTIALS = thismodule.RASCREDENTIALSA;
-        pub const RASAUTODIALENTRY = thismodule.RASAUTODIALENTRYA;
-        pub const RASEAPUSERIDENTITY = thismodule.RASEAPUSERIDENTITYA;
-        pub const RASPBDLGFUNC = thismodule.RASPBDLGFUNCA;
-        pub const RASNOUSER = thismodule.RASNOUSERA;
-        pub const RASPBDLG = thismodule.RASPBDLGA;
-        pub const RASENTRYDLG = thismodule.RASENTRYDLGA;
-        pub const RasDial = thismodule.RasDialA;
-        pub const RasEnumConnections = thismodule.RasEnumConnectionsA;
-        pub const RasEnumEntries = thismodule.RasEnumEntriesA;
-        pub const RasGetConnectStatus = thismodule.RasGetConnectStatusA;
-        pub const RasGetErrorString = thismodule.RasGetErrorStringA;
-        pub const RasHangUp = thismodule.RasHangUpA;
-        pub const RasGetProjectionInfo = thismodule.RasGetProjectionInfoA;
-        pub const RasCreatePhonebookEntry = thismodule.RasCreatePhonebookEntryA;
-        pub const RasEditPhonebookEntry = thismodule.RasEditPhonebookEntryA;
-        pub const RasSetEntryDialParams = thismodule.RasSetEntryDialParamsA;
-        pub const RasGetEntryDialParams = thismodule.RasGetEntryDialParamsA;
-        pub const RasEnumDevices = thismodule.RasEnumDevicesA;
-        pub const RasGetCountryInfo = thismodule.RasGetCountryInfoA;
-        pub const RasGetEntryProperties = thismodule.RasGetEntryPropertiesA;
-        pub const RasSetEntryProperties = thismodule.RasSetEntryPropertiesA;
-        pub const RasRenameEntry = thismodule.RasRenameEntryA;
-        pub const RasDeleteEntry = thismodule.RasDeleteEntryA;
-        pub const RasValidateEntryName = thismodule.RasValidateEntryNameA;
-        pub const RasConnectionNotification = thismodule.RasConnectionNotificationA;
-        pub const RasGetSubEntryHandle = thismodule.RasGetSubEntryHandleA;
-        pub const RasGetCredentials = thismodule.RasGetCredentialsA;
-        pub const RasSetCredentials = thismodule.RasSetCredentialsA;
-        pub const RasGetSubEntryProperties = thismodule.RasGetSubEntryPropertiesA;
-        pub const RasSetSubEntryProperties = thismodule.RasSetSubEntryPropertiesA;
-        pub const RasGetAutodialAddress = thismodule.RasGetAutodialAddressA;
-        pub const RasSetAutodialAddress = thismodule.RasSetAutodialAddressA;
-        pub const RasEnumAutodialAddresses = thismodule.RasEnumAutodialAddressesA;
-        pub const RasGetAutodialEnable = thismodule.RasGetAutodialEnableA;
-        pub const RasSetAutodialEnable = thismodule.RasSetAutodialEnableA;
-        pub const RasGetAutodialParam = thismodule.RasGetAutodialParamA;
-        pub const RasSetAutodialParam = thismodule.RasSetAutodialParamA;
-        pub const RasGetEapUserData = thismodule.RasGetEapUserDataA;
-        pub const RasSetEapUserData = thismodule.RasSetEapUserDataA;
-        pub const RasGetCustomAuthData = thismodule.RasGetCustomAuthDataA;
-        pub const RasSetCustomAuthData = thismodule.RasSetCustomAuthDataA;
-        pub const RasGetEapUserIdentity = thismodule.RasGetEapUserIdentityA;
-        pub const RasFreeEapUserIdentity = thismodule.RasFreeEapUserIdentityA;
-        pub const RasDeleteSubEntry = thismodule.RasDeleteSubEntryA;
-        pub const RasPhonebookDlg = thismodule.RasPhonebookDlgA;
-        pub const RasEntryDlg = thismodule.RasEntryDlgA;
-        pub const RasDialDlg = thismodule.RasDialDlgA;
-    },
-    .wide => struct {
-        pub const RASCONN = thismodule.RASCONNW;
-        pub const RASCONNSTATUS = thismodule.RASCONNSTATUSW;
-        pub const RASDIALPARAMS = thismodule.RASDIALPARAMSW;
-        pub const RASENTRYNAME = thismodule.RASENTRYNAMEW;
-        pub const RASAMB = thismodule.RASAMBW;
-        pub const RASPPPNBF = thismodule.RASPPPNBFW;
-        pub const RASPPPIP = thismodule.RASPPPIPW;
-        pub const RASPPPLCP = thismodule.RASPPPLCPW;
-        pub const RASDEVINFO = thismodule.RASDEVINFOW;
-        pub const RASENTRY = thismodule.RASENTRYW;
-        pub const RASADFUNC = thismodule.RASADFUNCW;
-        pub const RASSUBENTRY = thismodule.RASSUBENTRYW;
-        pub const RASCREDENTIALS = thismodule.RASCREDENTIALSW;
-        pub const RASAUTODIALENTRY = thismodule.RASAUTODIALENTRYW;
-        pub const RASEAPUSERIDENTITY = thismodule.RASEAPUSERIDENTITYW;
-        pub const RASPBDLGFUNC = thismodule.RASPBDLGFUNCW;
-        pub const RASNOUSER = thismodule.RASNOUSERW;
-        pub const RASPBDLG = thismodule.RASPBDLGW;
-        pub const RASENTRYDLG = thismodule.RASENTRYDLGW;
-        pub const RasDial = thismodule.RasDialW;
-        pub const RasEnumConnections = thismodule.RasEnumConnectionsW;
-        pub const RasEnumEntries = thismodule.RasEnumEntriesW;
-        pub const RasGetConnectStatus = thismodule.RasGetConnectStatusW;
-        pub const RasGetErrorString = thismodule.RasGetErrorStringW;
-        pub const RasHangUp = thismodule.RasHangUpW;
-        pub const RasGetProjectionInfo = thismodule.RasGetProjectionInfoW;
-        pub const RasCreatePhonebookEntry = thismodule.RasCreatePhonebookEntryW;
-        pub const RasEditPhonebookEntry = thismodule.RasEditPhonebookEntryW;
-        pub const RasSetEntryDialParams = thismodule.RasSetEntryDialParamsW;
-        pub const RasGetEntryDialParams = thismodule.RasGetEntryDialParamsW;
-        pub const RasEnumDevices = thismodule.RasEnumDevicesW;
-        pub const RasGetCountryInfo = thismodule.RasGetCountryInfoW;
-        pub const RasGetEntryProperties = thismodule.RasGetEntryPropertiesW;
-        pub const RasSetEntryProperties = thismodule.RasSetEntryPropertiesW;
-        pub const RasRenameEntry = thismodule.RasRenameEntryW;
-        pub const RasDeleteEntry = thismodule.RasDeleteEntryW;
-        pub const RasValidateEntryName = thismodule.RasValidateEntryNameW;
-        pub const RasConnectionNotification = thismodule.RasConnectionNotificationW;
-        pub const RasGetSubEntryHandle = thismodule.RasGetSubEntryHandleW;
-        pub const RasGetCredentials = thismodule.RasGetCredentialsW;
-        pub const RasSetCredentials = thismodule.RasSetCredentialsW;
-        pub const RasGetSubEntryProperties = thismodule.RasGetSubEntryPropertiesW;
-        pub const RasSetSubEntryProperties = thismodule.RasSetSubEntryPropertiesW;
-        pub const RasGetAutodialAddress = thismodule.RasGetAutodialAddressW;
-        pub const RasSetAutodialAddress = thismodule.RasSetAutodialAddressW;
-        pub const RasEnumAutodialAddresses = thismodule.RasEnumAutodialAddressesW;
-        pub const RasGetAutodialEnable = thismodule.RasGetAutodialEnableW;
-        pub const RasSetAutodialEnable = thismodule.RasSetAutodialEnableW;
-        pub const RasGetAutodialParam = thismodule.RasGetAutodialParamW;
-        pub const RasSetAutodialParam = thismodule.RasSetAutodialParamW;
-        pub const RasGetEapUserData = thismodule.RasGetEapUserDataW;
-        pub const RasSetEapUserData = thismodule.RasSetEapUserDataW;
-        pub const RasGetCustomAuthData = thismodule.RasGetCustomAuthDataW;
-        pub const RasSetCustomAuthData = thismodule.RasSetCustomAuthDataW;
-        pub const RasGetEapUserIdentity = thismodule.RasGetEapUserIdentityW;
-        pub const RasFreeEapUserIdentity = thismodule.RasFreeEapUserIdentityW;
-        pub const RasDeleteSubEntry = thismodule.RasDeleteSubEntryW;
-        pub const RasPhonebookDlg = thismodule.RasPhonebookDlgW;
-        pub const RasEntryDlg = thismodule.RasEntryDlgW;
-        pub const RasDialDlg = thismodule.RasDialDlgW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const RASCONN = *opaque{};
-        pub const RASCONNSTATUS = *opaque{};
-        pub const RASDIALPARAMS = *opaque{};
-        pub const RASENTRYNAME = *opaque{};
-        pub const RASAMB = *opaque{};
-        pub const RASPPPNBF = *opaque{};
-        pub const RASPPPIP = *opaque{};
-        pub const RASPPPLCP = *opaque{};
-        pub const RASDEVINFO = *opaque{};
-        pub const RASENTRY = *opaque{};
-        pub const RASADFUNC = *opaque{};
-        pub const RASSUBENTRY = *opaque{};
-        pub const RASCREDENTIALS = *opaque{};
-        pub const RASAUTODIALENTRY = *opaque{};
-        pub const RASEAPUSERIDENTITY = *opaque{};
-        pub const RASPBDLGFUNC = *opaque{};
-        pub const RASNOUSER = *opaque{};
-        pub const RASPBDLG = *opaque{};
-        pub const RASENTRYDLG = *opaque{};
-        pub const RasDial = *opaque{};
-        pub const RasEnumConnections = *opaque{};
-        pub const RasEnumEntries = *opaque{};
-        pub const RasGetConnectStatus = *opaque{};
-        pub const RasGetErrorString = *opaque{};
-        pub const RasHangUp = *opaque{};
-        pub const RasGetProjectionInfo = *opaque{};
-        pub const RasCreatePhonebookEntry = *opaque{};
-        pub const RasEditPhonebookEntry = *opaque{};
-        pub const RasSetEntryDialParams = *opaque{};
-        pub const RasGetEntryDialParams = *opaque{};
-        pub const RasEnumDevices = *opaque{};
-        pub const RasGetCountryInfo = *opaque{};
-        pub const RasGetEntryProperties = *opaque{};
-        pub const RasSetEntryProperties = *opaque{};
-        pub const RasRenameEntry = *opaque{};
-        pub const RasDeleteEntry = *opaque{};
-        pub const RasValidateEntryName = *opaque{};
-        pub const RasConnectionNotification = *opaque{};
-        pub const RasGetSubEntryHandle = *opaque{};
-        pub const RasGetCredentials = *opaque{};
-        pub const RasSetCredentials = *opaque{};
-        pub const RasGetSubEntryProperties = *opaque{};
-        pub const RasSetSubEntryProperties = *opaque{};
-        pub const RasGetAutodialAddress = *opaque{};
-        pub const RasSetAutodialAddress = *opaque{};
-        pub const RasEnumAutodialAddresses = *opaque{};
-        pub const RasGetAutodialEnable = *opaque{};
-        pub const RasSetAutodialEnable = *opaque{};
-        pub const RasGetAutodialParam = *opaque{};
-        pub const RasSetAutodialParam = *opaque{};
-        pub const RasGetEapUserData = *opaque{};
-        pub const RasSetEapUserData = *opaque{};
-        pub const RasGetCustomAuthData = *opaque{};
-        pub const RasSetCustomAuthData = *opaque{};
-        pub const RasGetEapUserIdentity = *opaque{};
-        pub const RasFreeEapUserIdentity = *opaque{};
-        pub const RasDeleteSubEntry = *opaque{};
-        pub const RasPhonebookDlg = *opaque{};
-        pub const RasEntryDlg = *opaque{};
-        pub const RasDialDlg = *opaque{};
-    } else struct {
-        pub const RASCONN = @compileError("'RASCONN' requires that UNICODE be set to true or false in the root module");
-        pub const RASCONNSTATUS = @compileError("'RASCONNSTATUS' requires that UNICODE be set to true or false in the root module");
-        pub const RASDIALPARAMS = @compileError("'RASDIALPARAMS' requires that UNICODE be set to true or false in the root module");
-        pub const RASENTRYNAME = @compileError("'RASENTRYNAME' requires that UNICODE be set to true or false in the root module");
-        pub const RASAMB = @compileError("'RASAMB' requires that UNICODE be set to true or false in the root module");
-        pub const RASPPPNBF = @compileError("'RASPPPNBF' requires that UNICODE be set to true or false in the root module");
-        pub const RASPPPIP = @compileError("'RASPPPIP' requires that UNICODE be set to true or false in the root module");
-        pub const RASPPPLCP = @compileError("'RASPPPLCP' requires that UNICODE be set to true or false in the root module");
-        pub const RASDEVINFO = @compileError("'RASDEVINFO' requires that UNICODE be set to true or false in the root module");
-        pub const RASENTRY = @compileError("'RASENTRY' requires that UNICODE be set to true or false in the root module");
-        pub const RASADFUNC = @compileError("'RASADFUNC' requires that UNICODE be set to true or false in the root module");
-        pub const RASSUBENTRY = @compileError("'RASSUBENTRY' requires that UNICODE be set to true or false in the root module");
-        pub const RASCREDENTIALS = @compileError("'RASCREDENTIALS' requires that UNICODE be set to true or false in the root module");
-        pub const RASAUTODIALENTRY = @compileError("'RASAUTODIALENTRY' requires that UNICODE be set to true or false in the root module");
-        pub const RASEAPUSERIDENTITY = @compileError("'RASEAPUSERIDENTITY' requires that UNICODE be set to true or false in the root module");
-        pub const RASPBDLGFUNC = @compileError("'RASPBDLGFUNC' requires that UNICODE be set to true or false in the root module");
-        pub const RASNOUSER = @compileError("'RASNOUSER' requires that UNICODE be set to true or false in the root module");
-        pub const RASPBDLG = @compileError("'RASPBDLG' requires that UNICODE be set to true or false in the root module");
-        pub const RASENTRYDLG = @compileError("'RASENTRYDLG' requires that UNICODE be set to true or false in the root module");
-        pub const RasDial = @compileError("'RasDial' requires that UNICODE be set to true or false in the root module");
-        pub const RasEnumConnections = @compileError("'RasEnumConnections' requires that UNICODE be set to true or false in the root module");
-        pub const RasEnumEntries = @compileError("'RasEnumEntries' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetConnectStatus = @compileError("'RasGetConnectStatus' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetErrorString = @compileError("'RasGetErrorString' requires that UNICODE be set to true or false in the root module");
-        pub const RasHangUp = @compileError("'RasHangUp' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetProjectionInfo = @compileError("'RasGetProjectionInfo' requires that UNICODE be set to true or false in the root module");
-        pub const RasCreatePhonebookEntry = @compileError("'RasCreatePhonebookEntry' requires that UNICODE be set to true or false in the root module");
-        pub const RasEditPhonebookEntry = @compileError("'RasEditPhonebookEntry' requires that UNICODE be set to true or false in the root module");
-        pub const RasSetEntryDialParams = @compileError("'RasSetEntryDialParams' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetEntryDialParams = @compileError("'RasGetEntryDialParams' requires that UNICODE be set to true or false in the root module");
-        pub const RasEnumDevices = @compileError("'RasEnumDevices' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetCountryInfo = @compileError("'RasGetCountryInfo' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetEntryProperties = @compileError("'RasGetEntryProperties' requires that UNICODE be set to true or false in the root module");
-        pub const RasSetEntryProperties = @compileError("'RasSetEntryProperties' requires that UNICODE be set to true or false in the root module");
-        pub const RasRenameEntry = @compileError("'RasRenameEntry' requires that UNICODE be set to true or false in the root module");
-        pub const RasDeleteEntry = @compileError("'RasDeleteEntry' requires that UNICODE be set to true or false in the root module");
-        pub const RasValidateEntryName = @compileError("'RasValidateEntryName' requires that UNICODE be set to true or false in the root module");
-        pub const RasConnectionNotification = @compileError("'RasConnectionNotification' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetSubEntryHandle = @compileError("'RasGetSubEntryHandle' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetCredentials = @compileError("'RasGetCredentials' requires that UNICODE be set to true or false in the root module");
-        pub const RasSetCredentials = @compileError("'RasSetCredentials' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetSubEntryProperties = @compileError("'RasGetSubEntryProperties' requires that UNICODE be set to true or false in the root module");
-        pub const RasSetSubEntryProperties = @compileError("'RasSetSubEntryProperties' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetAutodialAddress = @compileError("'RasGetAutodialAddress' requires that UNICODE be set to true or false in the root module");
-        pub const RasSetAutodialAddress = @compileError("'RasSetAutodialAddress' requires that UNICODE be set to true or false in the root module");
-        pub const RasEnumAutodialAddresses = @compileError("'RasEnumAutodialAddresses' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetAutodialEnable = @compileError("'RasGetAutodialEnable' requires that UNICODE be set to true or false in the root module");
-        pub const RasSetAutodialEnable = @compileError("'RasSetAutodialEnable' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetAutodialParam = @compileError("'RasGetAutodialParam' requires that UNICODE be set to true or false in the root module");
-        pub const RasSetAutodialParam = @compileError("'RasSetAutodialParam' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetEapUserData = @compileError("'RasGetEapUserData' requires that UNICODE be set to true or false in the root module");
-        pub const RasSetEapUserData = @compileError("'RasSetEapUserData' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetCustomAuthData = @compileError("'RasGetCustomAuthData' requires that UNICODE be set to true or false in the root module");
-        pub const RasSetCustomAuthData = @compileError("'RasSetCustomAuthData' requires that UNICODE be set to true or false in the root module");
-        pub const RasGetEapUserIdentity = @compileError("'RasGetEapUserIdentity' requires that UNICODE be set to true or false in the root module");
-        pub const RasFreeEapUserIdentity = @compileError("'RasFreeEapUserIdentity' requires that UNICODE be set to true or false in the root module");
-        pub const RasDeleteSubEntry = @compileError("'RasDeleteSubEntry' requires that UNICODE be set to true or false in the root module");
-        pub const RasPhonebookDlg = @compileError("'RasPhonebookDlg' requires that UNICODE be set to true or false in the root module");
-        pub const RasEntryDlg = @compileError("'RasEntryDlg' requires that UNICODE be set to true or false in the root module");
-        pub const RasDialDlg = @compileError("'RasDialDlg' requires that UNICODE be set to true or false in the root module");
-    },
+pub const RASCONN = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASCONNA,
+    .wide => @This().RASCONNW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASCONN' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASCONNSTATUS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASCONNSTATUSA,
+    .wide => @This().RASCONNSTATUSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASCONNSTATUS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASDIALPARAMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASDIALPARAMSA,
+    .wide => @This().RASDIALPARAMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASDIALPARAMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASENTRYNAME = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASENTRYNAMEA,
+    .wide => @This().RASENTRYNAMEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASENTRYNAME' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASAMB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASAMBA,
+    .wide => @This().RASAMBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASAMB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASPPPNBF = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASPPPNBFA,
+    .wide => @This().RASPPPNBFW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASPPPNBF' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASPPPIP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASPPPIPA,
+    .wide => @This().RASPPPIPW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASPPPIP' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASPPPLCP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASPPPLCPA,
+    .wide => @This().RASPPPLCPW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASPPPLCP' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASDEVINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASDEVINFOA,
+    .wide => @This().RASDEVINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASDEVINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASENTRYA,
+    .wide => @This().RASENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASADFUNC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASADFUNCA,
+    .wide => @This().RASADFUNCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASADFUNC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASSUBENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASSUBENTRYA,
+    .wide => @This().RASSUBENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASSUBENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASCREDENTIALS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASCREDENTIALSA,
+    .wide => @This().RASCREDENTIALSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASCREDENTIALS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASAUTODIALENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASAUTODIALENTRYA,
+    .wide => @This().RASAUTODIALENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASAUTODIALENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASEAPUSERIDENTITY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASEAPUSERIDENTITYA,
+    .wide => @This().RASEAPUSERIDENTITYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASEAPUSERIDENTITY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASPBDLGFUNC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASPBDLGFUNCA,
+    .wide => @This().RASPBDLGFUNCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASPBDLGFUNC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASNOUSER = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASNOUSERA,
+    .wide => @This().RASNOUSERW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASNOUSER' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASPBDLG = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASPBDLGA,
+    .wide => @This().RASPBDLGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASPBDLG' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASENTRYDLG = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASENTRYDLGA,
+    .wide => @This().RASENTRYDLGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASENTRYDLG' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasDial = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasDialA,
+    .wide => @This().RasDialW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasDial' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasEnumConnections = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasEnumConnectionsA,
+    .wide => @This().RasEnumConnectionsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasEnumConnections' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasEnumEntries = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasEnumEntriesA,
+    .wide => @This().RasEnumEntriesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasEnumEntries' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetConnectStatus = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetConnectStatusA,
+    .wide => @This().RasGetConnectStatusW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetConnectStatus' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetErrorString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetErrorStringA,
+    .wide => @This().RasGetErrorStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetErrorString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasHangUp = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasHangUpA,
+    .wide => @This().RasHangUpW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasHangUp' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetProjectionInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetProjectionInfoA,
+    .wide => @This().RasGetProjectionInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetProjectionInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasCreatePhonebookEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasCreatePhonebookEntryA,
+    .wide => @This().RasCreatePhonebookEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasCreatePhonebookEntry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasEditPhonebookEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasEditPhonebookEntryA,
+    .wide => @This().RasEditPhonebookEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasEditPhonebookEntry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetEntryDialParams = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetEntryDialParamsA,
+    .wide => @This().RasSetEntryDialParamsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetEntryDialParams' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetEntryDialParams = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetEntryDialParamsA,
+    .wide => @This().RasGetEntryDialParamsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetEntryDialParams' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasEnumDevices = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasEnumDevicesA,
+    .wide => @This().RasEnumDevicesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasEnumDevices' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetCountryInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetCountryInfoA,
+    .wide => @This().RasGetCountryInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetCountryInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetEntryProperties = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetEntryPropertiesA,
+    .wide => @This().RasGetEntryPropertiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetEntryProperties' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetEntryProperties = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetEntryPropertiesA,
+    .wide => @This().RasSetEntryPropertiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetEntryProperties' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasRenameEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasRenameEntryA,
+    .wide => @This().RasRenameEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasRenameEntry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasDeleteEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasDeleteEntryA,
+    .wide => @This().RasDeleteEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasDeleteEntry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasValidateEntryName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasValidateEntryNameA,
+    .wide => @This().RasValidateEntryNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasValidateEntryName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasConnectionNotification = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasConnectionNotificationA,
+    .wide => @This().RasConnectionNotificationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasConnectionNotification' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetSubEntryHandle = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetSubEntryHandleA,
+    .wide => @This().RasGetSubEntryHandleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetSubEntryHandle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetCredentialsA,
+    .wide => @This().RasGetCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetCredentialsA,
+    .wide => @This().RasSetCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetSubEntryProperties = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetSubEntryPropertiesA,
+    .wide => @This().RasGetSubEntryPropertiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetSubEntryProperties' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetSubEntryProperties = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetSubEntryPropertiesA,
+    .wide => @This().RasSetSubEntryPropertiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetSubEntryProperties' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetAutodialAddress = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetAutodialAddressA,
+    .wide => @This().RasGetAutodialAddressW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetAutodialAddress' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetAutodialAddress = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetAutodialAddressA,
+    .wide => @This().RasSetAutodialAddressW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetAutodialAddress' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasEnumAutodialAddresses = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasEnumAutodialAddressesA,
+    .wide => @This().RasEnumAutodialAddressesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasEnumAutodialAddresses' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetAutodialEnable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetAutodialEnableA,
+    .wide => @This().RasGetAutodialEnableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetAutodialEnable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetAutodialEnable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetAutodialEnableA,
+    .wide => @This().RasSetAutodialEnableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetAutodialEnable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetAutodialParam = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetAutodialParamA,
+    .wide => @This().RasGetAutodialParamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetAutodialParam' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetAutodialParam = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetAutodialParamA,
+    .wide => @This().RasSetAutodialParamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetAutodialParam' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetEapUserData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetEapUserDataA,
+    .wide => @This().RasGetEapUserDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetEapUserData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetEapUserData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetEapUserDataA,
+    .wide => @This().RasSetEapUserDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetEapUserData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetCustomAuthData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetCustomAuthDataA,
+    .wide => @This().RasGetCustomAuthDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetCustomAuthData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetCustomAuthData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetCustomAuthDataA,
+    .wide => @This().RasSetCustomAuthDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetCustomAuthData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetEapUserIdentity = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetEapUserIdentityA,
+    .wide => @This().RasGetEapUserIdentityW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetEapUserIdentity' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasFreeEapUserIdentity = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasFreeEapUserIdentityA,
+    .wide => @This().RasFreeEapUserIdentityW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasFreeEapUserIdentity' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasDeleteSubEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasDeleteSubEntryA,
+    .wide => @This().RasDeleteSubEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasDeleteSubEntry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasPhonebookDlg = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasPhonebookDlgA,
+    .wide => @This().RasPhonebookDlgW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasPhonebookDlg' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasEntryDlg = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasEntryDlgA,
+    .wide => @This().RasEntryDlgW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasEntryDlg' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasDialDlg = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasDialDlgA,
+    .wide => @This().RasDialDlgW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasDialDlg' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (14)

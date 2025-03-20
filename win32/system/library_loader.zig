@@ -485,103 +485,159 @@ pub extern "kernel32" fn GetDllDirectoryW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (22)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const ENUMRESLANGPROC = thismodule.ENUMRESLANGPROCA;
-        pub const ENUMRESNAMEPROC = thismodule.ENUMRESNAMEPROCA;
-        pub const ENUMRESTYPEPROC = thismodule.ENUMRESTYPEPROCA;
-        pub const PGET_MODULE_HANDLE_EX = thismodule.PGET_MODULE_HANDLE_EXA;
-        pub const FindResourceEx = thismodule.FindResourceExA;
-        pub const GetModuleFileName = thismodule.GetModuleFileNameA;
-        pub const GetModuleHandle = thismodule.GetModuleHandleA;
-        pub const GetModuleHandleEx = thismodule.GetModuleHandleExA;
-        pub const LoadLibraryEx = thismodule.LoadLibraryExA;
-        pub const EnumResourceLanguagesEx = thismodule.EnumResourceLanguagesExA;
-        pub const EnumResourceNamesEx = thismodule.EnumResourceNamesExA;
-        pub const EnumResourceTypesEx = thismodule.EnumResourceTypesExA;
-        pub const FindResource = thismodule.FindResourceA;
-        pub const LoadLibrary = thismodule.LoadLibraryA;
-        pub const EnumResourceNames = thismodule.EnumResourceNamesA;
-        pub const EnumResourceTypes = thismodule.EnumResourceTypesA;
-        pub const EnumResourceLanguages = thismodule.EnumResourceLanguagesA;
-        pub const BeginUpdateResource = thismodule.BeginUpdateResourceA;
-        pub const UpdateResource = thismodule.UpdateResourceA;
-        pub const EndUpdateResource = thismodule.EndUpdateResourceA;
-        pub const SetDllDirectory = thismodule.SetDllDirectoryA;
-        pub const GetDllDirectory = thismodule.GetDllDirectoryA;
-    },
-    .wide => struct {
-        pub const ENUMRESLANGPROC = thismodule.ENUMRESLANGPROCW;
-        pub const ENUMRESNAMEPROC = thismodule.ENUMRESNAMEPROCW;
-        pub const ENUMRESTYPEPROC = thismodule.ENUMRESTYPEPROCW;
-        pub const PGET_MODULE_HANDLE_EX = thismodule.PGET_MODULE_HANDLE_EXW;
-        pub const FindResourceEx = thismodule.FindResourceExW;
-        pub const GetModuleFileName = thismodule.GetModuleFileNameW;
-        pub const GetModuleHandle = thismodule.GetModuleHandleW;
-        pub const GetModuleHandleEx = thismodule.GetModuleHandleExW;
-        pub const LoadLibraryEx = thismodule.LoadLibraryExW;
-        pub const EnumResourceLanguagesEx = thismodule.EnumResourceLanguagesExW;
-        pub const EnumResourceNamesEx = thismodule.EnumResourceNamesExW;
-        pub const EnumResourceTypesEx = thismodule.EnumResourceTypesExW;
-        pub const FindResource = thismodule.FindResourceW;
-        pub const LoadLibrary = thismodule.LoadLibraryW;
-        pub const EnumResourceNames = thismodule.EnumResourceNamesW;
-        pub const EnumResourceTypes = thismodule.EnumResourceTypesW;
-        pub const EnumResourceLanguages = thismodule.EnumResourceLanguagesW;
-        pub const BeginUpdateResource = thismodule.BeginUpdateResourceW;
-        pub const UpdateResource = thismodule.UpdateResourceW;
-        pub const EndUpdateResource = thismodule.EndUpdateResourceW;
-        pub const SetDllDirectory = thismodule.SetDllDirectoryW;
-        pub const GetDllDirectory = thismodule.GetDllDirectoryW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const ENUMRESLANGPROC = *opaque{};
-        pub const ENUMRESNAMEPROC = *opaque{};
-        pub const ENUMRESTYPEPROC = *opaque{};
-        pub const PGET_MODULE_HANDLE_EX = *opaque{};
-        pub const FindResourceEx = *opaque{};
-        pub const GetModuleFileName = *opaque{};
-        pub const GetModuleHandle = *opaque{};
-        pub const GetModuleHandleEx = *opaque{};
-        pub const LoadLibraryEx = *opaque{};
-        pub const EnumResourceLanguagesEx = *opaque{};
-        pub const EnumResourceNamesEx = *opaque{};
-        pub const EnumResourceTypesEx = *opaque{};
-        pub const FindResource = *opaque{};
-        pub const LoadLibrary = *opaque{};
-        pub const EnumResourceNames = *opaque{};
-        pub const EnumResourceTypes = *opaque{};
-        pub const EnumResourceLanguages = *opaque{};
-        pub const BeginUpdateResource = *opaque{};
-        pub const UpdateResource = *opaque{};
-        pub const EndUpdateResource = *opaque{};
-        pub const SetDllDirectory = *opaque{};
-        pub const GetDllDirectory = *opaque{};
-    } else struct {
-        pub const ENUMRESLANGPROC = @compileError("'ENUMRESLANGPROC' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMRESNAMEPROC = @compileError("'ENUMRESNAMEPROC' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMRESTYPEPROC = @compileError("'ENUMRESTYPEPROC' requires that UNICODE be set to true or false in the root module");
-        pub const PGET_MODULE_HANDLE_EX = @compileError("'PGET_MODULE_HANDLE_EX' requires that UNICODE be set to true or false in the root module");
-        pub const FindResourceEx = @compileError("'FindResourceEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetModuleFileName = @compileError("'GetModuleFileName' requires that UNICODE be set to true or false in the root module");
-        pub const GetModuleHandle = @compileError("'GetModuleHandle' requires that UNICODE be set to true or false in the root module");
-        pub const GetModuleHandleEx = @compileError("'GetModuleHandleEx' requires that UNICODE be set to true or false in the root module");
-        pub const LoadLibraryEx = @compileError("'LoadLibraryEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceLanguagesEx = @compileError("'EnumResourceLanguagesEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceNamesEx = @compileError("'EnumResourceNamesEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceTypesEx = @compileError("'EnumResourceTypesEx' requires that UNICODE be set to true or false in the root module");
-        pub const FindResource = @compileError("'FindResource' requires that UNICODE be set to true or false in the root module");
-        pub const LoadLibrary = @compileError("'LoadLibrary' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceNames = @compileError("'EnumResourceNames' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceTypes = @compileError("'EnumResourceTypes' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceLanguages = @compileError("'EnumResourceLanguages' requires that UNICODE be set to true or false in the root module");
-        pub const BeginUpdateResource = @compileError("'BeginUpdateResource' requires that UNICODE be set to true or false in the root module");
-        pub const UpdateResource = @compileError("'UpdateResource' requires that UNICODE be set to true or false in the root module");
-        pub const EndUpdateResource = @compileError("'EndUpdateResource' requires that UNICODE be set to true or false in the root module");
-        pub const SetDllDirectory = @compileError("'SetDllDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetDllDirectory = @compileError("'GetDllDirectory' requires that UNICODE be set to true or false in the root module");
-    },
+pub const ENUMRESLANGPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUMRESLANGPROCA,
+    .wide => @This().ENUMRESLANGPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUMRESLANGPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUMRESNAMEPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUMRESNAMEPROCA,
+    .wide => @This().ENUMRESNAMEPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUMRESNAMEPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUMRESTYPEPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUMRESTYPEPROCA,
+    .wide => @This().ENUMRESTYPEPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUMRESTYPEPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PGET_MODULE_HANDLE_EX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PGET_MODULE_HANDLE_EXA,
+    .wide => @This().PGET_MODULE_HANDLE_EXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PGET_MODULE_HANDLE_EX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindResourceEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindResourceExA,
+    .wide => @This().FindResourceExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindResourceEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetModuleFileName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetModuleFileNameA,
+    .wide => @This().GetModuleFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetModuleFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetModuleHandle = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetModuleHandleA,
+    .wide => @This().GetModuleHandleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetModuleHandle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetModuleHandleEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetModuleHandleExA,
+    .wide => @This().GetModuleHandleExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetModuleHandleEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadLibraryEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadLibraryExA,
+    .wide => @This().LoadLibraryExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadLibraryEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceLanguagesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceLanguagesExA,
+    .wide => @This().EnumResourceLanguagesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceLanguagesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceNamesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceNamesExA,
+    .wide => @This().EnumResourceNamesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceNamesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceTypesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceTypesExA,
+    .wide => @This().EnumResourceTypesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceTypesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindResourceA,
+    .wide => @This().FindResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadLibrary = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadLibraryA,
+    .wide => @This().LoadLibraryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadLibrary' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceNames = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceNamesA,
+    .wide => @This().EnumResourceNamesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceNames' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceTypes = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceTypesA,
+    .wide => @This().EnumResourceTypesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceTypes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceLanguages = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceLanguagesA,
+    .wide => @This().EnumResourceLanguagesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceLanguages' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BeginUpdateResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BeginUpdateResourceA,
+    .wide => @This().BeginUpdateResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BeginUpdateResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UpdateResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UpdateResourceA,
+    .wide => @This().UpdateResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UpdateResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EndUpdateResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EndUpdateResourceA,
+    .wide => @This().EndUpdateResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EndUpdateResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetDllDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetDllDirectoryA,
+    .wide => @This().SetDllDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetDllDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDllDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDllDirectoryA,
+    .wide => @This().GetDllDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDllDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)

@@ -15741,35 +15741,40 @@ pub extern "odbc32" fn SQLSetConnectOptionA(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (5)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const bcp_init = thismodule.bcp_initA;
-        pub const bcp_readfmt = thismodule.bcp_readfmtA;
-        pub const bcp_writefmt = thismodule.bcp_writefmtA;
-        pub const dbprtype = thismodule.dbprtypeA;
-        pub const SQLLinkedCatalogs = thismodule.SQLLinkedCatalogsA;
-    },
-    .wide => struct {
-        pub const bcp_init = thismodule.bcp_initW;
-        pub const bcp_readfmt = thismodule.bcp_readfmtW;
-        pub const bcp_writefmt = thismodule.bcp_writefmtW;
-        pub const dbprtype = thismodule.dbprtypeW;
-        pub const SQLLinkedCatalogs = thismodule.SQLLinkedCatalogsW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const bcp_init = *opaque{};
-        pub const bcp_readfmt = *opaque{};
-        pub const bcp_writefmt = *opaque{};
-        pub const dbprtype = *opaque{};
-        pub const SQLLinkedCatalogs = *opaque{};
-    } else struct {
-        pub const bcp_init = @compileError("'bcp_init' requires that UNICODE be set to true or false in the root module");
-        pub const bcp_readfmt = @compileError("'bcp_readfmt' requires that UNICODE be set to true or false in the root module");
-        pub const bcp_writefmt = @compileError("'bcp_writefmt' requires that UNICODE be set to true or false in the root module");
-        pub const dbprtype = @compileError("'dbprtype' requires that UNICODE be set to true or false in the root module");
-        pub const SQLLinkedCatalogs = @compileError("'SQLLinkedCatalogs' requires that UNICODE be set to true or false in the root module");
-    },
+pub const bcp_init = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().bcp_initA,
+    .wide => @This().bcp_initW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'bcp_init' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const bcp_readfmt = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().bcp_readfmtA,
+    .wide => @This().bcp_readfmtW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'bcp_readfmt' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const bcp_writefmt = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().bcp_writefmtA,
+    .wide => @This().bcp_writefmtW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'bcp_writefmt' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const dbprtype = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().dbprtypeA,
+    .wide => @This().dbprtypeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'dbprtype' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SQLLinkedCatalogs = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SQLLinkedCatalogsA,
+    .wide => @This().SQLLinkedCatalogsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SQLLinkedCatalogs' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (45)

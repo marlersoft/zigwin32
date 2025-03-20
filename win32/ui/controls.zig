@@ -11317,235 +11317,390 @@ pub extern "user32" fn RegisterPointerDeviceNotifications(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (55)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const LPFNPSPCALLBACK = thismodule.LPFNPSPCALLBACKA;
-        pub const PROPSHEETPAGE = thismodule.PROPSHEETPAGEA;
-        pub const HD_TEXTFILTER = thismodule.HD_TEXTFILTERA;
-        pub const HDITEM = thismodule.HDITEMA;
-        pub const NMHEADER = thismodule.NMHEADERA;
-        pub const NMHDDISPINFO = thismodule.NMHDDISPINFOA;
-        pub const TBSAVEPARAMS = thismodule.TBSAVEPARAMSA;
-        pub const TBBUTTONINFO = thismodule.TBBUTTONINFOA;
-        pub const NMTBGETINFOTIP = thismodule.NMTBGETINFOTIPA;
-        pub const NMTBDISPINFO = thismodule.NMTBDISPINFOA;
-        pub const NMTOOLBAR = thismodule.NMTOOLBARA;
-        pub const REBARBANDINFO = thismodule.REBARBANDINFOA;
-        pub const TTTOOLINFO = thismodule.TTTOOLINFOA;
-        pub const TTHITTESTINFO = thismodule.TTHITTESTINFOA;
-        pub const NMTTDISPINFO = thismodule.NMTTDISPINFOA;
-        pub const LVITEM = thismodule.LVITEMA;
-        pub const LVFINDINFO = thismodule.LVFINDINFOA;
-        pub const LVCOLUMN = thismodule.LVCOLUMNA;
-        pub const LVBKIMAGE = thismodule.LVBKIMAGEA;
-        pub const NMLVFINDITEM = thismodule.NMLVFINDITEMA;
-        pub const NMLVDISPINFO = thismodule.NMLVDISPINFOA;
-        pub const NMLVGETINFOTIP = thismodule.NMLVGETINFOTIPA;
-        pub const TVITEM = thismodule.TVITEMA;
-        pub const TVITEMEX = thismodule.TVITEMEXA;
-        pub const TVINSERTSTRUCT = thismodule.TVINSERTSTRUCTA;
-        pub const NMTREEVIEW = thismodule.NMTREEVIEWA;
-        pub const NMTVDISPINFO = thismodule.NMTVDISPINFOA;
-        pub const NMTVDISPINFOEX = thismodule.NMTVDISPINFOEXA;
-        pub const NMTVGETINFOTIP = thismodule.NMTVGETINFOTIPA;
-        pub const COMBOBOXEXITEM = thismodule.COMBOBOXEXITEMA;
-        pub const NMCOMBOBOXEX = thismodule.NMCOMBOBOXEXA;
-        pub const NMCBEDRAGBEGIN = thismodule.NMCBEDRAGBEGINA;
-        pub const NMCBEENDEDIT = thismodule.NMCBEENDEDITA;
-        pub const TCITEMHEADER = thismodule.TCITEMHEADERA;
-        pub const TCITEM = thismodule.TCITEMA;
-        pub const NMDATETIMESTRING = thismodule.NMDATETIMESTRINGA;
-        pub const NMDATETIMEWMKEYDOWN = thismodule.NMDATETIMEWMKEYDOWNA;
-        pub const NMDATETIMEFORMAT = thismodule.NMDATETIMEFORMATA;
-        pub const NMDATETIMEFORMATQUERY = thismodule.NMDATETIMEFORMATQUERYA;
-        pub const CCSTYLE = thismodule.CCSTYLEA;
-        pub const LPFNCCSTYLE = thismodule.LPFNCCSTYLEA;
-        pub const LPFNCCSIZETOTEXT = thismodule.LPFNCCSIZETOTEXTA;
-        pub const CCSTYLEFLAG = thismodule.CCSTYLEFLAGA;
-        pub const CCINFO = thismodule.CCINFOA;
-        pub const LPFNCCINFO = thismodule.LPFNCCINFOA;
-        pub const EDITWORDBREAKPROC = thismodule.EDITWORDBREAKPROCA;
-        pub const CreatePropertySheetPage = thismodule.CreatePropertySheetPageA;
-        pub const PropertySheet = thismodule.PropertySheetA;
-        pub const ImageList_LoadImage = thismodule.ImageList_LoadImageA;
-        pub const DrawStatusText = thismodule.DrawStatusTextA;
-        pub const CreateStatusWindow = thismodule.CreateStatusWindowA;
-        pub const DlgDirList = thismodule.DlgDirListA;
-        pub const DlgDirSelectEx = thismodule.DlgDirSelectExA;
-        pub const DlgDirListComboBox = thismodule.DlgDirListComboBoxA;
-        pub const DlgDirSelectComboBoxEx = thismodule.DlgDirSelectComboBoxExA;
-    },
-    .wide => struct {
-        pub const LPFNPSPCALLBACK = thismodule.LPFNPSPCALLBACKW;
-        pub const PROPSHEETPAGE = thismodule.PROPSHEETPAGEW;
-        pub const HD_TEXTFILTER = thismodule.HD_TEXTFILTERW;
-        pub const HDITEM = thismodule.HDITEMW;
-        pub const NMHEADER = thismodule.NMHEADERW;
-        pub const NMHDDISPINFO = thismodule.NMHDDISPINFOW;
-        pub const TBSAVEPARAMS = thismodule.TBSAVEPARAMSW;
-        pub const TBBUTTONINFO = thismodule.TBBUTTONINFOW;
-        pub const NMTBGETINFOTIP = thismodule.NMTBGETINFOTIPW;
-        pub const NMTBDISPINFO = thismodule.NMTBDISPINFOW;
-        pub const NMTOOLBAR = thismodule.NMTOOLBARW;
-        pub const REBARBANDINFO = thismodule.REBARBANDINFOW;
-        pub const TTTOOLINFO = thismodule.TTTOOLINFOW;
-        pub const TTHITTESTINFO = thismodule.TTHITTESTINFOW;
-        pub const NMTTDISPINFO = thismodule.NMTTDISPINFOW;
-        pub const LVITEM = thismodule.LVITEMW;
-        pub const LVFINDINFO = thismodule.LVFINDINFOW;
-        pub const LVCOLUMN = thismodule.LVCOLUMNW;
-        pub const LVBKIMAGE = thismodule.LVBKIMAGEW;
-        pub const NMLVFINDITEM = thismodule.NMLVFINDITEMW;
-        pub const NMLVDISPINFO = thismodule.NMLVDISPINFOW;
-        pub const NMLVGETINFOTIP = thismodule.NMLVGETINFOTIPW;
-        pub const TVITEM = thismodule.TVITEMW;
-        pub const TVITEMEX = thismodule.TVITEMEXW;
-        pub const TVINSERTSTRUCT = thismodule.TVINSERTSTRUCTW;
-        pub const NMTREEVIEW = thismodule.NMTREEVIEWW;
-        pub const NMTVDISPINFO = thismodule.NMTVDISPINFOW;
-        pub const NMTVDISPINFOEX = thismodule.NMTVDISPINFOEXW;
-        pub const NMTVGETINFOTIP = thismodule.NMTVGETINFOTIPW;
-        pub const COMBOBOXEXITEM = thismodule.COMBOBOXEXITEMW;
-        pub const NMCOMBOBOXEX = thismodule.NMCOMBOBOXEXW;
-        pub const NMCBEDRAGBEGIN = thismodule.NMCBEDRAGBEGINW;
-        pub const NMCBEENDEDIT = thismodule.NMCBEENDEDITW;
-        pub const TCITEMHEADER = thismodule.TCITEMHEADERW;
-        pub const TCITEM = thismodule.TCITEMW;
-        pub const NMDATETIMESTRING = thismodule.NMDATETIMESTRINGW;
-        pub const NMDATETIMEWMKEYDOWN = thismodule.NMDATETIMEWMKEYDOWNW;
-        pub const NMDATETIMEFORMAT = thismodule.NMDATETIMEFORMATW;
-        pub const NMDATETIMEFORMATQUERY = thismodule.NMDATETIMEFORMATQUERYW;
-        pub const CCSTYLE = thismodule.CCSTYLEW;
-        pub const LPFNCCSTYLE = thismodule.LPFNCCSTYLEW;
-        pub const LPFNCCSIZETOTEXT = thismodule.LPFNCCSIZETOTEXTW;
-        pub const CCSTYLEFLAG = thismodule.CCSTYLEFLAGW;
-        pub const CCINFO = thismodule.CCINFOW;
-        pub const LPFNCCINFO = thismodule.LPFNCCINFOW;
-        pub const EDITWORDBREAKPROC = thismodule.EDITWORDBREAKPROCW;
-        pub const CreatePropertySheetPage = thismodule.CreatePropertySheetPageW;
-        pub const PropertySheet = thismodule.PropertySheetW;
-        pub const ImageList_LoadImage = thismodule.ImageList_LoadImageW;
-        pub const DrawStatusText = thismodule.DrawStatusTextW;
-        pub const CreateStatusWindow = thismodule.CreateStatusWindowW;
-        pub const DlgDirList = thismodule.DlgDirListW;
-        pub const DlgDirSelectEx = thismodule.DlgDirSelectExW;
-        pub const DlgDirListComboBox = thismodule.DlgDirListComboBoxW;
-        pub const DlgDirSelectComboBoxEx = thismodule.DlgDirSelectComboBoxExW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const LPFNPSPCALLBACK = *opaque{};
-        pub const PROPSHEETPAGE = *opaque{};
-        pub const HD_TEXTFILTER = *opaque{};
-        pub const HDITEM = *opaque{};
-        pub const NMHEADER = *opaque{};
-        pub const NMHDDISPINFO = *opaque{};
-        pub const TBSAVEPARAMS = *opaque{};
-        pub const TBBUTTONINFO = *opaque{};
-        pub const NMTBGETINFOTIP = *opaque{};
-        pub const NMTBDISPINFO = *opaque{};
-        pub const NMTOOLBAR = *opaque{};
-        pub const REBARBANDINFO = *opaque{};
-        pub const TTTOOLINFO = *opaque{};
-        pub const TTHITTESTINFO = *opaque{};
-        pub const NMTTDISPINFO = *opaque{};
-        pub const LVITEM = *opaque{};
-        pub const LVFINDINFO = *opaque{};
-        pub const LVCOLUMN = *opaque{};
-        pub const LVBKIMAGE = *opaque{};
-        pub const NMLVFINDITEM = *opaque{};
-        pub const NMLVDISPINFO = *opaque{};
-        pub const NMLVGETINFOTIP = *opaque{};
-        pub const TVITEM = *opaque{};
-        pub const TVITEMEX = *opaque{};
-        pub const TVINSERTSTRUCT = *opaque{};
-        pub const NMTREEVIEW = *opaque{};
-        pub const NMTVDISPINFO = *opaque{};
-        pub const NMTVDISPINFOEX = *opaque{};
-        pub const NMTVGETINFOTIP = *opaque{};
-        pub const COMBOBOXEXITEM = *opaque{};
-        pub const NMCOMBOBOXEX = *opaque{};
-        pub const NMCBEDRAGBEGIN = *opaque{};
-        pub const NMCBEENDEDIT = *opaque{};
-        pub const TCITEMHEADER = *opaque{};
-        pub const TCITEM = *opaque{};
-        pub const NMDATETIMESTRING = *opaque{};
-        pub const NMDATETIMEWMKEYDOWN = *opaque{};
-        pub const NMDATETIMEFORMAT = *opaque{};
-        pub const NMDATETIMEFORMATQUERY = *opaque{};
-        pub const CCSTYLE = *opaque{};
-        pub const LPFNCCSTYLE = *opaque{};
-        pub const LPFNCCSIZETOTEXT = *opaque{};
-        pub const CCSTYLEFLAG = *opaque{};
-        pub const CCINFO = *opaque{};
-        pub const LPFNCCINFO = *opaque{};
-        pub const EDITWORDBREAKPROC = *opaque{};
-        pub const CreatePropertySheetPage = *opaque{};
-        pub const PropertySheet = *opaque{};
-        pub const ImageList_LoadImage = *opaque{};
-        pub const DrawStatusText = *opaque{};
-        pub const CreateStatusWindow = *opaque{};
-        pub const DlgDirList = *opaque{};
-        pub const DlgDirSelectEx = *opaque{};
-        pub const DlgDirListComboBox = *opaque{};
-        pub const DlgDirSelectComboBoxEx = *opaque{};
-    } else struct {
-        pub const LPFNPSPCALLBACK = @compileError("'LPFNPSPCALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const PROPSHEETPAGE = @compileError("'PROPSHEETPAGE' requires that UNICODE be set to true or false in the root module");
-        pub const HD_TEXTFILTER = @compileError("'HD_TEXTFILTER' requires that UNICODE be set to true or false in the root module");
-        pub const HDITEM = @compileError("'HDITEM' requires that UNICODE be set to true or false in the root module");
-        pub const NMHEADER = @compileError("'NMHEADER' requires that UNICODE be set to true or false in the root module");
-        pub const NMHDDISPINFO = @compileError("'NMHDDISPINFO' requires that UNICODE be set to true or false in the root module");
-        pub const TBSAVEPARAMS = @compileError("'TBSAVEPARAMS' requires that UNICODE be set to true or false in the root module");
-        pub const TBBUTTONINFO = @compileError("'TBBUTTONINFO' requires that UNICODE be set to true or false in the root module");
-        pub const NMTBGETINFOTIP = @compileError("'NMTBGETINFOTIP' requires that UNICODE be set to true or false in the root module");
-        pub const NMTBDISPINFO = @compileError("'NMTBDISPINFO' requires that UNICODE be set to true or false in the root module");
-        pub const NMTOOLBAR = @compileError("'NMTOOLBAR' requires that UNICODE be set to true or false in the root module");
-        pub const REBARBANDINFO = @compileError("'REBARBANDINFO' requires that UNICODE be set to true or false in the root module");
-        pub const TTTOOLINFO = @compileError("'TTTOOLINFO' requires that UNICODE be set to true or false in the root module");
-        pub const TTHITTESTINFO = @compileError("'TTHITTESTINFO' requires that UNICODE be set to true or false in the root module");
-        pub const NMTTDISPINFO = @compileError("'NMTTDISPINFO' requires that UNICODE be set to true or false in the root module");
-        pub const LVITEM = @compileError("'LVITEM' requires that UNICODE be set to true or false in the root module");
-        pub const LVFINDINFO = @compileError("'LVFINDINFO' requires that UNICODE be set to true or false in the root module");
-        pub const LVCOLUMN = @compileError("'LVCOLUMN' requires that UNICODE be set to true or false in the root module");
-        pub const LVBKIMAGE = @compileError("'LVBKIMAGE' requires that UNICODE be set to true or false in the root module");
-        pub const NMLVFINDITEM = @compileError("'NMLVFINDITEM' requires that UNICODE be set to true or false in the root module");
-        pub const NMLVDISPINFO = @compileError("'NMLVDISPINFO' requires that UNICODE be set to true or false in the root module");
-        pub const NMLVGETINFOTIP = @compileError("'NMLVGETINFOTIP' requires that UNICODE be set to true or false in the root module");
-        pub const TVITEM = @compileError("'TVITEM' requires that UNICODE be set to true or false in the root module");
-        pub const TVITEMEX = @compileError("'TVITEMEX' requires that UNICODE be set to true or false in the root module");
-        pub const TVINSERTSTRUCT = @compileError("'TVINSERTSTRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const NMTREEVIEW = @compileError("'NMTREEVIEW' requires that UNICODE be set to true or false in the root module");
-        pub const NMTVDISPINFO = @compileError("'NMTVDISPINFO' requires that UNICODE be set to true or false in the root module");
-        pub const NMTVDISPINFOEX = @compileError("'NMTVDISPINFOEX' requires that UNICODE be set to true or false in the root module");
-        pub const NMTVGETINFOTIP = @compileError("'NMTVGETINFOTIP' requires that UNICODE be set to true or false in the root module");
-        pub const COMBOBOXEXITEM = @compileError("'COMBOBOXEXITEM' requires that UNICODE be set to true or false in the root module");
-        pub const NMCOMBOBOXEX = @compileError("'NMCOMBOBOXEX' requires that UNICODE be set to true or false in the root module");
-        pub const NMCBEDRAGBEGIN = @compileError("'NMCBEDRAGBEGIN' requires that UNICODE be set to true or false in the root module");
-        pub const NMCBEENDEDIT = @compileError("'NMCBEENDEDIT' requires that UNICODE be set to true or false in the root module");
-        pub const TCITEMHEADER = @compileError("'TCITEMHEADER' requires that UNICODE be set to true or false in the root module");
-        pub const TCITEM = @compileError("'TCITEM' requires that UNICODE be set to true or false in the root module");
-        pub const NMDATETIMESTRING = @compileError("'NMDATETIMESTRING' requires that UNICODE be set to true or false in the root module");
-        pub const NMDATETIMEWMKEYDOWN = @compileError("'NMDATETIMEWMKEYDOWN' requires that UNICODE be set to true or false in the root module");
-        pub const NMDATETIMEFORMAT = @compileError("'NMDATETIMEFORMAT' requires that UNICODE be set to true or false in the root module");
-        pub const NMDATETIMEFORMATQUERY = @compileError("'NMDATETIMEFORMATQUERY' requires that UNICODE be set to true or false in the root module");
-        pub const CCSTYLE = @compileError("'CCSTYLE' requires that UNICODE be set to true or false in the root module");
-        pub const LPFNCCSTYLE = @compileError("'LPFNCCSTYLE' requires that UNICODE be set to true or false in the root module");
-        pub const LPFNCCSIZETOTEXT = @compileError("'LPFNCCSIZETOTEXT' requires that UNICODE be set to true or false in the root module");
-        pub const CCSTYLEFLAG = @compileError("'CCSTYLEFLAG' requires that UNICODE be set to true or false in the root module");
-        pub const CCINFO = @compileError("'CCINFO' requires that UNICODE be set to true or false in the root module");
-        pub const LPFNCCINFO = @compileError("'LPFNCCINFO' requires that UNICODE be set to true or false in the root module");
-        pub const EDITWORDBREAKPROC = @compileError("'EDITWORDBREAKPROC' requires that UNICODE be set to true or false in the root module");
-        pub const CreatePropertySheetPage = @compileError("'CreatePropertySheetPage' requires that UNICODE be set to true or false in the root module");
-        pub const PropertySheet = @compileError("'PropertySheet' requires that UNICODE be set to true or false in the root module");
-        pub const ImageList_LoadImage = @compileError("'ImageList_LoadImage' requires that UNICODE be set to true or false in the root module");
-        pub const DrawStatusText = @compileError("'DrawStatusText' requires that UNICODE be set to true or false in the root module");
-        pub const CreateStatusWindow = @compileError("'CreateStatusWindow' requires that UNICODE be set to true or false in the root module");
-        pub const DlgDirList = @compileError("'DlgDirList' requires that UNICODE be set to true or false in the root module");
-        pub const DlgDirSelectEx = @compileError("'DlgDirSelectEx' requires that UNICODE be set to true or false in the root module");
-        pub const DlgDirListComboBox = @compileError("'DlgDirListComboBox' requires that UNICODE be set to true or false in the root module");
-        pub const DlgDirSelectComboBoxEx = @compileError("'DlgDirSelectComboBoxEx' requires that UNICODE be set to true or false in the root module");
-    },
+pub const LPFNPSPCALLBACK = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPFNPSPCALLBACKA,
+    .wide => @This().LPFNPSPCALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPFNPSPCALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PROPSHEETPAGE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PROPSHEETPAGEA,
+    .wide => @This().PROPSHEETPAGEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PROPSHEETPAGE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const HD_TEXTFILTER = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HD_TEXTFILTERA,
+    .wide => @This().HD_TEXTFILTERW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HD_TEXTFILTER' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const HDITEM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HDITEMA,
+    .wide => @This().HDITEMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HDITEM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMHEADER = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMHEADERA,
+    .wide => @This().NMHEADERW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMHEADER' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMHDDISPINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMHDDISPINFOA,
+    .wide => @This().NMHDDISPINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMHDDISPINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TBSAVEPARAMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TBSAVEPARAMSA,
+    .wide => @This().TBSAVEPARAMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TBSAVEPARAMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TBBUTTONINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TBBUTTONINFOA,
+    .wide => @This().TBBUTTONINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TBBUTTONINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMTBGETINFOTIP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMTBGETINFOTIPA,
+    .wide => @This().NMTBGETINFOTIPW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMTBGETINFOTIP' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMTBDISPINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMTBDISPINFOA,
+    .wide => @This().NMTBDISPINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMTBDISPINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMTOOLBAR = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMTOOLBARA,
+    .wide => @This().NMTOOLBARW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMTOOLBAR' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const REBARBANDINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().REBARBANDINFOA,
+    .wide => @This().REBARBANDINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'REBARBANDINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TTTOOLINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TTTOOLINFOA,
+    .wide => @This().TTTOOLINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TTTOOLINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TTHITTESTINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TTHITTESTINFOA,
+    .wide => @This().TTHITTESTINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TTHITTESTINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMTTDISPINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMTTDISPINFOA,
+    .wide => @This().NMTTDISPINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMTTDISPINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LVITEM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LVITEMA,
+    .wide => @This().LVITEMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LVITEM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LVFINDINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LVFINDINFOA,
+    .wide => @This().LVFINDINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LVFINDINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LVCOLUMN = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LVCOLUMNA,
+    .wide => @This().LVCOLUMNW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LVCOLUMN' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LVBKIMAGE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LVBKIMAGEA,
+    .wide => @This().LVBKIMAGEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LVBKIMAGE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMLVFINDITEM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMLVFINDITEMA,
+    .wide => @This().NMLVFINDITEMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMLVFINDITEM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMLVDISPINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMLVDISPINFOA,
+    .wide => @This().NMLVDISPINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMLVDISPINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMLVGETINFOTIP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMLVGETINFOTIPA,
+    .wide => @This().NMLVGETINFOTIPW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMLVGETINFOTIP' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TVITEM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TVITEMA,
+    .wide => @This().TVITEMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TVITEM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TVITEMEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TVITEMEXA,
+    .wide => @This().TVITEMEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TVITEMEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TVINSERTSTRUCT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TVINSERTSTRUCTA,
+    .wide => @This().TVINSERTSTRUCTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TVINSERTSTRUCT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMTREEVIEW = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMTREEVIEWA,
+    .wide => @This().NMTREEVIEWW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMTREEVIEW' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMTVDISPINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMTVDISPINFOA,
+    .wide => @This().NMTVDISPINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMTVDISPINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMTVDISPINFOEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMTVDISPINFOEXA,
+    .wide => @This().NMTVDISPINFOEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMTVDISPINFOEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMTVGETINFOTIP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMTVGETINFOTIPA,
+    .wide => @This().NMTVGETINFOTIPW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMTVGETINFOTIP' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const COMBOBOXEXITEM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().COMBOBOXEXITEMA,
+    .wide => @This().COMBOBOXEXITEMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'COMBOBOXEXITEM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMCOMBOBOXEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMCOMBOBOXEXA,
+    .wide => @This().NMCOMBOBOXEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMCOMBOBOXEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMCBEDRAGBEGIN = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMCBEDRAGBEGINA,
+    .wide => @This().NMCBEDRAGBEGINW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMCBEDRAGBEGIN' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMCBEENDEDIT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMCBEENDEDITA,
+    .wide => @This().NMCBEENDEDITW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMCBEENDEDIT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TCITEMHEADER = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TCITEMHEADERA,
+    .wide => @This().TCITEMHEADERW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TCITEMHEADER' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TCITEM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TCITEMA,
+    .wide => @This().TCITEMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TCITEM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMDATETIMESTRING = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMDATETIMESTRINGA,
+    .wide => @This().NMDATETIMESTRINGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMDATETIMESTRING' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMDATETIMEWMKEYDOWN = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMDATETIMEWMKEYDOWNA,
+    .wide => @This().NMDATETIMEWMKEYDOWNW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMDATETIMEWMKEYDOWN' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMDATETIMEFORMAT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMDATETIMEFORMATA,
+    .wide => @This().NMDATETIMEFORMATW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMDATETIMEFORMAT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NMDATETIMEFORMATQUERY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NMDATETIMEFORMATQUERYA,
+    .wide => @This().NMDATETIMEFORMATQUERYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NMDATETIMEFORMATQUERY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CCSTYLE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CCSTYLEA,
+    .wide => @This().CCSTYLEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CCSTYLE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LPFNCCSTYLE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPFNCCSTYLEA,
+    .wide => @This().LPFNCCSTYLEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPFNCCSTYLE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LPFNCCSIZETOTEXT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPFNCCSIZETOTEXTA,
+    .wide => @This().LPFNCCSIZETOTEXTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPFNCCSIZETOTEXT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CCSTYLEFLAG = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CCSTYLEFLAGA,
+    .wide => @This().CCSTYLEFLAGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CCSTYLEFLAG' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CCINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CCINFOA,
+    .wide => @This().CCINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CCINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LPFNCCINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPFNCCINFOA,
+    .wide => @This().LPFNCCINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPFNCCINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EDITWORDBREAKPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EDITWORDBREAKPROCA,
+    .wide => @This().EDITWORDBREAKPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EDITWORDBREAKPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreatePropertySheetPage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreatePropertySheetPageA,
+    .wide => @This().CreatePropertySheetPageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreatePropertySheetPage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PropertySheet = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PropertySheetA,
+    .wide => @This().PropertySheetW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PropertySheet' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImageList_LoadImage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ImageList_LoadImageA,
+    .wide => @This().ImageList_LoadImageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImageList_LoadImage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DrawStatusText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DrawStatusTextA,
+    .wide => @This().DrawStatusTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DrawStatusText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateStatusWindow = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateStatusWindowA,
+    .wide => @This().CreateStatusWindowW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateStatusWindow' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DlgDirList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DlgDirListA,
+    .wide => @This().DlgDirListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DlgDirList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DlgDirSelectEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DlgDirSelectExA,
+    .wide => @This().DlgDirSelectExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DlgDirSelectEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DlgDirListComboBox = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DlgDirListComboBoxA,
+    .wide => @This().DlgDirListComboBoxW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DlgDirListComboBox' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DlgDirSelectComboBoxEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DlgDirSelectComboBoxExA,
+    .wide => @This().DlgDirSelectComboBoxExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DlgDirSelectComboBoxEx' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (42)

@@ -822,111 +822,173 @@ pub extern "kernel32" fn SetStdHandleEx(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (24)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const ReadConsoleInput = thismodule.ReadConsoleInputA;
-        pub const PeekConsoleInput = thismodule.PeekConsoleInputA;
-        pub const ReadConsole = thismodule.ReadConsoleA;
-        pub const WriteConsole = thismodule.WriteConsoleA;
-        pub const FillConsoleOutputCharacter = thismodule.FillConsoleOutputCharacterA;
-        pub const WriteConsoleOutputCharacter = thismodule.WriteConsoleOutputCharacterA;
-        pub const ReadConsoleOutputCharacter = thismodule.ReadConsoleOutputCharacterA;
-        pub const WriteConsoleInput = thismodule.WriteConsoleInputA;
-        pub const ScrollConsoleScreenBuffer = thismodule.ScrollConsoleScreenBufferA;
-        pub const WriteConsoleOutput = thismodule.WriteConsoleOutputA;
-        pub const ReadConsoleOutput = thismodule.ReadConsoleOutputA;
-        pub const GetConsoleTitle = thismodule.GetConsoleTitleA;
-        pub const GetConsoleOriginalTitle = thismodule.GetConsoleOriginalTitleA;
-        pub const SetConsoleTitle = thismodule.SetConsoleTitleA;
-        pub const AddConsoleAlias = thismodule.AddConsoleAliasA;
-        pub const GetConsoleAlias = thismodule.GetConsoleAliasA;
-        pub const GetConsoleAliasesLength = thismodule.GetConsoleAliasesLengthA;
-        pub const GetConsoleAliasExesLength = thismodule.GetConsoleAliasExesLengthA;
-        pub const GetConsoleAliases = thismodule.GetConsoleAliasesA;
-        pub const GetConsoleAliasExes = thismodule.GetConsoleAliasExesA;
-        pub const ExpungeConsoleCommandHistory = thismodule.ExpungeConsoleCommandHistoryA;
-        pub const SetConsoleNumberOfCommands = thismodule.SetConsoleNumberOfCommandsA;
-        pub const GetConsoleCommandHistoryLength = thismodule.GetConsoleCommandHistoryLengthA;
-        pub const GetConsoleCommandHistory = thismodule.GetConsoleCommandHistoryA;
-    },
-    .wide => struct {
-        pub const ReadConsoleInput = thismodule.ReadConsoleInputW;
-        pub const PeekConsoleInput = thismodule.PeekConsoleInputW;
-        pub const ReadConsole = thismodule.ReadConsoleW;
-        pub const WriteConsole = thismodule.WriteConsoleW;
-        pub const FillConsoleOutputCharacter = thismodule.FillConsoleOutputCharacterW;
-        pub const WriteConsoleOutputCharacter = thismodule.WriteConsoleOutputCharacterW;
-        pub const ReadConsoleOutputCharacter = thismodule.ReadConsoleOutputCharacterW;
-        pub const WriteConsoleInput = thismodule.WriteConsoleInputW;
-        pub const ScrollConsoleScreenBuffer = thismodule.ScrollConsoleScreenBufferW;
-        pub const WriteConsoleOutput = thismodule.WriteConsoleOutputW;
-        pub const ReadConsoleOutput = thismodule.ReadConsoleOutputW;
-        pub const GetConsoleTitle = thismodule.GetConsoleTitleW;
-        pub const GetConsoleOriginalTitle = thismodule.GetConsoleOriginalTitleW;
-        pub const SetConsoleTitle = thismodule.SetConsoleTitleW;
-        pub const AddConsoleAlias = thismodule.AddConsoleAliasW;
-        pub const GetConsoleAlias = thismodule.GetConsoleAliasW;
-        pub const GetConsoleAliasesLength = thismodule.GetConsoleAliasesLengthW;
-        pub const GetConsoleAliasExesLength = thismodule.GetConsoleAliasExesLengthW;
-        pub const GetConsoleAliases = thismodule.GetConsoleAliasesW;
-        pub const GetConsoleAliasExes = thismodule.GetConsoleAliasExesW;
-        pub const ExpungeConsoleCommandHistory = thismodule.ExpungeConsoleCommandHistoryW;
-        pub const SetConsoleNumberOfCommands = thismodule.SetConsoleNumberOfCommandsW;
-        pub const GetConsoleCommandHistoryLength = thismodule.GetConsoleCommandHistoryLengthW;
-        pub const GetConsoleCommandHistory = thismodule.GetConsoleCommandHistoryW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const ReadConsoleInput = *opaque{};
-        pub const PeekConsoleInput = *opaque{};
-        pub const ReadConsole = *opaque{};
-        pub const WriteConsole = *opaque{};
-        pub const FillConsoleOutputCharacter = *opaque{};
-        pub const WriteConsoleOutputCharacter = *opaque{};
-        pub const ReadConsoleOutputCharacter = *opaque{};
-        pub const WriteConsoleInput = *opaque{};
-        pub const ScrollConsoleScreenBuffer = *opaque{};
-        pub const WriteConsoleOutput = *opaque{};
-        pub const ReadConsoleOutput = *opaque{};
-        pub const GetConsoleTitle = *opaque{};
-        pub const GetConsoleOriginalTitle = *opaque{};
-        pub const SetConsoleTitle = *opaque{};
-        pub const AddConsoleAlias = *opaque{};
-        pub const GetConsoleAlias = *opaque{};
-        pub const GetConsoleAliasesLength = *opaque{};
-        pub const GetConsoleAliasExesLength = *opaque{};
-        pub const GetConsoleAliases = *opaque{};
-        pub const GetConsoleAliasExes = *opaque{};
-        pub const ExpungeConsoleCommandHistory = *opaque{};
-        pub const SetConsoleNumberOfCommands = *opaque{};
-        pub const GetConsoleCommandHistoryLength = *opaque{};
-        pub const GetConsoleCommandHistory = *opaque{};
-    } else struct {
-        pub const ReadConsoleInput = @compileError("'ReadConsoleInput' requires that UNICODE be set to true or false in the root module");
-        pub const PeekConsoleInput = @compileError("'PeekConsoleInput' requires that UNICODE be set to true or false in the root module");
-        pub const ReadConsole = @compileError("'ReadConsole' requires that UNICODE be set to true or false in the root module");
-        pub const WriteConsole = @compileError("'WriteConsole' requires that UNICODE be set to true or false in the root module");
-        pub const FillConsoleOutputCharacter = @compileError("'FillConsoleOutputCharacter' requires that UNICODE be set to true or false in the root module");
-        pub const WriteConsoleOutputCharacter = @compileError("'WriteConsoleOutputCharacter' requires that UNICODE be set to true or false in the root module");
-        pub const ReadConsoleOutputCharacter = @compileError("'ReadConsoleOutputCharacter' requires that UNICODE be set to true or false in the root module");
-        pub const WriteConsoleInput = @compileError("'WriteConsoleInput' requires that UNICODE be set to true or false in the root module");
-        pub const ScrollConsoleScreenBuffer = @compileError("'ScrollConsoleScreenBuffer' requires that UNICODE be set to true or false in the root module");
-        pub const WriteConsoleOutput = @compileError("'WriteConsoleOutput' requires that UNICODE be set to true or false in the root module");
-        pub const ReadConsoleOutput = @compileError("'ReadConsoleOutput' requires that UNICODE be set to true or false in the root module");
-        pub const GetConsoleTitle = @compileError("'GetConsoleTitle' requires that UNICODE be set to true or false in the root module");
-        pub const GetConsoleOriginalTitle = @compileError("'GetConsoleOriginalTitle' requires that UNICODE be set to true or false in the root module");
-        pub const SetConsoleTitle = @compileError("'SetConsoleTitle' requires that UNICODE be set to true or false in the root module");
-        pub const AddConsoleAlias = @compileError("'AddConsoleAlias' requires that UNICODE be set to true or false in the root module");
-        pub const GetConsoleAlias = @compileError("'GetConsoleAlias' requires that UNICODE be set to true or false in the root module");
-        pub const GetConsoleAliasesLength = @compileError("'GetConsoleAliasesLength' requires that UNICODE be set to true or false in the root module");
-        pub const GetConsoleAliasExesLength = @compileError("'GetConsoleAliasExesLength' requires that UNICODE be set to true or false in the root module");
-        pub const GetConsoleAliases = @compileError("'GetConsoleAliases' requires that UNICODE be set to true or false in the root module");
-        pub const GetConsoleAliasExes = @compileError("'GetConsoleAliasExes' requires that UNICODE be set to true or false in the root module");
-        pub const ExpungeConsoleCommandHistory = @compileError("'ExpungeConsoleCommandHistory' requires that UNICODE be set to true or false in the root module");
-        pub const SetConsoleNumberOfCommands = @compileError("'SetConsoleNumberOfCommands' requires that UNICODE be set to true or false in the root module");
-        pub const GetConsoleCommandHistoryLength = @compileError("'GetConsoleCommandHistoryLength' requires that UNICODE be set to true or false in the root module");
-        pub const GetConsoleCommandHistory = @compileError("'GetConsoleCommandHistory' requires that UNICODE be set to true or false in the root module");
-    },
+pub const ReadConsoleInput = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReadConsoleInputA,
+    .wide => @This().ReadConsoleInputW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReadConsoleInput' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PeekConsoleInput = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PeekConsoleInputA,
+    .wide => @This().PeekConsoleInputW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PeekConsoleInput' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReadConsole = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReadConsoleA,
+    .wide => @This().ReadConsoleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReadConsole' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WriteConsole = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WriteConsoleA,
+    .wide => @This().WriteConsoleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WriteConsole' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FillConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FillConsoleOutputCharacterA,
+    .wide => @This().FillConsoleOutputCharacterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FillConsoleOutputCharacter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WriteConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WriteConsoleOutputCharacterA,
+    .wide => @This().WriteConsoleOutputCharacterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WriteConsoleOutputCharacter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReadConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReadConsoleOutputCharacterA,
+    .wide => @This().ReadConsoleOutputCharacterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReadConsoleOutputCharacter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WriteConsoleInput = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WriteConsoleInputA,
+    .wide => @This().WriteConsoleInputW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WriteConsoleInput' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ScrollConsoleScreenBuffer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ScrollConsoleScreenBufferA,
+    .wide => @This().ScrollConsoleScreenBufferW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ScrollConsoleScreenBuffer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WriteConsoleOutput = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WriteConsoleOutputA,
+    .wide => @This().WriteConsoleOutputW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WriteConsoleOutput' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReadConsoleOutput = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReadConsoleOutputA,
+    .wide => @This().ReadConsoleOutputW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReadConsoleOutput' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleTitle = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleTitleA,
+    .wide => @This().GetConsoleTitleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleTitle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleOriginalTitle = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleOriginalTitleA,
+    .wide => @This().GetConsoleOriginalTitleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleOriginalTitle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetConsoleTitle = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetConsoleTitleA,
+    .wide => @This().SetConsoleTitleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetConsoleTitle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddConsoleAlias = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddConsoleAliasA,
+    .wide => @This().AddConsoleAliasW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddConsoleAlias' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleAlias = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleAliasA,
+    .wide => @This().GetConsoleAliasW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleAlias' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleAliasesLength = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleAliasesLengthA,
+    .wide => @This().GetConsoleAliasesLengthW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleAliasesLength' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleAliasExesLength = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleAliasExesLengthA,
+    .wide => @This().GetConsoleAliasExesLengthW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleAliasExesLength' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleAliases = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleAliasesA,
+    .wide => @This().GetConsoleAliasesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleAliases' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleAliasExes = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleAliasExesA,
+    .wide => @This().GetConsoleAliasExesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleAliasExes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExpungeConsoleCommandHistory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExpungeConsoleCommandHistoryA,
+    .wide => @This().ExpungeConsoleCommandHistoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExpungeConsoleCommandHistory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetConsoleNumberOfCommands = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetConsoleNumberOfCommandsA,
+    .wide => @This().SetConsoleNumberOfCommandsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetConsoleNumberOfCommands' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleCommandHistoryLength = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleCommandHistoryLengthA,
+    .wide => @This().GetConsoleCommandHistoryLengthW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleCommandHistoryLength' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleCommandHistory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleCommandHistoryA,
+    .wide => @This().GetConsoleCommandHistoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleCommandHistory' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)

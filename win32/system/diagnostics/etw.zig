@@ -2784,59 +2784,82 @@ pub extern "advapi32" fn CveEventWrite(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (11)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const PEVENT_TRACE_BUFFER_CALLBACK = thismodule.PEVENT_TRACE_BUFFER_CALLBACKA;
-        pub const EVENT_TRACE_LOGFILE = thismodule.EVENT_TRACE_LOGFILEA;
-        pub const StartTrace = thismodule.StartTraceA;
-        pub const StopTrace = thismodule.StopTraceA;
-        pub const QueryTrace = thismodule.QueryTraceA;
-        pub const UpdateTrace = thismodule.UpdateTraceA;
-        pub const FlushTrace = thismodule.FlushTraceA;
-        pub const ControlTrace = thismodule.ControlTraceA;
-        pub const QueryAllTraces = thismodule.QueryAllTracesA;
-        pub const RegisterTraceGuids = thismodule.RegisterTraceGuidsA;
-        pub const OpenTrace = thismodule.OpenTraceA;
-    },
-    .wide => struct {
-        pub const PEVENT_TRACE_BUFFER_CALLBACK = thismodule.PEVENT_TRACE_BUFFER_CALLBACKW;
-        pub const EVENT_TRACE_LOGFILE = thismodule.EVENT_TRACE_LOGFILEW;
-        pub const StartTrace = thismodule.StartTraceW;
-        pub const StopTrace = thismodule.StopTraceW;
-        pub const QueryTrace = thismodule.QueryTraceW;
-        pub const UpdateTrace = thismodule.UpdateTraceW;
-        pub const FlushTrace = thismodule.FlushTraceW;
-        pub const ControlTrace = thismodule.ControlTraceW;
-        pub const QueryAllTraces = thismodule.QueryAllTracesW;
-        pub const RegisterTraceGuids = thismodule.RegisterTraceGuidsW;
-        pub const OpenTrace = thismodule.OpenTraceW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const PEVENT_TRACE_BUFFER_CALLBACK = *opaque{};
-        pub const EVENT_TRACE_LOGFILE = *opaque{};
-        pub const StartTrace = *opaque{};
-        pub const StopTrace = *opaque{};
-        pub const QueryTrace = *opaque{};
-        pub const UpdateTrace = *opaque{};
-        pub const FlushTrace = *opaque{};
-        pub const ControlTrace = *opaque{};
-        pub const QueryAllTraces = *opaque{};
-        pub const RegisterTraceGuids = *opaque{};
-        pub const OpenTrace = *opaque{};
-    } else struct {
-        pub const PEVENT_TRACE_BUFFER_CALLBACK = @compileError("'PEVENT_TRACE_BUFFER_CALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const EVENT_TRACE_LOGFILE = @compileError("'EVENT_TRACE_LOGFILE' requires that UNICODE be set to true or false in the root module");
-        pub const StartTrace = @compileError("'StartTrace' requires that UNICODE be set to true or false in the root module");
-        pub const StopTrace = @compileError("'StopTrace' requires that UNICODE be set to true or false in the root module");
-        pub const QueryTrace = @compileError("'QueryTrace' requires that UNICODE be set to true or false in the root module");
-        pub const UpdateTrace = @compileError("'UpdateTrace' requires that UNICODE be set to true or false in the root module");
-        pub const FlushTrace = @compileError("'FlushTrace' requires that UNICODE be set to true or false in the root module");
-        pub const ControlTrace = @compileError("'ControlTrace' requires that UNICODE be set to true or false in the root module");
-        pub const QueryAllTraces = @compileError("'QueryAllTraces' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterTraceGuids = @compileError("'RegisterTraceGuids' requires that UNICODE be set to true or false in the root module");
-        pub const OpenTrace = @compileError("'OpenTrace' requires that UNICODE be set to true or false in the root module");
-    },
+pub const PEVENT_TRACE_BUFFER_CALLBACK = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().PEVENT_TRACE_BUFFER_CALLBACKA,
+    .wide => @This().PEVENT_TRACE_BUFFER_CALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PEVENT_TRACE_BUFFER_CALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EVENT_TRACE_LOGFILE = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().EVENT_TRACE_LOGFILEA,
+    .wide => @This().EVENT_TRACE_LOGFILEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EVENT_TRACE_LOGFILE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StartTrace = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().StartTraceA,
+    .wide => @This().StartTraceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StartTrace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StopTrace = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().StopTraceA,
+    .wide => @This().StopTraceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StopTrace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QueryTrace = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().QueryTraceA,
+    .wide => @This().QueryTraceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QueryTrace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UpdateTrace = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().UpdateTraceA,
+    .wide => @This().UpdateTraceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UpdateTrace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FlushTrace = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().FlushTraceA,
+    .wide => @This().FlushTraceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FlushTrace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ControlTrace = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ControlTraceA,
+    .wide => @This().ControlTraceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ControlTrace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QueryAllTraces = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().QueryAllTracesA,
+    .wide => @This().QueryAllTracesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QueryAllTraces' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterTraceGuids = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterTraceGuidsA,
+    .wide => @This().RegisterTraceGuidsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterTraceGuids' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenTrace = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().OpenTraceA,
+    .wide => @This().OpenTraceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenTrace' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (14)

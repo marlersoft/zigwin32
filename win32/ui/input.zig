@@ -288,19 +288,12 @@ pub extern "user32" fn GetCIMSSM(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const GetRawInputDeviceInfo = thismodule.GetRawInputDeviceInfoA;
-    },
-    .wide => struct {
-        pub const GetRawInputDeviceInfo = thismodule.GetRawInputDeviceInfoW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const GetRawInputDeviceInfo = *opaque{};
-    } else struct {
-        pub const GetRawInputDeviceInfo = @compileError("'GetRawInputDeviceInfo' requires that UNICODE be set to true or false in the root module");
-    },
+pub const GetRawInputDeviceInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetRawInputDeviceInfoA,
+    .wide => @This().GetRawInputDeviceInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetRawInputDeviceInfo' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)

@@ -393,67 +393,96 @@ pub extern "user32" fn BroadcastSystemMessageW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const WINSTAENUMPROC = thismodule.WINSTAENUMPROCA;
-        pub const DESKTOPENUMPROC = thismodule.DESKTOPENUMPROCA;
-        pub const CreateDesktop = thismodule.CreateDesktopA;
-        pub const CreateDesktopEx = thismodule.CreateDesktopExA;
-        pub const OpenDesktop = thismodule.OpenDesktopA;
-        pub const EnumDesktops = thismodule.EnumDesktopsA;
-        pub const CreateWindowStation = thismodule.CreateWindowStationA;
-        pub const OpenWindowStation = thismodule.OpenWindowStationA;
-        pub const EnumWindowStations = thismodule.EnumWindowStationsA;
-        pub const GetUserObjectInformation = thismodule.GetUserObjectInformationA;
-        pub const SetUserObjectInformation = thismodule.SetUserObjectInformationA;
-        pub const BroadcastSystemMessageEx = thismodule.BroadcastSystemMessageExA;
-        pub const BroadcastSystemMessage = thismodule.BroadcastSystemMessageA;
-    },
-    .wide => struct {
-        pub const WINSTAENUMPROC = thismodule.WINSTAENUMPROCW;
-        pub const DESKTOPENUMPROC = thismodule.DESKTOPENUMPROCW;
-        pub const CreateDesktop = thismodule.CreateDesktopW;
-        pub const CreateDesktopEx = thismodule.CreateDesktopExW;
-        pub const OpenDesktop = thismodule.OpenDesktopW;
-        pub const EnumDesktops = thismodule.EnumDesktopsW;
-        pub const CreateWindowStation = thismodule.CreateWindowStationW;
-        pub const OpenWindowStation = thismodule.OpenWindowStationW;
-        pub const EnumWindowStations = thismodule.EnumWindowStationsW;
-        pub const GetUserObjectInformation = thismodule.GetUserObjectInformationW;
-        pub const SetUserObjectInformation = thismodule.SetUserObjectInformationW;
-        pub const BroadcastSystemMessageEx = thismodule.BroadcastSystemMessageExW;
-        pub const BroadcastSystemMessage = thismodule.BroadcastSystemMessageW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const WINSTAENUMPROC = *opaque{};
-        pub const DESKTOPENUMPROC = *opaque{};
-        pub const CreateDesktop = *opaque{};
-        pub const CreateDesktopEx = *opaque{};
-        pub const OpenDesktop = *opaque{};
-        pub const EnumDesktops = *opaque{};
-        pub const CreateWindowStation = *opaque{};
-        pub const OpenWindowStation = *opaque{};
-        pub const EnumWindowStations = *opaque{};
-        pub const GetUserObjectInformation = *opaque{};
-        pub const SetUserObjectInformation = *opaque{};
-        pub const BroadcastSystemMessageEx = *opaque{};
-        pub const BroadcastSystemMessage = *opaque{};
-    } else struct {
-        pub const WINSTAENUMPROC = @compileError("'WINSTAENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const DESKTOPENUMPROC = @compileError("'DESKTOPENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const CreateDesktop = @compileError("'CreateDesktop' requires that UNICODE be set to true or false in the root module");
-        pub const CreateDesktopEx = @compileError("'CreateDesktopEx' requires that UNICODE be set to true or false in the root module");
-        pub const OpenDesktop = @compileError("'OpenDesktop' requires that UNICODE be set to true or false in the root module");
-        pub const EnumDesktops = @compileError("'EnumDesktops' requires that UNICODE be set to true or false in the root module");
-        pub const CreateWindowStation = @compileError("'CreateWindowStation' requires that UNICODE be set to true or false in the root module");
-        pub const OpenWindowStation = @compileError("'OpenWindowStation' requires that UNICODE be set to true or false in the root module");
-        pub const EnumWindowStations = @compileError("'EnumWindowStations' requires that UNICODE be set to true or false in the root module");
-        pub const GetUserObjectInformation = @compileError("'GetUserObjectInformation' requires that UNICODE be set to true or false in the root module");
-        pub const SetUserObjectInformation = @compileError("'SetUserObjectInformation' requires that UNICODE be set to true or false in the root module");
-        pub const BroadcastSystemMessageEx = @compileError("'BroadcastSystemMessageEx' requires that UNICODE be set to true or false in the root module");
-        pub const BroadcastSystemMessage = @compileError("'BroadcastSystemMessage' requires that UNICODE be set to true or false in the root module");
-    },
+pub const WINSTAENUMPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WINSTAENUMPROCA,
+    .wide => @This().WINSTAENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WINSTAENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DESKTOPENUMPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DESKTOPENUMPROCA,
+    .wide => @This().DESKTOPENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DESKTOPENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateDesktop = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateDesktopA,
+    .wide => @This().CreateDesktopW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateDesktop' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateDesktopEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateDesktopExA,
+    .wide => @This().CreateDesktopExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateDesktopEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenDesktop = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenDesktopA,
+    .wide => @This().OpenDesktopW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenDesktop' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumDesktops = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumDesktopsA,
+    .wide => @This().EnumDesktopsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumDesktops' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateWindowStation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateWindowStationA,
+    .wide => @This().CreateWindowStationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateWindowStation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenWindowStation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenWindowStationA,
+    .wide => @This().OpenWindowStationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenWindowStation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumWindowStations = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumWindowStationsA,
+    .wide => @This().EnumWindowStationsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumWindowStations' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetUserObjectInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetUserObjectInformationA,
+    .wide => @This().GetUserObjectInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetUserObjectInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetUserObjectInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetUserObjectInformationA,
+    .wide => @This().SetUserObjectInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetUserObjectInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BroadcastSystemMessageEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BroadcastSystemMessageExA,
+    .wide => @This().BroadcastSystemMessageExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BroadcastSystemMessageEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BroadcastSystemMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BroadcastSystemMessageA,
+    .wide => @This().BroadcastSystemMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BroadcastSystemMessage' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (12)

@@ -819,23 +819,19 @@ pub extern "faultrep" fn WerReportHang(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const pfn_ADDEREXCLUDEDAPPLICATION = thismodule.pfn_ADDEREXCLUDEDAPPLICATIONA;
-        pub const AddERExcludedApplication = thismodule.AddERExcludedApplicationA;
-    },
-    .wide => struct {
-        pub const pfn_ADDEREXCLUDEDAPPLICATION = thismodule.pfn_ADDEREXCLUDEDAPPLICATIONW;
-        pub const AddERExcludedApplication = thismodule.AddERExcludedApplicationW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const pfn_ADDEREXCLUDEDAPPLICATION = *opaque{};
-        pub const AddERExcludedApplication = *opaque{};
-    } else struct {
-        pub const pfn_ADDEREXCLUDEDAPPLICATION = @compileError("'pfn_ADDEREXCLUDEDAPPLICATION' requires that UNICODE be set to true or false in the root module");
-        pub const AddERExcludedApplication = @compileError("'AddERExcludedApplication' requires that UNICODE be set to true or false in the root module");
-    },
+pub const pfn_ADDEREXCLUDEDAPPLICATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().pfn_ADDEREXCLUDEDAPPLICATIONA,
+    .wide => @This().pfn_ADDEREXCLUDEDAPPLICATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'pfn_ADDEREXCLUDEDAPPLICATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddERExcludedApplication = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddERExcludedApplicationA,
+    .wide => @This().AddERExcludedApplicationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddERExcludedApplication' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (11)

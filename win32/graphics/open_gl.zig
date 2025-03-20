@@ -3346,23 +3346,19 @@ pub extern "glu32" fn gluEndPolygon(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const wglUseFontBitmaps = thismodule.wglUseFontBitmapsA;
-        pub const wglUseFontOutlines = thismodule.wglUseFontOutlinesA;
-    },
-    .wide => struct {
-        pub const wglUseFontBitmaps = thismodule.wglUseFontBitmapsW;
-        pub const wglUseFontOutlines = thismodule.wglUseFontOutlinesW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const wglUseFontBitmaps = *opaque{};
-        pub const wglUseFontOutlines = *opaque{};
-    } else struct {
-        pub const wglUseFontBitmaps = @compileError("'wglUseFontBitmaps' requires that UNICODE be set to true or false in the root module");
-        pub const wglUseFontOutlines = @compileError("'wglUseFontOutlines' requires that UNICODE be set to true or false in the root module");
-    },
+pub const wglUseFontBitmaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().wglUseFontBitmapsA,
+    .wide => @This().wglUseFontBitmapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'wglUseFontBitmaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const wglUseFontOutlines = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().wglUseFontOutlinesA,
+    .wide => @This().wglUseFontOutlinesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'wglUseFontOutlines' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)

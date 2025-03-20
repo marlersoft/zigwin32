@@ -98,23 +98,19 @@ pub extern "sfc" fn SRSetRestorePointW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const RESTOREPOINTINFO = thismodule.RESTOREPOINTINFOA;
-        pub const SRSetRestorePoint = thismodule.SRSetRestorePointA;
-    },
-    .wide => struct {
-        pub const RESTOREPOINTINFO = thismodule.RESTOREPOINTINFOW;
-        pub const SRSetRestorePoint = thismodule.SRSetRestorePointW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const RESTOREPOINTINFO = *opaque{};
-        pub const SRSetRestorePoint = *opaque{};
-    } else struct {
-        pub const RESTOREPOINTINFO = @compileError("'RESTOREPOINTINFO' requires that UNICODE be set to true or false in the root module");
-        pub const SRSetRestorePoint = @compileError("'SRSetRestorePoint' requires that UNICODE be set to true or false in the root module");
-    },
+pub const RESTOREPOINTINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RESTOREPOINTINFOA,
+    .wide => @This().RESTOREPOINTINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RESTOREPOINTINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SRSetRestorePoint = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SRSetRestorePointA,
+    .wide => @This().SRSetRestorePointW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SRSetRestorePoint' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (3)

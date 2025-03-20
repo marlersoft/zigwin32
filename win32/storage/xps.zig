@@ -5669,27 +5669,26 @@ pub extern "user32" fn PrintWindow(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (3)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const DOCINFO = thismodule.DOCINFOA;
-        pub const DeviceCapabilities = thismodule.DeviceCapabilitiesA;
-        pub const StartDoc = thismodule.StartDocA;
-    },
-    .wide => struct {
-        pub const DOCINFO = thismodule.DOCINFOW;
-        pub const DeviceCapabilities = thismodule.DeviceCapabilitiesW;
-        pub const StartDoc = thismodule.StartDocW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const DOCINFO = *opaque{};
-        pub const DeviceCapabilities = *opaque{};
-        pub const StartDoc = *opaque{};
-    } else struct {
-        pub const DOCINFO = @compileError("'DOCINFO' requires that UNICODE be set to true or false in the root module");
-        pub const DeviceCapabilities = @compileError("'DeviceCapabilities' requires that UNICODE be set to true or false in the root module");
-        pub const StartDoc = @compileError("'StartDoc' requires that UNICODE be set to true or false in the root module");
-    },
+pub const DOCINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DOCINFOA,
+    .wide => @This().DOCINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DOCINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeviceCapabilities = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeviceCapabilitiesA,
+    .wide => @This().DeviceCapabilitiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeviceCapabilities' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StartDoc = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StartDocA,
+    .wide => @This().StartDocW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StartDoc' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (25)

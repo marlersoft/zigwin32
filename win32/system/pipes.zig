@@ -248,35 +248,40 @@ pub extern "kernel32" fn GetNamedPipeServerSessionId(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (5)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const CreateNamedPipe = thismodule.CreateNamedPipeA;
-        pub const WaitNamedPipe = thismodule.WaitNamedPipeA;
-        pub const GetNamedPipeClientComputerName = thismodule.GetNamedPipeClientComputerNameA;
-        pub const GetNamedPipeHandleState = thismodule.GetNamedPipeHandleStateA;
-        pub const CallNamedPipe = thismodule.CallNamedPipeA;
-    },
-    .wide => struct {
-        pub const CreateNamedPipe = thismodule.CreateNamedPipeW;
-        pub const WaitNamedPipe = thismodule.WaitNamedPipeW;
-        pub const GetNamedPipeClientComputerName = thismodule.GetNamedPipeClientComputerNameW;
-        pub const GetNamedPipeHandleState = thismodule.GetNamedPipeHandleStateW;
-        pub const CallNamedPipe = thismodule.CallNamedPipeW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const CreateNamedPipe = *opaque{};
-        pub const WaitNamedPipe = *opaque{};
-        pub const GetNamedPipeClientComputerName = *opaque{};
-        pub const GetNamedPipeHandleState = *opaque{};
-        pub const CallNamedPipe = *opaque{};
-    } else struct {
-        pub const CreateNamedPipe = @compileError("'CreateNamedPipe' requires that UNICODE be set to true or false in the root module");
-        pub const WaitNamedPipe = @compileError("'WaitNamedPipe' requires that UNICODE be set to true or false in the root module");
-        pub const GetNamedPipeClientComputerName = @compileError("'GetNamedPipeClientComputerName' requires that UNICODE be set to true or false in the root module");
-        pub const GetNamedPipeHandleState = @compileError("'GetNamedPipeHandleState' requires that UNICODE be set to true or false in the root module");
-        pub const CallNamedPipe = @compileError("'CallNamedPipe' requires that UNICODE be set to true or false in the root module");
-    },
+pub const CreateNamedPipe = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateNamedPipeA,
+    .wide => @This().CreateNamedPipeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateNamedPipe' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WaitNamedPipe = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WaitNamedPipeA,
+    .wide => @This().WaitNamedPipeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WaitNamedPipe' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetNamedPipeClientComputerName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetNamedPipeClientComputerNameA,
+    .wide => @This().GetNamedPipeClientComputerNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetNamedPipeClientComputerName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetNamedPipeHandleState = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetNamedPipeHandleStateA,
+    .wide => @This().GetNamedPipeHandleStateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetNamedPipeHandleState' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CallNamedPipe = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CallNamedPipeA,
+    .wide => @This().CallNamedPipeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CallNamedPipe' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)

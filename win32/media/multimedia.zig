@@ -7679,239 +7679,397 @@ pub extern "winmm" fn mmGetCurrentTask(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (56)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const MCI_OPEN_PARMS = thismodule.MCI_OPEN_PARMSA;
-        pub const MCI_INFO_PARMS = thismodule.MCI_INFO_PARMSA;
-        pub const MCI_SYSINFO_PARMS = thismodule.MCI_SYSINFO_PARMSA;
-        pub const MCI_SAVE_PARMS = thismodule.MCI_SAVE_PARMSA;
-        pub const MCI_LOAD_PARMS = thismodule.MCI_LOAD_PARMSA;
-        pub const MCI_VD_ESCAPE_PARMS = thismodule.MCI_VD_ESCAPE_PARMSA;
-        pub const MCI_WAVE_OPEN_PARMS = thismodule.MCI_WAVE_OPEN_PARMSA;
-        pub const MCI_ANIM_OPEN_PARMS = thismodule.MCI_ANIM_OPEN_PARMSA;
-        pub const MCI_ANIM_WINDOW_PARMS = thismodule.MCI_ANIM_WINDOW_PARMSA;
-        pub const MCI_OVLY_OPEN_PARMS = thismodule.MCI_OVLY_OPEN_PARMSA;
-        pub const MCI_OVLY_WINDOW_PARMS = thismodule.MCI_OVLY_WINDOW_PARMSA;
-        pub const MCI_OVLY_SAVE_PARMS = thismodule.MCI_OVLY_SAVE_PARMSA;
-        pub const MCI_OVLY_LOAD_PARMS = thismodule.MCI_OVLY_LOAD_PARMSA;
-        pub const JOYCAPS = thismodule.JOYCAPSA;
-        pub const JOYCAPS2 = thismodule.JOYCAPS2A;
-        pub const MCI_DGV_CAPTURE_PARMS = thismodule.MCI_DGV_CAPTURE_PARMSA;
-        pub const MCI_DGV_INFO_PARMS = thismodule.MCI_DGV_INFO_PARMSA;
-        pub const MCI_DGV_LIST_PARMS = thismodule.MCI_DGV_LIST_PARMSA;
-        pub const MCI_DGV_OPEN_PARMS = thismodule.MCI_DGV_OPEN_PARMSA;
-        pub const MCI_DGV_QUALITY_PARMS = thismodule.MCI_DGV_QUALITY_PARMSA;
-        pub const MCI_DGV_RESERVE_PARMS = thismodule.MCI_DGV_RESERVE_PARMSA;
-        pub const MCI_DGV_RESTORE_PARMS = thismodule.MCI_DGV_RESTORE_PARMSA;
-        pub const MCI_DGV_SAVE_PARMS = thismodule.MCI_DGV_SAVE_PARMSA;
-        pub const MCI_DGV_SETAUDIO_PARMS = thismodule.MCI_DGV_SETAUDIO_PARMSA;
-        pub const MCI_DGV_SETVIDEO_PARMS = thismodule.MCI_DGV_SETVIDEO_PARMSA;
-        pub const MCI_DGV_STATUS_PARMS = thismodule.MCI_DGV_STATUS_PARMSA;
-        pub const MCI_DGV_WINDOW_PARMS = thismodule.MCI_DGV_WINDOW_PARMSA;
-        pub const AVISTREAMINFO = thismodule.AVISTREAMINFOA;
-        pub const AVIFILEINFO = thismodule.AVIFILEINFOA;
-        pub const CAPSTATUSCALLBACK = thismodule.CAPSTATUSCALLBACKA;
-        pub const CAPERRORCALLBACK = thismodule.CAPERRORCALLBACKA;
-        pub const mciSendCommand = thismodule.mciSendCommandA;
-        pub const mciSendString = thismodule.mciSendStringA;
-        pub const mciGetDeviceID = thismodule.mciGetDeviceIDA;
-        pub const mciGetDeviceIDFromElementID = thismodule.mciGetDeviceIDFromElementIDA;
-        pub const mciGetErrorString = thismodule.mciGetErrorStringA;
-        pub const mmioStringToFOURCC = thismodule.mmioStringToFOURCCA;
-        pub const mmioInstallIOProc = thismodule.mmioInstallIOProcA;
-        pub const mmioOpen = thismodule.mmioOpenA;
-        pub const mmioRename = thismodule.mmioRenameA;
-        pub const joyGetDevCaps = thismodule.joyGetDevCapsA;
-        pub const AVIFileOpen = thismodule.AVIFileOpenA;
-        pub const AVIFileInfo = thismodule.AVIFileInfoA;
-        pub const AVIFileCreateStream = thismodule.AVIFileCreateStreamA;
-        pub const AVIStreamInfo = thismodule.AVIStreamInfoA;
-        pub const AVIStreamOpenFromFile = thismodule.AVIStreamOpenFromFileA;
-        pub const AVISave = thismodule.AVISaveA;
-        pub const AVISaveV = thismodule.AVISaveVA;
-        pub const AVIBuildFilter = thismodule.AVIBuildFilterA;
-        pub const EditStreamSetName = thismodule.EditStreamSetNameA;
-        pub const EditStreamSetInfo = thismodule.EditStreamSetInfoA;
-        pub const MCIWndCreate = thismodule.MCIWndCreateA;
-        pub const capCreateCaptureWindow = thismodule.capCreateCaptureWindowA;
-        pub const capGetDriverDescription = thismodule.capGetDriverDescriptionA;
-        pub const GetOpenFileNamePreview = thismodule.GetOpenFileNamePreviewA;
-        pub const GetSaveFileNamePreview = thismodule.GetSaveFileNamePreviewA;
-    },
-    .wide => struct {
-        pub const MCI_OPEN_PARMS = thismodule.MCI_OPEN_PARMSW;
-        pub const MCI_INFO_PARMS = thismodule.MCI_INFO_PARMSW;
-        pub const MCI_SYSINFO_PARMS = thismodule.MCI_SYSINFO_PARMSW;
-        pub const MCI_SAVE_PARMS = thismodule.MCI_SAVE_PARMSW;
-        pub const MCI_LOAD_PARMS = thismodule.MCI_LOAD_PARMSW;
-        pub const MCI_VD_ESCAPE_PARMS = thismodule.MCI_VD_ESCAPE_PARMSW;
-        pub const MCI_WAVE_OPEN_PARMS = thismodule.MCI_WAVE_OPEN_PARMSW;
-        pub const MCI_ANIM_OPEN_PARMS = thismodule.MCI_ANIM_OPEN_PARMSW;
-        pub const MCI_ANIM_WINDOW_PARMS = thismodule.MCI_ANIM_WINDOW_PARMSW;
-        pub const MCI_OVLY_OPEN_PARMS = thismodule.MCI_OVLY_OPEN_PARMSW;
-        pub const MCI_OVLY_WINDOW_PARMS = thismodule.MCI_OVLY_WINDOW_PARMSW;
-        pub const MCI_OVLY_SAVE_PARMS = thismodule.MCI_OVLY_SAVE_PARMSW;
-        pub const MCI_OVLY_LOAD_PARMS = thismodule.MCI_OVLY_LOAD_PARMSW;
-        pub const JOYCAPS = thismodule.JOYCAPSW;
-        pub const JOYCAPS2 = thismodule.JOYCAPS2W;
-        pub const MCI_DGV_CAPTURE_PARMS = thismodule.MCI_DGV_CAPTURE_PARMSW;
-        pub const MCI_DGV_INFO_PARMS = thismodule.MCI_DGV_INFO_PARMSW;
-        pub const MCI_DGV_LIST_PARMS = thismodule.MCI_DGV_LIST_PARMSW;
-        pub const MCI_DGV_OPEN_PARMS = thismodule.MCI_DGV_OPEN_PARMSW;
-        pub const MCI_DGV_QUALITY_PARMS = thismodule.MCI_DGV_QUALITY_PARMSW;
-        pub const MCI_DGV_RESERVE_PARMS = thismodule.MCI_DGV_RESERVE_PARMSW;
-        pub const MCI_DGV_RESTORE_PARMS = thismodule.MCI_DGV_RESTORE_PARMSW;
-        pub const MCI_DGV_SAVE_PARMS = thismodule.MCI_DGV_SAVE_PARMSW;
-        pub const MCI_DGV_SETAUDIO_PARMS = thismodule.MCI_DGV_SETAUDIO_PARMSW;
-        pub const MCI_DGV_SETVIDEO_PARMS = thismodule.MCI_DGV_SETVIDEO_PARMSW;
-        pub const MCI_DGV_STATUS_PARMS = thismodule.MCI_DGV_STATUS_PARMSW;
-        pub const MCI_DGV_WINDOW_PARMS = thismodule.MCI_DGV_WINDOW_PARMSW;
-        pub const AVISTREAMINFO = thismodule.AVISTREAMINFOW;
-        pub const AVIFILEINFO = thismodule.AVIFILEINFOW;
-        pub const CAPSTATUSCALLBACK = thismodule.CAPSTATUSCALLBACKW;
-        pub const CAPERRORCALLBACK = thismodule.CAPERRORCALLBACKW;
-        pub const mciSendCommand = thismodule.mciSendCommandW;
-        pub const mciSendString = thismodule.mciSendStringW;
-        pub const mciGetDeviceID = thismodule.mciGetDeviceIDW;
-        pub const mciGetDeviceIDFromElementID = thismodule.mciGetDeviceIDFromElementIDW;
-        pub const mciGetErrorString = thismodule.mciGetErrorStringW;
-        pub const mmioStringToFOURCC = thismodule.mmioStringToFOURCCW;
-        pub const mmioInstallIOProc = thismodule.mmioInstallIOProcW;
-        pub const mmioOpen = thismodule.mmioOpenW;
-        pub const mmioRename = thismodule.mmioRenameW;
-        pub const joyGetDevCaps = thismodule.joyGetDevCapsW;
-        pub const AVIFileOpen = thismodule.AVIFileOpenW;
-        pub const AVIFileInfo = thismodule.AVIFileInfoW;
-        pub const AVIFileCreateStream = thismodule.AVIFileCreateStreamW;
-        pub const AVIStreamInfo = thismodule.AVIStreamInfoW;
-        pub const AVIStreamOpenFromFile = thismodule.AVIStreamOpenFromFileW;
-        pub const AVISave = thismodule.AVISaveW;
-        pub const AVISaveV = thismodule.AVISaveVW;
-        pub const AVIBuildFilter = thismodule.AVIBuildFilterW;
-        pub const EditStreamSetName = thismodule.EditStreamSetNameW;
-        pub const EditStreamSetInfo = thismodule.EditStreamSetInfoW;
-        pub const MCIWndCreate = thismodule.MCIWndCreateW;
-        pub const capCreateCaptureWindow = thismodule.capCreateCaptureWindowW;
-        pub const capGetDriverDescription = thismodule.capGetDriverDescriptionW;
-        pub const GetOpenFileNamePreview = thismodule.GetOpenFileNamePreviewW;
-        pub const GetSaveFileNamePreview = thismodule.GetSaveFileNamePreviewW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const MCI_OPEN_PARMS = *opaque{};
-        pub const MCI_INFO_PARMS = *opaque{};
-        pub const MCI_SYSINFO_PARMS = *opaque{};
-        pub const MCI_SAVE_PARMS = *opaque{};
-        pub const MCI_LOAD_PARMS = *opaque{};
-        pub const MCI_VD_ESCAPE_PARMS = *opaque{};
-        pub const MCI_WAVE_OPEN_PARMS = *opaque{};
-        pub const MCI_ANIM_OPEN_PARMS = *opaque{};
-        pub const MCI_ANIM_WINDOW_PARMS = *opaque{};
-        pub const MCI_OVLY_OPEN_PARMS = *opaque{};
-        pub const MCI_OVLY_WINDOW_PARMS = *opaque{};
-        pub const MCI_OVLY_SAVE_PARMS = *opaque{};
-        pub const MCI_OVLY_LOAD_PARMS = *opaque{};
-        pub const JOYCAPS = *opaque{};
-        pub const JOYCAPS2 = *opaque{};
-        pub const MCI_DGV_CAPTURE_PARMS = *opaque{};
-        pub const MCI_DGV_INFO_PARMS = *opaque{};
-        pub const MCI_DGV_LIST_PARMS = *opaque{};
-        pub const MCI_DGV_OPEN_PARMS = *opaque{};
-        pub const MCI_DGV_QUALITY_PARMS = *opaque{};
-        pub const MCI_DGV_RESERVE_PARMS = *opaque{};
-        pub const MCI_DGV_RESTORE_PARMS = *opaque{};
-        pub const MCI_DGV_SAVE_PARMS = *opaque{};
-        pub const MCI_DGV_SETAUDIO_PARMS = *opaque{};
-        pub const MCI_DGV_SETVIDEO_PARMS = *opaque{};
-        pub const MCI_DGV_STATUS_PARMS = *opaque{};
-        pub const MCI_DGV_WINDOW_PARMS = *opaque{};
-        pub const AVISTREAMINFO = *opaque{};
-        pub const AVIFILEINFO = *opaque{};
-        pub const CAPSTATUSCALLBACK = *opaque{};
-        pub const CAPERRORCALLBACK = *opaque{};
-        pub const mciSendCommand = *opaque{};
-        pub const mciSendString = *opaque{};
-        pub const mciGetDeviceID = *opaque{};
-        pub const mciGetDeviceIDFromElementID = *opaque{};
-        pub const mciGetErrorString = *opaque{};
-        pub const mmioStringToFOURCC = *opaque{};
-        pub const mmioInstallIOProc = *opaque{};
-        pub const mmioOpen = *opaque{};
-        pub const mmioRename = *opaque{};
-        pub const joyGetDevCaps = *opaque{};
-        pub const AVIFileOpen = *opaque{};
-        pub const AVIFileInfo = *opaque{};
-        pub const AVIFileCreateStream = *opaque{};
-        pub const AVIStreamInfo = *opaque{};
-        pub const AVIStreamOpenFromFile = *opaque{};
-        pub const AVISave = *opaque{};
-        pub const AVISaveV = *opaque{};
-        pub const AVIBuildFilter = *opaque{};
-        pub const EditStreamSetName = *opaque{};
-        pub const EditStreamSetInfo = *opaque{};
-        pub const MCIWndCreate = *opaque{};
-        pub const capCreateCaptureWindow = *opaque{};
-        pub const capGetDriverDescription = *opaque{};
-        pub const GetOpenFileNamePreview = *opaque{};
-        pub const GetSaveFileNamePreview = *opaque{};
-    } else struct {
-        pub const MCI_OPEN_PARMS = @compileError("'MCI_OPEN_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_INFO_PARMS = @compileError("'MCI_INFO_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_SYSINFO_PARMS = @compileError("'MCI_SYSINFO_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_SAVE_PARMS = @compileError("'MCI_SAVE_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_LOAD_PARMS = @compileError("'MCI_LOAD_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_VD_ESCAPE_PARMS = @compileError("'MCI_VD_ESCAPE_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_WAVE_OPEN_PARMS = @compileError("'MCI_WAVE_OPEN_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_ANIM_OPEN_PARMS = @compileError("'MCI_ANIM_OPEN_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_ANIM_WINDOW_PARMS = @compileError("'MCI_ANIM_WINDOW_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_OVLY_OPEN_PARMS = @compileError("'MCI_OVLY_OPEN_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_OVLY_WINDOW_PARMS = @compileError("'MCI_OVLY_WINDOW_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_OVLY_SAVE_PARMS = @compileError("'MCI_OVLY_SAVE_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_OVLY_LOAD_PARMS = @compileError("'MCI_OVLY_LOAD_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const JOYCAPS = @compileError("'JOYCAPS' requires that UNICODE be set to true or false in the root module");
-        pub const JOYCAPS2 = @compileError("'JOYCAPS2' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_DGV_CAPTURE_PARMS = @compileError("'MCI_DGV_CAPTURE_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_DGV_INFO_PARMS = @compileError("'MCI_DGV_INFO_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_DGV_LIST_PARMS = @compileError("'MCI_DGV_LIST_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_DGV_OPEN_PARMS = @compileError("'MCI_DGV_OPEN_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_DGV_QUALITY_PARMS = @compileError("'MCI_DGV_QUALITY_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_DGV_RESERVE_PARMS = @compileError("'MCI_DGV_RESERVE_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_DGV_RESTORE_PARMS = @compileError("'MCI_DGV_RESTORE_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_DGV_SAVE_PARMS = @compileError("'MCI_DGV_SAVE_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_DGV_SETAUDIO_PARMS = @compileError("'MCI_DGV_SETAUDIO_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_DGV_SETVIDEO_PARMS = @compileError("'MCI_DGV_SETVIDEO_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_DGV_STATUS_PARMS = @compileError("'MCI_DGV_STATUS_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const MCI_DGV_WINDOW_PARMS = @compileError("'MCI_DGV_WINDOW_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const AVISTREAMINFO = @compileError("'AVISTREAMINFO' requires that UNICODE be set to true or false in the root module");
-        pub const AVIFILEINFO = @compileError("'AVIFILEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const CAPSTATUSCALLBACK = @compileError("'CAPSTATUSCALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const CAPERRORCALLBACK = @compileError("'CAPERRORCALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const mciSendCommand = @compileError("'mciSendCommand' requires that UNICODE be set to true or false in the root module");
-        pub const mciSendString = @compileError("'mciSendString' requires that UNICODE be set to true or false in the root module");
-        pub const mciGetDeviceID = @compileError("'mciGetDeviceID' requires that UNICODE be set to true or false in the root module");
-        pub const mciGetDeviceIDFromElementID = @compileError("'mciGetDeviceIDFromElementID' requires that UNICODE be set to true or false in the root module");
-        pub const mciGetErrorString = @compileError("'mciGetErrorString' requires that UNICODE be set to true or false in the root module");
-        pub const mmioStringToFOURCC = @compileError("'mmioStringToFOURCC' requires that UNICODE be set to true or false in the root module");
-        pub const mmioInstallIOProc = @compileError("'mmioInstallIOProc' requires that UNICODE be set to true or false in the root module");
-        pub const mmioOpen = @compileError("'mmioOpen' requires that UNICODE be set to true or false in the root module");
-        pub const mmioRename = @compileError("'mmioRename' requires that UNICODE be set to true or false in the root module");
-        pub const joyGetDevCaps = @compileError("'joyGetDevCaps' requires that UNICODE be set to true or false in the root module");
-        pub const AVIFileOpen = @compileError("'AVIFileOpen' requires that UNICODE be set to true or false in the root module");
-        pub const AVIFileInfo = @compileError("'AVIFileInfo' requires that UNICODE be set to true or false in the root module");
-        pub const AVIFileCreateStream = @compileError("'AVIFileCreateStream' requires that UNICODE be set to true or false in the root module");
-        pub const AVIStreamInfo = @compileError("'AVIStreamInfo' requires that UNICODE be set to true or false in the root module");
-        pub const AVIStreamOpenFromFile = @compileError("'AVIStreamOpenFromFile' requires that UNICODE be set to true or false in the root module");
-        pub const AVISave = @compileError("'AVISave' requires that UNICODE be set to true or false in the root module");
-        pub const AVISaveV = @compileError("'AVISaveV' requires that UNICODE be set to true or false in the root module");
-        pub const AVIBuildFilter = @compileError("'AVIBuildFilter' requires that UNICODE be set to true or false in the root module");
-        pub const EditStreamSetName = @compileError("'EditStreamSetName' requires that UNICODE be set to true or false in the root module");
-        pub const EditStreamSetInfo = @compileError("'EditStreamSetInfo' requires that UNICODE be set to true or false in the root module");
-        pub const MCIWndCreate = @compileError("'MCIWndCreate' requires that UNICODE be set to true or false in the root module");
-        pub const capCreateCaptureWindow = @compileError("'capCreateCaptureWindow' requires that UNICODE be set to true or false in the root module");
-        pub const capGetDriverDescription = @compileError("'capGetDriverDescription' requires that UNICODE be set to true or false in the root module");
-        pub const GetOpenFileNamePreview = @compileError("'GetOpenFileNamePreview' requires that UNICODE be set to true or false in the root module");
-        pub const GetSaveFileNamePreview = @compileError("'GetSaveFileNamePreview' requires that UNICODE be set to true or false in the root module");
-    },
+pub const MCI_OPEN_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_OPEN_PARMSA,
+    .wide => @This().MCI_OPEN_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_OPEN_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_INFO_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_INFO_PARMSA,
+    .wide => @This().MCI_INFO_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_INFO_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_SYSINFO_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_SYSINFO_PARMSA,
+    .wide => @This().MCI_SYSINFO_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_SYSINFO_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_SAVE_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_SAVE_PARMSA,
+    .wide => @This().MCI_SAVE_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_SAVE_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_LOAD_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_LOAD_PARMSA,
+    .wide => @This().MCI_LOAD_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_LOAD_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_VD_ESCAPE_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_VD_ESCAPE_PARMSA,
+    .wide => @This().MCI_VD_ESCAPE_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_VD_ESCAPE_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_WAVE_OPEN_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_WAVE_OPEN_PARMSA,
+    .wide => @This().MCI_WAVE_OPEN_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_WAVE_OPEN_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_ANIM_OPEN_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_ANIM_OPEN_PARMSA,
+    .wide => @This().MCI_ANIM_OPEN_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_ANIM_OPEN_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_ANIM_WINDOW_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_ANIM_WINDOW_PARMSA,
+    .wide => @This().MCI_ANIM_WINDOW_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_ANIM_WINDOW_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_OVLY_OPEN_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_OVLY_OPEN_PARMSA,
+    .wide => @This().MCI_OVLY_OPEN_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_OVLY_OPEN_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_OVLY_WINDOW_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_OVLY_WINDOW_PARMSA,
+    .wide => @This().MCI_OVLY_WINDOW_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_OVLY_WINDOW_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_OVLY_SAVE_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_OVLY_SAVE_PARMSA,
+    .wide => @This().MCI_OVLY_SAVE_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_OVLY_SAVE_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_OVLY_LOAD_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_OVLY_LOAD_PARMSA,
+    .wide => @This().MCI_OVLY_LOAD_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_OVLY_LOAD_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JOYCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JOYCAPSA,
+    .wide => @This().JOYCAPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JOYCAPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JOYCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JOYCAPS2A,
+    .wide => @This().JOYCAPS2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JOYCAPS2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_DGV_CAPTURE_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_DGV_CAPTURE_PARMSA,
+    .wide => @This().MCI_DGV_CAPTURE_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_DGV_CAPTURE_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_DGV_INFO_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_DGV_INFO_PARMSA,
+    .wide => @This().MCI_DGV_INFO_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_DGV_INFO_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_DGV_LIST_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_DGV_LIST_PARMSA,
+    .wide => @This().MCI_DGV_LIST_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_DGV_LIST_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_DGV_OPEN_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_DGV_OPEN_PARMSA,
+    .wide => @This().MCI_DGV_OPEN_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_DGV_OPEN_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_DGV_QUALITY_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_DGV_QUALITY_PARMSA,
+    .wide => @This().MCI_DGV_QUALITY_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_DGV_QUALITY_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_DGV_RESERVE_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_DGV_RESERVE_PARMSA,
+    .wide => @This().MCI_DGV_RESERVE_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_DGV_RESERVE_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_DGV_RESTORE_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_DGV_RESTORE_PARMSA,
+    .wide => @This().MCI_DGV_RESTORE_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_DGV_RESTORE_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_DGV_SAVE_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_DGV_SAVE_PARMSA,
+    .wide => @This().MCI_DGV_SAVE_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_DGV_SAVE_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_DGV_SETAUDIO_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_DGV_SETAUDIO_PARMSA,
+    .wide => @This().MCI_DGV_SETAUDIO_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_DGV_SETAUDIO_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_DGV_SETVIDEO_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_DGV_SETVIDEO_PARMSA,
+    .wide => @This().MCI_DGV_SETVIDEO_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_DGV_SETVIDEO_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_DGV_STATUS_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_DGV_STATUS_PARMSA,
+    .wide => @This().MCI_DGV_STATUS_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_DGV_STATUS_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCI_DGV_WINDOW_PARMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCI_DGV_WINDOW_PARMSA,
+    .wide => @This().MCI_DGV_WINDOW_PARMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCI_DGV_WINDOW_PARMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AVISTREAMINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AVISTREAMINFOA,
+    .wide => @This().AVISTREAMINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AVISTREAMINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AVIFILEINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AVIFILEINFOA,
+    .wide => @This().AVIFILEINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AVIFILEINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CAPSTATUSCALLBACK = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CAPSTATUSCALLBACKA,
+    .wide => @This().CAPSTATUSCALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CAPSTATUSCALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CAPERRORCALLBACK = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CAPERRORCALLBACKA,
+    .wide => @This().CAPERRORCALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CAPERRORCALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mciSendCommand = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mciSendCommandA,
+    .wide => @This().mciSendCommandW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mciSendCommand' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mciSendString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mciSendStringA,
+    .wide => @This().mciSendStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mciSendString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mciGetDeviceID = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mciGetDeviceIDA,
+    .wide => @This().mciGetDeviceIDW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mciGetDeviceID' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mciGetDeviceIDFromElementID = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mciGetDeviceIDFromElementIDA,
+    .wide => @This().mciGetDeviceIDFromElementIDW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mciGetDeviceIDFromElementID' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mciGetErrorString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mciGetErrorStringA,
+    .wide => @This().mciGetErrorStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mciGetErrorString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mmioStringToFOURCC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mmioStringToFOURCCA,
+    .wide => @This().mmioStringToFOURCCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mmioStringToFOURCC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mmioInstallIOProc = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mmioInstallIOProcA,
+    .wide => @This().mmioInstallIOProcW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mmioInstallIOProc' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mmioOpen = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mmioOpenA,
+    .wide => @This().mmioOpenW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mmioOpen' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mmioRename = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mmioRenameA,
+    .wide => @This().mmioRenameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mmioRename' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const joyGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().joyGetDevCapsA,
+    .wide => @This().joyGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'joyGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AVIFileOpen = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AVIFileOpenA,
+    .wide => @This().AVIFileOpenW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AVIFileOpen' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AVIFileInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AVIFileInfoA,
+    .wide => @This().AVIFileInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AVIFileInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AVIFileCreateStream = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AVIFileCreateStreamA,
+    .wide => @This().AVIFileCreateStreamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AVIFileCreateStream' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AVIStreamInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AVIStreamInfoA,
+    .wide => @This().AVIStreamInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AVIStreamInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AVIStreamOpenFromFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AVIStreamOpenFromFileA,
+    .wide => @This().AVIStreamOpenFromFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AVIStreamOpenFromFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AVISave = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AVISaveA,
+    .wide => @This().AVISaveW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AVISave' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AVISaveV = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AVISaveVA,
+    .wide => @This().AVISaveVW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AVISaveV' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AVIBuildFilter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AVIBuildFilterA,
+    .wide => @This().AVIBuildFilterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AVIBuildFilter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EditStreamSetName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EditStreamSetNameA,
+    .wide => @This().EditStreamSetNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EditStreamSetName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EditStreamSetInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EditStreamSetInfoA,
+    .wide => @This().EditStreamSetInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EditStreamSetInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MCIWndCreate = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MCIWndCreateA,
+    .wide => @This().MCIWndCreateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MCIWndCreate' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const capCreateCaptureWindow = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().capCreateCaptureWindowA,
+    .wide => @This().capCreateCaptureWindowW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'capCreateCaptureWindow' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const capGetDriverDescription = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().capGetDriverDescriptionA,
+    .wide => @This().capGetDriverDescriptionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'capGetDriverDescription' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetOpenFileNamePreview = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetOpenFileNamePreviewA,
+    .wide => @This().GetOpenFileNamePreviewW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetOpenFileNamePreview' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetSaveFileNamePreview = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetSaveFileNamePreviewA,
+    .wide => @This().GetSaveFileNamePreviewW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetSaveFileNamePreview' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (33)

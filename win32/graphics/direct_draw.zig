@@ -7599,35 +7599,40 @@ pub extern "ddraw" fn DirectDrawCreateClipper(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (5)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const LPDDENUMCALLBACK = thismodule.LPDDENUMCALLBACKA;
-        pub const LPDDENUMCALLBACKEX = thismodule.LPDDENUMCALLBACKEXA;
-        pub const LPDIRECTDRAWENUMERATEEX = thismodule.LPDIRECTDRAWENUMERATEEXA;
-        pub const DirectDrawEnumerate = thismodule.DirectDrawEnumerateA;
-        pub const DirectDrawEnumerateEx = thismodule.DirectDrawEnumerateExA;
-    },
-    .wide => struct {
-        pub const LPDDENUMCALLBACK = thismodule.LPDDENUMCALLBACKW;
-        pub const LPDDENUMCALLBACKEX = thismodule.LPDDENUMCALLBACKEXW;
-        pub const LPDIRECTDRAWENUMERATEEX = thismodule.LPDIRECTDRAWENUMERATEEXW;
-        pub const DirectDrawEnumerate = thismodule.DirectDrawEnumerateW;
-        pub const DirectDrawEnumerateEx = thismodule.DirectDrawEnumerateExW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const LPDDENUMCALLBACK = *opaque{};
-        pub const LPDDENUMCALLBACKEX = *opaque{};
-        pub const LPDIRECTDRAWENUMERATEEX = *opaque{};
-        pub const DirectDrawEnumerate = *opaque{};
-        pub const DirectDrawEnumerateEx = *opaque{};
-    } else struct {
-        pub const LPDDENUMCALLBACK = @compileError("'LPDDENUMCALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const LPDDENUMCALLBACKEX = @compileError("'LPDDENUMCALLBACKEX' requires that UNICODE be set to true or false in the root module");
-        pub const LPDIRECTDRAWENUMERATEEX = @compileError("'LPDIRECTDRAWENUMERATEEX' requires that UNICODE be set to true or false in the root module");
-        pub const DirectDrawEnumerate = @compileError("'DirectDrawEnumerate' requires that UNICODE be set to true or false in the root module");
-        pub const DirectDrawEnumerateEx = @compileError("'DirectDrawEnumerateEx' requires that UNICODE be set to true or false in the root module");
-    },
+pub const LPDDENUMCALLBACK = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPDDENUMCALLBACKA,
+    .wide => @This().LPDDENUMCALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPDDENUMCALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LPDDENUMCALLBACKEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPDDENUMCALLBACKEXA,
+    .wide => @This().LPDDENUMCALLBACKEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPDDENUMCALLBACKEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LPDIRECTDRAWENUMERATEEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPDIRECTDRAWENUMERATEEXA,
+    .wide => @This().LPDIRECTDRAWENUMERATEEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPDIRECTDRAWENUMERATEEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DirectDrawEnumerate = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DirectDrawEnumerateA,
+    .wide => @This().DirectDrawEnumerateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DirectDrawEnumerate' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DirectDrawEnumerateEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DirectDrawEnumerateExA,
+    .wide => @This().DirectDrawEnumerateExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DirectDrawEnumerateEx' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (19)

@@ -8038,839 +8038,1447 @@ pub extern "newdev" fn DiShowUpdateDriver(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (206)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const SP_ORIGINAL_FILE_INFO_ = thismodule.SP_ORIGINAL_FILE_INFO_A;
-        pub const PSP_FILE_CALLBACK_ = thismodule.PSP_FILE_CALLBACK_A;
-        pub const FILEPATHS_ = thismodule.FILEPATHS_A;
-        pub const FILEPATHS_SIGNERINFO_ = thismodule.FILEPATHS_SIGNERINFO_A;
-        pub const SOURCE_MEDIA_ = thismodule.SOURCE_MEDIA_A;
-        pub const CABINET_INFO_ = thismodule.CABINET_INFO_A;
-        pub const FILE_IN_CABINET_INFO_ = thismodule.FILE_IN_CABINET_INFO_A;
-        pub const SP_REGISTER_CONTROL_STATUS = thismodule.SP_REGISTER_CONTROL_STATUSA;
-        pub const SP_FILE_COPY_PARAMS_ = thismodule.SP_FILE_COPY_PARAMS_A;
-        pub const SP_DEVICE_INTERFACE_DETAIL_DATA_ = thismodule.SP_DEVICE_INTERFACE_DETAIL_DATA_A;
-        pub const SP_DEVINFO_LIST_DETAIL_DATA_ = thismodule.SP_DEVINFO_LIST_DETAIL_DATA_A;
-        pub const SP_DEVINSTALL_PARAMS_ = thismodule.SP_DEVINSTALL_PARAMS_A;
-        pub const SP_SELECTDEVICE_PARAMS_ = thismodule.SP_SELECTDEVICE_PARAMS_A;
-        pub const SP_TROUBLESHOOTER_PARAMS_ = thismodule.SP_TROUBLESHOOTER_PARAMS_A;
-        pub const SP_POWERMESSAGEWAKE_PARAMS_ = thismodule.SP_POWERMESSAGEWAKE_PARAMS_A;
-        pub const SP_DRVINFO_DATA_V2_ = thismodule.SP_DRVINFO_DATA_V2_A;
-        pub const SP_DRVINFO_DATA_V1_ = thismodule.SP_DRVINFO_DATA_V1_A;
-        pub const SP_DRVINFO_DETAIL_DATA_ = thismodule.SP_DRVINFO_DETAIL_DATA_A;
-        pub const SP_BACKUP_QUEUE_PARAMS_V2_ = thismodule.SP_BACKUP_QUEUE_PARAMS_V2_A;
-        pub const SP_BACKUP_QUEUE_PARAMS_V1_ = thismodule.SP_BACKUP_QUEUE_PARAMS_V1_A;
-        pub const SP_INF_SIGNER_INFO_V1_ = thismodule.SP_INF_SIGNER_INFO_V1_A;
-        pub const SP_INF_SIGNER_INFO_V2_ = thismodule.SP_INF_SIGNER_INFO_V2_A;
-        pub const CONFLICT_DETAILS_ = thismodule.CONFLICT_DETAILS_A;
-        pub const HWProfileInfo_s = thismodule.HWProfileInfo_sA;
-        pub const SetupGetInfInformation = thismodule.SetupGetInfInformationA;
-        pub const SetupQueryInfFileInformation = thismodule.SetupQueryInfFileInformationA;
-        pub const SetupQueryInfOriginalFileInformation = thismodule.SetupQueryInfOriginalFileInformationA;
-        pub const SetupQueryInfVersionInformation = thismodule.SetupQueryInfVersionInformationA;
-        pub const SetupGetInfDriverStoreLocation = thismodule.SetupGetInfDriverStoreLocationA;
-        pub const SetupGetInfPublishedName = thismodule.SetupGetInfPublishedNameA;
-        pub const SetupGetInfFileList = thismodule.SetupGetInfFileListA;
-        pub const SetupOpenInfFile = thismodule.SetupOpenInfFileA;
-        pub const SetupOpenAppendInfFile = thismodule.SetupOpenAppendInfFileA;
-        pub const SetupFindFirstLine = thismodule.SetupFindFirstLineA;
-        pub const SetupFindNextMatchLine = thismodule.SetupFindNextMatchLineA;
-        pub const SetupGetLineByIndex = thismodule.SetupGetLineByIndexA;
-        pub const SetupGetLineCount = thismodule.SetupGetLineCountA;
-        pub const SetupGetLineText = thismodule.SetupGetLineTextA;
-        pub const SetupGetStringField = thismodule.SetupGetStringFieldA;
-        pub const SetupGetMultiSzField = thismodule.SetupGetMultiSzFieldA;
-        pub const SetupGetFileCompressionInfo = thismodule.SetupGetFileCompressionInfoA;
-        pub const SetupGetFileCompressionInfoEx = thismodule.SetupGetFileCompressionInfoExA;
-        pub const SetupDecompressOrCopyFile = thismodule.SetupDecompressOrCopyFileA;
-        pub const SetupGetSourceFileLocation = thismodule.SetupGetSourceFileLocationA;
-        pub const SetupGetSourceFileSize = thismodule.SetupGetSourceFileSizeA;
-        pub const SetupGetTargetPath = thismodule.SetupGetTargetPathA;
-        pub const SetupSetSourceList = thismodule.SetupSetSourceListA;
-        pub const SetupAddToSourceList = thismodule.SetupAddToSourceListA;
-        pub const SetupRemoveFromSourceList = thismodule.SetupRemoveFromSourceListA;
-        pub const SetupQuerySourceList = thismodule.SetupQuerySourceListA;
-        pub const SetupFreeSourceList = thismodule.SetupFreeSourceListA;
-        pub const SetupPromptForDisk = thismodule.SetupPromptForDiskA;
-        pub const SetupCopyError = thismodule.SetupCopyErrorA;
-        pub const SetupRenameError = thismodule.SetupRenameErrorA;
-        pub const SetupDeleteError = thismodule.SetupDeleteErrorA;
-        pub const SetupBackupError = thismodule.SetupBackupErrorA;
-        pub const SetupSetDirectoryId = thismodule.SetupSetDirectoryIdA;
-        pub const SetupSetDirectoryIdEx = thismodule.SetupSetDirectoryIdExA;
-        pub const SetupGetSourceInfo = thismodule.SetupGetSourceInfoA;
-        pub const SetupInstallFile = thismodule.SetupInstallFileA;
-        pub const SetupInstallFileEx = thismodule.SetupInstallFileExA;
-        pub const SetupSetFileQueueAlternatePlatform = thismodule.SetupSetFileQueueAlternatePlatformA;
-        pub const SetupSetPlatformPathOverride = thismodule.SetupSetPlatformPathOverrideA;
-        pub const SetupQueueCopy = thismodule.SetupQueueCopyA;
-        pub const SetupQueueCopyIndirect = thismodule.SetupQueueCopyIndirectA;
-        pub const SetupQueueDefaultCopy = thismodule.SetupQueueDefaultCopyA;
-        pub const SetupQueueCopySection = thismodule.SetupQueueCopySectionA;
-        pub const SetupQueueDelete = thismodule.SetupQueueDeleteA;
-        pub const SetupQueueDeleteSection = thismodule.SetupQueueDeleteSectionA;
-        pub const SetupQueueRename = thismodule.SetupQueueRenameA;
-        pub const SetupQueueRenameSection = thismodule.SetupQueueRenameSectionA;
-        pub const SetupCommitFileQueue = thismodule.SetupCommitFileQueueA;
-        pub const SetupScanFileQueue = thismodule.SetupScanFileQueueA;
-        pub const SetupCopyOEMInf = thismodule.SetupCopyOEMInfA;
-        pub const SetupUninstallOEMInf = thismodule.SetupUninstallOEMInfA;
-        pub const SetupCreateDiskSpaceList = thismodule.SetupCreateDiskSpaceListA;
-        pub const SetupDuplicateDiskSpaceList = thismodule.SetupDuplicateDiskSpaceListA;
-        pub const SetupQueryDrivesInDiskSpaceList = thismodule.SetupQueryDrivesInDiskSpaceListA;
-        pub const SetupQuerySpaceRequiredOnDrive = thismodule.SetupQuerySpaceRequiredOnDriveA;
-        pub const SetupAdjustDiskSpaceList = thismodule.SetupAdjustDiskSpaceListA;
-        pub const SetupAddToDiskSpaceList = thismodule.SetupAddToDiskSpaceListA;
-        pub const SetupAddSectionToDiskSpaceList = thismodule.SetupAddSectionToDiskSpaceListA;
-        pub const SetupAddInstallSectionToDiskSpaceList = thismodule.SetupAddInstallSectionToDiskSpaceListA;
-        pub const SetupRemoveFromDiskSpaceList = thismodule.SetupRemoveFromDiskSpaceListA;
-        pub const SetupRemoveSectionFromDiskSpaceList = thismodule.SetupRemoveSectionFromDiskSpaceListA;
-        pub const SetupRemoveInstallSectionFromDiskSpaceList = thismodule.SetupRemoveInstallSectionFromDiskSpaceListA;
-        pub const SetupIterateCabinet = thismodule.SetupIterateCabinetA;
-        pub const SetupDefaultQueueCallback = thismodule.SetupDefaultQueueCallbackA;
-        pub const SetupInstallFromInfSection = thismodule.SetupInstallFromInfSectionA;
-        pub const SetupInstallFilesFromInfSection = thismodule.SetupInstallFilesFromInfSectionA;
-        pub const SetupInstallServicesFromInfSection = thismodule.SetupInstallServicesFromInfSectionA;
-        pub const SetupInstallServicesFromInfSectionEx = thismodule.SetupInstallServicesFromInfSectionExA;
-        pub const InstallHinfSection = thismodule.InstallHinfSectionA;
-        pub const SetupInitializeFileLog = thismodule.SetupInitializeFileLogA;
-        pub const SetupLogFile = thismodule.SetupLogFileA;
-        pub const SetupRemoveFileLogEntry = thismodule.SetupRemoveFileLogEntryA;
-        pub const SetupQueryFileLog = thismodule.SetupQueryFileLogA;
-        pub const SetupLogError = thismodule.SetupLogErrorA;
-        pub const SetupGetBackupInformation = thismodule.SetupGetBackupInformationA;
-        pub const SetupPrepareQueueForRestore = thismodule.SetupPrepareQueueForRestoreA;
-        pub const SetupDiCreateDeviceInfoListEx = thismodule.SetupDiCreateDeviceInfoListExA;
-        pub const SetupDiGetDeviceInfoListDetail = thismodule.SetupDiGetDeviceInfoListDetailA;
-        pub const SetupDiCreateDeviceInfo = thismodule.SetupDiCreateDeviceInfoA;
-        pub const SetupDiOpenDeviceInfo = thismodule.SetupDiOpenDeviceInfoA;
-        pub const SetupDiGetDeviceInstanceId = thismodule.SetupDiGetDeviceInstanceIdA;
-        pub const SetupDiCreateDeviceInterface = thismodule.SetupDiCreateDeviceInterfaceA;
-        pub const SetupDiOpenDeviceInterface = thismodule.SetupDiOpenDeviceInterfaceA;
-        pub const SetupDiGetDeviceInterfaceDetail = thismodule.SetupDiGetDeviceInterfaceDetailA;
-        pub const SetupDiEnumDriverInfo = thismodule.SetupDiEnumDriverInfoA;
-        pub const SetupDiGetSelectedDriver = thismodule.SetupDiGetSelectedDriverA;
-        pub const SetupDiSetSelectedDriver = thismodule.SetupDiSetSelectedDriverA;
-        pub const SetupDiGetDriverInfoDetail = thismodule.SetupDiGetDriverInfoDetailA;
-        pub const SetupDiGetClassDevs = thismodule.SetupDiGetClassDevsA;
-        pub const SetupDiGetClassDevsEx = thismodule.SetupDiGetClassDevsExA;
-        pub const SetupDiGetINFClass = thismodule.SetupDiGetINFClassA;
-        pub const SetupDiBuildClassInfoListEx = thismodule.SetupDiBuildClassInfoListExA;
-        pub const SetupDiGetClassDescription = thismodule.SetupDiGetClassDescriptionA;
-        pub const SetupDiGetClassDescriptionEx = thismodule.SetupDiGetClassDescriptionExA;
-        pub const SetupDiInstallClass = thismodule.SetupDiInstallClassA;
-        pub const SetupDiInstallClassEx = thismodule.SetupDiInstallClassExA;
-        pub const SetupDiOpenClassRegKeyEx = thismodule.SetupDiOpenClassRegKeyExA;
-        pub const SetupDiCreateDeviceInterfaceRegKey = thismodule.SetupDiCreateDeviceInterfaceRegKeyA;
-        pub const SetupDiCreateDevRegKey = thismodule.SetupDiCreateDevRegKeyA;
-        pub const SetupDiGetHwProfileListEx = thismodule.SetupDiGetHwProfileListExA;
-        pub const SetupDiGetDeviceRegistryProperty = thismodule.SetupDiGetDeviceRegistryPropertyA;
-        pub const SetupDiGetClassRegistryProperty = thismodule.SetupDiGetClassRegistryPropertyA;
-        pub const SetupDiSetDeviceRegistryProperty = thismodule.SetupDiSetDeviceRegistryPropertyA;
-        pub const SetupDiSetClassRegistryProperty = thismodule.SetupDiSetClassRegistryPropertyA;
-        pub const SetupDiGetDeviceInstallParams = thismodule.SetupDiGetDeviceInstallParamsA;
-        pub const SetupDiGetClassInstallParams = thismodule.SetupDiGetClassInstallParamsA;
-        pub const SetupDiSetDeviceInstallParams = thismodule.SetupDiSetDeviceInstallParamsA;
-        pub const SetupDiSetClassInstallParams = thismodule.SetupDiSetClassInstallParamsA;
-        pub const SetupDiGetDriverInstallParams = thismodule.SetupDiGetDriverInstallParamsA;
-        pub const SetupDiSetDriverInstallParams = thismodule.SetupDiSetDriverInstallParamsA;
-        pub const SetupDiGetClassImageListEx = thismodule.SetupDiGetClassImageListExA;
-        pub const SetupDiGetClassDevPropertySheets = thismodule.SetupDiGetClassDevPropertySheetsA;
-        pub const SetupDiClassNameFromGuid = thismodule.SetupDiClassNameFromGuidA;
-        pub const SetupDiClassNameFromGuidEx = thismodule.SetupDiClassNameFromGuidExA;
-        pub const SetupDiClassGuidsFromName = thismodule.SetupDiClassGuidsFromNameA;
-        pub const SetupDiClassGuidsFromNameEx = thismodule.SetupDiClassGuidsFromNameExA;
-        pub const SetupDiGetHwProfileFriendlyName = thismodule.SetupDiGetHwProfileFriendlyNameA;
-        pub const SetupDiGetHwProfileFriendlyNameEx = thismodule.SetupDiGetHwProfileFriendlyNameExA;
-        pub const SetupDiGetActualModelsSection = thismodule.SetupDiGetActualModelsSectionA;
-        pub const SetupDiGetActualSectionToInstall = thismodule.SetupDiGetActualSectionToInstallA;
-        pub const SetupDiGetActualSectionToInstallEx = thismodule.SetupDiGetActualSectionToInstallExA;
-        pub const SetupEnumInfSections = thismodule.SetupEnumInfSectionsA;
-        pub const SetupVerifyInfFile = thismodule.SetupVerifyInfFileA;
-        pub const SetupDiGetCustomDeviceProperty = thismodule.SetupDiGetCustomDevicePropertyA;
-        pub const SetupConfigureWmiFromInfSection = thismodule.SetupConfigureWmiFromInfSectionA;
-        pub const CM_Add_ID = thismodule.CM_Add_IDA;
-        pub const CM_Add_ID_Ex = thismodule.CM_Add_ID_ExA;
-        pub const CM_Connect_Machine = thismodule.CM_Connect_MachineA;
-        pub const CM_Create_DevNode = thismodule.CM_Create_DevNodeA;
-        pub const CM_Create_DevNode_Ex = thismodule.CM_Create_DevNode_ExA;
-        pub const CM_Enumerate_Enumerators = thismodule.CM_Enumerate_EnumeratorsA;
-        pub const CM_Enumerate_Enumerators_Ex = thismodule.CM_Enumerate_Enumerators_ExA;
-        pub const CM_Get_Class_Name = thismodule.CM_Get_Class_NameA;
-        pub const CM_Get_Class_Name_Ex = thismodule.CM_Get_Class_Name_ExA;
-        pub const CM_Get_Class_Key_Name = thismodule.CM_Get_Class_Key_NameA;
-        pub const CM_Get_Class_Key_Name_Ex = thismodule.CM_Get_Class_Key_Name_ExA;
-        pub const CM_Get_Device_ID = thismodule.CM_Get_Device_IDA;
-        pub const CM_Get_Device_ID_Ex = thismodule.CM_Get_Device_ID_ExA;
-        pub const CM_Get_Device_ID_List = thismodule.CM_Get_Device_ID_ListA;
-        pub const CM_Get_Device_ID_List_Ex = thismodule.CM_Get_Device_ID_List_ExA;
-        pub const CM_Get_Device_ID_List_Size = thismodule.CM_Get_Device_ID_List_SizeA;
-        pub const CM_Get_Device_ID_List_Size_Ex = thismodule.CM_Get_Device_ID_List_Size_ExA;
-        pub const CM_Get_DevNode_Registry_Property = thismodule.CM_Get_DevNode_Registry_PropertyA;
-        pub const CM_Get_DevNode_Registry_Property_Ex = thismodule.CM_Get_DevNode_Registry_Property_ExA;
-        pub const CM_Get_DevNode_Custom_Property = thismodule.CM_Get_DevNode_Custom_PropertyA;
-        pub const CM_Get_DevNode_Custom_Property_Ex = thismodule.CM_Get_DevNode_Custom_Property_ExA;
-        pub const CM_Get_Hardware_Profile_Info = thismodule.CM_Get_Hardware_Profile_InfoA;
-        pub const CM_Get_Hardware_Profile_Info_Ex = thismodule.CM_Get_Hardware_Profile_Info_ExA;
-        pub const CM_Get_HW_Prof_Flags = thismodule.CM_Get_HW_Prof_FlagsA;
-        pub const CM_Get_HW_Prof_Flags_Ex = thismodule.CM_Get_HW_Prof_Flags_ExA;
-        pub const CM_Get_Device_Interface_Alias = thismodule.CM_Get_Device_Interface_AliasA;
-        pub const CM_Get_Device_Interface_Alias_Ex = thismodule.CM_Get_Device_Interface_Alias_ExA;
-        pub const CM_Get_Device_Interface_List = thismodule.CM_Get_Device_Interface_ListA;
-        pub const CM_Get_Device_Interface_List_Ex = thismodule.CM_Get_Device_Interface_List_ExA;
-        pub const CM_Get_Device_Interface_List_Size = thismodule.CM_Get_Device_Interface_List_SizeA;
-        pub const CM_Get_Device_Interface_List_Size_Ex = thismodule.CM_Get_Device_Interface_List_Size_ExA;
-        pub const CM_Locate_DevNode = thismodule.CM_Locate_DevNodeA;
-        pub const CM_Locate_DevNode_Ex = thismodule.CM_Locate_DevNode_ExA;
-        pub const CM_Open_Class_Key = thismodule.CM_Open_Class_KeyA;
-        pub const CM_Open_Class_Key_Ex = thismodule.CM_Open_Class_Key_ExA;
-        pub const CM_Open_Device_Interface_Key = thismodule.CM_Open_Device_Interface_KeyA;
-        pub const CM_Open_Device_Interface_Key_Ex = thismodule.CM_Open_Device_Interface_Key_ExA;
-        pub const CM_Delete_Device_Interface_Key = thismodule.CM_Delete_Device_Interface_KeyA;
-        pub const CM_Delete_Device_Interface_Key_Ex = thismodule.CM_Delete_Device_Interface_Key_ExA;
-        pub const CM_Query_And_Remove_SubTree = thismodule.CM_Query_And_Remove_SubTreeA;
-        pub const CM_Query_And_Remove_SubTree_Ex = thismodule.CM_Query_And_Remove_SubTree_ExA;
-        pub const CM_Request_Device_Eject = thismodule.CM_Request_Device_EjectA;
-        pub const CM_Request_Device_Eject_Ex = thismodule.CM_Request_Device_Eject_ExA;
-        pub const CM_Register_Device_Interface = thismodule.CM_Register_Device_InterfaceA;
-        pub const CM_Register_Device_Interface_Ex = thismodule.CM_Register_Device_Interface_ExA;
-        pub const CM_Unregister_Device_Interface = thismodule.CM_Unregister_Device_InterfaceA;
-        pub const CM_Unregister_Device_Interface_Ex = thismodule.CM_Unregister_Device_Interface_ExA;
-        pub const CM_Set_DevNode_Registry_Property = thismodule.CM_Set_DevNode_Registry_PropertyA;
-        pub const CM_Set_DevNode_Registry_Property_Ex = thismodule.CM_Set_DevNode_Registry_Property_ExA;
-        pub const CM_Set_HW_Prof_Flags = thismodule.CM_Set_HW_Prof_FlagsA;
-        pub const CM_Set_HW_Prof_Flags_Ex = thismodule.CM_Set_HW_Prof_Flags_ExA;
-        pub const CM_Get_Resource_Conflict_Details = thismodule.CM_Get_Resource_Conflict_DetailsA;
-        pub const CM_Get_Class_Registry_Property = thismodule.CM_Get_Class_Registry_PropertyA;
-        pub const CM_Set_Class_Registry_Property = thismodule.CM_Set_Class_Registry_PropertyA;
-        pub const UpdateDriverForPlugAndPlayDevices = thismodule.UpdateDriverForPlugAndPlayDevicesA;
-        pub const DiInstallDriver = thismodule.DiInstallDriverA;
-        pub const DiUninstallDriver = thismodule.DiUninstallDriverA;
-    },
-    .wide => struct {
-        pub const SP_ORIGINAL_FILE_INFO_ = thismodule.SP_ORIGINAL_FILE_INFO_W;
-        pub const PSP_FILE_CALLBACK_ = thismodule.PSP_FILE_CALLBACK_W;
-        pub const FILEPATHS_ = thismodule.FILEPATHS_W;
-        pub const FILEPATHS_SIGNERINFO_ = thismodule.FILEPATHS_SIGNERINFO_W;
-        pub const SOURCE_MEDIA_ = thismodule.SOURCE_MEDIA_W;
-        pub const CABINET_INFO_ = thismodule.CABINET_INFO_W;
-        pub const FILE_IN_CABINET_INFO_ = thismodule.FILE_IN_CABINET_INFO_W;
-        pub const SP_REGISTER_CONTROL_STATUS = thismodule.SP_REGISTER_CONTROL_STATUSW;
-        pub const SP_FILE_COPY_PARAMS_ = thismodule.SP_FILE_COPY_PARAMS_W;
-        pub const SP_DEVICE_INTERFACE_DETAIL_DATA_ = thismodule.SP_DEVICE_INTERFACE_DETAIL_DATA_W;
-        pub const SP_DEVINFO_LIST_DETAIL_DATA_ = thismodule.SP_DEVINFO_LIST_DETAIL_DATA_W;
-        pub const SP_DEVINSTALL_PARAMS_ = thismodule.SP_DEVINSTALL_PARAMS_W;
-        pub const SP_SELECTDEVICE_PARAMS_ = thismodule.SP_SELECTDEVICE_PARAMS_W;
-        pub const SP_TROUBLESHOOTER_PARAMS_ = thismodule.SP_TROUBLESHOOTER_PARAMS_W;
-        pub const SP_POWERMESSAGEWAKE_PARAMS_ = thismodule.SP_POWERMESSAGEWAKE_PARAMS_W;
-        pub const SP_DRVINFO_DATA_V2_ = thismodule.SP_DRVINFO_DATA_V2_W;
-        pub const SP_DRVINFO_DATA_V1_ = thismodule.SP_DRVINFO_DATA_V1_W;
-        pub const SP_DRVINFO_DETAIL_DATA_ = thismodule.SP_DRVINFO_DETAIL_DATA_W;
-        pub const SP_BACKUP_QUEUE_PARAMS_V2_ = thismodule.SP_BACKUP_QUEUE_PARAMS_V2_W;
-        pub const SP_BACKUP_QUEUE_PARAMS_V1_ = thismodule.SP_BACKUP_QUEUE_PARAMS_V1_W;
-        pub const SP_INF_SIGNER_INFO_V1_ = thismodule.SP_INF_SIGNER_INFO_V1_W;
-        pub const SP_INF_SIGNER_INFO_V2_ = thismodule.SP_INF_SIGNER_INFO_V2_W;
-        pub const CONFLICT_DETAILS_ = thismodule.CONFLICT_DETAILS_W;
-        pub const HWProfileInfo_s = thismodule.HWProfileInfo_sW;
-        pub const SetupGetInfInformation = thismodule.SetupGetInfInformationW;
-        pub const SetupQueryInfFileInformation = thismodule.SetupQueryInfFileInformationW;
-        pub const SetupQueryInfOriginalFileInformation = thismodule.SetupQueryInfOriginalFileInformationW;
-        pub const SetupQueryInfVersionInformation = thismodule.SetupQueryInfVersionInformationW;
-        pub const SetupGetInfDriverStoreLocation = thismodule.SetupGetInfDriverStoreLocationW;
-        pub const SetupGetInfPublishedName = thismodule.SetupGetInfPublishedNameW;
-        pub const SetupGetInfFileList = thismodule.SetupGetInfFileListW;
-        pub const SetupOpenInfFile = thismodule.SetupOpenInfFileW;
-        pub const SetupOpenAppendInfFile = thismodule.SetupOpenAppendInfFileW;
-        pub const SetupFindFirstLine = thismodule.SetupFindFirstLineW;
-        pub const SetupFindNextMatchLine = thismodule.SetupFindNextMatchLineW;
-        pub const SetupGetLineByIndex = thismodule.SetupGetLineByIndexW;
-        pub const SetupGetLineCount = thismodule.SetupGetLineCountW;
-        pub const SetupGetLineText = thismodule.SetupGetLineTextW;
-        pub const SetupGetStringField = thismodule.SetupGetStringFieldW;
-        pub const SetupGetMultiSzField = thismodule.SetupGetMultiSzFieldW;
-        pub const SetupGetFileCompressionInfo = thismodule.SetupGetFileCompressionInfoW;
-        pub const SetupGetFileCompressionInfoEx = thismodule.SetupGetFileCompressionInfoExW;
-        pub const SetupDecompressOrCopyFile = thismodule.SetupDecompressOrCopyFileW;
-        pub const SetupGetSourceFileLocation = thismodule.SetupGetSourceFileLocationW;
-        pub const SetupGetSourceFileSize = thismodule.SetupGetSourceFileSizeW;
-        pub const SetupGetTargetPath = thismodule.SetupGetTargetPathW;
-        pub const SetupSetSourceList = thismodule.SetupSetSourceListW;
-        pub const SetupAddToSourceList = thismodule.SetupAddToSourceListW;
-        pub const SetupRemoveFromSourceList = thismodule.SetupRemoveFromSourceListW;
-        pub const SetupQuerySourceList = thismodule.SetupQuerySourceListW;
-        pub const SetupFreeSourceList = thismodule.SetupFreeSourceListW;
-        pub const SetupPromptForDisk = thismodule.SetupPromptForDiskW;
-        pub const SetupCopyError = thismodule.SetupCopyErrorW;
-        pub const SetupRenameError = thismodule.SetupRenameErrorW;
-        pub const SetupDeleteError = thismodule.SetupDeleteErrorW;
-        pub const SetupBackupError = thismodule.SetupBackupErrorW;
-        pub const SetupSetDirectoryId = thismodule.SetupSetDirectoryIdW;
-        pub const SetupSetDirectoryIdEx = thismodule.SetupSetDirectoryIdExW;
-        pub const SetupGetSourceInfo = thismodule.SetupGetSourceInfoW;
-        pub const SetupInstallFile = thismodule.SetupInstallFileW;
-        pub const SetupInstallFileEx = thismodule.SetupInstallFileExW;
-        pub const SetupSetFileQueueAlternatePlatform = thismodule.SetupSetFileQueueAlternatePlatformW;
-        pub const SetupSetPlatformPathOverride = thismodule.SetupSetPlatformPathOverrideW;
-        pub const SetupQueueCopy = thismodule.SetupQueueCopyW;
-        pub const SetupQueueCopyIndirect = thismodule.SetupQueueCopyIndirectW;
-        pub const SetupQueueDefaultCopy = thismodule.SetupQueueDefaultCopyW;
-        pub const SetupQueueCopySection = thismodule.SetupQueueCopySectionW;
-        pub const SetupQueueDelete = thismodule.SetupQueueDeleteW;
-        pub const SetupQueueDeleteSection = thismodule.SetupQueueDeleteSectionW;
-        pub const SetupQueueRename = thismodule.SetupQueueRenameW;
-        pub const SetupQueueRenameSection = thismodule.SetupQueueRenameSectionW;
-        pub const SetupCommitFileQueue = thismodule.SetupCommitFileQueueW;
-        pub const SetupScanFileQueue = thismodule.SetupScanFileQueueW;
-        pub const SetupCopyOEMInf = thismodule.SetupCopyOEMInfW;
-        pub const SetupUninstallOEMInf = thismodule.SetupUninstallOEMInfW;
-        pub const SetupCreateDiskSpaceList = thismodule.SetupCreateDiskSpaceListW;
-        pub const SetupDuplicateDiskSpaceList = thismodule.SetupDuplicateDiskSpaceListW;
-        pub const SetupQueryDrivesInDiskSpaceList = thismodule.SetupQueryDrivesInDiskSpaceListW;
-        pub const SetupQuerySpaceRequiredOnDrive = thismodule.SetupQuerySpaceRequiredOnDriveW;
-        pub const SetupAdjustDiskSpaceList = thismodule.SetupAdjustDiskSpaceListW;
-        pub const SetupAddToDiskSpaceList = thismodule.SetupAddToDiskSpaceListW;
-        pub const SetupAddSectionToDiskSpaceList = thismodule.SetupAddSectionToDiskSpaceListW;
-        pub const SetupAddInstallSectionToDiskSpaceList = thismodule.SetupAddInstallSectionToDiskSpaceListW;
-        pub const SetupRemoveFromDiskSpaceList = thismodule.SetupRemoveFromDiskSpaceListW;
-        pub const SetupRemoveSectionFromDiskSpaceList = thismodule.SetupRemoveSectionFromDiskSpaceListW;
-        pub const SetupRemoveInstallSectionFromDiskSpaceList = thismodule.SetupRemoveInstallSectionFromDiskSpaceListW;
-        pub const SetupIterateCabinet = thismodule.SetupIterateCabinetW;
-        pub const SetupDefaultQueueCallback = thismodule.SetupDefaultQueueCallbackW;
-        pub const SetupInstallFromInfSection = thismodule.SetupInstallFromInfSectionW;
-        pub const SetupInstallFilesFromInfSection = thismodule.SetupInstallFilesFromInfSectionW;
-        pub const SetupInstallServicesFromInfSection = thismodule.SetupInstallServicesFromInfSectionW;
-        pub const SetupInstallServicesFromInfSectionEx = thismodule.SetupInstallServicesFromInfSectionExW;
-        pub const InstallHinfSection = thismodule.InstallHinfSectionW;
-        pub const SetupInitializeFileLog = thismodule.SetupInitializeFileLogW;
-        pub const SetupLogFile = thismodule.SetupLogFileW;
-        pub const SetupRemoveFileLogEntry = thismodule.SetupRemoveFileLogEntryW;
-        pub const SetupQueryFileLog = thismodule.SetupQueryFileLogW;
-        pub const SetupLogError = thismodule.SetupLogErrorW;
-        pub const SetupGetBackupInformation = thismodule.SetupGetBackupInformationW;
-        pub const SetupPrepareQueueForRestore = thismodule.SetupPrepareQueueForRestoreW;
-        pub const SetupDiCreateDeviceInfoListEx = thismodule.SetupDiCreateDeviceInfoListExW;
-        pub const SetupDiGetDeviceInfoListDetail = thismodule.SetupDiGetDeviceInfoListDetailW;
-        pub const SetupDiCreateDeviceInfo = thismodule.SetupDiCreateDeviceInfoW;
-        pub const SetupDiOpenDeviceInfo = thismodule.SetupDiOpenDeviceInfoW;
-        pub const SetupDiGetDeviceInstanceId = thismodule.SetupDiGetDeviceInstanceIdW;
-        pub const SetupDiCreateDeviceInterface = thismodule.SetupDiCreateDeviceInterfaceW;
-        pub const SetupDiOpenDeviceInterface = thismodule.SetupDiOpenDeviceInterfaceW;
-        pub const SetupDiGetDeviceInterfaceDetail = thismodule.SetupDiGetDeviceInterfaceDetailW;
-        pub const SetupDiEnumDriverInfo = thismodule.SetupDiEnumDriverInfoW;
-        pub const SetupDiGetSelectedDriver = thismodule.SetupDiGetSelectedDriverW;
-        pub const SetupDiSetSelectedDriver = thismodule.SetupDiSetSelectedDriverW;
-        pub const SetupDiGetDriverInfoDetail = thismodule.SetupDiGetDriverInfoDetailW;
-        pub const SetupDiGetClassDevs = thismodule.SetupDiGetClassDevsW;
-        pub const SetupDiGetClassDevsEx = thismodule.SetupDiGetClassDevsExW;
-        pub const SetupDiGetINFClass = thismodule.SetupDiGetINFClassW;
-        pub const SetupDiBuildClassInfoListEx = thismodule.SetupDiBuildClassInfoListExW;
-        pub const SetupDiGetClassDescription = thismodule.SetupDiGetClassDescriptionW;
-        pub const SetupDiGetClassDescriptionEx = thismodule.SetupDiGetClassDescriptionExW;
-        pub const SetupDiInstallClass = thismodule.SetupDiInstallClassW;
-        pub const SetupDiInstallClassEx = thismodule.SetupDiInstallClassExW;
-        pub const SetupDiOpenClassRegKeyEx = thismodule.SetupDiOpenClassRegKeyExW;
-        pub const SetupDiCreateDeviceInterfaceRegKey = thismodule.SetupDiCreateDeviceInterfaceRegKeyW;
-        pub const SetupDiCreateDevRegKey = thismodule.SetupDiCreateDevRegKeyW;
-        pub const SetupDiGetHwProfileListEx = thismodule.SetupDiGetHwProfileListExW;
-        pub const SetupDiGetDeviceRegistryProperty = thismodule.SetupDiGetDeviceRegistryPropertyW;
-        pub const SetupDiGetClassRegistryProperty = thismodule.SetupDiGetClassRegistryPropertyW;
-        pub const SetupDiSetDeviceRegistryProperty = thismodule.SetupDiSetDeviceRegistryPropertyW;
-        pub const SetupDiSetClassRegistryProperty = thismodule.SetupDiSetClassRegistryPropertyW;
-        pub const SetupDiGetDeviceInstallParams = thismodule.SetupDiGetDeviceInstallParamsW;
-        pub const SetupDiGetClassInstallParams = thismodule.SetupDiGetClassInstallParamsW;
-        pub const SetupDiSetDeviceInstallParams = thismodule.SetupDiSetDeviceInstallParamsW;
-        pub const SetupDiSetClassInstallParams = thismodule.SetupDiSetClassInstallParamsW;
-        pub const SetupDiGetDriverInstallParams = thismodule.SetupDiGetDriverInstallParamsW;
-        pub const SetupDiSetDriverInstallParams = thismodule.SetupDiSetDriverInstallParamsW;
-        pub const SetupDiGetClassImageListEx = thismodule.SetupDiGetClassImageListExW;
-        pub const SetupDiGetClassDevPropertySheets = thismodule.SetupDiGetClassDevPropertySheetsW;
-        pub const SetupDiClassNameFromGuid = thismodule.SetupDiClassNameFromGuidW;
-        pub const SetupDiClassNameFromGuidEx = thismodule.SetupDiClassNameFromGuidExW;
-        pub const SetupDiClassGuidsFromName = thismodule.SetupDiClassGuidsFromNameW;
-        pub const SetupDiClassGuidsFromNameEx = thismodule.SetupDiClassGuidsFromNameExW;
-        pub const SetupDiGetHwProfileFriendlyName = thismodule.SetupDiGetHwProfileFriendlyNameW;
-        pub const SetupDiGetHwProfileFriendlyNameEx = thismodule.SetupDiGetHwProfileFriendlyNameExW;
-        pub const SetupDiGetActualModelsSection = thismodule.SetupDiGetActualModelsSectionW;
-        pub const SetupDiGetActualSectionToInstall = thismodule.SetupDiGetActualSectionToInstallW;
-        pub const SetupDiGetActualSectionToInstallEx = thismodule.SetupDiGetActualSectionToInstallExW;
-        pub const SetupEnumInfSections = thismodule.SetupEnumInfSectionsW;
-        pub const SetupVerifyInfFile = thismodule.SetupVerifyInfFileW;
-        pub const SetupDiGetCustomDeviceProperty = thismodule.SetupDiGetCustomDevicePropertyW;
-        pub const SetupConfigureWmiFromInfSection = thismodule.SetupConfigureWmiFromInfSectionW;
-        pub const CM_Add_ID = thismodule.CM_Add_IDW;
-        pub const CM_Add_ID_Ex = thismodule.CM_Add_ID_ExW;
-        pub const CM_Connect_Machine = thismodule.CM_Connect_MachineW;
-        pub const CM_Create_DevNode = thismodule.CM_Create_DevNodeW;
-        pub const CM_Create_DevNode_Ex = thismodule.CM_Create_DevNode_ExW;
-        pub const CM_Enumerate_Enumerators = thismodule.CM_Enumerate_EnumeratorsW;
-        pub const CM_Enumerate_Enumerators_Ex = thismodule.CM_Enumerate_Enumerators_ExW;
-        pub const CM_Get_Class_Name = thismodule.CM_Get_Class_NameW;
-        pub const CM_Get_Class_Name_Ex = thismodule.CM_Get_Class_Name_ExW;
-        pub const CM_Get_Class_Key_Name = thismodule.CM_Get_Class_Key_NameW;
-        pub const CM_Get_Class_Key_Name_Ex = thismodule.CM_Get_Class_Key_Name_ExW;
-        pub const CM_Get_Device_ID = thismodule.CM_Get_Device_IDW;
-        pub const CM_Get_Device_ID_Ex = thismodule.CM_Get_Device_ID_ExW;
-        pub const CM_Get_Device_ID_List = thismodule.CM_Get_Device_ID_ListW;
-        pub const CM_Get_Device_ID_List_Ex = thismodule.CM_Get_Device_ID_List_ExW;
-        pub const CM_Get_Device_ID_List_Size = thismodule.CM_Get_Device_ID_List_SizeW;
-        pub const CM_Get_Device_ID_List_Size_Ex = thismodule.CM_Get_Device_ID_List_Size_ExW;
-        pub const CM_Get_DevNode_Registry_Property = thismodule.CM_Get_DevNode_Registry_PropertyW;
-        pub const CM_Get_DevNode_Registry_Property_Ex = thismodule.CM_Get_DevNode_Registry_Property_ExW;
-        pub const CM_Get_DevNode_Custom_Property = thismodule.CM_Get_DevNode_Custom_PropertyW;
-        pub const CM_Get_DevNode_Custom_Property_Ex = thismodule.CM_Get_DevNode_Custom_Property_ExW;
-        pub const CM_Get_Hardware_Profile_Info = thismodule.CM_Get_Hardware_Profile_InfoW;
-        pub const CM_Get_Hardware_Profile_Info_Ex = thismodule.CM_Get_Hardware_Profile_Info_ExW;
-        pub const CM_Get_HW_Prof_Flags = thismodule.CM_Get_HW_Prof_FlagsW;
-        pub const CM_Get_HW_Prof_Flags_Ex = thismodule.CM_Get_HW_Prof_Flags_ExW;
-        pub const CM_Get_Device_Interface_Alias = thismodule.CM_Get_Device_Interface_AliasW;
-        pub const CM_Get_Device_Interface_Alias_Ex = thismodule.CM_Get_Device_Interface_Alias_ExW;
-        pub const CM_Get_Device_Interface_List = thismodule.CM_Get_Device_Interface_ListW;
-        pub const CM_Get_Device_Interface_List_Ex = thismodule.CM_Get_Device_Interface_List_ExW;
-        pub const CM_Get_Device_Interface_List_Size = thismodule.CM_Get_Device_Interface_List_SizeW;
-        pub const CM_Get_Device_Interface_List_Size_Ex = thismodule.CM_Get_Device_Interface_List_Size_ExW;
-        pub const CM_Locate_DevNode = thismodule.CM_Locate_DevNodeW;
-        pub const CM_Locate_DevNode_Ex = thismodule.CM_Locate_DevNode_ExW;
-        pub const CM_Open_Class_Key = thismodule.CM_Open_Class_KeyW;
-        pub const CM_Open_Class_Key_Ex = thismodule.CM_Open_Class_Key_ExW;
-        pub const CM_Open_Device_Interface_Key = thismodule.CM_Open_Device_Interface_KeyW;
-        pub const CM_Open_Device_Interface_Key_Ex = thismodule.CM_Open_Device_Interface_Key_ExW;
-        pub const CM_Delete_Device_Interface_Key = thismodule.CM_Delete_Device_Interface_KeyW;
-        pub const CM_Delete_Device_Interface_Key_Ex = thismodule.CM_Delete_Device_Interface_Key_ExW;
-        pub const CM_Query_And_Remove_SubTree = thismodule.CM_Query_And_Remove_SubTreeW;
-        pub const CM_Query_And_Remove_SubTree_Ex = thismodule.CM_Query_And_Remove_SubTree_ExW;
-        pub const CM_Request_Device_Eject = thismodule.CM_Request_Device_EjectW;
-        pub const CM_Request_Device_Eject_Ex = thismodule.CM_Request_Device_Eject_ExW;
-        pub const CM_Register_Device_Interface = thismodule.CM_Register_Device_InterfaceW;
-        pub const CM_Register_Device_Interface_Ex = thismodule.CM_Register_Device_Interface_ExW;
-        pub const CM_Unregister_Device_Interface = thismodule.CM_Unregister_Device_InterfaceW;
-        pub const CM_Unregister_Device_Interface_Ex = thismodule.CM_Unregister_Device_Interface_ExW;
-        pub const CM_Set_DevNode_Registry_Property = thismodule.CM_Set_DevNode_Registry_PropertyW;
-        pub const CM_Set_DevNode_Registry_Property_Ex = thismodule.CM_Set_DevNode_Registry_Property_ExW;
-        pub const CM_Set_HW_Prof_Flags = thismodule.CM_Set_HW_Prof_FlagsW;
-        pub const CM_Set_HW_Prof_Flags_Ex = thismodule.CM_Set_HW_Prof_Flags_ExW;
-        pub const CM_Get_Resource_Conflict_Details = thismodule.CM_Get_Resource_Conflict_DetailsW;
-        pub const CM_Get_Class_Registry_Property = thismodule.CM_Get_Class_Registry_PropertyW;
-        pub const CM_Set_Class_Registry_Property = thismodule.CM_Set_Class_Registry_PropertyW;
-        pub const UpdateDriverForPlugAndPlayDevices = thismodule.UpdateDriverForPlugAndPlayDevicesW;
-        pub const DiInstallDriver = thismodule.DiInstallDriverW;
-        pub const DiUninstallDriver = thismodule.DiUninstallDriverW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const SP_ORIGINAL_FILE_INFO_ = *opaque{};
-        pub const PSP_FILE_CALLBACK_ = *opaque{};
-        pub const FILEPATHS_ = *opaque{};
-        pub const FILEPATHS_SIGNERINFO_ = *opaque{};
-        pub const SOURCE_MEDIA_ = *opaque{};
-        pub const CABINET_INFO_ = *opaque{};
-        pub const FILE_IN_CABINET_INFO_ = *opaque{};
-        pub const SP_REGISTER_CONTROL_STATUS = *opaque{};
-        pub const SP_FILE_COPY_PARAMS_ = *opaque{};
-        pub const SP_DEVICE_INTERFACE_DETAIL_DATA_ = *opaque{};
-        pub const SP_DEVINFO_LIST_DETAIL_DATA_ = *opaque{};
-        pub const SP_DEVINSTALL_PARAMS_ = *opaque{};
-        pub const SP_SELECTDEVICE_PARAMS_ = *opaque{};
-        pub const SP_TROUBLESHOOTER_PARAMS_ = *opaque{};
-        pub const SP_POWERMESSAGEWAKE_PARAMS_ = *opaque{};
-        pub const SP_DRVINFO_DATA_V2_ = *opaque{};
-        pub const SP_DRVINFO_DATA_V1_ = *opaque{};
-        pub const SP_DRVINFO_DETAIL_DATA_ = *opaque{};
-        pub const SP_BACKUP_QUEUE_PARAMS_V2_ = *opaque{};
-        pub const SP_BACKUP_QUEUE_PARAMS_V1_ = *opaque{};
-        pub const SP_INF_SIGNER_INFO_V1_ = *opaque{};
-        pub const SP_INF_SIGNER_INFO_V2_ = *opaque{};
-        pub const CONFLICT_DETAILS_ = *opaque{};
-        pub const HWProfileInfo_s = *opaque{};
-        pub const SetupGetInfInformation = *opaque{};
-        pub const SetupQueryInfFileInformation = *opaque{};
-        pub const SetupQueryInfOriginalFileInformation = *opaque{};
-        pub const SetupQueryInfVersionInformation = *opaque{};
-        pub const SetupGetInfDriverStoreLocation = *opaque{};
-        pub const SetupGetInfPublishedName = *opaque{};
-        pub const SetupGetInfFileList = *opaque{};
-        pub const SetupOpenInfFile = *opaque{};
-        pub const SetupOpenAppendInfFile = *opaque{};
-        pub const SetupFindFirstLine = *opaque{};
-        pub const SetupFindNextMatchLine = *opaque{};
-        pub const SetupGetLineByIndex = *opaque{};
-        pub const SetupGetLineCount = *opaque{};
-        pub const SetupGetLineText = *opaque{};
-        pub const SetupGetStringField = *opaque{};
-        pub const SetupGetMultiSzField = *opaque{};
-        pub const SetupGetFileCompressionInfo = *opaque{};
-        pub const SetupGetFileCompressionInfoEx = *opaque{};
-        pub const SetupDecompressOrCopyFile = *opaque{};
-        pub const SetupGetSourceFileLocation = *opaque{};
-        pub const SetupGetSourceFileSize = *opaque{};
-        pub const SetupGetTargetPath = *opaque{};
-        pub const SetupSetSourceList = *opaque{};
-        pub const SetupAddToSourceList = *opaque{};
-        pub const SetupRemoveFromSourceList = *opaque{};
-        pub const SetupQuerySourceList = *opaque{};
-        pub const SetupFreeSourceList = *opaque{};
-        pub const SetupPromptForDisk = *opaque{};
-        pub const SetupCopyError = *opaque{};
-        pub const SetupRenameError = *opaque{};
-        pub const SetupDeleteError = *opaque{};
-        pub const SetupBackupError = *opaque{};
-        pub const SetupSetDirectoryId = *opaque{};
-        pub const SetupSetDirectoryIdEx = *opaque{};
-        pub const SetupGetSourceInfo = *opaque{};
-        pub const SetupInstallFile = *opaque{};
-        pub const SetupInstallFileEx = *opaque{};
-        pub const SetupSetFileQueueAlternatePlatform = *opaque{};
-        pub const SetupSetPlatformPathOverride = *opaque{};
-        pub const SetupQueueCopy = *opaque{};
-        pub const SetupQueueCopyIndirect = *opaque{};
-        pub const SetupQueueDefaultCopy = *opaque{};
-        pub const SetupQueueCopySection = *opaque{};
-        pub const SetupQueueDelete = *opaque{};
-        pub const SetupQueueDeleteSection = *opaque{};
-        pub const SetupQueueRename = *opaque{};
-        pub const SetupQueueRenameSection = *opaque{};
-        pub const SetupCommitFileQueue = *opaque{};
-        pub const SetupScanFileQueue = *opaque{};
-        pub const SetupCopyOEMInf = *opaque{};
-        pub const SetupUninstallOEMInf = *opaque{};
-        pub const SetupCreateDiskSpaceList = *opaque{};
-        pub const SetupDuplicateDiskSpaceList = *opaque{};
-        pub const SetupQueryDrivesInDiskSpaceList = *opaque{};
-        pub const SetupQuerySpaceRequiredOnDrive = *opaque{};
-        pub const SetupAdjustDiskSpaceList = *opaque{};
-        pub const SetupAddToDiskSpaceList = *opaque{};
-        pub const SetupAddSectionToDiskSpaceList = *opaque{};
-        pub const SetupAddInstallSectionToDiskSpaceList = *opaque{};
-        pub const SetupRemoveFromDiskSpaceList = *opaque{};
-        pub const SetupRemoveSectionFromDiskSpaceList = *opaque{};
-        pub const SetupRemoveInstallSectionFromDiskSpaceList = *opaque{};
-        pub const SetupIterateCabinet = *opaque{};
-        pub const SetupDefaultQueueCallback = *opaque{};
-        pub const SetupInstallFromInfSection = *opaque{};
-        pub const SetupInstallFilesFromInfSection = *opaque{};
-        pub const SetupInstallServicesFromInfSection = *opaque{};
-        pub const SetupInstallServicesFromInfSectionEx = *opaque{};
-        pub const InstallHinfSection = *opaque{};
-        pub const SetupInitializeFileLog = *opaque{};
-        pub const SetupLogFile = *opaque{};
-        pub const SetupRemoveFileLogEntry = *opaque{};
-        pub const SetupQueryFileLog = *opaque{};
-        pub const SetupLogError = *opaque{};
-        pub const SetupGetBackupInformation = *opaque{};
-        pub const SetupPrepareQueueForRestore = *opaque{};
-        pub const SetupDiCreateDeviceInfoListEx = *opaque{};
-        pub const SetupDiGetDeviceInfoListDetail = *opaque{};
-        pub const SetupDiCreateDeviceInfo = *opaque{};
-        pub const SetupDiOpenDeviceInfo = *opaque{};
-        pub const SetupDiGetDeviceInstanceId = *opaque{};
-        pub const SetupDiCreateDeviceInterface = *opaque{};
-        pub const SetupDiOpenDeviceInterface = *opaque{};
-        pub const SetupDiGetDeviceInterfaceDetail = *opaque{};
-        pub const SetupDiEnumDriverInfo = *opaque{};
-        pub const SetupDiGetSelectedDriver = *opaque{};
-        pub const SetupDiSetSelectedDriver = *opaque{};
-        pub const SetupDiGetDriverInfoDetail = *opaque{};
-        pub const SetupDiGetClassDevs = *opaque{};
-        pub const SetupDiGetClassDevsEx = *opaque{};
-        pub const SetupDiGetINFClass = *opaque{};
-        pub const SetupDiBuildClassInfoListEx = *opaque{};
-        pub const SetupDiGetClassDescription = *opaque{};
-        pub const SetupDiGetClassDescriptionEx = *opaque{};
-        pub const SetupDiInstallClass = *opaque{};
-        pub const SetupDiInstallClassEx = *opaque{};
-        pub const SetupDiOpenClassRegKeyEx = *opaque{};
-        pub const SetupDiCreateDeviceInterfaceRegKey = *opaque{};
-        pub const SetupDiCreateDevRegKey = *opaque{};
-        pub const SetupDiGetHwProfileListEx = *opaque{};
-        pub const SetupDiGetDeviceRegistryProperty = *opaque{};
-        pub const SetupDiGetClassRegistryProperty = *opaque{};
-        pub const SetupDiSetDeviceRegistryProperty = *opaque{};
-        pub const SetupDiSetClassRegistryProperty = *opaque{};
-        pub const SetupDiGetDeviceInstallParams = *opaque{};
-        pub const SetupDiGetClassInstallParams = *opaque{};
-        pub const SetupDiSetDeviceInstallParams = *opaque{};
-        pub const SetupDiSetClassInstallParams = *opaque{};
-        pub const SetupDiGetDriverInstallParams = *opaque{};
-        pub const SetupDiSetDriverInstallParams = *opaque{};
-        pub const SetupDiGetClassImageListEx = *opaque{};
-        pub const SetupDiGetClassDevPropertySheets = *opaque{};
-        pub const SetupDiClassNameFromGuid = *opaque{};
-        pub const SetupDiClassNameFromGuidEx = *opaque{};
-        pub const SetupDiClassGuidsFromName = *opaque{};
-        pub const SetupDiClassGuidsFromNameEx = *opaque{};
-        pub const SetupDiGetHwProfileFriendlyName = *opaque{};
-        pub const SetupDiGetHwProfileFriendlyNameEx = *opaque{};
-        pub const SetupDiGetActualModelsSection = *opaque{};
-        pub const SetupDiGetActualSectionToInstall = *opaque{};
-        pub const SetupDiGetActualSectionToInstallEx = *opaque{};
-        pub const SetupEnumInfSections = *opaque{};
-        pub const SetupVerifyInfFile = *opaque{};
-        pub const SetupDiGetCustomDeviceProperty = *opaque{};
-        pub const SetupConfigureWmiFromInfSection = *opaque{};
-        pub const CM_Add_ID = *opaque{};
-        pub const CM_Add_ID_Ex = *opaque{};
-        pub const CM_Connect_Machine = *opaque{};
-        pub const CM_Create_DevNode = *opaque{};
-        pub const CM_Create_DevNode_Ex = *opaque{};
-        pub const CM_Enumerate_Enumerators = *opaque{};
-        pub const CM_Enumerate_Enumerators_Ex = *opaque{};
-        pub const CM_Get_Class_Name = *opaque{};
-        pub const CM_Get_Class_Name_Ex = *opaque{};
-        pub const CM_Get_Class_Key_Name = *opaque{};
-        pub const CM_Get_Class_Key_Name_Ex = *opaque{};
-        pub const CM_Get_Device_ID = *opaque{};
-        pub const CM_Get_Device_ID_Ex = *opaque{};
-        pub const CM_Get_Device_ID_List = *opaque{};
-        pub const CM_Get_Device_ID_List_Ex = *opaque{};
-        pub const CM_Get_Device_ID_List_Size = *opaque{};
-        pub const CM_Get_Device_ID_List_Size_Ex = *opaque{};
-        pub const CM_Get_DevNode_Registry_Property = *opaque{};
-        pub const CM_Get_DevNode_Registry_Property_Ex = *opaque{};
-        pub const CM_Get_DevNode_Custom_Property = *opaque{};
-        pub const CM_Get_DevNode_Custom_Property_Ex = *opaque{};
-        pub const CM_Get_Hardware_Profile_Info = *opaque{};
-        pub const CM_Get_Hardware_Profile_Info_Ex = *opaque{};
-        pub const CM_Get_HW_Prof_Flags = *opaque{};
-        pub const CM_Get_HW_Prof_Flags_Ex = *opaque{};
-        pub const CM_Get_Device_Interface_Alias = *opaque{};
-        pub const CM_Get_Device_Interface_Alias_Ex = *opaque{};
-        pub const CM_Get_Device_Interface_List = *opaque{};
-        pub const CM_Get_Device_Interface_List_Ex = *opaque{};
-        pub const CM_Get_Device_Interface_List_Size = *opaque{};
-        pub const CM_Get_Device_Interface_List_Size_Ex = *opaque{};
-        pub const CM_Locate_DevNode = *opaque{};
-        pub const CM_Locate_DevNode_Ex = *opaque{};
-        pub const CM_Open_Class_Key = *opaque{};
-        pub const CM_Open_Class_Key_Ex = *opaque{};
-        pub const CM_Open_Device_Interface_Key = *opaque{};
-        pub const CM_Open_Device_Interface_Key_Ex = *opaque{};
-        pub const CM_Delete_Device_Interface_Key = *opaque{};
-        pub const CM_Delete_Device_Interface_Key_Ex = *opaque{};
-        pub const CM_Query_And_Remove_SubTree = *opaque{};
-        pub const CM_Query_And_Remove_SubTree_Ex = *opaque{};
-        pub const CM_Request_Device_Eject = *opaque{};
-        pub const CM_Request_Device_Eject_Ex = *opaque{};
-        pub const CM_Register_Device_Interface = *opaque{};
-        pub const CM_Register_Device_Interface_Ex = *opaque{};
-        pub const CM_Unregister_Device_Interface = *opaque{};
-        pub const CM_Unregister_Device_Interface_Ex = *opaque{};
-        pub const CM_Set_DevNode_Registry_Property = *opaque{};
-        pub const CM_Set_DevNode_Registry_Property_Ex = *opaque{};
-        pub const CM_Set_HW_Prof_Flags = *opaque{};
-        pub const CM_Set_HW_Prof_Flags_Ex = *opaque{};
-        pub const CM_Get_Resource_Conflict_Details = *opaque{};
-        pub const CM_Get_Class_Registry_Property = *opaque{};
-        pub const CM_Set_Class_Registry_Property = *opaque{};
-        pub const UpdateDriverForPlugAndPlayDevices = *opaque{};
-        pub const DiInstallDriver = *opaque{};
-        pub const DiUninstallDriver = *opaque{};
-    } else struct {
-        pub const SP_ORIGINAL_FILE_INFO_ = @compileError("'SP_ORIGINAL_FILE_INFO_' requires that UNICODE be set to true or false in the root module");
-        pub const PSP_FILE_CALLBACK_ = @compileError("'PSP_FILE_CALLBACK_' requires that UNICODE be set to true or false in the root module");
-        pub const FILEPATHS_ = @compileError("'FILEPATHS_' requires that UNICODE be set to true or false in the root module");
-        pub const FILEPATHS_SIGNERINFO_ = @compileError("'FILEPATHS_SIGNERINFO_' requires that UNICODE be set to true or false in the root module");
-        pub const SOURCE_MEDIA_ = @compileError("'SOURCE_MEDIA_' requires that UNICODE be set to true or false in the root module");
-        pub const CABINET_INFO_ = @compileError("'CABINET_INFO_' requires that UNICODE be set to true or false in the root module");
-        pub const FILE_IN_CABINET_INFO_ = @compileError("'FILE_IN_CABINET_INFO_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_REGISTER_CONTROL_STATUS = @compileError("'SP_REGISTER_CONTROL_STATUS' requires that UNICODE be set to true or false in the root module");
-        pub const SP_FILE_COPY_PARAMS_ = @compileError("'SP_FILE_COPY_PARAMS_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_DEVICE_INTERFACE_DETAIL_DATA_ = @compileError("'SP_DEVICE_INTERFACE_DETAIL_DATA_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_DEVINFO_LIST_DETAIL_DATA_ = @compileError("'SP_DEVINFO_LIST_DETAIL_DATA_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_DEVINSTALL_PARAMS_ = @compileError("'SP_DEVINSTALL_PARAMS_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_SELECTDEVICE_PARAMS_ = @compileError("'SP_SELECTDEVICE_PARAMS_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_TROUBLESHOOTER_PARAMS_ = @compileError("'SP_TROUBLESHOOTER_PARAMS_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_POWERMESSAGEWAKE_PARAMS_ = @compileError("'SP_POWERMESSAGEWAKE_PARAMS_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_DRVINFO_DATA_V2_ = @compileError("'SP_DRVINFO_DATA_V2_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_DRVINFO_DATA_V1_ = @compileError("'SP_DRVINFO_DATA_V1_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_DRVINFO_DETAIL_DATA_ = @compileError("'SP_DRVINFO_DETAIL_DATA_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_BACKUP_QUEUE_PARAMS_V2_ = @compileError("'SP_BACKUP_QUEUE_PARAMS_V2_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_BACKUP_QUEUE_PARAMS_V1_ = @compileError("'SP_BACKUP_QUEUE_PARAMS_V1_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_INF_SIGNER_INFO_V1_ = @compileError("'SP_INF_SIGNER_INFO_V1_' requires that UNICODE be set to true or false in the root module");
-        pub const SP_INF_SIGNER_INFO_V2_ = @compileError("'SP_INF_SIGNER_INFO_V2_' requires that UNICODE be set to true or false in the root module");
-        pub const CONFLICT_DETAILS_ = @compileError("'CONFLICT_DETAILS_' requires that UNICODE be set to true or false in the root module");
-        pub const HWProfileInfo_s = @compileError("'HWProfileInfo_s' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetInfInformation = @compileError("'SetupGetInfInformation' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueryInfFileInformation = @compileError("'SetupQueryInfFileInformation' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueryInfOriginalFileInformation = @compileError("'SetupQueryInfOriginalFileInformation' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueryInfVersionInformation = @compileError("'SetupQueryInfVersionInformation' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetInfDriverStoreLocation = @compileError("'SetupGetInfDriverStoreLocation' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetInfPublishedName = @compileError("'SetupGetInfPublishedName' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetInfFileList = @compileError("'SetupGetInfFileList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupOpenInfFile = @compileError("'SetupOpenInfFile' requires that UNICODE be set to true or false in the root module");
-        pub const SetupOpenAppendInfFile = @compileError("'SetupOpenAppendInfFile' requires that UNICODE be set to true or false in the root module");
-        pub const SetupFindFirstLine = @compileError("'SetupFindFirstLine' requires that UNICODE be set to true or false in the root module");
-        pub const SetupFindNextMatchLine = @compileError("'SetupFindNextMatchLine' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetLineByIndex = @compileError("'SetupGetLineByIndex' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetLineCount = @compileError("'SetupGetLineCount' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetLineText = @compileError("'SetupGetLineText' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetStringField = @compileError("'SetupGetStringField' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetMultiSzField = @compileError("'SetupGetMultiSzField' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetFileCompressionInfo = @compileError("'SetupGetFileCompressionInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetFileCompressionInfoEx = @compileError("'SetupGetFileCompressionInfoEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDecompressOrCopyFile = @compileError("'SetupDecompressOrCopyFile' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetSourceFileLocation = @compileError("'SetupGetSourceFileLocation' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetSourceFileSize = @compileError("'SetupGetSourceFileSize' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetTargetPath = @compileError("'SetupGetTargetPath' requires that UNICODE be set to true or false in the root module");
-        pub const SetupSetSourceList = @compileError("'SetupSetSourceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupAddToSourceList = @compileError("'SetupAddToSourceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupRemoveFromSourceList = @compileError("'SetupRemoveFromSourceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQuerySourceList = @compileError("'SetupQuerySourceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupFreeSourceList = @compileError("'SetupFreeSourceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupPromptForDisk = @compileError("'SetupPromptForDisk' requires that UNICODE be set to true or false in the root module");
-        pub const SetupCopyError = @compileError("'SetupCopyError' requires that UNICODE be set to true or false in the root module");
-        pub const SetupRenameError = @compileError("'SetupRenameError' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDeleteError = @compileError("'SetupDeleteError' requires that UNICODE be set to true or false in the root module");
-        pub const SetupBackupError = @compileError("'SetupBackupError' requires that UNICODE be set to true or false in the root module");
-        pub const SetupSetDirectoryId = @compileError("'SetupSetDirectoryId' requires that UNICODE be set to true or false in the root module");
-        pub const SetupSetDirectoryIdEx = @compileError("'SetupSetDirectoryIdEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetSourceInfo = @compileError("'SetupGetSourceInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInstallFile = @compileError("'SetupInstallFile' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInstallFileEx = @compileError("'SetupInstallFileEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupSetFileQueueAlternatePlatform = @compileError("'SetupSetFileQueueAlternatePlatform' requires that UNICODE be set to true or false in the root module");
-        pub const SetupSetPlatformPathOverride = @compileError("'SetupSetPlatformPathOverride' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueCopy = @compileError("'SetupQueueCopy' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueCopyIndirect = @compileError("'SetupQueueCopyIndirect' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueDefaultCopy = @compileError("'SetupQueueDefaultCopy' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueCopySection = @compileError("'SetupQueueCopySection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueDelete = @compileError("'SetupQueueDelete' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueDeleteSection = @compileError("'SetupQueueDeleteSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueRename = @compileError("'SetupQueueRename' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueRenameSection = @compileError("'SetupQueueRenameSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupCommitFileQueue = @compileError("'SetupCommitFileQueue' requires that UNICODE be set to true or false in the root module");
-        pub const SetupScanFileQueue = @compileError("'SetupScanFileQueue' requires that UNICODE be set to true or false in the root module");
-        pub const SetupCopyOEMInf = @compileError("'SetupCopyOEMInf' requires that UNICODE be set to true or false in the root module");
-        pub const SetupUninstallOEMInf = @compileError("'SetupUninstallOEMInf' requires that UNICODE be set to true or false in the root module");
-        pub const SetupCreateDiskSpaceList = @compileError("'SetupCreateDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDuplicateDiskSpaceList = @compileError("'SetupDuplicateDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueryDrivesInDiskSpaceList = @compileError("'SetupQueryDrivesInDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQuerySpaceRequiredOnDrive = @compileError("'SetupQuerySpaceRequiredOnDrive' requires that UNICODE be set to true or false in the root module");
-        pub const SetupAdjustDiskSpaceList = @compileError("'SetupAdjustDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupAddToDiskSpaceList = @compileError("'SetupAddToDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupAddSectionToDiskSpaceList = @compileError("'SetupAddSectionToDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupAddInstallSectionToDiskSpaceList = @compileError("'SetupAddInstallSectionToDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupRemoveFromDiskSpaceList = @compileError("'SetupRemoveFromDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupRemoveSectionFromDiskSpaceList = @compileError("'SetupRemoveSectionFromDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupRemoveInstallSectionFromDiskSpaceList = @compileError("'SetupRemoveInstallSectionFromDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupIterateCabinet = @compileError("'SetupIterateCabinet' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDefaultQueueCallback = @compileError("'SetupDefaultQueueCallback' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInstallFromInfSection = @compileError("'SetupInstallFromInfSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInstallFilesFromInfSection = @compileError("'SetupInstallFilesFromInfSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInstallServicesFromInfSection = @compileError("'SetupInstallServicesFromInfSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInstallServicesFromInfSectionEx = @compileError("'SetupInstallServicesFromInfSectionEx' requires that UNICODE be set to true or false in the root module");
-        pub const InstallHinfSection = @compileError("'InstallHinfSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInitializeFileLog = @compileError("'SetupInitializeFileLog' requires that UNICODE be set to true or false in the root module");
-        pub const SetupLogFile = @compileError("'SetupLogFile' requires that UNICODE be set to true or false in the root module");
-        pub const SetupRemoveFileLogEntry = @compileError("'SetupRemoveFileLogEntry' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueryFileLog = @compileError("'SetupQueryFileLog' requires that UNICODE be set to true or false in the root module");
-        pub const SetupLogError = @compileError("'SetupLogError' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetBackupInformation = @compileError("'SetupGetBackupInformation' requires that UNICODE be set to true or false in the root module");
-        pub const SetupPrepareQueueForRestore = @compileError("'SetupPrepareQueueForRestore' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiCreateDeviceInfoListEx = @compileError("'SetupDiCreateDeviceInfoListEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetDeviceInfoListDetail = @compileError("'SetupDiGetDeviceInfoListDetail' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiCreateDeviceInfo = @compileError("'SetupDiCreateDeviceInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiOpenDeviceInfo = @compileError("'SetupDiOpenDeviceInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetDeviceInstanceId = @compileError("'SetupDiGetDeviceInstanceId' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiCreateDeviceInterface = @compileError("'SetupDiCreateDeviceInterface' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiOpenDeviceInterface = @compileError("'SetupDiOpenDeviceInterface' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetDeviceInterfaceDetail = @compileError("'SetupDiGetDeviceInterfaceDetail' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiEnumDriverInfo = @compileError("'SetupDiEnumDriverInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetSelectedDriver = @compileError("'SetupDiGetSelectedDriver' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiSetSelectedDriver = @compileError("'SetupDiSetSelectedDriver' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetDriverInfoDetail = @compileError("'SetupDiGetDriverInfoDetail' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetClassDevs = @compileError("'SetupDiGetClassDevs' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetClassDevsEx = @compileError("'SetupDiGetClassDevsEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetINFClass = @compileError("'SetupDiGetINFClass' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiBuildClassInfoListEx = @compileError("'SetupDiBuildClassInfoListEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetClassDescription = @compileError("'SetupDiGetClassDescription' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetClassDescriptionEx = @compileError("'SetupDiGetClassDescriptionEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiInstallClass = @compileError("'SetupDiInstallClass' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiInstallClassEx = @compileError("'SetupDiInstallClassEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiOpenClassRegKeyEx = @compileError("'SetupDiOpenClassRegKeyEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiCreateDeviceInterfaceRegKey = @compileError("'SetupDiCreateDeviceInterfaceRegKey' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiCreateDevRegKey = @compileError("'SetupDiCreateDevRegKey' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetHwProfileListEx = @compileError("'SetupDiGetHwProfileListEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetDeviceRegistryProperty = @compileError("'SetupDiGetDeviceRegistryProperty' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetClassRegistryProperty = @compileError("'SetupDiGetClassRegistryProperty' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiSetDeviceRegistryProperty = @compileError("'SetupDiSetDeviceRegistryProperty' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiSetClassRegistryProperty = @compileError("'SetupDiSetClassRegistryProperty' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetDeviceInstallParams = @compileError("'SetupDiGetDeviceInstallParams' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetClassInstallParams = @compileError("'SetupDiGetClassInstallParams' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiSetDeviceInstallParams = @compileError("'SetupDiSetDeviceInstallParams' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiSetClassInstallParams = @compileError("'SetupDiSetClassInstallParams' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetDriverInstallParams = @compileError("'SetupDiGetDriverInstallParams' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiSetDriverInstallParams = @compileError("'SetupDiSetDriverInstallParams' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetClassImageListEx = @compileError("'SetupDiGetClassImageListEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetClassDevPropertySheets = @compileError("'SetupDiGetClassDevPropertySheets' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiClassNameFromGuid = @compileError("'SetupDiClassNameFromGuid' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiClassNameFromGuidEx = @compileError("'SetupDiClassNameFromGuidEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiClassGuidsFromName = @compileError("'SetupDiClassGuidsFromName' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiClassGuidsFromNameEx = @compileError("'SetupDiClassGuidsFromNameEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetHwProfileFriendlyName = @compileError("'SetupDiGetHwProfileFriendlyName' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetHwProfileFriendlyNameEx = @compileError("'SetupDiGetHwProfileFriendlyNameEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetActualModelsSection = @compileError("'SetupDiGetActualModelsSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetActualSectionToInstall = @compileError("'SetupDiGetActualSectionToInstall' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetActualSectionToInstallEx = @compileError("'SetupDiGetActualSectionToInstallEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupEnumInfSections = @compileError("'SetupEnumInfSections' requires that UNICODE be set to true or false in the root module");
-        pub const SetupVerifyInfFile = @compileError("'SetupVerifyInfFile' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDiGetCustomDeviceProperty = @compileError("'SetupDiGetCustomDeviceProperty' requires that UNICODE be set to true or false in the root module");
-        pub const SetupConfigureWmiFromInfSection = @compileError("'SetupConfigureWmiFromInfSection' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Add_ID = @compileError("'CM_Add_ID' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Add_ID_Ex = @compileError("'CM_Add_ID_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Connect_Machine = @compileError("'CM_Connect_Machine' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Create_DevNode = @compileError("'CM_Create_DevNode' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Create_DevNode_Ex = @compileError("'CM_Create_DevNode_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Enumerate_Enumerators = @compileError("'CM_Enumerate_Enumerators' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Enumerate_Enumerators_Ex = @compileError("'CM_Enumerate_Enumerators_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Class_Name = @compileError("'CM_Get_Class_Name' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Class_Name_Ex = @compileError("'CM_Get_Class_Name_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Class_Key_Name = @compileError("'CM_Get_Class_Key_Name' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Class_Key_Name_Ex = @compileError("'CM_Get_Class_Key_Name_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Device_ID = @compileError("'CM_Get_Device_ID' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Device_ID_Ex = @compileError("'CM_Get_Device_ID_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Device_ID_List = @compileError("'CM_Get_Device_ID_List' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Device_ID_List_Ex = @compileError("'CM_Get_Device_ID_List_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Device_ID_List_Size = @compileError("'CM_Get_Device_ID_List_Size' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Device_ID_List_Size_Ex = @compileError("'CM_Get_Device_ID_List_Size_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_DevNode_Registry_Property = @compileError("'CM_Get_DevNode_Registry_Property' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_DevNode_Registry_Property_Ex = @compileError("'CM_Get_DevNode_Registry_Property_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_DevNode_Custom_Property = @compileError("'CM_Get_DevNode_Custom_Property' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_DevNode_Custom_Property_Ex = @compileError("'CM_Get_DevNode_Custom_Property_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Hardware_Profile_Info = @compileError("'CM_Get_Hardware_Profile_Info' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Hardware_Profile_Info_Ex = @compileError("'CM_Get_Hardware_Profile_Info_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_HW_Prof_Flags = @compileError("'CM_Get_HW_Prof_Flags' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_HW_Prof_Flags_Ex = @compileError("'CM_Get_HW_Prof_Flags_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Device_Interface_Alias = @compileError("'CM_Get_Device_Interface_Alias' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Device_Interface_Alias_Ex = @compileError("'CM_Get_Device_Interface_Alias_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Device_Interface_List = @compileError("'CM_Get_Device_Interface_List' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Device_Interface_List_Ex = @compileError("'CM_Get_Device_Interface_List_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Device_Interface_List_Size = @compileError("'CM_Get_Device_Interface_List_Size' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Device_Interface_List_Size_Ex = @compileError("'CM_Get_Device_Interface_List_Size_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Locate_DevNode = @compileError("'CM_Locate_DevNode' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Locate_DevNode_Ex = @compileError("'CM_Locate_DevNode_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Open_Class_Key = @compileError("'CM_Open_Class_Key' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Open_Class_Key_Ex = @compileError("'CM_Open_Class_Key_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Open_Device_Interface_Key = @compileError("'CM_Open_Device_Interface_Key' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Open_Device_Interface_Key_Ex = @compileError("'CM_Open_Device_Interface_Key_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Delete_Device_Interface_Key = @compileError("'CM_Delete_Device_Interface_Key' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Delete_Device_Interface_Key_Ex = @compileError("'CM_Delete_Device_Interface_Key_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Query_And_Remove_SubTree = @compileError("'CM_Query_And_Remove_SubTree' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Query_And_Remove_SubTree_Ex = @compileError("'CM_Query_And_Remove_SubTree_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Request_Device_Eject = @compileError("'CM_Request_Device_Eject' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Request_Device_Eject_Ex = @compileError("'CM_Request_Device_Eject_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Register_Device_Interface = @compileError("'CM_Register_Device_Interface' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Register_Device_Interface_Ex = @compileError("'CM_Register_Device_Interface_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Unregister_Device_Interface = @compileError("'CM_Unregister_Device_Interface' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Unregister_Device_Interface_Ex = @compileError("'CM_Unregister_Device_Interface_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Set_DevNode_Registry_Property = @compileError("'CM_Set_DevNode_Registry_Property' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Set_DevNode_Registry_Property_Ex = @compileError("'CM_Set_DevNode_Registry_Property_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Set_HW_Prof_Flags = @compileError("'CM_Set_HW_Prof_Flags' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Set_HW_Prof_Flags_Ex = @compileError("'CM_Set_HW_Prof_Flags_Ex' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Resource_Conflict_Details = @compileError("'CM_Get_Resource_Conflict_Details' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Get_Class_Registry_Property = @compileError("'CM_Get_Class_Registry_Property' requires that UNICODE be set to true or false in the root module");
-        pub const CM_Set_Class_Registry_Property = @compileError("'CM_Set_Class_Registry_Property' requires that UNICODE be set to true or false in the root module");
-        pub const UpdateDriverForPlugAndPlayDevices = @compileError("'UpdateDriverForPlugAndPlayDevices' requires that UNICODE be set to true or false in the root module");
-        pub const DiInstallDriver = @compileError("'DiInstallDriver' requires that UNICODE be set to true or false in the root module");
-        pub const DiUninstallDriver = @compileError("'DiUninstallDriver' requires that UNICODE be set to true or false in the root module");
-    },
+pub const SP_ORIGINAL_FILE_INFO_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_ORIGINAL_FILE_INFO_A,
+    .wide => @This().SP_ORIGINAL_FILE_INFO_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_ORIGINAL_FILE_INFO_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PSP_FILE_CALLBACK_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PSP_FILE_CALLBACK_A,
+    .wide => @This().PSP_FILE_CALLBACK_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PSP_FILE_CALLBACK_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FILEPATHS_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FILEPATHS_A,
+    .wide => @This().FILEPATHS_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FILEPATHS_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FILEPATHS_SIGNERINFO_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FILEPATHS_SIGNERINFO_A,
+    .wide => @This().FILEPATHS_SIGNERINFO_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FILEPATHS_SIGNERINFO_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SOURCE_MEDIA_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SOURCE_MEDIA_A,
+    .wide => @This().SOURCE_MEDIA_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SOURCE_MEDIA_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CABINET_INFO_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CABINET_INFO_A,
+    .wide => @This().CABINET_INFO_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CABINET_INFO_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FILE_IN_CABINET_INFO_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FILE_IN_CABINET_INFO_A,
+    .wide => @This().FILE_IN_CABINET_INFO_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FILE_IN_CABINET_INFO_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_REGISTER_CONTROL_STATUS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_REGISTER_CONTROL_STATUSA,
+    .wide => @This().SP_REGISTER_CONTROL_STATUSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_REGISTER_CONTROL_STATUS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_FILE_COPY_PARAMS_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_FILE_COPY_PARAMS_A,
+    .wide => @This().SP_FILE_COPY_PARAMS_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_FILE_COPY_PARAMS_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_DEVICE_INTERFACE_DETAIL_DATA_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_DEVICE_INTERFACE_DETAIL_DATA_A,
+    .wide => @This().SP_DEVICE_INTERFACE_DETAIL_DATA_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_DEVICE_INTERFACE_DETAIL_DATA_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_DEVINFO_LIST_DETAIL_DATA_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_DEVINFO_LIST_DETAIL_DATA_A,
+    .wide => @This().SP_DEVINFO_LIST_DETAIL_DATA_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_DEVINFO_LIST_DETAIL_DATA_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_DEVINSTALL_PARAMS_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_DEVINSTALL_PARAMS_A,
+    .wide => @This().SP_DEVINSTALL_PARAMS_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_DEVINSTALL_PARAMS_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_SELECTDEVICE_PARAMS_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_SELECTDEVICE_PARAMS_A,
+    .wide => @This().SP_SELECTDEVICE_PARAMS_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_SELECTDEVICE_PARAMS_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_TROUBLESHOOTER_PARAMS_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_TROUBLESHOOTER_PARAMS_A,
+    .wide => @This().SP_TROUBLESHOOTER_PARAMS_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_TROUBLESHOOTER_PARAMS_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_POWERMESSAGEWAKE_PARAMS_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_POWERMESSAGEWAKE_PARAMS_A,
+    .wide => @This().SP_POWERMESSAGEWAKE_PARAMS_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_POWERMESSAGEWAKE_PARAMS_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_DRVINFO_DATA_V2_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_DRVINFO_DATA_V2_A,
+    .wide => @This().SP_DRVINFO_DATA_V2_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_DRVINFO_DATA_V2_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_DRVINFO_DATA_V1_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_DRVINFO_DATA_V1_A,
+    .wide => @This().SP_DRVINFO_DATA_V1_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_DRVINFO_DATA_V1_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_DRVINFO_DETAIL_DATA_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_DRVINFO_DETAIL_DATA_A,
+    .wide => @This().SP_DRVINFO_DETAIL_DATA_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_DRVINFO_DETAIL_DATA_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_BACKUP_QUEUE_PARAMS_V2_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_BACKUP_QUEUE_PARAMS_V2_A,
+    .wide => @This().SP_BACKUP_QUEUE_PARAMS_V2_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_BACKUP_QUEUE_PARAMS_V2_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_BACKUP_QUEUE_PARAMS_V1_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_BACKUP_QUEUE_PARAMS_V1_A,
+    .wide => @This().SP_BACKUP_QUEUE_PARAMS_V1_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_BACKUP_QUEUE_PARAMS_V1_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_INF_SIGNER_INFO_V1_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_INF_SIGNER_INFO_V1_A,
+    .wide => @This().SP_INF_SIGNER_INFO_V1_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_INF_SIGNER_INFO_V1_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SP_INF_SIGNER_INFO_V2_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SP_INF_SIGNER_INFO_V2_A,
+    .wide => @This().SP_INF_SIGNER_INFO_V2_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SP_INF_SIGNER_INFO_V2_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CONFLICT_DETAILS_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CONFLICT_DETAILS_A,
+    .wide => @This().CONFLICT_DETAILS_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CONFLICT_DETAILS_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const HWProfileInfo_s = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HWProfileInfo_sA,
+    .wide => @This().HWProfileInfo_sW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HWProfileInfo_s' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetInfInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetInfInformationA,
+    .wide => @This().SetupGetInfInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetInfInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueryInfFileInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueryInfFileInformationA,
+    .wide => @This().SetupQueryInfFileInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueryInfFileInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueryInfOriginalFileInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueryInfOriginalFileInformationA,
+    .wide => @This().SetupQueryInfOriginalFileInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueryInfOriginalFileInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueryInfVersionInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueryInfVersionInformationA,
+    .wide => @This().SetupQueryInfVersionInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueryInfVersionInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetInfDriverStoreLocation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetInfDriverStoreLocationA,
+    .wide => @This().SetupGetInfDriverStoreLocationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetInfDriverStoreLocation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetInfPublishedName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetInfPublishedNameA,
+    .wide => @This().SetupGetInfPublishedNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetInfPublishedName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetInfFileList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetInfFileListA,
+    .wide => @This().SetupGetInfFileListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetInfFileList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupOpenInfFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupOpenInfFileA,
+    .wide => @This().SetupOpenInfFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupOpenInfFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupOpenAppendInfFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupOpenAppendInfFileA,
+    .wide => @This().SetupOpenAppendInfFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupOpenAppendInfFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupFindFirstLine = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupFindFirstLineA,
+    .wide => @This().SetupFindFirstLineW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupFindFirstLine' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupFindNextMatchLine = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupFindNextMatchLineA,
+    .wide => @This().SetupFindNextMatchLineW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupFindNextMatchLine' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetLineByIndex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetLineByIndexA,
+    .wide => @This().SetupGetLineByIndexW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetLineByIndex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetLineCount = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetLineCountA,
+    .wide => @This().SetupGetLineCountW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetLineCount' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetLineText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetLineTextA,
+    .wide => @This().SetupGetLineTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetLineText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetStringField = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetStringFieldA,
+    .wide => @This().SetupGetStringFieldW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetStringField' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetMultiSzField = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetMultiSzFieldA,
+    .wide => @This().SetupGetMultiSzFieldW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetMultiSzField' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetFileCompressionInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetFileCompressionInfoA,
+    .wide => @This().SetupGetFileCompressionInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetFileCompressionInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetFileCompressionInfoEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetFileCompressionInfoExA,
+    .wide => @This().SetupGetFileCompressionInfoExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetFileCompressionInfoEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDecompressOrCopyFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDecompressOrCopyFileA,
+    .wide => @This().SetupDecompressOrCopyFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDecompressOrCopyFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetSourceFileLocation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetSourceFileLocationA,
+    .wide => @This().SetupGetSourceFileLocationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetSourceFileLocation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetSourceFileSize = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetSourceFileSizeA,
+    .wide => @This().SetupGetSourceFileSizeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetSourceFileSize' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetTargetPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetTargetPathA,
+    .wide => @This().SetupGetTargetPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetTargetPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupSetSourceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupSetSourceListA,
+    .wide => @This().SetupSetSourceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupSetSourceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupAddToSourceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupAddToSourceListA,
+    .wide => @This().SetupAddToSourceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupAddToSourceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupRemoveFromSourceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupRemoveFromSourceListA,
+    .wide => @This().SetupRemoveFromSourceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupRemoveFromSourceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQuerySourceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQuerySourceListA,
+    .wide => @This().SetupQuerySourceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQuerySourceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupFreeSourceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupFreeSourceListA,
+    .wide => @This().SetupFreeSourceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupFreeSourceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupPromptForDisk = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupPromptForDiskA,
+    .wide => @This().SetupPromptForDiskW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupPromptForDisk' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupCopyError = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupCopyErrorA,
+    .wide => @This().SetupCopyErrorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupCopyError' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupRenameError = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupRenameErrorA,
+    .wide => @This().SetupRenameErrorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupRenameError' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDeleteError = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDeleteErrorA,
+    .wide => @This().SetupDeleteErrorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDeleteError' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupBackupError = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupBackupErrorA,
+    .wide => @This().SetupBackupErrorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupBackupError' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupSetDirectoryId = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupSetDirectoryIdA,
+    .wide => @This().SetupSetDirectoryIdW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupSetDirectoryId' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupSetDirectoryIdEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupSetDirectoryIdExA,
+    .wide => @This().SetupSetDirectoryIdExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupSetDirectoryIdEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetSourceInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetSourceInfoA,
+    .wide => @This().SetupGetSourceInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetSourceInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupInstallFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupInstallFileA,
+    .wide => @This().SetupInstallFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupInstallFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupInstallFileEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupInstallFileExA,
+    .wide => @This().SetupInstallFileExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupInstallFileEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupSetFileQueueAlternatePlatform = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupSetFileQueueAlternatePlatformA,
+    .wide => @This().SetupSetFileQueueAlternatePlatformW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupSetFileQueueAlternatePlatform' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupSetPlatformPathOverride = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupSetPlatformPathOverrideA,
+    .wide => @This().SetupSetPlatformPathOverrideW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupSetPlatformPathOverride' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueueCopy = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueueCopyA,
+    .wide => @This().SetupQueueCopyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueueCopy' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueueCopyIndirect = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueueCopyIndirectA,
+    .wide => @This().SetupQueueCopyIndirectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueueCopyIndirect' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueueDefaultCopy = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueueDefaultCopyA,
+    .wide => @This().SetupQueueDefaultCopyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueueDefaultCopy' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueueCopySection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueueCopySectionA,
+    .wide => @This().SetupQueueCopySectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueueCopySection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueueDelete = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueueDeleteA,
+    .wide => @This().SetupQueueDeleteW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueueDelete' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueueDeleteSection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueueDeleteSectionA,
+    .wide => @This().SetupQueueDeleteSectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueueDeleteSection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueueRename = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueueRenameA,
+    .wide => @This().SetupQueueRenameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueueRename' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueueRenameSection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueueRenameSectionA,
+    .wide => @This().SetupQueueRenameSectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueueRenameSection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupCommitFileQueue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupCommitFileQueueA,
+    .wide => @This().SetupCommitFileQueueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupCommitFileQueue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupScanFileQueue = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupScanFileQueueA,
+    .wide => @This().SetupScanFileQueueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupScanFileQueue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupCopyOEMInf = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupCopyOEMInfA,
+    .wide => @This().SetupCopyOEMInfW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupCopyOEMInf' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupUninstallOEMInf = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupUninstallOEMInfA,
+    .wide => @This().SetupUninstallOEMInfW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupUninstallOEMInf' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupCreateDiskSpaceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupCreateDiskSpaceListA,
+    .wide => @This().SetupCreateDiskSpaceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupCreateDiskSpaceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDuplicateDiskSpaceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDuplicateDiskSpaceListA,
+    .wide => @This().SetupDuplicateDiskSpaceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDuplicateDiskSpaceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueryDrivesInDiskSpaceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueryDrivesInDiskSpaceListA,
+    .wide => @This().SetupQueryDrivesInDiskSpaceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueryDrivesInDiskSpaceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQuerySpaceRequiredOnDrive = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQuerySpaceRequiredOnDriveA,
+    .wide => @This().SetupQuerySpaceRequiredOnDriveW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQuerySpaceRequiredOnDrive' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupAdjustDiskSpaceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupAdjustDiskSpaceListA,
+    .wide => @This().SetupAdjustDiskSpaceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupAdjustDiskSpaceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupAddToDiskSpaceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupAddToDiskSpaceListA,
+    .wide => @This().SetupAddToDiskSpaceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupAddToDiskSpaceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupAddSectionToDiskSpaceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupAddSectionToDiskSpaceListA,
+    .wide => @This().SetupAddSectionToDiskSpaceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupAddSectionToDiskSpaceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupAddInstallSectionToDiskSpaceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupAddInstallSectionToDiskSpaceListA,
+    .wide => @This().SetupAddInstallSectionToDiskSpaceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupAddInstallSectionToDiskSpaceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupRemoveFromDiskSpaceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupRemoveFromDiskSpaceListA,
+    .wide => @This().SetupRemoveFromDiskSpaceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupRemoveFromDiskSpaceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupRemoveSectionFromDiskSpaceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupRemoveSectionFromDiskSpaceListA,
+    .wide => @This().SetupRemoveSectionFromDiskSpaceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupRemoveSectionFromDiskSpaceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupRemoveInstallSectionFromDiskSpaceList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupRemoveInstallSectionFromDiskSpaceListA,
+    .wide => @This().SetupRemoveInstallSectionFromDiskSpaceListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupRemoveInstallSectionFromDiskSpaceList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupIterateCabinet = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupIterateCabinetA,
+    .wide => @This().SetupIterateCabinetW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupIterateCabinet' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDefaultQueueCallback = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDefaultQueueCallbackA,
+    .wide => @This().SetupDefaultQueueCallbackW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDefaultQueueCallback' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupInstallFromInfSection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupInstallFromInfSectionA,
+    .wide => @This().SetupInstallFromInfSectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupInstallFromInfSection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupInstallFilesFromInfSection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupInstallFilesFromInfSectionA,
+    .wide => @This().SetupInstallFilesFromInfSectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupInstallFilesFromInfSection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupInstallServicesFromInfSection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupInstallServicesFromInfSectionA,
+    .wide => @This().SetupInstallServicesFromInfSectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupInstallServicesFromInfSection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupInstallServicesFromInfSectionEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupInstallServicesFromInfSectionExA,
+    .wide => @This().SetupInstallServicesFromInfSectionExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupInstallServicesFromInfSectionEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InstallHinfSection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InstallHinfSectionA,
+    .wide => @This().InstallHinfSectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InstallHinfSection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupInitializeFileLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupInitializeFileLogA,
+    .wide => @This().SetupInitializeFileLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupInitializeFileLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupLogFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupLogFileA,
+    .wide => @This().SetupLogFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupLogFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupRemoveFileLogEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupRemoveFileLogEntryA,
+    .wide => @This().SetupRemoveFileLogEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupRemoveFileLogEntry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupQueryFileLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupQueryFileLogA,
+    .wide => @This().SetupQueryFileLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupQueryFileLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupLogError = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupLogErrorA,
+    .wide => @This().SetupLogErrorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupLogError' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupGetBackupInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupGetBackupInformationA,
+    .wide => @This().SetupGetBackupInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupGetBackupInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupPrepareQueueForRestore = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupPrepareQueueForRestoreA,
+    .wide => @This().SetupPrepareQueueForRestoreW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupPrepareQueueForRestore' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiCreateDeviceInfoListEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiCreateDeviceInfoListExA,
+    .wide => @This().SetupDiCreateDeviceInfoListExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiCreateDeviceInfoListEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetDeviceInfoListDetail = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetDeviceInfoListDetailA,
+    .wide => @This().SetupDiGetDeviceInfoListDetailW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetDeviceInfoListDetail' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiCreateDeviceInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiCreateDeviceInfoA,
+    .wide => @This().SetupDiCreateDeviceInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiCreateDeviceInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiOpenDeviceInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiOpenDeviceInfoA,
+    .wide => @This().SetupDiOpenDeviceInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiOpenDeviceInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetDeviceInstanceId = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetDeviceInstanceIdA,
+    .wide => @This().SetupDiGetDeviceInstanceIdW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetDeviceInstanceId' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiCreateDeviceInterface = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiCreateDeviceInterfaceA,
+    .wide => @This().SetupDiCreateDeviceInterfaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiCreateDeviceInterface' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiOpenDeviceInterface = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiOpenDeviceInterfaceA,
+    .wide => @This().SetupDiOpenDeviceInterfaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiOpenDeviceInterface' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetDeviceInterfaceDetail = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetDeviceInterfaceDetailA,
+    .wide => @This().SetupDiGetDeviceInterfaceDetailW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetDeviceInterfaceDetail' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiEnumDriverInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiEnumDriverInfoA,
+    .wide => @This().SetupDiEnumDriverInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiEnumDriverInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetSelectedDriver = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetSelectedDriverA,
+    .wide => @This().SetupDiGetSelectedDriverW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetSelectedDriver' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiSetSelectedDriver = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiSetSelectedDriverA,
+    .wide => @This().SetupDiSetSelectedDriverW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiSetSelectedDriver' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetDriverInfoDetail = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetDriverInfoDetailA,
+    .wide => @This().SetupDiGetDriverInfoDetailW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetDriverInfoDetail' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetClassDevs = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetClassDevsA,
+    .wide => @This().SetupDiGetClassDevsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetClassDevs' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetClassDevsEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetClassDevsExA,
+    .wide => @This().SetupDiGetClassDevsExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetClassDevsEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetINFClass = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetINFClassA,
+    .wide => @This().SetupDiGetINFClassW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetINFClass' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiBuildClassInfoListEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiBuildClassInfoListExA,
+    .wide => @This().SetupDiBuildClassInfoListExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiBuildClassInfoListEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetClassDescription = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetClassDescriptionA,
+    .wide => @This().SetupDiGetClassDescriptionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetClassDescription' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetClassDescriptionEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetClassDescriptionExA,
+    .wide => @This().SetupDiGetClassDescriptionExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetClassDescriptionEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiInstallClass = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiInstallClassA,
+    .wide => @This().SetupDiInstallClassW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiInstallClass' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiInstallClassEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiInstallClassExA,
+    .wide => @This().SetupDiInstallClassExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiInstallClassEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiOpenClassRegKeyEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiOpenClassRegKeyExA,
+    .wide => @This().SetupDiOpenClassRegKeyExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiOpenClassRegKeyEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiCreateDeviceInterfaceRegKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiCreateDeviceInterfaceRegKeyA,
+    .wide => @This().SetupDiCreateDeviceInterfaceRegKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiCreateDeviceInterfaceRegKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiCreateDevRegKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiCreateDevRegKeyA,
+    .wide => @This().SetupDiCreateDevRegKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiCreateDevRegKey' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetHwProfileListEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetHwProfileListExA,
+    .wide => @This().SetupDiGetHwProfileListExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetHwProfileListEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetDeviceRegistryProperty = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetDeviceRegistryPropertyA,
+    .wide => @This().SetupDiGetDeviceRegistryPropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetDeviceRegistryProperty' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetClassRegistryProperty = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetClassRegistryPropertyA,
+    .wide => @This().SetupDiGetClassRegistryPropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetClassRegistryProperty' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiSetDeviceRegistryProperty = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiSetDeviceRegistryPropertyA,
+    .wide => @This().SetupDiSetDeviceRegistryPropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiSetDeviceRegistryProperty' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiSetClassRegistryProperty = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiSetClassRegistryPropertyA,
+    .wide => @This().SetupDiSetClassRegistryPropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiSetClassRegistryProperty' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetDeviceInstallParams = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetDeviceInstallParamsA,
+    .wide => @This().SetupDiGetDeviceInstallParamsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetDeviceInstallParams' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetClassInstallParams = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetClassInstallParamsA,
+    .wide => @This().SetupDiGetClassInstallParamsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetClassInstallParams' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiSetDeviceInstallParams = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiSetDeviceInstallParamsA,
+    .wide => @This().SetupDiSetDeviceInstallParamsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiSetDeviceInstallParams' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiSetClassInstallParams = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiSetClassInstallParamsA,
+    .wide => @This().SetupDiSetClassInstallParamsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiSetClassInstallParams' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetDriverInstallParams = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetDriverInstallParamsA,
+    .wide => @This().SetupDiGetDriverInstallParamsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetDriverInstallParams' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiSetDriverInstallParams = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiSetDriverInstallParamsA,
+    .wide => @This().SetupDiSetDriverInstallParamsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiSetDriverInstallParams' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetClassImageListEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetClassImageListExA,
+    .wide => @This().SetupDiGetClassImageListExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetClassImageListEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetClassDevPropertySheets = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetClassDevPropertySheetsA,
+    .wide => @This().SetupDiGetClassDevPropertySheetsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetClassDevPropertySheets' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiClassNameFromGuid = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiClassNameFromGuidA,
+    .wide => @This().SetupDiClassNameFromGuidW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiClassNameFromGuid' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiClassNameFromGuidEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiClassNameFromGuidExA,
+    .wide => @This().SetupDiClassNameFromGuidExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiClassNameFromGuidEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiClassGuidsFromName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiClassGuidsFromNameA,
+    .wide => @This().SetupDiClassGuidsFromNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiClassGuidsFromName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiClassGuidsFromNameEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiClassGuidsFromNameExA,
+    .wide => @This().SetupDiClassGuidsFromNameExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiClassGuidsFromNameEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetHwProfileFriendlyName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetHwProfileFriendlyNameA,
+    .wide => @This().SetupDiGetHwProfileFriendlyNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetHwProfileFriendlyName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetHwProfileFriendlyNameEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetHwProfileFriendlyNameExA,
+    .wide => @This().SetupDiGetHwProfileFriendlyNameExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetHwProfileFriendlyNameEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetActualModelsSection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetActualModelsSectionA,
+    .wide => @This().SetupDiGetActualModelsSectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetActualModelsSection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetActualSectionToInstall = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetActualSectionToInstallA,
+    .wide => @This().SetupDiGetActualSectionToInstallW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetActualSectionToInstall' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetActualSectionToInstallEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetActualSectionToInstallExA,
+    .wide => @This().SetupDiGetActualSectionToInstallExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetActualSectionToInstallEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupEnumInfSections = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupEnumInfSectionsA,
+    .wide => @This().SetupEnumInfSectionsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupEnumInfSections' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupVerifyInfFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupVerifyInfFileA,
+    .wide => @This().SetupVerifyInfFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupVerifyInfFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupDiGetCustomDeviceProperty = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupDiGetCustomDevicePropertyA,
+    .wide => @This().SetupDiGetCustomDevicePropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupDiGetCustomDeviceProperty' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetupConfigureWmiFromInfSection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetupConfigureWmiFromInfSectionA,
+    .wide => @This().SetupConfigureWmiFromInfSectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetupConfigureWmiFromInfSection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Add_ID = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Add_IDA,
+    .wide => @This().CM_Add_IDW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Add_ID' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Add_ID_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Add_ID_ExA,
+    .wide => @This().CM_Add_ID_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Add_ID_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Connect_Machine = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Connect_MachineA,
+    .wide => @This().CM_Connect_MachineW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Connect_Machine' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Create_DevNode = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Create_DevNodeA,
+    .wide => @This().CM_Create_DevNodeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Create_DevNode' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Create_DevNode_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Create_DevNode_ExA,
+    .wide => @This().CM_Create_DevNode_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Create_DevNode_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Enumerate_Enumerators = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Enumerate_EnumeratorsA,
+    .wide => @This().CM_Enumerate_EnumeratorsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Enumerate_Enumerators' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Enumerate_Enumerators_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Enumerate_Enumerators_ExA,
+    .wide => @This().CM_Enumerate_Enumerators_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Enumerate_Enumerators_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Class_Name = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Class_NameA,
+    .wide => @This().CM_Get_Class_NameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Class_Name' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Class_Name_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Class_Name_ExA,
+    .wide => @This().CM_Get_Class_Name_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Class_Name_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Class_Key_Name = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Class_Key_NameA,
+    .wide => @This().CM_Get_Class_Key_NameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Class_Key_Name' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Class_Key_Name_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Class_Key_Name_ExA,
+    .wide => @This().CM_Get_Class_Key_Name_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Class_Key_Name_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Device_ID = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Device_IDA,
+    .wide => @This().CM_Get_Device_IDW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Device_ID' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Device_ID_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Device_ID_ExA,
+    .wide => @This().CM_Get_Device_ID_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Device_ID_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Device_ID_List = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Device_ID_ListA,
+    .wide => @This().CM_Get_Device_ID_ListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Device_ID_List' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Device_ID_List_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Device_ID_List_ExA,
+    .wide => @This().CM_Get_Device_ID_List_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Device_ID_List_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Device_ID_List_Size = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Device_ID_List_SizeA,
+    .wide => @This().CM_Get_Device_ID_List_SizeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Device_ID_List_Size' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Device_ID_List_Size_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Device_ID_List_Size_ExA,
+    .wide => @This().CM_Get_Device_ID_List_Size_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Device_ID_List_Size_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_DevNode_Registry_Property = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_DevNode_Registry_PropertyA,
+    .wide => @This().CM_Get_DevNode_Registry_PropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_DevNode_Registry_Property' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_DevNode_Registry_Property_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_DevNode_Registry_Property_ExA,
+    .wide => @This().CM_Get_DevNode_Registry_Property_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_DevNode_Registry_Property_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_DevNode_Custom_Property = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_DevNode_Custom_PropertyA,
+    .wide => @This().CM_Get_DevNode_Custom_PropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_DevNode_Custom_Property' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_DevNode_Custom_Property_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_DevNode_Custom_Property_ExA,
+    .wide => @This().CM_Get_DevNode_Custom_Property_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_DevNode_Custom_Property_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Hardware_Profile_Info = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Hardware_Profile_InfoA,
+    .wide => @This().CM_Get_Hardware_Profile_InfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Hardware_Profile_Info' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Hardware_Profile_Info_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Hardware_Profile_Info_ExA,
+    .wide => @This().CM_Get_Hardware_Profile_Info_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Hardware_Profile_Info_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_HW_Prof_Flags = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_HW_Prof_FlagsA,
+    .wide => @This().CM_Get_HW_Prof_FlagsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_HW_Prof_Flags' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_HW_Prof_Flags_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_HW_Prof_Flags_ExA,
+    .wide => @This().CM_Get_HW_Prof_Flags_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_HW_Prof_Flags_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Device_Interface_Alias = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Device_Interface_AliasA,
+    .wide => @This().CM_Get_Device_Interface_AliasW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Device_Interface_Alias' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Device_Interface_Alias_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Device_Interface_Alias_ExA,
+    .wide => @This().CM_Get_Device_Interface_Alias_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Device_Interface_Alias_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Device_Interface_List = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Device_Interface_ListA,
+    .wide => @This().CM_Get_Device_Interface_ListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Device_Interface_List' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Device_Interface_List_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Device_Interface_List_ExA,
+    .wide => @This().CM_Get_Device_Interface_List_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Device_Interface_List_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Device_Interface_List_Size = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Device_Interface_List_SizeA,
+    .wide => @This().CM_Get_Device_Interface_List_SizeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Device_Interface_List_Size' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Device_Interface_List_Size_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Device_Interface_List_Size_ExA,
+    .wide => @This().CM_Get_Device_Interface_List_Size_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Device_Interface_List_Size_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Locate_DevNode = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Locate_DevNodeA,
+    .wide => @This().CM_Locate_DevNodeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Locate_DevNode' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Locate_DevNode_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Locate_DevNode_ExA,
+    .wide => @This().CM_Locate_DevNode_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Locate_DevNode_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Open_Class_Key = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Open_Class_KeyA,
+    .wide => @This().CM_Open_Class_KeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Open_Class_Key' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Open_Class_Key_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Open_Class_Key_ExA,
+    .wide => @This().CM_Open_Class_Key_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Open_Class_Key_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Open_Device_Interface_Key = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Open_Device_Interface_KeyA,
+    .wide => @This().CM_Open_Device_Interface_KeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Open_Device_Interface_Key' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Open_Device_Interface_Key_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Open_Device_Interface_Key_ExA,
+    .wide => @This().CM_Open_Device_Interface_Key_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Open_Device_Interface_Key_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Delete_Device_Interface_Key = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Delete_Device_Interface_KeyA,
+    .wide => @This().CM_Delete_Device_Interface_KeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Delete_Device_Interface_Key' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Delete_Device_Interface_Key_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Delete_Device_Interface_Key_ExA,
+    .wide => @This().CM_Delete_Device_Interface_Key_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Delete_Device_Interface_Key_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Query_And_Remove_SubTree = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Query_And_Remove_SubTreeA,
+    .wide => @This().CM_Query_And_Remove_SubTreeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Query_And_Remove_SubTree' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Query_And_Remove_SubTree_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Query_And_Remove_SubTree_ExA,
+    .wide => @This().CM_Query_And_Remove_SubTree_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Query_And_Remove_SubTree_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Request_Device_Eject = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Request_Device_EjectA,
+    .wide => @This().CM_Request_Device_EjectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Request_Device_Eject' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Request_Device_Eject_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Request_Device_Eject_ExA,
+    .wide => @This().CM_Request_Device_Eject_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Request_Device_Eject_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Register_Device_Interface = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Register_Device_InterfaceA,
+    .wide => @This().CM_Register_Device_InterfaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Register_Device_Interface' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Register_Device_Interface_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Register_Device_Interface_ExA,
+    .wide => @This().CM_Register_Device_Interface_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Register_Device_Interface_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Unregister_Device_Interface = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Unregister_Device_InterfaceA,
+    .wide => @This().CM_Unregister_Device_InterfaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Unregister_Device_Interface' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Unregister_Device_Interface_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Unregister_Device_Interface_ExA,
+    .wide => @This().CM_Unregister_Device_Interface_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Unregister_Device_Interface_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Set_DevNode_Registry_Property = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Set_DevNode_Registry_PropertyA,
+    .wide => @This().CM_Set_DevNode_Registry_PropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Set_DevNode_Registry_Property' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Set_DevNode_Registry_Property_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Set_DevNode_Registry_Property_ExA,
+    .wide => @This().CM_Set_DevNode_Registry_Property_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Set_DevNode_Registry_Property_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Set_HW_Prof_Flags = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Set_HW_Prof_FlagsA,
+    .wide => @This().CM_Set_HW_Prof_FlagsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Set_HW_Prof_Flags' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Set_HW_Prof_Flags_Ex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Set_HW_Prof_Flags_ExA,
+    .wide => @This().CM_Set_HW_Prof_Flags_ExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Set_HW_Prof_Flags_Ex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Resource_Conflict_Details = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Resource_Conflict_DetailsA,
+    .wide => @This().CM_Get_Resource_Conflict_DetailsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Resource_Conflict_Details' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Get_Class_Registry_Property = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Get_Class_Registry_PropertyA,
+    .wide => @This().CM_Get_Class_Registry_PropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Get_Class_Registry_Property' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CM_Set_Class_Registry_Property = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CM_Set_Class_Registry_PropertyA,
+    .wide => @This().CM_Set_Class_Registry_PropertyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CM_Set_Class_Registry_Property' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UpdateDriverForPlugAndPlayDevices = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UpdateDriverForPlugAndPlayDevicesA,
+    .wide => @This().UpdateDriverForPlugAndPlayDevicesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UpdateDriverForPlugAndPlayDevices' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DiInstallDriver = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DiInstallDriverA,
+    .wide => @This().DiInstallDriverW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DiInstallDriver' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DiUninstallDriver = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DiUninstallDriverA,
+    .wide => @This().DiUninstallDriverW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DiUninstallDriver' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (22)

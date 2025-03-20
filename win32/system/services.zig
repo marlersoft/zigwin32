@@ -1195,139 +1195,222 @@ pub extern "api-ms-win-service-core-l1-1-5" fn GetSharedServiceDirectory(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (31)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const SERVICE_DESCRIPTION = thismodule.SERVICE_DESCRIPTIONA;
-        pub const SERVICE_FAILURE_ACTIONS = thismodule.SERVICE_FAILURE_ACTIONSA;
-        pub const SERVICE_REQUIRED_PRIVILEGES_INFO = thismodule.SERVICE_REQUIRED_PRIVILEGES_INFOA;
-        pub const ENUM_SERVICE_STATUS = thismodule.ENUM_SERVICE_STATUSA;
-        pub const ENUM_SERVICE_STATUS_PROCESS = thismodule.ENUM_SERVICE_STATUS_PROCESSA;
-        pub const QUERY_SERVICE_LOCK_STATUS = thismodule.QUERY_SERVICE_LOCK_STATUSA;
-        pub const QUERY_SERVICE_CONFIG = thismodule.QUERY_SERVICE_CONFIGA;
-        pub const SERVICE_MAIN_FUNCTION = thismodule.SERVICE_MAIN_FUNCTIONA;
-        pub const LPSERVICE_MAIN_FUNCTION = thismodule.LPSERVICE_MAIN_FUNCTIONA;
-        pub const SERVICE_TABLE_ENTRY = thismodule.SERVICE_TABLE_ENTRYA;
-        pub const SERVICE_NOTIFY_2 = thismodule.SERVICE_NOTIFY_2A;
-        pub const SERVICE_CONTROL_STATUS_REASON_PARAMS = thismodule.SERVICE_CONTROL_STATUS_REASON_PARAMSA;
-        pub const ChangeServiceConfig = thismodule.ChangeServiceConfigA;
-        pub const ChangeServiceConfig2 = thismodule.ChangeServiceConfig2A;
-        pub const CreateService = thismodule.CreateServiceA;
-        pub const EnumDependentServices = thismodule.EnumDependentServicesA;
-        pub const EnumServicesStatus = thismodule.EnumServicesStatusA;
-        pub const EnumServicesStatusEx = thismodule.EnumServicesStatusExA;
-        pub const GetServiceKeyName = thismodule.GetServiceKeyNameA;
-        pub const GetServiceDisplayName = thismodule.GetServiceDisplayNameA;
-        pub const OpenSCManager = thismodule.OpenSCManagerA;
-        pub const OpenService = thismodule.OpenServiceA;
-        pub const QueryServiceConfig = thismodule.QueryServiceConfigA;
-        pub const QueryServiceConfig2 = thismodule.QueryServiceConfig2A;
-        pub const QueryServiceLockStatus = thismodule.QueryServiceLockStatusA;
-        pub const RegisterServiceCtrlHandler = thismodule.RegisterServiceCtrlHandlerA;
-        pub const RegisterServiceCtrlHandlerEx = thismodule.RegisterServiceCtrlHandlerExA;
-        pub const StartServiceCtrlDispatcher = thismodule.StartServiceCtrlDispatcherA;
-        pub const StartService = thismodule.StartServiceA;
-        pub const NotifyServiceStatusChange = thismodule.NotifyServiceStatusChangeA;
-        pub const ControlServiceEx = thismodule.ControlServiceExA;
-    },
-    .wide => struct {
-        pub const SERVICE_DESCRIPTION = thismodule.SERVICE_DESCRIPTIONW;
-        pub const SERVICE_FAILURE_ACTIONS = thismodule.SERVICE_FAILURE_ACTIONSW;
-        pub const SERVICE_REQUIRED_PRIVILEGES_INFO = thismodule.SERVICE_REQUIRED_PRIVILEGES_INFOW;
-        pub const ENUM_SERVICE_STATUS = thismodule.ENUM_SERVICE_STATUSW;
-        pub const ENUM_SERVICE_STATUS_PROCESS = thismodule.ENUM_SERVICE_STATUS_PROCESSW;
-        pub const QUERY_SERVICE_LOCK_STATUS = thismodule.QUERY_SERVICE_LOCK_STATUSW;
-        pub const QUERY_SERVICE_CONFIG = thismodule.QUERY_SERVICE_CONFIGW;
-        pub const SERVICE_MAIN_FUNCTION = thismodule.SERVICE_MAIN_FUNCTIONW;
-        pub const LPSERVICE_MAIN_FUNCTION = thismodule.LPSERVICE_MAIN_FUNCTIONW;
-        pub const SERVICE_TABLE_ENTRY = thismodule.SERVICE_TABLE_ENTRYW;
-        pub const SERVICE_NOTIFY_2 = thismodule.SERVICE_NOTIFY_2W;
-        pub const SERVICE_CONTROL_STATUS_REASON_PARAMS = thismodule.SERVICE_CONTROL_STATUS_REASON_PARAMSW;
-        pub const ChangeServiceConfig = thismodule.ChangeServiceConfigW;
-        pub const ChangeServiceConfig2 = thismodule.ChangeServiceConfig2W;
-        pub const CreateService = thismodule.CreateServiceW;
-        pub const EnumDependentServices = thismodule.EnumDependentServicesW;
-        pub const EnumServicesStatus = thismodule.EnumServicesStatusW;
-        pub const EnumServicesStatusEx = thismodule.EnumServicesStatusExW;
-        pub const GetServiceKeyName = thismodule.GetServiceKeyNameW;
-        pub const GetServiceDisplayName = thismodule.GetServiceDisplayNameW;
-        pub const OpenSCManager = thismodule.OpenSCManagerW;
-        pub const OpenService = thismodule.OpenServiceW;
-        pub const QueryServiceConfig = thismodule.QueryServiceConfigW;
-        pub const QueryServiceConfig2 = thismodule.QueryServiceConfig2W;
-        pub const QueryServiceLockStatus = thismodule.QueryServiceLockStatusW;
-        pub const RegisterServiceCtrlHandler = thismodule.RegisterServiceCtrlHandlerW;
-        pub const RegisterServiceCtrlHandlerEx = thismodule.RegisterServiceCtrlHandlerExW;
-        pub const StartServiceCtrlDispatcher = thismodule.StartServiceCtrlDispatcherW;
-        pub const StartService = thismodule.StartServiceW;
-        pub const NotifyServiceStatusChange = thismodule.NotifyServiceStatusChangeW;
-        pub const ControlServiceEx = thismodule.ControlServiceExW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const SERVICE_DESCRIPTION = *opaque{};
-        pub const SERVICE_FAILURE_ACTIONS = *opaque{};
-        pub const SERVICE_REQUIRED_PRIVILEGES_INFO = *opaque{};
-        pub const ENUM_SERVICE_STATUS = *opaque{};
-        pub const ENUM_SERVICE_STATUS_PROCESS = *opaque{};
-        pub const QUERY_SERVICE_LOCK_STATUS = *opaque{};
-        pub const QUERY_SERVICE_CONFIG = *opaque{};
-        pub const SERVICE_MAIN_FUNCTION = *opaque{};
-        pub const LPSERVICE_MAIN_FUNCTION = *opaque{};
-        pub const SERVICE_TABLE_ENTRY = *opaque{};
-        pub const SERVICE_NOTIFY_2 = *opaque{};
-        pub const SERVICE_CONTROL_STATUS_REASON_PARAMS = *opaque{};
-        pub const ChangeServiceConfig = *opaque{};
-        pub const ChangeServiceConfig2 = *opaque{};
-        pub const CreateService = *opaque{};
-        pub const EnumDependentServices = *opaque{};
-        pub const EnumServicesStatus = *opaque{};
-        pub const EnumServicesStatusEx = *opaque{};
-        pub const GetServiceKeyName = *opaque{};
-        pub const GetServiceDisplayName = *opaque{};
-        pub const OpenSCManager = *opaque{};
-        pub const OpenService = *opaque{};
-        pub const QueryServiceConfig = *opaque{};
-        pub const QueryServiceConfig2 = *opaque{};
-        pub const QueryServiceLockStatus = *opaque{};
-        pub const RegisterServiceCtrlHandler = *opaque{};
-        pub const RegisterServiceCtrlHandlerEx = *opaque{};
-        pub const StartServiceCtrlDispatcher = *opaque{};
-        pub const StartService = *opaque{};
-        pub const NotifyServiceStatusChange = *opaque{};
-        pub const ControlServiceEx = *opaque{};
-    } else struct {
-        pub const SERVICE_DESCRIPTION = @compileError("'SERVICE_DESCRIPTION' requires that UNICODE be set to true or false in the root module");
-        pub const SERVICE_FAILURE_ACTIONS = @compileError("'SERVICE_FAILURE_ACTIONS' requires that UNICODE be set to true or false in the root module");
-        pub const SERVICE_REQUIRED_PRIVILEGES_INFO = @compileError("'SERVICE_REQUIRED_PRIVILEGES_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const ENUM_SERVICE_STATUS = @compileError("'ENUM_SERVICE_STATUS' requires that UNICODE be set to true or false in the root module");
-        pub const ENUM_SERVICE_STATUS_PROCESS = @compileError("'ENUM_SERVICE_STATUS_PROCESS' requires that UNICODE be set to true or false in the root module");
-        pub const QUERY_SERVICE_LOCK_STATUS = @compileError("'QUERY_SERVICE_LOCK_STATUS' requires that UNICODE be set to true or false in the root module");
-        pub const QUERY_SERVICE_CONFIG = @compileError("'QUERY_SERVICE_CONFIG' requires that UNICODE be set to true or false in the root module");
-        pub const SERVICE_MAIN_FUNCTION = @compileError("'SERVICE_MAIN_FUNCTION' requires that UNICODE be set to true or false in the root module");
-        pub const LPSERVICE_MAIN_FUNCTION = @compileError("'LPSERVICE_MAIN_FUNCTION' requires that UNICODE be set to true or false in the root module");
-        pub const SERVICE_TABLE_ENTRY = @compileError("'SERVICE_TABLE_ENTRY' requires that UNICODE be set to true or false in the root module");
-        pub const SERVICE_NOTIFY_2 = @compileError("'SERVICE_NOTIFY_2' requires that UNICODE be set to true or false in the root module");
-        pub const SERVICE_CONTROL_STATUS_REASON_PARAMS = @compileError("'SERVICE_CONTROL_STATUS_REASON_PARAMS' requires that UNICODE be set to true or false in the root module");
-        pub const ChangeServiceConfig = @compileError("'ChangeServiceConfig' requires that UNICODE be set to true or false in the root module");
-        pub const ChangeServiceConfig2 = @compileError("'ChangeServiceConfig2' requires that UNICODE be set to true or false in the root module");
-        pub const CreateService = @compileError("'CreateService' requires that UNICODE be set to true or false in the root module");
-        pub const EnumDependentServices = @compileError("'EnumDependentServices' requires that UNICODE be set to true or false in the root module");
-        pub const EnumServicesStatus = @compileError("'EnumServicesStatus' requires that UNICODE be set to true or false in the root module");
-        pub const EnumServicesStatusEx = @compileError("'EnumServicesStatusEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetServiceKeyName = @compileError("'GetServiceKeyName' requires that UNICODE be set to true or false in the root module");
-        pub const GetServiceDisplayName = @compileError("'GetServiceDisplayName' requires that UNICODE be set to true or false in the root module");
-        pub const OpenSCManager = @compileError("'OpenSCManager' requires that UNICODE be set to true or false in the root module");
-        pub const OpenService = @compileError("'OpenService' requires that UNICODE be set to true or false in the root module");
-        pub const QueryServiceConfig = @compileError("'QueryServiceConfig' requires that UNICODE be set to true or false in the root module");
-        pub const QueryServiceConfig2 = @compileError("'QueryServiceConfig2' requires that UNICODE be set to true or false in the root module");
-        pub const QueryServiceLockStatus = @compileError("'QueryServiceLockStatus' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterServiceCtrlHandler = @compileError("'RegisterServiceCtrlHandler' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterServiceCtrlHandlerEx = @compileError("'RegisterServiceCtrlHandlerEx' requires that UNICODE be set to true or false in the root module");
-        pub const StartServiceCtrlDispatcher = @compileError("'StartServiceCtrlDispatcher' requires that UNICODE be set to true or false in the root module");
-        pub const StartService = @compileError("'StartService' requires that UNICODE be set to true or false in the root module");
-        pub const NotifyServiceStatusChange = @compileError("'NotifyServiceStatusChange' requires that UNICODE be set to true or false in the root module");
-        pub const ControlServiceEx = @compileError("'ControlServiceEx' requires that UNICODE be set to true or false in the root module");
-    },
+pub const SERVICE_DESCRIPTION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SERVICE_DESCRIPTIONA,
+    .wide => @This().SERVICE_DESCRIPTIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SERVICE_DESCRIPTION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SERVICE_FAILURE_ACTIONS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SERVICE_FAILURE_ACTIONSA,
+    .wide => @This().SERVICE_FAILURE_ACTIONSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SERVICE_FAILURE_ACTIONS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SERVICE_REQUIRED_PRIVILEGES_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SERVICE_REQUIRED_PRIVILEGES_INFOA,
+    .wide => @This().SERVICE_REQUIRED_PRIVILEGES_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SERVICE_REQUIRED_PRIVILEGES_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUM_SERVICE_STATUS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUM_SERVICE_STATUSA,
+    .wide => @This().ENUM_SERVICE_STATUSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUM_SERVICE_STATUS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUM_SERVICE_STATUS_PROCESS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUM_SERVICE_STATUS_PROCESSA,
+    .wide => @This().ENUM_SERVICE_STATUS_PROCESSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUM_SERVICE_STATUS_PROCESS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QUERY_SERVICE_LOCK_STATUS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().QUERY_SERVICE_LOCK_STATUSA,
+    .wide => @This().QUERY_SERVICE_LOCK_STATUSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QUERY_SERVICE_LOCK_STATUS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QUERY_SERVICE_CONFIG = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().QUERY_SERVICE_CONFIGA,
+    .wide => @This().QUERY_SERVICE_CONFIGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QUERY_SERVICE_CONFIG' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SERVICE_MAIN_FUNCTION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SERVICE_MAIN_FUNCTIONA,
+    .wide => @This().SERVICE_MAIN_FUNCTIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SERVICE_MAIN_FUNCTION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LPSERVICE_MAIN_FUNCTION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPSERVICE_MAIN_FUNCTIONA,
+    .wide => @This().LPSERVICE_MAIN_FUNCTIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPSERVICE_MAIN_FUNCTION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SERVICE_TABLE_ENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SERVICE_TABLE_ENTRYA,
+    .wide => @This().SERVICE_TABLE_ENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SERVICE_TABLE_ENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SERVICE_NOTIFY_2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SERVICE_NOTIFY_2A,
+    .wide => @This().SERVICE_NOTIFY_2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SERVICE_NOTIFY_2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SERVICE_CONTROL_STATUS_REASON_PARAMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SERVICE_CONTROL_STATUS_REASON_PARAMSA,
+    .wide => @This().SERVICE_CONTROL_STATUS_REASON_PARAMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SERVICE_CONTROL_STATUS_REASON_PARAMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ChangeServiceConfig = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ChangeServiceConfigA,
+    .wide => @This().ChangeServiceConfigW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ChangeServiceConfig' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ChangeServiceConfig2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ChangeServiceConfig2A,
+    .wide => @This().ChangeServiceConfig2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ChangeServiceConfig2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateService = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateServiceA,
+    .wide => @This().CreateServiceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateService' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumDependentServices = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumDependentServicesA,
+    .wide => @This().EnumDependentServicesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumDependentServices' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumServicesStatus = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumServicesStatusA,
+    .wide => @This().EnumServicesStatusW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumServicesStatus' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumServicesStatusEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumServicesStatusExA,
+    .wide => @This().EnumServicesStatusExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumServicesStatusEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetServiceKeyName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetServiceKeyNameA,
+    .wide => @This().GetServiceKeyNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetServiceKeyName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetServiceDisplayName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetServiceDisplayNameA,
+    .wide => @This().GetServiceDisplayNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetServiceDisplayName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenSCManager = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenSCManagerA,
+    .wide => @This().OpenSCManagerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenSCManager' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenService = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenServiceA,
+    .wide => @This().OpenServiceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenService' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QueryServiceConfig = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().QueryServiceConfigA,
+    .wide => @This().QueryServiceConfigW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QueryServiceConfig' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QueryServiceConfig2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().QueryServiceConfig2A,
+    .wide => @This().QueryServiceConfig2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QueryServiceConfig2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QueryServiceLockStatus = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().QueryServiceLockStatusA,
+    .wide => @This().QueryServiceLockStatusW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QueryServiceLockStatus' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterServiceCtrlHandler = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterServiceCtrlHandlerA,
+    .wide => @This().RegisterServiceCtrlHandlerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterServiceCtrlHandler' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterServiceCtrlHandlerEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterServiceCtrlHandlerExA,
+    .wide => @This().RegisterServiceCtrlHandlerExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterServiceCtrlHandlerEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StartServiceCtrlDispatcher = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StartServiceCtrlDispatcherA,
+    .wide => @This().StartServiceCtrlDispatcherW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StartServiceCtrlDispatcher' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StartService = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StartServiceA,
+    .wide => @This().StartServiceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StartService' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NotifyServiceStatusChange = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NotifyServiceStatusChangeA,
+    .wide => @This().NotifyServiceStatusChangeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NotifyServiceStatusChange' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ControlServiceEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ControlServiceExA,
+    .wide => @This().ControlServiceExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ControlServiceEx' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (11)

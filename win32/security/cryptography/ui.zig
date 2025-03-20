@@ -787,31 +787,33 @@ pub extern "cryptui" fn CryptUIWizImport(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const CERT_SELECT_STRUCT_ = thismodule.CERT_SELECT_STRUCT_A;
-        pub const CERT_VIEWPROPERTIES_STRUCT_ = thismodule.CERT_VIEWPROPERTIES_STRUCT_A;
-        pub const CRYPTUI_VIEWCERTIFICATE_STRUCT = thismodule.CRYPTUI_VIEWCERTIFICATE_STRUCTA;
-        pub const CryptUIDlgViewCertificate = thismodule.CryptUIDlgViewCertificateA;
-    },
-    .wide => struct {
-        pub const CERT_SELECT_STRUCT_ = thismodule.CERT_SELECT_STRUCT_W;
-        pub const CERT_VIEWPROPERTIES_STRUCT_ = thismodule.CERT_VIEWPROPERTIES_STRUCT_W;
-        pub const CRYPTUI_VIEWCERTIFICATE_STRUCT = thismodule.CRYPTUI_VIEWCERTIFICATE_STRUCTW;
-        pub const CryptUIDlgViewCertificate = thismodule.CryptUIDlgViewCertificateW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const CERT_SELECT_STRUCT_ = *opaque{};
-        pub const CERT_VIEWPROPERTIES_STRUCT_ = *opaque{};
-        pub const CRYPTUI_VIEWCERTIFICATE_STRUCT = *opaque{};
-        pub const CryptUIDlgViewCertificate = *opaque{};
-    } else struct {
-        pub const CERT_SELECT_STRUCT_ = @compileError("'CERT_SELECT_STRUCT_' requires that UNICODE be set to true or false in the root module");
-        pub const CERT_VIEWPROPERTIES_STRUCT_ = @compileError("'CERT_VIEWPROPERTIES_STRUCT_' requires that UNICODE be set to true or false in the root module");
-        pub const CRYPTUI_VIEWCERTIFICATE_STRUCT = @compileError("'CRYPTUI_VIEWCERTIFICATE_STRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const CryptUIDlgViewCertificate = @compileError("'CryptUIDlgViewCertificate' requires that UNICODE be set to true or false in the root module");
-    },
+pub const CERT_SELECT_STRUCT_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().CERT_SELECT_STRUCT_A,
+    .wide => @This().CERT_SELECT_STRUCT_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CERT_SELECT_STRUCT_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CERT_VIEWPROPERTIES_STRUCT_ = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().CERT_VIEWPROPERTIES_STRUCT_A,
+    .wide => @This().CERT_VIEWPROPERTIES_STRUCT_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CERT_VIEWPROPERTIES_STRUCT_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CRYPTUI_VIEWCERTIFICATE_STRUCT = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().CRYPTUI_VIEWCERTIFICATE_STRUCTA,
+    .wide => @This().CRYPTUI_VIEWCERTIFICATE_STRUCTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CRYPTUI_VIEWCERTIFICATE_STRUCT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CryptUIDlgViewCertificate = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().CryptUIDlgViewCertificateA,
+    .wide => @This().CryptUIDlgViewCertificateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CryptUIDlgViewCertificate' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (22)

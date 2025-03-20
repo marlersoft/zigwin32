@@ -4443,339 +4443,572 @@ pub extern "wininet" fn InternetConvertUrlFromWireToWideChar(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (81)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const INTERNET_PER_CONN_OPTION = thismodule.INTERNET_PER_CONN_OPTIONA;
-        pub const INTERNET_PER_CONN_OPTION_LIST = thismodule.INTERNET_PER_CONN_OPTION_LISTA;
-        pub const URL_COMPONENTS = thismodule.URL_COMPONENTSA;
-        pub const INTERNET_BUFFERS = thismodule.INTERNET_BUFFERSA;
-        pub const GOPHER_FIND_DATA = thismodule.GOPHER_FIND_DATAA;
-        pub const INTERNET_CACHE_ENTRY_INFO = thismodule.INTERNET_CACHE_ENTRY_INFOA;
-        pub const INTERNET_CACHE_GROUP_INFO = thismodule.INTERNET_CACHE_GROUP_INFOA;
-        pub const INTERNET_CACHE_CONFIG_PATH_ENTRY = thismodule.INTERNET_CACHE_CONFIG_PATH_ENTRYA;
-        pub const INTERNET_CACHE_CONFIG_INFO = thismodule.INTERNET_CACHE_CONFIG_INFOA;
-        pub const INTERNET_CACHE_CONTAINER_INFO = thismodule.INTERNET_CACHE_CONTAINER_INFOA;
-        pub const InternetCrackUrl = thismodule.InternetCrackUrlA;
-        pub const InternetCreateUrl = thismodule.InternetCreateUrlA;
-        pub const InternetCanonicalizeUrl = thismodule.InternetCanonicalizeUrlA;
-        pub const InternetCombineUrl = thismodule.InternetCombineUrlA;
-        pub const InternetOpen = thismodule.InternetOpenA;
-        pub const InternetConnect = thismodule.InternetConnectA;
-        pub const InternetOpenUrl = thismodule.InternetOpenUrlA;
-        pub const InternetReadFileEx = thismodule.InternetReadFileExA;
-        pub const InternetFindNextFile = thismodule.InternetFindNextFileA;
-        pub const InternetQueryOption = thismodule.InternetQueryOptionA;
-        pub const InternetSetOption = thismodule.InternetSetOptionA;
-        pub const InternetSetOptionEx = thismodule.InternetSetOptionExA;
-        pub const InternetGetLastResponseInfo = thismodule.InternetGetLastResponseInfoA;
-        pub const FtpFindFirstFile = thismodule.FtpFindFirstFileA;
-        pub const FtpGetFile = thismodule.FtpGetFileA;
-        pub const FtpPutFile = thismodule.FtpPutFileA;
-        pub const FtpDeleteFile = thismodule.FtpDeleteFileA;
-        pub const FtpRenameFile = thismodule.FtpRenameFileA;
-        pub const FtpOpenFile = thismodule.FtpOpenFileA;
-        pub const FtpCreateDirectory = thismodule.FtpCreateDirectoryA;
-        pub const FtpRemoveDirectory = thismodule.FtpRemoveDirectoryA;
-        pub const FtpSetCurrentDirectory = thismodule.FtpSetCurrentDirectoryA;
-        pub const FtpGetCurrentDirectory = thismodule.FtpGetCurrentDirectoryA;
-        pub const FtpCommand = thismodule.FtpCommandA;
-        pub const GopherCreateLocator = thismodule.GopherCreateLocatorA;
-        pub const GopherGetLocatorType = thismodule.GopherGetLocatorTypeA;
-        pub const GopherFindFirstFile = thismodule.GopherFindFirstFileA;
-        pub const GopherOpenFile = thismodule.GopherOpenFileA;
-        pub const GopherGetAttribute = thismodule.GopherGetAttributeA;
-        pub const HttpOpenRequest = thismodule.HttpOpenRequestA;
-        pub const HttpAddRequestHeaders = thismodule.HttpAddRequestHeadersA;
-        pub const HttpSendRequest = thismodule.HttpSendRequestA;
-        pub const HttpSendRequestEx = thismodule.HttpSendRequestExA;
-        pub const HttpEndRequest = thismodule.HttpEndRequestA;
-        pub const HttpQueryInfo = thismodule.HttpQueryInfoA;
-        pub const InternetSetCookie = thismodule.InternetSetCookieA;
-        pub const InternetGetCookie = thismodule.InternetGetCookieA;
-        pub const InternetSetCookieEx = thismodule.InternetSetCookieExA;
-        pub const InternetGetCookieEx = thismodule.InternetGetCookieExA;
-        pub const InternetCheckConnection = thismodule.InternetCheckConnectionA;
-        pub const CreateUrlCacheEntry = thismodule.CreateUrlCacheEntryA;
-        pub const CommitUrlCacheEntry = thismodule.CommitUrlCacheEntryA;
-        pub const RetrieveUrlCacheEntryFile = thismodule.RetrieveUrlCacheEntryFileA;
-        pub const RetrieveUrlCacheEntryStream = thismodule.RetrieveUrlCacheEntryStreamA;
-        pub const GetUrlCacheEntryInfo = thismodule.GetUrlCacheEntryInfoA;
-        pub const GetUrlCacheGroupAttribute = thismodule.GetUrlCacheGroupAttributeA;
-        pub const SetUrlCacheGroupAttribute = thismodule.SetUrlCacheGroupAttributeA;
-        pub const GetUrlCacheEntryInfoEx = thismodule.GetUrlCacheEntryInfoExA;
-        pub const SetUrlCacheEntryInfo = thismodule.SetUrlCacheEntryInfoA;
-        pub const FindFirstUrlCacheEntryEx = thismodule.FindFirstUrlCacheEntryExA;
-        pub const FindNextUrlCacheEntryEx = thismodule.FindNextUrlCacheEntryExA;
-        pub const FindFirstUrlCacheEntry = thismodule.FindFirstUrlCacheEntryA;
-        pub const FindNextUrlCacheEntry = thismodule.FindNextUrlCacheEntryA;
-        pub const InternetSetPerSiteCookieDecision = thismodule.InternetSetPerSiteCookieDecisionA;
-        pub const InternetGetPerSiteCookieDecision = thismodule.InternetGetPerSiteCookieDecisionA;
-        pub const InternetEnumPerSiteCookieDecision = thismodule.InternetEnumPerSiteCookieDecisionA;
-        pub const InternetAlgIdToString = thismodule.InternetAlgIdToStringA;
-        pub const InternetSecurityProtocolToString = thismodule.InternetSecurityProtocolToStringA;
-        pub const InternetWriteFileEx = thismodule.InternetWriteFileExA;
-        pub const HttpCheckDavCompliance = thismodule.HttpCheckDavComplianceA;
-        pub const IsUrlCacheEntryExpired = thismodule.IsUrlCacheEntryExpiredA;
-        pub const CreateUrlCacheContainer = thismodule.CreateUrlCacheContainerA;
-        pub const DeleteUrlCacheContainer = thismodule.DeleteUrlCacheContainerA;
-        pub const FindFirstUrlCacheContainer = thismodule.FindFirstUrlCacheContainerA;
-        pub const FindNextUrlCacheContainer = thismodule.FindNextUrlCacheContainerA;
-        pub const FreeUrlCacheSpace = thismodule.FreeUrlCacheSpaceA;
-        pub const GetUrlCacheConfigInfo = thismodule.GetUrlCacheConfigInfoA;
-        pub const SetUrlCacheConfigInfo = thismodule.SetUrlCacheConfigInfoA;
-        pub const ImportCookieFile = thismodule.ImportCookieFileA;
-        pub const ExportCookieFile = thismodule.ExportCookieFileA;
-        pub const IsDomainLegalCookieDomain = thismodule.IsDomainLegalCookieDomainA;
-    },
-    .wide => struct {
-        pub const INTERNET_PER_CONN_OPTION = thismodule.INTERNET_PER_CONN_OPTIONW;
-        pub const INTERNET_PER_CONN_OPTION_LIST = thismodule.INTERNET_PER_CONN_OPTION_LISTW;
-        pub const URL_COMPONENTS = thismodule.URL_COMPONENTSW;
-        pub const INTERNET_BUFFERS = thismodule.INTERNET_BUFFERSW;
-        pub const GOPHER_FIND_DATA = thismodule.GOPHER_FIND_DATAW;
-        pub const INTERNET_CACHE_ENTRY_INFO = thismodule.INTERNET_CACHE_ENTRY_INFOW;
-        pub const INTERNET_CACHE_GROUP_INFO = thismodule.INTERNET_CACHE_GROUP_INFOW;
-        pub const INTERNET_CACHE_CONFIG_PATH_ENTRY = thismodule.INTERNET_CACHE_CONFIG_PATH_ENTRYW;
-        pub const INTERNET_CACHE_CONFIG_INFO = thismodule.INTERNET_CACHE_CONFIG_INFOW;
-        pub const INTERNET_CACHE_CONTAINER_INFO = thismodule.INTERNET_CACHE_CONTAINER_INFOW;
-        pub const InternetCrackUrl = thismodule.InternetCrackUrlW;
-        pub const InternetCreateUrl = thismodule.InternetCreateUrlW;
-        pub const InternetCanonicalizeUrl = thismodule.InternetCanonicalizeUrlW;
-        pub const InternetCombineUrl = thismodule.InternetCombineUrlW;
-        pub const InternetOpen = thismodule.InternetOpenW;
-        pub const InternetConnect = thismodule.InternetConnectW;
-        pub const InternetOpenUrl = thismodule.InternetOpenUrlW;
-        pub const InternetReadFileEx = thismodule.InternetReadFileExW;
-        pub const InternetFindNextFile = thismodule.InternetFindNextFileW;
-        pub const InternetQueryOption = thismodule.InternetQueryOptionW;
-        pub const InternetSetOption = thismodule.InternetSetOptionW;
-        pub const InternetSetOptionEx = thismodule.InternetSetOptionExW;
-        pub const InternetGetLastResponseInfo = thismodule.InternetGetLastResponseInfoW;
-        pub const FtpFindFirstFile = thismodule.FtpFindFirstFileW;
-        pub const FtpGetFile = thismodule.FtpGetFileW;
-        pub const FtpPutFile = thismodule.FtpPutFileW;
-        pub const FtpDeleteFile = thismodule.FtpDeleteFileW;
-        pub const FtpRenameFile = thismodule.FtpRenameFileW;
-        pub const FtpOpenFile = thismodule.FtpOpenFileW;
-        pub const FtpCreateDirectory = thismodule.FtpCreateDirectoryW;
-        pub const FtpRemoveDirectory = thismodule.FtpRemoveDirectoryW;
-        pub const FtpSetCurrentDirectory = thismodule.FtpSetCurrentDirectoryW;
-        pub const FtpGetCurrentDirectory = thismodule.FtpGetCurrentDirectoryW;
-        pub const FtpCommand = thismodule.FtpCommandW;
-        pub const GopherCreateLocator = thismodule.GopherCreateLocatorW;
-        pub const GopherGetLocatorType = thismodule.GopherGetLocatorTypeW;
-        pub const GopherFindFirstFile = thismodule.GopherFindFirstFileW;
-        pub const GopherOpenFile = thismodule.GopherOpenFileW;
-        pub const GopherGetAttribute = thismodule.GopherGetAttributeW;
-        pub const HttpOpenRequest = thismodule.HttpOpenRequestW;
-        pub const HttpAddRequestHeaders = thismodule.HttpAddRequestHeadersW;
-        pub const HttpSendRequest = thismodule.HttpSendRequestW;
-        pub const HttpSendRequestEx = thismodule.HttpSendRequestExW;
-        pub const HttpEndRequest = thismodule.HttpEndRequestW;
-        pub const HttpQueryInfo = thismodule.HttpQueryInfoW;
-        pub const InternetSetCookie = thismodule.InternetSetCookieW;
-        pub const InternetGetCookie = thismodule.InternetGetCookieW;
-        pub const InternetSetCookieEx = thismodule.InternetSetCookieExW;
-        pub const InternetGetCookieEx = thismodule.InternetGetCookieExW;
-        pub const InternetCheckConnection = thismodule.InternetCheckConnectionW;
-        pub const CreateUrlCacheEntry = thismodule.CreateUrlCacheEntryW;
-        pub const CommitUrlCacheEntry = thismodule.CommitUrlCacheEntryW;
-        pub const RetrieveUrlCacheEntryFile = thismodule.RetrieveUrlCacheEntryFileW;
-        pub const RetrieveUrlCacheEntryStream = thismodule.RetrieveUrlCacheEntryStreamW;
-        pub const GetUrlCacheEntryInfo = thismodule.GetUrlCacheEntryInfoW;
-        pub const GetUrlCacheGroupAttribute = thismodule.GetUrlCacheGroupAttributeW;
-        pub const SetUrlCacheGroupAttribute = thismodule.SetUrlCacheGroupAttributeW;
-        pub const GetUrlCacheEntryInfoEx = thismodule.GetUrlCacheEntryInfoExW;
-        pub const SetUrlCacheEntryInfo = thismodule.SetUrlCacheEntryInfoW;
-        pub const FindFirstUrlCacheEntryEx = thismodule.FindFirstUrlCacheEntryExW;
-        pub const FindNextUrlCacheEntryEx = thismodule.FindNextUrlCacheEntryExW;
-        pub const FindFirstUrlCacheEntry = thismodule.FindFirstUrlCacheEntryW;
-        pub const FindNextUrlCacheEntry = thismodule.FindNextUrlCacheEntryW;
-        pub const InternetSetPerSiteCookieDecision = thismodule.InternetSetPerSiteCookieDecisionW;
-        pub const InternetGetPerSiteCookieDecision = thismodule.InternetGetPerSiteCookieDecisionW;
-        pub const InternetEnumPerSiteCookieDecision = thismodule.InternetEnumPerSiteCookieDecisionW;
-        pub const InternetAlgIdToString = thismodule.InternetAlgIdToStringW;
-        pub const InternetSecurityProtocolToString = thismodule.InternetSecurityProtocolToStringW;
-        pub const InternetWriteFileEx = thismodule.InternetWriteFileExW;
-        pub const HttpCheckDavCompliance = thismodule.HttpCheckDavComplianceW;
-        pub const IsUrlCacheEntryExpired = thismodule.IsUrlCacheEntryExpiredW;
-        pub const CreateUrlCacheContainer = thismodule.CreateUrlCacheContainerW;
-        pub const DeleteUrlCacheContainer = thismodule.DeleteUrlCacheContainerW;
-        pub const FindFirstUrlCacheContainer = thismodule.FindFirstUrlCacheContainerW;
-        pub const FindNextUrlCacheContainer = thismodule.FindNextUrlCacheContainerW;
-        pub const FreeUrlCacheSpace = thismodule.FreeUrlCacheSpaceW;
-        pub const GetUrlCacheConfigInfo = thismodule.GetUrlCacheConfigInfoW;
-        pub const SetUrlCacheConfigInfo = thismodule.SetUrlCacheConfigInfoW;
-        pub const ImportCookieFile = thismodule.ImportCookieFileW;
-        pub const ExportCookieFile = thismodule.ExportCookieFileW;
-        pub const IsDomainLegalCookieDomain = thismodule.IsDomainLegalCookieDomainW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const INTERNET_PER_CONN_OPTION = *opaque{};
-        pub const INTERNET_PER_CONN_OPTION_LIST = *opaque{};
-        pub const URL_COMPONENTS = *opaque{};
-        pub const INTERNET_BUFFERS = *opaque{};
-        pub const GOPHER_FIND_DATA = *opaque{};
-        pub const INTERNET_CACHE_ENTRY_INFO = *opaque{};
-        pub const INTERNET_CACHE_GROUP_INFO = *opaque{};
-        pub const INTERNET_CACHE_CONFIG_PATH_ENTRY = *opaque{};
-        pub const INTERNET_CACHE_CONFIG_INFO = *opaque{};
-        pub const INTERNET_CACHE_CONTAINER_INFO = *opaque{};
-        pub const InternetCrackUrl = *opaque{};
-        pub const InternetCreateUrl = *opaque{};
-        pub const InternetCanonicalizeUrl = *opaque{};
-        pub const InternetCombineUrl = *opaque{};
-        pub const InternetOpen = *opaque{};
-        pub const InternetConnect = *opaque{};
-        pub const InternetOpenUrl = *opaque{};
-        pub const InternetReadFileEx = *opaque{};
-        pub const InternetFindNextFile = *opaque{};
-        pub const InternetQueryOption = *opaque{};
-        pub const InternetSetOption = *opaque{};
-        pub const InternetSetOptionEx = *opaque{};
-        pub const InternetGetLastResponseInfo = *opaque{};
-        pub const FtpFindFirstFile = *opaque{};
-        pub const FtpGetFile = *opaque{};
-        pub const FtpPutFile = *opaque{};
-        pub const FtpDeleteFile = *opaque{};
-        pub const FtpRenameFile = *opaque{};
-        pub const FtpOpenFile = *opaque{};
-        pub const FtpCreateDirectory = *opaque{};
-        pub const FtpRemoveDirectory = *opaque{};
-        pub const FtpSetCurrentDirectory = *opaque{};
-        pub const FtpGetCurrentDirectory = *opaque{};
-        pub const FtpCommand = *opaque{};
-        pub const GopherCreateLocator = *opaque{};
-        pub const GopherGetLocatorType = *opaque{};
-        pub const GopherFindFirstFile = *opaque{};
-        pub const GopherOpenFile = *opaque{};
-        pub const GopherGetAttribute = *opaque{};
-        pub const HttpOpenRequest = *opaque{};
-        pub const HttpAddRequestHeaders = *opaque{};
-        pub const HttpSendRequest = *opaque{};
-        pub const HttpSendRequestEx = *opaque{};
-        pub const HttpEndRequest = *opaque{};
-        pub const HttpQueryInfo = *opaque{};
-        pub const InternetSetCookie = *opaque{};
-        pub const InternetGetCookie = *opaque{};
-        pub const InternetSetCookieEx = *opaque{};
-        pub const InternetGetCookieEx = *opaque{};
-        pub const InternetCheckConnection = *opaque{};
-        pub const CreateUrlCacheEntry = *opaque{};
-        pub const CommitUrlCacheEntry = *opaque{};
-        pub const RetrieveUrlCacheEntryFile = *opaque{};
-        pub const RetrieveUrlCacheEntryStream = *opaque{};
-        pub const GetUrlCacheEntryInfo = *opaque{};
-        pub const GetUrlCacheGroupAttribute = *opaque{};
-        pub const SetUrlCacheGroupAttribute = *opaque{};
-        pub const GetUrlCacheEntryInfoEx = *opaque{};
-        pub const SetUrlCacheEntryInfo = *opaque{};
-        pub const FindFirstUrlCacheEntryEx = *opaque{};
-        pub const FindNextUrlCacheEntryEx = *opaque{};
-        pub const FindFirstUrlCacheEntry = *opaque{};
-        pub const FindNextUrlCacheEntry = *opaque{};
-        pub const InternetSetPerSiteCookieDecision = *opaque{};
-        pub const InternetGetPerSiteCookieDecision = *opaque{};
-        pub const InternetEnumPerSiteCookieDecision = *opaque{};
-        pub const InternetAlgIdToString = *opaque{};
-        pub const InternetSecurityProtocolToString = *opaque{};
-        pub const InternetWriteFileEx = *opaque{};
-        pub const HttpCheckDavCompliance = *opaque{};
-        pub const IsUrlCacheEntryExpired = *opaque{};
-        pub const CreateUrlCacheContainer = *opaque{};
-        pub const DeleteUrlCacheContainer = *opaque{};
-        pub const FindFirstUrlCacheContainer = *opaque{};
-        pub const FindNextUrlCacheContainer = *opaque{};
-        pub const FreeUrlCacheSpace = *opaque{};
-        pub const GetUrlCacheConfigInfo = *opaque{};
-        pub const SetUrlCacheConfigInfo = *opaque{};
-        pub const ImportCookieFile = *opaque{};
-        pub const ExportCookieFile = *opaque{};
-        pub const IsDomainLegalCookieDomain = *opaque{};
-    } else struct {
-        pub const INTERNET_PER_CONN_OPTION = @compileError("'INTERNET_PER_CONN_OPTION' requires that UNICODE be set to true or false in the root module");
-        pub const INTERNET_PER_CONN_OPTION_LIST = @compileError("'INTERNET_PER_CONN_OPTION_LIST' requires that UNICODE be set to true or false in the root module");
-        pub const URL_COMPONENTS = @compileError("'URL_COMPONENTS' requires that UNICODE be set to true or false in the root module");
-        pub const INTERNET_BUFFERS = @compileError("'INTERNET_BUFFERS' requires that UNICODE be set to true or false in the root module");
-        pub const GOPHER_FIND_DATA = @compileError("'GOPHER_FIND_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const INTERNET_CACHE_ENTRY_INFO = @compileError("'INTERNET_CACHE_ENTRY_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const INTERNET_CACHE_GROUP_INFO = @compileError("'INTERNET_CACHE_GROUP_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const INTERNET_CACHE_CONFIG_PATH_ENTRY = @compileError("'INTERNET_CACHE_CONFIG_PATH_ENTRY' requires that UNICODE be set to true or false in the root module");
-        pub const INTERNET_CACHE_CONFIG_INFO = @compileError("'INTERNET_CACHE_CONFIG_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const INTERNET_CACHE_CONTAINER_INFO = @compileError("'INTERNET_CACHE_CONTAINER_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const InternetCrackUrl = @compileError("'InternetCrackUrl' requires that UNICODE be set to true or false in the root module");
-        pub const InternetCreateUrl = @compileError("'InternetCreateUrl' requires that UNICODE be set to true or false in the root module");
-        pub const InternetCanonicalizeUrl = @compileError("'InternetCanonicalizeUrl' requires that UNICODE be set to true or false in the root module");
-        pub const InternetCombineUrl = @compileError("'InternetCombineUrl' requires that UNICODE be set to true or false in the root module");
-        pub const InternetOpen = @compileError("'InternetOpen' requires that UNICODE be set to true or false in the root module");
-        pub const InternetConnect = @compileError("'InternetConnect' requires that UNICODE be set to true or false in the root module");
-        pub const InternetOpenUrl = @compileError("'InternetOpenUrl' requires that UNICODE be set to true or false in the root module");
-        pub const InternetReadFileEx = @compileError("'InternetReadFileEx' requires that UNICODE be set to true or false in the root module");
-        pub const InternetFindNextFile = @compileError("'InternetFindNextFile' requires that UNICODE be set to true or false in the root module");
-        pub const InternetQueryOption = @compileError("'InternetQueryOption' requires that UNICODE be set to true or false in the root module");
-        pub const InternetSetOption = @compileError("'InternetSetOption' requires that UNICODE be set to true or false in the root module");
-        pub const InternetSetOptionEx = @compileError("'InternetSetOptionEx' requires that UNICODE be set to true or false in the root module");
-        pub const InternetGetLastResponseInfo = @compileError("'InternetGetLastResponseInfo' requires that UNICODE be set to true or false in the root module");
-        pub const FtpFindFirstFile = @compileError("'FtpFindFirstFile' requires that UNICODE be set to true or false in the root module");
-        pub const FtpGetFile = @compileError("'FtpGetFile' requires that UNICODE be set to true or false in the root module");
-        pub const FtpPutFile = @compileError("'FtpPutFile' requires that UNICODE be set to true or false in the root module");
-        pub const FtpDeleteFile = @compileError("'FtpDeleteFile' requires that UNICODE be set to true or false in the root module");
-        pub const FtpRenameFile = @compileError("'FtpRenameFile' requires that UNICODE be set to true or false in the root module");
-        pub const FtpOpenFile = @compileError("'FtpOpenFile' requires that UNICODE be set to true or false in the root module");
-        pub const FtpCreateDirectory = @compileError("'FtpCreateDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const FtpRemoveDirectory = @compileError("'FtpRemoveDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const FtpSetCurrentDirectory = @compileError("'FtpSetCurrentDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const FtpGetCurrentDirectory = @compileError("'FtpGetCurrentDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const FtpCommand = @compileError("'FtpCommand' requires that UNICODE be set to true or false in the root module");
-        pub const GopherCreateLocator = @compileError("'GopherCreateLocator' requires that UNICODE be set to true or false in the root module");
-        pub const GopherGetLocatorType = @compileError("'GopherGetLocatorType' requires that UNICODE be set to true or false in the root module");
-        pub const GopherFindFirstFile = @compileError("'GopherFindFirstFile' requires that UNICODE be set to true or false in the root module");
-        pub const GopherOpenFile = @compileError("'GopherOpenFile' requires that UNICODE be set to true or false in the root module");
-        pub const GopherGetAttribute = @compileError("'GopherGetAttribute' requires that UNICODE be set to true or false in the root module");
-        pub const HttpOpenRequest = @compileError("'HttpOpenRequest' requires that UNICODE be set to true or false in the root module");
-        pub const HttpAddRequestHeaders = @compileError("'HttpAddRequestHeaders' requires that UNICODE be set to true or false in the root module");
-        pub const HttpSendRequest = @compileError("'HttpSendRequest' requires that UNICODE be set to true or false in the root module");
-        pub const HttpSendRequestEx = @compileError("'HttpSendRequestEx' requires that UNICODE be set to true or false in the root module");
-        pub const HttpEndRequest = @compileError("'HttpEndRequest' requires that UNICODE be set to true or false in the root module");
-        pub const HttpQueryInfo = @compileError("'HttpQueryInfo' requires that UNICODE be set to true or false in the root module");
-        pub const InternetSetCookie = @compileError("'InternetSetCookie' requires that UNICODE be set to true or false in the root module");
-        pub const InternetGetCookie = @compileError("'InternetGetCookie' requires that UNICODE be set to true or false in the root module");
-        pub const InternetSetCookieEx = @compileError("'InternetSetCookieEx' requires that UNICODE be set to true or false in the root module");
-        pub const InternetGetCookieEx = @compileError("'InternetGetCookieEx' requires that UNICODE be set to true or false in the root module");
-        pub const InternetCheckConnection = @compileError("'InternetCheckConnection' requires that UNICODE be set to true or false in the root module");
-        pub const CreateUrlCacheEntry = @compileError("'CreateUrlCacheEntry' requires that UNICODE be set to true or false in the root module");
-        pub const CommitUrlCacheEntry = @compileError("'CommitUrlCacheEntry' requires that UNICODE be set to true or false in the root module");
-        pub const RetrieveUrlCacheEntryFile = @compileError("'RetrieveUrlCacheEntryFile' requires that UNICODE be set to true or false in the root module");
-        pub const RetrieveUrlCacheEntryStream = @compileError("'RetrieveUrlCacheEntryStream' requires that UNICODE be set to true or false in the root module");
-        pub const GetUrlCacheEntryInfo = @compileError("'GetUrlCacheEntryInfo' requires that UNICODE be set to true or false in the root module");
-        pub const GetUrlCacheGroupAttribute = @compileError("'GetUrlCacheGroupAttribute' requires that UNICODE be set to true or false in the root module");
-        pub const SetUrlCacheGroupAttribute = @compileError("'SetUrlCacheGroupAttribute' requires that UNICODE be set to true or false in the root module");
-        pub const GetUrlCacheEntryInfoEx = @compileError("'GetUrlCacheEntryInfoEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetUrlCacheEntryInfo = @compileError("'SetUrlCacheEntryInfo' requires that UNICODE be set to true or false in the root module");
-        pub const FindFirstUrlCacheEntryEx = @compileError("'FindFirstUrlCacheEntryEx' requires that UNICODE be set to true or false in the root module");
-        pub const FindNextUrlCacheEntryEx = @compileError("'FindNextUrlCacheEntryEx' requires that UNICODE be set to true or false in the root module");
-        pub const FindFirstUrlCacheEntry = @compileError("'FindFirstUrlCacheEntry' requires that UNICODE be set to true or false in the root module");
-        pub const FindNextUrlCacheEntry = @compileError("'FindNextUrlCacheEntry' requires that UNICODE be set to true or false in the root module");
-        pub const InternetSetPerSiteCookieDecision = @compileError("'InternetSetPerSiteCookieDecision' requires that UNICODE be set to true or false in the root module");
-        pub const InternetGetPerSiteCookieDecision = @compileError("'InternetGetPerSiteCookieDecision' requires that UNICODE be set to true or false in the root module");
-        pub const InternetEnumPerSiteCookieDecision = @compileError("'InternetEnumPerSiteCookieDecision' requires that UNICODE be set to true or false in the root module");
-        pub const InternetAlgIdToString = @compileError("'InternetAlgIdToString' requires that UNICODE be set to true or false in the root module");
-        pub const InternetSecurityProtocolToString = @compileError("'InternetSecurityProtocolToString' requires that UNICODE be set to true or false in the root module");
-        pub const InternetWriteFileEx = @compileError("'InternetWriteFileEx' requires that UNICODE be set to true or false in the root module");
-        pub const HttpCheckDavCompliance = @compileError("'HttpCheckDavCompliance' requires that UNICODE be set to true or false in the root module");
-        pub const IsUrlCacheEntryExpired = @compileError("'IsUrlCacheEntryExpired' requires that UNICODE be set to true or false in the root module");
-        pub const CreateUrlCacheContainer = @compileError("'CreateUrlCacheContainer' requires that UNICODE be set to true or false in the root module");
-        pub const DeleteUrlCacheContainer = @compileError("'DeleteUrlCacheContainer' requires that UNICODE be set to true or false in the root module");
-        pub const FindFirstUrlCacheContainer = @compileError("'FindFirstUrlCacheContainer' requires that UNICODE be set to true or false in the root module");
-        pub const FindNextUrlCacheContainer = @compileError("'FindNextUrlCacheContainer' requires that UNICODE be set to true or false in the root module");
-        pub const FreeUrlCacheSpace = @compileError("'FreeUrlCacheSpace' requires that UNICODE be set to true or false in the root module");
-        pub const GetUrlCacheConfigInfo = @compileError("'GetUrlCacheConfigInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetUrlCacheConfigInfo = @compileError("'SetUrlCacheConfigInfo' requires that UNICODE be set to true or false in the root module");
-        pub const ImportCookieFile = @compileError("'ImportCookieFile' requires that UNICODE be set to true or false in the root module");
-        pub const ExportCookieFile = @compileError("'ExportCookieFile' requires that UNICODE be set to true or false in the root module");
-        pub const IsDomainLegalCookieDomain = @compileError("'IsDomainLegalCookieDomain' requires that UNICODE be set to true or false in the root module");
-    },
+pub const INTERNET_PER_CONN_OPTION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().INTERNET_PER_CONN_OPTIONA,
+    .wide => @This().INTERNET_PER_CONN_OPTIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INTERNET_PER_CONN_OPTION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const INTERNET_PER_CONN_OPTION_LIST = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().INTERNET_PER_CONN_OPTION_LISTA,
+    .wide => @This().INTERNET_PER_CONN_OPTION_LISTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INTERNET_PER_CONN_OPTION_LIST' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const URL_COMPONENTS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().URL_COMPONENTSA,
+    .wide => @This().URL_COMPONENTSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'URL_COMPONENTS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const INTERNET_BUFFERS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().INTERNET_BUFFERSA,
+    .wide => @This().INTERNET_BUFFERSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INTERNET_BUFFERS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GOPHER_FIND_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GOPHER_FIND_DATAA,
+    .wide => @This().GOPHER_FIND_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GOPHER_FIND_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const INTERNET_CACHE_ENTRY_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().INTERNET_CACHE_ENTRY_INFOA,
+    .wide => @This().INTERNET_CACHE_ENTRY_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INTERNET_CACHE_ENTRY_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const INTERNET_CACHE_GROUP_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().INTERNET_CACHE_GROUP_INFOA,
+    .wide => @This().INTERNET_CACHE_GROUP_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INTERNET_CACHE_GROUP_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const INTERNET_CACHE_CONFIG_PATH_ENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().INTERNET_CACHE_CONFIG_PATH_ENTRYA,
+    .wide => @This().INTERNET_CACHE_CONFIG_PATH_ENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INTERNET_CACHE_CONFIG_PATH_ENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const INTERNET_CACHE_CONFIG_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().INTERNET_CACHE_CONFIG_INFOA,
+    .wide => @This().INTERNET_CACHE_CONFIG_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INTERNET_CACHE_CONFIG_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const INTERNET_CACHE_CONTAINER_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().INTERNET_CACHE_CONTAINER_INFOA,
+    .wide => @This().INTERNET_CACHE_CONTAINER_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INTERNET_CACHE_CONTAINER_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetCrackUrl = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetCrackUrlA,
+    .wide => @This().InternetCrackUrlW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetCrackUrl' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetCreateUrl = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetCreateUrlA,
+    .wide => @This().InternetCreateUrlW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetCreateUrl' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetCanonicalizeUrl = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetCanonicalizeUrlA,
+    .wide => @This().InternetCanonicalizeUrlW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetCanonicalizeUrl' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetCombineUrl = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetCombineUrlA,
+    .wide => @This().InternetCombineUrlW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetCombineUrl' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetOpen = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetOpenA,
+    .wide => @This().InternetOpenW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetOpen' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetConnect = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetConnectA,
+    .wide => @This().InternetConnectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetConnect' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetOpenUrl = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetOpenUrlA,
+    .wide => @This().InternetOpenUrlW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetOpenUrl' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetReadFileEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetReadFileExA,
+    .wide => @This().InternetReadFileExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetReadFileEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetFindNextFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetFindNextFileA,
+    .wide => @This().InternetFindNextFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetFindNextFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetQueryOption = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetQueryOptionA,
+    .wide => @This().InternetQueryOptionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetQueryOption' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetSetOption = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetSetOptionA,
+    .wide => @This().InternetSetOptionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetSetOption' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetSetOptionEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetSetOptionExA,
+    .wide => @This().InternetSetOptionExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetSetOptionEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetGetLastResponseInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetGetLastResponseInfoA,
+    .wide => @This().InternetGetLastResponseInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetGetLastResponseInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FtpFindFirstFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FtpFindFirstFileA,
+    .wide => @This().FtpFindFirstFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FtpFindFirstFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FtpGetFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FtpGetFileA,
+    .wide => @This().FtpGetFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FtpGetFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FtpPutFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FtpPutFileA,
+    .wide => @This().FtpPutFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FtpPutFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FtpDeleteFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FtpDeleteFileA,
+    .wide => @This().FtpDeleteFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FtpDeleteFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FtpRenameFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FtpRenameFileA,
+    .wide => @This().FtpRenameFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FtpRenameFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FtpOpenFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FtpOpenFileA,
+    .wide => @This().FtpOpenFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FtpOpenFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FtpCreateDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FtpCreateDirectoryA,
+    .wide => @This().FtpCreateDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FtpCreateDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FtpRemoveDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FtpRemoveDirectoryA,
+    .wide => @This().FtpRemoveDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FtpRemoveDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FtpSetCurrentDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FtpSetCurrentDirectoryA,
+    .wide => @This().FtpSetCurrentDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FtpSetCurrentDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FtpGetCurrentDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FtpGetCurrentDirectoryA,
+    .wide => @This().FtpGetCurrentDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FtpGetCurrentDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FtpCommand = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FtpCommandA,
+    .wide => @This().FtpCommandW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FtpCommand' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GopherCreateLocator = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GopherCreateLocatorA,
+    .wide => @This().GopherCreateLocatorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GopherCreateLocator' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GopherGetLocatorType = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GopherGetLocatorTypeA,
+    .wide => @This().GopherGetLocatorTypeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GopherGetLocatorType' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GopherFindFirstFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GopherFindFirstFileA,
+    .wide => @This().GopherFindFirstFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GopherFindFirstFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GopherOpenFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GopherOpenFileA,
+    .wide => @This().GopherOpenFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GopherOpenFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GopherGetAttribute = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GopherGetAttributeA,
+    .wide => @This().GopherGetAttributeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GopherGetAttribute' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const HttpOpenRequest = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HttpOpenRequestA,
+    .wide => @This().HttpOpenRequestW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HttpOpenRequest' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const HttpAddRequestHeaders = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HttpAddRequestHeadersA,
+    .wide => @This().HttpAddRequestHeadersW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HttpAddRequestHeaders' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const HttpSendRequest = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HttpSendRequestA,
+    .wide => @This().HttpSendRequestW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HttpSendRequest' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const HttpSendRequestEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HttpSendRequestExA,
+    .wide => @This().HttpSendRequestExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HttpSendRequestEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const HttpEndRequest = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HttpEndRequestA,
+    .wide => @This().HttpEndRequestW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HttpEndRequest' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const HttpQueryInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HttpQueryInfoA,
+    .wide => @This().HttpQueryInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HttpQueryInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetSetCookie = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetSetCookieA,
+    .wide => @This().InternetSetCookieW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetSetCookie' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetGetCookie = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetGetCookieA,
+    .wide => @This().InternetGetCookieW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetGetCookie' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetSetCookieEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetSetCookieExA,
+    .wide => @This().InternetSetCookieExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetSetCookieEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetGetCookieEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetGetCookieExA,
+    .wide => @This().InternetGetCookieExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetGetCookieEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetCheckConnection = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetCheckConnectionA,
+    .wide => @This().InternetCheckConnectionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetCheckConnection' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateUrlCacheEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateUrlCacheEntryA,
+    .wide => @This().CreateUrlCacheEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateUrlCacheEntry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CommitUrlCacheEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CommitUrlCacheEntryA,
+    .wide => @This().CommitUrlCacheEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CommitUrlCacheEntry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RetrieveUrlCacheEntryFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RetrieveUrlCacheEntryFileA,
+    .wide => @This().RetrieveUrlCacheEntryFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RetrieveUrlCacheEntryFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RetrieveUrlCacheEntryStream = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RetrieveUrlCacheEntryStreamA,
+    .wide => @This().RetrieveUrlCacheEntryStreamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RetrieveUrlCacheEntryStream' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetUrlCacheEntryInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetUrlCacheEntryInfoA,
+    .wide => @This().GetUrlCacheEntryInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetUrlCacheEntryInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetUrlCacheGroupAttribute = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetUrlCacheGroupAttributeA,
+    .wide => @This().GetUrlCacheGroupAttributeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetUrlCacheGroupAttribute' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetUrlCacheGroupAttribute = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetUrlCacheGroupAttributeA,
+    .wide => @This().SetUrlCacheGroupAttributeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetUrlCacheGroupAttribute' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetUrlCacheEntryInfoEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetUrlCacheEntryInfoExA,
+    .wide => @This().GetUrlCacheEntryInfoExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetUrlCacheEntryInfoEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetUrlCacheEntryInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetUrlCacheEntryInfoA,
+    .wide => @This().SetUrlCacheEntryInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetUrlCacheEntryInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindFirstUrlCacheEntryEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindFirstUrlCacheEntryExA,
+    .wide => @This().FindFirstUrlCacheEntryExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindFirstUrlCacheEntryEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindNextUrlCacheEntryEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindNextUrlCacheEntryExA,
+    .wide => @This().FindNextUrlCacheEntryExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindNextUrlCacheEntryEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindFirstUrlCacheEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindFirstUrlCacheEntryA,
+    .wide => @This().FindFirstUrlCacheEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindFirstUrlCacheEntry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindNextUrlCacheEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindNextUrlCacheEntryA,
+    .wide => @This().FindNextUrlCacheEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindNextUrlCacheEntry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetSetPerSiteCookieDecision = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetSetPerSiteCookieDecisionA,
+    .wide => @This().InternetSetPerSiteCookieDecisionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetSetPerSiteCookieDecision' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetGetPerSiteCookieDecision = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetGetPerSiteCookieDecisionA,
+    .wide => @This().InternetGetPerSiteCookieDecisionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetGetPerSiteCookieDecision' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetEnumPerSiteCookieDecision = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetEnumPerSiteCookieDecisionA,
+    .wide => @This().InternetEnumPerSiteCookieDecisionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetEnumPerSiteCookieDecision' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetAlgIdToString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetAlgIdToStringA,
+    .wide => @This().InternetAlgIdToStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetAlgIdToString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetSecurityProtocolToString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetSecurityProtocolToStringA,
+    .wide => @This().InternetSecurityProtocolToStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetSecurityProtocolToString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InternetWriteFileEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InternetWriteFileExA,
+    .wide => @This().InternetWriteFileExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InternetWriteFileEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const HttpCheckDavCompliance = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HttpCheckDavComplianceA,
+    .wide => @This().HttpCheckDavComplianceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HttpCheckDavCompliance' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IsUrlCacheEntryExpired = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IsUrlCacheEntryExpiredA,
+    .wide => @This().IsUrlCacheEntryExpiredW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IsUrlCacheEntryExpired' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateUrlCacheContainer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateUrlCacheContainerA,
+    .wide => @This().CreateUrlCacheContainerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateUrlCacheContainer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeleteUrlCacheContainer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeleteUrlCacheContainerA,
+    .wide => @This().DeleteUrlCacheContainerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeleteUrlCacheContainer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindFirstUrlCacheContainer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindFirstUrlCacheContainerA,
+    .wide => @This().FindFirstUrlCacheContainerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindFirstUrlCacheContainer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindNextUrlCacheContainer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindNextUrlCacheContainerA,
+    .wide => @This().FindNextUrlCacheContainerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindNextUrlCacheContainer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FreeUrlCacheSpace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FreeUrlCacheSpaceA,
+    .wide => @This().FreeUrlCacheSpaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FreeUrlCacheSpace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetUrlCacheConfigInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetUrlCacheConfigInfoA,
+    .wide => @This().GetUrlCacheConfigInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetUrlCacheConfigInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetUrlCacheConfigInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetUrlCacheConfigInfoA,
+    .wide => @This().SetUrlCacheConfigInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetUrlCacheConfigInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImportCookieFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ImportCookieFileA,
+    .wide => @This().ImportCookieFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImportCookieFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExportCookieFile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExportCookieFileA,
+    .wide => @This().ExportCookieFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExportCookieFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IsDomainLegalCookieDomain = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().IsDomainLegalCookieDomainA,
+    .wide => @This().IsDomainLegalCookieDomainW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IsDomainLegalCookieDomain' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (23)

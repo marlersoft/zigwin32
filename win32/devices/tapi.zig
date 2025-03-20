@@ -11712,55 +11712,75 @@ pub extern "mapi32" fn GetTnefStreamCodepage(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (10)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const lineCreateAgent = thismodule.lineCreateAgentA;
-        pub const lineCreateAgentSession = thismodule.lineCreateAgentSessionA;
-        pub const lineGetAgentActivityList = thismodule.lineGetAgentActivityListA;
-        pub const lineGetAgentCaps = thismodule.lineGetAgentCapsA;
-        pub const lineGetAgentGroupList = thismodule.lineGetAgentGroupListA;
-        pub const lineGetAgentStatus = thismodule.lineGetAgentStatusA;
-        pub const lineGetGroupList = thismodule.lineGetGroupListA;
-        pub const lineGetQueueList = thismodule.lineGetQueueListA;
-        pub const lineInitializeEx = thismodule.lineInitializeExA;
-        pub const phoneInitializeEx = thismodule.phoneInitializeExA;
-    },
-    .wide => struct {
-        pub const lineCreateAgent = thismodule.lineCreateAgentW;
-        pub const lineCreateAgentSession = thismodule.lineCreateAgentSessionW;
-        pub const lineGetAgentActivityList = thismodule.lineGetAgentActivityListW;
-        pub const lineGetAgentCaps = thismodule.lineGetAgentCapsW;
-        pub const lineGetAgentGroupList = thismodule.lineGetAgentGroupListW;
-        pub const lineGetAgentStatus = thismodule.lineGetAgentStatusW;
-        pub const lineGetGroupList = thismodule.lineGetGroupListW;
-        pub const lineGetQueueList = thismodule.lineGetQueueListW;
-        pub const lineInitializeEx = thismodule.lineInitializeExW;
-        pub const phoneInitializeEx = thismodule.phoneInitializeExW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const lineCreateAgent = *opaque{};
-        pub const lineCreateAgentSession = *opaque{};
-        pub const lineGetAgentActivityList = *opaque{};
-        pub const lineGetAgentCaps = *opaque{};
-        pub const lineGetAgentGroupList = *opaque{};
-        pub const lineGetAgentStatus = *opaque{};
-        pub const lineGetGroupList = *opaque{};
-        pub const lineGetQueueList = *opaque{};
-        pub const lineInitializeEx = *opaque{};
-        pub const phoneInitializeEx = *opaque{};
-    } else struct {
-        pub const lineCreateAgent = @compileError("'lineCreateAgent' requires that UNICODE be set to true or false in the root module");
-        pub const lineCreateAgentSession = @compileError("'lineCreateAgentSession' requires that UNICODE be set to true or false in the root module");
-        pub const lineGetAgentActivityList = @compileError("'lineGetAgentActivityList' requires that UNICODE be set to true or false in the root module");
-        pub const lineGetAgentCaps = @compileError("'lineGetAgentCaps' requires that UNICODE be set to true or false in the root module");
-        pub const lineGetAgentGroupList = @compileError("'lineGetAgentGroupList' requires that UNICODE be set to true or false in the root module");
-        pub const lineGetAgentStatus = @compileError("'lineGetAgentStatus' requires that UNICODE be set to true or false in the root module");
-        pub const lineGetGroupList = @compileError("'lineGetGroupList' requires that UNICODE be set to true or false in the root module");
-        pub const lineGetQueueList = @compileError("'lineGetQueueList' requires that UNICODE be set to true or false in the root module");
-        pub const lineInitializeEx = @compileError("'lineInitializeEx' requires that UNICODE be set to true or false in the root module");
-        pub const phoneInitializeEx = @compileError("'phoneInitializeEx' requires that UNICODE be set to true or false in the root module");
-    },
+pub const lineCreateAgent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().lineCreateAgentA,
+    .wide => @This().lineCreateAgentW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lineCreateAgent' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lineCreateAgentSession = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().lineCreateAgentSessionA,
+    .wide => @This().lineCreateAgentSessionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lineCreateAgentSession' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lineGetAgentActivityList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().lineGetAgentActivityListA,
+    .wide => @This().lineGetAgentActivityListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lineGetAgentActivityList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lineGetAgentCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().lineGetAgentCapsA,
+    .wide => @This().lineGetAgentCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lineGetAgentCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lineGetAgentGroupList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().lineGetAgentGroupListA,
+    .wide => @This().lineGetAgentGroupListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lineGetAgentGroupList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lineGetAgentStatus = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().lineGetAgentStatusA,
+    .wide => @This().lineGetAgentStatusW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lineGetAgentStatus' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lineGetGroupList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().lineGetGroupListA,
+    .wide => @This().lineGetGroupListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lineGetGroupList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lineGetQueueList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().lineGetQueueListA,
+    .wide => @This().lineGetQueueListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lineGetQueueList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lineInitializeEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().lineInitializeExA,
+    .wide => @This().lineInitializeExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lineInitializeEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const phoneInitializeEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().phoneInitializeExA,
+    .wide => @This().phoneInitializeExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'phoneInitializeEx' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (25)

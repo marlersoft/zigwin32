@@ -5763,319 +5763,537 @@ pub extern "rpcrt4" fn RpcCertGeneratePrincipalNameA(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (76)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const RPC_PROTSEQ_VECTOR = thismodule.RPC_PROTSEQ_VECTORA;
-        pub const SEC_WINNT_AUTH_IDENTITY_ = thismodule.SEC_WINNT_AUTH_IDENTITY_A;
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_ = thismodule.RPC_HTTP_TRANSPORT_CREDENTIALS_A;
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V2_ = thismodule.RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A;
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V3_ = thismodule.RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A;
-        pub const RPC_SECURITY_QOS_V2_ = thismodule.RPC_SECURITY_QOS_V2_A;
-        pub const RPC_SECURITY_QOS_V3_ = thismodule.RPC_SECURITY_QOS_V3_A;
-        pub const RPC_SECURITY_QOS_V4_ = thismodule.RPC_SECURITY_QOS_V4_A;
-        pub const RPC_SECURITY_QOS_V5_ = thismodule.RPC_SECURITY_QOS_V5_A;
-        pub const RPC_BINDING_HANDLE_TEMPLATE_V1_ = thismodule.RPC_BINDING_HANDLE_TEMPLATE_V1_A;
-        pub const RPC_BINDING_HANDLE_SECURITY_V1_ = thismodule.RPC_BINDING_HANDLE_SECURITY_V1_A;
-        pub const RPC_ENDPOINT_TEMPLATE = thismodule.RPC_ENDPOINT_TEMPLATEA;
-        pub const RPC_INTERFACE_TEMPLATE = thismodule.RPC_INTERFACE_TEMPLATEA;
-        pub const RPC_CALL_ATTRIBUTES_V1_ = thismodule.RPC_CALL_ATTRIBUTES_V1_A;
-        pub const RPC_CALL_ATTRIBUTES_V2_ = thismodule.RPC_CALL_ATTRIBUTES_V2_A;
-        pub const RPC_CALL_ATTRIBUTES_V3_ = thismodule.RPC_CALL_ATTRIBUTES_V3_A;
-        pub const RpcBindingFromStringBinding = thismodule.RpcBindingFromStringBindingA;
-        pub const RpcBindingToStringBinding = thismodule.RpcBindingToStringBindingA;
-        pub const RpcStringBindingCompose = thismodule.RpcStringBindingComposeA;
-        pub const RpcStringBindingParse = thismodule.RpcStringBindingParseA;
-        pub const RpcStringFree = thismodule.RpcStringFreeA;
-        pub const RpcNetworkIsProtseqValid = thismodule.RpcNetworkIsProtseqValidA;
-        pub const RpcNetworkInqProtseqs = thismodule.RpcNetworkInqProtseqsA;
-        pub const RpcProtseqVectorFree = thismodule.RpcProtseqVectorFreeA;
-        pub const RpcServerUseProtseq = thismodule.RpcServerUseProtseqA;
-        pub const RpcServerUseProtseqEx = thismodule.RpcServerUseProtseqExA;
-        pub const RpcServerUseProtseqEp = thismodule.RpcServerUseProtseqEpA;
-        pub const RpcServerUseProtseqEpEx = thismodule.RpcServerUseProtseqEpExA;
-        pub const RpcServerUseProtseqIf = thismodule.RpcServerUseProtseqIfA;
-        pub const RpcServerUseProtseqIfEx = thismodule.RpcServerUseProtseqIfExA;
-        pub const RpcMgmtInqServerPrincName = thismodule.RpcMgmtInqServerPrincNameA;
-        pub const RpcServerInqDefaultPrincName = thismodule.RpcServerInqDefaultPrincNameA;
-        pub const RpcNsBindingInqEntryName = thismodule.RpcNsBindingInqEntryNameA;
-        pub const RpcBindingCreate = thismodule.RpcBindingCreateA;
-        pub const RpcBindingInqAuthClient = thismodule.RpcBindingInqAuthClientA;
-        pub const RpcBindingInqAuthClientEx = thismodule.RpcBindingInqAuthClientExA;
-        pub const RpcBindingInqAuthInfo = thismodule.RpcBindingInqAuthInfoA;
-        pub const RpcBindingSetAuthInfo = thismodule.RpcBindingSetAuthInfoA;
-        pub const RpcBindingSetAuthInfoEx = thismodule.RpcBindingSetAuthInfoExA;
-        pub const RpcBindingInqAuthInfoEx = thismodule.RpcBindingInqAuthInfoExA;
-        pub const RpcServerRegisterAuthInfo = thismodule.RpcServerRegisterAuthInfoA;
-        pub const UuidToString = thismodule.UuidToStringA;
-        pub const UuidFromString = thismodule.UuidFromStringA;
-        pub const RpcEpRegisterNoReplace = thismodule.RpcEpRegisterNoReplaceA;
-        pub const RpcEpRegister = thismodule.RpcEpRegisterA;
-        pub const DceErrorInqText = thismodule.DceErrorInqTextA;
-        pub const RpcMgmtEpEltInqNext = thismodule.RpcMgmtEpEltInqNextA;
-        pub const RpcServerInterfaceGroupCreate = thismodule.RpcServerInterfaceGroupCreateA;
-        pub const I_RpcNsBindingSetEntryName = thismodule.I_RpcNsBindingSetEntryNameA;
-        pub const I_RpcServerUseProtseqEp2 = thismodule.I_RpcServerUseProtseqEp2A;
-        pub const I_RpcServerUseProtseq2 = thismodule.I_RpcServerUseProtseq2A;
-        pub const I_RpcBindingInqDynamicEndpoint = thismodule.I_RpcBindingInqDynamicEndpointA;
-        pub const RpcNsBindingExport = thismodule.RpcNsBindingExportA;
-        pub const RpcNsBindingUnexport = thismodule.RpcNsBindingUnexportA;
-        pub const RpcNsBindingExportPnP = thismodule.RpcNsBindingExportPnPA;
-        pub const RpcNsBindingUnexportPnP = thismodule.RpcNsBindingUnexportPnPA;
-        pub const RpcNsBindingLookupBegin = thismodule.RpcNsBindingLookupBeginA;
-        pub const RpcNsGroupDelete = thismodule.RpcNsGroupDeleteA;
-        pub const RpcNsGroupMbrAdd = thismodule.RpcNsGroupMbrAddA;
-        pub const RpcNsGroupMbrRemove = thismodule.RpcNsGroupMbrRemoveA;
-        pub const RpcNsGroupMbrInqBegin = thismodule.RpcNsGroupMbrInqBeginA;
-        pub const RpcNsGroupMbrInqNext = thismodule.RpcNsGroupMbrInqNextA;
-        pub const RpcNsProfileDelete = thismodule.RpcNsProfileDeleteA;
-        pub const RpcNsProfileEltAdd = thismodule.RpcNsProfileEltAddA;
-        pub const RpcNsProfileEltRemove = thismodule.RpcNsProfileEltRemoveA;
-        pub const RpcNsProfileEltInqBegin = thismodule.RpcNsProfileEltInqBeginA;
-        pub const RpcNsProfileEltInqNext = thismodule.RpcNsProfileEltInqNextA;
-        pub const RpcNsEntryObjectInqBegin = thismodule.RpcNsEntryObjectInqBeginA;
-        pub const RpcNsEntryExpandName = thismodule.RpcNsEntryExpandNameA;
-        pub const RpcNsMgmtBindingUnexport = thismodule.RpcNsMgmtBindingUnexportA;
-        pub const RpcNsMgmtEntryCreate = thismodule.RpcNsMgmtEntryCreateA;
-        pub const RpcNsMgmtEntryDelete = thismodule.RpcNsMgmtEntryDeleteA;
-        pub const RpcNsMgmtEntryInqIfIds = thismodule.RpcNsMgmtEntryInqIfIdsA;
-        pub const RpcNsBindingImportBegin = thismodule.RpcNsBindingImportBeginA;
-        pub const RpcServerInqCallAttributes = thismodule.RpcServerInqCallAttributesA;
-        pub const RpcCertGeneratePrincipalName = thismodule.RpcCertGeneratePrincipalNameA;
-    },
-    .wide => struct {
-        pub const RPC_PROTSEQ_VECTOR = thismodule.RPC_PROTSEQ_VECTORW;
-        pub const SEC_WINNT_AUTH_IDENTITY_ = thismodule.SEC_WINNT_AUTH_IDENTITY_W;
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_ = thismodule.RPC_HTTP_TRANSPORT_CREDENTIALS_W;
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V2_ = thismodule.RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W;
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V3_ = thismodule.RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W;
-        pub const RPC_SECURITY_QOS_V2_ = thismodule.RPC_SECURITY_QOS_V2_W;
-        pub const RPC_SECURITY_QOS_V3_ = thismodule.RPC_SECURITY_QOS_V3_W;
-        pub const RPC_SECURITY_QOS_V4_ = thismodule.RPC_SECURITY_QOS_V4_W;
-        pub const RPC_SECURITY_QOS_V5_ = thismodule.RPC_SECURITY_QOS_V5_W;
-        pub const RPC_BINDING_HANDLE_TEMPLATE_V1_ = thismodule.RPC_BINDING_HANDLE_TEMPLATE_V1_W;
-        pub const RPC_BINDING_HANDLE_SECURITY_V1_ = thismodule.RPC_BINDING_HANDLE_SECURITY_V1_W;
-        pub const RPC_ENDPOINT_TEMPLATE = thismodule.RPC_ENDPOINT_TEMPLATEW;
-        pub const RPC_INTERFACE_TEMPLATE = thismodule.RPC_INTERFACE_TEMPLATEW;
-        pub const RPC_CALL_ATTRIBUTES_V1_ = thismodule.RPC_CALL_ATTRIBUTES_V1_W;
-        pub const RPC_CALL_ATTRIBUTES_V2_ = thismodule.RPC_CALL_ATTRIBUTES_V2_W;
-        pub const RPC_CALL_ATTRIBUTES_V3_ = thismodule.RPC_CALL_ATTRIBUTES_V3_W;
-        pub const RpcBindingFromStringBinding = thismodule.RpcBindingFromStringBindingW;
-        pub const RpcBindingToStringBinding = thismodule.RpcBindingToStringBindingW;
-        pub const RpcStringBindingCompose = thismodule.RpcStringBindingComposeW;
-        pub const RpcStringBindingParse = thismodule.RpcStringBindingParseW;
-        pub const RpcStringFree = thismodule.RpcStringFreeW;
-        pub const RpcNetworkIsProtseqValid = thismodule.RpcNetworkIsProtseqValidW;
-        pub const RpcNetworkInqProtseqs = thismodule.RpcNetworkInqProtseqsW;
-        pub const RpcProtseqVectorFree = thismodule.RpcProtseqVectorFreeW;
-        pub const RpcServerUseProtseq = thismodule.RpcServerUseProtseqW;
-        pub const RpcServerUseProtseqEx = thismodule.RpcServerUseProtseqExW;
-        pub const RpcServerUseProtseqEp = thismodule.RpcServerUseProtseqEpW;
-        pub const RpcServerUseProtseqEpEx = thismodule.RpcServerUseProtseqEpExW;
-        pub const RpcServerUseProtseqIf = thismodule.RpcServerUseProtseqIfW;
-        pub const RpcServerUseProtseqIfEx = thismodule.RpcServerUseProtseqIfExW;
-        pub const RpcMgmtInqServerPrincName = thismodule.RpcMgmtInqServerPrincNameW;
-        pub const RpcServerInqDefaultPrincName = thismodule.RpcServerInqDefaultPrincNameW;
-        pub const RpcNsBindingInqEntryName = thismodule.RpcNsBindingInqEntryNameW;
-        pub const RpcBindingCreate = thismodule.RpcBindingCreateW;
-        pub const RpcBindingInqAuthClient = thismodule.RpcBindingInqAuthClientW;
-        pub const RpcBindingInqAuthClientEx = thismodule.RpcBindingInqAuthClientExW;
-        pub const RpcBindingInqAuthInfo = thismodule.RpcBindingInqAuthInfoW;
-        pub const RpcBindingSetAuthInfo = thismodule.RpcBindingSetAuthInfoW;
-        pub const RpcBindingSetAuthInfoEx = thismodule.RpcBindingSetAuthInfoExW;
-        pub const RpcBindingInqAuthInfoEx = thismodule.RpcBindingInqAuthInfoExW;
-        pub const RpcServerRegisterAuthInfo = thismodule.RpcServerRegisterAuthInfoW;
-        pub const UuidToString = thismodule.UuidToStringW;
-        pub const UuidFromString = thismodule.UuidFromStringW;
-        pub const RpcEpRegisterNoReplace = thismodule.RpcEpRegisterNoReplaceW;
-        pub const RpcEpRegister = thismodule.RpcEpRegisterW;
-        pub const DceErrorInqText = thismodule.DceErrorInqTextW;
-        pub const RpcMgmtEpEltInqNext = thismodule.RpcMgmtEpEltInqNextW;
-        pub const RpcServerInterfaceGroupCreate = thismodule.RpcServerInterfaceGroupCreateW;
-        pub const I_RpcNsBindingSetEntryName = thismodule.I_RpcNsBindingSetEntryNameW;
-        pub const I_RpcServerUseProtseqEp2 = thismodule.I_RpcServerUseProtseqEp2W;
-        pub const I_RpcServerUseProtseq2 = thismodule.I_RpcServerUseProtseq2W;
-        pub const I_RpcBindingInqDynamicEndpoint = thismodule.I_RpcBindingInqDynamicEndpointW;
-        pub const RpcNsBindingExport = thismodule.RpcNsBindingExportW;
-        pub const RpcNsBindingUnexport = thismodule.RpcNsBindingUnexportW;
-        pub const RpcNsBindingExportPnP = thismodule.RpcNsBindingExportPnPW;
-        pub const RpcNsBindingUnexportPnP = thismodule.RpcNsBindingUnexportPnPW;
-        pub const RpcNsBindingLookupBegin = thismodule.RpcNsBindingLookupBeginW;
-        pub const RpcNsGroupDelete = thismodule.RpcNsGroupDeleteW;
-        pub const RpcNsGroupMbrAdd = thismodule.RpcNsGroupMbrAddW;
-        pub const RpcNsGroupMbrRemove = thismodule.RpcNsGroupMbrRemoveW;
-        pub const RpcNsGroupMbrInqBegin = thismodule.RpcNsGroupMbrInqBeginW;
-        pub const RpcNsGroupMbrInqNext = thismodule.RpcNsGroupMbrInqNextW;
-        pub const RpcNsProfileDelete = thismodule.RpcNsProfileDeleteW;
-        pub const RpcNsProfileEltAdd = thismodule.RpcNsProfileEltAddW;
-        pub const RpcNsProfileEltRemove = thismodule.RpcNsProfileEltRemoveW;
-        pub const RpcNsProfileEltInqBegin = thismodule.RpcNsProfileEltInqBeginW;
-        pub const RpcNsProfileEltInqNext = thismodule.RpcNsProfileEltInqNextW;
-        pub const RpcNsEntryObjectInqBegin = thismodule.RpcNsEntryObjectInqBeginW;
-        pub const RpcNsEntryExpandName = thismodule.RpcNsEntryExpandNameW;
-        pub const RpcNsMgmtBindingUnexport = thismodule.RpcNsMgmtBindingUnexportW;
-        pub const RpcNsMgmtEntryCreate = thismodule.RpcNsMgmtEntryCreateW;
-        pub const RpcNsMgmtEntryDelete = thismodule.RpcNsMgmtEntryDeleteW;
-        pub const RpcNsMgmtEntryInqIfIds = thismodule.RpcNsMgmtEntryInqIfIdsW;
-        pub const RpcNsBindingImportBegin = thismodule.RpcNsBindingImportBeginW;
-        pub const RpcServerInqCallAttributes = thismodule.RpcServerInqCallAttributesW;
-        pub const RpcCertGeneratePrincipalName = thismodule.RpcCertGeneratePrincipalNameW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const RPC_PROTSEQ_VECTOR = *opaque{};
-        pub const SEC_WINNT_AUTH_IDENTITY_ = *opaque{};
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_ = *opaque{};
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V2_ = *opaque{};
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V3_ = *opaque{};
-        pub const RPC_SECURITY_QOS_V2_ = *opaque{};
-        pub const RPC_SECURITY_QOS_V3_ = *opaque{};
-        pub const RPC_SECURITY_QOS_V4_ = *opaque{};
-        pub const RPC_SECURITY_QOS_V5_ = *opaque{};
-        pub const RPC_BINDING_HANDLE_TEMPLATE_V1_ = *opaque{};
-        pub const RPC_BINDING_HANDLE_SECURITY_V1_ = *opaque{};
-        pub const RPC_ENDPOINT_TEMPLATE = *opaque{};
-        pub const RPC_INTERFACE_TEMPLATE = *opaque{};
-        pub const RPC_CALL_ATTRIBUTES_V1_ = *opaque{};
-        pub const RPC_CALL_ATTRIBUTES_V2_ = *opaque{};
-        pub const RPC_CALL_ATTRIBUTES_V3_ = *opaque{};
-        pub const RpcBindingFromStringBinding = *opaque{};
-        pub const RpcBindingToStringBinding = *opaque{};
-        pub const RpcStringBindingCompose = *opaque{};
-        pub const RpcStringBindingParse = *opaque{};
-        pub const RpcStringFree = *opaque{};
-        pub const RpcNetworkIsProtseqValid = *opaque{};
-        pub const RpcNetworkInqProtseqs = *opaque{};
-        pub const RpcProtseqVectorFree = *opaque{};
-        pub const RpcServerUseProtseq = *opaque{};
-        pub const RpcServerUseProtseqEx = *opaque{};
-        pub const RpcServerUseProtseqEp = *opaque{};
-        pub const RpcServerUseProtseqEpEx = *opaque{};
-        pub const RpcServerUseProtseqIf = *opaque{};
-        pub const RpcServerUseProtseqIfEx = *opaque{};
-        pub const RpcMgmtInqServerPrincName = *opaque{};
-        pub const RpcServerInqDefaultPrincName = *opaque{};
-        pub const RpcNsBindingInqEntryName = *opaque{};
-        pub const RpcBindingCreate = *opaque{};
-        pub const RpcBindingInqAuthClient = *opaque{};
-        pub const RpcBindingInqAuthClientEx = *opaque{};
-        pub const RpcBindingInqAuthInfo = *opaque{};
-        pub const RpcBindingSetAuthInfo = *opaque{};
-        pub const RpcBindingSetAuthInfoEx = *opaque{};
-        pub const RpcBindingInqAuthInfoEx = *opaque{};
-        pub const RpcServerRegisterAuthInfo = *opaque{};
-        pub const UuidToString = *opaque{};
-        pub const UuidFromString = *opaque{};
-        pub const RpcEpRegisterNoReplace = *opaque{};
-        pub const RpcEpRegister = *opaque{};
-        pub const DceErrorInqText = *opaque{};
-        pub const RpcMgmtEpEltInqNext = *opaque{};
-        pub const RpcServerInterfaceGroupCreate = *opaque{};
-        pub const I_RpcNsBindingSetEntryName = *opaque{};
-        pub const I_RpcServerUseProtseqEp2 = *opaque{};
-        pub const I_RpcServerUseProtseq2 = *opaque{};
-        pub const I_RpcBindingInqDynamicEndpoint = *opaque{};
-        pub const RpcNsBindingExport = *opaque{};
-        pub const RpcNsBindingUnexport = *opaque{};
-        pub const RpcNsBindingExportPnP = *opaque{};
-        pub const RpcNsBindingUnexportPnP = *opaque{};
-        pub const RpcNsBindingLookupBegin = *opaque{};
-        pub const RpcNsGroupDelete = *opaque{};
-        pub const RpcNsGroupMbrAdd = *opaque{};
-        pub const RpcNsGroupMbrRemove = *opaque{};
-        pub const RpcNsGroupMbrInqBegin = *opaque{};
-        pub const RpcNsGroupMbrInqNext = *opaque{};
-        pub const RpcNsProfileDelete = *opaque{};
-        pub const RpcNsProfileEltAdd = *opaque{};
-        pub const RpcNsProfileEltRemove = *opaque{};
-        pub const RpcNsProfileEltInqBegin = *opaque{};
-        pub const RpcNsProfileEltInqNext = *opaque{};
-        pub const RpcNsEntryObjectInqBegin = *opaque{};
-        pub const RpcNsEntryExpandName = *opaque{};
-        pub const RpcNsMgmtBindingUnexport = *opaque{};
-        pub const RpcNsMgmtEntryCreate = *opaque{};
-        pub const RpcNsMgmtEntryDelete = *opaque{};
-        pub const RpcNsMgmtEntryInqIfIds = *opaque{};
-        pub const RpcNsBindingImportBegin = *opaque{};
-        pub const RpcServerInqCallAttributes = *opaque{};
-        pub const RpcCertGeneratePrincipalName = *opaque{};
-    } else struct {
-        pub const RPC_PROTSEQ_VECTOR = @compileError("'RPC_PROTSEQ_VECTOR' requires that UNICODE be set to true or false in the root module");
-        pub const SEC_WINNT_AUTH_IDENTITY_ = @compileError("'SEC_WINNT_AUTH_IDENTITY_' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_ = @compileError("'RPC_HTTP_TRANSPORT_CREDENTIALS_' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V2_ = @compileError("'RPC_HTTP_TRANSPORT_CREDENTIALS_V2_' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V3_ = @compileError("'RPC_HTTP_TRANSPORT_CREDENTIALS_V3_' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_SECURITY_QOS_V2_ = @compileError("'RPC_SECURITY_QOS_V2_' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_SECURITY_QOS_V3_ = @compileError("'RPC_SECURITY_QOS_V3_' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_SECURITY_QOS_V4_ = @compileError("'RPC_SECURITY_QOS_V4_' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_SECURITY_QOS_V5_ = @compileError("'RPC_SECURITY_QOS_V5_' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_BINDING_HANDLE_TEMPLATE_V1_ = @compileError("'RPC_BINDING_HANDLE_TEMPLATE_V1_' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_BINDING_HANDLE_SECURITY_V1_ = @compileError("'RPC_BINDING_HANDLE_SECURITY_V1_' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_ENDPOINT_TEMPLATE = @compileError("'RPC_ENDPOINT_TEMPLATE' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_INTERFACE_TEMPLATE = @compileError("'RPC_INTERFACE_TEMPLATE' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_CALL_ATTRIBUTES_V1_ = @compileError("'RPC_CALL_ATTRIBUTES_V1_' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_CALL_ATTRIBUTES_V2_ = @compileError("'RPC_CALL_ATTRIBUTES_V2_' requires that UNICODE be set to true or false in the root module");
-        pub const RPC_CALL_ATTRIBUTES_V3_ = @compileError("'RPC_CALL_ATTRIBUTES_V3_' requires that UNICODE be set to true or false in the root module");
-        pub const RpcBindingFromStringBinding = @compileError("'RpcBindingFromStringBinding' requires that UNICODE be set to true or false in the root module");
-        pub const RpcBindingToStringBinding = @compileError("'RpcBindingToStringBinding' requires that UNICODE be set to true or false in the root module");
-        pub const RpcStringBindingCompose = @compileError("'RpcStringBindingCompose' requires that UNICODE be set to true or false in the root module");
-        pub const RpcStringBindingParse = @compileError("'RpcStringBindingParse' requires that UNICODE be set to true or false in the root module");
-        pub const RpcStringFree = @compileError("'RpcStringFree' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNetworkIsProtseqValid = @compileError("'RpcNetworkIsProtseqValid' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNetworkInqProtseqs = @compileError("'RpcNetworkInqProtseqs' requires that UNICODE be set to true or false in the root module");
-        pub const RpcProtseqVectorFree = @compileError("'RpcProtseqVectorFree' requires that UNICODE be set to true or false in the root module");
-        pub const RpcServerUseProtseq = @compileError("'RpcServerUseProtseq' requires that UNICODE be set to true or false in the root module");
-        pub const RpcServerUseProtseqEx = @compileError("'RpcServerUseProtseqEx' requires that UNICODE be set to true or false in the root module");
-        pub const RpcServerUseProtseqEp = @compileError("'RpcServerUseProtseqEp' requires that UNICODE be set to true or false in the root module");
-        pub const RpcServerUseProtseqEpEx = @compileError("'RpcServerUseProtseqEpEx' requires that UNICODE be set to true or false in the root module");
-        pub const RpcServerUseProtseqIf = @compileError("'RpcServerUseProtseqIf' requires that UNICODE be set to true or false in the root module");
-        pub const RpcServerUseProtseqIfEx = @compileError("'RpcServerUseProtseqIfEx' requires that UNICODE be set to true or false in the root module");
-        pub const RpcMgmtInqServerPrincName = @compileError("'RpcMgmtInqServerPrincName' requires that UNICODE be set to true or false in the root module");
-        pub const RpcServerInqDefaultPrincName = @compileError("'RpcServerInqDefaultPrincName' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsBindingInqEntryName = @compileError("'RpcNsBindingInqEntryName' requires that UNICODE be set to true or false in the root module");
-        pub const RpcBindingCreate = @compileError("'RpcBindingCreate' requires that UNICODE be set to true or false in the root module");
-        pub const RpcBindingInqAuthClient = @compileError("'RpcBindingInqAuthClient' requires that UNICODE be set to true or false in the root module");
-        pub const RpcBindingInqAuthClientEx = @compileError("'RpcBindingInqAuthClientEx' requires that UNICODE be set to true or false in the root module");
-        pub const RpcBindingInqAuthInfo = @compileError("'RpcBindingInqAuthInfo' requires that UNICODE be set to true or false in the root module");
-        pub const RpcBindingSetAuthInfo = @compileError("'RpcBindingSetAuthInfo' requires that UNICODE be set to true or false in the root module");
-        pub const RpcBindingSetAuthInfoEx = @compileError("'RpcBindingSetAuthInfoEx' requires that UNICODE be set to true or false in the root module");
-        pub const RpcBindingInqAuthInfoEx = @compileError("'RpcBindingInqAuthInfoEx' requires that UNICODE be set to true or false in the root module");
-        pub const RpcServerRegisterAuthInfo = @compileError("'RpcServerRegisterAuthInfo' requires that UNICODE be set to true or false in the root module");
-        pub const UuidToString = @compileError("'UuidToString' requires that UNICODE be set to true or false in the root module");
-        pub const UuidFromString = @compileError("'UuidFromString' requires that UNICODE be set to true or false in the root module");
-        pub const RpcEpRegisterNoReplace = @compileError("'RpcEpRegisterNoReplace' requires that UNICODE be set to true or false in the root module");
-        pub const RpcEpRegister = @compileError("'RpcEpRegister' requires that UNICODE be set to true or false in the root module");
-        pub const DceErrorInqText = @compileError("'DceErrorInqText' requires that UNICODE be set to true or false in the root module");
-        pub const RpcMgmtEpEltInqNext = @compileError("'RpcMgmtEpEltInqNext' requires that UNICODE be set to true or false in the root module");
-        pub const RpcServerInterfaceGroupCreate = @compileError("'RpcServerInterfaceGroupCreate' requires that UNICODE be set to true or false in the root module");
-        pub const I_RpcNsBindingSetEntryName = @compileError("'I_RpcNsBindingSetEntryName' requires that UNICODE be set to true or false in the root module");
-        pub const I_RpcServerUseProtseqEp2 = @compileError("'I_RpcServerUseProtseqEp2' requires that UNICODE be set to true or false in the root module");
-        pub const I_RpcServerUseProtseq2 = @compileError("'I_RpcServerUseProtseq2' requires that UNICODE be set to true or false in the root module");
-        pub const I_RpcBindingInqDynamicEndpoint = @compileError("'I_RpcBindingInqDynamicEndpoint' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsBindingExport = @compileError("'RpcNsBindingExport' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsBindingUnexport = @compileError("'RpcNsBindingUnexport' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsBindingExportPnP = @compileError("'RpcNsBindingExportPnP' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsBindingUnexportPnP = @compileError("'RpcNsBindingUnexportPnP' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsBindingLookupBegin = @compileError("'RpcNsBindingLookupBegin' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsGroupDelete = @compileError("'RpcNsGroupDelete' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsGroupMbrAdd = @compileError("'RpcNsGroupMbrAdd' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsGroupMbrRemove = @compileError("'RpcNsGroupMbrRemove' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsGroupMbrInqBegin = @compileError("'RpcNsGroupMbrInqBegin' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsGroupMbrInqNext = @compileError("'RpcNsGroupMbrInqNext' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsProfileDelete = @compileError("'RpcNsProfileDelete' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsProfileEltAdd = @compileError("'RpcNsProfileEltAdd' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsProfileEltRemove = @compileError("'RpcNsProfileEltRemove' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsProfileEltInqBegin = @compileError("'RpcNsProfileEltInqBegin' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsProfileEltInqNext = @compileError("'RpcNsProfileEltInqNext' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsEntryObjectInqBegin = @compileError("'RpcNsEntryObjectInqBegin' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsEntryExpandName = @compileError("'RpcNsEntryExpandName' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsMgmtBindingUnexport = @compileError("'RpcNsMgmtBindingUnexport' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsMgmtEntryCreate = @compileError("'RpcNsMgmtEntryCreate' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsMgmtEntryDelete = @compileError("'RpcNsMgmtEntryDelete' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsMgmtEntryInqIfIds = @compileError("'RpcNsMgmtEntryInqIfIds' requires that UNICODE be set to true or false in the root module");
-        pub const RpcNsBindingImportBegin = @compileError("'RpcNsBindingImportBegin' requires that UNICODE be set to true or false in the root module");
-        pub const RpcServerInqCallAttributes = @compileError("'RpcServerInqCallAttributes' requires that UNICODE be set to true or false in the root module");
-        pub const RpcCertGeneratePrincipalName = @compileError("'RpcCertGeneratePrincipalName' requires that UNICODE be set to true or false in the root module");
-    },
+pub const RPC_PROTSEQ_VECTOR = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_PROTSEQ_VECTORA,
+    .wide => @This().RPC_PROTSEQ_VECTORW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_PROTSEQ_VECTOR' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SEC_WINNT_AUTH_IDENTITY_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SEC_WINNT_AUTH_IDENTITY_A,
+    .wide => @This().SEC_WINNT_AUTH_IDENTITY_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SEC_WINNT_AUTH_IDENTITY_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_HTTP_TRANSPORT_CREDENTIALS_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_HTTP_TRANSPORT_CREDENTIALS_A,
+    .wide => @This().RPC_HTTP_TRANSPORT_CREDENTIALS_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_HTTP_TRANSPORT_CREDENTIALS_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V2_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A,
+    .wide => @This().RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_HTTP_TRANSPORT_CREDENTIALS_V2_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V3_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A,
+    .wide => @This().RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_HTTP_TRANSPORT_CREDENTIALS_V3_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_SECURITY_QOS_V2_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_SECURITY_QOS_V2_A,
+    .wide => @This().RPC_SECURITY_QOS_V2_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_SECURITY_QOS_V2_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_SECURITY_QOS_V3_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_SECURITY_QOS_V3_A,
+    .wide => @This().RPC_SECURITY_QOS_V3_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_SECURITY_QOS_V3_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_SECURITY_QOS_V4_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_SECURITY_QOS_V4_A,
+    .wide => @This().RPC_SECURITY_QOS_V4_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_SECURITY_QOS_V4_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_SECURITY_QOS_V5_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_SECURITY_QOS_V5_A,
+    .wide => @This().RPC_SECURITY_QOS_V5_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_SECURITY_QOS_V5_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_BINDING_HANDLE_TEMPLATE_V1_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_BINDING_HANDLE_TEMPLATE_V1_A,
+    .wide => @This().RPC_BINDING_HANDLE_TEMPLATE_V1_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_BINDING_HANDLE_TEMPLATE_V1_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_BINDING_HANDLE_SECURITY_V1_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_BINDING_HANDLE_SECURITY_V1_A,
+    .wide => @This().RPC_BINDING_HANDLE_SECURITY_V1_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_BINDING_HANDLE_SECURITY_V1_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_ENDPOINT_TEMPLATE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_ENDPOINT_TEMPLATEA,
+    .wide => @This().RPC_ENDPOINT_TEMPLATEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_ENDPOINT_TEMPLATE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_INTERFACE_TEMPLATE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_INTERFACE_TEMPLATEA,
+    .wide => @This().RPC_INTERFACE_TEMPLATEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_INTERFACE_TEMPLATE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_CALL_ATTRIBUTES_V1_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_CALL_ATTRIBUTES_V1_A,
+    .wide => @This().RPC_CALL_ATTRIBUTES_V1_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_CALL_ATTRIBUTES_V1_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_CALL_ATTRIBUTES_V2_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_CALL_ATTRIBUTES_V2_A,
+    .wide => @This().RPC_CALL_ATTRIBUTES_V2_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_CALL_ATTRIBUTES_V2_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RPC_CALL_ATTRIBUTES_V3_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RPC_CALL_ATTRIBUTES_V3_A,
+    .wide => @This().RPC_CALL_ATTRIBUTES_V3_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RPC_CALL_ATTRIBUTES_V3_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcBindingFromStringBinding = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcBindingFromStringBindingA,
+    .wide => @This().RpcBindingFromStringBindingW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcBindingFromStringBinding' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcBindingToStringBinding = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcBindingToStringBindingA,
+    .wide => @This().RpcBindingToStringBindingW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcBindingToStringBinding' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcStringBindingCompose = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcStringBindingComposeA,
+    .wide => @This().RpcStringBindingComposeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcStringBindingCompose' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcStringBindingParse = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcStringBindingParseA,
+    .wide => @This().RpcStringBindingParseW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcStringBindingParse' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcStringFree = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcStringFreeA,
+    .wide => @This().RpcStringFreeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcStringFree' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNetworkIsProtseqValid = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNetworkIsProtseqValidA,
+    .wide => @This().RpcNetworkIsProtseqValidW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNetworkIsProtseqValid' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNetworkInqProtseqs = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNetworkInqProtseqsA,
+    .wide => @This().RpcNetworkInqProtseqsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNetworkInqProtseqs' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcProtseqVectorFree = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcProtseqVectorFreeA,
+    .wide => @This().RpcProtseqVectorFreeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcProtseqVectorFree' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcServerUseProtseq = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcServerUseProtseqA,
+    .wide => @This().RpcServerUseProtseqW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcServerUseProtseq' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcServerUseProtseqEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcServerUseProtseqExA,
+    .wide => @This().RpcServerUseProtseqExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcServerUseProtseqEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcServerUseProtseqEp = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcServerUseProtseqEpA,
+    .wide => @This().RpcServerUseProtseqEpW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcServerUseProtseqEp' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcServerUseProtseqEpEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcServerUseProtseqEpExA,
+    .wide => @This().RpcServerUseProtseqEpExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcServerUseProtseqEpEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcServerUseProtseqIf = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcServerUseProtseqIfA,
+    .wide => @This().RpcServerUseProtseqIfW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcServerUseProtseqIf' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcServerUseProtseqIfEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcServerUseProtseqIfExA,
+    .wide => @This().RpcServerUseProtseqIfExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcServerUseProtseqIfEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcMgmtInqServerPrincName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcMgmtInqServerPrincNameA,
+    .wide => @This().RpcMgmtInqServerPrincNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcMgmtInqServerPrincName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcServerInqDefaultPrincName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcServerInqDefaultPrincNameA,
+    .wide => @This().RpcServerInqDefaultPrincNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcServerInqDefaultPrincName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsBindingInqEntryName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsBindingInqEntryNameA,
+    .wide => @This().RpcNsBindingInqEntryNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsBindingInqEntryName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcBindingCreate = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcBindingCreateA,
+    .wide => @This().RpcBindingCreateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcBindingCreate' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcBindingInqAuthClient = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcBindingInqAuthClientA,
+    .wide => @This().RpcBindingInqAuthClientW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcBindingInqAuthClient' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcBindingInqAuthClientEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcBindingInqAuthClientExA,
+    .wide => @This().RpcBindingInqAuthClientExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcBindingInqAuthClientEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcBindingInqAuthInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcBindingInqAuthInfoA,
+    .wide => @This().RpcBindingInqAuthInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcBindingInqAuthInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcBindingSetAuthInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcBindingSetAuthInfoA,
+    .wide => @This().RpcBindingSetAuthInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcBindingSetAuthInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcBindingSetAuthInfoEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcBindingSetAuthInfoExA,
+    .wide => @This().RpcBindingSetAuthInfoExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcBindingSetAuthInfoEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcBindingInqAuthInfoEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcBindingInqAuthInfoExA,
+    .wide => @This().RpcBindingInqAuthInfoExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcBindingInqAuthInfoEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcServerRegisterAuthInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcServerRegisterAuthInfoA,
+    .wide => @This().RpcServerRegisterAuthInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcServerRegisterAuthInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UuidToString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UuidToStringA,
+    .wide => @This().UuidToStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UuidToString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UuidFromString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UuidFromStringA,
+    .wide => @This().UuidFromStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UuidFromString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcEpRegisterNoReplace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcEpRegisterNoReplaceA,
+    .wide => @This().RpcEpRegisterNoReplaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcEpRegisterNoReplace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcEpRegister = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcEpRegisterA,
+    .wide => @This().RpcEpRegisterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcEpRegister' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DceErrorInqText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DceErrorInqTextA,
+    .wide => @This().DceErrorInqTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DceErrorInqText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcMgmtEpEltInqNext = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcMgmtEpEltInqNextA,
+    .wide => @This().RpcMgmtEpEltInqNextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcMgmtEpEltInqNext' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcServerInterfaceGroupCreate = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcServerInterfaceGroupCreateA,
+    .wide => @This().RpcServerInterfaceGroupCreateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcServerInterfaceGroupCreate' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const I_RpcNsBindingSetEntryName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().I_RpcNsBindingSetEntryNameA,
+    .wide => @This().I_RpcNsBindingSetEntryNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'I_RpcNsBindingSetEntryName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const I_RpcServerUseProtseqEp2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().I_RpcServerUseProtseqEp2A,
+    .wide => @This().I_RpcServerUseProtseqEp2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'I_RpcServerUseProtseqEp2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const I_RpcServerUseProtseq2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().I_RpcServerUseProtseq2A,
+    .wide => @This().I_RpcServerUseProtseq2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'I_RpcServerUseProtseq2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const I_RpcBindingInqDynamicEndpoint = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().I_RpcBindingInqDynamicEndpointA,
+    .wide => @This().I_RpcBindingInqDynamicEndpointW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'I_RpcBindingInqDynamicEndpoint' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsBindingExport = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsBindingExportA,
+    .wide => @This().RpcNsBindingExportW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsBindingExport' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsBindingUnexport = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsBindingUnexportA,
+    .wide => @This().RpcNsBindingUnexportW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsBindingUnexport' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsBindingExportPnP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsBindingExportPnPA,
+    .wide => @This().RpcNsBindingExportPnPW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsBindingExportPnP' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsBindingUnexportPnP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsBindingUnexportPnPA,
+    .wide => @This().RpcNsBindingUnexportPnPW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsBindingUnexportPnP' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsBindingLookupBegin = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsBindingLookupBeginA,
+    .wide => @This().RpcNsBindingLookupBeginW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsBindingLookupBegin' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsGroupDelete = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsGroupDeleteA,
+    .wide => @This().RpcNsGroupDeleteW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsGroupDelete' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsGroupMbrAdd = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsGroupMbrAddA,
+    .wide => @This().RpcNsGroupMbrAddW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsGroupMbrAdd' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsGroupMbrRemove = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsGroupMbrRemoveA,
+    .wide => @This().RpcNsGroupMbrRemoveW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsGroupMbrRemove' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsGroupMbrInqBegin = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsGroupMbrInqBeginA,
+    .wide => @This().RpcNsGroupMbrInqBeginW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsGroupMbrInqBegin' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsGroupMbrInqNext = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsGroupMbrInqNextA,
+    .wide => @This().RpcNsGroupMbrInqNextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsGroupMbrInqNext' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsProfileDelete = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsProfileDeleteA,
+    .wide => @This().RpcNsProfileDeleteW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsProfileDelete' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsProfileEltAdd = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsProfileEltAddA,
+    .wide => @This().RpcNsProfileEltAddW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsProfileEltAdd' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsProfileEltRemove = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsProfileEltRemoveA,
+    .wide => @This().RpcNsProfileEltRemoveW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsProfileEltRemove' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsProfileEltInqBegin = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsProfileEltInqBeginA,
+    .wide => @This().RpcNsProfileEltInqBeginW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsProfileEltInqBegin' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsProfileEltInqNext = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsProfileEltInqNextA,
+    .wide => @This().RpcNsProfileEltInqNextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsProfileEltInqNext' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsEntryObjectInqBegin = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsEntryObjectInqBeginA,
+    .wide => @This().RpcNsEntryObjectInqBeginW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsEntryObjectInqBegin' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsEntryExpandName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsEntryExpandNameA,
+    .wide => @This().RpcNsEntryExpandNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsEntryExpandName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsMgmtBindingUnexport = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsMgmtBindingUnexportA,
+    .wide => @This().RpcNsMgmtBindingUnexportW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsMgmtBindingUnexport' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsMgmtEntryCreate = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsMgmtEntryCreateA,
+    .wide => @This().RpcNsMgmtEntryCreateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsMgmtEntryCreate' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsMgmtEntryDelete = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsMgmtEntryDeleteA,
+    .wide => @This().RpcNsMgmtEntryDeleteW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsMgmtEntryDelete' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsMgmtEntryInqIfIds = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsMgmtEntryInqIfIdsA,
+    .wide => @This().RpcNsMgmtEntryInqIfIdsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsMgmtEntryInqIfIds' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcNsBindingImportBegin = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcNsBindingImportBeginA,
+    .wide => @This().RpcNsBindingImportBeginW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcNsBindingImportBegin' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcServerInqCallAttributes = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcServerInqCallAttributesA,
+    .wide => @This().RpcServerInqCallAttributesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcServerInqCallAttributes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RpcCertGeneratePrincipalName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RpcCertGeneratePrincipalNameA,
+    .wide => @This().RpcCertGeneratePrincipalNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RpcCertGeneratePrincipalName' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (17)

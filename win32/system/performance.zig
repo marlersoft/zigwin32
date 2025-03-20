@@ -6883,215 +6883,355 @@ pub extern "pdh" fn PdhSetLogSetRunID(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (50)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const PDH_RAW_COUNTER_ITEM_ = thismodule.PDH_RAW_COUNTER_ITEM_A;
-        pub const PDH_FMT_COUNTERVALUE_ITEM_ = thismodule.PDH_FMT_COUNTERVALUE_ITEM_A;
-        pub const PDH_COUNTER_PATH_ELEMENTS_ = thismodule.PDH_COUNTER_PATH_ELEMENTS_A;
-        pub const PDH_DATA_ITEM_PATH_ELEMENTS_ = thismodule.PDH_DATA_ITEM_PATH_ELEMENTS_A;
-        pub const PDH_COUNTER_INFO_ = thismodule.PDH_COUNTER_INFO_A;
-        pub const PDH_LOG_SERVICE_QUERY_INFO_ = thismodule.PDH_LOG_SERVICE_QUERY_INFO_A;
-        pub const PDH_BROWSE_DLG_CONFIG_H = thismodule.PDH_BROWSE_DLG_CONFIG_HA;
-        pub const PDH_BROWSE_DLG_CONFIG_ = thismodule.PDH_BROWSE_DLG_CONFIG_A;
-        pub const InstallPerfDll = thismodule.InstallPerfDllA;
-        pub const LoadPerfCounterTextStrings = thismodule.LoadPerfCounterTextStringsA;
-        pub const UnloadPerfCounterTextStrings = thismodule.UnloadPerfCounterTextStringsA;
-        pub const UpdatePerfNameFiles = thismodule.UpdatePerfNameFilesA;
-        pub const SetServiceAsTrusted = thismodule.SetServiceAsTrustedA;
-        pub const PdhOpenQuery = thismodule.PdhOpenQueryA;
-        pub const PdhAddCounter = thismodule.PdhAddCounterA;
-        pub const PdhAddEnglishCounter = thismodule.PdhAddEnglishCounterA;
-        pub const PdhValidatePathEx = thismodule.PdhValidatePathExA;
-        pub const PdhGetFormattedCounterArray = thismodule.PdhGetFormattedCounterArrayA;
-        pub const PdhGetRawCounterArray = thismodule.PdhGetRawCounterArrayA;
-        pub const PdhGetCounterInfo = thismodule.PdhGetCounterInfoA;
-        pub const PdhConnectMachine = thismodule.PdhConnectMachineA;
-        pub const PdhEnumMachines = thismodule.PdhEnumMachinesA;
-        pub const PdhEnumObjects = thismodule.PdhEnumObjectsA;
-        pub const PdhEnumObjectItems = thismodule.PdhEnumObjectItemsA;
-        pub const PdhMakeCounterPath = thismodule.PdhMakeCounterPathA;
-        pub const PdhParseCounterPath = thismodule.PdhParseCounterPathA;
-        pub const PdhParseInstanceName = thismodule.PdhParseInstanceNameA;
-        pub const PdhValidatePath = thismodule.PdhValidatePathA;
-        pub const PdhGetDefaultPerfObject = thismodule.PdhGetDefaultPerfObjectA;
-        pub const PdhGetDefaultPerfCounter = thismodule.PdhGetDefaultPerfCounterA;
-        pub const PdhBrowseCounters = thismodule.PdhBrowseCountersA;
-        pub const PdhExpandCounterPath = thismodule.PdhExpandCounterPathA;
-        pub const PdhLookupPerfNameByIndex = thismodule.PdhLookupPerfNameByIndexA;
-        pub const PdhLookupPerfIndexByName = thismodule.PdhLookupPerfIndexByNameA;
-        pub const PdhExpandWildCardPath = thismodule.PdhExpandWildCardPathA;
-        pub const PdhOpenLog = thismodule.PdhOpenLogA;
-        pub const PdhUpdateLog = thismodule.PdhUpdateLogA;
-        pub const PdhSelectDataSource = thismodule.PdhSelectDataSourceA;
-        pub const PdhGetDataSourceTimeRange = thismodule.PdhGetDataSourceTimeRangeA;
-        pub const PdhBindInputDataSource = thismodule.PdhBindInputDataSourceA;
-        pub const PdhEnumMachinesH = thismodule.PdhEnumMachinesHA;
-        pub const PdhEnumObjectsH = thismodule.PdhEnumObjectsHA;
-        pub const PdhEnumObjectItemsH = thismodule.PdhEnumObjectItemsHA;
-        pub const PdhExpandWildCardPathH = thismodule.PdhExpandWildCardPathHA;
-        pub const PdhGetDefaultPerfObjectH = thismodule.PdhGetDefaultPerfObjectHA;
-        pub const PdhGetDefaultPerfCounterH = thismodule.PdhGetDefaultPerfCounterHA;
-        pub const PdhBrowseCountersH = thismodule.PdhBrowseCountersHA;
-        pub const PdhVerifySQLDB = thismodule.PdhVerifySQLDBA;
-        pub const PdhCreateSQLTables = thismodule.PdhCreateSQLTablesA;
-        pub const PdhEnumLogSetNames = thismodule.PdhEnumLogSetNamesA;
-    },
-    .wide => struct {
-        pub const PDH_RAW_COUNTER_ITEM_ = thismodule.PDH_RAW_COUNTER_ITEM_W;
-        pub const PDH_FMT_COUNTERVALUE_ITEM_ = thismodule.PDH_FMT_COUNTERVALUE_ITEM_W;
-        pub const PDH_COUNTER_PATH_ELEMENTS_ = thismodule.PDH_COUNTER_PATH_ELEMENTS_W;
-        pub const PDH_DATA_ITEM_PATH_ELEMENTS_ = thismodule.PDH_DATA_ITEM_PATH_ELEMENTS_W;
-        pub const PDH_COUNTER_INFO_ = thismodule.PDH_COUNTER_INFO_W;
-        pub const PDH_LOG_SERVICE_QUERY_INFO_ = thismodule.PDH_LOG_SERVICE_QUERY_INFO_W;
-        pub const PDH_BROWSE_DLG_CONFIG_H = thismodule.PDH_BROWSE_DLG_CONFIG_HW;
-        pub const PDH_BROWSE_DLG_CONFIG_ = thismodule.PDH_BROWSE_DLG_CONFIG_W;
-        pub const InstallPerfDll = thismodule.InstallPerfDllW;
-        pub const LoadPerfCounterTextStrings = thismodule.LoadPerfCounterTextStringsW;
-        pub const UnloadPerfCounterTextStrings = thismodule.UnloadPerfCounterTextStringsW;
-        pub const UpdatePerfNameFiles = thismodule.UpdatePerfNameFilesW;
-        pub const SetServiceAsTrusted = thismodule.SetServiceAsTrustedW;
-        pub const PdhOpenQuery = thismodule.PdhOpenQueryW;
-        pub const PdhAddCounter = thismodule.PdhAddCounterW;
-        pub const PdhAddEnglishCounter = thismodule.PdhAddEnglishCounterW;
-        pub const PdhValidatePathEx = thismodule.PdhValidatePathExW;
-        pub const PdhGetFormattedCounterArray = thismodule.PdhGetFormattedCounterArrayW;
-        pub const PdhGetRawCounterArray = thismodule.PdhGetRawCounterArrayW;
-        pub const PdhGetCounterInfo = thismodule.PdhGetCounterInfoW;
-        pub const PdhConnectMachine = thismodule.PdhConnectMachineW;
-        pub const PdhEnumMachines = thismodule.PdhEnumMachinesW;
-        pub const PdhEnumObjects = thismodule.PdhEnumObjectsW;
-        pub const PdhEnumObjectItems = thismodule.PdhEnumObjectItemsW;
-        pub const PdhMakeCounterPath = thismodule.PdhMakeCounterPathW;
-        pub const PdhParseCounterPath = thismodule.PdhParseCounterPathW;
-        pub const PdhParseInstanceName = thismodule.PdhParseInstanceNameW;
-        pub const PdhValidatePath = thismodule.PdhValidatePathW;
-        pub const PdhGetDefaultPerfObject = thismodule.PdhGetDefaultPerfObjectW;
-        pub const PdhGetDefaultPerfCounter = thismodule.PdhGetDefaultPerfCounterW;
-        pub const PdhBrowseCounters = thismodule.PdhBrowseCountersW;
-        pub const PdhExpandCounterPath = thismodule.PdhExpandCounterPathW;
-        pub const PdhLookupPerfNameByIndex = thismodule.PdhLookupPerfNameByIndexW;
-        pub const PdhLookupPerfIndexByName = thismodule.PdhLookupPerfIndexByNameW;
-        pub const PdhExpandWildCardPath = thismodule.PdhExpandWildCardPathW;
-        pub const PdhOpenLog = thismodule.PdhOpenLogW;
-        pub const PdhUpdateLog = thismodule.PdhUpdateLogW;
-        pub const PdhSelectDataSource = thismodule.PdhSelectDataSourceW;
-        pub const PdhGetDataSourceTimeRange = thismodule.PdhGetDataSourceTimeRangeW;
-        pub const PdhBindInputDataSource = thismodule.PdhBindInputDataSourceW;
-        pub const PdhEnumMachinesH = thismodule.PdhEnumMachinesHW;
-        pub const PdhEnumObjectsH = thismodule.PdhEnumObjectsHW;
-        pub const PdhEnumObjectItemsH = thismodule.PdhEnumObjectItemsHW;
-        pub const PdhExpandWildCardPathH = thismodule.PdhExpandWildCardPathHW;
-        pub const PdhGetDefaultPerfObjectH = thismodule.PdhGetDefaultPerfObjectHW;
-        pub const PdhGetDefaultPerfCounterH = thismodule.PdhGetDefaultPerfCounterHW;
-        pub const PdhBrowseCountersH = thismodule.PdhBrowseCountersHW;
-        pub const PdhVerifySQLDB = thismodule.PdhVerifySQLDBW;
-        pub const PdhCreateSQLTables = thismodule.PdhCreateSQLTablesW;
-        pub const PdhEnumLogSetNames = thismodule.PdhEnumLogSetNamesW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const PDH_RAW_COUNTER_ITEM_ = *opaque{};
-        pub const PDH_FMT_COUNTERVALUE_ITEM_ = *opaque{};
-        pub const PDH_COUNTER_PATH_ELEMENTS_ = *opaque{};
-        pub const PDH_DATA_ITEM_PATH_ELEMENTS_ = *opaque{};
-        pub const PDH_COUNTER_INFO_ = *opaque{};
-        pub const PDH_LOG_SERVICE_QUERY_INFO_ = *opaque{};
-        pub const PDH_BROWSE_DLG_CONFIG_H = *opaque{};
-        pub const PDH_BROWSE_DLG_CONFIG_ = *opaque{};
-        pub const InstallPerfDll = *opaque{};
-        pub const LoadPerfCounterTextStrings = *opaque{};
-        pub const UnloadPerfCounterTextStrings = *opaque{};
-        pub const UpdatePerfNameFiles = *opaque{};
-        pub const SetServiceAsTrusted = *opaque{};
-        pub const PdhOpenQuery = *opaque{};
-        pub const PdhAddCounter = *opaque{};
-        pub const PdhAddEnglishCounter = *opaque{};
-        pub const PdhValidatePathEx = *opaque{};
-        pub const PdhGetFormattedCounterArray = *opaque{};
-        pub const PdhGetRawCounterArray = *opaque{};
-        pub const PdhGetCounterInfo = *opaque{};
-        pub const PdhConnectMachine = *opaque{};
-        pub const PdhEnumMachines = *opaque{};
-        pub const PdhEnumObjects = *opaque{};
-        pub const PdhEnumObjectItems = *opaque{};
-        pub const PdhMakeCounterPath = *opaque{};
-        pub const PdhParseCounterPath = *opaque{};
-        pub const PdhParseInstanceName = *opaque{};
-        pub const PdhValidatePath = *opaque{};
-        pub const PdhGetDefaultPerfObject = *opaque{};
-        pub const PdhGetDefaultPerfCounter = *opaque{};
-        pub const PdhBrowseCounters = *opaque{};
-        pub const PdhExpandCounterPath = *opaque{};
-        pub const PdhLookupPerfNameByIndex = *opaque{};
-        pub const PdhLookupPerfIndexByName = *opaque{};
-        pub const PdhExpandWildCardPath = *opaque{};
-        pub const PdhOpenLog = *opaque{};
-        pub const PdhUpdateLog = *opaque{};
-        pub const PdhSelectDataSource = *opaque{};
-        pub const PdhGetDataSourceTimeRange = *opaque{};
-        pub const PdhBindInputDataSource = *opaque{};
-        pub const PdhEnumMachinesH = *opaque{};
-        pub const PdhEnumObjectsH = *opaque{};
-        pub const PdhEnumObjectItemsH = *opaque{};
-        pub const PdhExpandWildCardPathH = *opaque{};
-        pub const PdhGetDefaultPerfObjectH = *opaque{};
-        pub const PdhGetDefaultPerfCounterH = *opaque{};
-        pub const PdhBrowseCountersH = *opaque{};
-        pub const PdhVerifySQLDB = *opaque{};
-        pub const PdhCreateSQLTables = *opaque{};
-        pub const PdhEnumLogSetNames = *opaque{};
-    } else struct {
-        pub const PDH_RAW_COUNTER_ITEM_ = @compileError("'PDH_RAW_COUNTER_ITEM_' requires that UNICODE be set to true or false in the root module");
-        pub const PDH_FMT_COUNTERVALUE_ITEM_ = @compileError("'PDH_FMT_COUNTERVALUE_ITEM_' requires that UNICODE be set to true or false in the root module");
-        pub const PDH_COUNTER_PATH_ELEMENTS_ = @compileError("'PDH_COUNTER_PATH_ELEMENTS_' requires that UNICODE be set to true or false in the root module");
-        pub const PDH_DATA_ITEM_PATH_ELEMENTS_ = @compileError("'PDH_DATA_ITEM_PATH_ELEMENTS_' requires that UNICODE be set to true or false in the root module");
-        pub const PDH_COUNTER_INFO_ = @compileError("'PDH_COUNTER_INFO_' requires that UNICODE be set to true or false in the root module");
-        pub const PDH_LOG_SERVICE_QUERY_INFO_ = @compileError("'PDH_LOG_SERVICE_QUERY_INFO_' requires that UNICODE be set to true or false in the root module");
-        pub const PDH_BROWSE_DLG_CONFIG_H = @compileError("'PDH_BROWSE_DLG_CONFIG_H' requires that UNICODE be set to true or false in the root module");
-        pub const PDH_BROWSE_DLG_CONFIG_ = @compileError("'PDH_BROWSE_DLG_CONFIG_' requires that UNICODE be set to true or false in the root module");
-        pub const InstallPerfDll = @compileError("'InstallPerfDll' requires that UNICODE be set to true or false in the root module");
-        pub const LoadPerfCounterTextStrings = @compileError("'LoadPerfCounterTextStrings' requires that UNICODE be set to true or false in the root module");
-        pub const UnloadPerfCounterTextStrings = @compileError("'UnloadPerfCounterTextStrings' requires that UNICODE be set to true or false in the root module");
-        pub const UpdatePerfNameFiles = @compileError("'UpdatePerfNameFiles' requires that UNICODE be set to true or false in the root module");
-        pub const SetServiceAsTrusted = @compileError("'SetServiceAsTrusted' requires that UNICODE be set to true or false in the root module");
-        pub const PdhOpenQuery = @compileError("'PdhOpenQuery' requires that UNICODE be set to true or false in the root module");
-        pub const PdhAddCounter = @compileError("'PdhAddCounter' requires that UNICODE be set to true or false in the root module");
-        pub const PdhAddEnglishCounter = @compileError("'PdhAddEnglishCounter' requires that UNICODE be set to true or false in the root module");
-        pub const PdhValidatePathEx = @compileError("'PdhValidatePathEx' requires that UNICODE be set to true or false in the root module");
-        pub const PdhGetFormattedCounterArray = @compileError("'PdhGetFormattedCounterArray' requires that UNICODE be set to true or false in the root module");
-        pub const PdhGetRawCounterArray = @compileError("'PdhGetRawCounterArray' requires that UNICODE be set to true or false in the root module");
-        pub const PdhGetCounterInfo = @compileError("'PdhGetCounterInfo' requires that UNICODE be set to true or false in the root module");
-        pub const PdhConnectMachine = @compileError("'PdhConnectMachine' requires that UNICODE be set to true or false in the root module");
-        pub const PdhEnumMachines = @compileError("'PdhEnumMachines' requires that UNICODE be set to true or false in the root module");
-        pub const PdhEnumObjects = @compileError("'PdhEnumObjects' requires that UNICODE be set to true or false in the root module");
-        pub const PdhEnumObjectItems = @compileError("'PdhEnumObjectItems' requires that UNICODE be set to true or false in the root module");
-        pub const PdhMakeCounterPath = @compileError("'PdhMakeCounterPath' requires that UNICODE be set to true or false in the root module");
-        pub const PdhParseCounterPath = @compileError("'PdhParseCounterPath' requires that UNICODE be set to true or false in the root module");
-        pub const PdhParseInstanceName = @compileError("'PdhParseInstanceName' requires that UNICODE be set to true or false in the root module");
-        pub const PdhValidatePath = @compileError("'PdhValidatePath' requires that UNICODE be set to true or false in the root module");
-        pub const PdhGetDefaultPerfObject = @compileError("'PdhGetDefaultPerfObject' requires that UNICODE be set to true or false in the root module");
-        pub const PdhGetDefaultPerfCounter = @compileError("'PdhGetDefaultPerfCounter' requires that UNICODE be set to true or false in the root module");
-        pub const PdhBrowseCounters = @compileError("'PdhBrowseCounters' requires that UNICODE be set to true or false in the root module");
-        pub const PdhExpandCounterPath = @compileError("'PdhExpandCounterPath' requires that UNICODE be set to true or false in the root module");
-        pub const PdhLookupPerfNameByIndex = @compileError("'PdhLookupPerfNameByIndex' requires that UNICODE be set to true or false in the root module");
-        pub const PdhLookupPerfIndexByName = @compileError("'PdhLookupPerfIndexByName' requires that UNICODE be set to true or false in the root module");
-        pub const PdhExpandWildCardPath = @compileError("'PdhExpandWildCardPath' requires that UNICODE be set to true or false in the root module");
-        pub const PdhOpenLog = @compileError("'PdhOpenLog' requires that UNICODE be set to true or false in the root module");
-        pub const PdhUpdateLog = @compileError("'PdhUpdateLog' requires that UNICODE be set to true or false in the root module");
-        pub const PdhSelectDataSource = @compileError("'PdhSelectDataSource' requires that UNICODE be set to true or false in the root module");
-        pub const PdhGetDataSourceTimeRange = @compileError("'PdhGetDataSourceTimeRange' requires that UNICODE be set to true or false in the root module");
-        pub const PdhBindInputDataSource = @compileError("'PdhBindInputDataSource' requires that UNICODE be set to true or false in the root module");
-        pub const PdhEnumMachinesH = @compileError("'PdhEnumMachinesH' requires that UNICODE be set to true or false in the root module");
-        pub const PdhEnumObjectsH = @compileError("'PdhEnumObjectsH' requires that UNICODE be set to true or false in the root module");
-        pub const PdhEnumObjectItemsH = @compileError("'PdhEnumObjectItemsH' requires that UNICODE be set to true or false in the root module");
-        pub const PdhExpandWildCardPathH = @compileError("'PdhExpandWildCardPathH' requires that UNICODE be set to true or false in the root module");
-        pub const PdhGetDefaultPerfObjectH = @compileError("'PdhGetDefaultPerfObjectH' requires that UNICODE be set to true or false in the root module");
-        pub const PdhGetDefaultPerfCounterH = @compileError("'PdhGetDefaultPerfCounterH' requires that UNICODE be set to true or false in the root module");
-        pub const PdhBrowseCountersH = @compileError("'PdhBrowseCountersH' requires that UNICODE be set to true or false in the root module");
-        pub const PdhVerifySQLDB = @compileError("'PdhVerifySQLDB' requires that UNICODE be set to true or false in the root module");
-        pub const PdhCreateSQLTables = @compileError("'PdhCreateSQLTables' requires that UNICODE be set to true or false in the root module");
-        pub const PdhEnumLogSetNames = @compileError("'PdhEnumLogSetNames' requires that UNICODE be set to true or false in the root module");
-    },
+pub const PDH_RAW_COUNTER_ITEM_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_RAW_COUNTER_ITEM_A,
+    .wide => @This().PDH_RAW_COUNTER_ITEM_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PDH_RAW_COUNTER_ITEM_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PDH_FMT_COUNTERVALUE_ITEM_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_FMT_COUNTERVALUE_ITEM_A,
+    .wide => @This().PDH_FMT_COUNTERVALUE_ITEM_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PDH_FMT_COUNTERVALUE_ITEM_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PDH_COUNTER_PATH_ELEMENTS_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_COUNTER_PATH_ELEMENTS_A,
+    .wide => @This().PDH_COUNTER_PATH_ELEMENTS_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PDH_COUNTER_PATH_ELEMENTS_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PDH_DATA_ITEM_PATH_ELEMENTS_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_DATA_ITEM_PATH_ELEMENTS_A,
+    .wide => @This().PDH_DATA_ITEM_PATH_ELEMENTS_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PDH_DATA_ITEM_PATH_ELEMENTS_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PDH_COUNTER_INFO_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_COUNTER_INFO_A,
+    .wide => @This().PDH_COUNTER_INFO_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PDH_COUNTER_INFO_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PDH_LOG_SERVICE_QUERY_INFO_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_LOG_SERVICE_QUERY_INFO_A,
+    .wide => @This().PDH_LOG_SERVICE_QUERY_INFO_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PDH_LOG_SERVICE_QUERY_INFO_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PDH_BROWSE_DLG_CONFIG_H = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_BROWSE_DLG_CONFIG_HA,
+    .wide => @This().PDH_BROWSE_DLG_CONFIG_HW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PDH_BROWSE_DLG_CONFIG_H' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PDH_BROWSE_DLG_CONFIG_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_BROWSE_DLG_CONFIG_A,
+    .wide => @This().PDH_BROWSE_DLG_CONFIG_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PDH_BROWSE_DLG_CONFIG_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InstallPerfDll = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InstallPerfDllA,
+    .wide => @This().InstallPerfDllW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InstallPerfDll' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadPerfCounterTextStrings = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadPerfCounterTextStringsA,
+    .wide => @This().LoadPerfCounterTextStringsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadPerfCounterTextStrings' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UnloadPerfCounterTextStrings = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UnloadPerfCounterTextStringsA,
+    .wide => @This().UnloadPerfCounterTextStringsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UnloadPerfCounterTextStrings' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UpdatePerfNameFiles = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UpdatePerfNameFilesA,
+    .wide => @This().UpdatePerfNameFilesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UpdatePerfNameFiles' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetServiceAsTrusted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetServiceAsTrustedA,
+    .wide => @This().SetServiceAsTrustedW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetServiceAsTrusted' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhOpenQuery = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhOpenQueryA,
+    .wide => @This().PdhOpenQueryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhOpenQuery' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhAddCounter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhAddCounterA,
+    .wide => @This().PdhAddCounterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhAddCounter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhAddEnglishCounter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhAddEnglishCounterA,
+    .wide => @This().PdhAddEnglishCounterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhAddEnglishCounter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhValidatePathEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhValidatePathExA,
+    .wide => @This().PdhValidatePathExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhValidatePathEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetFormattedCounterArray = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetFormattedCounterArrayA,
+    .wide => @This().PdhGetFormattedCounterArrayW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetFormattedCounterArray' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetRawCounterArray = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetRawCounterArrayA,
+    .wide => @This().PdhGetRawCounterArrayW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetRawCounterArray' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetCounterInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetCounterInfoA,
+    .wide => @This().PdhGetCounterInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetCounterInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhConnectMachine = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhConnectMachineA,
+    .wide => @This().PdhConnectMachineW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhConnectMachine' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumMachines = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumMachinesA,
+    .wide => @This().PdhEnumMachinesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumMachines' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumObjects = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumObjectsA,
+    .wide => @This().PdhEnumObjectsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumObjects' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumObjectItems = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumObjectItemsA,
+    .wide => @This().PdhEnumObjectItemsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumObjectItems' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhMakeCounterPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhMakeCounterPathA,
+    .wide => @This().PdhMakeCounterPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhMakeCounterPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhParseCounterPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhParseCounterPathA,
+    .wide => @This().PdhParseCounterPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhParseCounterPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhParseInstanceName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhParseInstanceNameA,
+    .wide => @This().PdhParseInstanceNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhParseInstanceName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhValidatePath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhValidatePathA,
+    .wide => @This().PdhValidatePathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhValidatePath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetDefaultPerfObject = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetDefaultPerfObjectA,
+    .wide => @This().PdhGetDefaultPerfObjectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetDefaultPerfObject' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetDefaultPerfCounter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetDefaultPerfCounterA,
+    .wide => @This().PdhGetDefaultPerfCounterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetDefaultPerfCounter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhBrowseCounters = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhBrowseCountersA,
+    .wide => @This().PdhBrowseCountersW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhBrowseCounters' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhExpandCounterPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhExpandCounterPathA,
+    .wide => @This().PdhExpandCounterPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhExpandCounterPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhLookupPerfNameByIndex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhLookupPerfNameByIndexA,
+    .wide => @This().PdhLookupPerfNameByIndexW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhLookupPerfNameByIndex' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhLookupPerfIndexByName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhLookupPerfIndexByNameA,
+    .wide => @This().PdhLookupPerfIndexByNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhLookupPerfIndexByName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhExpandWildCardPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhExpandWildCardPathA,
+    .wide => @This().PdhExpandWildCardPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhExpandWildCardPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhOpenLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhOpenLogA,
+    .wide => @This().PdhOpenLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhOpenLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhUpdateLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhUpdateLogA,
+    .wide => @This().PdhUpdateLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhUpdateLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhSelectDataSource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhSelectDataSourceA,
+    .wide => @This().PdhSelectDataSourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhSelectDataSource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetDataSourceTimeRange = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetDataSourceTimeRangeA,
+    .wide => @This().PdhGetDataSourceTimeRangeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetDataSourceTimeRange' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhBindInputDataSource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhBindInputDataSourceA,
+    .wide => @This().PdhBindInputDataSourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhBindInputDataSource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumMachinesH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumMachinesHA,
+    .wide => @This().PdhEnumMachinesHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumMachinesH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumObjectsH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumObjectsHA,
+    .wide => @This().PdhEnumObjectsHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumObjectsH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumObjectItemsH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumObjectItemsHA,
+    .wide => @This().PdhEnumObjectItemsHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumObjectItemsH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhExpandWildCardPathH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhExpandWildCardPathHA,
+    .wide => @This().PdhExpandWildCardPathHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhExpandWildCardPathH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetDefaultPerfObjectH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetDefaultPerfObjectHA,
+    .wide => @This().PdhGetDefaultPerfObjectHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetDefaultPerfObjectH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetDefaultPerfCounterH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetDefaultPerfCounterHA,
+    .wide => @This().PdhGetDefaultPerfCounterHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetDefaultPerfCounterH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhBrowseCountersH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhBrowseCountersHA,
+    .wide => @This().PdhBrowseCountersHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhBrowseCountersH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhVerifySQLDB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhVerifySQLDBA,
+    .wide => @This().PdhVerifySQLDBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhVerifySQLDB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhCreateSQLTables = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhCreateSQLTablesA,
+    .wide => @This().PdhCreateSQLTablesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhCreateSQLTables' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumLogSetNames = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumLogSetNamesA,
+    .wide => @This().PdhEnumLogSetNamesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumLogSetNames' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (17)

@@ -1759,19 +1759,12 @@ pub extern "httpapi" fn HttpGetExtension(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const HTTP_SERVICE_BINDING_ = thismodule.HTTP_SERVICE_BINDING_A;
-    },
-    .wide => struct {
-        pub const HTTP_SERVICE_BINDING_ = thismodule.HTTP_SERVICE_BINDING_W;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const HTTP_SERVICE_BINDING_ = *opaque{};
-    } else struct {
-        pub const HTTP_SERVICE_BINDING_ = @compileError("'HTTP_SERVICE_BINDING_' requires that UNICODE be set to true or false in the root module");
-    },
+pub const HTTP_SERVICE_BINDING_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HTTP_SERVICE_BINDING_A,
+    .wide => @This().HTTP_SERVICE_BINDING_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HTTP_SERVICE_BINDING_' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (13)

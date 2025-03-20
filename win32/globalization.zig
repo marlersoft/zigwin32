@@ -16301,203 +16301,334 @@ pub extern "advapi32" fn IsTextUnicode(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (47)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const NEWTEXTMETRICEX = thismodule.NEWTEXTMETRICEXA;
-        pub const ENUMTEXTMETRIC = thismodule.ENUMTEXTMETRICA;
-        pub const CPINFOEX = thismodule.CPINFOEXA;
-        pub const NUMBERFMT = thismodule.NUMBERFMTA;
-        pub const CURRENCYFMT = thismodule.CURRENCYFMTA;
-        pub const LOCALE_ENUMPROC = thismodule.LOCALE_ENUMPROCA;
-        pub const LANGUAGEGROUP_ENUMPROC = thismodule.LANGUAGEGROUP_ENUMPROCA;
-        pub const LANGGROUPLOCALE_ENUMPROC = thismodule.LANGGROUPLOCALE_ENUMPROCA;
-        pub const UILANGUAGE_ENUMPROC = thismodule.UILANGUAGE_ENUMPROCA;
-        pub const CODEPAGE_ENUMPROC = thismodule.CODEPAGE_ENUMPROCA;
-        pub const DATEFMT_ENUMPROC = thismodule.DATEFMT_ENUMPROCA;
-        pub const DATEFMT_ENUMPROCEX = thismodule.DATEFMT_ENUMPROCEXA;
-        pub const TIMEFMT_ENUMPROC = thismodule.TIMEFMT_ENUMPROCA;
-        pub const CALINFO_ENUMPROC = thismodule.CALINFO_ENUMPROCA;
-        pub const CALINFO_ENUMPROCEX = thismodule.CALINFO_ENUMPROCEXA;
-        pub const IMLangStringBuf = thismodule.IMLangStringBufA;
-        pub const GetDateFormat = thismodule.GetDateFormatA;
-        pub const GetTimeFormat = thismodule.GetTimeFormatA;
-        pub const CompareString = thismodule.CompareStringA;
-        pub const FoldString = thismodule.FoldStringA;
-        pub const GetStringTypeEx = thismodule.GetStringTypeExA;
-        pub const GetStringType = thismodule.GetStringTypeA;
-        pub const GetCPInfoEx = thismodule.GetCPInfoExA;
-        pub const LCMapString = thismodule.LCMapStringA;
-        pub const GetLocaleInfo = thismodule.GetLocaleInfoA;
-        pub const SetLocaleInfo = thismodule.SetLocaleInfoA;
-        pub const GetCalendarInfo = thismodule.GetCalendarInfoA;
-        pub const SetCalendarInfo = thismodule.SetCalendarInfoA;
-        pub const GetNumberFormat = thismodule.GetNumberFormatA;
-        pub const GetCurrencyFormat = thismodule.GetCurrencyFormatA;
-        pub const EnumCalendarInfo = thismodule.EnumCalendarInfoA;
-        pub const EnumCalendarInfoEx = thismodule.EnumCalendarInfoExA;
-        pub const EnumTimeFormats = thismodule.EnumTimeFormatsA;
-        pub const EnumDateFormats = thismodule.EnumDateFormatsA;
-        pub const EnumDateFormatsEx = thismodule.EnumDateFormatsExA;
-        pub const GetGeoInfo = thismodule.GetGeoInfoA;
-        pub const EnumSystemLocales = thismodule.EnumSystemLocalesA;
-        pub const EnumSystemLanguageGroups = thismodule.EnumSystemLanguageGroupsA;
-        pub const EnumLanguageGroupLocales = thismodule.EnumLanguageGroupLocalesA;
-        pub const EnumUILanguages = thismodule.EnumUILanguagesA;
-        pub const EnumSystemCodePages = thismodule.EnumSystemCodePagesA;
-        pub const lstrcmp = thismodule.lstrcmpA;
-        pub const lstrcmpi = thismodule.lstrcmpiA;
-        pub const lstrcpyn = thismodule.lstrcpynA;
-        pub const lstrcpy = thismodule.lstrcpyA;
-        pub const lstrcat = thismodule.lstrcatA;
-        pub const lstrlen = thismodule.lstrlenA;
-    },
-    .wide => struct {
-        pub const NEWTEXTMETRICEX = thismodule.NEWTEXTMETRICEXW;
-        pub const ENUMTEXTMETRIC = thismodule.ENUMTEXTMETRICW;
-        pub const CPINFOEX = thismodule.CPINFOEXW;
-        pub const NUMBERFMT = thismodule.NUMBERFMTW;
-        pub const CURRENCYFMT = thismodule.CURRENCYFMTW;
-        pub const LOCALE_ENUMPROC = thismodule.LOCALE_ENUMPROCW;
-        pub const LANGUAGEGROUP_ENUMPROC = thismodule.LANGUAGEGROUP_ENUMPROCW;
-        pub const LANGGROUPLOCALE_ENUMPROC = thismodule.LANGGROUPLOCALE_ENUMPROCW;
-        pub const UILANGUAGE_ENUMPROC = thismodule.UILANGUAGE_ENUMPROCW;
-        pub const CODEPAGE_ENUMPROC = thismodule.CODEPAGE_ENUMPROCW;
-        pub const DATEFMT_ENUMPROC = thismodule.DATEFMT_ENUMPROCW;
-        pub const DATEFMT_ENUMPROCEX = thismodule.DATEFMT_ENUMPROCEXW;
-        pub const TIMEFMT_ENUMPROC = thismodule.TIMEFMT_ENUMPROCW;
-        pub const CALINFO_ENUMPROC = thismodule.CALINFO_ENUMPROCW;
-        pub const CALINFO_ENUMPROCEX = thismodule.CALINFO_ENUMPROCEXW;
-        pub const IMLangStringBuf = thismodule.IMLangStringBufW;
-        pub const GetDateFormat = thismodule.GetDateFormatW;
-        pub const GetTimeFormat = thismodule.GetTimeFormatW;
-        pub const CompareString = thismodule.CompareStringW;
-        pub const FoldString = thismodule.FoldStringW;
-        pub const GetStringTypeEx = thismodule.GetStringTypeExW;
-        pub const GetStringType = thismodule.GetStringTypeW;
-        pub const GetCPInfoEx = thismodule.GetCPInfoExW;
-        pub const LCMapString = thismodule.LCMapStringW;
-        pub const GetLocaleInfo = thismodule.GetLocaleInfoW;
-        pub const SetLocaleInfo = thismodule.SetLocaleInfoW;
-        pub const GetCalendarInfo = thismodule.GetCalendarInfoW;
-        pub const SetCalendarInfo = thismodule.SetCalendarInfoW;
-        pub const GetNumberFormat = thismodule.GetNumberFormatW;
-        pub const GetCurrencyFormat = thismodule.GetCurrencyFormatW;
-        pub const EnumCalendarInfo = thismodule.EnumCalendarInfoW;
-        pub const EnumCalendarInfoEx = thismodule.EnumCalendarInfoExW;
-        pub const EnumTimeFormats = thismodule.EnumTimeFormatsW;
-        pub const EnumDateFormats = thismodule.EnumDateFormatsW;
-        pub const EnumDateFormatsEx = thismodule.EnumDateFormatsExW;
-        pub const GetGeoInfo = thismodule.GetGeoInfoW;
-        pub const EnumSystemLocales = thismodule.EnumSystemLocalesW;
-        pub const EnumSystemLanguageGroups = thismodule.EnumSystemLanguageGroupsW;
-        pub const EnumLanguageGroupLocales = thismodule.EnumLanguageGroupLocalesW;
-        pub const EnumUILanguages = thismodule.EnumUILanguagesW;
-        pub const EnumSystemCodePages = thismodule.EnumSystemCodePagesW;
-        pub const lstrcmp = thismodule.lstrcmpW;
-        pub const lstrcmpi = thismodule.lstrcmpiW;
-        pub const lstrcpyn = thismodule.lstrcpynW;
-        pub const lstrcpy = thismodule.lstrcpyW;
-        pub const lstrcat = thismodule.lstrcatW;
-        pub const lstrlen = thismodule.lstrlenW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const NEWTEXTMETRICEX = *opaque{};
-        pub const ENUMTEXTMETRIC = *opaque{};
-        pub const CPINFOEX = *opaque{};
-        pub const NUMBERFMT = *opaque{};
-        pub const CURRENCYFMT = *opaque{};
-        pub const LOCALE_ENUMPROC = *opaque{};
-        pub const LANGUAGEGROUP_ENUMPROC = *opaque{};
-        pub const LANGGROUPLOCALE_ENUMPROC = *opaque{};
-        pub const UILANGUAGE_ENUMPROC = *opaque{};
-        pub const CODEPAGE_ENUMPROC = *opaque{};
-        pub const DATEFMT_ENUMPROC = *opaque{};
-        pub const DATEFMT_ENUMPROCEX = *opaque{};
-        pub const TIMEFMT_ENUMPROC = *opaque{};
-        pub const CALINFO_ENUMPROC = *opaque{};
-        pub const CALINFO_ENUMPROCEX = *opaque{};
-        pub const IMLangStringBuf = *opaque{};
-        pub const GetDateFormat = *opaque{};
-        pub const GetTimeFormat = *opaque{};
-        pub const CompareString = *opaque{};
-        pub const FoldString = *opaque{};
-        pub const GetStringTypeEx = *opaque{};
-        pub const GetStringType = *opaque{};
-        pub const GetCPInfoEx = *opaque{};
-        pub const LCMapString = *opaque{};
-        pub const GetLocaleInfo = *opaque{};
-        pub const SetLocaleInfo = *opaque{};
-        pub const GetCalendarInfo = *opaque{};
-        pub const SetCalendarInfo = *opaque{};
-        pub const GetNumberFormat = *opaque{};
-        pub const GetCurrencyFormat = *opaque{};
-        pub const EnumCalendarInfo = *opaque{};
-        pub const EnumCalendarInfoEx = *opaque{};
-        pub const EnumTimeFormats = *opaque{};
-        pub const EnumDateFormats = *opaque{};
-        pub const EnumDateFormatsEx = *opaque{};
-        pub const GetGeoInfo = *opaque{};
-        pub const EnumSystemLocales = *opaque{};
-        pub const EnumSystemLanguageGroups = *opaque{};
-        pub const EnumLanguageGroupLocales = *opaque{};
-        pub const EnumUILanguages = *opaque{};
-        pub const EnumSystemCodePages = *opaque{};
-        pub const lstrcmp = *opaque{};
-        pub const lstrcmpi = *opaque{};
-        pub const lstrcpyn = *opaque{};
-        pub const lstrcpy = *opaque{};
-        pub const lstrcat = *opaque{};
-        pub const lstrlen = *opaque{};
-    } else struct {
-        pub const NEWTEXTMETRICEX = @compileError("'NEWTEXTMETRICEX' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMTEXTMETRIC = @compileError("'ENUMTEXTMETRIC' requires that UNICODE be set to true or false in the root module");
-        pub const CPINFOEX = @compileError("'CPINFOEX' requires that UNICODE be set to true or false in the root module");
-        pub const NUMBERFMT = @compileError("'NUMBERFMT' requires that UNICODE be set to true or false in the root module");
-        pub const CURRENCYFMT = @compileError("'CURRENCYFMT' requires that UNICODE be set to true or false in the root module");
-        pub const LOCALE_ENUMPROC = @compileError("'LOCALE_ENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const LANGUAGEGROUP_ENUMPROC = @compileError("'LANGUAGEGROUP_ENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const LANGGROUPLOCALE_ENUMPROC = @compileError("'LANGGROUPLOCALE_ENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const UILANGUAGE_ENUMPROC = @compileError("'UILANGUAGE_ENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const CODEPAGE_ENUMPROC = @compileError("'CODEPAGE_ENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const DATEFMT_ENUMPROC = @compileError("'DATEFMT_ENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const DATEFMT_ENUMPROCEX = @compileError("'DATEFMT_ENUMPROCEX' requires that UNICODE be set to true or false in the root module");
-        pub const TIMEFMT_ENUMPROC = @compileError("'TIMEFMT_ENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const CALINFO_ENUMPROC = @compileError("'CALINFO_ENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const CALINFO_ENUMPROCEX = @compileError("'CALINFO_ENUMPROCEX' requires that UNICODE be set to true or false in the root module");
-        pub const IMLangStringBuf = @compileError("'IMLangStringBuf' requires that UNICODE be set to true or false in the root module");
-        pub const GetDateFormat = @compileError("'GetDateFormat' requires that UNICODE be set to true or false in the root module");
-        pub const GetTimeFormat = @compileError("'GetTimeFormat' requires that UNICODE be set to true or false in the root module");
-        pub const CompareString = @compileError("'CompareString' requires that UNICODE be set to true or false in the root module");
-        pub const FoldString = @compileError("'FoldString' requires that UNICODE be set to true or false in the root module");
-        pub const GetStringTypeEx = @compileError("'GetStringTypeEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetStringType = @compileError("'GetStringType' requires that UNICODE be set to true or false in the root module");
-        pub const GetCPInfoEx = @compileError("'GetCPInfoEx' requires that UNICODE be set to true or false in the root module");
-        pub const LCMapString = @compileError("'LCMapString' requires that UNICODE be set to true or false in the root module");
-        pub const GetLocaleInfo = @compileError("'GetLocaleInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetLocaleInfo = @compileError("'SetLocaleInfo' requires that UNICODE be set to true or false in the root module");
-        pub const GetCalendarInfo = @compileError("'GetCalendarInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetCalendarInfo = @compileError("'SetCalendarInfo' requires that UNICODE be set to true or false in the root module");
-        pub const GetNumberFormat = @compileError("'GetNumberFormat' requires that UNICODE be set to true or false in the root module");
-        pub const GetCurrencyFormat = @compileError("'GetCurrencyFormat' requires that UNICODE be set to true or false in the root module");
-        pub const EnumCalendarInfo = @compileError("'EnumCalendarInfo' requires that UNICODE be set to true or false in the root module");
-        pub const EnumCalendarInfoEx = @compileError("'EnumCalendarInfoEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumTimeFormats = @compileError("'EnumTimeFormats' requires that UNICODE be set to true or false in the root module");
-        pub const EnumDateFormats = @compileError("'EnumDateFormats' requires that UNICODE be set to true or false in the root module");
-        pub const EnumDateFormatsEx = @compileError("'EnumDateFormatsEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetGeoInfo = @compileError("'GetGeoInfo' requires that UNICODE be set to true or false in the root module");
-        pub const EnumSystemLocales = @compileError("'EnumSystemLocales' requires that UNICODE be set to true or false in the root module");
-        pub const EnumSystemLanguageGroups = @compileError("'EnumSystemLanguageGroups' requires that UNICODE be set to true or false in the root module");
-        pub const EnumLanguageGroupLocales = @compileError("'EnumLanguageGroupLocales' requires that UNICODE be set to true or false in the root module");
-        pub const EnumUILanguages = @compileError("'EnumUILanguages' requires that UNICODE be set to true or false in the root module");
-        pub const EnumSystemCodePages = @compileError("'EnumSystemCodePages' requires that UNICODE be set to true or false in the root module");
-        pub const lstrcmp = @compileError("'lstrcmp' requires that UNICODE be set to true or false in the root module");
-        pub const lstrcmpi = @compileError("'lstrcmpi' requires that UNICODE be set to true or false in the root module");
-        pub const lstrcpyn = @compileError("'lstrcpyn' requires that UNICODE be set to true or false in the root module");
-        pub const lstrcpy = @compileError("'lstrcpy' requires that UNICODE be set to true or false in the root module");
-        pub const lstrcat = @compileError("'lstrcat' requires that UNICODE be set to true or false in the root module");
-        pub const lstrlen = @compileError("'lstrlen' requires that UNICODE be set to true or false in the root module");
-    },
+pub const NEWTEXTMETRICEX = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().NEWTEXTMETRICEXA,
+    .wide => @This().NEWTEXTMETRICEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NEWTEXTMETRICEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUMTEXTMETRIC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().ENUMTEXTMETRICA,
+    .wide => @This().ENUMTEXTMETRICW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUMTEXTMETRIC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CPINFOEX = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().CPINFOEXA,
+    .wide => @This().CPINFOEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CPINFOEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NUMBERFMT = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().NUMBERFMTA,
+    .wide => @This().NUMBERFMTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NUMBERFMT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CURRENCYFMT = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().CURRENCYFMTA,
+    .wide => @This().CURRENCYFMTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CURRENCYFMT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LOCALE_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LOCALE_ENUMPROCA,
+    .wide => @This().LOCALE_ENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LOCALE_ENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LANGUAGEGROUP_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LANGUAGEGROUP_ENUMPROCA,
+    .wide => @This().LANGUAGEGROUP_ENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LANGUAGEGROUP_ENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LANGGROUPLOCALE_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LANGGROUPLOCALE_ENUMPROCA,
+    .wide => @This().LANGGROUPLOCALE_ENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LANGGROUPLOCALE_ENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UILANGUAGE_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().UILANGUAGE_ENUMPROCA,
+    .wide => @This().UILANGUAGE_ENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UILANGUAGE_ENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CODEPAGE_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().CODEPAGE_ENUMPROCA,
+    .wide => @This().CODEPAGE_ENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CODEPAGE_ENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DATEFMT_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().DATEFMT_ENUMPROCA,
+    .wide => @This().DATEFMT_ENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DATEFMT_ENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DATEFMT_ENUMPROCEX = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().DATEFMT_ENUMPROCEXA,
+    .wide => @This().DATEFMT_ENUMPROCEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DATEFMT_ENUMPROCEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TIMEFMT_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().TIMEFMT_ENUMPROCA,
+    .wide => @This().TIMEFMT_ENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TIMEFMT_ENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CALINFO_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().CALINFO_ENUMPROCA,
+    .wide => @This().CALINFO_ENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CALINFO_ENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CALINFO_ENUMPROCEX = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().CALINFO_ENUMPROCEXA,
+    .wide => @This().CALINFO_ENUMPROCEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CALINFO_ENUMPROCEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IMLangStringBuf = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().IMLangStringBufA,
+    .wide => @This().IMLangStringBufW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IMLangStringBuf' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDateFormat = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetDateFormatA,
+    .wide => @This().GetDateFormatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDateFormat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetTimeFormat = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetTimeFormatA,
+    .wide => @This().GetTimeFormatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetTimeFormat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CompareString = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().CompareStringA,
+    .wide => @This().CompareStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CompareString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FoldString = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().FoldStringA,
+    .wide => @This().FoldStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FoldString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetStringTypeEx = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetStringTypeExA,
+    .wide => @This().GetStringTypeExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetStringTypeEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetStringType = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetStringTypeA,
+    .wide => @This().GetStringTypeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetStringType' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCPInfoEx = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetCPInfoExA,
+    .wide => @This().GetCPInfoExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCPInfoEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LCMapString = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LCMapStringA,
+    .wide => @This().LCMapStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LCMapString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetLocaleInfo = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetLocaleInfoA,
+    .wide => @This().GetLocaleInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetLocaleInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetLocaleInfo = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().SetLocaleInfoA,
+    .wide => @This().SetLocaleInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetLocaleInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCalendarInfo = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetCalendarInfoA,
+    .wide => @This().GetCalendarInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCalendarInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetCalendarInfo = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().SetCalendarInfoA,
+    .wide => @This().SetCalendarInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetCalendarInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetNumberFormat = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetNumberFormatA,
+    .wide => @This().GetNumberFormatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetNumberFormat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCurrencyFormat = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetCurrencyFormatA,
+    .wide => @This().GetCurrencyFormatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCurrencyFormat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumCalendarInfo = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumCalendarInfoA,
+    .wide => @This().EnumCalendarInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumCalendarInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumCalendarInfoEx = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumCalendarInfoExA,
+    .wide => @This().EnumCalendarInfoExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumCalendarInfoEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumTimeFormats = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumTimeFormatsA,
+    .wide => @This().EnumTimeFormatsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumTimeFormats' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumDateFormats = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumDateFormatsA,
+    .wide => @This().EnumDateFormatsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumDateFormats' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumDateFormatsEx = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumDateFormatsExA,
+    .wide => @This().EnumDateFormatsExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumDateFormatsEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetGeoInfo = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetGeoInfoA,
+    .wide => @This().GetGeoInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetGeoInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumSystemLocales = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumSystemLocalesA,
+    .wide => @This().EnumSystemLocalesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumSystemLocales' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumSystemLanguageGroups = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumSystemLanguageGroupsA,
+    .wide => @This().EnumSystemLanguageGroupsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumSystemLanguageGroups' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumLanguageGroupLocales = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumLanguageGroupLocalesA,
+    .wide => @This().EnumLanguageGroupLocalesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumLanguageGroupLocales' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumUILanguages = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumUILanguagesA,
+    .wide => @This().EnumUILanguagesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumUILanguages' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumSystemCodePages = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumSystemCodePagesA,
+    .wide => @This().EnumSystemCodePagesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumSystemCodePages' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lstrcmp = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().lstrcmpA,
+    .wide => @This().lstrcmpW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lstrcmp' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lstrcmpi = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().lstrcmpiA,
+    .wide => @This().lstrcmpiW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lstrcmpi' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lstrcpyn = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().lstrcpynA,
+    .wide => @This().lstrcpynW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lstrcpyn' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lstrcpy = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().lstrcpyA,
+    .wide => @This().lstrcpyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lstrcpy' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lstrcat = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().lstrcatA,
+    .wide => @This().lstrcatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lstrcat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lstrlen = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().lstrlenA,
+    .wide => @This().lstrlenW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lstrlen' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (23)

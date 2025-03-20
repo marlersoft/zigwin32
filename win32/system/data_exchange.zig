@@ -960,67 +960,96 @@ pub extern "kernel32" fn GetAtomNameW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const MONHSZSTRUCT = thismodule.MONHSZSTRUCTA;
-        pub const DdeInitialize = thismodule.DdeInitializeA;
-        pub const DdeCreateStringHandle = thismodule.DdeCreateStringHandleA;
-        pub const DdeQueryString = thismodule.DdeQueryStringA;
-        pub const RegisterClipboardFormat = thismodule.RegisterClipboardFormatA;
-        pub const GetClipboardFormatName = thismodule.GetClipboardFormatNameA;
-        pub const GlobalAddAtom = thismodule.GlobalAddAtomA;
-        pub const GlobalAddAtomEx = thismodule.GlobalAddAtomExA;
-        pub const GlobalFindAtom = thismodule.GlobalFindAtomA;
-        pub const GlobalGetAtomName = thismodule.GlobalGetAtomNameA;
-        pub const AddAtom = thismodule.AddAtomA;
-        pub const FindAtom = thismodule.FindAtomA;
-        pub const GetAtomName = thismodule.GetAtomNameA;
-    },
-    .wide => struct {
-        pub const MONHSZSTRUCT = thismodule.MONHSZSTRUCTW;
-        pub const DdeInitialize = thismodule.DdeInitializeW;
-        pub const DdeCreateStringHandle = thismodule.DdeCreateStringHandleW;
-        pub const DdeQueryString = thismodule.DdeQueryStringW;
-        pub const RegisterClipboardFormat = thismodule.RegisterClipboardFormatW;
-        pub const GetClipboardFormatName = thismodule.GetClipboardFormatNameW;
-        pub const GlobalAddAtom = thismodule.GlobalAddAtomW;
-        pub const GlobalAddAtomEx = thismodule.GlobalAddAtomExW;
-        pub const GlobalFindAtom = thismodule.GlobalFindAtomW;
-        pub const GlobalGetAtomName = thismodule.GlobalGetAtomNameW;
-        pub const AddAtom = thismodule.AddAtomW;
-        pub const FindAtom = thismodule.FindAtomW;
-        pub const GetAtomName = thismodule.GetAtomNameW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const MONHSZSTRUCT = *opaque{};
-        pub const DdeInitialize = *opaque{};
-        pub const DdeCreateStringHandle = *opaque{};
-        pub const DdeQueryString = *opaque{};
-        pub const RegisterClipboardFormat = *opaque{};
-        pub const GetClipboardFormatName = *opaque{};
-        pub const GlobalAddAtom = *opaque{};
-        pub const GlobalAddAtomEx = *opaque{};
-        pub const GlobalFindAtom = *opaque{};
-        pub const GlobalGetAtomName = *opaque{};
-        pub const AddAtom = *opaque{};
-        pub const FindAtom = *opaque{};
-        pub const GetAtomName = *opaque{};
-    } else struct {
-        pub const MONHSZSTRUCT = @compileError("'MONHSZSTRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const DdeInitialize = @compileError("'DdeInitialize' requires that UNICODE be set to true or false in the root module");
-        pub const DdeCreateStringHandle = @compileError("'DdeCreateStringHandle' requires that UNICODE be set to true or false in the root module");
-        pub const DdeQueryString = @compileError("'DdeQueryString' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterClipboardFormat = @compileError("'RegisterClipboardFormat' requires that UNICODE be set to true or false in the root module");
-        pub const GetClipboardFormatName = @compileError("'GetClipboardFormatName' requires that UNICODE be set to true or false in the root module");
-        pub const GlobalAddAtom = @compileError("'GlobalAddAtom' requires that UNICODE be set to true or false in the root module");
-        pub const GlobalAddAtomEx = @compileError("'GlobalAddAtomEx' requires that UNICODE be set to true or false in the root module");
-        pub const GlobalFindAtom = @compileError("'GlobalFindAtom' requires that UNICODE be set to true or false in the root module");
-        pub const GlobalGetAtomName = @compileError("'GlobalGetAtomName' requires that UNICODE be set to true or false in the root module");
-        pub const AddAtom = @compileError("'AddAtom' requires that UNICODE be set to true or false in the root module");
-        pub const FindAtom = @compileError("'FindAtom' requires that UNICODE be set to true or false in the root module");
-        pub const GetAtomName = @compileError("'GetAtomName' requires that UNICODE be set to true or false in the root module");
-    },
+pub const MONHSZSTRUCT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MONHSZSTRUCTA,
+    .wide => @This().MONHSZSTRUCTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MONHSZSTRUCT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DdeInitialize = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DdeInitializeA,
+    .wide => @This().DdeInitializeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DdeInitialize' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DdeCreateStringHandle = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DdeCreateStringHandleA,
+    .wide => @This().DdeCreateStringHandleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DdeCreateStringHandle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DdeQueryString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DdeQueryStringA,
+    .wide => @This().DdeQueryStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DdeQueryString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterClipboardFormat = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterClipboardFormatA,
+    .wide => @This().RegisterClipboardFormatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterClipboardFormat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetClipboardFormatName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetClipboardFormatNameA,
+    .wide => @This().GetClipboardFormatNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetClipboardFormatName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GlobalAddAtom = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GlobalAddAtomA,
+    .wide => @This().GlobalAddAtomW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GlobalAddAtom' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GlobalAddAtomEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GlobalAddAtomExA,
+    .wide => @This().GlobalAddAtomExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GlobalAddAtomEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GlobalFindAtom = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GlobalFindAtomA,
+    .wide => @This().GlobalFindAtomW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GlobalFindAtom' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GlobalGetAtomName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GlobalGetAtomNameA,
+    .wide => @This().GlobalGetAtomNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GlobalGetAtomName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddAtom = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddAtomA,
+    .wide => @This().AddAtomW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddAtom' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindAtom = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindAtomA,
+    .wide => @This().FindAtomW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindAtom' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetAtomName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetAtomNameA,
+    .wide => @This().GetAtomNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetAtomName' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (12)

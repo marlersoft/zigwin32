@@ -2668,87 +2668,131 @@ pub extern "ntdll" fn RtlConvertSidToUnicodeString(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (18)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const AccessCheckAndAuditAlarm = thismodule.AccessCheckAndAuditAlarmA;
-        pub const AccessCheckByTypeAndAuditAlarm = thismodule.AccessCheckByTypeAndAuditAlarmA;
-        pub const AccessCheckByTypeResultListAndAuditAlarm = thismodule.AccessCheckByTypeResultListAndAuditAlarmA;
-        pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = thismodule.AccessCheckByTypeResultListAndAuditAlarmByHandleA;
-        pub const GetFileSecurity = thismodule.GetFileSecurityA;
-        pub const ObjectCloseAuditAlarm = thismodule.ObjectCloseAuditAlarmA;
-        pub const ObjectDeleteAuditAlarm = thismodule.ObjectDeleteAuditAlarmA;
-        pub const ObjectOpenAuditAlarm = thismodule.ObjectOpenAuditAlarmA;
-        pub const ObjectPrivilegeAuditAlarm = thismodule.ObjectPrivilegeAuditAlarmA;
-        pub const PrivilegedServiceAuditAlarm = thismodule.PrivilegedServiceAuditAlarmA;
-        pub const SetFileSecurity = thismodule.SetFileSecurityA;
-        pub const LookupAccountSid = thismodule.LookupAccountSidA;
-        pub const LookupAccountName = thismodule.LookupAccountNameA;
-        pub const LookupPrivilegeValue = thismodule.LookupPrivilegeValueA;
-        pub const LookupPrivilegeName = thismodule.LookupPrivilegeNameA;
-        pub const LookupPrivilegeDisplayName = thismodule.LookupPrivilegeDisplayNameA;
-        pub const LogonUser = thismodule.LogonUserA;
-        pub const LogonUserEx = thismodule.LogonUserExA;
-    },
-    .wide => struct {
-        pub const AccessCheckAndAuditAlarm = thismodule.AccessCheckAndAuditAlarmW;
-        pub const AccessCheckByTypeAndAuditAlarm = thismodule.AccessCheckByTypeAndAuditAlarmW;
-        pub const AccessCheckByTypeResultListAndAuditAlarm = thismodule.AccessCheckByTypeResultListAndAuditAlarmW;
-        pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = thismodule.AccessCheckByTypeResultListAndAuditAlarmByHandleW;
-        pub const GetFileSecurity = thismodule.GetFileSecurityW;
-        pub const ObjectCloseAuditAlarm = thismodule.ObjectCloseAuditAlarmW;
-        pub const ObjectDeleteAuditAlarm = thismodule.ObjectDeleteAuditAlarmW;
-        pub const ObjectOpenAuditAlarm = thismodule.ObjectOpenAuditAlarmW;
-        pub const ObjectPrivilegeAuditAlarm = thismodule.ObjectPrivilegeAuditAlarmW;
-        pub const PrivilegedServiceAuditAlarm = thismodule.PrivilegedServiceAuditAlarmW;
-        pub const SetFileSecurity = thismodule.SetFileSecurityW;
-        pub const LookupAccountSid = thismodule.LookupAccountSidW;
-        pub const LookupAccountName = thismodule.LookupAccountNameW;
-        pub const LookupPrivilegeValue = thismodule.LookupPrivilegeValueW;
-        pub const LookupPrivilegeName = thismodule.LookupPrivilegeNameW;
-        pub const LookupPrivilegeDisplayName = thismodule.LookupPrivilegeDisplayNameW;
-        pub const LogonUser = thismodule.LogonUserW;
-        pub const LogonUserEx = thismodule.LogonUserExW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const AccessCheckAndAuditAlarm = *opaque{};
-        pub const AccessCheckByTypeAndAuditAlarm = *opaque{};
-        pub const AccessCheckByTypeResultListAndAuditAlarm = *opaque{};
-        pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = *opaque{};
-        pub const GetFileSecurity = *opaque{};
-        pub const ObjectCloseAuditAlarm = *opaque{};
-        pub const ObjectDeleteAuditAlarm = *opaque{};
-        pub const ObjectOpenAuditAlarm = *opaque{};
-        pub const ObjectPrivilegeAuditAlarm = *opaque{};
-        pub const PrivilegedServiceAuditAlarm = *opaque{};
-        pub const SetFileSecurity = *opaque{};
-        pub const LookupAccountSid = *opaque{};
-        pub const LookupAccountName = *opaque{};
-        pub const LookupPrivilegeValue = *opaque{};
-        pub const LookupPrivilegeName = *opaque{};
-        pub const LookupPrivilegeDisplayName = *opaque{};
-        pub const LogonUser = *opaque{};
-        pub const LogonUserEx = *opaque{};
-    } else struct {
-        pub const AccessCheckAndAuditAlarm = @compileError("'AccessCheckAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
-        pub const AccessCheckByTypeAndAuditAlarm = @compileError("'AccessCheckByTypeAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
-        pub const AccessCheckByTypeResultListAndAuditAlarm = @compileError("'AccessCheckByTypeResultListAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
-        pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = @compileError("'AccessCheckByTypeResultListAndAuditAlarmByHandle' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileSecurity = @compileError("'GetFileSecurity' requires that UNICODE be set to true or false in the root module");
-        pub const ObjectCloseAuditAlarm = @compileError("'ObjectCloseAuditAlarm' requires that UNICODE be set to true or false in the root module");
-        pub const ObjectDeleteAuditAlarm = @compileError("'ObjectDeleteAuditAlarm' requires that UNICODE be set to true or false in the root module");
-        pub const ObjectOpenAuditAlarm = @compileError("'ObjectOpenAuditAlarm' requires that UNICODE be set to true or false in the root module");
-        pub const ObjectPrivilegeAuditAlarm = @compileError("'ObjectPrivilegeAuditAlarm' requires that UNICODE be set to true or false in the root module");
-        pub const PrivilegedServiceAuditAlarm = @compileError("'PrivilegedServiceAuditAlarm' requires that UNICODE be set to true or false in the root module");
-        pub const SetFileSecurity = @compileError("'SetFileSecurity' requires that UNICODE be set to true or false in the root module");
-        pub const LookupAccountSid = @compileError("'LookupAccountSid' requires that UNICODE be set to true or false in the root module");
-        pub const LookupAccountName = @compileError("'LookupAccountName' requires that UNICODE be set to true or false in the root module");
-        pub const LookupPrivilegeValue = @compileError("'LookupPrivilegeValue' requires that UNICODE be set to true or false in the root module");
-        pub const LookupPrivilegeName = @compileError("'LookupPrivilegeName' requires that UNICODE be set to true or false in the root module");
-        pub const LookupPrivilegeDisplayName = @compileError("'LookupPrivilegeDisplayName' requires that UNICODE be set to true or false in the root module");
-        pub const LogonUser = @compileError("'LogonUser' requires that UNICODE be set to true or false in the root module");
-        pub const LogonUserEx = @compileError("'LogonUserEx' requires that UNICODE be set to true or false in the root module");
-    },
+pub const AccessCheckAndAuditAlarm = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().AccessCheckAndAuditAlarmA,
+    .wide => @This().AccessCheckAndAuditAlarmW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AccessCheckAndAuditAlarm' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AccessCheckByTypeAndAuditAlarm = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().AccessCheckByTypeAndAuditAlarmA,
+    .wide => @This().AccessCheckByTypeAndAuditAlarmW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AccessCheckByTypeAndAuditAlarm' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AccessCheckByTypeResultListAndAuditAlarm = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().AccessCheckByTypeResultListAndAuditAlarmA,
+    .wide => @This().AccessCheckByTypeResultListAndAuditAlarmW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AccessCheckByTypeResultListAndAuditAlarm' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().AccessCheckByTypeResultListAndAuditAlarmByHandleA,
+    .wide => @This().AccessCheckByTypeResultListAndAuditAlarmByHandleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AccessCheckByTypeResultListAndAuditAlarmByHandle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFileSecurity = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetFileSecurityA,
+    .wide => @This().GetFileSecurityW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFileSecurity' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ObjectCloseAuditAlarm = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().ObjectCloseAuditAlarmA,
+    .wide => @This().ObjectCloseAuditAlarmW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ObjectCloseAuditAlarm' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ObjectDeleteAuditAlarm = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().ObjectDeleteAuditAlarmA,
+    .wide => @This().ObjectDeleteAuditAlarmW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ObjectDeleteAuditAlarm' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ObjectOpenAuditAlarm = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().ObjectOpenAuditAlarmA,
+    .wide => @This().ObjectOpenAuditAlarmW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ObjectOpenAuditAlarm' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ObjectPrivilegeAuditAlarm = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().ObjectPrivilegeAuditAlarmA,
+    .wide => @This().ObjectPrivilegeAuditAlarmW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ObjectPrivilegeAuditAlarm' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PrivilegedServiceAuditAlarm = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().PrivilegedServiceAuditAlarmA,
+    .wide => @This().PrivilegedServiceAuditAlarmW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PrivilegedServiceAuditAlarm' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetFileSecurity = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().SetFileSecurityA,
+    .wide => @This().SetFileSecurityW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetFileSecurity' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LookupAccountSid = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LookupAccountSidA,
+    .wide => @This().LookupAccountSidW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LookupAccountSid' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LookupAccountName = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LookupAccountNameA,
+    .wide => @This().LookupAccountNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LookupAccountName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LookupPrivilegeValue = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LookupPrivilegeValueA,
+    .wide => @This().LookupPrivilegeValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LookupPrivilegeValue' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LookupPrivilegeName = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LookupPrivilegeNameA,
+    .wide => @This().LookupPrivilegeNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LookupPrivilegeName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LookupPrivilegeDisplayName = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LookupPrivilegeDisplayNameA,
+    .wide => @This().LookupPrivilegeDisplayNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LookupPrivilegeDisplayName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LogonUser = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LogonUserA,
+    .wide => @This().LogonUserW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LogonUser' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LogonUserEx = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LogonUserExA,
+    .wide => @This().LogonUserExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LogonUserEx' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (13)

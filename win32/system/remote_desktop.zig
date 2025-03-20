@@ -7180,151 +7180,243 @@ pub extern "kernel32" fn WTSGetActiveConsoleSessionId(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (34)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const WTS_SERVER_INFO = thismodule.WTS_SERVER_INFOA;
-        pub const WTS_SESSION_INFO = thismodule.WTS_SESSION_INFOA;
-        pub const WTS_SESSION_INFO_1 = thismodule.WTS_SESSION_INFO_1A;
-        pub const WTS_PROCESS_INFO = thismodule.WTS_PROCESS_INFOA;
-        pub const WTSCONFIGINFO = thismodule.WTSCONFIGINFOA;
-        pub const WTSINFO = thismodule.WTSINFOA;
-        pub const WTSINFOEX_LEVEL1_ = thismodule.WTSINFOEX_LEVEL1_A;
-        pub const WTSINFOEX_LEVEL_ = thismodule.WTSINFOEX_LEVEL_A;
-        pub const WTSINFOEX = thismodule.WTSINFOEXA;
-        pub const WTSCLIENT = thismodule.WTSCLIENTA;
-        pub const _WTS_PRODUCT_INFO = thismodule._WTS_PRODUCT_INFOA;
-        pub const WTS_VALIDATION_INFORMATION = thismodule.WTS_VALIDATION_INFORMATIONA;
-        pub const WTSUSERCONFIG = thismodule.WTSUSERCONFIGA;
-        pub const WTS_PROCESS_INFO_EX = thismodule.WTS_PROCESS_INFO_EXA;
-        pub const WTSLISTENERCONFIG = thismodule.WTSLISTENERCONFIGA;
-        pub const WTSStartRemoteControlSession = thismodule.WTSStartRemoteControlSessionA;
-        pub const WTSConnectSession = thismodule.WTSConnectSessionA;
-        pub const WTSEnumerateServers = thismodule.WTSEnumerateServersA;
-        pub const WTSOpenServer = thismodule.WTSOpenServerA;
-        pub const WTSOpenServerEx = thismodule.WTSOpenServerExA;
-        pub const WTSEnumerateSessions = thismodule.WTSEnumerateSessionsA;
-        pub const WTSEnumerateSessionsEx = thismodule.WTSEnumerateSessionsExA;
-        pub const WTSEnumerateProcesses = thismodule.WTSEnumerateProcessesA;
-        pub const WTSQuerySessionInformation = thismodule.WTSQuerySessionInformationA;
-        pub const WTSQueryUserConfig = thismodule.WTSQueryUserConfigA;
-        pub const WTSSetUserConfig = thismodule.WTSSetUserConfigA;
-        pub const WTSSendMessage = thismodule.WTSSendMessageA;
-        pub const WTSFreeMemoryEx = thismodule.WTSFreeMemoryExA;
-        pub const WTSEnumerateProcessesEx = thismodule.WTSEnumerateProcessesExA;
-        pub const WTSEnumerateListeners = thismodule.WTSEnumerateListenersA;
-        pub const WTSQueryListenerConfig = thismodule.WTSQueryListenerConfigA;
-        pub const WTSCreateListener = thismodule.WTSCreateListenerA;
-        pub const WTSSetListenerSecurity = thismodule.WTSSetListenerSecurityA;
-        pub const WTSGetListenerSecurity = thismodule.WTSGetListenerSecurityA;
-    },
-    .wide => struct {
-        pub const WTS_SERVER_INFO = thismodule.WTS_SERVER_INFOW;
-        pub const WTS_SESSION_INFO = thismodule.WTS_SESSION_INFOW;
-        pub const WTS_SESSION_INFO_1 = thismodule.WTS_SESSION_INFO_1W;
-        pub const WTS_PROCESS_INFO = thismodule.WTS_PROCESS_INFOW;
-        pub const WTSCONFIGINFO = thismodule.WTSCONFIGINFOW;
-        pub const WTSINFO = thismodule.WTSINFOW;
-        pub const WTSINFOEX_LEVEL1_ = thismodule.WTSINFOEX_LEVEL1_W;
-        pub const WTSINFOEX_LEVEL_ = thismodule.WTSINFOEX_LEVEL_W;
-        pub const WTSINFOEX = thismodule.WTSINFOEXW;
-        pub const WTSCLIENT = thismodule.WTSCLIENTW;
-        pub const _WTS_PRODUCT_INFO = thismodule._WTS_PRODUCT_INFOW;
-        pub const WTS_VALIDATION_INFORMATION = thismodule.WTS_VALIDATION_INFORMATIONW;
-        pub const WTSUSERCONFIG = thismodule.WTSUSERCONFIGW;
-        pub const WTS_PROCESS_INFO_EX = thismodule.WTS_PROCESS_INFO_EXW;
-        pub const WTSLISTENERCONFIG = thismodule.WTSLISTENERCONFIGW;
-        pub const WTSStartRemoteControlSession = thismodule.WTSStartRemoteControlSessionW;
-        pub const WTSConnectSession = thismodule.WTSConnectSessionW;
-        pub const WTSEnumerateServers = thismodule.WTSEnumerateServersW;
-        pub const WTSOpenServer = thismodule.WTSOpenServerW;
-        pub const WTSOpenServerEx = thismodule.WTSOpenServerExW;
-        pub const WTSEnumerateSessions = thismodule.WTSEnumerateSessionsW;
-        pub const WTSEnumerateSessionsEx = thismodule.WTSEnumerateSessionsExW;
-        pub const WTSEnumerateProcesses = thismodule.WTSEnumerateProcessesW;
-        pub const WTSQuerySessionInformation = thismodule.WTSQuerySessionInformationW;
-        pub const WTSQueryUserConfig = thismodule.WTSQueryUserConfigW;
-        pub const WTSSetUserConfig = thismodule.WTSSetUserConfigW;
-        pub const WTSSendMessage = thismodule.WTSSendMessageW;
-        pub const WTSFreeMemoryEx = thismodule.WTSFreeMemoryExW;
-        pub const WTSEnumerateProcessesEx = thismodule.WTSEnumerateProcessesExW;
-        pub const WTSEnumerateListeners = thismodule.WTSEnumerateListenersW;
-        pub const WTSQueryListenerConfig = thismodule.WTSQueryListenerConfigW;
-        pub const WTSCreateListener = thismodule.WTSCreateListenerW;
-        pub const WTSSetListenerSecurity = thismodule.WTSSetListenerSecurityW;
-        pub const WTSGetListenerSecurity = thismodule.WTSGetListenerSecurityW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const WTS_SERVER_INFO = *opaque{};
-        pub const WTS_SESSION_INFO = *opaque{};
-        pub const WTS_SESSION_INFO_1 = *opaque{};
-        pub const WTS_PROCESS_INFO = *opaque{};
-        pub const WTSCONFIGINFO = *opaque{};
-        pub const WTSINFO = *opaque{};
-        pub const WTSINFOEX_LEVEL1_ = *opaque{};
-        pub const WTSINFOEX_LEVEL_ = *opaque{};
-        pub const WTSINFOEX = *opaque{};
-        pub const WTSCLIENT = *opaque{};
-        pub const _WTS_PRODUCT_INFO = *opaque{};
-        pub const WTS_VALIDATION_INFORMATION = *opaque{};
-        pub const WTSUSERCONFIG = *opaque{};
-        pub const WTS_PROCESS_INFO_EX = *opaque{};
-        pub const WTSLISTENERCONFIG = *opaque{};
-        pub const WTSStartRemoteControlSession = *opaque{};
-        pub const WTSConnectSession = *opaque{};
-        pub const WTSEnumerateServers = *opaque{};
-        pub const WTSOpenServer = *opaque{};
-        pub const WTSOpenServerEx = *opaque{};
-        pub const WTSEnumerateSessions = *opaque{};
-        pub const WTSEnumerateSessionsEx = *opaque{};
-        pub const WTSEnumerateProcesses = *opaque{};
-        pub const WTSQuerySessionInformation = *opaque{};
-        pub const WTSQueryUserConfig = *opaque{};
-        pub const WTSSetUserConfig = *opaque{};
-        pub const WTSSendMessage = *opaque{};
-        pub const WTSFreeMemoryEx = *opaque{};
-        pub const WTSEnumerateProcessesEx = *opaque{};
-        pub const WTSEnumerateListeners = *opaque{};
-        pub const WTSQueryListenerConfig = *opaque{};
-        pub const WTSCreateListener = *opaque{};
-        pub const WTSSetListenerSecurity = *opaque{};
-        pub const WTSGetListenerSecurity = *opaque{};
-    } else struct {
-        pub const WTS_SERVER_INFO = @compileError("'WTS_SERVER_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const WTS_SESSION_INFO = @compileError("'WTS_SESSION_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const WTS_SESSION_INFO_1 = @compileError("'WTS_SESSION_INFO_1' requires that UNICODE be set to true or false in the root module");
-        pub const WTS_PROCESS_INFO = @compileError("'WTS_PROCESS_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const WTSCONFIGINFO = @compileError("'WTSCONFIGINFO' requires that UNICODE be set to true or false in the root module");
-        pub const WTSINFO = @compileError("'WTSINFO' requires that UNICODE be set to true or false in the root module");
-        pub const WTSINFOEX_LEVEL1_ = @compileError("'WTSINFOEX_LEVEL1_' requires that UNICODE be set to true or false in the root module");
-        pub const WTSINFOEX_LEVEL_ = @compileError("'WTSINFOEX_LEVEL_' requires that UNICODE be set to true or false in the root module");
-        pub const WTSINFOEX = @compileError("'WTSINFOEX' requires that UNICODE be set to true or false in the root module");
-        pub const WTSCLIENT = @compileError("'WTSCLIENT' requires that UNICODE be set to true or false in the root module");
-        pub const _WTS_PRODUCT_INFO = @compileError("'_WTS_PRODUCT_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const WTS_VALIDATION_INFORMATION = @compileError("'WTS_VALIDATION_INFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const WTSUSERCONFIG = @compileError("'WTSUSERCONFIG' requires that UNICODE be set to true or false in the root module");
-        pub const WTS_PROCESS_INFO_EX = @compileError("'WTS_PROCESS_INFO_EX' requires that UNICODE be set to true or false in the root module");
-        pub const WTSLISTENERCONFIG = @compileError("'WTSLISTENERCONFIG' requires that UNICODE be set to true or false in the root module");
-        pub const WTSStartRemoteControlSession = @compileError("'WTSStartRemoteControlSession' requires that UNICODE be set to true or false in the root module");
-        pub const WTSConnectSession = @compileError("'WTSConnectSession' requires that UNICODE be set to true or false in the root module");
-        pub const WTSEnumerateServers = @compileError("'WTSEnumerateServers' requires that UNICODE be set to true or false in the root module");
-        pub const WTSOpenServer = @compileError("'WTSOpenServer' requires that UNICODE be set to true or false in the root module");
-        pub const WTSOpenServerEx = @compileError("'WTSOpenServerEx' requires that UNICODE be set to true or false in the root module");
-        pub const WTSEnumerateSessions = @compileError("'WTSEnumerateSessions' requires that UNICODE be set to true or false in the root module");
-        pub const WTSEnumerateSessionsEx = @compileError("'WTSEnumerateSessionsEx' requires that UNICODE be set to true or false in the root module");
-        pub const WTSEnumerateProcesses = @compileError("'WTSEnumerateProcesses' requires that UNICODE be set to true or false in the root module");
-        pub const WTSQuerySessionInformation = @compileError("'WTSQuerySessionInformation' requires that UNICODE be set to true or false in the root module");
-        pub const WTSQueryUserConfig = @compileError("'WTSQueryUserConfig' requires that UNICODE be set to true or false in the root module");
-        pub const WTSSetUserConfig = @compileError("'WTSSetUserConfig' requires that UNICODE be set to true or false in the root module");
-        pub const WTSSendMessage = @compileError("'WTSSendMessage' requires that UNICODE be set to true or false in the root module");
-        pub const WTSFreeMemoryEx = @compileError("'WTSFreeMemoryEx' requires that UNICODE be set to true or false in the root module");
-        pub const WTSEnumerateProcessesEx = @compileError("'WTSEnumerateProcessesEx' requires that UNICODE be set to true or false in the root module");
-        pub const WTSEnumerateListeners = @compileError("'WTSEnumerateListeners' requires that UNICODE be set to true or false in the root module");
-        pub const WTSQueryListenerConfig = @compileError("'WTSQueryListenerConfig' requires that UNICODE be set to true or false in the root module");
-        pub const WTSCreateListener = @compileError("'WTSCreateListener' requires that UNICODE be set to true or false in the root module");
-        pub const WTSSetListenerSecurity = @compileError("'WTSSetListenerSecurity' requires that UNICODE be set to true or false in the root module");
-        pub const WTSGetListenerSecurity = @compileError("'WTSGetListenerSecurity' requires that UNICODE be set to true or false in the root module");
-    },
+pub const WTS_SERVER_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTS_SERVER_INFOA,
+    .wide => @This().WTS_SERVER_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTS_SERVER_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTS_SESSION_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTS_SESSION_INFOA,
+    .wide => @This().WTS_SESSION_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTS_SESSION_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTS_SESSION_INFO_1 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTS_SESSION_INFO_1A,
+    .wide => @This().WTS_SESSION_INFO_1W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTS_SESSION_INFO_1' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTS_PROCESS_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTS_PROCESS_INFOA,
+    .wide => @This().WTS_PROCESS_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTS_PROCESS_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSCONFIGINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSCONFIGINFOA,
+    .wide => @This().WTSCONFIGINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSCONFIGINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSINFOA,
+    .wide => @This().WTSINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSINFOEX_LEVEL1_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSINFOEX_LEVEL1_A,
+    .wide => @This().WTSINFOEX_LEVEL1_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSINFOEX_LEVEL1_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSINFOEX_LEVEL_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSINFOEX_LEVEL_A,
+    .wide => @This().WTSINFOEX_LEVEL_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSINFOEX_LEVEL_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSINFOEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSINFOEXA,
+    .wide => @This().WTSINFOEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSINFOEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSCLIENT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSCLIENTA,
+    .wide => @This().WTSCLIENTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSCLIENT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const _WTS_PRODUCT_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This()._WTS_PRODUCT_INFOA,
+    .wide => @This()._WTS_PRODUCT_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'_WTS_PRODUCT_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTS_VALIDATION_INFORMATION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTS_VALIDATION_INFORMATIONA,
+    .wide => @This().WTS_VALIDATION_INFORMATIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTS_VALIDATION_INFORMATION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSUSERCONFIG = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSUSERCONFIGA,
+    .wide => @This().WTSUSERCONFIGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSUSERCONFIG' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTS_PROCESS_INFO_EX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTS_PROCESS_INFO_EXA,
+    .wide => @This().WTS_PROCESS_INFO_EXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTS_PROCESS_INFO_EX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSLISTENERCONFIG = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSLISTENERCONFIGA,
+    .wide => @This().WTSLISTENERCONFIGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSLISTENERCONFIG' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSStartRemoteControlSession = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSStartRemoteControlSessionA,
+    .wide => @This().WTSStartRemoteControlSessionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSStartRemoteControlSession' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSConnectSession = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSConnectSessionA,
+    .wide => @This().WTSConnectSessionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSConnectSession' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSEnumerateServers = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSEnumerateServersA,
+    .wide => @This().WTSEnumerateServersW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSEnumerateServers' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSOpenServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSOpenServerA,
+    .wide => @This().WTSOpenServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSOpenServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSOpenServerEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSOpenServerExA,
+    .wide => @This().WTSOpenServerExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSOpenServerEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSEnumerateSessions = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSEnumerateSessionsA,
+    .wide => @This().WTSEnumerateSessionsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSEnumerateSessions' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSEnumerateSessionsEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSEnumerateSessionsExA,
+    .wide => @This().WTSEnumerateSessionsExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSEnumerateSessionsEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSEnumerateProcesses = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSEnumerateProcessesA,
+    .wide => @This().WTSEnumerateProcessesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSEnumerateProcesses' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSQuerySessionInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSQuerySessionInformationA,
+    .wide => @This().WTSQuerySessionInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSQuerySessionInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSQueryUserConfig = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSQueryUserConfigA,
+    .wide => @This().WTSQueryUserConfigW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSQueryUserConfig' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSSetUserConfig = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSSetUserConfigA,
+    .wide => @This().WTSSetUserConfigW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSSetUserConfig' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSSendMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSSendMessageA,
+    .wide => @This().WTSSendMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSSendMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSFreeMemoryEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSFreeMemoryExA,
+    .wide => @This().WTSFreeMemoryExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSFreeMemoryEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSEnumerateProcessesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSEnumerateProcessesExA,
+    .wide => @This().WTSEnumerateProcessesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSEnumerateProcessesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSEnumerateListeners = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSEnumerateListenersA,
+    .wide => @This().WTSEnumerateListenersW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSEnumerateListeners' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSQueryListenerConfig = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSQueryListenerConfigA,
+    .wide => @This().WTSQueryListenerConfigW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSQueryListenerConfig' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSCreateListener = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSCreateListenerA,
+    .wide => @This().WTSCreateListenerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSCreateListener' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSSetListenerSecurity = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSSetListenerSecurityA,
+    .wide => @This().WTSSetListenerSecurityW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSSetListenerSecurity' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WTSGetListenerSecurity = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WTSGetListenerSecurityA,
+    .wide => @This().WTSGetListenerSecurityW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WTSGetListenerSecurity' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (26)

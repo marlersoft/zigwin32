@@ -10533,39 +10533,47 @@ pub extern "user32" fn UnhookWinEvent(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (6)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const SERIALKEYS = thismodule.SERIALKEYSA;
-        pub const HIGHCONTRAST = thismodule.HIGHCONTRASTA;
-        pub const SOUNDSENTRY = thismodule.SOUNDSENTRYA;
-        pub const GetRoleText = thismodule.GetRoleTextA;
-        pub const GetStateText = thismodule.GetStateTextA;
-        pub const CreateStdAccessibleProxy = thismodule.CreateStdAccessibleProxyA;
-    },
-    .wide => struct {
-        pub const SERIALKEYS = thismodule.SERIALKEYSW;
-        pub const HIGHCONTRAST = thismodule.HIGHCONTRASTW;
-        pub const SOUNDSENTRY = thismodule.SOUNDSENTRYW;
-        pub const GetRoleText = thismodule.GetRoleTextW;
-        pub const GetStateText = thismodule.GetStateTextW;
-        pub const CreateStdAccessibleProxy = thismodule.CreateStdAccessibleProxyW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const SERIALKEYS = *opaque{};
-        pub const HIGHCONTRAST = *opaque{};
-        pub const SOUNDSENTRY = *opaque{};
-        pub const GetRoleText = *opaque{};
-        pub const GetStateText = *opaque{};
-        pub const CreateStdAccessibleProxy = *opaque{};
-    } else struct {
-        pub const SERIALKEYS = @compileError("'SERIALKEYS' requires that UNICODE be set to true or false in the root module");
-        pub const HIGHCONTRAST = @compileError("'HIGHCONTRAST' requires that UNICODE be set to true or false in the root module");
-        pub const SOUNDSENTRY = @compileError("'SOUNDSENTRY' requires that UNICODE be set to true or false in the root module");
-        pub const GetRoleText = @compileError("'GetRoleText' requires that UNICODE be set to true or false in the root module");
-        pub const GetStateText = @compileError("'GetStateText' requires that UNICODE be set to true or false in the root module");
-        pub const CreateStdAccessibleProxy = @compileError("'CreateStdAccessibleProxy' requires that UNICODE be set to true or false in the root module");
-    },
+pub const SERIALKEYS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SERIALKEYSA,
+    .wide => @This().SERIALKEYSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SERIALKEYS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const HIGHCONTRAST = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HIGHCONTRASTA,
+    .wide => @This().HIGHCONTRASTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HIGHCONTRAST' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SOUNDSENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SOUNDSENTRYA,
+    .wide => @This().SOUNDSENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SOUNDSENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetRoleText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetRoleTextA,
+    .wide => @This().GetRoleTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetRoleText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetStateText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetStateTextA,
+    .wide => @This().GetStateTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetStateText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateStdAccessibleProxy = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateStdAccessibleProxyA,
+    .wide => @This().CreateStdAccessibleProxyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateStdAccessibleProxy' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (19)

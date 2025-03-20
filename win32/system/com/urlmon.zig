@@ -3337,39 +3337,47 @@ pub extern "urlmon" fn WriteHitLogging(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (6)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const URLOpenStream = thismodule.URLOpenStreamA;
-        pub const URLOpenPullStream = thismodule.URLOpenPullStreamA;
-        pub const URLDownloadToFile = thismodule.URLDownloadToFileA;
-        pub const URLDownloadToCacheFile = thismodule.URLDownloadToCacheFileA;
-        pub const URLOpenBlockingStream = thismodule.URLOpenBlockingStreamA;
-        pub const IsLoggingEnabled = thismodule.IsLoggingEnabledA;
-    },
-    .wide => struct {
-        pub const URLOpenStream = thismodule.URLOpenStreamW;
-        pub const URLOpenPullStream = thismodule.URLOpenPullStreamW;
-        pub const URLDownloadToFile = thismodule.URLDownloadToFileW;
-        pub const URLDownloadToCacheFile = thismodule.URLDownloadToCacheFileW;
-        pub const URLOpenBlockingStream = thismodule.URLOpenBlockingStreamW;
-        pub const IsLoggingEnabled = thismodule.IsLoggingEnabledW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const URLOpenStream = *opaque{};
-        pub const URLOpenPullStream = *opaque{};
-        pub const URLDownloadToFile = *opaque{};
-        pub const URLDownloadToCacheFile = *opaque{};
-        pub const URLOpenBlockingStream = *opaque{};
-        pub const IsLoggingEnabled = *opaque{};
-    } else struct {
-        pub const URLOpenStream = @compileError("'URLOpenStream' requires that UNICODE be set to true or false in the root module");
-        pub const URLOpenPullStream = @compileError("'URLOpenPullStream' requires that UNICODE be set to true or false in the root module");
-        pub const URLDownloadToFile = @compileError("'URLDownloadToFile' requires that UNICODE be set to true or false in the root module");
-        pub const URLDownloadToCacheFile = @compileError("'URLDownloadToCacheFile' requires that UNICODE be set to true or false in the root module");
-        pub const URLOpenBlockingStream = @compileError("'URLOpenBlockingStream' requires that UNICODE be set to true or false in the root module");
-        pub const IsLoggingEnabled = @compileError("'IsLoggingEnabled' requires that UNICODE be set to true or false in the root module");
-    },
+pub const URLOpenStream = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().URLOpenStreamA,
+    .wide => @This().URLOpenStreamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'URLOpenStream' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const URLOpenPullStream = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().URLOpenPullStreamA,
+    .wide => @This().URLOpenPullStreamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'URLOpenPullStream' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const URLDownloadToFile = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().URLDownloadToFileA,
+    .wide => @This().URLDownloadToFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'URLDownloadToFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const URLDownloadToCacheFile = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().URLDownloadToCacheFileA,
+    .wide => @This().URLDownloadToCacheFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'URLDownloadToCacheFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const URLOpenBlockingStream = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().URLOpenBlockingStreamA,
+    .wide => @This().URLOpenBlockingStreamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'URLOpenBlockingStream' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const IsLoggingEnabled = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().IsLoggingEnabledA,
+    .wide => @This().IsLoggingEnabledW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'IsLoggingEnabled' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (30)
