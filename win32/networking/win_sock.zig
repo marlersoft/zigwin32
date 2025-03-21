@@ -6286,8 +6286,8 @@ pub extern "ws2_32" fn WSCEnumProtocols(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCEnumProtocols32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCEnumProtocols32(
@@ -6298,7 +6298,9 @@ pub extern "ws2_32" fn WSCEnumProtocols32(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCEnumProtocols32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCEnumProtocols32' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ws2_32" fn WSCDeinstallProvider(
@@ -6306,8 +6308,8 @@ pub extern "ws2_32" fn WSCDeinstallProvider(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCDeinstallProvider32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCDeinstallProvider32(
@@ -6315,7 +6317,9 @@ pub extern "ws2_32" fn WSCDeinstallProvider32(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCDeinstallProvider32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCDeinstallProvider32' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ws2_32" fn WSCInstallProvider(
@@ -6326,8 +6330,8 @@ pub extern "ws2_32" fn WSCInstallProvider(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCInstallProvider64_32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ws2_32" fn WSCInstallProvider64_32(
@@ -6338,7 +6342,9 @@ pub extern "ws2_32" fn WSCInstallProvider64_32(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCInstallProvider64_32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCInstallProvider64_32' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ws2_32" fn WSCGetProviderPath(
@@ -6348,8 +6354,8 @@ pub extern "ws2_32" fn WSCGetProviderPath(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCGetProviderPath32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCGetProviderPath32(
@@ -6359,7 +6365,9 @@ pub extern "ws2_32" fn WSCGetProviderPath32(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCGetProviderPath32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCGetProviderPath32' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ws2_32" fn WSCUpdateProvider(
@@ -6370,8 +6378,8 @@ pub extern "ws2_32" fn WSCUpdateProvider(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCUpdateProvider32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCUpdateProvider32(
@@ -6382,7 +6390,9 @@ pub extern "ws2_32" fn WSCUpdateProvider32(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCUpdateProvider32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCUpdateProvider32' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCSetProviderInfo(
@@ -6406,8 +6416,8 @@ pub extern "ws2_32" fn WSCGetProviderInfo(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCSetProviderInfo32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCSetProviderInfo32(
@@ -6420,10 +6430,12 @@ pub extern "ws2_32" fn WSCSetProviderInfo32(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCSetProviderInfo32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCSetProviderInfo32' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCGetProviderInfo32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCGetProviderInfo32(
@@ -6436,7 +6448,9 @@ pub extern "ws2_32" fn WSCGetProviderInfo32(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCGetProviderInfo32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCGetProviderInfo32' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCSetApplicationCategory(
@@ -6468,8 +6482,8 @@ pub extern "ws2_32" fn WPUCompleteOverlappedRequest(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCEnumNameSpaceProviders32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCEnumNameSpaceProviders32(
@@ -6478,10 +6492,12 @@ pub extern "ws2_32" fn WSCEnumNameSpaceProviders32(
     lpnspBuffer: ?*WSANAMESPACE_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCEnumNameSpaceProviders32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCEnumNameSpaceProviders32' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCEnumNameSpaceProvidersEx32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCEnumNameSpaceProvidersEx32(
@@ -6490,7 +6506,9 @@ pub extern "ws2_32" fn WSCEnumNameSpaceProvidersEx32(
     lpnspBuffer: ?*WSANAMESPACE_INFOEXW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCEnumNameSpaceProvidersEx32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCEnumNameSpaceProvidersEx32' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ws2_32" fn WSCInstallNameSpace(
@@ -6501,8 +6519,8 @@ pub extern "ws2_32" fn WSCInstallNameSpace(
     lpProviderId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCInstallNameSpace32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCInstallNameSpace32(
@@ -6513,7 +6531,9 @@ pub extern "ws2_32" fn WSCInstallNameSpace32(
     lpProviderId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCInstallNameSpace32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCInstallNameSpace32' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ws2_32" fn WSCUnInstallNameSpace(
@@ -6530,8 +6550,8 @@ pub extern "ws2_32" fn WSCInstallNameSpaceEx(
     lpProviderSpecific: ?*BLOB,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCInstallNameSpaceEx32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCInstallNameSpaceEx32(
@@ -6543,17 +6563,21 @@ pub extern "ws2_32" fn WSCInstallNameSpaceEx32(
     lpProviderSpecific: ?*BLOB,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCInstallNameSpaceEx32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCInstallNameSpaceEx32' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCUnInstallNameSpace32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCUnInstallNameSpace32(
     lpProviderId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCUnInstallNameSpace32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCUnInstallNameSpace32' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ws2_32" fn WSCEnableNSProvider(
@@ -6561,8 +6585,8 @@ pub extern "ws2_32" fn WSCEnableNSProvider(
     fEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCEnableNSProvider32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCEnableNSProvider32(
@@ -6570,10 +6594,12 @@ pub extern "ws2_32" fn WSCEnableNSProvider32(
     fEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCEnableNSProvider32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCEnableNSProvider32' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCInstallProviderAndChains64_32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCInstallProviderAndChains64_32(
@@ -6588,7 +6614,9 @@ pub extern "ws2_32" fn WSCInstallProviderAndChains64_32(
     lpErrno: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCInstallProviderAndChains64_32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCInstallProviderAndChains64_32' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSAAdvertiseProvider(
@@ -6951,8 +6979,8 @@ pub extern "ws2_32" fn WSCWriteProviderOrder(
     dwNumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCWriteProviderOrder32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCWriteProviderOrder32(
@@ -6960,7 +6988,9 @@ pub extern "ws2_32" fn WSCWriteProviderOrder32(
     dwNumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCWriteProviderOrder32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCWriteProviderOrder32' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ws2_32" fn WSCWriteNameSpaceOrder(
@@ -6968,8 +6998,8 @@ pub extern "ws2_32" fn WSCWriteNameSpaceOrder(
     dwNumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const WSCWriteNameSpaceOrder32 = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCWriteNameSpaceOrder32(
@@ -6977,7 +7007,9 @@ pub extern "ws2_32" fn WSCWriteNameSpaceOrder32(
     dwNumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).WSCWriteNameSpaceOrder32,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'WSCWriteNameSpaceOrder32' is not supported on architecture " ++ @tagName(a)),
+};
 
 
 //--------------------------------------------------------------------------------

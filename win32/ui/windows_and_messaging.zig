@@ -7688,8 +7688,8 @@ pub extern "user32" fn SetWindowLongW(
     dwNewLong: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const GetWindowLongPtrA = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowLongPtrA(
@@ -7697,10 +7697,12 @@ pub extern "user32" fn GetWindowLongPtrA(
     nIndex: WINDOW_LONG_PTR_INDEX,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-}, else => struct { } };
+}).GetWindowLongPtrA,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'GetWindowLongPtrA' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const GetWindowLongPtrW = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowLongPtrW(
@@ -7708,10 +7710,12 @@ pub extern "user32" fn GetWindowLongPtrW(
     nIndex: WINDOW_LONG_PTR_INDEX,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-}, else => struct { } };
+}).GetWindowLongPtrW,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'GetWindowLongPtrW' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const SetWindowLongPtrA = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetWindowLongPtrA(
@@ -7720,10 +7724,12 @@ pub extern "user32" fn SetWindowLongPtrA(
     dwNewLong: isize,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-}, else => struct { } };
+}).SetWindowLongPtrA,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SetWindowLongPtrA' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const SetWindowLongPtrW = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetWindowLongPtrW(
@@ -7732,7 +7738,9 @@ pub extern "user32" fn SetWindowLongPtrW(
     dwNewLong: isize,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-}, else => struct { } };
+}).SetWindowLongPtrW,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SetWindowLongPtrW' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClassWord(
@@ -7773,8 +7781,8 @@ pub extern "user32" fn SetClassLongW(
     dwNewLong: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const GetClassLongPtrA = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClassLongPtrA(
@@ -7782,10 +7790,12 @@ pub extern "user32" fn GetClassLongPtrA(
     nIndex: GET_CLASS_LONG_INDEX,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
-}, else => struct { } };
+}).GetClassLongPtrA,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'GetClassLongPtrA' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const GetClassLongPtrW = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClassLongPtrW(
@@ -7793,10 +7803,12 @@ pub extern "user32" fn GetClassLongPtrW(
     nIndex: GET_CLASS_LONG_INDEX,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
-}, else => struct { } };
+}).GetClassLongPtrW,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'GetClassLongPtrW' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const SetClassLongPtrA = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetClassLongPtrA(
@@ -7805,10 +7817,12 @@ pub extern "user32" fn SetClassLongPtrA(
     dwNewLong: isize,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
-}, else => struct { } };
+}).SetClassLongPtrA,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SetClassLongPtrA' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const SetClassLongPtrW = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetClassLongPtrW(
@@ -7817,7 +7831,9 @@ pub extern "user32" fn SetClassLongPtrW(
     dwNewLong: isize,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
-}, else => struct { } };
+}).SetClassLongPtrW,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SetClassLongPtrW' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetProcessDefaultLayout(

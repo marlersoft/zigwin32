@@ -207,8 +207,17 @@ pub extern "chakra" fn JsRelease(
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const JsCreateContext = switch (@import("../zig.zig").arch) {
+.X86 => (struct {
+
+pub extern "chakra" fn JsCreateContext(
+    runtime: ?*anyopaque,
+    debugApplication: ?*IDebugApplication32,
+    newContext: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+
+}).JsCreateContext,
+.X64, .Arm64 => (struct {
 
 pub extern "chakra" fn JsCreateContext(
     runtime: ?*anyopaque,
@@ -216,7 +225,8 @@ pub extern "chakra" fn JsCreateContext(
     newContext: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
-}, else => struct { } };
+}).JsCreateContext,
+};
 
 pub extern "chakra" fn JsGetCurrentContext(
     currentContext: ?*?*anyopaque,
@@ -231,14 +241,22 @@ pub extern "chakra" fn JsGetRuntime(
     runtime: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const JsStartDebugging = switch (@import("../zig.zig").arch) {
+.X86 => (struct {
+
+pub extern "chakra" fn JsStartDebugging(
+    debugApplication: ?*IDebugApplication32,
+) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+
+}).JsStartDebugging,
+.X64, .Arm64 => (struct {
 
 pub extern "chakra" fn JsStartDebugging(
     debugApplication: ?*IDebugApplication64,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
-}, else => struct { } };
+}).JsStartDebugging,
+};
 
 pub extern "chakra" fn JsIdle(
     nextIdleTick: ?*u32,
@@ -607,26 +625,6 @@ pub extern "chakra" fn JsEnumerateHeap(
 pub extern "chakra" fn JsIsEnumeratingHeap(
     isEnumeratingHeap: ?*bool,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "chakra" fn JsCreateContext(
-    runtime: ?*anyopaque,
-    debugApplication: ?*IDebugApplication32,
-    newContext: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "chakra" fn JsStartDebugging(
-    debugApplication: ?*IDebugApplication32,
-) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
-
-}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------

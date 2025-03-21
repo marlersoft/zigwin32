@@ -2433,104 +2433,124 @@ pub extern "kernel32" fn ReplacePartitionUnit(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86, .X64 => struct {
+pub const GetThreadEnabledXStateFeatures = switch (@import("../zig.zig").arch) {
+.X86, .X64 => (struct {
 
 pub extern "kernel32" fn GetThreadEnabledXStateFeatures(
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
-}, else => struct { } };
+}).GetThreadEnabledXStateFeatures,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'GetThreadEnabledXStateFeatures' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86, .X64 => struct {
+pub const EnableProcessOptionalXStateFeatures = switch (@import("../zig.zig").arch) {
+.X86, .X64 => (struct {
 
 pub extern "kernel32" fn EnableProcessOptionalXStateFeatures(
     Features: u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).EnableProcessOptionalXStateFeatures,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'EnableProcessOptionalXStateFeatures' is not supported on architecture " ++ @tagName(a)),
+};
 
 pub extern "api-ms-win-core-backgroundtask-l1-1-0" fn RaiseCustomSystemEventTrigger(
     CustomSystemEventTriggerConfig: ?*CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const uaw_lstrcmpW = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "kernel32" fn uaw_lstrcmpW(
     String1: ?*u16,
     String2: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).uaw_lstrcmpW,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'uaw_lstrcmpW' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const uaw_lstrcmpiW = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "kernel32" fn uaw_lstrcmpiW(
     String1: ?*u16,
     String2: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).uaw_lstrcmpiW,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'uaw_lstrcmpiW' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const uaw_lstrlenW = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "kernel32" fn uaw_lstrlenW(
     String: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).uaw_lstrlenW,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'uaw_lstrlenW' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const uaw_wcschr = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "kernel32" fn uaw_wcschr(
     String: ?*u16,
     Character: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*u16;
 
-}, else => struct { } };
+}).uaw_wcschr,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'uaw_wcschr' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const uaw_wcscpy = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "kernel32" fn uaw_wcscpy(
     Destination: ?*u16,
     Source: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*u16;
 
-}, else => struct { } };
+}).uaw_wcscpy,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'uaw_wcscpy' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const uaw_wcsicmp = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "kernel32" fn uaw_wcsicmp(
     String1: ?*u16,
     String2: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-}, else => struct { } };
+}).uaw_wcsicmp,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'uaw_wcsicmp' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const uaw_wcslen = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "kernel32" fn uaw_wcslen(
     String: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
-}, else => struct { } };
+}).uaw_wcslen,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'uaw_wcslen' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const uaw_wcsrchr = switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "kernel32" fn uaw_wcsrchr(
     String: ?*u16,
     Character: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*u16;
 
-}, else => struct { } };
+}).uaw_wcsrchr,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'uaw_wcsrchr' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn NtClose(

@@ -41042,8 +41042,17 @@ pub const IMAGEHLP_DUPLICATE_SYMBOL = switch(@import("../../zig.zig").arch) {
 //--------------------------------------------------------------------------------
 // Section: Functions (328)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.Arm64 => struct {
+pub const RtlAddFunctionTable = switch (@import("../../zig.zig").arch) {
+.X64 => (struct {
+
+pub extern "kernel32" fn RtlAddFunctionTable(
+    FunctionTable: [*]IMAGE_RUNTIME_FUNCTION_ENTRY,
+    EntryCount: u32,
+    BaseAddress: u64,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+
+}).RtlAddFunctionTable,
+.Arm64 => (struct {
 
 pub extern "kernel32" fn RtlAddFunctionTable(
     FunctionTable: [*]IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
@@ -41051,19 +41060,43 @@ pub extern "kernel32" fn RtlAddFunctionTable(
     BaseAddress: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-}, else => struct { } };
+}).RtlAddFunctionTable,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlAddFunctionTable' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.Arm64 => struct {
+pub const RtlDeleteFunctionTable = switch (@import("../../zig.zig").arch) {
+.X64 => (struct {
+
+pub extern "kernel32" fn RtlDeleteFunctionTable(
+    FunctionTable: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+
+}).RtlDeleteFunctionTable,
+.Arm64 => (struct {
 
 pub extern "kernel32" fn RtlDeleteFunctionTable(
     FunctionTable: ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-}, else => struct { } };
+}).RtlDeleteFunctionTable,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlDeleteFunctionTable' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.Arm64 => struct {
+pub const RtlAddGrowableFunctionTable = switch (@import("../../zig.zig").arch) {
+.X64 => (struct {
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ntdll" fn RtlAddGrowableFunctionTable(
+    DynamicTable: ?*?*anyopaque,
+    FunctionTable: [*]IMAGE_RUNTIME_FUNCTION_ENTRY,
+    EntryCount: u32,
+    MaximumEntryCount: u32,
+    RangeBase: usize,
+    RangeEnd: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+}).RtlAddGrowableFunctionTable,
+.Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ntdll" fn RtlAddGrowableFunctionTable(
@@ -41075,10 +41108,21 @@ pub extern "ntdll" fn RtlAddGrowableFunctionTable(
     RangeEnd: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-}, else => struct { } };
+}).RtlAddGrowableFunctionTable,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlAddGrowableFunctionTable' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.Arm64 => struct {
+pub const RtlLookupFunctionEntry = switch (@import("../../zig.zig").arch) {
+.X64 => (struct {
+
+pub extern "kernel32" fn RtlLookupFunctionEntry(
+    ControlPc: u64,
+    ImageBase: ?*u64,
+    HistoryTable: ?*UNWIND_HISTORY_TABLE,
+) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_RUNTIME_FUNCTION_ENTRY;
+
+}).RtlLookupFunctionEntry,
+.Arm64 => (struct {
 
 pub extern "kernel32" fn RtlLookupFunctionEntry(
     ControlPc: usize,
@@ -41086,10 +41130,26 @@ pub extern "kernel32" fn RtlLookupFunctionEntry(
     HistoryTable: ?*UNWIND_HISTORY_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
 
-}, else => struct { } };
+}).RtlLookupFunctionEntry,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlLookupFunctionEntry' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.Arm64 => struct {
+pub const RtlVirtualUnwind = switch (@import("../../zig.zig").arch) {
+.X64 => (struct {
+
+pub extern "kernel32" fn RtlVirtualUnwind(
+    HandlerType: RTL_VIRTUAL_UNWIND_HANDLER_TYPE,
+    ImageBase: u64,
+    ControlPc: u64,
+    FunctionEntry: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
+    ContextRecord: ?*CONTEXT,
+    HandlerData: ?*?*anyopaque,
+    EstablisherFrame: ?*u64,
+    ContextPointers: ?*KNONVOLATILE_CONTEXT_POINTERS,
+) callconv(@import("std").os.windows.WINAPI) ?EXCEPTION_ROUTINE;
+
+}).RtlVirtualUnwind,
+.Arm64 => (struct {
 
 pub extern "kernel32" fn RtlVirtualUnwind(
     HandlerType: RTL_VIRTUAL_UNWIND_HANDLER_TYPE,
@@ -41102,7 +41162,9 @@ pub extern "kernel32" fn RtlVirtualUnwind(
     ContextPointers: ?*KNONVOLATILE_CONTEXT_POINTERS_ARM64,
 ) callconv(@import("std").os.windows.WINAPI) ?EXCEPTION_ROUTINE;
 
-}, else => struct { } };
+}).RtlVirtualUnwind,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlVirtualUnwind' is not supported on architecture " ++ @tagName(a)),
+};
 
 pub extern "dbgeng" fn DebugConnect(
     RemoteOptions: ?[*:0]const u8,
@@ -41197,14 +41259,16 @@ pub extern "kernel32" fn RtlCaptureContext(
     ContextRecord: ?*CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
+pub const RtlCaptureContext2 = switch (@import("../../zig.zig").arch) {
+.X64 => (struct {
 
 pub extern "kernel32" fn RtlCaptureContext2(
     ContextRecord: ?*CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-}, else => struct { } };
+}).RtlCaptureContext2,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlCaptureContext2' is not supported on architecture " ++ @tagName(a)),
+};
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn RtlUnwind(
@@ -41214,28 +41278,8 @@ pub extern "kernel32" fn RtlUnwind(
     ReturnValue: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
-
-pub extern "kernel32" fn RtlAddFunctionTable(
-    FunctionTable: [*]IMAGE_RUNTIME_FUNCTION_ENTRY,
-    EntryCount: u32,
-    BaseAddress: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
-
-pub extern "kernel32" fn RtlDeleteFunctionTable(
-    FunctionTable: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const RtlInstallFunctionTableCallback = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "kernel32" fn RtlInstallFunctionTableCallback(
     TableIdentifier: u64,
@@ -41246,25 +41290,12 @@ pub extern "kernel32" fn RtlInstallFunctionTableCallback(
     OutOfProcessCallbackDll: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-}, else => struct { } };
+}).RtlInstallFunctionTableCallback,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlInstallFunctionTableCallback' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ntdll" fn RtlAddGrowableFunctionTable(
-    DynamicTable: ?*?*anyopaque,
-    FunctionTable: [*]IMAGE_RUNTIME_FUNCTION_ENTRY,
-    EntryCount: u32,
-    MaximumEntryCount: u32,
-    RangeBase: usize,
-    RangeEnd: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const RtlGrowFunctionTable = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ntdll" fn RtlGrowFunctionTable(
@@ -41272,36 +41303,29 @@ pub extern "ntdll" fn RtlGrowFunctionTable(
     NewEntryCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-}, else => struct { } };
+}).RtlGrowFunctionTable,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlGrowFunctionTable' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const RtlDeleteGrowableFunctionTable = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ntdll" fn RtlDeleteGrowableFunctionTable(
     DynamicTable: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
-
-pub extern "kernel32" fn RtlLookupFunctionEntry(
-    ControlPc: u64,
-    ImageBase: ?*u64,
-    HistoryTable: ?*UNWIND_HISTORY_TABLE,
-) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_RUNTIME_FUNCTION_ENTRY;
-
-}, else => struct { } };
+}).RtlDeleteGrowableFunctionTable,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlDeleteGrowableFunctionTable' is not supported on architecture " ++ @tagName(a)),
+};
 
 pub extern "kernel32" fn RtlRestoreContext(
     ContextRecord: ?*CONTEXT,
     ExceptionRecord: ?*EXCEPTION_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const RtlUnwindEx = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "kernel32" fn RtlUnwindEx(
     TargetFrame: ?*anyopaque,
@@ -41312,23 +41336,9 @@ pub extern "kernel32" fn RtlUnwindEx(
     HistoryTable: ?*UNWIND_HISTORY_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
-
-pub extern "kernel32" fn RtlVirtualUnwind(
-    HandlerType: RTL_VIRTUAL_UNWIND_HANDLER_TYPE,
-    ImageBase: u64,
-    ControlPc: u64,
-    FunctionEntry: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
-    ContextRecord: ?*CONTEXT,
-    HandlerData: ?*?*anyopaque,
-    EstablisherFrame: ?*u64,
-    ContextPointers: ?*KNONVOLATILE_CONTEXT_POINTERS,
-) callconv(@import("std").os.windows.WINAPI) ?EXCEPTION_ROUTINE;
-
-}, else => struct { } };
+}).RtlUnwindEx,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlUnwindEx' is not supported on architecture " ++ @tagName(a)),
+};
 
 pub extern "kernel32" fn RtlRaiseException(
     ExceptionRecord: ?*EXCEPTION_RECORD,
@@ -41600,8 +41610,19 @@ pub extern "imagehlp" fn ReBaseImage64(
     TimeStamp: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const CheckSumMappedFile = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imagehlp" fn CheckSumMappedFile(
+    BaseAddress: ?*anyopaque,
+    FileLength: u32,
+    HeaderSum: ?*u32,
+    CheckSum: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_NT_HEADERS32;
+
+}).CheckSumMappedFile,
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imagehlp" fn CheckSumMappedFile(
@@ -41611,7 +41632,8 @@ pub extern "imagehlp" fn CheckSumMappedFile(
     CheckSum: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_NT_HEADERS64;
 
-}, else => struct { } };
+}).CheckSumMappedFile,
+};
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imagehlp" fn MapFileAndCheckSumA(
@@ -41627,8 +41649,17 @@ pub extern "imagehlp" fn MapFileAndCheckSumW(
     CheckSum: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const GetImageConfigInformation = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imagehlp" fn GetImageConfigInformation(
+    LoadedImage: ?*LOADED_IMAGE,
+    ImageConfigInformation: ?*IMAGE_LOAD_CONFIG_DIRECTORY32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}).GetImageConfigInformation,
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imagehlp" fn GetImageConfigInformation(
@@ -41636,7 +41667,8 @@ pub extern "imagehlp" fn GetImageConfigInformation(
     ImageConfigInformation: ?*IMAGE_LOAD_CONFIG_DIRECTORY64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).GetImageConfigInformation,
+};
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imagehlp" fn GetImageUnusedHeaderBytes(
@@ -41644,8 +41676,17 @@ pub extern "imagehlp" fn GetImageUnusedHeaderBytes(
     SizeUnusedHeaderBytes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const SetImageConfigInformation = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imagehlp" fn SetImageConfigInformation(
+    LoadedImage: ?*LOADED_IMAGE,
+    ImageConfigInformation: ?*IMAGE_LOAD_CONFIG_DIRECTORY32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}).SetImageConfigInformation,
+.X64, .Arm64 => (struct {
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imagehlp" fn SetImageConfigInformation(
@@ -41653,7 +41694,8 @@ pub extern "imagehlp" fn SetImageConfigInformation(
     ImageConfigInformation: ?*IMAGE_LOAD_CONFIG_DIRECTORY64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SetImageConfigInformation,
+};
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imagehlp" fn ImageGetDigestStream(
@@ -41850,14 +41892,22 @@ pub extern "dbghelp" fn FindExecutableImageExW(
     CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const ImageNtHeader = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
+
+pub extern "dbghelp" fn ImageNtHeader(
+    Base: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_NT_HEADERS32;
+
+}).ImageNtHeader,
+.X64, .Arm64 => (struct {
 
 pub extern "dbghelp" fn ImageNtHeader(
     Base: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_NT_HEADERS64;
 
-}, else => struct { } };
+}).ImageNtHeader,
+};
 
 pub extern "dbghelp" fn ImageDirectoryEntryToDataEx(
     Base: ?*anyopaque,
@@ -41874,8 +41924,17 @@ pub extern "dbghelp" fn ImageDirectoryEntryToData(
     Size: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const ImageRvaToSection = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
+
+pub extern "dbghelp" fn ImageRvaToSection(
+    NtHeaders: ?*IMAGE_NT_HEADERS32,
+    Base: ?*anyopaque,
+    Rva: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_SECTION_HEADER;
+
+}).ImageRvaToSection,
+.X64, .Arm64 => (struct {
 
 pub extern "dbghelp" fn ImageRvaToSection(
     NtHeaders: ?*IMAGE_NT_HEADERS64,
@@ -41883,10 +41942,21 @@ pub extern "dbghelp" fn ImageRvaToSection(
     Rva: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_SECTION_HEADER;
 
-}, else => struct { } };
+}).ImageRvaToSection,
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const ImageRvaToVa = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
+
+pub extern "dbghelp" fn ImageRvaToVa(
+    NtHeaders: ?*IMAGE_NT_HEADERS32,
+    Base: ?*anyopaque,
+    Rva: u32,
+    LastRvaSection: ?*?*IMAGE_SECTION_HEADER,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+
+}).ImageRvaToVa,
+.X64, .Arm64 => (struct {
 
 pub extern "dbghelp" fn ImageRvaToVa(
     NtHeaders: ?*IMAGE_NT_HEADERS64,
@@ -41895,7 +41965,8 @@ pub extern "dbghelp" fn ImageRvaToVa(
     LastRvaSection: ?*?*IMAGE_SECTION_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-}, else => struct { } };
+}).ImageRvaToVa,
+};
 
 pub extern "dbghelp" fn SearchTreeForFile(
     RootPath: ?[*:0]const u8,
@@ -43196,17 +43267,19 @@ pub extern "kernel32" fn InitializeContext2(
     XStateCompactionMask: u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86, .X64 => struct {
+pub const GetEnabledXStateFeatures = switch (@import("../../zig.zig").arch) {
+.X86, .X64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn GetEnabledXStateFeatures(
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
-}, else => struct { } };
+}).GetEnabledXStateFeatures,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'GetEnabledXStateFeatures' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86, .X64 => struct {
+pub const GetXStateFeaturesMask = switch (@import("../../zig.zig").arch) {
+.X86, .X64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn GetXStateFeaturesMask(
@@ -43214,10 +43287,12 @@ pub extern "kernel32" fn GetXStateFeaturesMask(
     FeatureMask: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).GetXStateFeaturesMask,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'GetXStateFeaturesMask' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86, .X64 => struct {
+pub const LocateXStateFeature = switch (@import("../../zig.zig").arch) {
+.X86, .X64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn LocateXStateFeature(
@@ -43226,10 +43301,12 @@ pub extern "kernel32" fn LocateXStateFeature(
     Length: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-}, else => struct { } };
+}).LocateXStateFeature,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'LocateXStateFeature' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86, .X64 => struct {
+pub const SetXStateFeaturesMask = switch (@import("../../zig.zig").arch) {
+.X86, .X64 => (struct {
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn SetXStateFeaturesMask(
@@ -43237,77 +43314,12 @@ pub extern "kernel32" fn SetXStateFeaturesMask(
     FeatureMask: u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SetXStateFeaturesMask,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SetXStateFeaturesMask' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imagehlp" fn CheckSumMappedFile(
-    BaseAddress: ?*anyopaque,
-    FileLength: u32,
-    HeaderSum: ?*u32,
-    CheckSum: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_NT_HEADERS32;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imagehlp" fn GetImageConfigInformation(
-    LoadedImage: ?*LOADED_IMAGE,
-    ImageConfigInformation: ?*IMAGE_LOAD_CONFIG_DIRECTORY32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imagehlp" fn SetImageConfigInformation(
-    LoadedImage: ?*LOADED_IMAGE,
-    ImageConfigInformation: ?*IMAGE_LOAD_CONFIG_DIRECTORY32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn ImageNtHeader(
-    Base: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_NT_HEADERS32;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn ImageRvaToSection(
-    NtHeaders: ?*IMAGE_NT_HEADERS32,
-    Base: ?*anyopaque,
-    Rva: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_SECTION_HEADER;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn ImageRvaToVa(
-    NtHeaders: ?*IMAGE_NT_HEADERS32,
-    Base: ?*anyopaque,
-    Rva: u32,
-    LastRvaSection: ?*?*IMAGE_SECTION_HEADER,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const StackWalk = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn StackWalk(
     MachineType: u32,
@@ -43321,10 +43333,12 @@ pub extern "dbghelp" fn StackWalk(
     TranslateAddress: ?PTRANSLATE_ADDRESS_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).StackWalk,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'StackWalk' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymEnumerateModules = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymEnumerateModules(
     hProcess: ?HANDLE,
@@ -43332,10 +43346,12 @@ pub extern "dbghelp" fn SymEnumerateModules(
     UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymEnumerateModules,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymEnumerateModules' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const EnumerateLoadedModules = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn EnumerateLoadedModules(
     hProcess: ?HANDLE,
@@ -43343,20 +43359,24 @@ pub extern "dbghelp" fn EnumerateLoadedModules(
     UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).EnumerateLoadedModules,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'EnumerateLoadedModules' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymFunctionTableAccess = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymFunctionTableAccess(
     hProcess: ?HANDLE,
     AddrBase: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-}, else => struct { } };
+}).SymFunctionTableAccess,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymFunctionTableAccess' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymGetModuleInfo = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymGetModuleInfo(
     hProcess: ?HANDLE,
@@ -43364,10 +43384,12 @@ pub extern "dbghelp" fn SymGetModuleInfo(
     ModuleInfo: ?*IMAGEHLP_MODULE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymGetModuleInfo,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymGetModuleInfo' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymGetModuleInfoW = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymGetModuleInfoW(
     hProcess: ?HANDLE,
@@ -43375,20 +43397,24 @@ pub extern "dbghelp" fn SymGetModuleInfoW(
     ModuleInfo: ?*IMAGEHLP_MODULEW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymGetModuleInfoW,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymGetModuleInfoW' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymGetModuleBase = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymGetModuleBase(
     hProcess: ?HANDLE,
     dwAddr: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-}, else => struct { } };
+}).SymGetModuleBase,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymGetModuleBase' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymGetLineFromAddr = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymGetLineFromAddr(
     hProcess: ?HANDLE,
@@ -43397,10 +43423,12 @@ pub extern "dbghelp" fn SymGetLineFromAddr(
     Line: ?*IMAGEHLP_LINE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymGetLineFromAddr,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymGetLineFromAddr' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymGetLineFromName = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymGetLineFromName(
     hProcess: ?HANDLE,
@@ -43411,40 +43439,48 @@ pub extern "dbghelp" fn SymGetLineFromName(
     Line: ?*IMAGEHLP_LINE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymGetLineFromName,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymGetLineFromName' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymGetLineNext = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymGetLineNext(
     hProcess: ?HANDLE,
     Line: ?*IMAGEHLP_LINE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymGetLineNext,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymGetLineNext' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymGetLinePrev = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymGetLinePrev(
     hProcess: ?HANDLE,
     Line: ?*IMAGEHLP_LINE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymGetLinePrev,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymGetLinePrev' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymUnloadModule = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymUnloadModule(
     hProcess: ?HANDLE,
     BaseOfDll: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymUnloadModule,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymUnloadModule' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymUnDName = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymUnDName(
     sym: ?*IMAGEHLP_SYMBOL,
@@ -43452,10 +43488,12 @@ pub extern "dbghelp" fn SymUnDName(
     UnDecNameLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymUnDName,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymUnDName' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymRegisterCallback = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymRegisterCallback(
     hProcess: ?HANDLE,
@@ -43463,10 +43501,12 @@ pub extern "dbghelp" fn SymRegisterCallback(
     UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymRegisterCallback,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymRegisterCallback' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymRegisterFunctionEntryCallback = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymRegisterFunctionEntryCallback(
     hProcess: ?HANDLE,
@@ -43474,10 +43514,12 @@ pub extern "dbghelp" fn SymRegisterFunctionEntryCallback(
     UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymRegisterFunctionEntryCallback,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymRegisterFunctionEntryCallback' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymGetSymFromAddr = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymGetSymFromAddr(
     hProcess: ?HANDLE,
@@ -43486,10 +43528,12 @@ pub extern "dbghelp" fn SymGetSymFromAddr(
     Symbol: ?*IMAGEHLP_SYMBOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymGetSymFromAddr,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymGetSymFromAddr' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymGetSymFromName = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymGetSymFromName(
     hProcess: ?HANDLE,
@@ -43497,10 +43541,12 @@ pub extern "dbghelp" fn SymGetSymFromName(
     Symbol: ?*IMAGEHLP_SYMBOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymGetSymFromName,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymGetSymFromName' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymEnumerateSymbols = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymEnumerateSymbols(
     hProcess: ?HANDLE,
@@ -43509,10 +43555,12 @@ pub extern "dbghelp" fn SymEnumerateSymbols(
     UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymEnumerateSymbols,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymEnumerateSymbols' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymEnumerateSymbolsW = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymEnumerateSymbolsW(
     hProcess: ?HANDLE,
@@ -43521,10 +43569,12 @@ pub extern "dbghelp" fn SymEnumerateSymbolsW(
     UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymEnumerateSymbolsW,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymEnumerateSymbolsW' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymLoadModule = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymLoadModule(
     hProcess: ?HANDLE,
@@ -43535,27 +43585,33 @@ pub extern "dbghelp" fn SymLoadModule(
     SizeOfDll: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-}, else => struct { } };
+}).SymLoadModule,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymLoadModule' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymGetSymNext = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymGetSymNext(
     hProcess: ?HANDLE,
     Symbol: ?*IMAGEHLP_SYMBOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymGetSymNext,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymGetSymNext' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const SymGetSymPrev = switch (@import("../../zig.zig").arch) {
+.X86 => (struct {
 
 pub extern "dbghelp" fn SymGetSymPrev(
     hProcess: ?HANDLE,
     Symbol: ?*IMAGEHLP_SYMBOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+}).SymGetSymPrev,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'SymGetSymPrev' is not supported on architecture " ++ @tagName(a)),
+};
 
 
 //--------------------------------------------------------------------------------

@@ -15,8 +15,8 @@ pub const NV_MEMORY_RANGE = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const RtlGetNonVolatileToken = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "ntdll" fn RtlGetNonVolatileToken(
     // TODO: what to do with BytesParamIndex 1?
@@ -25,19 +25,23 @@ pub extern "ntdll" fn RtlGetNonVolatileToken(
     NvToken: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-}, else => struct { } };
+}).RtlGetNonVolatileToken,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlGetNonVolatileToken' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const RtlFreeNonVolatileToken = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "ntdll" fn RtlFreeNonVolatileToken(
     NvToken: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-}, else => struct { } };
+}).RtlFreeNonVolatileToken,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFreeNonVolatileToken' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const RtlFlushNonVolatileMemory = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "ntdll" fn RtlFlushNonVolatileMemory(
     NvToken: ?*anyopaque,
@@ -47,19 +51,23 @@ pub extern "ntdll" fn RtlFlushNonVolatileMemory(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-}, else => struct { } };
+}).RtlFlushNonVolatileMemory,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFlushNonVolatileMemory' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const RtlDrainNonVolatileFlush = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "ntdll" fn RtlDrainNonVolatileFlush(
     NvToken: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-}, else => struct { } };
+}).RtlDrainNonVolatileFlush,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlDrainNonVolatileFlush' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const RtlWriteNonVolatileMemory = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "ntdll" fn RtlWriteNonVolatileMemory(
     NvToken: ?*anyopaque,
@@ -71,10 +79,12 @@ pub extern "ntdll" fn RtlWriteNonVolatileMemory(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-}, else => struct { } };
+}).RtlWriteNonVolatileMemory,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlWriteNonVolatileMemory' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const RtlFillNonVolatileMemory = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "ntdll" fn RtlFillNonVolatileMemory(
     NvToken: ?*anyopaque,
@@ -85,10 +95,12 @@ pub extern "ntdll" fn RtlFillNonVolatileMemory(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-}, else => struct { } };
+}).RtlFillNonVolatileMemory,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFillNonVolatileMemory' is not supported on architecture " ++ @tagName(a)),
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const RtlFlushNonVolatileMemoryRanges = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
 
 pub extern "ntdll" fn RtlFlushNonVolatileMemoryRanges(
     NvToken: ?*anyopaque,
@@ -97,7 +109,9 @@ pub extern "ntdll" fn RtlFlushNonVolatileMemoryRanges(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-}, else => struct { } };
+}).RtlFlushNonVolatileMemoryRanges,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFlushNonVolatileMemoryRanges' is not supported on architecture " ++ @tagName(a)),
+};
 
 
 //--------------------------------------------------------------------------------
