@@ -6164,13 +6164,13 @@ pub extern "user32" fn RegisterClassW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn UnregisterClassA(
-    lpClassName: ?[*:0]const u8,
+    lpClassName: ?[*:0]align(1) const u8,
     hInstance: ?HINSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn UnregisterClassW(
-    lpClassName: ?[*:0]const u16,
+    lpClassName: ?[*:0]align(1) const u16,
     hInstance: ?HINSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
