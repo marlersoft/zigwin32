@@ -48,8 +48,6 @@ const root = @import("root");
 pub const UnicodeMode = enum { ansi, wide, unspecified };
 pub const unicode_mode: UnicodeMode = if (@hasDecl(root, "UNICODE")) (if (root.UNICODE) .wide else .ansi) else .unspecified;
 
-const is_zig_0_11 = std.mem.eql(u8, builtin.zig_version_string, "0.11.0");
-const zig_version_0_13 = std.SemanticVersion{ .major = 0, .minor = 13, .patch = 0 };
 
 pub const L = std.unicode.utf8ToUtf16LeStringLiteral;
 
@@ -89,10 +87,7 @@ pub const Guid = extern union {
     const big_endian_hex_offsets = [16]u6{ 0, 2, 4, 6, 9, 11, 14, 16, 19, 21, 24, 26, 28, 30, 32, 34 };
     const little_endian_hex_offsets = [16]u6{ 6, 4, 2, 0, 11, 9, 16, 14, 19, 21, 24, 26, 28, 30, 32, 34 };
 
-    const hex_offsets = if (is_zig_0_11) switch (builtin.target.cpu.arch.endian()) {
-        .Big => big_endian_hex_offsets,
-        .Little => little_endian_hex_offsets,
-    } else switch (builtin.target.cpu.arch.endian()) {
+    const hex_offsets = switch (builtin.target.cpu.arch.endian()) {
         .big => big_endian_hex_offsets,
         .little => little_endian_hex_offsets,
     };
@@ -123,17 +118,10 @@ fn decodeHexByte(hex: [2]u8) u8 {
 }
 
 test "Guid" {
-    if (is_zig_0_11) {
-        try testing.expect(std.mem.eql(u8, switch (builtin.target.cpu.arch.endian()) {
-            .Big => "\x01\x23\x45\x67\x89\xAB\xEF\x10\x32\x54\x76\x98\xba\xdc\xfe\x91",
-            .Little => "\x67\x45\x23\x01\xAB\x89\x10\xEF\x32\x54\x76\x98\xba\xdc\xfe\x91",
-        }, &Guid.initString("01234567-89AB-EF10-3254-7698badcfe91").Bytes));
-    } else {
-        try testing.expect(std.mem.eql(u8, switch (builtin.target.cpu.arch.endian()) {
-            .big => "\x01\x23\x45\x67\x89\xAB\xEF\x10\x32\x54\x76\x98\xba\xdc\xfe\x91",
-            .little => "\x67\x45\x23\x01\xAB\x89\x10\xEF\x32\x54\x76\x98\xba\xdc\xfe\x91",
-        }, &Guid.initString("01234567-89AB-EF10-3254-7698badcfe91").Bytes));
-    }
+    try testing.expect(std.mem.eql(u8, switch (builtin.target.cpu.arch.endian()) {
+        .big => "\x01\x23\x45\x67\x89\xAB\xEF\x10\x32\x54\x76\x98\xba\xdc\xfe\x91",
+        .little => "\x67\x45\x23\x01\xAB\x89\x10\xEF\x32\x54\x76\x98\xba\xdc\xfe\x91",
+    }, &Guid.initString("01234567-89AB-EF10-3254-7698badcfe91").Bytes));
 }
 
 pub const PropertyKey = extern struct {
@@ -219,11 +207,6 @@ pub fn FormatError(comptime max_len: usize) type {
 
 threadlocal var thread_is_panicing = false;
 
-pub const PanicType = switch (builtin.zig_version.order(zig_version_0_13)) {
-    .lt, .eq => fn ([]const u8, ?*std.builtin.StackTrace, ?usize) noreturn,
-    .gt => type,
-};
-
 /// Returns a panic handler that can be set in your root module that will show the panic
 /// message to the user in a message box, then call the default builtin panic handler.
 /// It also handles re-entrancy by skipping the message box if the current thread
@@ -234,29 +217,7 @@ pub fn messageBoxThenPanic(
         style: win32.MESSAGEBOX_STYLE = .{ .ICONASTERISK = 1 },
         // TODO: add option/logic to include the stacktrace in the messagebox
     },
-) PanicType {
-    switch (comptime builtin.zig_version.order(zig_version_0_13)) {
-        .lt, .eq => return struct {
-            pub fn panic(
-                msg: []const u8,
-                error_return_trace: ?*std.builtin.StackTrace,
-                ret_addr: ?usize,
-            ) noreturn {
-                if (!thread_is_panicing) {
-                    thread_is_panicing = true;
-                    var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
-                    const msg_z: [:0]const u8 = if (std.fmt.allocPrintZ(
-                        arena.allocator(),
-                        "{s}",
-                        .{msg},
-                    )) |msg_z| msg_z else |_| "failed allocate error message";
-                    _ = win32.MessageBoxA(null, msg_z, opt.title, opt.style);
-                }
-                std.builtin.default_panic(msg, error_return_trace, ret_addr);
-            }
-        }.panic,
-        .gt => {},
-    }
+) type {
     return std.debug.FullPanic(struct {
         pub fn panic(
             msg: []const u8,
@@ -308,40 +269,22 @@ pub fn pointFromLparam(lparam: win32.LPARAM) win32.POINT {
 }
 
 pub fn loword(value: anytype) u16 {
-    switch (comptime builtin.zig_version.order(zig_version_0_13)) {
-        .gt => switch (@typeInfo(@TypeOf(value))) {
-            .int => |int| switch (int.signedness) {
-                .signed => return loword(@as(@Type(.{ .int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
-                .unsigned => return if (int.bits <= 16) value else @intCast(0xffff & value),
-            },
-            else => {},
+    switch (@typeInfo(@TypeOf(value))) {
+        .int => |int| switch (int.signedness) {
+            .signed => return loword(@as(@Type(.{ .int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
+            .unsigned => return if (int.bits <= 16) value else @intCast(0xffff & value),
         },
-        .lt, .eq => switch (@typeInfo(@TypeOf(value))) {
-            .Int => |int| switch (int.signedness) {
-                .signed => return loword(@as(@Type(.{ .Int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
-                .unsigned => return if (int.bits <= 16) value else @intCast(0xffff & value),
-            },
-            else => {},
-        },
+        else => {},
     }
     @compileError("unsupported type " ++ @typeName(@TypeOf(value)));
 }
 pub fn hiword(value: anytype) u16 {
-    switch (comptime builtin.zig_version.order(zig_version_0_13)) {
-        .gt => switch (@typeInfo(@TypeOf(value))) {
-            .int => |int| switch (int.signedness) {
-                .signed => return hiword(@as(@Type(.{ .int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
-                .unsigned => return @intCast(0xffff & (value >> 16)),
-            },
-            else => {},
+    switch (@typeInfo(@TypeOf(value))) {
+        .int => |int| switch (int.signedness) {
+            .signed => return hiword(@as(@Type(.{ .int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
+            .unsigned => return @intCast(0xffff & (value >> 16)),
         },
-        .lt, .eq => switch (@typeInfo(@TypeOf(value))) {
-            .Int => |int| switch (int.signedness) {
-                .signed => return hiword(@as(@Type(.{ .Int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
-                .unsigned => return @intCast(0xffff & (value >> 16)),
-            },
-            else => {},
-        },
+        else => {},
     }
     @compileError("unsupported type " ++ @typeName(@TypeOf(value)));
 }
@@ -398,17 +341,10 @@ pub fn scaleFromDpi(comptime Float: type, dpi: u32) Float {
 
 pub fn scaleDpi(comptime T: type, value: T, dpi: u32) T {
     std.debug.assert(dpi >= 96);
-    return switch (comptime builtin.zig_version.order(zig_version_0_13)) {
-        .gt => switch (@typeInfo(T)) {
-            .float => value * scaleFromDpi(T, dpi),
-            .int => @intFromFloat(@round(@as(f32, @floatFromInt(value)) * scaleFromDpi(f32, dpi))),
-            else => @compileError("scale_dpi does not support type " ++ @typeName(@TypeOf(value))),
-        },
-        .lt, .eq => switch (@typeInfo(T)) {
-            .Float => value * scaleFromDpi(T, dpi),
-            .Int => @intFromFloat(@round(@as(f32, @floatFromInt(value)) * scaleFromDpi(f32, dpi))),
-            else => @compileError("scale_dpi does not support type " ++ @typeName(@TypeOf(value))),
-        },
+    return switch (@typeInfo(T)) {
+        .float => value * scaleFromDpi(T, dpi),
+        .int => @intFromFloat(@round(@as(f32, @floatFromInt(value)) * scaleFromDpi(f32, dpi))),
+        else => @compileError("scale_dpi does not support type " ++ @typeName(@TypeOf(value))),
     };
 }
 
@@ -428,10 +364,7 @@ pub fn getClientSize(hwnd: win32.HWND) win32.SIZE {
 /// be before it knows the constant's type definition, so we delay the convession to compile-time where the compiler knows
 /// all type definition.
 pub fn typedConst(comptime T: type, comptime value: anytype) T {
-    return switch (comptime builtin.zig_version.order(zig_version_0_13)) {
-        .gt => typedConst2(T, T, value),
-        .lt, .eq => typedConst2_0_13(T, T, value),
-    };
+    return typedConst2(T, T, value);
 }
 
 fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptime value: anytype) ReturnType {
