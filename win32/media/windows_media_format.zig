@@ -370,24 +370,24 @@ pub const INSSBuffer = extern union {
         GetLength: *const fn(
             self: *const INSSBuffer,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLength: *const fn(
             self: *const INSSBuffer,
             dwLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxLength: *const fn(
             self: *const INSSBuffer,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBuffer: *const fn(
             self: *const INSSBuffer,
             ppdwBuffer: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferAndLength: *const fn(
             self: *const INSSBuffer,
             ppdwBuffer: ?*?*u8,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -417,12 +417,12 @@ pub const INSSBuffer2 = extern union {
             self: *const INSSBuffer2,
             cbProperties: u32,
             pbProperties: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSampleProperties: *const fn(
             self: *const INSSBuffer2,
             cbProperties: u32,
             pbProperties: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     INSSBuffer: INSSBuffer,
@@ -445,13 +445,13 @@ pub const INSSBuffer3 = extern union {
             guidBufferProperty: Guid,
             pvBufferProperty: ?*anyopaque,
             dwBufferPropertySize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const INSSBuffer3,
             guidBufferProperty: Guid,
             pvBufferProperty: ?*anyopaque,
             pdwBufferPropertySize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     INSSBuffer2: INSSBuffer2,
@@ -473,14 +473,14 @@ pub const INSSBuffer4 = extern union {
         GetPropertyCount: *const fn(
             self: *const INSSBuffer4,
             pcBufferProperties: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyByIndex: *const fn(
             self: *const INSSBuffer4,
             dwBufferPropertyIndex: u32,
             pguidBufferProperty: ?*Guid,
             pvBufferProperty: ?*anyopaque,
             pdwBufferPropertySize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     INSSBuffer3: INSSBuffer3,
@@ -504,12 +504,12 @@ pub const IWMSBufferAllocator = extern union {
             self: *const IWMSBufferAllocator,
             dwMaxBufferSize: u32,
             ppBuffer: ?*?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AllocatePageSizeBuffer: *const fn(
             self: *const IWMSBufferAllocator,
             dwMaxBufferSize: u32,
             ppBuffer: ?*?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1207,16 +1207,16 @@ pub const IWMMediaProps = extern union {
         GetType: *const fn(
             self: *const IWMMediaProps,
             pguidType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMediaType: *const fn(
             self: *const IWMMediaProps,
             pType: ?*WM_MEDIA_TYPE,
             pcbType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMediaType: *const fn(
             self: *const IWMMediaProps,
             pType: ?*WM_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1239,19 +1239,19 @@ pub const IWMVideoMediaProps = extern union {
         GetMaxKeyFrameSpacing: *const fn(
             self: *const IWMVideoMediaProps,
             pllTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaxKeyFrameSpacing: *const fn(
             self: *const IWMVideoMediaProps,
             llTime: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetQuality: *const fn(
             self: *const IWMVideoMediaProps,
             pdwQuality: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetQuality: *const fn(
             self: *const IWMVideoMediaProps,
             dwQuality: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMMediaProps: IWMMediaProps,
@@ -1278,61 +1278,61 @@ pub const IWMWriter = extern union {
         SetProfileByID: *const fn(
             self: *const IWMWriter,
             guidProfile: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProfile: *const fn(
             self: *const IWMWriter,
             pProfile: ?*IWMProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputFilename: *const fn(
             self: *const IWMWriter,
             pwszFilename: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputCount: *const fn(
             self: *const IWMWriter,
             pcInputs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputProps: *const fn(
             self: *const IWMWriter,
             dwInputNum: u32,
             ppInput: ?*?*IWMInputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInputProps: *const fn(
             self: *const IWMWriter,
             dwInputNum: u32,
             pInput: ?*IWMInputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputFormatCount: *const fn(
             self: *const IWMWriter,
             dwInputNumber: u32,
             pcFormats: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputFormat: *const fn(
             self: *const IWMWriter,
             dwInputNumber: u32,
             dwFormatNumber: u32,
             pProps: ?*?*IWMInputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginWriting: *const fn(
             self: *const IWMWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndWriting: *const fn(
             self: *const IWMWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AllocateSample: *const fn(
             self: *const IWMWriter,
             dwSampleSize: u32,
             ppSample: ?*?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteSample: *const fn(
             self: *const IWMWriter,
             dwInputNum: u32,
             cnsSampleTime: u64,
             dwFlags: u32,
             pSample: ?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IWMWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1387,19 +1387,19 @@ pub const IWMDRMWriter = extern union {
             self: *const IWMDRMWriter,
             pwszKeySeed: [*:0]u16,
             pcwchLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateKeyID: *const fn(
             self: *const IWMDRMWriter,
             pwszKeyID: [*:0]u16,
             pcwchLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateSigningKeyPair: *const fn(
             self: *const IWMDRMWriter,
             pwszPrivKey: [*:0]u16,
             pcwchPrivKeyLength: ?*u32,
             pwszPubKey: [*:0]u16,
             pcwchPubKeyLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDRMAttribute: *const fn(
             self: *const IWMDRMWriter,
             wStreamNum: u16,
@@ -1407,7 +1407,7 @@ pub const IWMDRMWriter = extern union {
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1444,7 +1444,7 @@ pub const IWMDRMWriter2 = extern union {
             fSamplesEncrypted: BOOL,
             pbKeyID: ?*u8,
             cbKeyID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDRMWriter: IWMDRMWriter,
@@ -1463,7 +1463,7 @@ pub const IWMDRMWriter3 = extern union {
         SetProtectStreamSamples: *const fn(
             self: *const IWMDRMWriter3,
             pImportInitStruct: ?*WMDRM_IMPORT_INIT_STRUCT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDRMWriter2: IWMDRMWriter2,
@@ -1483,12 +1483,12 @@ pub const IWMInputMediaProps = extern union {
             self: *const IWMInputMediaProps,
             pwszName: [*:0]u16,
             pcchName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGroupName: *const fn(
             self: *const IWMInputMediaProps,
             pwszName: [*:0]u16,
             pcchName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMMediaProps: IWMMediaProps,
@@ -1509,21 +1509,21 @@ pub const IWMPropertyVault = extern union {
         GetPropertyCount: *const fn(
             self: *const IWMPropertyVault,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyByName: *const fn(
             self: *const IWMPropertyVault,
             pszName: ?[*:0]const u16,
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IWMPropertyVault,
             pszName: ?[*:0]const u16,
             pType: WMT_ATTR_DATATYPE,
             pValue: ?*u8,
             dwSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyByIndex: *const fn(
             self: *const IWMPropertyVault,
             dwIndex: u32,
@@ -1532,14 +1532,14 @@ pub const IWMPropertyVault = extern union {
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyPropertiesFrom: *const fn(
             self: *const IWMPropertyVault,
             pIWMPropertyVault: ?*IWMPropertyVault,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IWMPropertyVault,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1574,7 +1574,7 @@ pub const IWMIStreamProps = extern union {
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1593,51 +1593,51 @@ pub const IWMReader = extern union {
             pwszURL: ?[*:0]const u16,
             pCallback: ?*IWMReaderCallback,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IWMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputCount: *const fn(
             self: *const IWMReader,
             pcOutputs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputProps: *const fn(
             self: *const IWMReader,
             dwOutputNum: u32,
             ppOutput: ?*?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputProps: *const fn(
             self: *const IWMReader,
             dwOutputNum: u32,
             pOutput: ?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputFormatCount: *const fn(
             self: *const IWMReader,
             dwOutputNumber: u32,
             pcFormats: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputFormat: *const fn(
             self: *const IWMReader,
             dwOutputNumber: u32,
             dwFormatNumber: u32,
             ppProps: ?*?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Start: *const fn(
             self: *const IWMReader,
             cnsStart: u64,
             cnsDuration: u64,
             fRate: f32,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IWMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const IWMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const IWMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1684,21 +1684,21 @@ pub const IWMSyncReader = extern union {
         Open: *const fn(
             self: *const IWMSyncReader,
             pwszFilename: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IWMSyncReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRange: *const fn(
             self: *const IWMSyncReader,
             cnsStartTime: u64,
             cnsDuration: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRangeByFrame: *const fn(
             self: *const IWMSyncReader,
             wStreamNum: u16,
             qwFrameNumber: u64,
             cFramesToRead: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextSample: *const fn(
             self: *const IWMSyncReader,
             wStreamNum: u16,
@@ -1708,28 +1708,28 @@ pub const IWMSyncReader = extern union {
             pdwFlags: ?*u32,
             pdwOutputNum: ?*u32,
             pwStreamNum: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStreamsSelected: *const fn(
             self: *const IWMSyncReader,
             cStreamCount: u16,
             pwStreamNumbers: ?*u16,
             pSelections: ?*WMT_STREAM_SELECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamSelected: *const fn(
             self: *const IWMSyncReader,
             wStreamNum: u16,
             pSelection: ?*WMT_STREAM_SELECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetReadStreamSamples: *const fn(
             self: *const IWMSyncReader,
             wStreamNum: u16,
             fCompressed: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReadStreamSamples: *const fn(
             self: *const IWMSyncReader,
             wStreamNum: u16,
             pfCompressed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputSetting: *const fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
@@ -1737,7 +1737,7 @@ pub const IWMSyncReader = extern union {
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputSetting: *const fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
@@ -1745,56 +1745,56 @@ pub const IWMSyncReader = extern union {
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputCount: *const fn(
             self: *const IWMSyncReader,
             pcOutputs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputProps: *const fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
             ppOutput: ?*?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputProps: *const fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
             pOutput: ?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputFormatCount: *const fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
             pcFormats: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputFormat: *const fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
             dwFormatNum: u32,
             ppProps: ?*?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputNumberForStream: *const fn(
             self: *const IWMSyncReader,
             wStreamNum: u16,
             pdwOutputNum: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamNumberForOutput: *const fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
             pwStreamNum: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxOutputSampleSize: *const fn(
             self: *const IWMSyncReader,
             dwOutput: u32,
             pcbMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxStreamSampleSize: *const fn(
             self: *const IWMSyncReader,
             wStream: u16,
             pcbMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenStream: *const fn(
             self: *const IWMSyncReader,
             pStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1873,34 +1873,34 @@ pub const IWMSyncReader2 = extern union {
             wStreamNum: u16,
             pStart: ?*WMT_TIMECODE_EXTENSION_DATA,
             pEnd: ?*WMT_TIMECODE_EXTENSION_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRangeByFrameEx: *const fn(
             self: *const IWMSyncReader2,
             wStreamNum: u16,
             qwFrameNumber: u64,
             cFramesToRead: i64,
             pcnsStartTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllocateForOutput: *const fn(
             self: *const IWMSyncReader2,
             dwOutputNum: u32,
             pAllocator: ?*IWMReaderAllocatorEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllocateForOutput: *const fn(
             self: *const IWMSyncReader2,
             dwOutputNum: u32,
             ppAllocator: ?*?*IWMReaderAllocatorEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllocateForStream: *const fn(
             self: *const IWMSyncReader2,
             wStreamNum: u16,
             pAllocator: ?*IWMReaderAllocatorEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllocateForStream: *const fn(
             self: *const IWMSyncReader2,
             dwSreamNum: u16,
             ppAllocator: ?*?*IWMReaderAllocatorEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMSyncReader: IWMSyncReader,
@@ -1934,12 +1934,12 @@ pub const IWMOutputMediaProps = extern union {
             self: *const IWMOutputMediaProps,
             pwszName: [*:0]u16,
             pcchName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConnectionName: *const fn(
             self: *const IWMOutputMediaProps,
             pwszName: [*:0]u16,
             pcchName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMMediaProps: IWMMediaProps,
@@ -1964,7 +1964,7 @@ pub const IWMStatusCallback = extern union {
             dwType: WMT_ATTR_DATATYPE,
             pValue: ?*u8,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1986,7 +1986,7 @@ pub const IWMReaderCallback = extern union {
             dwFlags: u32,
             pSample: ?*INSSBuffer,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMStatusCallback: IWMStatusCallback,
@@ -2011,7 +2011,7 @@ pub const IWMCredentialCallback = extern union {
             cchPassword: u32,
             hrStatus: HRESULT,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2028,13 +2028,13 @@ pub const IWMMetadataEditor = extern union {
         Open: *const fn(
             self: *const IWMMetadataEditor,
             pwszFilename: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IWMMetadataEditor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IWMMetadataEditor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2059,7 +2059,7 @@ pub const IWMMetadataEditor2 = extern union {
             pwszFilename: ?[*:0]const u16,
             dwDesiredAccess: u32,
             dwShareMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMMetadataEditor: IWMMetadataEditor,
@@ -2081,7 +2081,7 @@ pub const IWMDRMEditor = extern union {
             pdwType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2099,7 +2099,7 @@ pub const IWMHeaderInfo = extern union {
             self: *const IWMHeaderInfo,
             wStreamNum: u16,
             pcAttributes: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeByIndex: *const fn(
             self: *const IWMHeaderInfo,
             wIndex: u16,
@@ -2109,7 +2109,7 @@ pub const IWMHeaderInfo = extern union {
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeByName: *const fn(
             self: *const IWMHeaderInfo,
             pwStreamNum: ?*u16,
@@ -2117,7 +2117,7 @@ pub const IWMHeaderInfo = extern union {
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAttribute: *const fn(
             self: *const IWMHeaderInfo,
             wStreamNum: u16,
@@ -2125,31 +2125,31 @@ pub const IWMHeaderInfo = extern union {
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMarkerCount: *const fn(
             self: *const IWMHeaderInfo,
             pcMarkers: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMarker: *const fn(
             self: *const IWMHeaderInfo,
             wIndex: u16,
             pwszMarkerName: [*:0]u16,
             pcchMarkerNameLen: ?*u16,
             pcnsMarkerTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMarker: *const fn(
             self: *const IWMHeaderInfo,
             pwszMarkerName: ?PWSTR,
             cnsMarkerTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveMarker: *const fn(
             self: *const IWMHeaderInfo,
             wIndex: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScriptCount: *const fn(
             self: *const IWMHeaderInfo,
             pcScripts: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScript: *const fn(
             self: *const IWMHeaderInfo,
             wIndex: u16,
@@ -2158,17 +2158,17 @@ pub const IWMHeaderInfo = extern union {
             pwszCommand: [*:0]u16,
             pcchCommandLen: ?*u16,
             pcnsScriptTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddScript: *const fn(
             self: *const IWMHeaderInfo,
             pwszType: ?PWSTR,
             pwszCommand: ?PWSTR,
             cnsScriptTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveScript: *const fn(
             self: *const IWMHeaderInfo,
             wIndex: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2218,7 +2218,7 @@ pub const IWMHeaderInfo2 = extern union {
         GetCodecInfoCount: *const fn(
             self: *const IWMHeaderInfo2,
             pcCodecInfos: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodecInfo: *const fn(
             self: *const IWMHeaderInfo2,
             wIndex: u32,
@@ -2229,7 +2229,7 @@ pub const IWMHeaderInfo2 = extern union {
             pCodecType: ?*WMT_CODEC_INFO_TYPE,
             pcbCodecInfo: ?*u16,
             pbCodecInfo: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMHeaderInfo: IWMHeaderInfo,
@@ -2251,7 +2251,7 @@ pub const IWMHeaderInfo3 = extern union {
             self: *const IWMHeaderInfo3,
             wStreamNum: u16,
             pcAttributes: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeIndices: *const fn(
             self: *const IWMHeaderInfo3,
             wStreamNum: u16,
@@ -2259,7 +2259,7 @@ pub const IWMHeaderInfo3 = extern union {
             pwLangIndex: ?*u16,
             pwIndices: [*:0]u16,
             pwCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeByIndexEx: *const fn(
             self: *const IWMHeaderInfo3,
             wStreamNum: u16,
@@ -2270,7 +2270,7 @@ pub const IWMHeaderInfo3 = extern union {
             pwLangIndex: ?*u16,
             pValue: [*:0]u8,
             pdwDataLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ModifyAttribute: *const fn(
             self: *const IWMHeaderInfo3,
             wStreamNum: u16,
@@ -2279,7 +2279,7 @@ pub const IWMHeaderInfo3 = extern union {
             wLangIndex: u16,
             pValue: [*:0]const u8,
             dwLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAttribute: *const fn(
             self: *const IWMHeaderInfo3,
             wStreamNum: u16,
@@ -2289,12 +2289,12 @@ pub const IWMHeaderInfo3 = extern union {
             wLangIndex: u16,
             pValue: [*:0]const u8,
             dwLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAttribute: *const fn(
             self: *const IWMHeaderInfo3,
             wStreamNum: u16,
             wIndex: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddCodecInfo: *const fn(
             self: *const IWMHeaderInfo3,
             pwszName: ?PWSTR,
@@ -2302,7 +2302,7 @@ pub const IWMHeaderInfo3 = extern union {
             codecType: WMT_CODEC_INFO_TYPE,
             cbCodecInfo: u16,
             pbCodecInfo: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMHeaderInfo2: IWMHeaderInfo2,
@@ -2340,32 +2340,32 @@ pub const IWMProfileManager = extern union {
             self: *const IWMProfileManager,
             dwVersion: WMT_VERSION,
             ppProfile: ?*?*IWMProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadProfileByID: *const fn(
             self: *const IWMProfileManager,
             guidProfile: ?*const Guid,
             ppProfile: ?*?*IWMProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadProfileByData: *const fn(
             self: *const IWMProfileManager,
             pwszProfile: ?[*:0]const u16,
             ppProfile: ?*?*IWMProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveProfile: *const fn(
             self: *const IWMProfileManager,
             pIWMProfile: ?*IWMProfile,
             pwszProfile: ?PWSTR,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSystemProfileCount: *const fn(
             self: *const IWMProfileManager,
             pcProfiles: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadSystemProfile: *const fn(
             self: *const IWMProfileManager,
             dwProfileIndex: u32,
             ppProfile: ?*?*IWMProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2397,11 +2397,11 @@ pub const IWMProfileManager2 = extern union {
         GetSystemProfileVersion: *const fn(
             self: *const IWMProfileManager2,
             pdwVersion: ?*WMT_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSystemProfileVersion: *const fn(
             self: *const IWMProfileManager2,
             dwVersion: WMT_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMProfileManager: IWMProfileManager,
@@ -2422,11 +2422,11 @@ pub const IWMProfileManagerLanguage = extern union {
         GetUserLanguageID: *const fn(
             self: *const IWMProfileManagerLanguage,
             wLangID: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUserLanguageID: *const fn(
             self: *const IWMProfileManagerLanguage,
             wLangID: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2446,81 +2446,81 @@ pub const IWMProfile = extern union {
         GetVersion: *const fn(
             self: *const IWMProfile,
             pdwVersion: ?*WMT_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IWMProfile,
             pwszName: [*:0]u16,
             pcchName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetName: *const fn(
             self: *const IWMProfile,
             pwszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const IWMProfile,
             pwszDescription: [*:0]u16,
             pcchDescription: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDescription: *const fn(
             self: *const IWMProfile,
             pwszDescription: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamCount: *const fn(
             self: *const IWMProfile,
             pcStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStream: *const fn(
             self: *const IWMProfile,
             dwStreamIndex: u32,
             ppConfig: ?*?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamByNumber: *const fn(
             self: *const IWMProfile,
             wStreamNum: u16,
             ppConfig: ?*?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStream: *const fn(
             self: *const IWMProfile,
             pConfig: ?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStreamByNumber: *const fn(
             self: *const IWMProfile,
             wStreamNum: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStream: *const fn(
             self: *const IWMProfile,
             pConfig: ?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReconfigStream: *const fn(
             self: *const IWMProfile,
             pConfig: ?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateNewStream: *const fn(
             self: *const IWMProfile,
             guidStreamType: ?*const Guid,
             ppConfig: ?*?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMutualExclusionCount: *const fn(
             self: *const IWMProfile,
             pcME: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMutualExclusion: *const fn(
             self: *const IWMProfile,
             dwMEIndex: u32,
             ppME: ?*?*IWMMutualExclusion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveMutualExclusion: *const fn(
             self: *const IWMProfile,
             pME: ?*IWMMutualExclusion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMutualExclusion: *const fn(
             self: *const IWMProfile,
             pME: ?*IWMMutualExclusion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateNewMutualExclusion: *const fn(
             self: *const IWMProfile,
             ppME: ?*?*IWMMutualExclusion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2588,7 +2588,7 @@ pub const IWMProfile2 = extern union {
         GetProfileID: *const fn(
             self: *const IWMProfile2,
             pguidID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMProfile: IWMProfile,
@@ -2606,52 +2606,52 @@ pub const IWMProfile3 = extern union {
         GetStorageFormat: *const fn(
             self: *const IWMProfile3,
             pnStorageFormat: ?*WMT_STORAGE_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStorageFormat: *const fn(
             self: *const IWMProfile3,
             nStorageFormat: WMT_STORAGE_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBandwidthSharingCount: *const fn(
             self: *const IWMProfile3,
             pcBS: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBandwidthSharing: *const fn(
             self: *const IWMProfile3,
             dwBSIndex: u32,
             ppBS: ?*?*IWMBandwidthSharing,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveBandwidthSharing: *const fn(
             self: *const IWMProfile3,
             pBS: ?*IWMBandwidthSharing,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddBandwidthSharing: *const fn(
             self: *const IWMProfile3,
             pBS: ?*IWMBandwidthSharing,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateNewBandwidthSharing: *const fn(
             self: *const IWMProfile3,
             ppBS: ?*?*IWMBandwidthSharing,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamPrioritization: *const fn(
             self: *const IWMProfile3,
             ppSP: ?*?*IWMStreamPrioritization,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStreamPrioritization: *const fn(
             self: *const IWMProfile3,
             pSP: ?*IWMStreamPrioritization,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStreamPrioritization: *const fn(
             self: *const IWMProfile3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateNewStreamPrioritization: *const fn(
             self: *const IWMProfile3,
             ppSP: ?*?*IWMStreamPrioritization,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExpectedPacketCount: *const fn(
             self: *const IWMProfile3,
             msDuration: u64,
             pcPackets: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMProfile2: IWMProfile2,
@@ -2703,49 +2703,49 @@ pub const IWMStreamConfig = extern union {
         GetStreamType: *const fn(
             self: *const IWMStreamConfig,
             pguidStreamType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamNumber: *const fn(
             self: *const IWMStreamConfig,
             pwStreamNum: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStreamNumber: *const fn(
             self: *const IWMStreamConfig,
             wStreamNum: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamName: *const fn(
             self: *const IWMStreamConfig,
             pwszStreamName: [*:0]u16,
             pcchStreamName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStreamName: *const fn(
             self: *const IWMStreamConfig,
             pwszStreamName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConnectionName: *const fn(
             self: *const IWMStreamConfig,
             pwszInputName: [*:0]u16,
             pcchInputName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConnectionName: *const fn(
             self: *const IWMStreamConfig,
             pwszInputName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBitrate: *const fn(
             self: *const IWMStreamConfig,
             pdwBitrate: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBitrate: *const fn(
             self: *const IWMStreamConfig,
             pdwBitrate: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferWindow: *const fn(
             self: *const IWMStreamConfig,
             pmsBufferWindow: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBufferWindow: *const fn(
             self: *const IWMStreamConfig,
             msBufferWindow: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2792,22 +2792,22 @@ pub const IWMStreamConfig2 = extern union {
         GetTransportType: *const fn(
             self: *const IWMStreamConfig2,
             pnTransportType: ?*WMT_TRANSPORT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransportType: *const fn(
             self: *const IWMStreamConfig2,
             nTransportType: WMT_TRANSPORT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDataUnitExtension: *const fn(
             self: *const IWMStreamConfig2,
             guidExtensionSystemID: Guid,
             cbExtensionDataSize: u16,
             pbExtensionSystemInfo: [*:0]u8,
             cbExtensionSystemInfo: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataUnitExtensionCount: *const fn(
             self: *const IWMStreamConfig2,
             pcDataUnitExtensions: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataUnitExtension: *const fn(
             self: *const IWMStreamConfig2,
             wDataUnitExtensionNumber: u16,
@@ -2815,10 +2815,10 @@ pub const IWMStreamConfig2 = extern union {
             pcbExtensionDataSize: ?*u16,
             pbExtensionSystemInfo: [*:0]u8,
             pcbExtensionSystemInfo: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllDataUnitExtensions: *const fn(
             self: *const IWMStreamConfig2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMStreamConfig: IWMStreamConfig,
@@ -2852,11 +2852,11 @@ pub const IWMStreamConfig3 = extern union {
             self: *const IWMStreamConfig3,
             pwszLanguageString: [*:0]u16,
             pcchLanguageStringLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLanguage: *const fn(
             self: *const IWMStreamConfig3,
             pwszLanguageString: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMStreamConfig2: IWMStreamConfig2,
@@ -2878,11 +2878,11 @@ pub const IWMPacketSize = extern union {
         GetMaxPacketSize: *const fn(
             self: *const IWMPacketSize,
             pdwMaxPacketSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaxPacketSize: *const fn(
             self: *const IWMPacketSize,
             dwMaxPacketSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2902,11 +2902,11 @@ pub const IWMPacketSize2 = extern union {
         GetMinPacketSize: *const fn(
             self: *const IWMPacketSize2,
             pdwMinPacketSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMinPacketSize: *const fn(
             self: *const IWMPacketSize2,
             dwMinPacketSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMPacketSize: IWMPacketSize,
@@ -2928,15 +2928,15 @@ pub const IWMStreamList = extern union {
             self: *const IWMStreamList,
             pwStreamNumArray: [*:0]u16,
             pcStreams: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStream: *const fn(
             self: *const IWMStreamList,
             wStreamNum: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStream: *const fn(
             self: *const IWMStreamList,
             wStreamNum: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2959,11 +2959,11 @@ pub const IWMMutualExclusion = extern union {
         GetType: *const fn(
             self: *const IWMMutualExclusion,
             pguidType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetType: *const fn(
             self: *const IWMMutualExclusion,
             guidType: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMStreamList: IWMStreamList,
@@ -2985,49 +2985,49 @@ pub const IWMMutualExclusion2 = extern union {
             self: *const IWMMutualExclusion2,
             pwszName: [*:0]u16,
             pcchName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetName: *const fn(
             self: *const IWMMutualExclusion2,
             pwszName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecordCount: *const fn(
             self: *const IWMMutualExclusion2,
             pwRecordCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRecord: *const fn(
             self: *const IWMMutualExclusion2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveRecord: *const fn(
             self: *const IWMMutualExclusion2,
             wRecordNumber: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecordName: *const fn(
             self: *const IWMMutualExclusion2,
             wRecordNumber: u16,
             pwszRecordName: [*:0]u16,
             pcchRecordName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRecordName: *const fn(
             self: *const IWMMutualExclusion2,
             wRecordNumber: u16,
             pwszRecordName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamsForRecord: *const fn(
             self: *const IWMMutualExclusion2,
             wRecordNumber: u16,
             pwStreamNumArray: [*:0]u16,
             pcStreams: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStreamForRecord: *const fn(
             self: *const IWMMutualExclusion2,
             wRecordNumber: u16,
             wStreamNumber: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStreamForRecord: *const fn(
             self: *const IWMMutualExclusion2,
             wRecordNumber: u16,
             wStreamNumber: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMMutualExclusion: IWMMutualExclusion,
@@ -3073,21 +3073,21 @@ pub const IWMBandwidthSharing = extern union {
         GetType: *const fn(
             self: *const IWMBandwidthSharing,
             pguidType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetType: *const fn(
             self: *const IWMBandwidthSharing,
             guidType: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBandwidth: *const fn(
             self: *const IWMBandwidthSharing,
             pdwBitrate: ?*u32,
             pmsBufferWindow: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBandwidth: *const fn(
             self: *const IWMBandwidthSharing,
             dwBitrate: u32,
             msBufferWindow: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMStreamList: IWMStreamList,
@@ -3115,12 +3115,12 @@ pub const IWMStreamPrioritization = extern union {
             self: *const IWMStreamPrioritization,
             pRecordArray: [*]WM_STREAM_PRIORITY_RECORD,
             pcRecords: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPriorityRecords: *const fn(
             self: *const IWMStreamPrioritization,
             pRecordArray: ?*WM_STREAM_PRIORITY_RECORD,
             cRecords: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3140,20 +3140,20 @@ pub const IWMWriterAdvanced = extern union {
         GetSinkCount: *const fn(
             self: *const IWMWriterAdvanced,
             pcSinks: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSink: *const fn(
             self: *const IWMWriterAdvanced,
             dwSinkNum: u32,
             ppSink: ?*?*IWMWriterSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddSink: *const fn(
             self: *const IWMWriterAdvanced,
             pSink: ?*IWMWriterSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveSink: *const fn(
             self: *const IWMWriterAdvanced,
             pSink: ?*IWMWriterSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteStreamSample: *const fn(
             self: *const IWMWriterAdvanced,
             wStreamNum: u16,
@@ -3162,32 +3162,32 @@ pub const IWMWriterAdvanced = extern union {
             cnsSampleDuration: u64,
             dwFlags: u32,
             pSample: ?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLiveSource: *const fn(
             self: *const IWMWriterAdvanced,
             fIsLiveSource: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsRealTime: *const fn(
             self: *const IWMWriterAdvanced,
             pfRealTime: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWriterTime: *const fn(
             self: *const IWMWriterAdvanced,
             pcnsCurrentTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatistics: *const fn(
             self: *const IWMWriterAdvanced,
             wStreamNum: u16,
             pStats: ?*WM_WRITER_STATISTICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSyncTolerance: *const fn(
             self: *const IWMWriterAdvanced,
             msWindow: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSyncTolerance: *const fn(
             self: *const IWMWriterAdvanced,
             pmsWindow: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3238,7 +3238,7 @@ pub const IWMWriterAdvanced2 = extern union {
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInputSetting: *const fn(
             self: *const IWMWriterAdvanced2,
             dwInputNum: u32,
@@ -3246,7 +3246,7 @@ pub const IWMWriterAdvanced2 = extern union {
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMWriterAdvanced: IWMWriterAdvanced,
@@ -3268,10 +3268,10 @@ pub const IWMWriterAdvanced3 = extern union {
             self: *const IWMWriterAdvanced3,
             wStreamNum: u16,
             pStats: ?*WM_WRITER_STATISTICS_EX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNonBlocking: *const fn(
             self: *const IWMWriterAdvanced3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMWriterAdvanced2: IWMWriterAdvanced2,
@@ -3295,30 +3295,30 @@ pub const IWMWriterPreprocess = extern union {
             dwInputNum: u32,
             dwFlags: u32,
             pdwMaxNumPasses: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNumPreprocessingPasses: *const fn(
             self: *const IWMWriterPreprocess,
             dwInputNum: u32,
             dwFlags: u32,
             dwNumPasses: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginPreprocessingPass: *const fn(
             self: *const IWMWriterPreprocess,
             dwInputNum: u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PreprocessSample: *const fn(
             self: *const IWMWriterPreprocess,
             dwInputNum: u32,
             cnsSampleTime: u64,
             dwFlags: u32,
             pSample: ?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndPreprocessingPass: *const fn(
             self: *const IWMWriterPreprocess,
             dwInputNum: u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3352,14 +3352,14 @@ pub const IWMWriterPostViewCallback = extern union {
             dwFlags: u32,
             pSample: ?*INSSBuffer,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AllocateForPostView: *const fn(
             self: *const IWMWriterPostViewCallback,
             wStreamNum: u16,
             cbBuffer: u32,
             ppBuffer: ?*?*INSSBuffer,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMStatusCallback: IWMStatusCallback,
@@ -3381,48 +3381,48 @@ pub const IWMWriterPostView = extern union {
             self: *const IWMWriterPostView,
             pCallback: ?*IWMWriterPostViewCallback,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetReceivePostViewSamples: *const fn(
             self: *const IWMWriterPostView,
             wStreamNum: u16,
             fReceivePostViewSamples: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReceivePostViewSamples: *const fn(
             self: *const IWMWriterPostView,
             wStreamNum: u16,
             pfReceivePostViewSamples: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPostViewProps: *const fn(
             self: *const IWMWriterPostView,
             wStreamNumber: u16,
             ppOutput: ?*?*IWMMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPostViewProps: *const fn(
             self: *const IWMWriterPostView,
             wStreamNumber: u16,
             pOutput: ?*IWMMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPostViewFormatCount: *const fn(
             self: *const IWMWriterPostView,
             wStreamNumber: u16,
             pcFormats: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPostViewFormat: *const fn(
             self: *const IWMWriterPostView,
             wStreamNumber: u16,
             dwFormatNumber: u32,
             ppProps: ?*?*IWMMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllocateForPostView: *const fn(
             self: *const IWMWriterPostView,
             wStreamNumber: u16,
             fAllocate: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllocateForPostView: *const fn(
             self: *const IWMWriterPostView,
             wStreamNumber: u16,
             pfAllocate: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3463,23 +3463,23 @@ pub const IWMWriterSink = extern union {
         OnHeader: *const fn(
             self: *const IWMWriterSink,
             pHeader: ?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsRealTime: *const fn(
             self: *const IWMWriterSink,
             pfRealTime: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AllocateDataUnit: *const fn(
             self: *const IWMWriterSink,
             cbDataUnit: u32,
             ppDataUnit: ?*?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDataUnit: *const fn(
             self: *const IWMWriterSink,
             pDataUnit: ?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEndWriting: *const fn(
             self: *const IWMWriterSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3509,12 +3509,12 @@ pub const IWMRegisterCallback = extern union {
             self: *const IWMRegisterCallback,
             pCallback: ?*IWMStatusCallback,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unadvise: *const fn(
             self: *const IWMRegisterCallback,
             pCallback: ?*IWMStatusCallback,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3534,7 +3534,7 @@ pub const IWMWriterFileSink = extern union {
         Open: *const fn(
             self: *const IWMWriterFileSink,
             pwszFilename: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMWriterSink: IWMWriterSink,
@@ -3552,30 +3552,30 @@ pub const IWMWriterFileSink2 = extern union {
         Start: *const fn(
             self: *const IWMWriterFileSink2,
             cnsStartTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IWMWriterFileSink2,
             cnsStopTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsStopped: *const fn(
             self: *const IWMWriterFileSink2,
             pfStopped: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileDuration: *const fn(
             self: *const IWMWriterFileSink2,
             pcnsDuration: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileSize: *const fn(
             self: *const IWMWriterFileSink2,
             pcbFile: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IWMWriterFileSink2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsClosed: *const fn(
             self: *const IWMWriterFileSink2,
             pfClosed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMWriterFileSink: IWMWriterFileSink,
@@ -3612,36 +3612,36 @@ pub const IWMWriterFileSink3 = extern union {
         SetAutoIndexing: *const fn(
             self: *const IWMWriterFileSink3,
             fDoAutoIndexing: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAutoIndexing: *const fn(
             self: *const IWMWriterFileSink3,
             pfAutoIndexing: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetControlStream: *const fn(
             self: *const IWMWriterFileSink3,
             wStreamNumber: u16,
             fShouldControlStartAndStop: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMode: *const fn(
             self: *const IWMWriterFileSink3,
             pdwFileSinkMode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDataUnitEx: *const fn(
             self: *const IWMWriterFileSink3,
             pFileSinkDataUnit: ?*WMT_FILESINK_DATA_UNIT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUnbufferedIO: *const fn(
             self: *const IWMWriterFileSink3,
             fUnbufferedIO: BOOL,
             fRestrictMemUsage: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUnbufferedIO: *const fn(
             self: *const IWMWriterFileSink3,
             pfUnbufferedIO: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CompleteOperations: *const fn(
             self: *const IWMWriterFileSink3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMWriterFileSink2: IWMWriterFileSink2,
@@ -3682,34 +3682,34 @@ pub const IWMWriterNetworkSink = extern union {
         SetMaximumClients: *const fn(
             self: *const IWMWriterNetworkSink,
             dwMaxClients: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaximumClients: *const fn(
             self: *const IWMWriterNetworkSink,
             pdwMaxClients: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNetworkProtocol: *const fn(
             self: *const IWMWriterNetworkSink,
             protocol: WMT_NET_PROTOCOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNetworkProtocol: *const fn(
             self: *const IWMWriterNetworkSink,
             pProtocol: ?*WMT_NET_PROTOCOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHostURL: *const fn(
             self: *const IWMWriterNetworkSink,
             pwszURL: ?PWSTR,
             pcchURL: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Open: *const fn(
             self: *const IWMWriterNetworkSink,
             pdwPortNum: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const IWMWriterNetworkSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IWMWriterNetworkSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMWriterSink: IWMWriterSink,
@@ -3748,12 +3748,12 @@ pub const IWMClientConnections = extern union {
         GetClientCount: *const fn(
             self: *const IWMClientConnections,
             pcClients: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClientProperties: *const fn(
             self: *const IWMClientConnections,
             dwClientNum: u32,
             pClientProperties: ?*WM_CLIENT_PROPERTIES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3779,7 +3779,7 @@ pub const IWMClientConnections2 = extern union {
             pcchPort: ?*u32,
             pwszDNSName: [*:0]u16,
             pcchDNSName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMClientConnections: IWMClientConnections,
@@ -3797,94 +3797,94 @@ pub const IWMReaderAdvanced = extern union {
         SetUserProvidedClock: *const fn(
             self: *const IWMReaderAdvanced,
             fUserClock: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUserProvidedClock: *const fn(
             self: *const IWMReaderAdvanced,
             pfUserClock: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeliverTime: *const fn(
             self: *const IWMReaderAdvanced,
             cnsTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetManualStreamSelection: *const fn(
             self: *const IWMReaderAdvanced,
             fSelection: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetManualStreamSelection: *const fn(
             self: *const IWMReaderAdvanced,
             pfSelection: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStreamsSelected: *const fn(
             self: *const IWMReaderAdvanced,
             cStreamCount: u16,
             pwStreamNumbers: ?*u16,
             pSelections: ?*WMT_STREAM_SELECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamSelected: *const fn(
             self: *const IWMReaderAdvanced,
             wStreamNum: u16,
             pSelection: ?*WMT_STREAM_SELECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetReceiveSelectionCallbacks: *const fn(
             self: *const IWMReaderAdvanced,
             fGetCallbacks: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReceiveSelectionCallbacks: *const fn(
             self: *const IWMReaderAdvanced,
             pfGetCallbacks: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetReceiveStreamSamples: *const fn(
             self: *const IWMReaderAdvanced,
             wStreamNum: u16,
             fReceiveStreamSamples: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReceiveStreamSamples: *const fn(
             self: *const IWMReaderAdvanced,
             wStreamNum: u16,
             pfReceiveStreamSamples: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllocateForOutput: *const fn(
             self: *const IWMReaderAdvanced,
             dwOutputNum: u32,
             fAllocate: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllocateForOutput: *const fn(
             self: *const IWMReaderAdvanced,
             dwOutputNum: u32,
             pfAllocate: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllocateForStream: *const fn(
             self: *const IWMReaderAdvanced,
             wStreamNum: u16,
             fAllocate: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllocateForStream: *const fn(
             self: *const IWMReaderAdvanced,
             dwSreamNum: u16,
             pfAllocate: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatistics: *const fn(
             self: *const IWMReaderAdvanced,
             pStatistics: ?*WM_READER_STATISTICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClientInfo: *const fn(
             self: *const IWMReaderAdvanced,
             pClientInfo: ?*WM_READER_CLIENTINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxOutputSampleSize: *const fn(
             self: *const IWMReaderAdvanced,
             dwOutput: u32,
             pcbMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxStreamSampleSize: *const fn(
             self: *const IWMReaderAdvanced,
             wStream: u16,
             pcbMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyLateDelivery: *const fn(
             self: *const IWMReaderAdvanced,
             cnsLateness: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3958,42 +3958,42 @@ pub const IWMReaderAdvanced2 = extern union {
         SetPlayMode: *const fn(
             self: *const IWMReaderAdvanced2,
             Mode: WMT_PLAY_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPlayMode: *const fn(
             self: *const IWMReaderAdvanced2,
             pMode: ?*WMT_PLAY_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferProgress: *const fn(
             self: *const IWMReaderAdvanced2,
             pdwPercent: ?*u32,
             pcnsBuffering: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDownloadProgress: *const fn(
             self: *const IWMReaderAdvanced2,
             pdwPercent: ?*u32,
             pqwBytesDownloaded: ?*u64,
             pcnsDownload: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSaveAsProgress: *const fn(
             self: *const IWMReaderAdvanced2,
             pdwPercent: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveFileAs: *const fn(
             self: *const IWMReaderAdvanced2,
             pwszFilename: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProtocolName: *const fn(
             self: *const IWMReaderAdvanced2,
             pwszProtocol: [*:0]u16,
             pcchProtocol: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartAtMarker: *const fn(
             self: *const IWMReaderAdvanced2,
             wMarkerIndex: u16,
             cnsDuration: u64,
             fRate: f32,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputSetting: *const fn(
             self: *const IWMReaderAdvanced2,
             dwOutputNum: u32,
@@ -4001,7 +4001,7 @@ pub const IWMReaderAdvanced2 = extern union {
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputSetting: *const fn(
             self: *const IWMReaderAdvanced2,
             dwOutputNum: u32,
@@ -4009,30 +4009,30 @@ pub const IWMReaderAdvanced2 = extern union {
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Preroll: *const fn(
             self: *const IWMReaderAdvanced2,
             cnsStart: u64,
             cnsDuration: u64,
             fRate: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLogClientID: *const fn(
             self: *const IWMReaderAdvanced2,
             fLogClientID: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLogClientID: *const fn(
             self: *const IWMReaderAdvanced2,
             pfLogClientID: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopBuffering: *const fn(
             self: *const IWMReaderAdvanced2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenStream: *const fn(
             self: *const IWMReaderAdvanced2,
             pStream: ?*IStream,
             pCallback: ?*IWMReaderCallback,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMReaderAdvanced: IWMReaderAdvanced,
@@ -4091,7 +4091,7 @@ pub const IWMReaderAdvanced3 = extern union {
         base: IWMReaderAdvanced2.VTable,
         StopNetStreaming: *const fn(
             self: *const IWMReaderAdvanced3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartAtPosition: *const fn(
             self: *const IWMReaderAdvanced3,
             wStreamNum: u16,
@@ -4100,7 +4100,7 @@ pub const IWMReaderAdvanced3 = extern union {
             dwOffsetFormat: WMT_OFFSET_FORMAT,
             fRate: f32,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMReaderAdvanced2: IWMReaderAdvanced2,
@@ -4123,43 +4123,43 @@ pub const IWMReaderAdvanced4 = extern union {
             self: *const IWMReaderAdvanced4,
             dwOutputNum: u32,
             pwLanguageCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLanguage: *const fn(
             self: *const IWMReaderAdvanced4,
             dwOutputNum: u32,
             wLanguage: u16,
             pwszLanguageString: [*:0]u16,
             pcchLanguageStringLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxSpeedFactor: *const fn(
             self: *const IWMReaderAdvanced4,
             pdblFactor: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUsingFastCache: *const fn(
             self: *const IWMReaderAdvanced4,
             pfUsingFastCache: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddLogParam: *const fn(
             self: *const IWMReaderAdvanced4,
             wszNameSpace: ?[*:0]const u16,
             wszName: ?[*:0]const u16,
             wszValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendLogParams: *const fn(
             self: *const IWMReaderAdvanced4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CanSaveFileAs: *const fn(
             self: *const IWMReaderAdvanced4,
             pfCanSave: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelSaveFileAs: *const fn(
             self: *const IWMReaderAdvanced4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetURL: *const fn(
             self: *const IWMReaderAdvanced4,
             pwszURL: [*:0]u16,
             pcchURL: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMReaderAdvanced3: IWMReaderAdvanced3,
@@ -4204,7 +4204,7 @@ pub const IWMReaderAdvanced5 = extern union {
             self: *const IWMReaderAdvanced5,
             dwOutputNum: u32,
             pHook: ?*IWMPlayerHook,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMReaderAdvanced4: IWMReaderAdvanced4,
@@ -4230,7 +4230,7 @@ pub const IWMReaderAdvanced6 = extern union {
             dwFlags: u32,
             pbInitializationVector: [*:0]u8,
             pcbInitializationVector: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMReaderAdvanced5: IWMReaderAdvanced5,
@@ -4251,7 +4251,7 @@ pub const IWMPlayerHook = extern union {
         base: IUnknown.VTable,
         PreDecode: *const fn(
             self: *const IWMPlayerHook,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4274,7 +4274,7 @@ pub const IWMReaderAllocatorEx = extern union {
             cnsSampleTime: u64,
             cnsSampleDuration: u64,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AllocateForOutputEx: *const fn(
             self: *const IWMReaderAllocatorEx,
             dwOutputNum: u32,
@@ -4284,7 +4284,7 @@ pub const IWMReaderAllocatorEx = extern union {
             cnsSampleTime: u64,
             cnsSampleDuration: u64,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4305,7 +4305,7 @@ pub const IWMReaderTypeNegotiation = extern union {
             self: *const IWMReaderTypeNegotiation,
             dwOutputNum: u32,
             pOutput: ?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4327,39 +4327,39 @@ pub const IWMReaderCallbackAdvanced = extern union {
             dwFlags: u32,
             pSample: ?*INSSBuffer,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTime: *const fn(
             self: *const IWMReaderCallbackAdvanced,
             cnsCurrentTime: u64,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnStreamSelection: *const fn(
             self: *const IWMReaderCallbackAdvanced,
             wStreamCount: u16,
             pStreamNumbers: ?*u16,
             pSelections: ?*WMT_STREAM_SELECTION,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnOutputPropsChanged: *const fn(
             self: *const IWMReaderCallbackAdvanced,
             dwOutputNum: u32,
             pMediaType: ?*WM_MEDIA_TYPE,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AllocateForStream: *const fn(
             self: *const IWMReaderCallbackAdvanced,
             wStreamNum: u16,
             cbBuffer: u32,
             ppBuffer: ?*?*INSSBuffer,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AllocateForOutput: *const fn(
             self: *const IWMReaderCallbackAdvanced,
             dwOutputNum: u32,
             cbBuffer: u32,
             ppBuffer: ?*?*INSSBuffer,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4392,37 +4392,37 @@ pub const IWMDRMReader = extern union {
         AcquireLicense: *const fn(
             self: *const IWMDRMReader,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelLicenseAcquisition: *const fn(
             self: *const IWMDRMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Individualize: *const fn(
             self: *const IWMDRMReader,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelIndividualization: *const fn(
             self: *const IWMDRMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MonitorLicenseAcquisition: *const fn(
             self: *const IWMDRMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelMonitorLicenseAcquisition: *const fn(
             self: *const IWMDRMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDRMProperty: *const fn(
             self: *const IWMDRMReader,
             pwstrName: ?[*:0]const u16,
             dwType: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDRMProperty: *const fn(
             self: *const IWMDRMReader,
             pwstrName: ?[*:0]const u16,
             pdwType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4496,22 +4496,22 @@ pub const IWMDRMReader2 = extern union {
         SetEvaluateOutputLevelLicenses: *const fn(
             self: *const IWMDRMReader2,
             fEvaluate: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPlayOutputLevels: *const fn(
             self: *const IWMDRMReader2,
             pPlayOPL: [*]DRM_PLAY_OPL,
             pcbLength: ?*u32,
             pdwMinAppComplianceLevel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCopyOutputLevels: *const fn(
             self: *const IWMDRMReader2,
             pCopyOPL: [*]DRM_COPY_OPL,
             pcbLength: ?*u32,
             pdwMinAppComplianceLevel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TryNextLicense: *const fn(
             self: *const IWMDRMReader2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDRMReader: IWMDRMReader,
@@ -4540,7 +4540,7 @@ pub const IWMDRMReader3 = extern union {
             self: *const IWMDRMReader3,
             ppGuids: ?*?*Guid,
             pcGuids: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDRMReader2: IWMDRMReader2,
@@ -4562,19 +4562,19 @@ pub const IWMReaderPlaylistBurn = extern union {
             ppwszFilenames: ?*?PWSTR,
             pCallback: ?*IWMStatusCallback,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInitResults: *const fn(
             self: *const IWMReaderPlaylistBurn,
             cFiles: u32,
             phrStati: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const IWMReaderPlaylistBurn,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndPlaylistBurn: *const fn(
             self: *const IWMReaderPlaylistBurn,
             hrBurnResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4600,151 +4600,151 @@ pub const IWMReaderNetworkConfig = extern union {
         GetBufferingTime: *const fn(
             self: *const IWMReaderNetworkConfig,
             pcnsBufferingTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBufferingTime: *const fn(
             self: *const IWMReaderNetworkConfig,
             cnsBufferingTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUDPPortRanges: *const fn(
             self: *const IWMReaderNetworkConfig,
             pRangeArray: [*]WM_PORT_NUMBER_RANGE,
             pcRanges: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUDPPortRanges: *const fn(
             self: *const IWMReaderNetworkConfig,
             pRangeArray: [*]WM_PORT_NUMBER_RANGE,
             cRanges: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProxySettings: *const fn(
             self: *const IWMReaderNetworkConfig,
             pwszProtocol: ?[*:0]const u16,
             pProxySetting: ?*WMT_PROXY_SETTINGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProxySettings: *const fn(
             self: *const IWMReaderNetworkConfig,
             pwszProtocol: ?[*:0]const u16,
             ProxySetting: WMT_PROXY_SETTINGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProxyHostName: *const fn(
             self: *const IWMReaderNetworkConfig,
             pwszProtocol: ?[*:0]const u16,
             pwszHostName: [*:0]u16,
             pcchHostName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProxyHostName: *const fn(
             self: *const IWMReaderNetworkConfig,
             pwszProtocol: ?[*:0]const u16,
             pwszHostName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProxyPort: *const fn(
             self: *const IWMReaderNetworkConfig,
             pwszProtocol: ?[*:0]const u16,
             pdwPort: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProxyPort: *const fn(
             self: *const IWMReaderNetworkConfig,
             pwszProtocol: ?[*:0]const u16,
             dwPort: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProxyExceptionList: *const fn(
             self: *const IWMReaderNetworkConfig,
             pwszProtocol: ?[*:0]const u16,
             pwszExceptionList: [*:0]u16,
             pcchExceptionList: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProxyExceptionList: *const fn(
             self: *const IWMReaderNetworkConfig,
             pwszProtocol: ?[*:0]const u16,
             pwszExceptionList: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProxyBypassForLocal: *const fn(
             self: *const IWMReaderNetworkConfig,
             pwszProtocol: ?[*:0]const u16,
             pfBypassForLocal: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProxyBypassForLocal: *const fn(
             self: *const IWMReaderNetworkConfig,
             pwszProtocol: ?[*:0]const u16,
             fBypassForLocal: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetForceRerunAutoProxyDetection: *const fn(
             self: *const IWMReaderNetworkConfig,
             pfForceRerunDetection: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetForceRerunAutoProxyDetection: *const fn(
             self: *const IWMReaderNetworkConfig,
             fForceRerunDetection: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnableMulticast: *const fn(
             self: *const IWMReaderNetworkConfig,
             pfEnableMulticast: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnableMulticast: *const fn(
             self: *const IWMReaderNetworkConfig,
             fEnableMulticast: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnableHTTP: *const fn(
             self: *const IWMReaderNetworkConfig,
             pfEnableHTTP: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnableHTTP: *const fn(
             self: *const IWMReaderNetworkConfig,
             fEnableHTTP: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnableUDP: *const fn(
             self: *const IWMReaderNetworkConfig,
             pfEnableUDP: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnableUDP: *const fn(
             self: *const IWMReaderNetworkConfig,
             fEnableUDP: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnableTCP: *const fn(
             self: *const IWMReaderNetworkConfig,
             pfEnableTCP: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnableTCP: *const fn(
             self: *const IWMReaderNetworkConfig,
             fEnableTCP: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetProtocolRollover: *const fn(
             self: *const IWMReaderNetworkConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConnectionBandwidth: *const fn(
             self: *const IWMReaderNetworkConfig,
             pdwConnectionBandwidth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConnectionBandwidth: *const fn(
             self: *const IWMReaderNetworkConfig,
             dwConnectionBandwidth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumProtocolsSupported: *const fn(
             self: *const IWMReaderNetworkConfig,
             pcProtocols: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSupportedProtocolName: *const fn(
             self: *const IWMReaderNetworkConfig,
             dwProtocolNum: u32,
             pwszProtocolName: [*:0]u16,
             pcchProtocolName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddLoggingUrl: *const fn(
             self: *const IWMReaderNetworkConfig,
             pwszUrl: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLoggingUrl: *const fn(
             self: *const IWMReaderNetworkConfig,
             dwIndex: u32,
             pwszUrl: [*:0]u16,
             pcchUrl: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLoggingUrlCount: *const fn(
             self: *const IWMReaderNetworkConfig,
             pdwUrlCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetLoggingUrlList: *const fn(
             self: *const IWMReaderNetworkConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4857,55 +4857,55 @@ pub const IWMReaderNetworkConfig2 = extern union {
         GetEnableContentCaching: *const fn(
             self: *const IWMReaderNetworkConfig2,
             pfEnableContentCaching: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnableContentCaching: *const fn(
             self: *const IWMReaderNetworkConfig2,
             fEnableContentCaching: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnableFastCache: *const fn(
             self: *const IWMReaderNetworkConfig2,
             pfEnableFastCache: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnableFastCache: *const fn(
             self: *const IWMReaderNetworkConfig2,
             fEnableFastCache: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAcceleratedStreamingDuration: *const fn(
             self: *const IWMReaderNetworkConfig2,
             pcnsAccelDuration: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAcceleratedStreamingDuration: *const fn(
             self: *const IWMReaderNetworkConfig2,
             cnsAccelDuration: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAutoReconnectLimit: *const fn(
             self: *const IWMReaderNetworkConfig2,
             pdwAutoReconnectLimit: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAutoReconnectLimit: *const fn(
             self: *const IWMReaderNetworkConfig2,
             dwAutoReconnectLimit: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnableResends: *const fn(
             self: *const IWMReaderNetworkConfig2,
             pfEnableResends: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnableResends: *const fn(
             self: *const IWMReaderNetworkConfig2,
             fEnableResends: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnableThinning: *const fn(
             self: *const IWMReaderNetworkConfig2,
             pfEnableThinning: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnableThinning: *const fn(
             self: *const IWMReaderNetworkConfig2,
             fEnableThinning: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxNetPacketSize: *const fn(
             self: *const IWMReaderNetworkConfig2,
             pdwMaxNetPacketSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMReaderNetworkConfig: IWMReaderNetworkConfig,
@@ -4959,17 +4959,17 @@ pub const IWMReaderStreamClock = extern union {
         GetTime: *const fn(
             self: *const IWMReaderStreamClock,
             pcnsNow: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTimer: *const fn(
             self: *const IWMReaderStreamClock,
             cnsWhen: u64,
             pvParam: ?*anyopaque,
             pdwTimerId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         KillTimer: *const fn(
             self: *const IWMReaderStreamClock,
             dwTimerId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4994,10 +4994,10 @@ pub const IWMIndexer = extern union {
             pwszURL: ?[*:0]const u16,
             pCallback: ?*IWMStatusCallback,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const IWMIndexer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5020,7 +5020,7 @@ pub const IWMIndexer2 = extern union {
             nIndexerType: WMT_INDEXER_TYPE,
             pvInterval: ?*anyopaque,
             pvIndexType: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMIndexer: IWMIndexer,
@@ -5040,10 +5040,10 @@ pub const IWMLicenseBackup = extern union {
             self: *const IWMLicenseBackup,
             dwFlags: u32,
             pCallback: ?*IWMStatusCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelLicenseBackup: *const fn(
             self: *const IWMLicenseBackup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5065,10 +5065,10 @@ pub const IWMLicenseRestore = extern union {
             self: *const IWMLicenseRestore,
             dwFlags: u32,
             pCallback: ?*IWMStatusCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelLicenseRestore: *const fn(
             self: *const IWMLicenseRestore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5089,7 +5089,7 @@ pub const IWMBackupRestoreProps = extern union {
         GetPropCount: *const fn(
             self: *const IWMBackupRestoreProps,
             pcProps: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropByIndex: *const fn(
             self: *const IWMBackupRestoreProps,
             wIndex: u16,
@@ -5098,28 +5098,28 @@ pub const IWMBackupRestoreProps = extern union {
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropByName: *const fn(
             self: *const IWMBackupRestoreProps,
             pszName: ?[*:0]const u16,
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProp: *const fn(
             self: *const IWMBackupRestoreProps,
             pszName: ?[*:0]const u16,
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveProp: *const fn(
             self: *const IWMBackupRestoreProps,
             pcwszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllProps: *const fn(
             self: *const IWMBackupRestoreProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5152,20 +5152,20 @@ pub const IWMCodecInfo = extern union {
             self: *const IWMCodecInfo,
             guidType: ?*const Guid,
             pcCodecs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodecFormatCount: *const fn(
             self: *const IWMCodecInfo,
             guidType: ?*const Guid,
             dwCodecIndex: u32,
             pcFormat: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodecFormat: *const fn(
             self: *const IWMCodecInfo,
             guidType: ?*const Guid,
             dwCodecIndex: u32,
             dwFormatIndex: u32,
             ppIStreamConfig: ?*?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5191,7 +5191,7 @@ pub const IWMCodecInfo2 = extern union {
             dwCodecIndex: u32,
             wszName: [*:0]u16,
             pcchName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodecFormatDesc: *const fn(
             self: *const IWMCodecInfo2,
             guidType: ?*const Guid,
@@ -5200,7 +5200,7 @@ pub const IWMCodecInfo2 = extern union {
             ppIStreamConfig: ?*?*IWMStreamConfig,
             wszDesc: [*:0]u16,
             pcchDesc: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMCodecInfo: IWMCodecInfo,
@@ -5227,7 +5227,7 @@ pub const IWMCodecInfo3 = extern union {
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodecProp: *const fn(
             self: *const IWMCodecInfo3,
             guidType: ?*const Guid,
@@ -5236,7 +5236,7 @@ pub const IWMCodecInfo3 = extern union {
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCodecEnumerationSetting: *const fn(
             self: *const IWMCodecInfo3,
             guidType: ?*const Guid,
@@ -5245,7 +5245,7 @@ pub const IWMCodecInfo3 = extern union {
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             dwSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodecEnumerationSetting: *const fn(
             self: *const IWMCodecInfo3,
             guidType: ?*const Guid,
@@ -5254,7 +5254,7 @@ pub const IWMCodecInfo3 = extern union {
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMCodecInfo2: IWMCodecInfo2,
@@ -5282,18 +5282,18 @@ pub const IWMLanguageList = extern union {
         GetLanguageCount: *const fn(
             self: *const IWMLanguageList,
             pwCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLanguageDetails: *const fn(
             self: *const IWMLanguageList,
             wIndex: u16,
             pwszLanguageString: [*:0]u16,
             pcchLanguageStringLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddLanguageByRFC1766String: *const fn(
             self: *const IWMLanguageList,
             pwszLanguageString: ?PWSTR,
             pwIndex: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5318,13 +5318,13 @@ pub const IWMWriterPushSink = extern union {
             pwszURL: ?[*:0]const u16,
             pwszTemplateURL: ?[*:0]const u16,
             fAutoDestroy: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const IWMWriterPushSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndSession: *const fn(
             self: *const IWMWriterPushSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMWriterSink: IWMWriterSink,
@@ -5353,28 +5353,28 @@ pub const IWMDeviceRegistration = extern union {
             cbCertificate: u32,
             SerialNumber: DRM_VAL16,
             ppDevice: ?*?*IWMRegisteredDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterDevice: *const fn(
             self: *const IWMDeviceRegistration,
             dwRegisterType: u32,
             pbCertificate: [*:0]u8,
             cbCertificate: u32,
             SerialNumber: DRM_VAL16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegistrationStats: *const fn(
             self: *const IWMDeviceRegistration,
             dwRegisterType: u32,
             pcRegisteredDevices: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFirstRegisteredDevice: *const fn(
             self: *const IWMDeviceRegistration,
             dwRegisterType: u32,
             ppDevice: ?*?*IWMRegisteredDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextRegisteredDevice: *const fn(
             self: *const IWMDeviceRegistration,
             ppDevice: ?*?*IWMRegisteredDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegisteredDeviceByID: *const fn(
             self: *const IWMDeviceRegistration,
             dwRegisterType: u32,
@@ -5382,7 +5382,7 @@ pub const IWMDeviceRegistration = extern union {
             cbCertificate: u32,
             SerialNumber: DRM_VAL16,
             ppDevice: ?*?*IWMRegisteredDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5414,61 +5414,61 @@ pub const IWMRegisteredDevice = extern union {
         GetDeviceSerialNumber: *const fn(
             self: *const IWMRegisteredDevice,
             pSerialNumber: ?*DRM_VAL16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceCertificate: *const fn(
             self: *const IWMRegisteredDevice,
             ppCertificate: ?*?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceType: *const fn(
             self: *const IWMRegisteredDevice,
             pdwType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeCount: *const fn(
             self: *const IWMRegisteredDevice,
             pcAttributes: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeByIndex: *const fn(
             self: *const IWMRegisteredDevice,
             dwIndex: u32,
             pbstrName: ?*?BSTR,
             pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeByName: *const fn(
             self: *const IWMRegisteredDevice,
             bstrName: ?BSTR,
             pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAttributeByName: *const fn(
             self: *const IWMRegisteredDevice,
             bstrName: ?BSTR,
             bstrValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Approve: *const fn(
             self: *const IWMRegisteredDevice,
             fApprove: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsValid: *const fn(
             self: *const IWMRegisteredDevice,
             pfValid: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsApproved: *const fn(
             self: *const IWMRegisteredDevice,
             pfApproved: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsWmdrmCompliant: *const fn(
             self: *const IWMRegisteredDevice,
             pfCompliant: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsOpened: *const fn(
             self: *const IWMRegisteredDevice,
             pfOpened: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Open: *const fn(
             self: *const IWMRegisteredDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IWMRegisteredDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5532,7 +5532,7 @@ pub const IWMProximityDetection = extern union {
             ppRegistrationResponseMsg: ?*?*INSSBuffer,
             pCallback: ?*IWMStatusCallback,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5553,7 +5553,7 @@ pub const IWMDRMMessageParser = extern union {
             cbRegistrationReqMsg: u32,
             ppDeviceCert: ?*?*INSSBuffer,
             pDeviceSerialNumber: ?*DRM_VAL16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ParseLicenseRequestMsg: *const fn(
             self: *const IWMDRMMessageParser,
             pbLicenseRequestMsg: [*:0]u8,
@@ -5561,7 +5561,7 @@ pub const IWMDRMMessageParser = extern union {
             ppDeviceCert: ?*?*INSSBuffer,
             pDeviceSerialNumber: ?*DRM_VAL16,
             pbstrAction: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5587,19 +5587,19 @@ pub const IWMDRMTranscryptor = extern union {
             ppLicenseResponseMsg: ?*?*INSSBuffer,
             pCallback: ?*IWMStatusCallback,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Seek: *const fn(
             self: *const IWMDRMTranscryptor,
             hnsTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Read: *const fn(
             self: *const IWMDRMTranscryptor,
             pbData: ?*u8,
             pcbData: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IWMDRMTranscryptor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5628,19 +5628,19 @@ pub const IWMDRMTranscryptor2 = extern union {
             cnsDuration: u64,
             flRate: f32,
             fIncludeFileHeader: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ZeroAdjustTimestamps: *const fn(
             self: *const IWMDRMTranscryptor2,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSeekStartTime: *const fn(
             self: *const IWMDRMTranscryptor2,
             pcnsTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDuration: *const fn(
             self: *const IWMDRMTranscryptor2,
             pcnsDuration: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDRMTranscryptor: IWMDRMTranscryptor,
@@ -5667,7 +5667,7 @@ pub const IWMDRMTranscryptionManager = extern union {
         CreateTranscryptor: *const fn(
             self: *const IWMDRMTranscryptionManager,
             ppTranscryptor: ?*?*IWMDRMTranscryptor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5685,13 +5685,13 @@ pub const IWMWatermarkInfo = extern union {
             self: *const IWMWatermarkInfo,
             wmetType: WMT_WATERMARK_ENTRY_TYPE,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWatermarkEntry: *const fn(
             self: *const IWMWatermarkInfo,
             wmetType: WMT_WATERMARK_ENTRY_TYPE,
             dwEntryNum: u32,
             pEntry: ?*WMT_WATERMARK_ENTRY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5713,12 +5713,12 @@ pub const IWMReaderAccelerator = extern union {
             dwOutputNum: u32,
             riid: ?*const Guid,
             ppvCodecInterface: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Notify: *const fn(
             self: *const IWMReaderAccelerator,
             dwOutputNum: u32,
             pSubtype: ?*WM_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5739,14 +5739,14 @@ pub const IWMReaderTimecode = extern union {
             self: *const IWMReaderTimecode,
             wStreamNum: u16,
             pwRangeCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTimecodeRangeBounds: *const fn(
             self: *const IWMReaderTimecode,
             wStreamNum: u16,
             wRangeNum: u16,
             pStartTimecode: ?*u32,
             pEndTimecode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5767,23 +5767,23 @@ pub const IWMAddressAccess = extern union {
             self: *const IWMAddressAccess,
             aeType: WM_AETYPE,
             pcEntries: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAccessEntry: *const fn(
             self: *const IWMAddressAccess,
             aeType: WM_AETYPE,
             dwEntryNum: u32,
             pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAccessEntry: *const fn(
             self: *const IWMAddressAccess,
             aeType: WM_AETYPE,
             pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAccessEntry: *const fn(
             self: *const IWMAddressAccess,
             aeType: WM_AETYPE,
             dwEntryNum: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5812,13 +5812,13 @@ pub const IWMAddressAccess2 = extern union {
             dwEntryNum: u32,
             pbstrAddress: ?*?BSTR,
             pbstrMask: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAccessEntryEx: *const fn(
             self: *const IWMAddressAccess2,
             aeType: WM_AETYPE,
             bstrAddress: ?BSTR,
             bstrMask: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMAddressAccess: IWMAddressAccess,
@@ -5839,7 +5839,7 @@ pub const IWMImageInfo = extern union {
         GetImageCount: *const fn(
             self: *const IWMImageInfo,
             pcImages: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImage: *const fn(
             self: *const IWMImageInfo,
             wIndex: u32,
@@ -5850,7 +5850,7 @@ pub const IWMImageInfo = extern union {
             pImageType: ?*u16,
             pcbImageData: ?*u32,
             pbImageData: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5875,14 +5875,14 @@ pub const IWMLicenseRevocationAgent = extern union {
             dwChallengeLength: u32,
             pChallengeOutput: ?*u8,
             pdwChallengeOutputLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessLRB: *const fn(
             self: *const IWMLicenseRevocationAgent,
             pSignedLRB: ?*u8,
             dwSignedLRBLength: u32,
             pSignedACK: ?*u8,
             pdwSignedACKLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5903,19 +5903,19 @@ pub const IWMAuthorizer = extern union {
         GetCertCount: *const fn(
             self: *const IWMAuthorizer,
             pcCerts: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCert: *const fn(
             self: *const IWMAuthorizer,
             dwIndex: u32,
             ppbCertData: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSharedData: *const fn(
             self: *const IWMAuthorizer,
             dwCertIndex: u32,
             pbSharedData: ?*const u8,
             pbCert: ?*u8,
             ppbSharedData: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5939,49 +5939,49 @@ pub const IWMSecureChannel = extern union {
         WMSC_AddCertificate: *const fn(
             self: *const IWMSecureChannel,
             pCert: ?*IWMAuthorizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WMSC_AddSignature: *const fn(
             self: *const IWMSecureChannel,
             pbCertSig: ?*u8,
             cbCertSig: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WMSC_Connect: *const fn(
             self: *const IWMSecureChannel,
             pOtherSide: ?*IWMSecureChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WMSC_IsConnected: *const fn(
             self: *const IWMSecureChannel,
             pfIsConnected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WMSC_Disconnect: *const fn(
             self: *const IWMSecureChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WMSC_GetValidCertificate: *const fn(
             self: *const IWMSecureChannel,
             ppbCertificate: ?*?*u8,
             pdwSignature: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WMSC_Encrypt: *const fn(
             self: *const IWMSecureChannel,
             pbData: ?*u8,
             cbData: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WMSC_Decrypt: *const fn(
             self: *const IWMSecureChannel,
             pbData: ?*u8,
             cbData: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WMSC_Lock: *const fn(
             self: *const IWMSecureChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WMSC_Unlock: *const fn(
             self: *const IWMSecureChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WMSC_SetSharedData: *const fn(
             self: *const IWMSecureChannel,
             dwCertIndex: u32,
             pbSharedData: ?*const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMAuthorizer: IWMAuthorizer,
@@ -6030,7 +6030,7 @@ pub const IWMGetSecureChannel = extern union {
         GetPeerSecureChannelInterface: *const fn(
             self: *const IWMGetSecureChannel,
             ppPeer: ?*?*IWMSecureChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6046,7 +6046,7 @@ pub const INSNetSourceCreator = extern union {
         base: IUnknown.VTable,
         Initialize: *const fn(
             self: *const INSNetSourceCreator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateNetSource: *const fn(
             self: *const INSNetSourceCreator,
             pszStreamName: ?[*:0]const u16,
@@ -6055,34 +6055,34 @@ pub const INSNetSourceCreator = extern union {
             pUserContext: ?*IUnknown,
             pCallback: ?*IUnknown,
             qwContext: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNetSourceProperties: *const fn(
             self: *const INSNetSourceCreator,
             pszStreamName: ?[*:0]const u16,
             ppPropertiesNode: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNetSourceSharedNamespace: *const fn(
             self: *const INSNetSourceCreator,
             ppSharedNamespace: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNetSourceAdminInterface: *const fn(
             self: *const INSNetSourceCreator,
             pszStreamName: ?[*:0]const u16,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumProtocolsSupported: *const fn(
             self: *const INSNetSourceCreator,
             pcProtocols: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProtocolName: *const fn(
             self: *const INSNetSourceCreator,
             dwProtocolNum: u32,
             pwszProtocolName: ?PWSTR,
             pcchProtocolName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const INSNetSourceCreator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6121,7 +6121,7 @@ pub const IWMPlayerTimestampHook = extern union {
             self: *const IWMPlayerTimestampHook,
             rtIn: i64,
             prtOut: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6150,11 +6150,11 @@ pub const IWMSInternalAdminNetSource = extern union {
             pNamespaceNode: ?*IUnknown,
             pNetSourceCreator: ?*INSNetSourceCreator,
             fEmbeddedInServer: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNetSourceCreator: *const fn(
             self: *const IWMSInternalAdminNetSource,
             ppNetSourceCreator: ?*?*INSNetSourceCreator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCredentials: *const fn(
             self: *const IWMSInternalAdminNetSource,
             bstrRealm: ?BSTR,
@@ -6162,26 +6162,26 @@ pub const IWMSInternalAdminNetSource = extern union {
             bstrPassword: ?BSTR,
             fPersist: BOOL,
             fConfirmedGood: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCredentials: *const fn(
             self: *const IWMSInternalAdminNetSource,
             bstrRealm: ?BSTR,
             pbstrName: ?*?BSTR,
             pbstrPassword: ?*?BSTR,
             pfConfirmedGood: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteCredentials: *const fn(
             self: *const IWMSInternalAdminNetSource,
             bstrRealm: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCredentialFlags: *const fn(
             self: *const IWMSInternalAdminNetSource,
             lpdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCredentialFlags: *const fn(
             self: *const IWMSInternalAdminNetSource,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindProxyForURL: *const fn(
             self: *const IWMSInternalAdminNetSource,
             bstrProtocol: ?BSTR,
@@ -6190,21 +6190,21 @@ pub const IWMSInternalAdminNetSource = extern union {
             pbstrProxyServer: ?*?BSTR,
             pdwProxyPort: ?*u32,
             pdwProxyContext: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterProxyFailure: *const fn(
             self: *const IWMSInternalAdminNetSource,
             hrParam: HRESULT,
             dwProxyContext: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShutdownProxyContext: *const fn(
             self: *const IWMSInternalAdminNetSource,
             dwProxyContext: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUsingIE: *const fn(
             self: *const IWMSInternalAdminNetSource,
             dwProxyContext: u32,
             pfIsUsingIE: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6257,7 +6257,7 @@ pub const IWMSInternalAdminNetSource2 = extern union {
             bstrPassword: ?BSTR,
             fPersist: BOOL,
             fConfirmedGood: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCredentialsEx: *const fn(
             self: *const IWMSInternalAdminNetSource2,
             bstrRealm: ?BSTR,
@@ -6267,13 +6267,13 @@ pub const IWMSInternalAdminNetSource2 = extern union {
             pbstrName: ?*?BSTR,
             pbstrPassword: ?*?BSTR,
             pfConfirmedGood: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteCredentialsEx: *const fn(
             self: *const IWMSInternalAdminNetSource2,
             bstrRealm: ?BSTR,
             bstrUrl: ?BSTR,
             fProxy: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindProxyForURLEx: *const fn(
             self: *const IWMSInternalAdminNetSource2,
             bstrProtocol: ?BSTR,
@@ -6283,7 +6283,7 @@ pub const IWMSInternalAdminNetSource2 = extern union {
             pbstrProxyServer: ?*?BSTR,
             pdwProxyPort: ?*u32,
             pdwProxyContext: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6309,7 +6309,7 @@ pub const IWMSInternalAdminNetSource3 = extern union {
         GetNetSourceCreator2: *const fn(
             self: *const IWMSInternalAdminNetSource3,
             ppNetSourceCreator: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindProxyForURLEx2: *const fn(
             self: *const IWMSInternalAdminNetSource3,
             bstrProtocol: ?BSTR,
@@ -6319,21 +6319,21 @@ pub const IWMSInternalAdminNetSource3 = extern union {
             pbstrProxyServer: ?*?BSTR,
             pdwProxyPort: ?*u32,
             pqwProxyContext: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterProxyFailure2: *const fn(
             self: *const IWMSInternalAdminNetSource3,
             hrParam: HRESULT,
             qwProxyContext: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShutdownProxyContext2: *const fn(
             self: *const IWMSInternalAdminNetSource3,
             qwProxyContext: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUsingIE2: *const fn(
             self: *const IWMSInternalAdminNetSource3,
             qwProxyContext: u64,
             pfIsUsingIE: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCredentialsEx2: *const fn(
             self: *const IWMSInternalAdminNetSource3,
             bstrRealm: ?BSTR,
@@ -6344,7 +6344,7 @@ pub const IWMSInternalAdminNetSource3 = extern union {
             fPersist: BOOL,
             fConfirmedGood: BOOL,
             fClearTextAuthentication: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCredentialsEx2: *const fn(
             self: *const IWMSInternalAdminNetSource3,
             bstrRealm: ?BSTR,
@@ -6355,7 +6355,7 @@ pub const IWMSInternalAdminNetSource3 = extern union {
             pbstrName: ?*?BSTR,
             pbstrPassword: ?*?BSTR,
             pfConfirmedGood: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMSInternalAdminNetSource2: IWMSInternalAdminNetSource2,
@@ -6391,63 +6391,63 @@ pub const IWMSInternalAdminNetSource3 = extern union {
 pub extern "wmvcore" fn WMIsContentProtected(
     pwszFileName: ?[*:0]const u16,
     pfIsProtected: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wmvcore" fn WMCreateWriter(
     pUnkCert: ?*IUnknown,
     ppWriter: ?*?*IWMWriter,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wmvcore" fn WMCreateReader(
     pUnkCert: ?*IUnknown,
     dwRights: u32,
     ppReader: ?*?*IWMReader,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wmvcore" fn WMCreateSyncReader(
     pUnkCert: ?*IUnknown,
     dwRights: u32,
     ppSyncReader: ?*?*IWMSyncReader,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wmvcore" fn WMCreateEditor(
     ppEditor: ?*?*IWMMetadataEditor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wmvcore" fn WMCreateIndexer(
     ppIndexer: ?*?*IWMIndexer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wmvcore" fn WMCreateBackupRestorer(
     pCallback: ?*IUnknown,
     ppBackup: ?*?*IWMLicenseBackup,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wmvcore" fn WMCreateProfileManager(
     ppProfileManager: ?*?*IWMProfileManager,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wmvcore" fn WMCreateWriterFileSink(
     ppSink: ?*?*IWMWriterFileSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wmvcore" fn WMCreateWriterNetworkSink(
     ppSink: ?*?*IWMWriterNetworkSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wmvcore" fn WMCreateWriterPushSink(
     ppSink: ?*?*IWMWriterPushSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

@@ -269,38 +269,38 @@ pub const IXAPO = extern union {
         GetRegistrationProperties: *const fn(
             self: *const IXAPO,
             ppRegistrationProperties: ?*?*XAPO_REGISTRATION_PROPERTIES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsInputFormatSupported: *const fn(
             self: *const IXAPO,
             pOutputFormat: ?*const WAVEFORMATEX,
             pRequestedInputFormat: ?*const WAVEFORMATEX,
             ppSupportedInputFormat: ?*?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsOutputFormatSupported: *const fn(
             self: *const IXAPO,
             pInputFormat: ?*const WAVEFORMATEX,
             pRequestedOutputFormat: ?*const WAVEFORMATEX,
             ppSupportedOutputFormat: ?*?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IXAPO,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*const anyopaque,
             DataByteSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IXAPO,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         LockForProcess: *const fn(
             self: *const IXAPO,
             InputLockedParameterCount: u32,
             pInputLockedParameters: ?[*]const XAPO_LOCKFORPROCESS_PARAMETERS,
             OutputLockedParameterCount: u32,
             pOutputLockedParameters: ?[*]const XAPO_LOCKFORPROCESS_PARAMETERS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockForProcess: *const fn(
             self: *const IXAPO,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Process: *const fn(
             self: *const IXAPO,
             InputProcessParameterCount: u32,
@@ -308,15 +308,15 @@ pub const IXAPO = extern union {
             OutputProcessParameterCount: u32,
             pOutputProcessParameters: ?[*]XAPO_PROCESS_BUFFER_PARAMETERS,
             IsEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CalcInputFrames: *const fn(
             self: *const IXAPO,
             OutputFrameCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         CalcOutputFrames: *const fn(
             self: *const IXAPO,
             InputFrameCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -362,13 +362,13 @@ pub const IXAPOParameters = extern union {
             // TODO: what to do with BytesParamIndex 1?
             pParameters: ?*const anyopaque,
             ParameterByteSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetParameters: *const fn(
             self: *const IXAPOParameters,
             // TODO: what to do with BytesParamIndex 1?
             pParameters: ?*anyopaque,
             ParameterByteSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -533,11 +533,11 @@ pub const IXAudio2 = extern union {
         RegisterForCallbacks: *const fn(
             self: *const IXAudio2,
             pCallback: ?*IXAudio2EngineCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterForCallbacks: *const fn(
             self: *const IXAudio2,
             pCallback: ?*IXAudio2EngineCallback,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CreateSourceVoice: *const fn(
             self: *const IXAudio2,
             ppSourceVoice: ?*?*IXAudio2SourceVoice,
@@ -547,7 +547,7 @@ pub const IXAudio2 = extern union {
             pCallback: ?*IXAudio2VoiceCallback,
             pSendList: ?*const XAUDIO2_VOICE_SENDS,
             pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSubmixVoice: *const fn(
             self: *const IXAudio2,
             ppSubmixVoice: ?*?*IXAudio2SubmixVoice,
@@ -557,7 +557,7 @@ pub const IXAudio2 = extern union {
             ProcessingStage: u32,
             pSendList: ?*const XAUDIO2_VOICE_SENDS,
             pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMasteringVoice: *const fn(
             self: *const IXAudio2,
             ppMasteringVoice: ?*?*IXAudio2MasteringVoice,
@@ -567,26 +567,26 @@ pub const IXAudio2 = extern union {
             szDeviceId: ?[*:0]const u16,
             pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN,
             StreamCategory: AUDIO_STREAM_CATEGORY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartEngine: *const fn(
             self: *const IXAudio2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopEngine: *const fn(
             self: *const IXAudio2,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CommitChanges: *const fn(
             self: *const IXAudio2,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPerformanceData: *const fn(
             self: *const IXAudio2,
             pPerfData: ?*XAUDIO2_PERFORMANCE_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetDebugConfiguration: *const fn(
             self: *const IXAudio2,
             pDebugConfiguration: ?*const XAUDIO2_DEBUG_CONFIGURATION,
             pReserved: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -631,11 +631,11 @@ pub const IXAudio2Extension = extern union {
             self: *const IXAudio2Extension,
             quantumNumerator: ?*u32,
             quantumDenominator: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetProcessor: *const fn(
             self: *const IXAudio2Extension,
             processor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -652,30 +652,30 @@ pub const IXAudio2Voice = extern union {
         GetVoiceDetails: *const fn(
             self: *const IXAudio2Voice,
             pVoiceDetails: ?*XAUDIO2_VOICE_DETAILS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetOutputVoices: *const fn(
             self: *const IXAudio2Voice,
             pSendList: ?*const XAUDIO2_VOICE_SENDS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEffectChain: *const fn(
             self: *const IXAudio2Voice,
             pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableEffect: *const fn(
             self: *const IXAudio2Voice,
             EffectIndex: u32,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableEffect: *const fn(
             self: *const IXAudio2Voice,
             EffectIndex: u32,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectState: *const fn(
             self: *const IXAudio2Voice,
             EffectIndex: u32,
             pEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetEffectParameters: *const fn(
             self: *const IXAudio2Voice,
             EffectIndex: u32,
@@ -683,54 +683,54 @@ pub const IXAudio2Voice = extern union {
             pParameters: ?*const anyopaque,
             ParametersByteSize: u32,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectParameters: *const fn(
             self: *const IXAudio2Voice,
             EffectIndex: u32,
             // TODO: what to do with BytesParamIndex 2?
             pParameters: ?*anyopaque,
             ParametersByteSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFilterParameters: *const fn(
             self: *const IXAudio2Voice,
             pParameters: ?*const XAUDIO2_FILTER_PARAMETERS,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilterParameters: *const fn(
             self: *const IXAudio2Voice,
             pParameters: ?*XAUDIO2_FILTER_PARAMETERS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetOutputFilterParameters: *const fn(
             self: *const IXAudio2Voice,
             pDestinationVoice: ?*IXAudio2Voice,
             pParameters: ?*const XAUDIO2_FILTER_PARAMETERS,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputFilterParameters: *const fn(
             self: *const IXAudio2Voice,
             pDestinationVoice: ?*IXAudio2Voice,
             pParameters: ?*XAUDIO2_FILTER_PARAMETERS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetVolume: *const fn(
             self: *const IXAudio2Voice,
             Volume: f32,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVolume: *const fn(
             self: *const IXAudio2Voice,
             pVolume: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetChannelVolumes: *const fn(
             self: *const IXAudio2Voice,
             Channels: u32,
             pVolumes: [*]const f32,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelVolumes: *const fn(
             self: *const IXAudio2Voice,
             Channels: u32,
             pVolumes: [*]f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetOutputMatrix: *const fn(
             self: *const IXAudio2Voice,
             pDestinationVoice: ?*IXAudio2Voice,
@@ -738,17 +738,17 @@ pub const IXAudio2Voice = extern union {
             DestinationChannels: u32,
             pLevelMatrix: ?*const f32,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputMatrix: *const fn(
             self: *const IXAudio2Voice,
             pDestinationVoice: ?*IXAudio2Voice,
             SourceChannels: u32,
             DestinationChannels: u32,
             pLevelMatrix: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DestroyVoice: *const fn(
             self: *const IXAudio2Voice,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     pub fn GetVoiceDetails(self: *const IXAudio2Voice, pVoiceDetails: ?*XAUDIO2_VOICE_DETAILS) callconv(.Inline) void {
@@ -817,45 +817,45 @@ pub const IXAudio2SourceVoice = extern union {
             self: *const IXAudio2SourceVoice,
             Flags: u32,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IXAudio2SourceVoice,
             Flags: u32,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SubmitSourceBuffer: *const fn(
             self: *const IXAudio2SourceVoice,
             pBuffer: ?*const XAUDIO2_BUFFER,
             pBufferWMA: ?*const XAUDIO2_BUFFER_WMA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FlushSourceBuffers: *const fn(
             self: *const IXAudio2SourceVoice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Discontinuity: *const fn(
             self: *const IXAudio2SourceVoice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExitLoop: *const fn(
             self: *const IXAudio2SourceVoice,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetState: *const fn(
             self: *const IXAudio2SourceVoice,
             pVoiceState: ?*XAUDIO2_VOICE_STATE,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetFrequencyRatio: *const fn(
             self: *const IXAudio2SourceVoice,
             Ratio: f32,
             OperationSet: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrequencyRatio: *const fn(
             self: *const IXAudio2SourceVoice,
             pRatio: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetSourceSampleRate: *const fn(
             self: *const IXAudio2SourceVoice,
             NewSourceSampleRate: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXAudio2Voice: IXAudio2Voice,
@@ -905,7 +905,7 @@ pub const IXAudio2MasteringVoice = extern union {
         GetChannelMask: *const fn(
             self: *const IXAudio2MasteringVoice,
             pChannelmask: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXAudio2Voice: IXAudio2Voice,
@@ -918,14 +918,14 @@ pub const IXAudio2EngineCallback = extern union {
     pub const VTable = extern struct {
         OnProcessingPassStart: *const fn(
             self: *const IXAudio2EngineCallback,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnProcessingPassEnd: *const fn(
             self: *const IXAudio2EngineCallback,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnCriticalError: *const fn(
             self: *const IXAudio2EngineCallback,
             Error: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     pub fn OnProcessingPassStart(self: *const IXAudio2EngineCallback) callconv(.Inline) void {
@@ -944,30 +944,30 @@ pub const IXAudio2VoiceCallback = extern union {
         OnVoiceProcessingPassStart: *const fn(
             self: *const IXAudio2VoiceCallback,
             BytesRequired: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnVoiceProcessingPassEnd: *const fn(
             self: *const IXAudio2VoiceCallback,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnStreamEnd: *const fn(
             self: *const IXAudio2VoiceCallback,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnBufferStart: *const fn(
             self: *const IXAudio2VoiceCallback,
             pBufferContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnBufferEnd: *const fn(
             self: *const IXAudio2VoiceCallback,
             pBufferContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnLoopEnd: *const fn(
             self: *const IXAudio2VoiceCallback,
             pBufferContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnVoiceError: *const fn(
             self: *const IXAudio2VoiceCallback,
             pBufferContext: ?*anyopaque,
             Error: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     pub fn OnVoiceProcessingPassStart(self: *const IXAudio2VoiceCallback, BytesRequired: u32) callconv(.Inline) void {
@@ -1123,19 +1123,19 @@ pub const IXAPOHrtfParameters = extern union {
         SetSourcePosition: *const fn(
             self: *const IXAPOHrtfParameters,
             position: ?*const HrtfPosition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSourceOrientation: *const fn(
             self: *const IXAPOHrtfParameters,
             orientation: ?*const HrtfOrientation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSourceGain: *const fn(
             self: *const IXAPOHrtfParameters,
             gain: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnvironment: *const fn(
             self: *const IXAPOHrtfParameters,
             environment: HrtfEnvironment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1163,27 +1163,27 @@ pub extern "xaudio2_8" fn CreateFX(
     // TODO: what to do with BytesParamIndex 3?
     pInitDat: ?*const anyopaque,
     InitDataByteSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "xaudio2_8" fn XAudio2CreateWithVersionInfo(
     ppXAudio2: ?*?*IXAudio2,
     Flags: u32,
     XAudio2Processor: u32,
     ntddiVersion: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "xaudio2_8" fn CreateAudioVolumeMeter(
     ppApo: ?*?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "xaudio2_8" fn CreateAudioReverb(
     ppApo: ?*?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "hrtfapo" fn CreateHrtfApo(
     init: ?*const HrtfApoInit,
     xApo: **IXAPO,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

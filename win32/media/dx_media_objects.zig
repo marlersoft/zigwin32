@@ -107,16 +107,16 @@ pub const IMediaBuffer = extern union {
         SetLength: *const fn(
             self: *const IMediaBuffer,
             cbLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxLength: *const fn(
             self: *const IMediaBuffer,
             pcbMaxLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferAndLength: *const fn(
             self: *const IMediaBuffer,
             ppBuffer: ?*?*u8,
             pcbLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -147,92 +147,92 @@ pub const IMediaObject = extern union {
             self: *const IMediaObject,
             pcInputStreams: ?*u32,
             pcOutputStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputStreamInfo: *const fn(
             self: *const IMediaObject,
             dwInputStreamIndex: u32,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputStreamInfo: *const fn(
             self: *const IMediaObject,
             dwOutputStreamIndex: u32,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputType: *const fn(
             self: *const IMediaObject,
             dwInputStreamIndex: u32,
             dwTypeIndex: u32,
             pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputType: *const fn(
             self: *const IMediaObject,
             dwOutputStreamIndex: u32,
             dwTypeIndex: u32,
             pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInputType: *const fn(
             self: *const IMediaObject,
             dwInputStreamIndex: u32,
             pmt: ?*const DMO_MEDIA_TYPE,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputType: *const fn(
             self: *const IMediaObject,
             dwOutputStreamIndex: u32,
             pmt: ?*const DMO_MEDIA_TYPE,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputCurrentType: *const fn(
             self: *const IMediaObject,
             dwInputStreamIndex: u32,
             pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputCurrentType: *const fn(
             self: *const IMediaObject,
             dwOutputStreamIndex: u32,
             pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputSizeInfo: *const fn(
             self: *const IMediaObject,
             dwInputStreamIndex: u32,
             pcbSize: ?*u32,
             pcbMaxLookahead: ?*u32,
             pcbAlignment: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputSizeInfo: *const fn(
             self: *const IMediaObject,
             dwOutputStreamIndex: u32,
             pcbSize: ?*u32,
             pcbAlignment: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputMaxLatency: *const fn(
             self: *const IMediaObject,
             dwInputStreamIndex: u32,
             prtMaxLatency: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInputMaxLatency: *const fn(
             self: *const IMediaObject,
             dwInputStreamIndex: u32,
             rtMaxLatency: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IMediaObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Discontinuity: *const fn(
             self: *const IMediaObject,
             dwInputStreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AllocateStreamingResources: *const fn(
             self: *const IMediaObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FreeStreamingResources: *const fn(
             self: *const IMediaObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputStatus: *const fn(
             self: *const IMediaObject,
             dwInputStreamIndex: u32,
             dwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessInput: *const fn(
             self: *const IMediaObject,
             dwInputStreamIndex: u32,
@@ -240,18 +240,18 @@ pub const IMediaObject = extern union {
             dwFlags: u32,
             rtTimestamp: i64,
             rtTimelength: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessOutput: *const fn(
             self: *const IMediaObject,
             dwFlags: u32,
             cOutputBufferCount: u32,
             pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Lock: *const fn(
             self: *const IMediaObject,
             bLock: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -331,18 +331,18 @@ pub const IEnumDMO = extern union {
             pCLSID: [*]Guid,
             Names: [*]?PWSTR,
             pcItemsFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumDMO,
             cItemsToSkip: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumDMO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumDMO,
             ppEnum: ?*?*IEnumDMO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -379,15 +379,15 @@ pub const IMediaObjectInPlace = extern union {
             pData: ?*u8,
             refTimeStart: i64,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IMediaObjectInPlace,
             ppMediaObject: ?*?*IMediaObjectInPlace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLatency: *const fn(
             self: *const IMediaObjectInPlace,
             pLatencyTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -415,15 +415,15 @@ pub const IDMOQualityControl = extern union {
         SetNow: *const fn(
             self: *const IDMOQualityControl,
             rtNow: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStatus: *const fn(
             self: *const IDMOQualityControl,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IDMOQualityControl,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -452,22 +452,22 @@ pub const IDMOVideoOutputOptimizations = extern union {
             self: *const IDMOVideoOutputOptimizations,
             ulOutputStreamIndex: u32,
             pdwRequestedCapabilities: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOperationMode: *const fn(
             self: *const IDMOVideoOutputOptimizations,
             ulOutputStreamIndex: u32,
             dwEnabledFeatures: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentOperationMode: *const fn(
             self: *const IDMOVideoOutputOptimizations,
             ulOutputStreamIndex: u32,
             pdwEnabledFeatures: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentSampleRequirements: *const fn(
             self: *const IDMOVideoOutputOptimizations,
             ulOutputStreamIndex: u32,
             pdwRequestedFeatures: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -513,12 +513,12 @@ pub extern "msdmo" fn DMORegister(
     pInTypes: ?*const DMO_PARTIAL_MEDIATYPE,
     cOutTypes: u32,
     pOutTypes: ?*const DMO_PARTIAL_MEDIATYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdmo" fn DMOUnregister(
     clsidDMO: ?*const Guid,
     guidCategory: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdmo" fn DMOEnum(
     guidCategory: ?*const Guid,
@@ -528,7 +528,7 @@ pub extern "msdmo" fn DMOEnum(
     cOutTypes: u32,
     pOutTypes: ?*const DMO_PARTIAL_MEDIATYPE,
     ppEnum: ?*?*IEnumDMO,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdmo" fn DMOGetTypes(
     clsidDMO: ?*const Guid,
@@ -538,40 +538,40 @@ pub extern "msdmo" fn DMOGetTypes(
     ulOutputTypesRequested: u32,
     pulOutputTypesSupplied: ?*u32,
     pOutputTypes: ?*DMO_PARTIAL_MEDIATYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdmo" fn DMOGetName(
     clsidDMO: ?*const Guid,
     szName: *[80]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdmo" fn MoInitMediaType(
     pmt: ?*DMO_MEDIA_TYPE,
     cbFormat: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdmo" fn MoFreeMediaType(
     pmt: ?*DMO_MEDIA_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdmo" fn MoCopyMediaType(
     pmtDest: ?*DMO_MEDIA_TYPE,
     pmtSrc: ?*const DMO_MEDIA_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdmo" fn MoCreateMediaType(
     ppmt: ?*?*DMO_MEDIA_TYPE,
     cbFormat: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdmo" fn MoDeleteMediaType(
     pmt: ?*DMO_MEDIA_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdmo" fn MoDuplicateMediaType(
     ppmtDest: ?*?*DMO_MEDIA_TYPE,
     pmtSrc: ?*const DMO_MEDIA_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

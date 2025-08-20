@@ -17,7 +17,7 @@ pub const IInkCommitRequestHandler = extern union {
         base: IUnknown.VTable,
         OnCommitRequested: *const fn(
             self: *const IInkCommitRequestHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -36,24 +36,24 @@ pub const IInkPresenterDesktop = extern union {
             self: *const IInkPresenterDesktop,
             rootVisual: ?*IUnknown,
             device: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCommitRequestHandler: *const fn(
             self: *const IInkPresenterDesktop,
             handler: ?*IInkCommitRequestHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSize: *const fn(
             self: *const IInkPresenterDesktop,
             width: ?*f32,
             height: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSize: *const fn(
             self: *const IInkPresenterDesktop,
             width: f32,
             height: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnHighContrastChanged: *const fn(
             self: *const IInkPresenterDesktop,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -82,7 +82,7 @@ pub const IInkHostWorkItem = extern union {
         base: IUnknown.VTable,
         Invoke: *const fn(
             self: *const IInkHostWorkItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -100,12 +100,12 @@ pub const IInkDesktopHost = extern union {
         QueueWorkItem: *const fn(
             self: *const IInkDesktopHost,
             workItem: ?*IInkHostWorkItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInkPresenter: *const fn(
             self: *const IInkDesktopHost,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAndInitializeInkPresenter: *const fn(
             self: *const IInkDesktopHost,
             rootVisual: ?*IUnknown,
@@ -113,7 +113,7 @@ pub const IInkDesktopHost = extern union {
             height: f32,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -151,7 +151,7 @@ pub const IInkD2DRenderer = extern union {
             pD2D1DeviceContext: ?*IUnknown,
             pInkStrokeIterable: ?*IUnknown,
             fHighContrast: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -170,7 +170,7 @@ pub const IInkD2DRenderer2 = extern union {
             pD2D1DeviceContext: ?*IUnknown,
             pInkStrokeIterable: ?*IUnknown,
             highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

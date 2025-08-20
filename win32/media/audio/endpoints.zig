@@ -19,7 +19,7 @@ pub const IAudioEndpointFormatControl = extern union {
         ResetToDefault: *const fn(
             self: *const IAudioEndpointFormatControl,
             ResetFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -56,19 +56,19 @@ pub const IAudioEndpointOffloadStreamVolume = extern union {
         GetVolumeChannelCount: *const fn(
             self: *const IAudioEndpointOffloadStreamVolume,
             pu32ChannelCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetChannelVolumes: *const fn(
             self: *const IAudioEndpointOffloadStreamVolume,
             u32ChannelCount: u32,
             pf32Volumes: ?*f32,
             u32CurveType: AUDIO_CURVE_TYPE,
             pCurveDuration: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelVolumes: *const fn(
             self: *const IAudioEndpointOffloadStreamVolume,
             u32ChannelCount: u32,
             pf32Volumes: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -92,11 +92,11 @@ pub const IAudioEndpointOffloadStreamMute = extern union {
         SetMute: *const fn(
             self: *const IAudioEndpointOffloadStreamMute,
             bMuted: u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMute: *const fn(
             self: *const IAudioEndpointOffloadStreamMute,
             pbMuted: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -116,12 +116,12 @@ pub const IAudioEndpointOffloadStreamMeter = extern union {
         GetMeterChannelCount: *const fn(
             self: *const IAudioEndpointOffloadStreamMeter,
             pu32ChannelCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMeteringData: *const fn(
             self: *const IAudioEndpointOffloadStreamMeter,
             u32ChannelCount: u32,
             pf32PeakValues: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -141,11 +141,11 @@ pub const IAudioEndpointLastBufferControl = extern union {
         base: IUnknown.VTable,
         IsLastBufferControlSupported: *const fn(
             self: *const IAudioEndpointLastBufferControl,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         ReleaseOutputDataPointerForLastBuffer: *const fn(
             self: *const IAudioEndpointLastBufferControl,
             pConnectionProperty: ?*const APO_CONNECTION_PROPERTY,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -166,11 +166,11 @@ pub const IAudioLfxControl = extern union {
         SetLocalEffectsState: *const fn(
             self: *const IAudioLfxControl,
             bEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocalEffectsState: *const fn(
             self: *const IAudioLfxControl,
             pbEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -193,28 +193,28 @@ pub const IHardwareAudioEngineBase = extern union {
             _pwstrDeviceId: ?PWSTR,
             _uConnectorId: u32,
             _pAvailableConnectorInstanceCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEngineFormat: *const fn(
             self: *const IHardwareAudioEngineBase,
             pDevice: ?*IMMDevice,
             _bRequestDeviceFormat: BOOL,
             _ppwfxFormat: ?*?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEngineDeviceFormat: *const fn(
             self: *const IHardwareAudioEngineBase,
             pDevice: ?*IMMDevice,
             _pwfxFormat: ?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGfxState: *const fn(
             self: *const IHardwareAudioEngineBase,
             pDevice: ?*IMMDevice,
             _bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGfxState: *const fn(
             self: *const IHardwareAudioEngineBase,
             pDevice: ?*IMMDevice,
             _pbEnable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -247,7 +247,7 @@ pub const IAudioEndpointVolumeCallback = extern union {
         OnNotify: *const fn(
             self: *const IAudioEndpointVolumeCallback,
             pNotify: ?*AUDIO_VOLUME_NOTIFICATION_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -265,87 +265,87 @@ pub const IAudioEndpointVolume = extern union {
         RegisterControlChangeNotify: *const fn(
             self: *const IAudioEndpointVolume,
             pNotify: ?*IAudioEndpointVolumeCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterControlChangeNotify: *const fn(
             self: *const IAudioEndpointVolume,
             pNotify: ?*IAudioEndpointVolumeCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelCount: *const fn(
             self: *const IAudioEndpointVolume,
             pnChannelCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMasterVolumeLevel: *const fn(
             self: *const IAudioEndpointVolume,
             fLevelDB: f32,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMasterVolumeLevelScalar: *const fn(
             self: *const IAudioEndpointVolume,
             fLevel: f32,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMasterVolumeLevel: *const fn(
             self: *const IAudioEndpointVolume,
             pfLevelDB: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMasterVolumeLevelScalar: *const fn(
             self: *const IAudioEndpointVolume,
             pfLevel: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetChannelVolumeLevel: *const fn(
             self: *const IAudioEndpointVolume,
             nChannel: u32,
             fLevelDB: f32,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetChannelVolumeLevelScalar: *const fn(
             self: *const IAudioEndpointVolume,
             nChannel: u32,
             fLevel: f32,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelVolumeLevel: *const fn(
             self: *const IAudioEndpointVolume,
             nChannel: u32,
             pfLevelDB: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelVolumeLevelScalar: *const fn(
             self: *const IAudioEndpointVolume,
             nChannel: u32,
             pfLevel: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMute: *const fn(
             self: *const IAudioEndpointVolume,
             bMute: BOOL,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMute: *const fn(
             self: *const IAudioEndpointVolume,
             pbMute: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVolumeStepInfo: *const fn(
             self: *const IAudioEndpointVolume,
             pnStep: ?*u32,
             pnStepCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         VolumeStepUp: *const fn(
             self: *const IAudioEndpointVolume,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         VolumeStepDown: *const fn(
             self: *const IAudioEndpointVolume,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryHardwareSupport: *const fn(
             self: *const IAudioEndpointVolume,
             pdwHardwareSupportMask: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVolumeRange: *const fn(
             self: *const IAudioEndpointVolume,
             pflVolumeMindB: ?*f32,
             pflVolumeMaxdB: ?*f32,
             pflVolumeIncrementdB: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -417,7 +417,7 @@ pub const IAudioEndpointVolumeEx = extern union {
             pflVolumeMindB: ?*f32,
             pflVolumeMaxdB: ?*f32,
             pflVolumeIncrementdB: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAudioEndpointVolume: IAudioEndpointVolume,
@@ -436,20 +436,20 @@ pub const IAudioMeterInformation = extern union {
         GetPeakValue: *const fn(
             self: *const IAudioMeterInformation,
             pfPeak: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMeteringChannelCount: *const fn(
             self: *const IAudioMeterInformation,
             pnChannelCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelsPeakValues: *const fn(
             self: *const IAudioMeterInformation,
             u32ChannelCount: u32,
             afPeakValues: [*]f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryHardwareSupport: *const fn(
             self: *const IAudioMeterInformation,
             pdwHardwareSupportMask: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

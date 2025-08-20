@@ -200,7 +200,7 @@ pub const LPDRVCALLBACK = *const fn(
     dwUser: usize,
     dw1: usize,
     dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const TIMECAPS = extern struct {
     wPeriodMin: u32,
@@ -213,7 +213,7 @@ pub const LPTIMECALLBACK = *const fn(
     dwUser: usize,
     dw1: usize,
     dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IReferenceClock_Value = Guid.initString("56a86897-0ad4-11ce-b03a-0020af0ba770");
@@ -224,25 +224,25 @@ pub const IReferenceClock = extern union {
         GetTime: *const fn(
             self: *const IReferenceClock,
             pTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AdviseTime: *const fn(
             self: *const IReferenceClock,
             baseTime: i64,
             streamTime: i64,
             hEvent: ?HANDLE,
             pdwAdviseCookie: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AdvisePeriodic: *const fn(
             self: *const IReferenceClock,
             startTime: i64,
             periodTime: i64,
             hSemaphore: ?HANDLE,
             pdwAdviseCookie: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unadvise: *const fn(
             self: *const IReferenceClock,
             dwAdviseCookie: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -269,11 +269,11 @@ pub const IReferenceClockTimerControl = extern union {
         SetDefaultTimerResolution: *const fn(
             self: *const IReferenceClockTimerControl,
             timerResolution: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultTimerResolution: *const fn(
             self: *const IReferenceClockTimerControl,
             pTimerResolution: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -321,28 +321,28 @@ pub extern "winmm" fn timeGetSystemTime(
     // TODO: what to do with BytesParamIndex 1?
     pmmt: ?*MMTIME,
     cbmmt: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn timeGetTime(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn timeGetDevCaps(
     // TODO: what to do with BytesParamIndex 1?
     ptc: ?*TIMECAPS,
     cbtc: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn timeBeginPeriod(
     uPeriod: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn timeEndPeriod(
     uPeriod: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winmm" fn timeSetEvent(
     uDelay: u32,
@@ -350,11 +350,11 @@ pub extern "winmm" fn timeSetEvent(
     fptc: ?LPTIMECALLBACK,
     dwUser: usize,
     fuEvent: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winmm" fn timeKillEvent(
     uTimerID: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

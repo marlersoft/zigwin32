@@ -577,54 +577,54 @@ pub const IWCNDevice = extern union {
             Type: WCN_PASSWORD_TYPE,
             dwPasswordLength: u32,
             pbPassword: [*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Connect: *const fn(
             self: *const IWCNDevice,
             pNotify: ?*IWCNConnectNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttribute: *const fn(
             self: *const IWCNDevice,
             AttributeType: WCN_ATTRIBUTE_TYPE,
             dwMaxBufferSize: u32,
             pbBuffer: [*:0]u8,
             pdwBufferUsed: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIntegerAttribute: *const fn(
             self: *const IWCNDevice,
             AttributeType: WCN_ATTRIBUTE_TYPE,
             puInteger: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringAttribute: *const fn(
             self: *const IWCNDevice,
             AttributeType: WCN_ATTRIBUTE_TYPE,
             cchMaxString: u32,
             wszString: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNetworkProfile: *const fn(
             self: *const IWCNDevice,
             cchMaxStringLength: u32,
             wszProfile: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNetworkProfile: *const fn(
             self: *const IWCNDevice,
             pszProfileXml: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVendorExtension: *const fn(
             self: *const IWCNDevice,
             pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
             dwMaxBufferSize: u32,
             pbBuffer: [*:0]u8,
             pdwBufferUsed: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVendorExtension: *const fn(
             self: *const IWCNDevice,
             pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
             cbBuffer: u32,
             pbBuffer: [*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unadvise: *const fn(
             self: *const IWCNDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNFCPasswordParams: *const fn(
             self: *const IWCNDevice,
             Type: WCN_PASSWORD_TYPE,
@@ -635,7 +635,7 @@ pub const IWCNDevice = extern union {
             pbRemotePublicKeyHash: ?[*:0]const u8,
             dwDHKeyBlobLength: u32,
             pbDHKeyBlob: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -682,11 +682,11 @@ pub const IWCNConnectNotify = extern union {
         base: IUnknown.VTable,
         ConnectSucceeded: *const fn(
             self: *const IWCNConnectNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConnectFailed: *const fn(
             self: *const IWCNConnectNotify,
             hrFailure: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

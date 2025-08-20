@@ -23,17 +23,17 @@ pub const IUPnPNAT = extern union {
         get_StaticPortMappingCollection: *const fn(
             self: *const IUPnPNAT,
             ppSPMs: ?*?*IStaticPortMappingCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DynamicPortMappingCollection: *const fn(
             self: *const IUPnPNAT,
             ppDPMs: ?*?*IDynamicPortMappingCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NATEventManager: *const fn(
             self: *const IUPnPNAT,
             ppNEM: ?*?*INATEventManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -59,12 +59,12 @@ pub const INATEventManager = extern union {
         put_ExternalIPAddressCallback: *const fn(
             self: *const INATEventManager,
             pUnk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NumberOfEntriesCallback: *const fn(
             self: *const INATEventManager,
             pUnk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -86,7 +86,7 @@ pub const INATExternalIPAddressCallback = extern union {
         NewExternalIPAddress: *const fn(
             self: *const INATExternalIPAddressCallback,
             bstrNewExternalIPAddress: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -104,7 +104,7 @@ pub const INATNumberOfEntriesCallback = extern union {
         NewNumberOfEntries: *const fn(
             self: *const INATNumberOfEntriesCallback,
             lNewNumberOfEntries: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -122,25 +122,25 @@ pub const IDynamicPortMappingCollection = extern union {
         get__NewEnum: *const fn(
             self: *const IDynamicPortMappingCollection,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IDynamicPortMappingCollection,
             bstrRemoteHost: ?BSTR,
             lExternalPort: i32,
             bstrProtocol: ?BSTR,
             ppDPM: ?*?*IDynamicPortMapping,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IDynamicPortMappingCollection,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IDynamicPortMappingCollection,
             bstrRemoteHost: ?BSTR,
             lExternalPort: i32,
             bstrProtocol: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IDynamicPortMappingCollection,
             bstrRemoteHost: ?BSTR,
@@ -152,7 +152,7 @@ pub const IDynamicPortMappingCollection = extern union {
             bstrDescription: ?BSTR,
             lLeaseDuration: i32,
             ppDPM: ?*?*IDynamicPortMapping,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -183,68 +183,68 @@ pub const IDynamicPortMapping = extern union {
         get_ExternalIPAddress: *const fn(
             self: *const IDynamicPortMapping,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteHost: *const fn(
             self: *const IDynamicPortMapping,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExternalPort: *const fn(
             self: *const IDynamicPortMapping,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Protocol: *const fn(
             self: *const IDynamicPortMapping,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InternalPort: *const fn(
             self: *const IDynamicPortMapping,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InternalClient: *const fn(
             self: *const IDynamicPortMapping,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IDynamicPortMapping,
             pVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IDynamicPortMapping,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LeaseDuration: *const fn(
             self: *const IDynamicPortMapping,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RenewLease: *const fn(
             self: *const IDynamicPortMapping,
             lLeaseDurationDesired: i32,
             pLeaseDurationReturned: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EditInternalClient: *const fn(
             self: *const IDynamicPortMapping,
             bstrInternalClient: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enable: *const fn(
             self: *const IDynamicPortMapping,
             vb: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EditDescription: *const fn(
             self: *const IDynamicPortMapping,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EditInternalPort: *const fn(
             self: *const IDynamicPortMapping,
             lInternalPort: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -303,23 +303,23 @@ pub const IStaticPortMappingCollection = extern union {
         get__NewEnum: *const fn(
             self: *const IStaticPortMappingCollection,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IStaticPortMappingCollection,
             lExternalPort: i32,
             bstrProtocol: ?BSTR,
             ppSPM: ?*?*IStaticPortMapping,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IStaticPortMappingCollection,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IStaticPortMappingCollection,
             lExternalPort: i32,
             bstrProtocol: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IStaticPortMappingCollection,
             lExternalPort: i32,
@@ -329,7 +329,7 @@ pub const IStaticPortMappingCollection = extern union {
             bEnabled: i16,
             bstrDescription: ?BSTR,
             ppSPM: ?*?*IStaticPortMapping,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -361,53 +361,53 @@ pub const IStaticPortMapping = extern union {
         get_ExternalIPAddress: *const fn(
             self: *const IStaticPortMapping,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExternalPort: *const fn(
             self: *const IStaticPortMapping,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InternalPort: *const fn(
             self: *const IStaticPortMapping,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Protocol: *const fn(
             self: *const IStaticPortMapping,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InternalClient: *const fn(
             self: *const IStaticPortMapping,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IStaticPortMapping,
             pVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IStaticPortMapping,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EditInternalClient: *const fn(
             self: *const IStaticPortMapping,
             bstrInternalClient: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enable: *const fn(
             self: *const IStaticPortMapping,
             vb: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EditDescription: *const fn(
             self: *const IStaticPortMapping,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EditInternalPort: *const fn(
             self: *const IStaticPortMapping,
             lInternalPort: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -460,18 +460,18 @@ pub const IEnumNetConnection = extern union {
             celt: u32,
             rgelt: [*]?*INetConnection,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumNetConnection,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumNetConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumNetConnection,
             ppenum: ?*?*IEnumNetConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -628,30 +628,30 @@ pub const INetConnection = extern union {
         base: IUnknown.VTable,
         Connect: *const fn(
             self: *const INetConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const INetConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const INetConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Duplicate: *const fn(
             self: *const INetConnection,
             pszwDuplicateName: ?[*:0]const u16,
             ppCon: ?*?*INetConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperties: *const fn(
             self: *const INetConnection,
             ppProps: ?*?*NETCON_PROPERTIES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUiObjectClassId: *const fn(
             self: *const INetConnection,
             pclsid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Rename: *const fn(
             self: *const INetConnection,
             pszwNewName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -694,7 +694,7 @@ pub const INetConnectionManager = extern union {
             self: *const INetConnectionManager,
             Flags: NETCONMGR_ENUM_FLAGS,
             ppEnum: ?*?*IEnumNetConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -720,17 +720,17 @@ pub const INetConnectionConnectUi = extern union {
         SetConnection: *const fn(
             self: *const INetConnectionConnectUi,
             pCon: ?*INetConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Connect: *const fn(
             self: *const INetConnectionConnectUi,
             hwndParent: ?HWND,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const INetConnectionConnectUi,
             hwndParent: ?HWND,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -756,18 +756,18 @@ pub const IEnumNetSharingPortMapping = extern union {
             celt: u32,
             rgVar: [*]VARIANT,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumNetSharingPortMapping,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumNetSharingPortMapping,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumNetSharingPortMapping,
             ppenum: ?*?*IEnumNetSharingPortMapping,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -795,42 +795,42 @@ pub const INetSharingPortMappingProps = extern union {
         get_Name: *const fn(
             self: *const INetSharingPortMappingProps,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IPProtocol: *const fn(
             self: *const INetSharingPortMappingProps,
             pucIPProt: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExternalPort: *const fn(
             self: *const INetSharingPortMappingProps,
             pusPort: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InternalPort: *const fn(
             self: *const INetSharingPortMappingProps,
             pusPort: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Options: *const fn(
             self: *const INetSharingPortMappingProps,
             pdwOptions: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetName: *const fn(
             self: *const INetSharingPortMappingProps,
             pbstrTargetName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetIPAddress: *const fn(
             self: *const INetSharingPortMappingProps,
             pbstrTargetIPAddress: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const INetSharingPortMappingProps,
             pbool: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -869,18 +869,18 @@ pub const INetSharingPortMapping = extern union {
         base: IDispatch.VTable,
         Disable: *const fn(
             self: *const INetSharingPortMapping,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enable: *const fn(
             self: *const INetSharingPortMapping,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const INetSharingPortMapping,
             ppNSPMP: ?*?*INetSharingPortMappingProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const INetSharingPortMapping,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -910,18 +910,18 @@ pub const IEnumNetSharingEveryConnection = extern union {
             celt: u32,
             rgVar: [*]VARIANT,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumNetSharingEveryConnection,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumNetSharingEveryConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumNetSharingEveryConnection,
             ppenum: ?*?*IEnumNetSharingEveryConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -950,18 +950,18 @@ pub const IEnumNetSharingPublicConnection = extern union {
             celt: u32,
             rgVar: [*]VARIANT,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumNetSharingPublicConnection,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumNetSharingPublicConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumNetSharingPublicConnection,
             ppenum: ?*?*IEnumNetSharingPublicConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -990,18 +990,18 @@ pub const IEnumNetSharingPrivateConnection = extern union {
             celt: u32,
             rgVar: [*]VARIANT,
             pCeltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumNetSharingPrivateConnection,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumNetSharingPrivateConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumNetSharingPrivateConnection,
             ppenum: ?*?*IEnumNetSharingPrivateConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1029,12 +1029,12 @@ pub const INetSharingPortMappingCollection = extern union {
         get__NewEnum: *const fn(
             self: *const INetSharingPortMappingCollection,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const INetSharingPortMappingCollection,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1057,32 +1057,32 @@ pub const INetConnectionProps = extern union {
         get_Guid: *const fn(
             self: *const INetConnectionProps,
             pbstrGuid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const INetConnectionProps,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceName: *const fn(
             self: *const INetConnectionProps,
             pbstrDeviceName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: *const fn(
             self: *const INetConnectionProps,
             pStatus: ?*NETCON_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MediaType: *const fn(
             self: *const INetConnectionProps,
             pMediaType: ?*NETCON_MEDIATYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Characteristics: *const fn(
             self: *const INetConnectionProps,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1138,35 +1138,35 @@ pub const INetSharingConfiguration = extern union {
         get_SharingEnabled: *const fn(
             self: *const INetSharingConfiguration,
             pbEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SharingConnectionType: *const fn(
             self: *const INetSharingConfiguration,
             pType: ?*SHARINGCONNECTIONTYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableSharing: *const fn(
             self: *const INetSharingConfiguration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableSharing: *const fn(
             self: *const INetSharingConfiguration,
             Type: SHARINGCONNECTIONTYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InternetFirewallEnabled: *const fn(
             self: *const INetSharingConfiguration,
             pbEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableInternetFirewall: *const fn(
             self: *const INetSharingConfiguration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableInternetFirewall: *const fn(
             self: *const INetSharingConfiguration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_EnumPortMappings: *const fn(
             self: *const INetSharingConfiguration,
             Flags: SHARINGCONNECTION_ENUM_FLAGS,
             ppColl: ?*?*INetSharingPortMappingCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPortMapping: *const fn(
             self: *const INetSharingConfiguration,
             bstrName: ?BSTR,
@@ -1177,11 +1177,11 @@ pub const INetSharingConfiguration = extern union {
             bstrTargetNameOrIPAddress: ?BSTR,
             eTargetType: ICS_TARGETTYPE,
             ppMapping: ?*?*INetSharingPortMapping,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemovePortMapping: *const fn(
             self: *const INetSharingConfiguration,
             pMapping: ?*INetSharingPortMapping,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1228,12 +1228,12 @@ pub const INetSharingEveryConnectionCollection = extern union {
         get__NewEnum: *const fn(
             self: *const INetSharingEveryConnectionCollection,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const INetSharingEveryConnectionCollection,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1256,12 +1256,12 @@ pub const INetSharingPublicConnectionCollection = extern union {
         get__NewEnum: *const fn(
             self: *const INetSharingPublicConnectionCollection,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const INetSharingPublicConnectionCollection,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1284,12 +1284,12 @@ pub const INetSharingPrivateConnectionCollection = extern union {
         get__NewEnum: *const fn(
             self: *const INetSharingPrivateConnectionCollection,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const INetSharingPrivateConnectionCollection,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1312,32 +1312,32 @@ pub const INetSharingManager = extern union {
         get_SharingInstalled: *const fn(
             self: *const INetSharingManager,
             pbInstalled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_EnumPublicConnections: *const fn(
             self: *const INetSharingManager,
             Flags: SHARINGCONNECTION_ENUM_FLAGS,
             ppColl: ?*?*INetSharingPublicConnectionCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_EnumPrivateConnections: *const fn(
             self: *const INetSharingManager,
             Flags: SHARINGCONNECTION_ENUM_FLAGS,
             ppColl: ?*?*INetSharingPrivateConnectionCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_INetSharingConfigurationForINetConnection: *const fn(
             self: *const INetSharingManager,
             pNetConnection: ?*INetConnection,
             ppNetSharingConfiguration: ?*?*INetSharingConfiguration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnumEveryConnection: *const fn(
             self: *const INetSharingManager,
             ppColl: ?*?*INetSharingEveryConnectionCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_NetConnectionProps: *const fn(
             self: *const INetSharingManager,
             pNetConnection: ?*INetConnection,
             ppProps: ?*?*INetConnectionProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1590,7 +1590,7 @@ pub const INET_FIREWALL_APP_CONTAINER = extern struct {
 pub const PAC_CHANGES_CALLBACK_FN = *const fn(
     context: ?*anyopaque,
     pChange: ?*const INET_FIREWALL_AC_CHANGE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const NETISO_ERROR_TYPE = enum(i32) {
     NONE = 0,
@@ -1609,7 +1609,7 @@ pub const PNETISO_EDP_ID_CALLBACK_FN = *const fn(
     context: ?*anyopaque,
     wszEnterpriseId: ?[*:0]const u16,
     dwErr: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE = enum(i32) {
     INVALID = 0,
@@ -1650,31 +1650,31 @@ pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_ALL = _tag_FW_DYNAMIC_KEYWORD_AD
 
 pub const PFN_FWADDDYNAMICKEYWORDADDRESS0 = *const fn(
     dynamicKeywordAddress: ?*const _tag_FW_DYNAMIC_KEYWORD_ADDRESS0,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PFN_FWDELETEDYNAMICKEYWORDADDRESS0 = *const fn(
     dynamicKeywordAddressId: Guid,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0 = *const fn(
     flags: u32,
     dynamicKeywordAddressData: ?*?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0 = *const fn(
     dynamicKeywordAddressId: Guid,
     dynamicKeywordAddressData: ?*?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0 = *const fn(
     dynamicKeywordAddressData: ?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PFN_FWUPDATEDYNAMICKEYWORDADDRESS0 = *const fn(
     dynamicKeywordAddressId: Guid,
     updatedAddresses: ?[*:0]const u16,
     append: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetFwRemoteAdminSettings_Value = Guid.initString("d4becddf-6f73-4a83-b832-9c66874cd20e");
@@ -1686,42 +1686,42 @@ pub const INetFwRemoteAdminSettings = extern union {
         get_IpVersion: *const fn(
             self: *const INetFwRemoteAdminSettings,
             ipVersion: ?*NET_FW_IP_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IpVersion: *const fn(
             self: *const INetFwRemoteAdminSettings,
             ipVersion: NET_FW_IP_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scope: *const fn(
             self: *const INetFwRemoteAdminSettings,
             scope: ?*NET_FW_SCOPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Scope: *const fn(
             self: *const INetFwRemoteAdminSettings,
             scope: NET_FW_SCOPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteAddresses: *const fn(
             self: *const INetFwRemoteAdminSettings,
             remoteAddrs: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteAddresses: *const fn(
             self: *const INetFwRemoteAdminSettings,
             remoteAddrs: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const INetFwRemoteAdminSettings,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const INetFwRemoteAdminSettings,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1762,102 +1762,102 @@ pub const INetFwIcmpSettings = extern union {
         get_AllowOutboundDestinationUnreachable: *const fn(
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowOutboundDestinationUnreachable: *const fn(
             self: *const INetFwIcmpSettings,
             allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowRedirect: *const fn(
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowRedirect: *const fn(
             self: *const INetFwIcmpSettings,
             allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowInboundEchoRequest: *const fn(
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowInboundEchoRequest: *const fn(
             self: *const INetFwIcmpSettings,
             allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowOutboundTimeExceeded: *const fn(
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowOutboundTimeExceeded: *const fn(
             self: *const INetFwIcmpSettings,
             allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowOutboundParameterProblem: *const fn(
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowOutboundParameterProblem: *const fn(
             self: *const INetFwIcmpSettings,
             allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowOutboundSourceQuench: *const fn(
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowOutboundSourceQuench: *const fn(
             self: *const INetFwIcmpSettings,
             allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowInboundRouterRequest: *const fn(
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowInboundRouterRequest: *const fn(
             self: *const INetFwIcmpSettings,
             allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowInboundTimestampRequest: *const fn(
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowInboundTimestampRequest: *const fn(
             self: *const INetFwIcmpSettings,
             allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowInboundMaskRequest: *const fn(
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowInboundMaskRequest: *const fn(
             self: *const INetFwIcmpSettings,
             allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowOutboundPacketTooBig: *const fn(
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowOutboundPacketTooBig: *const fn(
             self: *const INetFwIcmpSettings,
             allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1934,77 +1934,77 @@ pub const INetFwOpenPort = extern union {
         get_Name: *const fn(
             self: *const INetFwOpenPort,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const INetFwOpenPort,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpVersion: *const fn(
             self: *const INetFwOpenPort,
             ipVersion: ?*NET_FW_IP_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IpVersion: *const fn(
             self: *const INetFwOpenPort,
             ipVersion: NET_FW_IP_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Protocol: *const fn(
             self: *const INetFwOpenPort,
             ipProtocol: ?*NET_FW_IP_PROTOCOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Protocol: *const fn(
             self: *const INetFwOpenPort,
             ipProtocol: NET_FW_IP_PROTOCOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Port: *const fn(
             self: *const INetFwOpenPort,
             portNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Port: *const fn(
             self: *const INetFwOpenPort,
             portNumber: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scope: *const fn(
             self: *const INetFwOpenPort,
             scope: ?*NET_FW_SCOPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Scope: *const fn(
             self: *const INetFwOpenPort,
             scope: NET_FW_SCOPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteAddresses: *const fn(
             self: *const INetFwOpenPort,
             remoteAddrs: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteAddresses: *const fn(
             self: *const INetFwOpenPort,
             remoteAddrs: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const INetFwOpenPort,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const INetFwOpenPort,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BuiltIn: *const fn(
             self: *const INetFwOpenPort,
             builtIn: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2066,27 +2066,27 @@ pub const INetFwOpenPorts = extern union {
         get_Count: *const fn(
             self: *const INetFwOpenPorts,
             count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const INetFwOpenPorts,
             port: ?*INetFwOpenPort,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const INetFwOpenPorts,
             portNumber: i32,
             ipProtocol: NET_FW_IP_PROTOCOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const INetFwOpenPorts,
             portNumber: i32,
             ipProtocol: NET_FW_IP_PROTOCOL,
             openPort: ?*?*INetFwOpenPort,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const INetFwOpenPorts,
             newEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2118,62 +2118,62 @@ pub const INetFwService = extern union {
         get_Name: *const fn(
             self: *const INetFwService,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const INetFwService,
             type: ?*NET_FW_SERVICE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Customized: *const fn(
             self: *const INetFwService,
             customized: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpVersion: *const fn(
             self: *const INetFwService,
             ipVersion: ?*NET_FW_IP_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IpVersion: *const fn(
             self: *const INetFwService,
             ipVersion: NET_FW_IP_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scope: *const fn(
             self: *const INetFwService,
             scope: ?*NET_FW_SCOPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Scope: *const fn(
             self: *const INetFwService,
             scope: NET_FW_SCOPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteAddresses: *const fn(
             self: *const INetFwService,
             remoteAddrs: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteAddresses: *const fn(
             self: *const INetFwService,
             remoteAddrs: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const INetFwService,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const INetFwService,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GloballyOpenPorts: *const fn(
             self: *const INetFwService,
             openPorts: ?*?*INetFwOpenPorts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2226,17 +2226,17 @@ pub const INetFwServices = extern union {
         get_Count: *const fn(
             self: *const INetFwServices,
             count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const INetFwServices,
             svcType: NET_FW_SERVICE_TYPE,
             service: ?*?*INetFwService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const INetFwServices,
             newEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2262,62 +2262,62 @@ pub const INetFwAuthorizedApplication = extern union {
         get_Name: *const fn(
             self: *const INetFwAuthorizedApplication,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const INetFwAuthorizedApplication,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProcessImageFileName: *const fn(
             self: *const INetFwAuthorizedApplication,
             imageFileName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProcessImageFileName: *const fn(
             self: *const INetFwAuthorizedApplication,
             imageFileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpVersion: *const fn(
             self: *const INetFwAuthorizedApplication,
             ipVersion: ?*NET_FW_IP_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IpVersion: *const fn(
             self: *const INetFwAuthorizedApplication,
             ipVersion: NET_FW_IP_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scope: *const fn(
             self: *const INetFwAuthorizedApplication,
             scope: ?*NET_FW_SCOPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Scope: *const fn(
             self: *const INetFwAuthorizedApplication,
             scope: NET_FW_SCOPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteAddresses: *const fn(
             self: *const INetFwAuthorizedApplication,
             remoteAddrs: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteAddresses: *const fn(
             self: *const INetFwAuthorizedApplication,
             remoteAddrs: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const INetFwAuthorizedApplication,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const INetFwAuthorizedApplication,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2370,25 +2370,25 @@ pub const INetFwAuthorizedApplications = extern union {
         get_Count: *const fn(
             self: *const INetFwAuthorizedApplications,
             count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const INetFwAuthorizedApplications,
             app: ?*INetFwAuthorizedApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const INetFwAuthorizedApplications,
             imageFileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const INetFwAuthorizedApplications,
             imageFileName: ?BSTR,
             app: ?*?*INetFwAuthorizedApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const INetFwAuthorizedApplications,
             newEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2420,182 +2420,182 @@ pub const INetFwRule = extern union {
         get_Name: *const fn(
             self: *const INetFwRule,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const INetFwRule,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const INetFwRule,
             desc: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const INetFwRule,
             desc: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationName: *const fn(
             self: *const INetFwRule,
             imageFileName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationName: *const fn(
             self: *const INetFwRule,
             imageFileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceName: *const fn(
             self: *const INetFwRule,
             serviceName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServiceName: *const fn(
             self: *const INetFwRule,
             serviceName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Protocol: *const fn(
             self: *const INetFwRule,
             protocol: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Protocol: *const fn(
             self: *const INetFwRule,
             protocol: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalPorts: *const fn(
             self: *const INetFwRule,
             portNumbers: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LocalPorts: *const fn(
             self: *const INetFwRule,
             portNumbers: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemotePorts: *const fn(
             self: *const INetFwRule,
             portNumbers: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemotePorts: *const fn(
             self: *const INetFwRule,
             portNumbers: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalAddresses: *const fn(
             self: *const INetFwRule,
             localAddrs: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LocalAddresses: *const fn(
             self: *const INetFwRule,
             localAddrs: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteAddresses: *const fn(
             self: *const INetFwRule,
             remoteAddrs: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteAddresses: *const fn(
             self: *const INetFwRule,
             remoteAddrs: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IcmpTypesAndCodes: *const fn(
             self: *const INetFwRule,
             icmpTypesAndCodes: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IcmpTypesAndCodes: *const fn(
             self: *const INetFwRule,
             icmpTypesAndCodes: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Direction: *const fn(
             self: *const INetFwRule,
             dir: ?*NET_FW_RULE_DIRECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Direction: *const fn(
             self: *const INetFwRule,
             dir: NET_FW_RULE_DIRECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Interfaces: *const fn(
             self: *const INetFwRule,
             interfaces: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Interfaces: *const fn(
             self: *const INetFwRule,
             interfaces: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InterfaceTypes: *const fn(
             self: *const INetFwRule,
             interfaceTypes: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InterfaceTypes: *const fn(
             self: *const INetFwRule,
             interfaceTypes: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const INetFwRule,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const INetFwRule,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Grouping: *const fn(
             self: *const INetFwRule,
             context: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Grouping: *const fn(
             self: *const INetFwRule,
             context: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Profiles: *const fn(
             self: *const INetFwRule,
             profileTypesBitmask: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Profiles: *const fn(
             self: *const INetFwRule,
             profileTypesBitmask: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EdgeTraversal: *const fn(
             self: *const INetFwRule,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EdgeTraversal: *const fn(
             self: *const INetFwRule,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Action: *const fn(
             self: *const INetFwRule,
             action: ?*NET_FW_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Action: *const fn(
             self: *const INetFwRule,
             action: NET_FW_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2720,12 +2720,12 @@ pub const INetFwRule2 = extern union {
         get_EdgeTraversalOptions: *const fn(
             self: *const INetFwRule2,
             lOptions: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EdgeTraversalOptions: *const fn(
             self: *const INetFwRule2,
             lOptions: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     INetFwRule: INetFwRule,
@@ -2749,62 +2749,62 @@ pub const INetFwRule3 = extern union {
         get_LocalAppPackageId: *const fn(
             self: *const INetFwRule3,
             wszPackageId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LocalAppPackageId: *const fn(
             self: *const INetFwRule3,
             wszPackageId: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalUserOwner: *const fn(
             self: *const INetFwRule3,
             wszUserOwner: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LocalUserOwner: *const fn(
             self: *const INetFwRule3,
             wszUserOwner: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalUserAuthorizedList: *const fn(
             self: *const INetFwRule3,
             wszUserAuthList: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LocalUserAuthorizedList: *const fn(
             self: *const INetFwRule3,
             wszUserAuthList: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteUserAuthorizedList: *const fn(
             self: *const INetFwRule3,
             wszUserAuthList: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteUserAuthorizedList: *const fn(
             self: *const INetFwRule3,
             wszUserAuthList: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteMachineAuthorizedList: *const fn(
             self: *const INetFwRule3,
             wszUserAuthList: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteMachineAuthorizedList: *const fn(
             self: *const INetFwRule3,
             wszUserAuthList: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SecureFlags: *const fn(
             self: *const INetFwRule3,
             lOptions: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SecureFlags: *const fn(
             self: *const INetFwRule3,
             lOptions: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     INetFwRule2: INetFwRule2,
@@ -2859,25 +2859,25 @@ pub const INetFwRules = extern union {
         get_Count: *const fn(
             self: *const INetFwRules,
             count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const INetFwRules,
             rule: ?*INetFwRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const INetFwRules,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const INetFwRules,
             name: ?BSTR,
             rule: ?*?*INetFwRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const INetFwRules,
             newEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2911,18 +2911,18 @@ pub const INetFwServiceRestriction = extern union {
             appName: ?BSTR,
             restrictService: i16,
             serviceSidRestricted: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ServiceRestricted: *const fn(
             self: *const INetFwServiceRestriction,
             serviceName: ?BSTR,
             appName: ?BSTR,
             serviceRestricted: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rules: *const fn(
             self: *const INetFwServiceRestriction,
             rules: ?*?*INetFwRules,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2948,72 +2948,72 @@ pub const INetFwProfile = extern union {
         get_Type: *const fn(
             self: *const INetFwProfile,
             type: ?*NET_FW_PROFILE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirewallEnabled: *const fn(
             self: *const INetFwProfile,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FirewallEnabled: *const fn(
             self: *const INetFwProfile,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExceptionsNotAllowed: *const fn(
             self: *const INetFwProfile,
             notAllowed: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExceptionsNotAllowed: *const fn(
             self: *const INetFwProfile,
             notAllowed: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NotificationsDisabled: *const fn(
             self: *const INetFwProfile,
             disabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NotificationsDisabled: *const fn(
             self: *const INetFwProfile,
             disabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
             self: *const INetFwProfile,
             disabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
             self: *const INetFwProfile,
             disabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteAdminSettings: *const fn(
             self: *const INetFwProfile,
             remoteAdminSettings: ?*?*INetFwRemoteAdminSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IcmpSettings: *const fn(
             self: *const INetFwProfile,
             icmpSettings: ?*?*INetFwIcmpSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GloballyOpenPorts: *const fn(
             self: *const INetFwProfile,
             openPorts: ?*?*INetFwOpenPorts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Services: *const fn(
             self: *const INetFwProfile,
             services: ?*?*INetFwServices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthorizedApplications: *const fn(
             self: *const INetFwProfile,
             apps: ?*?*INetFwAuthorizedApplications,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3072,12 +3072,12 @@ pub const INetFwPolicy = extern union {
         get_CurrentProfile: *const fn(
             self: *const INetFwPolicy,
             profile: ?*?*INetFwProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProfileByType: *const fn(
             self: *const INetFwPolicy,
             profileType: NET_FW_PROFILE_TYPE,
             profile: ?*?*INetFwProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3100,112 +3100,112 @@ pub const INetFwPolicy2 = extern union {
         get_CurrentProfileTypes: *const fn(
             self: *const INetFwPolicy2,
             profileTypesBitmask: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_FirewallEnabled: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_FirewallEnabled: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ExcludedInterfaces: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             interfaces: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_ExcludedInterfaces: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             interfaces: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_BlockAllInboundTraffic: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             Block: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_BlockAllInboundTraffic: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             Block: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_NotificationsDisabled: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             disabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_NotificationsDisabled: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             disabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             disabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             disabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rules: *const fn(
             self: *const INetFwPolicy2,
             rules: ?*?*INetFwRules,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceRestriction: *const fn(
             self: *const INetFwPolicy2,
             ServiceRestriction: ?*?*INetFwServiceRestriction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableRuleGroup: *const fn(
             self: *const INetFwPolicy2,
             profileTypesBitmask: i32,
             group: ?BSTR,
             enable: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsRuleGroupEnabled: *const fn(
             self: *const INetFwPolicy2,
             profileTypesBitmask: i32,
             group: ?BSTR,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestoreLocalFirewallDefaults: *const fn(
             self: *const INetFwPolicy2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_DefaultInboundAction: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             action: ?*NET_FW_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_DefaultInboundAction: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             action: NET_FW_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_DefaultOutboundAction: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             action: ?*NET_FW_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_DefaultOutboundAction: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             action: NET_FW_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_IsRuleGroupCurrentlyEnabled: *const fn(
             self: *const INetFwPolicy2,
             group: ?BSTR,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalPolicyModifyState: *const fn(
             self: *const INetFwPolicy2,
             modifyState: ?*NET_FW_MODIFY_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3288,15 +3288,15 @@ pub const INetFwMgr = extern union {
         get_LocalPolicy: *const fn(
             self: *const INetFwMgr,
             localPolicy: ?*?*INetFwPolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentProfileType: *const fn(
             self: *const INetFwMgr,
             profileType: ?*NET_FW_PROFILE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestoreDefaults: *const fn(
             self: *const INetFwMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPortAllowed: *const fn(
             self: *const INetFwMgr,
             imageFileName: ?BSTR,
@@ -3306,7 +3306,7 @@ pub const INetFwMgr = extern union {
             ipProtocol: NET_FW_IP_PROTOCOL,
             allowed: ?*VARIANT,
             restricted: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsIcmpTypeAllowed: *const fn(
             self: *const INetFwMgr,
             ipVersion: NET_FW_IP_VERSION,
@@ -3314,7 +3314,7 @@ pub const INetFwMgr = extern union {
             type: u8,
             allowed: ?*VARIANT,
             restricted: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3346,27 +3346,27 @@ pub const INetFwProduct = extern union {
         get_RuleCategories: *const fn(
             self: *const INetFwProduct,
             ruleCategories: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RuleCategories: *const fn(
             self: *const INetFwProduct,
             ruleCategories: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: *const fn(
             self: *const INetFwProduct,
             displayName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayName: *const fn(
             self: *const INetFwProduct,
             displayName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PathToSignedProductExe: *const fn(
             self: *const INetFwProduct,
             path: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3398,22 +3398,22 @@ pub const INetFwProducts = extern union {
         get_Count: *const fn(
             self: *const INetFwProducts,
             count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Register: *const fn(
             self: *const INetFwProducts,
             product: ?*INetFwProduct,
             registration: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const INetFwProducts,
             index: i32,
             product: ?*?*INetFwProduct,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const INetFwProducts,
             newEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3445,7 +3445,7 @@ pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationSetupAppContaine
     bBinariesFullyComputed: BOOL,
     binaries: [*]?PWSTR,
     binariesCount: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationRegisterForAppContainerChanges(
@@ -3453,42 +3453,42 @@ pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationRegisterForAppCo
     callback: ?PAC_CHANGES_CALLBACK_FN,
     context: ?*anyopaque,
     registrationObject: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationUnregisterForAppContainerChanges(
     registrationObject: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationFreeAppContainers(
     pPublicAppCs: ?*INET_FIREWALL_APP_CONTAINER,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationEnumAppContainers(
     Flags: u32,
     pdwNumPublicAppCs: ?*u32,
     ppPublicAppCs: ?*?*INET_FIREWALL_APP_CONTAINER,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationGetAppContainerConfig(
     pdwNumPublicAppCs: ?*u32,
     appContainerSids: ?*?*SID_AND_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationSetAppContainerConfig(
     dwNumPublicAppCs: u32,
     appContainerSids: [*]SID_AND_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationDiagnoseConnectFailureAndGetInfo(
     wszServerName: ?[*:0]const u16,
     netIsoError: ?*NETISO_ERROR_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

@@ -123,50 +123,50 @@ pub const ICOMAdminCatalog = extern union {
             self: *const ICOMAdminCatalog,
             bstrCollName: ?BSTR,
             ppCatalogCollection: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Connect: *const fn(
             self: *const ICOMAdminCatalog,
             bstrCatalogServerName: ?BSTR,
             ppCatalogCollection: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MajorVersion: *const fn(
             self: *const ICOMAdminCatalog,
             plMajorVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinorVersion: *const fn(
             self: *const ICOMAdminCatalog,
             plMinorVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCollectionByQuery: *const fn(
             self: *const ICOMAdminCatalog,
             bstrCollName: ?BSTR,
             ppsaVarQuery: ?*?*SAFEARRAY,
             ppCatalogCollection: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportComponent: *const fn(
             self: *const ICOMAdminCatalog,
             bstrApplIDOrName: ?BSTR,
             bstrCLSIDOrProgID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallComponent: *const fn(
             self: *const ICOMAdminCatalog,
             bstrApplIDOrName: ?BSTR,
             bstrDLL: ?BSTR,
             bstrTLB: ?BSTR,
             bstrPSDLL: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShutdownApplication: *const fn(
             self: *const ICOMAdminCatalog,
             bstrApplIDOrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExportApplication: *const fn(
             self: *const ICOMAdminCatalog,
             bstrApplIDOrName: ?BSTR,
             bstrApplicationFile: ?BSTR,
             lOptions: COMAdminApplicationExportOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallApplication: *const fn(
             self: *const ICOMAdminCatalog,
             bstrApplicationFile: ?BSTR,
@@ -175,28 +175,28 @@ pub const ICOMAdminCatalog = extern union {
             bstrUserId: ?BSTR,
             bstrPassword: ?BSTR,
             bstrRSN: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopRouter: *const fn(
             self: *const ICOMAdminCatalog,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RefreshRouter: *const fn(
             self: *const ICOMAdminCatalog,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartRouter: *const fn(
             self: *const ICOMAdminCatalog,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reserved1: *const fn(
             self: *const ICOMAdminCatalog,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reserved2: *const fn(
             self: *const ICOMAdminCatalog,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallMultipleComponents: *const fn(
             self: *const ICOMAdminCatalog,
             bstrApplIDOrName: ?BSTR,
             ppsaVarFileNames: ?*?*SAFEARRAY,
             ppsaVarCLSIDs: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMultipleComponentsInfo: *const fn(
             self: *const ICOMAdminCatalog,
             bstrApplIdOrName: ?BSTR,
@@ -205,18 +205,18 @@ pub const ICOMAdminCatalog = extern union {
             ppsaVarClassNames: ?*?*SAFEARRAY,
             ppsaVarFileFlags: ?*?*SAFEARRAY,
             ppsaVarComponentFlags: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RefreshComponents: *const fn(
             self: *const ICOMAdminCatalog,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BackupREGDB: *const fn(
             self: *const ICOMAdminCatalog,
             bstrBackupFilePath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestoreREGDB: *const fn(
             self: *const ICOMAdminCatalog,
             bstrBackupFilePath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryApplicationFile: *const fn(
             self: *const ICOMAdminCatalog,
             bstrApplicationFile: ?BSTR,
@@ -225,36 +225,36 @@ pub const ICOMAdminCatalog = extern union {
             pbHasUsers: ?*i16,
             pbIsProxy: ?*i16,
             ppsaVarFileNames: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartApplication: *const fn(
             self: *const ICOMAdminCatalog,
             bstrApplIdOrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ServiceCheck: *const fn(
             self: *const ICOMAdminCatalog,
             lService: i32,
             plStatus: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallMultipleEventClasses: *const fn(
             self: *const ICOMAdminCatalog,
             bstrApplIdOrName: ?BSTR,
             ppsaVarFileNames: ?*?*SAFEARRAY,
             ppsaVarCLSIDS: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallEventClass: *const fn(
             self: *const ICOMAdminCatalog,
             bstrApplIdOrName: ?BSTR,
             bstrDLL: ?BSTR,
             bstrTLB: ?BSTR,
             bstrPSDLL: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEventClassesForIID: *const fn(
             self: *const ICOMAdminCatalog,
             bstrIID: ?BSTR,
             ppsaVarCLSIDs: ?*?*SAFEARRAY,
             ppsaVarProgIDs: ?*?*SAFEARRAY,
             ppsaVarDescriptions: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -365,46 +365,46 @@ pub const ICOMAdminCatalog2 = extern union {
             bstrCollectionName: ?BSTR,
             pVarQueryStrings: ?*VARIANT,
             ppCatalogCollection: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetApplicationInstanceIDFromProcessID: *const fn(
             self: *const ICOMAdminCatalog2,
             lProcessID: i32,
             pbstrApplicationInstanceID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShutdownApplicationInstances: *const fn(
             self: *const ICOMAdminCatalog2,
             pVarApplicationInstanceID: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PauseApplicationInstances: *const fn(
             self: *const ICOMAdminCatalog2,
             pVarApplicationInstanceID: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResumeApplicationInstances: *const fn(
             self: *const ICOMAdminCatalog2,
             pVarApplicationInstanceID: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RecycleApplicationInstances: *const fn(
             self: *const ICOMAdminCatalog2,
             pVarApplicationInstanceID: ?*VARIANT,
             lReasonCode: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AreApplicationInstancesPaused: *const fn(
             self: *const ICOMAdminCatalog2,
             pVarApplicationInstanceID: ?*VARIANT,
             pVarBoolPaused: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DumpApplicationInstance: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrApplicationInstanceID: ?BSTR,
             bstrDirectory: ?BSTR,
             lMaxImages: i32,
             pbstrDumpFile: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsApplicationInstanceDumpSupported: *const fn(
             self: *const ICOMAdminCatalog2,
             pVarBoolDumpSupported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateServiceForApplication: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrApplicationIDOrName: ?BSTR,
@@ -415,62 +415,62 @@ pub const ICOMAdminCatalog2 = extern union {
             bstrRunAs: ?BSTR,
             bstrPassword: ?BSTR,
             bDesktopOk: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteServiceForApplication: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrApplicationIDOrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPartitionID: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrApplicationIDOrName: ?BSTR,
             pbstrPartitionID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPartitionName: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrApplicationIDOrName: ?BSTR,
             pbstrPartitionName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CurrentPartition: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrPartitionIDOrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentPartitionID: *const fn(
             self: *const ICOMAdminCatalog2,
             pbstrPartitionID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentPartitionName: *const fn(
             self: *const ICOMAdminCatalog2,
             pbstrPartitionName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GlobalPartitionID: *const fn(
             self: *const ICOMAdminCatalog2,
             pbstrGlobalPartitionID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FlushPartitionCache: *const fn(
             self: *const ICOMAdminCatalog2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyApplications: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrSourcePartitionIDOrName: ?BSTR,
             pVarApplicationID: ?*VARIANT,
             bstrDestinationPartitionIDOrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyComponents: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrSourceApplicationIDOrName: ?BSTR,
             pVarCLSIDOrProgID: ?*VARIANT,
             bstrDestinationApplicationIDOrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveComponents: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrSourceApplicationIDOrName: ?BSTR,
             pVarCLSIDOrProgID: ?*VARIANT,
             bstrDestinationApplicationIDOrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AliasComponent: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrSrcApplicationIDOrName: ?BSTR,
@@ -478,41 +478,41 @@ pub const ICOMAdminCatalog2 = extern union {
             bstrDestApplicationIDOrName: ?BSTR,
             bstrNewProgId: ?BSTR,
             bstrNewClsid: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSafeToDelete: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrDllName: ?BSTR,
             pCOMAdminInUse: ?*COMAdminInUse,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportUnconfiguredComponents: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrApplicationIDOrName: ?BSTR,
             pVarCLSIDOrProgID: ?*VARIANT,
             pVarComponentType: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PromoteUnconfiguredComponents: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrApplicationIDOrName: ?BSTR,
             pVarCLSIDOrProgID: ?*VARIANT,
             pVarComponentType: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportComponents: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrApplicationIDOrName: ?BSTR,
             pVarCLSIDOrProgID: ?*VARIANT,
             pVarComponentType: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Is64BitCatalogServer: *const fn(
             self: *const ICOMAdminCatalog2,
             pbIs64Bit: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExportPartition: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrPartitionIDOrName: ?BSTR,
             bstrPartitionFileName: ?BSTR,
             lOptions: COMAdminApplicationExportOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallPartition: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrFileName: ?BSTR,
@@ -521,17 +521,17 @@ pub const ICOMAdminCatalog2 = extern union {
             bstrUserID: ?BSTR,
             bstrPassword: ?BSTR,
             bstrRSN: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryApplicationFile2: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrApplicationFile: ?BSTR,
             ppFilesForImport: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetComponentVersionCount: *const fn(
             self: *const ICOMAdminCatalog2,
             bstrCLSIDOrProgID: ?BSTR,
             plVersionCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICOMAdminCatalog: ICOMAdminCatalog,
@@ -642,37 +642,37 @@ pub const ICatalogObject = extern union {
             self: *const ICatalogObject,
             bstrPropName: ?BSTR,
             pvarRetVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_Value: *const fn(
             self: *const ICatalogObject,
             bstrPropName: ?BSTR,
             val: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Key: *const fn(
             self: *const ICatalogObject,
             pvarRetVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const ICatalogObject,
             pvarRetVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPropertyReadOnly: *const fn(
             self: *const ICatalogObject,
             bstrPropName: ?BSTR,
             pbRetVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Valid: *const fn(
             self: *const ICatalogObject,
             pbRetVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPropertyWriteOnly: *const fn(
             self: *const ICatalogObject,
             bstrPropName: ?BSTR,
             pbRetVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -710,76 +710,76 @@ pub const ICatalogCollection = extern union {
         get__NewEnum: *const fn(
             self: *const ICatalogCollection,
             ppEnumVariant: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ICatalogCollection,
             lIndex: i32,
             ppCatalogObject: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ICatalogCollection,
             plObjectCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ICatalogCollection,
             lIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ICatalogCollection,
             ppCatalogObject: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Populate: *const fn(
             self: *const ICatalogCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveChanges: *const fn(
             self: *const ICatalogCollection,
             pcChanges: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCollection: *const fn(
             self: *const ICatalogCollection,
             bstrCollName: ?BSTR,
             varObjectKey: VARIANT,
             ppCatalogCollection: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const ICatalogCollection,
             pVarNamel: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AddEnabled: *const fn(
             self: *const ICatalogCollection,
             pVarBool: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoveEnabled: *const fn(
             self: *const ICatalogCollection,
             pVarBool: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUtilInterface: *const fn(
             self: *const ICatalogCollection,
             ppIDispatch: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataStoreMajorVersion: *const fn(
             self: *const ICatalogCollection,
             plMajorVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataStoreMinorVersion: *const fn(
             self: *const ICatalogCollection,
             plMinorVersionl: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PopulateByKey: *const fn(
             self: *const ICatalogCollection,
             psaKeys: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PopulateByQuery: *const fn(
             self: *const ICatalogCollection,
             bstrQueryString: ?BSTR,
             lQueryType: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1325,17 +1325,17 @@ pub const ISecurityIdentityColl = extern union {
         get_Count: *const fn(
             self: *const ISecurityIdentityColl,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISecurityIdentityColl,
             name: ?BSTR,
             pItem: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISecurityIdentityColl,
             ppEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1361,17 +1361,17 @@ pub const ISecurityCallersColl = extern union {
         get_Count: *const fn(
             self: *const ISecurityCallersColl,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISecurityCallersColl,
             lIndex: i32,
             pObj: ?*?*ISecurityIdentityColl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISecurityCallersColl,
             ppEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1397,32 +1397,32 @@ pub const ISecurityCallContext = extern union {
         get_Count: *const fn(
             self: *const ISecurityCallContext,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISecurityCallContext,
             name: ?BSTR,
             pItem: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISecurityCallContext,
             ppEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsCallerInRole: *const fn(
             self: *const ISecurityCallContext,
             bstrRole: ?BSTR,
             pfInRole: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSecurityEnabled: *const fn(
             self: *const ISecurityCallContext,
             pfIsEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUserInRole: *const fn(
             self: *const ISecurityCallContext,
             pUser: ?*VARIANT,
             bstrRole: ?BSTR,
             pfInRole: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1456,7 +1456,7 @@ pub const IGetSecurityCallContext = extern union {
         GetSecurityCallContext: *const fn(
             self: *const IGetSecurityCallContext,
             ppObject: ?*?*ISecurityCallContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1475,19 +1475,19 @@ pub const SecurityProperty = extern union {
         GetDirectCallerName: *const fn(
             self: *const SecurityProperty,
             bstrUserName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDirectCreatorName: *const fn(
             self: *const SecurityProperty,
             bstrUserName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOriginalCallerName: *const fn(
             self: *const SecurityProperty,
             bstrUserName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOriginalCreatorName: *const fn(
             self: *const SecurityProperty,
             bstrUserName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1515,23 +1515,23 @@ pub const ContextInfo = extern union {
         IsInTransaction: *const fn(
             self: *const ContextInfo,
             pbIsInTx: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransaction: *const fn(
             self: *const ContextInfo,
             ppTx: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransactionId: *const fn(
             self: *const ContextInfo,
             pbstrTxId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActivityId: *const fn(
             self: *const ContextInfo,
             pbstrActivityId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContextId: *const fn(
             self: *const ContextInfo,
             pbstrCtxId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1562,15 +1562,15 @@ pub const ContextInfo2 = extern union {
         GetPartitionId: *const fn(
             self: *const ContextInfo2,
             __MIDL__ContextInfo20000: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetApplicationId: *const fn(
             self: *const ContextInfo2,
             __MIDL__ContextInfo20001: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetApplicationInstanceId: *const fn(
             self: *const ContextInfo2,
             __MIDL__ContextInfo20002: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ContextInfo: ContextInfo,
@@ -1597,57 +1597,57 @@ pub const ObjectContext = extern union {
             self: *const ObjectContext,
             bstrProgID: ?BSTR,
             pObject: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetComplete: *const fn(
             self: *const ObjectContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAbort: *const fn(
             self: *const ObjectContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableCommit: *const fn(
             self: *const ObjectContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableCommit: *const fn(
             self: *const ObjectContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsInTransaction: *const fn(
             self: *const ObjectContext,
             pbIsInTx: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSecurityEnabled: *const fn(
             self: *const ObjectContext,
             pbIsEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsCallerInRole: *const fn(
             self: *const ObjectContext,
             bstrRole: ?BSTR,
             pbInRole: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ObjectContext,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ObjectContext,
             name: ?BSTR,
             pItem: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ObjectContext,
             ppEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Security: *const fn(
             self: *const ObjectContext,
             ppSecurityProperty: ?*?*SecurityProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContextInfo: *const fn(
             self: *const ObjectContext,
             ppContextInfo: ?*?*ContextInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1704,13 +1704,13 @@ pub const ITransactionContextEx = extern union {
             rclsid: ?*const Guid,
             riid: ?*const Guid,
             pObject: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const ITransactionContextEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Abort: *const fn(
             self: *const ITransactionContextEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1735,13 +1735,13 @@ pub const ITransactionContext = extern union {
             self: *const ITransactionContext,
             pszProgId: ?BSTR,
             pObject: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const ITransactionContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Abort: *const fn(
             self: *const ITransactionContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1769,7 +1769,7 @@ pub const ICreateWithTransactionEx = extern union {
             rclsid: ?*const Guid,
             riid: ?*const Guid,
             pObject: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1790,7 +1790,7 @@ pub const ICreateWithLocalTransaction = extern union {
             rclsid: ?*const Guid,
             riid: ?*const Guid,
             pObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1811,7 +1811,7 @@ pub const ICreateWithTipTransactionEx = extern union {
             rclsid: ?*const Guid,
             riid: ?*const Guid,
             pObject: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1843,29 +1843,29 @@ pub const IComLTxEvents = extern union {
             tsid: Guid,
             fRoot: BOOL,
             nIsolationLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnLtxTransactionPrepare: *const fn(
             self: *const IComLTxEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidLtx: Guid,
             fVote: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnLtxTransactionAbort: *const fn(
             self: *const IComLTxEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidLtx: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnLtxTransactionCommit: *const fn(
             self: *const IComLTxEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidLtx: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnLtxTransactionPromote: *const fn(
             self: *const IComLTxEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidLtx: Guid,
             txnId: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1896,7 +1896,7 @@ pub const IComUserEvent = extern union {
             self: *const IComUserEvent,
             pInfo: ?*COMSVCSEVENTINFO,
             pvarEvent: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1917,14 +1917,14 @@ pub const IComThreadEvents = extern union {
             ThreadID: u64,
             dwThread: u32,
             dwTheadCnt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnThreadTerminate: *const fn(
             self: *const IComThreadEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             ThreadID: u64,
             dwThread: u32,
             dwTheadCnt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnThreadBindToApartment: *const fn(
             self: *const IComThreadEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -1932,34 +1932,34 @@ pub const IComThreadEvents = extern union {
             AptID: u64,
             dwActCnt: u32,
             dwLowCnt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnThreadUnBind: *const fn(
             self: *const IComThreadEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             ThreadID: u64,
             AptID: u64,
             dwActCnt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnThreadWorkEnque: *const fn(
             self: *const IComThreadEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             ThreadID: u64,
             MsgWorkID: u64,
             QueueLen: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnThreadWorkPrivate: *const fn(
             self: *const IComThreadEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             ThreadID: u64,
             MsgWorkID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnThreadWorkPublic: *const fn(
             self: *const IComThreadEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             ThreadID: u64,
             MsgWorkID: u64,
             QueueLen: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnThreadWorkRedirect: *const fn(
             self: *const IComThreadEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -1967,25 +1967,25 @@ pub const IComThreadEvents = extern union {
             MsgWorkID: u64,
             QueueLen: u32,
             ThreadNum: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnThreadWorkReject: *const fn(
             self: *const IComThreadEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             ThreadID: u64,
             MsgWorkID: u64,
             QueueLen: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnThreadAssignApartment: *const fn(
             self: *const IComThreadEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidActivity: ?*const Guid,
             AptID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnThreadUnassignApartment: *const fn(
             self: *const IComThreadEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             AptID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2034,17 +2034,17 @@ pub const IComAppEvents = extern union {
             self: *const IComAppEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidApp: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnAppShutdown: *const fn(
             self: *const IComAppEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidApp: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnAppForceShutdown: *const fn(
             self: *const IComAppEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidApp: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2073,12 +2073,12 @@ pub const IComInstanceEvents = extern union {
             tsid: ?*const Guid,
             CtxtID: u64,
             ObjectID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjectDestroy: *const fn(
             self: *const IComInstanceEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             CtxtID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2102,23 +2102,23 @@ pub const IComTransactionEvents = extern union {
             guidTx: ?*const Guid,
             tsid: ?*const Guid,
             fRoot: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTransactionPrepare: *const fn(
             self: *const IComTransactionEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidTx: ?*const Guid,
             fVoteYes: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTransactionAbort: *const fn(
             self: *const IComTransactionEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidTx: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTransactionCommit: *const fn(
             self: *const IComTransactionEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidTx: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2149,7 +2149,7 @@ pub const IComMethodEvents = extern union {
             guidCid: ?*const Guid,
             guidRid: ?*const Guid,
             iMeth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnMethodReturn: *const fn(
             self: *const IComMethodEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2158,7 +2158,7 @@ pub const IComMethodEvents = extern union {
             guidRid: ?*const Guid,
             iMeth: u32,
             hresult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnMethodException: *const fn(
             self: *const IComMethodEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2166,7 +2166,7 @@ pub const IComMethodEvents = extern union {
             guidCid: ?*const Guid,
             guidRid: ?*const Guid,
             iMeth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2192,33 +2192,33 @@ pub const IComObjectEvents = extern union {
             pInfo: ?*COMSVCSEVENTINFO,
             CtxtID: u64,
             ObjectID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjectDeactivate: *const fn(
             self: *const IComObjectEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             CtxtID: u64,
             ObjectID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDisableCommit: *const fn(
             self: *const IComObjectEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             CtxtID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEnableCommit: *const fn(
             self: *const IComObjectEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             CtxtID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSetComplete: *const fn(
             self: *const IComObjectEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             CtxtID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSetAbort: *const fn(
             self: *const IComObjectEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             CtxtID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2255,7 +2255,7 @@ pub const IComResourceEvents = extern union {
             pszType: ?[*:0]const u16,
             resId: u64,
             enlisted: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnResourceAllocate: *const fn(
             self: *const IComResourceEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2265,14 +2265,14 @@ pub const IComResourceEvents = extern union {
             enlisted: BOOL,
             NumRated: u32,
             Rating: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnResourceRecycle: *const fn(
             self: *const IComResourceEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             ObjectID: u64,
             pszType: ?[*:0]const u16,
             resId: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnResourceDestroy: *const fn(
             self: *const IComResourceEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2280,7 +2280,7 @@ pub const IComResourceEvents = extern union {
             hr: HRESULT,
             pszType: ?[*:0]const u16,
             resId: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnResourceTrack: *const fn(
             self: *const IComResourceEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2288,7 +2288,7 @@ pub const IComResourceEvents = extern union {
             pszType: ?[*:0]const u16,
             resId: u64,
             enlisted: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2327,7 +2327,7 @@ pub const IComSecurityEvents = extern union {
             cbByteCur: u32,
             pSidCurrentUser: [*:0]u8,
             bCurrentUserInpersonatingInProc: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnAuthenticateFail: *const fn(
             self: *const IComSecurityEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2340,7 +2340,7 @@ pub const IComSecurityEvents = extern union {
             cbByteCur: u32,
             pSidCurrentUser: [*:0]u8,
             bCurrentUserInpersonatingInProc: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2365,7 +2365,7 @@ pub const IComObjectPoolEvents = extern union {
             nReason: i32,
             dwAvailable: u32,
             oid: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjPoolGetObject: *const fn(
             self: *const IComObjectPoolEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2373,7 +2373,7 @@ pub const IComObjectPoolEvents = extern union {
             guidObject: ?*const Guid,
             dwAvailable: u32,
             oid: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjPoolRecycleToTx: *const fn(
             self: *const IComObjectPoolEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2381,7 +2381,7 @@ pub const IComObjectPoolEvents = extern union {
             guidObject: ?*const Guid,
             guidTx: ?*const Guid,
             objid: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjPoolGetFromTx: *const fn(
             self: *const IComObjectPoolEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2389,7 +2389,7 @@ pub const IComObjectPoolEvents = extern union {
             guidObject: ?*const Guid,
             guidTx: ?*const Guid,
             objid: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2419,14 +2419,14 @@ pub const IComObjectPoolEvents2 = extern union {
             guidObject: ?*const Guid,
             dwObjsCreated: u32,
             oid: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjPoolDestroyObject: *const fn(
             self: *const IComObjectPoolEvents2,
             pInfo: ?*COMSVCSEVENTINFO,
             guidObject: ?*const Guid,
             dwObjsCreated: u32,
             oid: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjPoolCreateDecision: *const fn(
             self: *const IComObjectPoolEvents2,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2435,14 +2435,14 @@ pub const IComObjectPoolEvents2 = extern union {
             dwCreated: u32,
             dwMin: u32,
             dwMax: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjPoolTimeout: *const fn(
             self: *const IComObjectPoolEvents2,
             pInfo: ?*COMSVCSEVENTINFO,
             guidObject: ?*const Guid,
             guidActivity: ?*const Guid,
             dwTimeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjPoolCreatePool: *const fn(
             self: *const IComObjectPoolEvents2,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2450,7 +2450,7 @@ pub const IComObjectPoolEvents2 = extern union {
             dwMin: u32,
             dwMax: u32,
             dwTimeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2483,7 +2483,7 @@ pub const IComObjectConstructionEvents = extern union {
             guidObject: ?*const Guid,
             sConstructString: ?[*:0]const u16,
             oid: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2502,19 +2502,19 @@ pub const IComActivityEvents = extern union {
             self: *const IComActivityEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidActivity: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnActivityDestroy: *const fn(
             self: *const IComActivityEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidActivity: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnActivityEnter: *const fn(
             self: *const IComActivityEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidCurrent: ?*const Guid,
             guidEntered: ?*const Guid,
             dwThread: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnActivityTimeout: *const fn(
             self: *const IComActivityEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2522,26 +2522,26 @@ pub const IComActivityEvents = extern union {
             guidEntered: ?*const Guid,
             dwThread: u32,
             dwTimeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnActivityReenter: *const fn(
             self: *const IComActivityEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidCurrent: ?*const Guid,
             dwThread: u32,
             dwCallDepth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnActivityLeave: *const fn(
             self: *const IComActivityEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidCurrent: ?*const Guid,
             guidLeft: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnActivityLeaveSame: *const fn(
             self: *const IComActivityEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidCurrent: ?*const Guid,
             dwCallDepth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2581,7 +2581,7 @@ pub const IComIdentityEvents = extern union {
             pszClientIP: ?[*:0]const u16,
             pszServerIP: ?[*:0]const u16,
             pszURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2604,14 +2604,14 @@ pub const IComQCEvents = extern union {
             guidMsgId: ?*const Guid,
             guidWorkFlowId: ?*const Guid,
             msmqhr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnQCQueueOpen: *const fn(
             self: *const IComQCEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             szQueue: *[60]u16,
             QueueID: u64,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnQCReceive: *const fn(
             self: *const IComQCEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2619,26 +2619,26 @@ pub const IComQCEvents = extern union {
             guidMsgId: ?*const Guid,
             guidWorkFlowId: ?*const Guid,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnQCReceiveFail: *const fn(
             self: *const IComQCEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             QueueID: u64,
             msmqhr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnQCMoveToReTryQueue: *const fn(
             self: *const IComQCEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidMsgId: ?*const Guid,
             guidWorkFlowId: ?*const Guid,
             RetryIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnQCMoveToDeadQueue: *const fn(
             self: *const IComQCEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidMsgId: ?*const Guid,
             guidWorkFlowId: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnQCPlayback: *const fn(
             self: *const IComQCEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2646,7 +2646,7 @@ pub const IComQCEvents = extern union {
             guidMsgId: ?*const Guid,
             guidWorkFlowId: ?*const Guid,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2685,7 +2685,7 @@ pub const IComExceptionEvents = extern union {
             code: u32,
             address: u64,
             pszStackTrace: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2703,18 +2703,18 @@ pub const ILBEvents = extern union {
             self: *const ILBEvents,
             bstrServerName: ?BSTR,
             bstrClsidEng: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TargetDown: *const fn(
             self: *const ILBEvents,
             bstrServerName: ?BSTR,
             bstrClsidEng: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EngineDefined: *const fn(
             self: *const ILBEvents,
             bstrPropName: ?BSTR,
             varPropValue: ?*VARIANT,
             bstrClsidEng: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2739,17 +2739,17 @@ pub const IComCRMEvents = extern union {
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidApp: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMRecoveryDone: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidApp: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMCheckpoint: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidApp: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMBegin: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2758,68 +2758,68 @@ pub const IComCRMEvents = extern union {
             guidTx: Guid,
             szProgIdCompensator: *[64]u16,
             szDescription: *[64]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMPrepare: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidClerkCLSID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMCommit: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidClerkCLSID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMAbort: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidClerkCLSID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMIndoubt: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidClerkCLSID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMDone: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidClerkCLSID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMRelease: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidClerkCLSID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMAnalyze: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidClerkCLSID: Guid,
             dwCrmRecordType: u32,
             dwRecordSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMWrite: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidClerkCLSID: Guid,
             fVariants: BOOL,
             dwRecordSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMForget: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidClerkCLSID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMForce: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidClerkCLSID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCRMDeliver: *const fn(
             self: *const IComCRMEvents,
             pInfo: ?*COMSVCSEVENTINFO,
             guidClerkCLSID: Guid,
             fVariants: BOOL,
             dwRecordSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2884,7 +2884,7 @@ pub const IComMethod2Events = extern union {
             guidRid: ?*const Guid,
             dwThread: u32,
             iMeth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnMethodReturn2: *const fn(
             self: *const IComMethod2Events,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2894,7 +2894,7 @@ pub const IComMethod2Events = extern union {
             dwThread: u32,
             iMeth: u32,
             hresult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnMethodException2: *const fn(
             self: *const IComMethod2Events,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -2903,7 +2903,7 @@ pub const IComMethod2Events = extern union {
             guidRid: ?*const Guid,
             dwThread: u32,
             iMeth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2927,7 +2927,7 @@ pub const IComTrackingInfoEvents = extern union {
         OnNewTrackingInfo: *const fn(
             self: *const IComTrackingInfoEvents,
             pToplevelCollection: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2954,17 +2954,17 @@ pub const IComTrackingInfoCollection = extern union {
         Type: *const fn(
             self: *const IComTrackingInfoCollection,
             pType: ?*TRACKING_COLL_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Count: *const fn(
             self: *const IComTrackingInfoCollection,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IComTrackingInfoCollection,
             ulIndex: u32,
             riid: ?*const Guid,
             ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2989,7 +2989,7 @@ pub const IComTrackingInfoObject = extern union {
             self: *const IComTrackingInfoObject,
             szPropertyName: ?PWSTR,
             pvarOut: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3007,12 +3007,12 @@ pub const IComTrackingInfoProperties = extern union {
         PropCount: *const fn(
             self: *const IComTrackingInfoProperties,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropName: *const fn(
             self: *const IComTrackingInfoProperties,
             ulIndex: u32,
             ppszPropName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3035,30 +3035,30 @@ pub const IComApp2Events = extern union {
             pInfo: ?*COMSVCSEVENTINFO,
             guidApp: Guid,
             guidProcess: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnAppShutdown2: *const fn(
             self: *const IComApp2Events,
             pInfo: ?*COMSVCSEVENTINFO,
             guidApp: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnAppForceShutdown2: *const fn(
             self: *const IComApp2Events,
             pInfo: ?*COMSVCSEVENTINFO,
             guidApp: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnAppPaused2: *const fn(
             self: *const IComApp2Events,
             pInfo: ?*COMSVCSEVENTINFO,
             guidApp: Guid,
             bPaused: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnAppRecycle2: *const fn(
             self: *const IComApp2Events,
             pInfo: ?*COMSVCSEVENTINFO,
             guidApp: Guid,
             guidProcess: Guid,
             lReason: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3092,23 +3092,23 @@ pub const IComTransaction2Events = extern union {
             tsid: ?*const Guid,
             fRoot: BOOL,
             nIsolationLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTransactionPrepare2: *const fn(
             self: *const IComTransaction2Events,
             pInfo: ?*COMSVCSEVENTINFO,
             guidTx: ?*const Guid,
             fVoteYes: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTransactionAbort2: *const fn(
             self: *const IComTransaction2Events,
             pInfo: ?*COMSVCSEVENTINFO,
             guidTx: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTransactionCommit2: *const fn(
             self: *const IComTransaction2Events,
             pInfo: ?*COMSVCSEVENTINFO,
             guidTx: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3141,12 +3141,12 @@ pub const IComInstance2Events = extern union {
             CtxtID: u64,
             ObjectID: u64,
             guidPartition: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjectDestroy2: *const fn(
             self: *const IComInstance2Events,
             pInfo: ?*COMSVCSEVENTINFO,
             CtxtID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3171,7 +3171,7 @@ pub const IComObjectPool2Events = extern union {
             nReason: i32,
             dwAvailable: u32,
             oid: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjPoolGetObject2: *const fn(
             self: *const IComObjectPool2Events,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -3180,7 +3180,7 @@ pub const IComObjectPool2Events = extern union {
             dwAvailable: u32,
             oid: u64,
             guidPartition: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjPoolRecycleToTx2: *const fn(
             self: *const IComObjectPool2Events,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -3188,7 +3188,7 @@ pub const IComObjectPool2Events = extern union {
             guidObject: ?*const Guid,
             guidTx: ?*const Guid,
             objid: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnObjPoolGetFromTx2: *const fn(
             self: *const IComObjectPool2Events,
             pInfo: ?*COMSVCSEVENTINFO,
@@ -3197,7 +3197,7 @@ pub const IComObjectPool2Events = extern union {
             guidTx: ?*const Guid,
             objid: u64,
             guidPartition: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3228,7 +3228,7 @@ pub const IComObjectConstruction2Events = extern union {
             sConstructString: ?[*:0]const u16,
             oid: u64,
             guidPartition: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3245,7 +3245,7 @@ pub const ISystemAppEventData = extern union {
         base: IUnknown.VTable,
         Startup: *const fn(
             self: *const ISystemAppEventData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDataChanged: *const fn(
             self: *const ISystemAppEventData,
             dwPID: u32,
@@ -3254,7 +3254,7 @@ pub const ISystemAppEventData = extern union {
             bstrDwMethodMask: ?BSTR,
             dwReason: u32,
             u64TraceHandle: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3276,25 +3276,25 @@ pub const IMtsEvents = extern union {
         get_PackageName: *const fn(
             self: *const IMtsEvents,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PackageGuid: *const fn(
             self: *const IMtsEvents,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PostEvent: *const fn(
             self: *const IMtsEvents,
             vEvent: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FireEvents: *const fn(
             self: *const IMtsEvents,
             pVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProcessID: *const fn(
             self: *const IMtsEvents,
             id: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3326,27 +3326,27 @@ pub const IMtsEventInfo = extern union {
         get_Names: *const fn(
             self: *const IMtsEventInfo,
             pUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: *const fn(
             self: *const IMtsEventInfo,
             sDisplayName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventID: *const fn(
             self: *const IMtsEventInfo,
             sGuidEventID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IMtsEventInfo,
             lCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Value: *const fn(
             self: *const IMtsEventInfo,
             sKey: ?BSTR,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3377,7 +3377,7 @@ pub const IMTSLocator = extern union {
         GetEventDispatcher: *const fn(
             self: *const IMTSLocator,
             pUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3397,15 +3397,15 @@ pub const IMtsGrp = extern union {
         get_Count: *const fn(
             self: *const IMtsGrp,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IMtsGrp,
             lIndex: i32,
             ppUnkDispatcher: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IMtsGrp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3431,36 +3431,36 @@ pub const IMessageMover = extern union {
         get_SourcePath: *const fn(
             self: *const IMessageMover,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SourcePath: *const fn(
             self: *const IMessageMover,
             newVal: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestPath: *const fn(
             self: *const IMessageMover,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DestPath: *const fn(
             self: *const IMessageMover,
             newVal: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommitBatchSize: *const fn(
             self: *const IMessageMover,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CommitBatchSize: *const fn(
             self: *const IMessageMover,
             newVal: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveMessages: *const fn(
             self: *const IMessageMover,
             plMessagesMoved: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3498,18 +3498,18 @@ pub const IEventServerTrace = extern union {
             bstrguidEvent: ?BSTR,
             bstrguidFilter: ?BSTR,
             lPidFilter: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopTraceGuid: *const fn(
             self: *const IEventServerTrace,
             bstrguidEvent: ?BSTR,
             bstrguidFilter: ?BSTR,
             lPidFilter: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumTraceGuid: *const fn(
             self: *const IEventServerTrace,
             plCntGuids: ?*i32,
             pbstrGuidList: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3710,7 +3710,7 @@ pub const IGetAppTrackerData = extern union {
             Flags: u32,
             NumApplicationProcesses: ?*u32,
             ApplicationProcesses: [*]?*ApplicationProcessSummary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetApplicationProcessDetails: *const fn(
             self: *const IGetAppTrackerData,
             ApplicationInstanceId: ?*const Guid,
@@ -3720,7 +3720,7 @@ pub const IGetAppTrackerData = extern union {
             Statistics: ?*ApplicationProcessStatistics,
             RecycleInfo: ?*ApplicationProcessRecycleInfo,
             AnyComponentsHangMonitored: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetApplicationsInProcess: *const fn(
             self: *const IGetAppTrackerData,
             ApplicationInstanceId: ?*const Guid,
@@ -3729,7 +3729,7 @@ pub const IGetAppTrackerData = extern union {
             Flags: u32,
             NumApplicationsInProcess: ?*u32,
             Applications: [*]?*ApplicationSummary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetComponentsInProcess: *const fn(
             self: *const IGetAppTrackerData,
             ApplicationInstanceId: ?*const Guid,
@@ -3739,7 +3739,7 @@ pub const IGetAppTrackerData = extern union {
             Flags: u32,
             NumComponentsInProcess: ?*u32,
             Components: [*]?*ComponentSummary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetComponentDetails: *const fn(
             self: *const IGetAppTrackerData,
             ApplicationInstanceId: ?*const Guid,
@@ -3749,15 +3749,15 @@ pub const IGetAppTrackerData = extern union {
             Summary: ?*ComponentSummary,
             Statistics: ?*ComponentStatistics,
             HangMonitorInfo: ?*ComponentHangMonitorInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTrackerDataAsCollectionObject: *const fn(
             self: *const IGetAppTrackerData,
             TopLevelCollection: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSuggestedPollingInterval: *const fn(
             self: *const IGetAppTrackerData,
             PollingIntervalInSeconds: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3795,12 +3795,12 @@ pub const IDispenserManager = extern union {
             __MIDL__IDispenserManager0000: ?*IDispenserDriver,
             szDispenserName: ?[*:0]const u16,
             __MIDL__IDispenserManager0001: ?*?*IHolder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContext: *const fn(
             self: *const IDispenserManager,
             __MIDL__IDispenserManager0002: ?*usize,
             __MIDL__IDispenserManager0003: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3822,36 +3822,36 @@ pub const IHolder = extern union {
             self: *const IHolder,
             __MIDL__IHolder0000: usize,
             __MIDL__IHolder0001: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FreeResource: *const fn(
             self: *const IHolder,
             __MIDL__IHolder0002: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TrackResource: *const fn(
             self: *const IHolder,
             __MIDL__IHolder0003: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TrackResourceS: *const fn(
             self: *const IHolder,
             __MIDL__IHolder0004: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UntrackResource: *const fn(
             self: *const IHolder,
             __MIDL__IHolder0005: usize,
             __MIDL__IHolder0006: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UntrackResourceS: *const fn(
             self: *const IHolder,
             __MIDL__IHolder0007: ?*u16,
             __MIDL__IHolder0008: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IHolder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestDestroyResource: *const fn(
             self: *const IHolder,
             __MIDL__IHolder0009: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3892,31 +3892,31 @@ pub const IDispenserDriver = extern union {
             ResTypId: usize,
             pResId: ?*usize,
             pSecsFreeBeforeDestroy: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RateResource: *const fn(
             self: *const IDispenserDriver,
             ResTypId: usize,
             ResId: usize,
             fRequiresTransactionEnlistment: BOOL,
             pRating: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnlistResource: *const fn(
             self: *const IDispenserDriver,
             ResId: usize,
             TransId: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetResource: *const fn(
             self: *const IDispenserDriver,
             ResId: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestroyResource: *const fn(
             self: *const IDispenserDriver,
             ResId: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestroyResourceS: *const fn(
             self: *const IDispenserDriver,
             ResId: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3949,31 +3949,31 @@ pub const ITransactionProxy = extern union {
         Commit: *const fn(
             self: *const ITransactionProxy,
             guid: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Abort: *const fn(
             self: *const ITransactionProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Promote: *const fn(
             self: *const ITransactionProxy,
             pTransaction: ?*?*ITransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVoter: *const fn(
             self: *const ITransactionProxy,
             pTxAsync: ?*ITransactionVoterNotifyAsync2,
             ppBallot: ?*?*ITransactionVoterBallotAsync2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIsolationLevel: *const fn(
             self: *const ITransactionProxy,
             __MIDL__ITransactionProxy0000: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIdentifier: *const fn(
             self: *const ITransactionProxy,
             pbstrIdentifier: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsReusable: *const fn(
             self: *const ITransactionProxy,
             pfIsReusable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4008,11 +4008,11 @@ pub const IContextSecurityPerimeter = extern union {
         GetPerimeterFlag: *const fn(
             self: *const IContextSecurityPerimeter,
             pFlag: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPerimeterFlag: *const fn(
             self: *const IContextSecurityPerimeter,
             fFlag: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4032,7 +4032,7 @@ pub const ITxProxyHolder = extern union {
         GetIdentifier: *const fn(
             self: *const ITxProxyHolder,
             pGuidLtx: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4052,30 +4052,30 @@ pub const IObjectContext = extern union {
             rclsid: ?*const Guid,
             riid: ?*const Guid,
             ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetComplete: *const fn(
             self: *const IObjectContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAbort: *const fn(
             self: *const IObjectContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableCommit: *const fn(
             self: *const IObjectContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableCommit: *const fn(
             self: *const IObjectContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsInTransaction: *const fn(
             self: *const IObjectContext,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         IsSecurityEnabled: *const fn(
             self: *const IObjectContext,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         IsCallerInRole: *const fn(
             self: *const IObjectContext,
             bstrRole: ?BSTR,
             pfIsInRole: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4113,13 +4113,13 @@ pub const IObjectControl = extern union {
         base: IUnknown.VTable,
         Activate: *const fn(
             self: *const IObjectControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Deactivate: *const fn(
             self: *const IObjectControl,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CanBePooled: *const fn(
             self: *const IObjectControl,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4145,18 +4145,18 @@ pub const IEnumNames = extern union {
             celt: u32,
             rgname: ?*?BSTR,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumNames,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumNames,
             ppenum: ?*?*IEnumNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4183,23 +4183,23 @@ pub const ISecurityProperty = extern union {
         GetDirectCreatorSID: *const fn(
             self: *const ISecurityProperty,
             pSID: ?*?PSID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOriginalCreatorSID: *const fn(
             self: *const ISecurityProperty,
             pSID: ?*?PSID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDirectCallerSID: *const fn(
             self: *const ISecurityProperty,
             pSID: ?*?PSID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOriginalCallerSID: *const fn(
             self: *const ISecurityProperty,
             pSID: ?*?PSID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseSID: *const fn(
             self: *const ISecurityProperty,
             pSID: ?PSID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4228,14 +4228,14 @@ pub const ObjectControl = extern union {
         base: IUnknown.VTable,
         Activate: *const fn(
             self: *const ObjectControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Deactivate: *const fn(
             self: *const ObjectControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CanBePooled: *const fn(
             self: *const ObjectControl,
             pbPoolable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4260,12 +4260,12 @@ pub const ISharedProperty = extern union {
         get_Value: *const fn(
             self: *const ISharedProperty,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const ISharedProperty,
             val: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4289,23 +4289,23 @@ pub const ISharedPropertyGroup = extern union {
             Index: i32,
             fExists: ?*i16,
             ppProp: ?*?*ISharedProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_PropertyByPosition: *const fn(
             self: *const ISharedPropertyGroup,
             Index: i32,
             ppProperty: ?*?*ISharedProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateProperty: *const fn(
             self: *const ISharedPropertyGroup,
             Name: ?BSTR,
             fExists: ?*i16,
             ppProp: ?*?*ISharedProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Property: *const fn(
             self: *const ISharedPropertyGroup,
             Name: ?BSTR,
             ppProperty: ?*?*ISharedProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4337,17 +4337,17 @@ pub const ISharedPropertyGroupManager = extern union {
             dwRelMode: ?*i32,
             fExists: ?*i16,
             ppGroup: ?*?*ISharedPropertyGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Group: *const fn(
             self: *const ISharedPropertyGroupManager,
             Name: ?BSTR,
             ppGroup: ?*?*ISharedPropertyGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISharedPropertyGroupManager,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4372,7 +4372,7 @@ pub const IObjectConstruct = extern union {
         Construct: *const fn(
             self: *const IObjectConstruct,
             pCtorObj: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4391,7 +4391,7 @@ pub const IObjectConstructString = extern union {
         get_ConstructString: *const fn(
             self: *const IObjectConstructString,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4410,7 +4410,7 @@ pub const IObjectContextActivity = extern union {
         GetActivityId: *const fn(
             self: *const IObjectContextActivity,
             pGUID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4427,23 +4427,23 @@ pub const IObjectContextInfo = extern union {
         base: IUnknown.VTable,
         IsInTransaction: *const fn(
             self: *const IObjectContextInfo,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetTransaction: *const fn(
             self: *const IObjectContextInfo,
             pptrans: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransactionId: *const fn(
             self: *const IObjectContextInfo,
             pGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActivityId: *const fn(
             self: *const IObjectContextInfo,
             pGUID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContextId: *const fn(
             self: *const IObjectContextInfo,
             pGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4473,15 +4473,15 @@ pub const IObjectContextInfo2 = extern union {
         GetPartitionId: *const fn(
             self: *const IObjectContextInfo2,
             pGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetApplicationId: *const fn(
             self: *const IObjectContextInfo2,
             pGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetApplicationInstanceId: *const fn(
             self: *const IObjectContextInfo2,
             pGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IObjectContextInfo: IObjectContextInfo,
@@ -4506,11 +4506,11 @@ pub const ITransactionStatus = extern union {
         SetTransactionStatus: *const fn(
             self: *const ITransactionStatus,
             hrStatus: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransactionStatus: *const fn(
             self: *const ITransactionStatus,
             pHrStatus: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4531,7 +4531,7 @@ pub const IObjectContextTip = extern union {
         GetTipUrl: *const fn(
             self: *const IObjectContextTip,
             pTipUrl: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4548,10 +4548,10 @@ pub const IPlaybackControl = extern union {
         base: IUnknown.VTable,
         FinalClientRetry: *const fn(
             self: *const IPlaybackControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FinalServerRetry: *const fn(
             self: *const IPlaybackControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4572,16 +4572,16 @@ pub const IGetContextProperties = extern union {
         Count: *const fn(
             self: *const IGetContextProperties,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IGetContextProperties,
             name: ?BSTR,
             pProperty: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumNames: *const fn(
             self: *const IGetContextProperties,
             ppenum: ?*?*IEnumNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4612,19 +4612,19 @@ pub const IContextState = extern union {
         SetDeactivateOnReturn: *const fn(
             self: *const IContextState,
             bDeactivate: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeactivateOnReturn: *const fn(
             self: *const IContextState,
             pbDeactivate: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMyTransactionVote: *const fn(
             self: *const IContextState,
             txVote: TransactionVote,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMyTransactionVote: *const fn(
             self: *const IContextState,
             ptxVote: ?*TransactionVote,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4651,7 +4651,7 @@ pub const IPoolManager = extern union {
         ShutdownPool: *const fn(
             self: *const IPoolManager,
             CLSIDOrProgID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4669,11 +4669,11 @@ pub const ISelectCOMLBServer = extern union {
         base: IUnknown.VTable,
         Init: *const fn(
             self: *const ISelectCOMLBServer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLBServer: *const fn(
             self: *const ISelectCOMLBServer,
             pUnk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4694,21 +4694,21 @@ pub const ICOMLBArguments = extern union {
         GetCLSID: *const fn(
             self: *const ICOMLBArguments,
             pCLSID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCLSID: *const fn(
             self: *const ICOMLBArguments,
             pCLSID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMachineName: *const fn(
             self: *const ICOMLBArguments,
             cchSvr: u32,
             szServerName: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMachineName: *const fn(
             self: *const ICOMLBArguments,
             cchSvr: u32,
             szServerName: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4736,31 +4736,31 @@ pub const ICrmLogControl = extern union {
         get_TransactionUOW: *const fn(
             self: *const ICrmLogControl,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterCompensator: *const fn(
             self: *const ICrmLogControl,
             lpcwstrProgIdCompensator: ?[*:0]const u16,
             lpcwstrDescription: ?[*:0]const u16,
             lCrmRegFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteLogRecordVariants: *const fn(
             self: *const ICrmLogControl,
             pLogRecord: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ForceLog: *const fn(
             self: *const ICrmLogControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ForgetLogRecord: *const fn(
             self: *const ICrmLogControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ForceTransactionToAbort: *const fn(
             self: *const ICrmLogControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteLogRecord: *const fn(
             self: *const ICrmLogControl,
             rgBlob: [*]BLOB,
             cBlob: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4796,43 +4796,43 @@ pub const ICrmCompensatorVariants = extern union {
         SetLogControlVariants: *const fn(
             self: *const ICrmCompensatorVariants,
             pLogControl: ?*ICrmLogControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginPrepareVariants: *const fn(
             self: *const ICrmCompensatorVariants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PrepareRecordVariants: *const fn(
             self: *const ICrmCompensatorVariants,
             pLogRecord: ?*VARIANT,
             pbForget: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndPrepareVariants: *const fn(
             self: *const ICrmCompensatorVariants,
             pbOkToPrepare: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginCommitVariants: *const fn(
             self: *const ICrmCompensatorVariants,
             bRecovery: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitRecordVariants: *const fn(
             self: *const ICrmCompensatorVariants,
             pLogRecord: ?*VARIANT,
             pbForget: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndCommitVariants: *const fn(
             self: *const ICrmCompensatorVariants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginAbortVariants: *const fn(
             self: *const ICrmCompensatorVariants,
             bRecovery: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AbortRecordVariants: *const fn(
             self: *const ICrmCompensatorVariants,
             pLogRecord: ?*VARIANT,
             pbForget: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndAbortVariants: *const fn(
             self: *const ICrmCompensatorVariants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4883,43 +4883,43 @@ pub const ICrmCompensator = extern union {
         SetLogControl: *const fn(
             self: *const ICrmCompensator,
             pLogControl: ?*ICrmLogControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginPrepare: *const fn(
             self: *const ICrmCompensator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PrepareRecord: *const fn(
             self: *const ICrmCompensator,
             crmLogRec: CrmLogRecordRead,
             pfForget: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndPrepare: *const fn(
             self: *const ICrmCompensator,
             pfOkToPrepare: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginCommit: *const fn(
             self: *const ICrmCompensator,
             fRecovery: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitRecord: *const fn(
             self: *const ICrmCompensator,
             crmLogRec: CrmLogRecordRead,
             pfForget: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndCommit: *const fn(
             self: *const ICrmCompensator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginAbort: *const fn(
             self: *const ICrmCompensator,
             fRecovery: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AbortRecord: *const fn(
             self: *const ICrmCompensator,
             crmLogRec: CrmLogRecordRead,
             pfForget: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndAbort: *const fn(
             self: *const ICrmCompensator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4976,27 +4976,27 @@ pub const ICrmMonitorLogRecords = extern union {
         get_Count: *const fn(
             self: *const ICrmMonitorLogRecords,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionState: *const fn(
             self: *const ICrmMonitorLogRecords,
             pVal: ?*CrmTransactionState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StructuredRecords: *const fn(
             self: *const ICrmMonitorLogRecords,
             pVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLogRecord: *const fn(
             self: *const ICrmMonitorLogRecords,
             dwIndex: u32,
             pCrmLogRec: ?*CrmLogRecordRead,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLogRecordVariants: *const fn(
             self: *const ICrmMonitorLogRecords,
             IndexNumber: VARIANT,
             pLogRecord: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5027,37 +5027,37 @@ pub const ICrmMonitorClerks = extern union {
             self: *const ICrmMonitorClerks,
             Index: VARIANT,
             pItem: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ICrmMonitorClerks,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ICrmMonitorClerks,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProgIdCompensator: *const fn(
             self: *const ICrmMonitorClerks,
             Index: VARIANT,
             pItem: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Description: *const fn(
             self: *const ICrmMonitorClerks,
             Index: VARIANT,
             pItem: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TransactionUOW: *const fn(
             self: *const ICrmMonitorClerks,
             Index: VARIANT,
             pItem: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ActivityId: *const fn(
             self: *const ICrmMonitorClerks,
             Index: VARIANT,
             pItem: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5094,12 +5094,12 @@ pub const ICrmMonitor = extern union {
         GetClerks: *const fn(
             self: *const ICrmMonitor,
             pClerks: ?*?*ICrmMonitorClerks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HoldClerk: *const fn(
             self: *const ICrmMonitor,
             Index: VARIANT,
             pItem: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5120,21 +5120,21 @@ pub const ICrmFormatLogRecords = extern union {
         GetColumnCount: *const fn(
             self: *const ICrmFormatLogRecords,
             plColumnCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColumnHeaders: *const fn(
             self: *const ICrmFormatLogRecords,
             pHeaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColumn: *const fn(
             self: *const ICrmFormatLogRecords,
             CrmLogRec: CrmLogRecordRead,
             pFormattedLogRecord: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColumnVariants: *const fn(
             self: *const ICrmFormatLogRecords,
             LogRecord: VARIANT,
             pFormattedLogRecord: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5247,7 +5247,7 @@ pub const IServiceIISIntrinsicsConfig = extern union {
         IISIntrinsicsConfig: *const fn(
             self: *const IServiceIISIntrinsicsConfig,
             iisIntrinsicsConfig: CSC_IISIntrinsicsConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5265,7 +5265,7 @@ pub const IServiceComTIIntrinsicsConfig = extern union {
         ComTIIntrinsicsConfig: *const fn(
             self: *const IServiceComTIIntrinsicsConfig,
             comtiIntrinsicsConfig: CSC_COMTIIntrinsicsConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5283,15 +5283,15 @@ pub const IServiceSxsConfig = extern union {
         SxsConfig: *const fn(
             self: *const IServiceSxsConfig,
             scsConfig: CSC_SxsConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SxsName: *const fn(
             self: *const IServiceSxsConfig,
             szSxsName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SxsDirectory: *const fn(
             self: *const IServiceSxsConfig,
             szSxsDirectory: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5317,7 +5317,7 @@ pub const ICheckSxsConfig = extern union {
             wszSxsName: ?[*:0]const u16,
             wszSxsDirectory: ?[*:0]const u16,
             wszSxsAppName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5335,7 +5335,7 @@ pub const IServiceInheritanceConfig = extern union {
         ContainingContextTreatment: *const fn(
             self: *const IServiceInheritanceConfig,
             inheritanceConfig: CSC_InheritanceConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5353,11 +5353,11 @@ pub const IServiceThreadPoolConfig = extern union {
         SelectThreadPool: *const fn(
             self: *const IServiceThreadPoolConfig,
             threadPool: CSC_ThreadPool,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBindingInfo: *const fn(
             self: *const IServiceThreadPoolConfig,
             binding: CSC_Binding,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5378,23 +5378,23 @@ pub const IServiceTransactionConfigBase = extern union {
         ConfigureTransaction: *const fn(
             self: *const IServiceTransactionConfigBase,
             transactionConfig: CSC_TransactionConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsolationLevel: *const fn(
             self: *const IServiceTransactionConfigBase,
             option: COMAdminTxIsolationLevelOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TransactionTimeout: *const fn(
             self: *const IServiceTransactionConfigBase,
             ulTimeoutSec: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BringYourOwnTransaction: *const fn(
             self: *const IServiceTransactionConfigBase,
             szTipURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NewTransactionDescription: *const fn(
             self: *const IServiceTransactionConfigBase,
             szTxDesc: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5424,7 +5424,7 @@ pub const IServiceTransactionConfig = extern union {
         ConfigureBYOT: *const fn(
             self: *const IServiceTransactionConfig,
             pITxByot: ?*ITransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IServiceTransactionConfigBase: IServiceTransactionConfigBase,
@@ -5443,7 +5443,7 @@ pub const IServiceSysTxnConfig = extern union {
         ConfigureBYOTSysTxn: *const fn(
             self: *const IServiceSysTxnConfig,
             pTxProxy: ?*ITransactionProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IServiceTransactionConfig: IServiceTransactionConfig,
@@ -5463,7 +5463,7 @@ pub const IServiceSynchronizationConfig = extern union {
         ConfigureSynchronization: *const fn(
             self: *const IServiceSynchronizationConfig,
             synchConfig: CSC_SynchronizationConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5483,7 +5483,7 @@ pub const IServiceTrackerConfig = extern union {
             trackerConfig: CSC_TrackerConfig,
             szTrackerAppName: ?[*:0]const u16,
             szTrackerCtxName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5501,11 +5501,11 @@ pub const IServicePartitionConfig = extern union {
         PartitionConfig: *const fn(
             self: *const IServicePartitionConfig,
             partitionConfig: CSC_PartitionConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PartitionID: *const fn(
             self: *const IServicePartitionConfig,
             guidPartitionID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5525,7 +5525,7 @@ pub const IServiceCall = extern union {
         base: IUnknown.VTable,
         OnCall: *const fn(
             self: *const IServiceCall,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5543,7 +5543,7 @@ pub const IAsyncErrorNotify = extern union {
         OnError: *const fn(
             self: *const IAsyncErrorNotify,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5561,17 +5561,17 @@ pub const IServiceActivity = extern union {
         SynchronousCall: *const fn(
             self: *const IServiceActivity,
             pIServiceCall: ?*IServiceCall,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AsynchronousCall: *const fn(
             self: *const IServiceActivity,
             pIServiceCall: ?*IServiceCall,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindToCurrentThread: *const fn(
             self: *const IServiceActivity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnbindFromThread: *const fn(
             self: *const IServiceActivity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5598,43 +5598,43 @@ pub const IThreadPoolKnobs = extern union {
         GetMaxThreads: *const fn(
             self: *const IThreadPoolKnobs,
             plcMaxThreads: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentThreads: *const fn(
             self: *const IThreadPoolKnobs,
             plcCurrentThreads: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaxThreads: *const fn(
             self: *const IThreadPoolKnobs,
             lcMaxThreads: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeleteDelay: *const fn(
             self: *const IThreadPoolKnobs,
             pmsecDeleteDelay: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDeleteDelay: *const fn(
             self: *const IThreadPoolKnobs,
             msecDeleteDelay: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxQueuedRequests: *const fn(
             self: *const IThreadPoolKnobs,
             plcMaxQueuedRequests: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentQueuedRequests: *const fn(
             self: *const IThreadPoolKnobs,
             plcCurrentQueuedRequests: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaxQueuedRequests: *const fn(
             self: *const IThreadPoolKnobs,
             lcMaxQueuedRequests: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMinThreads: *const fn(
             self: *const IThreadPoolKnobs,
             lcMinThreads: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetQueueDepth: *const fn(
             self: *const IThreadPoolKnobs,
             lcQueueDepth: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5678,47 +5678,47 @@ pub const IComStaThreadPoolKnobs = extern union {
         SetMinThreadCount: *const fn(
             self: *const IComStaThreadPoolKnobs,
             minThreads: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMinThreadCount: *const fn(
             self: *const IComStaThreadPoolKnobs,
             minThreads: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaxThreadCount: *const fn(
             self: *const IComStaThreadPoolKnobs,
             maxThreads: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxThreadCount: *const fn(
             self: *const IComStaThreadPoolKnobs,
             maxThreads: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetActivityPerThread: *const fn(
             self: *const IComStaThreadPoolKnobs,
             activitiesPerThread: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActivityPerThread: *const fn(
             self: *const IComStaThreadPoolKnobs,
             activitiesPerThread: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetActivityRatio: *const fn(
             self: *const IComStaThreadPoolKnobs,
             activityRatio: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActivityRatio: *const fn(
             self: *const IComStaThreadPoolKnobs,
             activityRatio: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetThreadCount: *const fn(
             self: *const IComStaThreadPoolKnobs,
             pdwThreads: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetQueueDepth: *const fn(
             self: *const IComStaThreadPoolKnobs,
             pdwQDepth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetQueueDepth: *const fn(
             self: *const IComStaThreadPoolKnobs,
             dwQDepth: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5765,19 +5765,19 @@ pub const IComMtaThreadPoolKnobs = extern union {
         MTASetMaxThreadCount: *const fn(
             self: *const IComMtaThreadPoolKnobs,
             dwMaxThreads: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MTAGetMaxThreadCount: *const fn(
             self: *const IComMtaThreadPoolKnobs,
             pdwMaxThreads: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MTASetThrottleValue: *const fn(
             self: *const IComMtaThreadPoolKnobs,
             dwThrottle: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MTAGetThrottleValue: *const fn(
             self: *const IComMtaThreadPoolKnobs,
             pdwThrottle: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5803,43 +5803,43 @@ pub const IComStaThreadPoolKnobs2 = extern union {
         GetMaxCPULoad: *const fn(
             self: *const IComStaThreadPoolKnobs2,
             pdwLoad: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaxCPULoad: *const fn(
             self: *const IComStaThreadPoolKnobs2,
             pdwLoad: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCPUMetricEnabled: *const fn(
             self: *const IComStaThreadPoolKnobs2,
             pbMetricEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCPUMetricEnabled: *const fn(
             self: *const IComStaThreadPoolKnobs2,
             bMetricEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCreateThreadsAggressively: *const fn(
             self: *const IComStaThreadPoolKnobs2,
             pbMetricEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCreateThreadsAggressively: *const fn(
             self: *const IComStaThreadPoolKnobs2,
             bMetricEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxCSR: *const fn(
             self: *const IComStaThreadPoolKnobs2,
             pdwCSR: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaxCSR: *const fn(
             self: *const IComStaThreadPoolKnobs2,
             dwCSR: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWaitTimeForThreadCleanup: *const fn(
             self: *const IComStaThreadPoolKnobs2,
             pdwThreadCleanupWaitTime: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWaitTimeForThreadCleanup: *const fn(
             self: *const IComStaThreadPoolKnobs2,
             dwThreadCleanupWaitTime: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IComStaThreadPoolKnobs: IComStaThreadPoolKnobs,
@@ -5885,10 +5885,10 @@ pub const IProcessInitializer = extern union {
         Startup: *const fn(
             self: *const IProcessInitializer,
             punkProcessControl: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IProcessInitializer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5910,52 +5910,52 @@ pub const IServicePoolConfig = extern union {
         put_MaxPoolSize: *const fn(
             self: *const IServicePoolConfig,
             dwMaxPool: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxPoolSize: *const fn(
             self: *const IServicePoolConfig,
             pdwMaxPool: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MinPoolSize: *const fn(
             self: *const IServicePoolConfig,
             dwMinPool: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinPoolSize: *const fn(
             self: *const IServicePoolConfig,
             pdwMinPool: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CreationTimeout: *const fn(
             self: *const IServicePoolConfig,
             dwCreationTimeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CreationTimeout: *const fn(
             self: *const IServicePoolConfig,
             pdwCreationTimeout: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TransactionAffinity: *const fn(
             self: *const IServicePoolConfig,
             fTxAffinity: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionAffinity: *const fn(
             self: *const IServicePoolConfig,
             pfTxAffinity: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClassFactory: *const fn(
             self: *const IServicePoolConfig,
             pFactory: ?*IClassFactory,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassFactory: *const fn(
             self: *const IServicePoolConfig,
             pFactory: ?*?*IClassFactory,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6000,15 +6000,15 @@ pub const IServicePool = extern union {
         Initialize: *const fn(
             self: *const IServicePool,
             pPoolConfig: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObject: *const fn(
             self: *const IServicePool,
             riid: ?*const Guid,
             ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IServicePool,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6032,7 +6032,7 @@ pub const IManagedPooledObj = extern union {
         SetHeld: *const fn(
             self: *const IManagedPooledObj,
             m_bHeld: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6049,7 +6049,7 @@ pub const IManagedPoolAction = extern union {
         base: IUnknown.VTable,
         LastRelease: *const fn(
             self: *const IManagedPoolAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6067,20 +6067,20 @@ pub const IManagedObjectInfo = extern union {
         GetIUnknown: *const fn(
             self: *const IManagedObjectInfo,
             pUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIObjectControl: *const fn(
             self: *const IManagedObjectInfo,
             pCtrl: ?*?*IObjectControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInPool: *const fn(
             self: *const IManagedObjectInfo,
             bInPool: BOOL,
             pPooledObj: ?*IManagedPooledObj,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWrapperStrength: *const fn(
             self: *const IManagedObjectInfo,
             bStrong: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6109,13 +6109,13 @@ pub const IAppDomainHelper = extern union {
             pUnkAD: ?*IUnknown,
             __MIDL__IAppDomainHelper0000: isize,
             pPool: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoCallback: *const fn(
             self: *const IAppDomainHelper,
             pUnkAD: ?*IUnknown,
             __MIDL__IAppDomainHelper0001: isize,
             pPool: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -6140,7 +6140,7 @@ pub const IAssemblyLocator = extern union {
             applicationName: ?BSTR,
             assemblyName: ?BSTR,
             pModules: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -6160,11 +6160,11 @@ pub const IManagedActivationEvents = extern union {
             self: *const IManagedActivationEvents,
             pInfo: ?*IManagedObjectInfo,
             fDist: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestroyManagedStub: *const fn(
             self: *const IManagedActivationEvents,
             pInfo: ?*IManagedObjectInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6187,7 +6187,7 @@ pub const ISendMethodEvents = extern union {
             pIdentity: ?*const anyopaque,
             riid: ?*const Guid,
             dwMeth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendMethodReturn: *const fn(
             self: *const ISendMethodEvents,
             pIdentity: ?*const anyopaque,
@@ -6195,7 +6195,7 @@ pub const ISendMethodEvents = extern union {
             dwMeth: u32,
             hrCall: HRESULT,
             hrServer: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6217,12 +6217,12 @@ pub const ITransactionResourcePool = extern union {
             self: *const ITransactionResourcePool,
             pPool: ?*IObjPool,
             pUnk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResource: *const fn(
             self: *const ITransactionResourcePool,
             pPool: ?*IObjPool,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6242,7 +6242,7 @@ pub const IMTSCall = extern union {
         base: IUnknown.VTable,
         OnCall: *const fn(
             self: *const IMTSCall,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6260,25 +6260,25 @@ pub const IContextProperties = extern union {
         Count: *const fn(
             self: *const IContextProperties,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IContextProperties,
             name: ?BSTR,
             pProperty: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumNames: *const fn(
             self: *const IContextProperties,
             ppenum: ?*?*IEnumNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IContextProperties,
             name: ?BSTR,
             property: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveProperty: *const fn(
             self: *const IContextProperties,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6307,26 +6307,26 @@ pub const IObjPool = extern union {
         base: IUnknown.VTable,
         Reserved1: *const fn(
             self: *const IObjPool,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved2: *const fn(
             self: *const IObjPool,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved3: *const fn(
             self: *const IObjPool,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved4: *const fn(
             self: *const IObjPool,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PutEndTx: *const fn(
             self: *const IObjPool,
             pObj: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved5: *const fn(
             self: *const IObjPool,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved6: *const fn(
             self: *const IObjPool,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6361,59 +6361,59 @@ pub const ITransactionProperty = extern union {
         base: IUnknown.VTable,
         Reserved1: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved2: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved3: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved4: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved5: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved6: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved7: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved8: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved9: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetTransactionResourcePool: *const fn(
             self: *const ITransactionProperty,
             ppTxPool: ?*?*ITransactionResourcePool,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reserved10: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved11: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved12: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved13: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved14: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved15: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved16: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reserved17: *const fn(
             self: *const ITransactionProperty,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6482,20 +6482,20 @@ pub const IMTSActivity = extern union {
         SynchronousCall: *const fn(
             self: *const IMTSActivity,
             pCall: ?*IMTSCall,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AsyncCall: *const fn(
             self: *const IMTSActivity,
             pCall: ?*IMTSCall,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reserved1: *const fn(
             self: *const IMTSActivity,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         BindToCurrentThread: *const fn(
             self: *const IMTSActivity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnbindFromThread: *const fn(
             self: *const IMTSActivity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6624,51 +6624,51 @@ pub extern "ole32" fn CoGetDefaultContext(
     aptType: APTTYPE,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "comsvcs" fn CoCreateActivity(
     pIUnknown: ?*IUnknown,
     riid: ?*const Guid,
     ppObj: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "comsvcs" fn CoEnterServiceDomain(
     pConfigObject: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "comsvcs" fn CoLeaveServiceDomain(
     pUnkStatus: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "comsvcs" fn GetManagedExtensions(
     dwExts: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comsvcs" fn SafeRef(
     rid: ?*const Guid,
     pUnk: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comsvcs" fn RecycleSurrogate(
     lReasonCode: i32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comsvcs" fn MTSCreateActivity(
     riid: ?*const Guid,
     ppobj: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mtxdm" fn GetDispenserManager(
     param0: ?*?*IDispenserManager,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

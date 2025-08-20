@@ -23,7 +23,7 @@ pub const INotificationActivationCallback = extern union {
             invokedArgs: ?[*:0]const u16,
             data: [*]const NOTIFICATION_USER_INPUT_DATA,
             count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

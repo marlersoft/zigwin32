@@ -299,100 +299,100 @@ pub const IXmlReader = extern union {
         SetInput: *const fn(
             self: *const IXmlReader,
             pInput: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IXmlReader,
             nProperty: u32,
             ppValue: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IXmlReader,
             nProperty: u32,
             pValue: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Read: *const fn(
             self: *const IXmlReader,
             pNodeType: ?*XmlNodeType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNodeType: *const fn(
             self: *const IXmlReader,
             pNodeType: ?*XmlNodeType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveToFirstAttribute: *const fn(
             self: *const IXmlReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveToNextAttribute: *const fn(
             self: *const IXmlReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveToAttributeByName: *const fn(
             self: *const IXmlReader,
             pwszLocalName: ?[*:0]const u16,
             pwszNamespaceUri: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveToElement: *const fn(
             self: *const IXmlReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetQualifiedName: *const fn(
             self: *const IXmlReader,
             ppwszQualifiedName: ?*?PWSTR,
             pcwchQualifiedName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNamespaceUri: *const fn(
             self: *const IXmlReader,
             ppwszNamespaceUri: ?*?PWSTR,
             pcwchNamespaceUri: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocalName: *const fn(
             self: *const IXmlReader,
             ppwszLocalName: ?*?PWSTR,
             pcwchLocalName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrefix: *const fn(
             self: *const IXmlReader,
             ppwszPrefix: ?*?PWSTR,
             pcwchPrefix: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const IXmlReader,
             ppwszValue: ?*?PWSTR,
             pcwchValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReadValueChunk: *const fn(
             self: *const IXmlReader,
             pwchBuffer: [*:0]u16,
             cwchChunkSize: u32,
             pcwchRead: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBaseUri: *const fn(
             self: *const IXmlReader,
             ppwszBaseUri: ?*?PWSTR,
             pcwchBaseUri: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsDefault: *const fn(
             self: *const IXmlReader,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         IsEmptyElement: *const fn(
             self: *const IXmlReader,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetLineNumber: *const fn(
             self: *const IXmlReader,
             pnLineNumber: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLinePosition: *const fn(
             self: *const IXmlReader,
             pnLinePosition: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeCount: *const fn(
             self: *const IXmlReader,
             pnAttributeCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDepth: *const fn(
             self: *const IXmlReader,
             pnDepth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEOF: *const fn(
             self: *const IXmlReader,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -478,7 +478,7 @@ pub const IXmlResolver = extern union {
             pwszPublicIdentifier: ?[*:0]const u16,
             pwszSystemIdentifier: ?[*:0]const u16,
             ppResolvedInput: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -495,136 +495,136 @@ pub const IXmlWriter = extern union {
         SetOutput: *const fn(
             self: *const IXmlWriter,
             pOutput: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IXmlWriter,
             nProperty: u32,
             ppValue: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IXmlWriter,
             nProperty: u32,
             pValue: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteAttributes: *const fn(
             self: *const IXmlWriter,
             pReader: ?*IXmlReader,
             fWriteDefaultAttributes: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteAttributeString: *const fn(
             self: *const IXmlWriter,
             pwszPrefix: ?[*:0]const u16,
             pwszLocalName: ?[*:0]const u16,
             pwszNamespaceUri: ?[*:0]const u16,
             pwszValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteCData: *const fn(
             self: *const IXmlWriter,
             pwszText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteCharEntity: *const fn(
             self: *const IXmlWriter,
             wch: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteChars: *const fn(
             self: *const IXmlWriter,
             pwch: ?[*:0]const u16,
             cwch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteComment: *const fn(
             self: *const IXmlWriter,
             pwszComment: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteDocType: *const fn(
             self: *const IXmlWriter,
             pwszName: ?[*:0]const u16,
             pwszPublicId: ?[*:0]const u16,
             pwszSystemId: ?[*:0]const u16,
             pwszSubset: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteElementString: *const fn(
             self: *const IXmlWriter,
             pwszPrefix: ?[*:0]const u16,
             pwszLocalName: ?[*:0]const u16,
             pwszNamespaceUri: ?[*:0]const u16,
             pwszValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteEndDocument: *const fn(
             self: *const IXmlWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteEndElement: *const fn(
             self: *const IXmlWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteEntityRef: *const fn(
             self: *const IXmlWriter,
             pwszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteFullEndElement: *const fn(
             self: *const IXmlWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteName: *const fn(
             self: *const IXmlWriter,
             pwszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteNmToken: *const fn(
             self: *const IXmlWriter,
             pwszNmToken: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteNode: *const fn(
             self: *const IXmlWriter,
             pReader: ?*IXmlReader,
             fWriteDefaultAttributes: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteNodeShallow: *const fn(
             self: *const IXmlWriter,
             pReader: ?*IXmlReader,
             fWriteDefaultAttributes: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteProcessingInstruction: *const fn(
             self: *const IXmlWriter,
             pwszName: ?[*:0]const u16,
             pwszText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteQualifiedName: *const fn(
             self: *const IXmlWriter,
             pwszLocalName: ?[*:0]const u16,
             pwszNamespaceUri: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteRaw: *const fn(
             self: *const IXmlWriter,
             pwszData: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteRawChars: *const fn(
             self: *const IXmlWriter,
             pwch: ?[*:0]const u16,
             cwch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteStartDocument: *const fn(
             self: *const IXmlWriter,
             standalone: XmlStandalone,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteStartElement: *const fn(
             self: *const IXmlWriter,
             pwszPrefix: ?[*:0]const u16,
             pwszLocalName: ?[*:0]const u16,
             pwszNamespaceUri: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteString: *const fn(
             self: *const IXmlWriter,
             pwszText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteSurrogateCharEntity: *const fn(
             self: *const IXmlWriter,
             wchLow: u16,
             wchHigh: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteWhitespace: *const fn(
             self: *const IXmlWriter,
             pwszWhitespace: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IXmlWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -725,133 +725,133 @@ pub const IXmlWriterLite = extern union {
         SetOutput: *const fn(
             self: *const IXmlWriterLite,
             pOutput: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IXmlWriterLite,
             nProperty: u32,
             ppValue: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IXmlWriterLite,
             nProperty: u32,
             pValue: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteAttributes: *const fn(
             self: *const IXmlWriterLite,
             pReader: ?*IXmlReader,
             fWriteDefaultAttributes: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteAttributeString: *const fn(
             self: *const IXmlWriterLite,
             pwszQName: [*:0]const u16,
             cwszQName: u32,
             pwszValue: ?[*:0]const u16,
             cwszValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteCData: *const fn(
             self: *const IXmlWriterLite,
             pwszText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteCharEntity: *const fn(
             self: *const IXmlWriterLite,
             wch: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteChars: *const fn(
             self: *const IXmlWriterLite,
             pwch: ?[*:0]const u16,
             cwch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteComment: *const fn(
             self: *const IXmlWriterLite,
             pwszComment: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteDocType: *const fn(
             self: *const IXmlWriterLite,
             pwszName: ?[*:0]const u16,
             pwszPublicId: ?[*:0]const u16,
             pwszSystemId: ?[*:0]const u16,
             pwszSubset: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteElementString: *const fn(
             self: *const IXmlWriterLite,
             pwszQName: [*:0]const u16,
             cwszQName: u32,
             pwszValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteEndDocument: *const fn(
             self: *const IXmlWriterLite,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteEndElement: *const fn(
             self: *const IXmlWriterLite,
             pwszQName: [*:0]const u16,
             cwszQName: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteEntityRef: *const fn(
             self: *const IXmlWriterLite,
             pwszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteFullEndElement: *const fn(
             self: *const IXmlWriterLite,
             pwszQName: [*:0]const u16,
             cwszQName: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteName: *const fn(
             self: *const IXmlWriterLite,
             pwszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteNmToken: *const fn(
             self: *const IXmlWriterLite,
             pwszNmToken: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteNode: *const fn(
             self: *const IXmlWriterLite,
             pReader: ?*IXmlReader,
             fWriteDefaultAttributes: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteNodeShallow: *const fn(
             self: *const IXmlWriterLite,
             pReader: ?*IXmlReader,
             fWriteDefaultAttributes: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteProcessingInstruction: *const fn(
             self: *const IXmlWriterLite,
             pwszName: ?[*:0]const u16,
             pwszText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteRaw: *const fn(
             self: *const IXmlWriterLite,
             pwszData: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteRawChars: *const fn(
             self: *const IXmlWriterLite,
             pwch: ?[*:0]const u16,
             cwch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteStartDocument: *const fn(
             self: *const IXmlWriterLite,
             standalone: XmlStandalone,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteStartElement: *const fn(
             self: *const IXmlWriterLite,
             pwszQName: [*:0]const u16,
             cwszQName: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteString: *const fn(
             self: *const IXmlWriterLite,
             pwszText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteSurrogateCharEntity: *const fn(
             self: *const IXmlWriterLite,
             wchLow: u16,
             wchHigh: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteWhitespace: *const fn(
             self: *const IXmlWriterLite,
             pwszWhitespace: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IXmlWriterLite,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -949,7 +949,7 @@ pub extern "xmllite" fn CreateXmlReader(
     riid: ?*const Guid,
     ppvObject: ?*?*anyopaque,
     pMalloc: ?*IMalloc,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "xmllite" fn CreateXmlReaderInputWithEncodingCodePage(
     pInputStream: ?*IUnknown,
@@ -958,7 +958,7 @@ pub extern "xmllite" fn CreateXmlReaderInputWithEncodingCodePage(
     fEncodingHint: BOOL,
     pwszBaseUri: ?[*:0]const u16,
     ppInput: ?*?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "xmllite" fn CreateXmlReaderInputWithEncodingName(
     pInputStream: ?*IUnknown,
@@ -967,27 +967,27 @@ pub extern "xmllite" fn CreateXmlReaderInputWithEncodingName(
     fEncodingHint: BOOL,
     pwszBaseUri: ?[*:0]const u16,
     ppInput: ?*?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "xmllite" fn CreateXmlWriter(
     riid: ?*const Guid,
     ppvObject: ?*?*anyopaque,
     pMalloc: ?*IMalloc,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "xmllite" fn CreateXmlWriterOutputWithEncodingCodePage(
     pOutputStream: ?*IUnknown,
     pMalloc: ?*IMalloc,
     nEncodingCodePage: u32,
     ppOutput: ?*?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "xmllite" fn CreateXmlWriterOutputWithEncodingName(
     pOutputStream: ?*IUnknown,
     pMalloc: ?*IMalloc,
     pwszEncodingName: ?[*:0]const u16,
     ppOutput: ?*?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

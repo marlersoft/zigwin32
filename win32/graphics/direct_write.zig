@@ -337,7 +337,7 @@ pub const IDWriteFontFileLoader = extern union {
             fontFileReferenceKey: ?*const anyopaque,
             fontFileReferenceKeySize: u32,
             fontFileStream: **IDWriteFontFileStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -357,7 +357,7 @@ pub const IDWriteLocalFontFileLoader = extern union {
             fontFileReferenceKey: ?*const anyopaque,
             fontFileReferenceKeySize: u32,
             filePathLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilePathFromKey: *const fn(
             self: *const IDWriteLocalFontFileLoader,
             // TODO: what to do with BytesParamIndex 1?
@@ -365,14 +365,14 @@ pub const IDWriteLocalFontFileLoader = extern union {
             fontFileReferenceKeySize: u32,
             filePath: [*:0]u16,
             filePathSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastWriteTimeFromKey: *const fn(
             self: *const IDWriteLocalFontFileLoader,
             // TODO: what to do with BytesParamIndex 1?
             fontFileReferenceKey: ?*const anyopaque,
             fontFileReferenceKeySize: u32,
             lastWriteTime: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontFileLoader: IDWriteFontFileLoader,
@@ -400,19 +400,19 @@ pub const IDWriteFontFileStream = extern union {
             fileOffset: u64,
             fragmentSize: u64,
             fragmentContext: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseFileFragment: *const fn(
             self: *const IDWriteFontFileStream,
             fragmentContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetFileSize: *const fn(
             self: *const IDWriteFontFileStream,
             fileSize: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastWriteTime: *const fn(
             self: *const IDWriteFontFileStream,
             lastWriteTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -440,18 +440,18 @@ pub const IDWriteFontFile = extern union {
             self: *const IDWriteFontFile,
             fontFileReferenceKey: ?*const ?*anyopaque,
             fontFileReferenceKeySize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLoader: *const fn(
             self: *const IDWriteFontFile,
             fontFileLoader: **IDWriteFontFileLoader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Analyze: *const fn(
             self: *const IDWriteFontFile,
             isSupportedFontType: ?*BOOL,
             fontFileType: ?*DWRITE_FONT_FILE_TYPE,
             fontFaceType: ?*DWRITE_FONT_FACE_TYPE,
             numberOfFaces: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -517,19 +517,19 @@ pub const IDWriteRenderingParams = extern union {
         base: IUnknown.VTable,
         GetGamma: *const fn(
             self: *const IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         GetEnhancedContrast: *const fn(
             self: *const IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         GetClearTypeLevel: *const fn(
             self: *const IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         GetPixelGeometry: *const fn(
             self: *const IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_PIXEL_GEOMETRY,
+        ) callconv(.winapi) DWRITE_PIXEL_GEOMETRY,
         GetRenderingMode: *const fn(
             self: *const IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_RENDERING_MODE,
+        ) callconv(.winapi) DWRITE_RENDERING_MODE,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -558,41 +558,41 @@ pub const IDWriteFontFace = extern union {
         base: IUnknown.VTable,
         GetType: *const fn(
             self: *const IDWriteFontFace,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_FACE_TYPE,
+        ) callconv(.winapi) DWRITE_FONT_FACE_TYPE,
         GetFiles: *const fn(
             self: *const IDWriteFontFace,
             numberOfFiles: ?*u32,
             fontFiles: ?[*]?*IDWriteFontFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIndex: *const fn(
             self: *const IDWriteFontFace,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetSimulations: *const fn(
             self: *const IDWriteFontFace,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SIMULATIONS,
+        ) callconv(.winapi) DWRITE_FONT_SIMULATIONS,
         IsSymbolFont: *const fn(
             self: *const IDWriteFontFace,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetMetrics: *const fn(
             self: *const IDWriteFontFace,
             fontFaceMetrics: ?*DWRITE_FONT_METRICS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetGlyphCount: *const fn(
             self: *const IDWriteFontFace,
-        ) callconv(@import("std").os.windows.WINAPI) u16,
+        ) callconv(.winapi) u16,
         GetDesignGlyphMetrics: *const fn(
             self: *const IDWriteFontFace,
             glyphIndices: [*:0]const u16,
             glyphCount: u32,
             glyphMetrics: [*]DWRITE_GLYPH_METRICS,
             isSideways: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphIndices: *const fn(
             self: *const IDWriteFontFace,
             codePoints: [*]const u32,
             codePointCount: u32,
             glyphIndices: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TryGetFontTable: *const fn(
             self: *const IDWriteFontFace,
             openTypeTableTag: u32,
@@ -600,11 +600,11 @@ pub const IDWriteFontFace = extern union {
             tableSize: ?*u32,
             tableContext: ?*?*anyopaque,
             exists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseFontTable: *const fn(
             self: *const IDWriteFontFace,
             tableContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetGlyphRunOutline: *const fn(
             self: *const IDWriteFontFace,
             emSize: f32,
@@ -615,7 +615,7 @@ pub const IDWriteFontFace = extern union {
             isSideways: BOOL,
             isRightToLeft: BOOL,
             geometrySink: ?*ID2D1SimplifiedGeometrySink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecommendedRenderingMode: *const fn(
             self: *const IDWriteFontFace,
             emSize: f32,
@@ -623,14 +623,14 @@ pub const IDWriteFontFace = extern union {
             measuringMode: DWRITE_MEASURING_MODE,
             renderingParams: ?*IDWriteRenderingParams,
             renderingMode: ?*DWRITE_RENDERING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGdiCompatibleMetrics: *const fn(
             self: *const IDWriteFontFace,
             emSize: f32,
             pixelsPerDip: f32,
             transform: ?*const DWRITE_MATRIX,
             fontFaceMetrics: ?*DWRITE_FONT_METRICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGdiCompatibleGlyphMetrics: *const fn(
             self: *const IDWriteFontFace,
             emSize: f32,
@@ -641,7 +641,7 @@ pub const IDWriteFontFace = extern union {
             glyphCount: u32,
             glyphMetrics: [*]DWRITE_GLYPH_METRICS,
             isSideways: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -705,7 +705,7 @@ pub const IDWriteFontCollectionLoader = extern union {
             collectionKey: ?*const anyopaque,
             collectionKeySize: u32,
             fontFileEnumerator: **IDWriteFontFileEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -723,11 +723,11 @@ pub const IDWriteFontFileEnumerator = extern union {
         MoveNext: *const fn(
             self: *const IDWriteFontFileEnumerator,
             hasCurrentFile: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentFontFile: *const fn(
             self: *const IDWriteFontFileEnumerator,
             fontFile: **IDWriteFontFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -747,35 +747,35 @@ pub const IDWriteLocalizedStrings = extern union {
         base: IUnknown.VTable,
         GetCount: *const fn(
             self: *const IDWriteLocalizedStrings,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         FindLocaleName: *const fn(
             self: *const IDWriteLocalizedStrings,
             localeName: ?[*:0]const u16,
             index: ?*u32,
             exists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocaleNameLength: *const fn(
             self: *const IDWriteLocalizedStrings,
             index: u32,
             length: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocaleName: *const fn(
             self: *const IDWriteLocalizedStrings,
             index: u32,
             localeName: [*:0]u16,
             size: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringLength: *const fn(
             self: *const IDWriteLocalizedStrings,
             index: u32,
             length: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetString: *const fn(
             self: *const IDWriteLocalizedStrings,
             index: u32,
             stringBuffer: [*:0]u16,
             size: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -807,23 +807,23 @@ pub const IDWriteFontCollection = extern union {
         base: IUnknown.VTable,
         GetFontFamilyCount: *const fn(
             self: *const IDWriteFontCollection,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetFontFamily: *const fn(
             self: *const IDWriteFontCollection,
             index: u32,
             fontFamily: **IDWriteFontFamily,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindFamilyName: *const fn(
             self: *const IDWriteFontCollection,
             familyName: ?[*:0]const u16,
             index: ?*u32,
             exists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFromFontFace: *const fn(
             self: *const IDWriteFontCollection,
             fontFace: ?*IDWriteFontFace,
             font: **IDWriteFont,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -850,15 +850,15 @@ pub const IDWriteFontList = extern union {
         GetFontCollection: *const fn(
             self: *const IDWriteFontList,
             fontCollection: **IDWriteFontCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontCount: *const fn(
             self: *const IDWriteFontList,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetFont: *const fn(
             self: *const IDWriteFontList,
             index: u32,
             font: **IDWriteFont,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -882,21 +882,21 @@ pub const IDWriteFontFamily = extern union {
         GetFamilyNames: *const fn(
             self: *const IDWriteFontFamily,
             names: **IDWriteLocalizedStrings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFirstMatchingFont: *const fn(
             self: *const IDWriteFontFamily,
             weight: DWRITE_FONT_WEIGHT,
             stretch: DWRITE_FONT_STRETCH,
             style: DWRITE_FONT_STYLE,
             matchingFont: **IDWriteFont,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMatchingFonts: *const fn(
             self: *const IDWriteFontFamily,
             weight: DWRITE_FONT_WEIGHT,
             stretch: DWRITE_FONT_STRETCH,
             style: DWRITE_FONT_STYLE,
             matchingFonts: **IDWriteFontList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontList: IDWriteFontList,
@@ -921,45 +921,45 @@ pub const IDWriteFont = extern union {
         GetFontFamily: *const fn(
             self: *const IDWriteFont,
             fontFamily: **IDWriteFontFamily,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWeight: *const fn(
             self: *const IDWriteFont,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_WEIGHT,
+        ) callconv(.winapi) DWRITE_FONT_WEIGHT,
         GetStretch: *const fn(
             self: *const IDWriteFont,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STRETCH,
+        ) callconv(.winapi) DWRITE_FONT_STRETCH,
         GetStyle: *const fn(
             self: *const IDWriteFont,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STYLE,
+        ) callconv(.winapi) DWRITE_FONT_STYLE,
         IsSymbolFont: *const fn(
             self: *const IDWriteFont,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetFaceNames: *const fn(
             self: *const IDWriteFont,
             names: **IDWriteLocalizedStrings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInformationalStrings: *const fn(
             self: *const IDWriteFont,
             informationalStringID: DWRITE_INFORMATIONAL_STRING_ID,
             informationalStrings: ?**IDWriteLocalizedStrings,
             exists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSimulations: *const fn(
             self: *const IDWriteFont,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SIMULATIONS,
+        ) callconv(.winapi) DWRITE_FONT_SIMULATIONS,
         GetMetrics: *const fn(
             self: *const IDWriteFont,
             fontMetrics: ?*DWRITE_FONT_METRICS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         HasCharacter: *const fn(
             self: *const IDWriteFont,
             unicodeValue: u32,
             exists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontFace: *const fn(
             self: *const IDWriteFont,
             fontFace: **IDWriteFontFace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1266,99 +1266,99 @@ pub const IDWriteTextFormat = extern union {
         SetTextAlignment: *const fn(
             self: *const IDWriteTextFormat,
             textAlignment: DWRITE_TEXT_ALIGNMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetParagraphAlignment: *const fn(
             self: *const IDWriteTextFormat,
             paragraphAlignment: DWRITE_PARAGRAPH_ALIGNMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWordWrapping: *const fn(
             self: *const IDWriteTextFormat,
             wordWrapping: DWRITE_WORD_WRAPPING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetReadingDirection: *const fn(
             self: *const IDWriteTextFormat,
             readingDirection: DWRITE_READING_DIRECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFlowDirection: *const fn(
             self: *const IDWriteTextFormat,
             flowDirection: DWRITE_FLOW_DIRECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIncrementalTabStop: *const fn(
             self: *const IDWriteTextFormat,
             incrementalTabStop: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTrimming: *const fn(
             self: *const IDWriteTextFormat,
             trimmingOptions: ?*const DWRITE_TRIMMING,
             trimmingSign: ?*IDWriteInlineObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLineSpacing: *const fn(
             self: *const IDWriteTextFormat,
             lineSpacingMethod: DWRITE_LINE_SPACING_METHOD,
             lineSpacing: f32,
             baseline: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextAlignment: *const fn(
             self: *const IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_TEXT_ALIGNMENT,
+        ) callconv(.winapi) DWRITE_TEXT_ALIGNMENT,
         GetParagraphAlignment: *const fn(
             self: *const IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_PARAGRAPH_ALIGNMENT,
+        ) callconv(.winapi) DWRITE_PARAGRAPH_ALIGNMENT,
         GetWordWrapping: *const fn(
             self: *const IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_WORD_WRAPPING,
+        ) callconv(.winapi) DWRITE_WORD_WRAPPING,
         GetReadingDirection: *const fn(
             self: *const IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_READING_DIRECTION,
+        ) callconv(.winapi) DWRITE_READING_DIRECTION,
         GetFlowDirection: *const fn(
             self: *const IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FLOW_DIRECTION,
+        ) callconv(.winapi) DWRITE_FLOW_DIRECTION,
         GetIncrementalTabStop: *const fn(
             self: *const IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         GetTrimming: *const fn(
             self: *const IDWriteTextFormat,
             trimmingOptions: ?*DWRITE_TRIMMING,
             trimmingSign: **IDWriteInlineObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLineSpacing: *const fn(
             self: *const IDWriteTextFormat,
             lineSpacingMethod: ?*DWRITE_LINE_SPACING_METHOD,
             lineSpacing: ?*f32,
             baseline: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontCollection: *const fn(
             self: *const IDWriteTextFormat,
             fontCollection: **IDWriteFontCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFamilyNameLength: *const fn(
             self: *const IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetFontFamilyName: *const fn(
             self: *const IDWriteTextFormat,
             fontFamilyName: [*:0]u16,
             nameSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontWeight: *const fn(
             self: *const IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_WEIGHT,
+        ) callconv(.winapi) DWRITE_FONT_WEIGHT,
         GetFontStyle: *const fn(
             self: *const IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STYLE,
+        ) callconv(.winapi) DWRITE_FONT_STYLE,
         GetFontStretch: *const fn(
             self: *const IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STRETCH,
+        ) callconv(.winapi) DWRITE_FONT_STRETCH,
         GetFontSize: *const fn(
             self: *const IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         GetLocaleNameLength: *const fn(
             self: *const IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetLocaleName: *const fn(
             self: *const IDWriteTextFormat,
             localeName: [*:0]u16,
             nameSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1448,15 +1448,15 @@ pub const IDWriteTypography = extern union {
         AddFontFeature: *const fn(
             self: *const IDWriteTypography,
             fontFeature: DWRITE_FONT_FEATURE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFeatureCount: *const fn(
             self: *const IDWriteTypography,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetFontFeature: *const fn(
             self: *const IDWriteTypography,
             fontFeatureIndex: u32,
             fontFeature: ?*DWRITE_FONT_FEATURE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1570,28 +1570,28 @@ pub const IDWriteTextAnalysisSource = extern union {
             textPosition: u32,
             textString: ?*const ?*u16,
             textLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextBeforePosition: *const fn(
             self: *const IDWriteTextAnalysisSource,
             textPosition: u32,
             textString: ?*const ?*u16,
             textLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParagraphReadingDirection: *const fn(
             self: *const IDWriteTextAnalysisSource,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_READING_DIRECTION,
+        ) callconv(.winapi) DWRITE_READING_DIRECTION,
         GetLocaleName: *const fn(
             self: *const IDWriteTextAnalysisSource,
             textPosition: u32,
             textLength: ?*u32,
             localeName: ?*const ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumberSubstitution: *const fn(
             self: *const IDWriteTextAnalysisSource,
             textPosition: u32,
             textLength: ?*u32,
             numberSubstitution: **IDWriteNumberSubstitution,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1623,26 +1623,26 @@ pub const IDWriteTextAnalysisSink = extern union {
             textPosition: u32,
             textLength: u32,
             scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLineBreakpoints: *const fn(
             self: *const IDWriteTextAnalysisSink,
             textPosition: u32,
             textLength: u32,
             lineBreakpoints: [*]const DWRITE_LINE_BREAKPOINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBidiLevel: *const fn(
             self: *const IDWriteTextAnalysisSink,
             textPosition: u32,
             textLength: u32,
             explicitLevel: u8,
             resolvedLevel: u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNumberSubstitution: *const fn(
             self: *const IDWriteTextAnalysisSink,
             textPosition: u32,
             textLength: u32,
             numberSubstitution: ?*IDWriteNumberSubstitution,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1672,28 +1672,28 @@ pub const IDWriteTextAnalyzer = extern union {
             textPosition: u32,
             textLength: u32,
             analysisSink: ?*IDWriteTextAnalysisSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AnalyzeBidi: *const fn(
             self: *const IDWriteTextAnalyzer,
             analysisSource: ?*IDWriteTextAnalysisSource,
             textPosition: u32,
             textLength: u32,
             analysisSink: ?*IDWriteTextAnalysisSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AnalyzeNumberSubstitution: *const fn(
             self: *const IDWriteTextAnalyzer,
             analysisSource: ?*IDWriteTextAnalysisSource,
             textPosition: u32,
             textLength: u32,
             analysisSink: ?*IDWriteTextAnalysisSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AnalyzeLineBreakpoints: *const fn(
             self: *const IDWriteTextAnalyzer,
             analysisSource: ?*IDWriteTextAnalysisSource,
             textPosition: u32,
             textLength: u32,
             analysisSink: ?*IDWriteTextAnalysisSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphs: *const fn(
             self: *const IDWriteTextAnalyzer,
             textString: [*:0]const u16,
@@ -1713,7 +1713,7 @@ pub const IDWriteTextAnalyzer = extern union {
             glyphIndices: [*:0]u16,
             glyphProps: [*]DWRITE_SHAPING_GLYPH_PROPERTIES,
             actualGlyphCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphPlacements: *const fn(
             self: *const IDWriteTextAnalyzer,
             textString: [*:0]const u16,
@@ -1734,7 +1734,7 @@ pub const IDWriteTextAnalyzer = extern union {
             featureRanges: u32,
             glyphAdvances: [*]f32,
             glyphOffsets: [*]DWRITE_GLYPH_OFFSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGdiCompatibleGlyphPlacements: *const fn(
             self: *const IDWriteTextAnalyzer,
             textString: [*:0]const u16,
@@ -1758,7 +1758,7 @@ pub const IDWriteTextAnalyzer = extern union {
             featureRanges: u32,
             glyphAdvances: [*]f32,
             glyphOffsets: [*]DWRITE_GLYPH_OFFSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1893,20 +1893,20 @@ pub const IDWriteInlineObject = extern union {
             isSideways: BOOL,
             isRightToLeft: BOOL,
             clientDrawingEffect: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMetrics: *const fn(
             self: *const IDWriteInlineObject,
             metrics: ?*DWRITE_INLINE_OBJECT_METRICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOverhangMetrics: *const fn(
             self: *const IDWriteInlineObject,
             overhangs: ?*DWRITE_OVERHANG_METRICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBreakConditions: *const fn(
             self: *const IDWriteInlineObject,
             breakConditionBefore: ?*DWRITE_BREAK_CONDITION,
             breakConditionAfter: ?*DWRITE_BREAK_CONDITION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1934,17 +1934,17 @@ pub const IDWritePixelSnapping = extern union {
             self: *const IDWritePixelSnapping,
             clientDrawingContext: ?*anyopaque,
             isDisabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentTransform: *const fn(
             self: *const IDWritePixelSnapping,
             clientDrawingContext: ?*anyopaque,
             transform: ?*DWRITE_MATRIX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelsPerDip: *const fn(
             self: *const IDWritePixelSnapping,
             clientDrawingContext: ?*anyopaque,
             pixelsPerDip: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1974,7 +1974,7 @@ pub const IDWriteTextRenderer = extern union {
             glyphRun: ?*const DWRITE_GLYPH_RUN,
             glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
             clientDrawingEffect: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawUnderline: *const fn(
             self: *const IDWriteTextRenderer,
             clientDrawingContext: ?*anyopaque,
@@ -1982,7 +1982,7 @@ pub const IDWriteTextRenderer = extern union {
             baselineOriginY: f32,
             underline: ?*const DWRITE_UNDERLINE,
             clientDrawingEffect: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawStrikethrough: *const fn(
             self: *const IDWriteTextRenderer,
             clientDrawingContext: ?*anyopaque,
@@ -1990,7 +1990,7 @@ pub const IDWriteTextRenderer = extern union {
             baselineOriginY: f32,
             strikethrough: ?*const DWRITE_STRIKETHROUGH,
             clientDrawingEffect: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawInlineObject: *const fn(
             self: *const IDWriteTextRenderer,
             clientDrawingContext: ?*anyopaque,
@@ -2000,7 +2000,7 @@ pub const IDWriteTextRenderer = extern union {
             isSideways: BOOL,
             isRightToLeft: BOOL,
             clientDrawingEffect: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWritePixelSnapping: IDWritePixelSnapping,
@@ -2028,194 +2028,194 @@ pub const IDWriteTextLayout = extern union {
         SetMaxWidth: *const fn(
             self: *const IDWriteTextLayout,
             maxWidth: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaxHeight: *const fn(
             self: *const IDWriteTextLayout,
             maxHeight: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFontCollection: *const fn(
             self: *const IDWriteTextLayout,
             fontCollection: ?*IDWriteFontCollection,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFontFamilyName: *const fn(
             self: *const IDWriteTextLayout,
             fontFamilyName: ?[*:0]const u16,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFontWeight: *const fn(
             self: *const IDWriteTextLayout,
             fontWeight: DWRITE_FONT_WEIGHT,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFontStyle: *const fn(
             self: *const IDWriteTextLayout,
             fontStyle: DWRITE_FONT_STYLE,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFontStretch: *const fn(
             self: *const IDWriteTextLayout,
             fontStretch: DWRITE_FONT_STRETCH,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFontSize: *const fn(
             self: *const IDWriteTextLayout,
             fontSize: f32,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUnderline: *const fn(
             self: *const IDWriteTextLayout,
             hasUnderline: BOOL,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStrikethrough: *const fn(
             self: *const IDWriteTextLayout,
             hasStrikethrough: BOOL,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDrawingEffect: *const fn(
             self: *const IDWriteTextLayout,
             drawingEffect: ?*IUnknown,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInlineObject: *const fn(
             self: *const IDWriteTextLayout,
             inlineObject: ?*IDWriteInlineObject,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTypography: *const fn(
             self: *const IDWriteTextLayout,
             typography: ?*IDWriteTypography,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLocaleName: *const fn(
             self: *const IDWriteTextLayout,
             localeName: ?[*:0]const u16,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxWidth: *const fn(
             self: *const IDWriteTextLayout,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         GetMaxHeight: *const fn(
             self: *const IDWriteTextLayout,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         GetFontCollection: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             fontCollection: **IDWriteFontCollection,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFamilyNameLength: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             nameLength: ?*u32,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFamilyName: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             fontFamilyName: [*:0]u16,
             nameSize: u32,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontWeight: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             fontWeight: ?*DWRITE_FONT_WEIGHT,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontStyle: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             fontStyle: ?*DWRITE_FONT_STYLE,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontStretch: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             fontStretch: ?*DWRITE_FONT_STRETCH,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontSize: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             fontSize: ?*f32,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUnderline: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             hasUnderline: ?*BOOL,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrikethrough: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             hasStrikethrough: ?*BOOL,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDrawingEffect: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             drawingEffect: **IUnknown,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInlineObject: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             inlineObject: **IDWriteInlineObject,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTypography: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             typography: **IDWriteTypography,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocaleNameLength: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             nameLength: ?*u32,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocaleName: *const fn(
             self: *const IDWriteTextLayout,
             currentPosition: u32,
             localeName: [*:0]u16,
             nameSize: u32,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Draw: *const fn(
             self: *const IDWriteTextLayout,
             clientDrawingContext: ?*anyopaque,
             renderer: ?*IDWriteTextRenderer,
             originX: f32,
             originY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLineMetrics: *const fn(
             self: *const IDWriteTextLayout,
             lineMetrics: ?[*]DWRITE_LINE_METRICS,
             maxLineCount: u32,
             actualLineCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMetrics: *const fn(
             self: *const IDWriteTextLayout,
             textMetrics: ?*DWRITE_TEXT_METRICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOverhangMetrics: *const fn(
             self: *const IDWriteTextLayout,
             overhangs: ?*DWRITE_OVERHANG_METRICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClusterMetrics: *const fn(
             self: *const IDWriteTextLayout,
             clusterMetrics: ?[*]DWRITE_CLUSTER_METRICS,
             maxClusterCount: u32,
             actualClusterCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DetermineMinWidth: *const fn(
             self: *const IDWriteTextLayout,
             minWidth: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HitTestPoint: *const fn(
             self: *const IDWriteTextLayout,
             pointX: f32,
@@ -2223,7 +2223,7 @@ pub const IDWriteTextLayout = extern union {
             isTrailingHit: ?*BOOL,
             isInside: ?*BOOL,
             hitTestMetrics: ?*DWRITE_HIT_TEST_METRICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HitTestTextPosition: *const fn(
             self: *const IDWriteTextLayout,
             textPosition: u32,
@@ -2231,7 +2231,7 @@ pub const IDWriteTextLayout = extern union {
             pointX: ?*f32,
             pointY: ?*f32,
             hitTestMetrics: ?*DWRITE_HIT_TEST_METRICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HitTestTextRange: *const fn(
             self: *const IDWriteTextLayout,
             textPosition: u32,
@@ -2241,7 +2241,7 @@ pub const IDWriteTextLayout = extern union {
             hitTestMetrics: ?[*]DWRITE_HIT_TEST_METRICS,
             maxHitTestMetricsCount: u32,
             actualHitTestMetricsCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextFormat: IDWriteTextFormat,
@@ -2380,34 +2380,34 @@ pub const IDWriteBitmapRenderTarget = extern union {
             renderingParams: ?*IDWriteRenderingParams,
             textColor: u32,
             blackBoxRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMemoryDC: *const fn(
             self: *const IDWriteBitmapRenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) ?HDC,
+        ) callconv(.winapi) ?HDC,
         GetPixelsPerDip: *const fn(
             self: *const IDWriteBitmapRenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         SetPixelsPerDip: *const fn(
             self: *const IDWriteBitmapRenderTarget,
             pixelsPerDip: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentTransform: *const fn(
             self: *const IDWriteBitmapRenderTarget,
             transform: ?*DWRITE_MATRIX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCurrentTransform: *const fn(
             self: *const IDWriteBitmapRenderTarget,
             transform: ?*const DWRITE_MATRIX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSize: *const fn(
             self: *const IDWriteBitmapRenderTarget,
             size: ?*SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resize: *const fn(
             self: *const IDWriteBitmapRenderTarget,
             width: u32,
             height: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2447,30 +2447,30 @@ pub const IDWriteGdiInterop = extern union {
             self: *const IDWriteGdiInterop,
             logFont: ?*const LOGFONTW,
             font: **IDWriteFont,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertFontToLOGFONT: *const fn(
             self: *const IDWriteGdiInterop,
             font: ?*IDWriteFont,
             logFont: ?*LOGFONTW,
             isSystemFont: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertFontFaceToLOGFONT: *const fn(
             self: *const IDWriteGdiInterop,
             font: ?*IDWriteFontFace,
             logFont: ?*LOGFONTW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontFaceFromHdc: *const fn(
             self: *const IDWriteGdiInterop,
             hdc: ?HDC,
             fontFace: **IDWriteFontFace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapRenderTarget: *const fn(
             self: *const IDWriteGdiInterop,
             hdc: ?HDC,
             width: u32,
             height: u32,
             renderTarget: **IDWriteBitmapRenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2508,7 +2508,7 @@ pub const IDWriteGlyphRunAnalysis = extern union {
             self: *const IDWriteGlyphRunAnalysis,
             textureType: DWRITE_TEXTURE_TYPE,
             textureBounds: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAlphaTexture: *const fn(
             self: *const IDWriteGlyphRunAnalysis,
             textureType: DWRITE_TEXTURE_TYPE,
@@ -2516,14 +2516,14 @@ pub const IDWriteGlyphRunAnalysis = extern union {
             // TODO: what to do with BytesParamIndex 3?
             alphaValues: ?*u8,
             bufferSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAlphaBlendParams: *const fn(
             self: *const IDWriteGlyphRunAnalysis,
             renderingParams: ?*IDWriteRenderingParams,
             blendGamma: ?*f32,
             blendEnhancedContrast: ?*f32,
             blendClearTypeLevel: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2548,7 +2548,7 @@ pub const IDWriteFactory = extern union {
             self: *const IDWriteFactory,
             fontCollection: **IDWriteFontCollection,
             checkForUpdates: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCustomFontCollection: *const fn(
             self: *const IDWriteFactory,
             collectionLoader: ?*IDWriteFontCollectionLoader,
@@ -2556,21 +2556,21 @@ pub const IDWriteFactory = extern union {
             collectionKey: ?*const anyopaque,
             collectionKeySize: u32,
             fontCollection: **IDWriteFontCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterFontCollectionLoader: *const fn(
             self: *const IDWriteFactory,
             fontCollectionLoader: ?*IDWriteFontCollectionLoader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterFontCollectionLoader: *const fn(
             self: *const IDWriteFactory,
             fontCollectionLoader: ?*IDWriteFontCollectionLoader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontFileReference: *const fn(
             self: *const IDWriteFactory,
             filePath: ?[*:0]const u16,
             lastWriteTime: ?*const FILETIME,
             fontFile: **IDWriteFontFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCustomFontFileReference: *const fn(
             self: *const IDWriteFactory,
             // TODO: what to do with BytesParamIndex 1?
@@ -2578,7 +2578,7 @@ pub const IDWriteFactory = extern union {
             fontFileReferenceKeySize: u32,
             fontFileLoader: ?*IDWriteFontFileLoader,
             fontFile: **IDWriteFontFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontFace: *const fn(
             self: *const IDWriteFactory,
             fontFaceType: DWRITE_FONT_FACE_TYPE,
@@ -2587,16 +2587,16 @@ pub const IDWriteFactory = extern union {
             faceIndex: u32,
             fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS,
             fontFace: **IDWriteFontFace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRenderingParams: *const fn(
             self: *const IDWriteFactory,
             renderingParams: **IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMonitorRenderingParams: *const fn(
             self: *const IDWriteFactory,
             monitor: ?HMONITOR,
             renderingParams: **IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCustomRenderingParams: *const fn(
             self: *const IDWriteFactory,
             gamma: f32,
@@ -2605,15 +2605,15 @@ pub const IDWriteFactory = extern union {
             pixelGeometry: DWRITE_PIXEL_GEOMETRY,
             renderingMode: DWRITE_RENDERING_MODE,
             renderingParams: **IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterFontFileLoader: *const fn(
             self: *const IDWriteFactory,
             fontFileLoader: ?*IDWriteFontFileLoader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterFontFileLoader: *const fn(
             self: *const IDWriteFactory,
             fontFileLoader: ?*IDWriteFontFileLoader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTextFormat: *const fn(
             self: *const IDWriteFactory,
             fontFamilyName: ?[*:0]const u16,
@@ -2624,15 +2624,15 @@ pub const IDWriteFactory = extern union {
             fontSize: f32,
             localeName: ?[*:0]const u16,
             textFormat: **IDWriteTextFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTypography: *const fn(
             self: *const IDWriteFactory,
             typography: **IDWriteTypography,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGdiInterop: *const fn(
             self: *const IDWriteFactory,
             gdiInterop: **IDWriteGdiInterop,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTextLayout: *const fn(
             self: *const IDWriteFactory,
             string: [*:0]const u16,
@@ -2641,7 +2641,7 @@ pub const IDWriteFactory = extern union {
             maxWidth: f32,
             maxHeight: f32,
             textLayout: **IDWriteTextLayout,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGdiCompatibleTextLayout: *const fn(
             self: *const IDWriteFactory,
             string: [*:0]const u16,
@@ -2653,23 +2653,23 @@ pub const IDWriteFactory = extern union {
             transform: ?*const DWRITE_MATRIX,
             useGdiNatural: BOOL,
             textLayout: **IDWriteTextLayout,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEllipsisTrimmingSign: *const fn(
             self: *const IDWriteFactory,
             textFormat: ?*IDWriteTextFormat,
             trimmingSign: **IDWriteInlineObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTextAnalyzer: *const fn(
             self: *const IDWriteFactory,
             textAnalyzer: **IDWriteTextAnalyzer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateNumberSubstitution: *const fn(
             self: *const IDWriteFactory,
             substitutionMethod: DWRITE_NUMBER_SUBSTITUTION_METHOD,
             localeName: ?[*:0]const u16,
             ignoreUserOverride: BOOL,
             numberSubstitution: **IDWriteNumberSubstitution,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGlyphRunAnalysis: *const fn(
             self: *const IDWriteFactory,
             glyphRun: ?*const DWRITE_GLYPH_RUN,
@@ -2680,7 +2680,7 @@ pub const IDWriteFactory = extern union {
             baselineOriginX: f32,
             baselineOriginY: f32,
             glyphRunAnalysis: **IDWriteGlyphRunAnalysis,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3546,7 +3546,7 @@ pub const IDWriteFactory1 = extern union {
             self: *const IDWriteFactory1,
             fontCollection: **IDWriteFontCollection,
             checkForUpdates: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCustomRenderingParams: *const fn(
             self: *const IDWriteFactory1,
             gamma: f32,
@@ -3556,7 +3556,7 @@ pub const IDWriteFactory1 = extern union {
             pixelGeometry: DWRITE_PIXEL_GEOMETRY,
             renderingMode: DWRITE_RENDERING_MODE,
             renderingParams: **IDWriteRenderingParams1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFactory: IDWriteFactory,
@@ -3578,34 +3578,34 @@ pub const IDWriteFontFace1 = extern union {
         GetMetrics: *const fn(
             self: *const IDWriteFontFace1,
             fontMetrics: ?*DWRITE_FONT_METRICS1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetGdiCompatibleMetrics: *const fn(
             self: *const IDWriteFontFace1,
             emSize: f32,
             pixelsPerDip: f32,
             transform: ?*const DWRITE_MATRIX,
             fontMetrics: ?*DWRITE_FONT_METRICS1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaretMetrics: *const fn(
             self: *const IDWriteFontFace1,
             caretMetrics: ?*DWRITE_CARET_METRICS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetUnicodeRanges: *const fn(
             self: *const IDWriteFontFace1,
             maxRangeCount: u32,
             unicodeRanges: ?[*]DWRITE_UNICODE_RANGE,
             actualRangeCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsMonospacedFont: *const fn(
             self: *const IDWriteFontFace1,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetDesignGlyphAdvances: *const fn(
             self: *const IDWriteFontFace1,
             glyphCount: u32,
             glyphIndices: [*:0]const u16,
             glyphAdvances: [*]i32,
             isSideways: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGdiCompatibleGlyphAdvances: *const fn(
             self: *const IDWriteFontFace1,
             emSize: f32,
@@ -3616,16 +3616,16 @@ pub const IDWriteFontFace1 = extern union {
             glyphCount: u32,
             glyphIndices: [*:0]const u16,
             glyphAdvances: [*]i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKerningPairAdjustments: *const fn(
             self: *const IDWriteFontFace1,
             glyphCount: u32,
             glyphIndices: [*:0]const u16,
             glyphAdvanceAdjustments: [*]i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasKerningPairs: *const fn(
             self: *const IDWriteFontFace1,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetRecommendedRenderingMode: *const fn(
             self: *const IDWriteFontFace1,
             fontEmSize: f32,
@@ -3636,16 +3636,16 @@ pub const IDWriteFontFace1 = extern union {
             outlineThreshold: DWRITE_OUTLINE_THRESHOLD,
             measuringMode: DWRITE_MEASURING_MODE,
             renderingMode: ?*DWRITE_RENDERING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVerticalGlyphVariants: *const fn(
             self: *const IDWriteFontFace1,
             glyphCount: u32,
             nominalGlyphIndices: [*:0]const u16,
             verticalGlyphIndices: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasVerticalGlyphVariants: *const fn(
             self: *const IDWriteFontFace1,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IDWriteFontFace: IDWriteFontFace,
@@ -3697,20 +3697,20 @@ pub const IDWriteFont1 = extern union {
         GetMetrics: *const fn(
             self: *const IDWriteFont1,
             fontMetrics: ?*DWRITE_FONT_METRICS1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetPanose: *const fn(
             self: *const IDWriteFont1,
             panose: ?*DWRITE_PANOSE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetUnicodeRanges: *const fn(
             self: *const IDWriteFont1,
             maxRangeCount: u32,
             unicodeRanges: ?[*]DWRITE_UNICODE_RANGE,
             actualRangeCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsMonospacedFont: *const fn(
             self: *const IDWriteFont1,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IDWriteFont: IDWriteFont,
@@ -3737,7 +3737,7 @@ pub const IDWriteRenderingParams1 = extern union {
         base: IDWriteRenderingParams.VTable,
         GetGrayscaleEnhancedContrast: *const fn(
             self: *const IDWriteRenderingParams1,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
     };
     vtable: *const VTable,
     IDWriteRenderingParams: IDWriteRenderingParams,
@@ -3766,7 +3766,7 @@ pub const IDWriteTextAnalyzer1 = extern union {
             glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
             modifiedGlyphAdvances: [*]f32,
             modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBaseline: *const fn(
             self: *const IDWriteTextAnalyzer1,
             fontFace: ?*IDWriteFontFace,
@@ -3777,25 +3777,25 @@ pub const IDWriteTextAnalyzer1 = extern union {
             localeName: ?[*:0]const u16,
             baselineCoordinate: ?*i32,
             exists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AnalyzeVerticalGlyphOrientation: *const fn(
             self: *const IDWriteTextAnalyzer1,
             analysisSource: ?*IDWriteTextAnalysisSource1,
             textPosition: u32,
             textLength: u32,
             analysisSink: ?*IDWriteTextAnalysisSink1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphOrientationTransform: *const fn(
             self: *const IDWriteTextAnalyzer1,
             glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
             isSideways: BOOL,
             transform: ?*DWRITE_MATRIX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScriptProperties: *const fn(
             self: *const IDWriteTextAnalyzer1,
             scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
             scriptProperties: ?*DWRITE_SCRIPT_PROPERTIES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextComplexity: *const fn(
             self: *const IDWriteTextAnalyzer1,
             textString: [*:0]const u16,
@@ -3804,7 +3804,7 @@ pub const IDWriteTextAnalyzer1 = extern union {
             isTextSimple: ?*BOOL,
             textLengthRead: ?*u32,
             glyphIndices: ?[*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetJustificationOpportunities: *const fn(
             self: *const IDWriteTextAnalyzer1,
             fontFace: ?*IDWriteFontFace,
@@ -3816,7 +3816,7 @@ pub const IDWriteTextAnalyzer1 = extern union {
             clusterMap: [*:0]const u16,
             glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
             justificationOpportunities: [*]DWRITE_JUSTIFICATION_OPPORTUNITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         JustifyGlyphAdvances: *const fn(
             self: *const IDWriteTextAnalyzer1,
             lineWidth: f32,
@@ -3826,7 +3826,7 @@ pub const IDWriteTextAnalyzer1 = extern union {
             glyphOffsets: [*]const DWRITE_GLYPH_OFFSET,
             justifiedGlyphAdvances: [*]f32,
             justifiedGlyphOffsets: ?[*]DWRITE_GLYPH_OFFSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetJustifiedGlyphs: *const fn(
             self: *const IDWriteTextAnalyzer1,
             fontFace: ?*IDWriteFontFace,
@@ -3846,7 +3846,7 @@ pub const IDWriteTextAnalyzer1 = extern union {
             modifiedGlyphIndices: [*:0]u16,
             modifiedGlyphAdvances: [*]f32,
             modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextAnalyzer: IDWriteTextAnalyzer,
@@ -3892,7 +3892,7 @@ pub const IDWriteTextAnalysisSource1 = extern union {
             textLength: ?*u32,
             glyphOrientation: ?*DWRITE_VERTICAL_GLYPH_ORIENTATION,
             bidiLevel: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextAnalysisSource: IDWriteTextAnalysisSource,
@@ -3916,7 +3916,7 @@ pub const IDWriteTextAnalysisSink1 = extern union {
             adjustedBidiLevel: u8,
             isSideways: BOOL,
             isRightToLeft: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextAnalysisSink: IDWriteTextAnalysisSink,
@@ -3936,20 +3936,20 @@ pub const IDWriteTextLayout1 = extern union {
             self: *const IDWriteTextLayout1,
             isPairKerningEnabled: BOOL,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPairKerning: *const fn(
             self: *const IDWriteTextLayout1,
             currentPosition: u32,
             isPairKerningEnabled: ?*BOOL,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCharacterSpacing: *const fn(
             self: *const IDWriteTextLayout1,
             leadingSpacing: f32,
             trailingSpacing: f32,
             minimumAdvanceWidth: f32,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCharacterSpacing: *const fn(
             self: *const IDWriteTextLayout1,
             currentPosition: u32,
@@ -3957,7 +3957,7 @@ pub const IDWriteTextLayout1 = extern union {
             trailingSpacing: ?*f32,
             minimumAdvanceWidth: ?*f32,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextLayout: IDWriteTextLayout,
@@ -3992,11 +3992,11 @@ pub const IDWriteBitmapRenderTarget1 = extern union {
         base: IDWriteBitmapRenderTarget.VTable,
         GetTextAntialiasMode: *const fn(
             self: *const IDWriteBitmapRenderTarget1,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_TEXT_ANTIALIAS_MODE,
+        ) callconv(.winapi) DWRITE_TEXT_ANTIALIAS_MODE,
         SetTextAntialiasMode: *const fn(
             self: *const IDWriteBitmapRenderTarget1,
             antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteBitmapRenderTarget: IDWriteBitmapRenderTarget,
@@ -4046,7 +4046,7 @@ pub const IDWriteTextRenderer1 = extern union {
             glyphRun: ?*const DWRITE_GLYPH_RUN,
             glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
             clientDrawingEffect: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawUnderline: *const fn(
             self: *const IDWriteTextRenderer1,
             clientDrawingContext: ?*anyopaque,
@@ -4055,7 +4055,7 @@ pub const IDWriteTextRenderer1 = extern union {
             orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
             underline: ?*const DWRITE_UNDERLINE,
             clientDrawingEffect: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawStrikethrough: *const fn(
             self: *const IDWriteTextRenderer1,
             clientDrawingContext: ?*anyopaque,
@@ -4064,7 +4064,7 @@ pub const IDWriteTextRenderer1 = extern union {
             orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
             strikethrough: ?*const DWRITE_STRIKETHROUGH,
             clientDrawingEffect: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawInlineObject: *const fn(
             self: *const IDWriteTextRenderer1,
             clientDrawingContext: ?*anyopaque,
@@ -4075,7 +4075,7 @@ pub const IDWriteTextRenderer1 = extern union {
             isSideways: BOOL,
             isRightToLeft: BOOL,
             clientDrawingEffect: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextRenderer: IDWriteTextRenderer,
@@ -4104,32 +4104,32 @@ pub const IDWriteTextFormat1 = extern union {
         SetVerticalGlyphOrientation: *const fn(
             self: *const IDWriteTextFormat1,
             glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVerticalGlyphOrientation: *const fn(
             self: *const IDWriteTextFormat1,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_VERTICAL_GLYPH_ORIENTATION,
+        ) callconv(.winapi) DWRITE_VERTICAL_GLYPH_ORIENTATION,
         SetLastLineWrapping: *const fn(
             self: *const IDWriteTextFormat1,
             isLastLineWrappingEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastLineWrapping: *const fn(
             self: *const IDWriteTextFormat1,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         SetOpticalAlignment: *const fn(
             self: *const IDWriteTextFormat1,
             opticalAlignment: DWRITE_OPTICAL_ALIGNMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOpticalAlignment: *const fn(
             self: *const IDWriteTextFormat1,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_OPTICAL_ALIGNMENT,
+        ) callconv(.winapi) DWRITE_OPTICAL_ALIGNMENT,
         SetFontFallback: *const fn(
             self: *const IDWriteTextFormat1,
             fontFallback: ?*IDWriteFontFallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFallback: *const fn(
             self: *const IDWriteTextFormat1,
             fontFallback: ?*?*IDWriteFontFallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextFormat: IDWriteTextFormat,
@@ -4169,36 +4169,36 @@ pub const IDWriteTextLayout2 = extern union {
         GetMetrics: *const fn(
             self: *const IDWriteTextLayout2,
             textMetrics: ?*DWRITE_TEXT_METRICS1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVerticalGlyphOrientation: *const fn(
             self: *const IDWriteTextLayout2,
             glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVerticalGlyphOrientation: *const fn(
             self: *const IDWriteTextLayout2,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_VERTICAL_GLYPH_ORIENTATION,
+        ) callconv(.winapi) DWRITE_VERTICAL_GLYPH_ORIENTATION,
         SetLastLineWrapping: *const fn(
             self: *const IDWriteTextLayout2,
             isLastLineWrappingEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastLineWrapping: *const fn(
             self: *const IDWriteTextLayout2,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         SetOpticalAlignment: *const fn(
             self: *const IDWriteTextLayout2,
             opticalAlignment: DWRITE_OPTICAL_ALIGNMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOpticalAlignment: *const fn(
             self: *const IDWriteTextLayout2,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_OPTICAL_ALIGNMENT,
+        ) callconv(.winapi) DWRITE_OPTICAL_ALIGNMENT,
         SetFontFallback: *const fn(
             self: *const IDWriteTextLayout2,
             fontFallback: ?*IDWriteFontFallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFallback: *const fn(
             self: *const IDWriteTextLayout2,
             fontFallback: ?*?*IDWriteFontFallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextLayout1: IDWriteTextLayout1,
@@ -4247,7 +4247,7 @@ pub const IDWriteTextAnalyzer2 = extern union {
             originX: f32,
             originY: f32,
             transform: ?*DWRITE_MATRIX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTypographicFeatures: *const fn(
             self: *const IDWriteTextAnalyzer2,
             fontFace: ?*IDWriteFontFace,
@@ -4256,7 +4256,7 @@ pub const IDWriteTextAnalyzer2 = extern union {
             maxTagCount: u32,
             actualTagCount: ?*u32,
             tags: [*]DWRITE_FONT_FEATURE_TAG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckTypographicFeature: *const fn(
             self: *const IDWriteTextAnalyzer2,
             fontFace: ?*IDWriteFontFace,
@@ -4266,7 +4266,7 @@ pub const IDWriteTextAnalyzer2 = extern union {
             glyphCount: u32,
             glyphIndices: [*:0]const u16,
             featureApplies: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextAnalyzer1: IDWriteTextAnalyzer1,
@@ -4302,7 +4302,7 @@ pub const IDWriteFontFallback = extern union {
             mappedLength: ?*u32,
             mappedFont: ?**IDWriteFont,
             scale: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4327,15 +4327,15 @@ pub const IDWriteFontFallbackBuilder = extern union {
             localeName: ?[*:0]const u16,
             baseFamilyName: ?[*:0]const u16,
             scale: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMappings: *const fn(
             self: *const IDWriteFontFallbackBuilder,
             fontFallback: ?*IDWriteFontFallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontFallback: *const fn(
             self: *const IDWriteFontFallbackBuilder,
             fontFallback: **IDWriteFontFallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4358,7 +4358,7 @@ pub const IDWriteFont2 = extern union {
         base: IDWriteFont1.VTable,
         IsColorFont: *const fn(
             self: *const IDWriteFont2,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IDWriteFont1: IDWriteFont1,
@@ -4377,20 +4377,20 @@ pub const IDWriteFontFace2 = extern union {
         base: IDWriteFontFace1.VTable,
         IsColorFont: *const fn(
             self: *const IDWriteFontFace2,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetColorPaletteCount: *const fn(
             self: *const IDWriteFontFace2,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetPaletteEntryCount: *const fn(
             self: *const IDWriteFontFace2,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetPaletteEntries: *const fn(
             self: *const IDWriteFontFace2,
             colorPaletteIndex: u32,
             firstEntryIndex: u32,
             entryCount: u32,
             paletteEntries: [*]DWRITE_COLOR_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecommendedRenderingMode: *const fn(
             self: *const IDWriteFontFace2,
             fontEmSize: f32,
@@ -4403,7 +4403,7 @@ pub const IDWriteFontFace2 = extern union {
             renderingParams: ?*IDWriteRenderingParams,
             renderingMode: ?*DWRITE_RENDERING_MODE,
             gridFitMode: ?*DWRITE_GRID_FIT_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontFace1: IDWriteFontFace1,
@@ -4444,11 +4444,11 @@ pub const IDWriteColorGlyphRunEnumerator = extern union {
         MoveNext: *const fn(
             self: *const IDWriteColorGlyphRunEnumerator,
             hasRun: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentRun: *const fn(
             self: *const IDWriteColorGlyphRunEnumerator,
             colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4468,7 +4468,7 @@ pub const IDWriteRenderingParams2 = extern union {
         base: IDWriteRenderingParams1.VTable,
         GetGridFitMode: *const fn(
             self: *const IDWriteRenderingParams2,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_GRID_FIT_MODE,
+        ) callconv(.winapi) DWRITE_GRID_FIT_MODE,
     };
     vtable: *const VTable,
     IDWriteRenderingParams1: IDWriteRenderingParams1,
@@ -4488,11 +4488,11 @@ pub const IDWriteFactory2 = extern union {
         GetSystemFontFallback: *const fn(
             self: *const IDWriteFactory2,
             fontFallback: **IDWriteFontFallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontFallbackBuilder: *const fn(
             self: *const IDWriteFactory2,
             fontFallbackBuilder: **IDWriteFontFallbackBuilder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TranslateColorGlyphRun: *const fn(
             self: *const IDWriteFactory2,
             baselineOriginX: f32,
@@ -4503,7 +4503,7 @@ pub const IDWriteFactory2 = extern union {
             worldToDeviceTransform: ?*const DWRITE_MATRIX,
             colorPaletteIndex: u32,
             colorLayers: **IDWriteColorGlyphRunEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCustomRenderingParams: *const fn(
             self: *const IDWriteFactory2,
             gamma: f32,
@@ -4514,7 +4514,7 @@ pub const IDWriteFactory2 = extern union {
             renderingMode: DWRITE_RENDERING_MODE,
             gridFitMode: DWRITE_GRID_FIT_MODE,
             renderingParams: **IDWriteRenderingParams2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGlyphRunAnalysis: *const fn(
             self: *const IDWriteFactory2,
             glyphRun: ?*const DWRITE_GLYPH_RUN,
@@ -4526,7 +4526,7 @@ pub const IDWriteFactory2 = extern union {
             baselineOriginX: f32,
             baselineOriginY: f32,
             glyphRunAnalysis: **IDWriteGlyphRunAnalysis,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFactory1: IDWriteFactory1,
@@ -4632,7 +4632,7 @@ pub const IDWriteRenderingParams3 = extern union {
         base: IDWriteRenderingParams2.VTable,
         GetRenderingMode1: *const fn(
             self: *const IDWriteRenderingParams3,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_RENDERING_MODE1,
+        ) callconv(.winapi) DWRITE_RENDERING_MODE1,
     };
     vtable: *const VTable,
     IDWriteRenderingParams2: IDWriteRenderingParams2,
@@ -4661,7 +4661,7 @@ pub const IDWriteFactory3 = extern union {
             baselineOriginX: f32,
             baselineOriginY: f32,
             glyphRunAnalysis: **IDWriteGlyphRunAnalysis,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCustomRenderingParams: *const fn(
             self: *const IDWriteFactory3,
             gamma: f32,
@@ -4672,14 +4672,14 @@ pub const IDWriteFactory3 = extern union {
             renderingMode: DWRITE_RENDERING_MODE1,
             gridFitMode: DWRITE_GRID_FIT_MODE,
             renderingParams: **IDWriteRenderingParams3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontFaceReference_TODO_A: *const fn(
             self: *const IDWriteFactory3,
             fontFile: ?*IDWriteFontFile,
             faceIndex: u32,
             fontSimulations: DWRITE_FONT_SIMULATIONS,
             fontFaceReference: **IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontFaceReference_TODO_B: *const fn(
             self: *const IDWriteFactory3,
             filePath: ?[*:0]const u16,
@@ -4687,30 +4687,30 @@ pub const IDWriteFactory3 = extern union {
             faceIndex: u32,
             fontSimulations: DWRITE_FONT_SIMULATIONS,
             fontFaceReference: **IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSystemFontSet: *const fn(
             self: *const IDWriteFactory3,
             fontSet: **IDWriteFontSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontSetBuilder: *const fn(
             self: *const IDWriteFactory3,
             fontSetBuilder: **IDWriteFontSetBuilder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontCollectionFromFontSet: *const fn(
             self: *const IDWriteFactory3,
             fontSet: ?*IDWriteFontSet,
             fontCollection: **IDWriteFontCollection1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSystemFontCollection: *const fn(
             self: *const IDWriteFactory3,
             includeDownloadableFonts: BOOL,
             fontCollection: **IDWriteFontCollection1,
             checkForUpdates: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontDownloadQueue: *const fn(
             self: *const IDWriteFactory3,
             fontDownloadQueue: **IDWriteFontDownloadQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFactory2: IDWriteFactory2,
@@ -4755,47 +4755,47 @@ pub const IDWriteFontSet = extern union {
         base: IUnknown.VTable,
         GetFontCount: *const fn(
             self: *const IDWriteFontSet,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetFontFaceReference: *const fn(
             self: *const IDWriteFontSet,
             listIndex: u32,
             fontFaceReference: **IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindFontFaceReference: *const fn(
             self: *const IDWriteFontSet,
             fontFaceReference: ?*IDWriteFontFaceReference,
             listIndex: ?*u32,
             exists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindFontFace: *const fn(
             self: *const IDWriteFontSet,
             fontFace: ?*IDWriteFontFace,
             listIndex: ?*u32,
             exists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyValues_TODO_A: *const fn(
             self: *const IDWriteFontSet,
             propertyID: DWRITE_FONT_PROPERTY_ID,
             values: **IDWriteStringList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyValues_TODO_B: *const fn(
             self: *const IDWriteFontSet,
             propertyID: DWRITE_FONT_PROPERTY_ID,
             preferredLocaleNames: ?[*:0]const u16,
             values: **IDWriteStringList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyValues_TODO_C: *const fn(
             self: *const IDWriteFontSet,
             listIndex: u32,
             propertyId: DWRITE_FONT_PROPERTY_ID,
             exists: ?*BOOL,
             values: ?**IDWriteLocalizedStrings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyOccurrenceCount: *const fn(
             self: *const IDWriteFontSet,
             property: ?*const DWRITE_FONT_PROPERTY,
             propertyOccurrenceCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMatchingFonts_TODO_A: *const fn(
             self: *const IDWriteFontSet,
             familyName: ?[*:0]const u16,
@@ -4803,13 +4803,13 @@ pub const IDWriteFontSet = extern union {
             fontStretch: DWRITE_FONT_STRETCH,
             fontStyle: DWRITE_FONT_STYLE,
             filteredSet: **IDWriteFontSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMatchingFonts_TODO_B: *const fn(
             self: *const IDWriteFontSet,
             properties: [*]const DWRITE_FONT_PROPERTY,
             propertyCount: u32,
             filteredSet: **IDWriteFontSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4857,19 +4857,19 @@ pub const IDWriteFontSetBuilder = extern union {
             fontFaceReference: ?*IDWriteFontFaceReference,
             properties: [*]const DWRITE_FONT_PROPERTY,
             propertyCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddFontFaceReference_TODO_B: *const fn(
             self: *const IDWriteFontSetBuilder,
             fontFaceReference: ?*IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddFontSet: *const fn(
             self: *const IDWriteFontSetBuilder,
             fontSet: ?*IDWriteFontSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontSet: *const fn(
             self: *const IDWriteFontSetBuilder,
             fontSet: **IDWriteFontSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4897,12 +4897,12 @@ pub const IDWriteFontCollection1 = extern union {
         GetFontSet: *const fn(
             self: *const IDWriteFontCollection1,
             fontSet: **IDWriteFontSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFamily: *const fn(
             self: *const IDWriteFontCollection1,
             index: u32,
             fontFamily: **IDWriteFontFamily1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontCollection: IDWriteFontCollection,
@@ -4924,17 +4924,17 @@ pub const IDWriteFontFamily1 = extern union {
         GetFontLocality: *const fn(
             self: *const IDWriteFontFamily1,
             listIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
+        ) callconv(.winapi) DWRITE_LOCALITY,
         GetFont: *const fn(
             self: *const IDWriteFontFamily1,
             listIndex: u32,
             font: **IDWriteFont3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFaceReference: *const fn(
             self: *const IDWriteFontFamily1,
             listIndex: u32,
             fontFaceReference: **IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontFamily: IDWriteFontFamily,
@@ -4960,17 +4960,17 @@ pub const IDWriteFontList1 = extern union {
         GetFontLocality: *const fn(
             self: *const IDWriteFontList1,
             listIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
+        ) callconv(.winapi) DWRITE_LOCALITY,
         GetFont: *const fn(
             self: *const IDWriteFontList1,
             listIndex: u32,
             font: **IDWriteFont3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFaceReference: *const fn(
             self: *const IDWriteFontList1,
             listIndex: u32,
             fontFaceReference: **IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontList: IDWriteFontList,
@@ -4995,57 +4995,57 @@ pub const IDWriteFontFaceReference = extern union {
         CreateFontFace: *const fn(
             self: *const IDWriteFontFaceReference,
             fontFace: **IDWriteFontFace3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontFaceWithSimulations: *const fn(
             self: *const IDWriteFontFaceReference,
             fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS,
             fontFace: **IDWriteFontFace3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Equals: *const fn(
             self: *const IDWriteFontFaceReference,
             fontFaceReference: ?*IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetFontFaceIndex: *const fn(
             self: *const IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetSimulations: *const fn(
             self: *const IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SIMULATIONS,
+        ) callconv(.winapi) DWRITE_FONT_SIMULATIONS,
         GetFontFile: *const fn(
             self: *const IDWriteFontFaceReference,
             fontFile: **IDWriteFontFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocalFileSize: *const fn(
             self: *const IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetFileSize: *const fn(
             self: *const IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetFileTime: *const fn(
             self: *const IDWriteFontFaceReference,
             lastWriteTime: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocality: *const fn(
             self: *const IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
+        ) callconv(.winapi) DWRITE_LOCALITY,
         EnqueueFontDownloadRequest: *const fn(
             self: *const IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnqueueCharacterDownloadRequest: *const fn(
             self: *const IDWriteFontFaceReference,
             characters: [*:0]const u16,
             characterCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnqueueGlyphDownloadRequest: *const fn(
             self: *const IDWriteFontFaceReference,
             glyphIndices: [*:0]const u16,
             glyphCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnqueueFileFragmentDownloadRequest: *const fn(
             self: *const IDWriteFontFaceReference,
             fileOffset: u64,
             fragmentSize: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5102,22 +5102,22 @@ pub const IDWriteFont3 = extern union {
         CreateFontFace: *const fn(
             self: *const IDWriteFont3,
             fontFace: **IDWriteFontFace3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Equals: *const fn(
             self: *const IDWriteFont3,
             font: ?*IDWriteFont,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetFontFaceReference: *const fn(
             self: *const IDWriteFont3,
             fontFaceReference: **IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasCharacter: *const fn(
             self: *const IDWriteFont3,
             unicodeValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetLocality: *const fn(
             self: *const IDWriteFont3,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
+        ) callconv(.winapi) DWRITE_LOCALITY,
     };
     vtable: *const VTable,
     IDWriteFont2: IDWriteFont2,
@@ -5150,38 +5150,38 @@ pub const IDWriteFontFace3 = extern union {
         GetFontFaceReference: *const fn(
             self: *const IDWriteFontFace3,
             fontFaceReference: **IDWriteFontFaceReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPanose: *const fn(
             self: *const IDWriteFontFace3,
             panose: ?*DWRITE_PANOSE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetWeight: *const fn(
             self: *const IDWriteFontFace3,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_WEIGHT,
+        ) callconv(.winapi) DWRITE_FONT_WEIGHT,
         GetStretch: *const fn(
             self: *const IDWriteFontFace3,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STRETCH,
+        ) callconv(.winapi) DWRITE_FONT_STRETCH,
         GetStyle: *const fn(
             self: *const IDWriteFontFace3,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STYLE,
+        ) callconv(.winapi) DWRITE_FONT_STYLE,
         GetFamilyNames: *const fn(
             self: *const IDWriteFontFace3,
             names: **IDWriteLocalizedStrings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFaceNames: *const fn(
             self: *const IDWriteFontFace3,
             names: **IDWriteLocalizedStrings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInformationalStrings: *const fn(
             self: *const IDWriteFontFace3,
             informationalStringID: DWRITE_INFORMATIONAL_STRING_ID,
             informationalStrings: ?**IDWriteLocalizedStrings,
             exists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasCharacter: *const fn(
             self: *const IDWriteFontFace3,
             unicodeValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetRecommendedRenderingMode: *const fn(
             self: *const IDWriteFontFace3,
             fontEmSize: f32,
@@ -5194,29 +5194,29 @@ pub const IDWriteFontFace3 = extern union {
             renderingParams: ?*IDWriteRenderingParams,
             renderingMode: ?*DWRITE_RENDERING_MODE1,
             gridFitMode: ?*DWRITE_GRID_FIT_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsCharacterLocal: *const fn(
             self: *const IDWriteFontFace3,
             unicodeValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         IsGlyphLocal: *const fn(
             self: *const IDWriteFontFace3,
             glyphId: u16,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         AreCharactersLocal: *const fn(
             self: *const IDWriteFontFace3,
             characters: [*:0]const u16,
             characterCount: u32,
             enqueueIfNotLocal: BOOL,
             isLocal: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AreGlyphsLocal: *const fn(
             self: *const IDWriteFontFace3,
             glyphIndices: [*:0]const u16,
             glyphCount: u32,
             enqueueIfNotLocal: BOOL,
             isLocal: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontFace2: IDWriteFontFace2,
@@ -5274,29 +5274,29 @@ pub const IDWriteStringList = extern union {
         base: IUnknown.VTable,
         GetCount: *const fn(
             self: *const IDWriteStringList,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetLocaleNameLength: *const fn(
             self: *const IDWriteStringList,
             listIndex: u32,
             length: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocaleName: *const fn(
             self: *const IDWriteStringList,
             listIndex: u32,
             localeName: [*:0]u16,
             size: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringLength: *const fn(
             self: *const IDWriteStringList,
             listIndex: u32,
             length: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetString: *const fn(
             self: *const IDWriteStringList,
             listIndex: u32,
             stringBuffer: [*:0]u16,
             stringBufferSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5328,7 +5328,7 @@ pub const IDWriteFontDownloadListener = extern union {
             downloadQueue: ?*IDWriteFontDownloadQueue,
             context: ?*IUnknown,
             downloadResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5347,24 +5347,24 @@ pub const IDWriteFontDownloadQueue = extern union {
             self: *const IDWriteFontDownloadQueue,
             listener: ?*IDWriteFontDownloadListener,
             token: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveListener: *const fn(
             self: *const IDWriteFontDownloadQueue,
             token: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEmpty: *const fn(
             self: *const IDWriteFontDownloadQueue,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         BeginDownload: *const fn(
             self: *const IDWriteFontDownloadQueue,
             context: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelDownload: *const fn(
             self: *const IDWriteFontDownloadQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGenerationCount: *const fn(
             self: *const IDWriteFontDownloadQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5398,23 +5398,23 @@ pub const IDWriteGdiInterop1 = extern union {
             logFont: ?*const LOGFONTW,
             fontCollection: ?*IDWriteFontCollection,
             font: **IDWriteFont,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontSignature_TODO_A: *const fn(
             self: *const IDWriteGdiInterop1,
             fontFace: ?*IDWriteFontFace,
             fontSignature: ?*FONTSIGNATURE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontSignature_TODO_B: *const fn(
             self: *const IDWriteGdiInterop1,
             font: ?*IDWriteFont,
             fontSignature: ?*FONTSIGNATURE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMatchingFontsByLOGFONT: *const fn(
             self: *const IDWriteGdiInterop1,
             logFont: ?*const LOGFONTA,
             fontSet: ?*IDWriteFontSet,
             filteredSet: **IDWriteFontSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteGdiInterop: IDWriteGdiInterop,
@@ -5466,11 +5466,11 @@ pub const IDWriteTextFormat2 = extern union {
         SetLineSpacing: *const fn(
             self: *const IDWriteTextFormat2,
             lineSpacingOptions: ?*const DWRITE_LINE_SPACING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLineSpacing: *const fn(
             self: *const IDWriteTextFormat2,
             lineSpacingOptions: ?*DWRITE_LINE_SPACING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextFormat1: IDWriteTextFormat1,
@@ -5492,21 +5492,21 @@ pub const IDWriteTextLayout3 = extern union {
         base: IDWriteTextLayout2.VTable,
         InvalidateLayout: *const fn(
             self: *const IDWriteTextLayout3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLineSpacing: *const fn(
             self: *const IDWriteTextLayout3,
             lineSpacingOptions: ?*const DWRITE_LINE_SPACING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLineSpacing: *const fn(
             self: *const IDWriteTextLayout3,
             lineSpacingOptions: ?*DWRITE_LINE_SPACING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLineMetrics: *const fn(
             self: *const IDWriteTextLayout3,
             lineMetrics: ?[*]DWRITE_LINE_METRICS1,
             maxLineCount: u32,
             actualLineCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextLayout2: IDWriteTextLayout2,
@@ -5554,7 +5554,7 @@ pub const IDWriteColorGlyphRunEnumerator1 = extern union {
         GetCurrentRun: *const fn(
             self: *const IDWriteColorGlyphRunEnumerator1,
             colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteColorGlyphRunEnumerator: IDWriteColorGlyphRunEnumerator,
@@ -5575,10 +5575,10 @@ pub const IDWriteFontFace4 = extern union {
             pixelsPerEmFirst: u32,
             pixelsPerEmLast: u32,
             glyphImageFormats: ?*DWRITE_GLYPH_IMAGE_FORMATS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphImageFormats_TODO_B: *const fn(
             self: *const IDWriteFontFace4,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_GLYPH_IMAGE_FORMATS,
+        ) callconv(.winapi) DWRITE_GLYPH_IMAGE_FORMATS,
         GetGlyphImageData: *const fn(
             self: *const IDWriteFontFace4,
             glyphId: u16,
@@ -5586,11 +5586,11 @@ pub const IDWriteFontFace4 = extern union {
             glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS,
             glyphData: ?*DWRITE_GLYPH_IMAGE_DATA,
             glyphDataContext: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseGlyphImageData: *const fn(
             self: *const IDWriteFontFace4,
             glyphDataContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IDWriteFontFace3: IDWriteFontFace3,
@@ -5628,13 +5628,13 @@ pub const IDWriteFactory4 = extern union {
             worldAndDpiTransform: ?*const DWRITE_MATRIX,
             colorPaletteIndex: u32,
             colorLayers: **IDWriteColorGlyphRunEnumerator1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ComputeGlyphOrigins_TODO_A: *const fn(
             self: *const IDWriteFactory4,
             glyphRun: ?*const DWRITE_GLYPH_RUN,
             baselineOrigin: D2D_POINT_2F,
             glyphOrigins: ?*D2D_POINT_2F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ComputeGlyphOrigins_TODO_B: *const fn(
             self: *const IDWriteFactory4,
             glyphRun: ?*const DWRITE_GLYPH_RUN,
@@ -5642,7 +5642,7 @@ pub const IDWriteFactory4 = extern union {
             baselineOrigin: D2D_POINT_2F,
             worldAndDpiTransform: ?*const DWRITE_MATRIX,
             glyphOrigins: ?*D2D_POINT_2F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFactory3: IDWriteFactory3,
@@ -5670,7 +5670,7 @@ pub const IDWriteFontSetBuilder1 = extern union {
         AddFontFile: *const fn(
             self: *const IDWriteFontSetBuilder1,
             fontFile: ?*IDWriteFontFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontSetBuilder: IDWriteFontSetBuilder,
@@ -5687,10 +5687,10 @@ pub const IDWriteAsyncResult = extern union {
         base: IUnknown.VTable,
         GetWaitHandle: *const fn(
             self: *const IDWriteAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
+        ) callconv(.winapi) ?HANDLE,
         GetResult: *const fn(
             self: *const IDWriteAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5715,24 +5715,24 @@ pub const IDWriteRemoteFontFileStream = extern union {
         GetLocalFileSize: *const fn(
             self: *const IDWriteRemoteFontFileStream,
             localFileSize: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileFragmentLocality: *const fn(
             self: *const IDWriteRemoteFontFileStream,
             fileOffset: u64,
             fragmentSize: u64,
             isLocal: ?*BOOL,
             partialSize: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocality: *const fn(
             self: *const IDWriteRemoteFontFileStream,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
+        ) callconv(.winapi) DWRITE_LOCALITY,
         BeginDownload: *const fn(
             self: *const IDWriteRemoteFontFileStream,
             downloadOperationID: ?*const Guid,
             fileFragments: [*]const DWRITE_FILE_FRAGMENT,
             fragmentCount: u32,
             asyncResult: ?**IDWriteAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontFileStream: IDWriteFontFileStream,
@@ -5771,21 +5771,21 @@ pub const IDWriteRemoteFontFileLoader = extern union {
             fontFileReferenceKey: ?*const anyopaque,
             fontFileReferenceKeySize: u32,
             fontFileStream: **IDWriteRemoteFontFileStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocalityFromKey: *const fn(
             self: *const IDWriteRemoteFontFileLoader,
             // TODO: what to do with BytesParamIndex 1?
             fontFileReferenceKey: ?*const anyopaque,
             fontFileReferenceKeySize: u32,
             locality: ?*DWRITE_LOCALITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontFileReferenceFromUrl: *const fn(
             self: *const IDWriteRemoteFontFileLoader,
             factory: ?*IDWriteFactory,
             baseUrl: ?[*:0]const u16,
             fontFileUrl: ?[*:0]const u16,
             fontFile: **IDWriteFontFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontFileLoader: IDWriteFontFileLoader,
@@ -5814,10 +5814,10 @@ pub const IDWriteInMemoryFontFileLoader = extern union {
             fontDataSize: u32,
             ownerObject: ?*IUnknown,
             fontFile: **IDWriteFontFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileCount: *const fn(
             self: *const IDWriteInMemoryFontFileLoader,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     IDWriteFontFileLoader: IDWriteFontFileLoader,
@@ -5838,23 +5838,23 @@ pub const IDWriteFactory5 = extern union {
         CreateFontSetBuilder: *const fn(
             self: *const IDWriteFactory5,
             fontSetBuilder: **IDWriteFontSetBuilder1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInMemoryFontFileLoader: *const fn(
             self: *const IDWriteFactory5,
             newLoader: **IDWriteInMemoryFontFileLoader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateHttpFontFileLoader: *const fn(
             self: *const IDWriteFactory5,
             referrerUrl: ?[*:0]const u16,
             extraHeaders: ?[*:0]const u16,
             newLoader: **IDWriteRemoteFontFileLoader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AnalyzeContainerType: *const fn(
             self: *const IDWriteFactory5,
             // TODO: what to do with BytesParamIndex 1?
             fileData: ?*const anyopaque,
             fileDataSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_CONTAINER_TYPE,
+        ) callconv(.winapi) DWRITE_CONTAINER_TYPE,
         UnpackFontFile: *const fn(
             self: *const IDWriteFactory5,
             containerType: DWRITE_CONTAINER_TYPE,
@@ -5862,7 +5862,7 @@ pub const IDWriteFactory5 = extern union {
             fileData: ?*const anyopaque,
             fileDataSize: u32,
             unpackedFontStream: **IDWriteFontFileStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFactory4: IDWriteFactory4,
@@ -5994,34 +5994,34 @@ pub const IDWriteFactory6 = extern union {
             fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
             fontFaceReference: **IDWriteFontFaceReference1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontResource: *const fn(
             self: *const IDWriteFactory6,
             fontFile: ?*IDWriteFontFile,
             faceIndex: u32,
             fontResource: **IDWriteFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSystemFontSet: *const fn(
             self: *const IDWriteFactory6,
             includeDownloadableFonts: BOOL,
             fontSet: **IDWriteFontSet1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSystemFontCollection: *const fn(
             self: *const IDWriteFactory6,
             includeDownloadableFonts: BOOL,
             fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
             fontCollection: **IDWriteFontCollection2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontCollectionFromFontSet: *const fn(
             self: *const IDWriteFactory6,
             fontSet: ?*IDWriteFontSet,
             fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
             fontCollection: **IDWriteFontCollection2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontSetBuilder: *const fn(
             self: *const IDWriteFactory6,
             fontSetBuilder: **IDWriteFontSetBuilder2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTextFormat: *const fn(
             self: *const IDWriteFactory6,
             fontFamilyName: ?[*:0]const u16,
@@ -6031,7 +6031,7 @@ pub const IDWriteFactory6 = extern union {
             fontSize: f32,
             localeName: ?[*:0]const u16,
             textFormat: **IDWriteTextFormat3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFactory5: IDWriteFactory5,
@@ -6071,23 +6071,23 @@ pub const IDWriteFontFace5 = extern union {
         base: IDWriteFontFace4.VTable,
         GetFontAxisValueCount: *const fn(
             self: *const IDWriteFontFace5,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetFontAxisValues: *const fn(
             self: *const IDWriteFontFace5,
             fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasVariations: *const fn(
             self: *const IDWriteFontFace5,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetFontResource: *const fn(
             self: *const IDWriteFontFace5,
             fontResource: **IDWriteFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Equals: *const fn(
             self: *const IDWriteFontFace5,
             fontFace: ?*IDWriteFontFace,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IDWriteFontFace4: IDWriteFontFace4,
@@ -6121,60 +6121,60 @@ pub const IDWriteFontResource = extern union {
         GetFontFile: *const fn(
             self: *const IDWriteFontResource,
             fontFile: **IDWriteFontFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFaceIndex: *const fn(
             self: *const IDWriteFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetFontAxisCount: *const fn(
             self: *const IDWriteFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetDefaultFontAxisValues: *const fn(
             self: *const IDWriteFontResource,
             fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontAxisRanges: *const fn(
             self: *const IDWriteFontResource,
             fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE,
             fontAxisRangeCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontAxisAttributes: *const fn(
             self: *const IDWriteFontResource,
             axisIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_AXIS_ATTRIBUTES,
+        ) callconv(.winapi) DWRITE_FONT_AXIS_ATTRIBUTES,
         GetAxisNames: *const fn(
             self: *const IDWriteFontResource,
             axisIndex: u32,
             names: **IDWriteLocalizedStrings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAxisValueNameCount: *const fn(
             self: *const IDWriteFontResource,
             axisIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetAxisValueNames: *const fn(
             self: *const IDWriteFontResource,
             axisIndex: u32,
             axisValueIndex: u32,
             fontAxisRange: ?*DWRITE_FONT_AXIS_RANGE,
             names: **IDWriteLocalizedStrings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasVariations: *const fn(
             self: *const IDWriteFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         CreateFontFace: *const fn(
             self: *const IDWriteFontResource,
             fontSimulations: DWRITE_FONT_SIMULATIONS,
             fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
             fontFace: **IDWriteFontFace5,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontFaceReference: *const fn(
             self: *const IDWriteFontResource,
             fontSimulations: DWRITE_FONT_SIMULATIONS,
             fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
             fontFaceReference: **IDWriteFontFaceReference1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6224,15 +6224,15 @@ pub const IDWriteFontFaceReference1 = extern union {
         CreateFontFace: *const fn(
             self: *const IDWriteFontFaceReference1,
             fontFace: **IDWriteFontFace5,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontAxisValueCount: *const fn(
             self: *const IDWriteFontFaceReference1,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetFontAxisValues: *const fn(
             self: *const IDWriteFontFaceReference1,
             fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontFaceReference: IDWriteFontFaceReference,
@@ -6264,11 +6264,11 @@ pub const IDWriteFontSetBuilder2 = extern union {
             fontAxisRangeCount: u32,
             properties: [*]const DWRITE_FONT_PROPERTY,
             propertyCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddFontFile: *const fn(
             self: *const IDWriteFontSetBuilder2,
             filePath: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontSetBuilder1: IDWriteFontSetBuilder1,
@@ -6293,31 +6293,31 @@ pub const IDWriteFontSet1 = extern union {
             fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
             matchingFonts: **IDWriteFontSet1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFirstFontResources: *const fn(
             self: *const IDWriteFontSet1,
             filteredFontSet: **IDWriteFontSet1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteredFonts_TODO_A: *const fn(
             self: *const IDWriteFontSet1,
             indices: [*]const u32,
             indexCount: u32,
             filteredFontSet: **IDWriteFontSet1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteredFonts_TODO_B: *const fn(
             self: *const IDWriteFontSet1,
             fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE,
             fontAxisRangeCount: u32,
             selectAnyRange: BOOL,
             filteredFontSet: **IDWriteFontSet1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteredFonts_TODO_C: *const fn(
             self: *const IDWriteFontSet1,
             properties: ?[*]const DWRITE_FONT_PROPERTY,
             propertyCount: u32,
             selectAnyProperty: BOOL,
             filteredFontSet: **IDWriteFontSet1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteredFontIndices_TODO_A: *const fn(
             self: *const IDWriteFontSet1,
             fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE,
@@ -6326,7 +6326,7 @@ pub const IDWriteFontSet1 = extern union {
             indices: [*]u32,
             maxIndexCount: u32,
             actualIndexCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteredFontIndices_TODO_C: *const fn(
             self: *const IDWriteFontSet1,
             properties: [*]const DWRITE_FONT_PROPERTY,
@@ -6335,39 +6335,39 @@ pub const IDWriteFontSet1 = extern union {
             indices: [*]u32,
             maxIndexCount: u32,
             actualIndexCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontAxisRanges_TODO_A: *const fn(
             self: *const IDWriteFontSet1,
             listIndex: u32,
             fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE,
             maxFontAxisRangeCount: u32,
             actualFontAxisRangeCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontAxisRanges_TODO_B: *const fn(
             self: *const IDWriteFontSet1,
             fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE,
             maxFontAxisRangeCount: u32,
             actualFontAxisRangeCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFaceReference: *const fn(
             self: *const IDWriteFontSet1,
             listIndex: u32,
             fontFaceReference: **IDWriteFontFaceReference1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontResource: *const fn(
             self: *const IDWriteFontSet1,
             listIndex: u32,
             fontResource: **IDWriteFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontFace: *const fn(
             self: *const IDWriteFontSet1,
             listIndex: u32,
             fontFace: **IDWriteFontFace5,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontLocality: *const fn(
             self: *const IDWriteFontSet1,
             listIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
+        ) callconv(.winapi) DWRITE_LOCALITY,
     };
     vtable: *const VTable,
     IDWriteFontSet: IDWriteFontSet,
@@ -6424,7 +6424,7 @@ pub const IDWriteFontList2 = extern union {
         GetFontSet: *const fn(
             self: *const IDWriteFontList2,
             fontSet: **IDWriteFontSet1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontList1: IDWriteFontList1,
@@ -6445,11 +6445,11 @@ pub const IDWriteFontFamily2 = extern union {
             fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
             matchingFonts: **IDWriteFontList2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontSet: *const fn(
             self: *const IDWriteFontFamily2,
             fontSet: **IDWriteFontSet1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontFamily1: IDWriteFontFamily1,
@@ -6473,21 +6473,21 @@ pub const IDWriteFontCollection2 = extern union {
             self: *const IDWriteFontCollection2,
             index: u32,
             fontFamily: **IDWriteFontFamily2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMatchingFonts: *const fn(
             self: *const IDWriteFontCollection2,
             familyName: ?[*:0]const u16,
             fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
             fontList: **IDWriteFontList2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFamilyModel: *const fn(
             self: *const IDWriteFontCollection2,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_FAMILY_MODEL,
+        ) callconv(.winapi) DWRITE_FONT_FAMILY_MODEL,
         GetFontSet: *const fn(
             self: *const IDWriteFontCollection2,
             fontSet: **IDWriteFontSet1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontCollection1: IDWriteFontCollection1,
@@ -6517,25 +6517,25 @@ pub const IDWriteTextLayout4 = extern union {
             fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
             textRange: DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontAxisValueCount: *const fn(
             self: *const IDWriteTextLayout4,
             currentPosition: u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetFontAxisValues: *const fn(
             self: *const IDWriteTextLayout4,
             currentPosition: u32,
             fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
             textRange: ?*DWRITE_TEXT_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAutomaticFontAxes: *const fn(
             self: *const IDWriteTextLayout4,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_AUTOMATIC_FONT_AXES,
+        ) callconv(.winapi) DWRITE_AUTOMATIC_FONT_AXES,
         SetAutomaticFontAxes: *const fn(
             self: *const IDWriteTextLayout4,
             automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextLayout3: IDWriteTextLayout3,
@@ -6570,22 +6570,22 @@ pub const IDWriteTextFormat3 = extern union {
             self: *const IDWriteTextFormat3,
             fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontAxisValueCount: *const fn(
             self: *const IDWriteTextFormat3,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetFontAxisValues: *const fn(
             self: *const IDWriteTextFormat3,
             fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
             fontAxisValueCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAutomaticFontAxes: *const fn(
             self: *const IDWriteTextFormat3,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_AUTOMATIC_FONT_AXES,
+        ) callconv(.winapi) DWRITE_AUTOMATIC_FONT_AXES,
         SetAutomaticFontAxes: *const fn(
             self: *const IDWriteTextFormat3,
             automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteTextFormat2: IDWriteTextFormat2,
@@ -6626,7 +6626,7 @@ pub const IDWriteFontFallback1 = extern union {
             mappedLength: ?*u32,
             scale: ?*f32,
             mappedFontFace: **IDWriteFontFace5,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontFallback: IDWriteFontFallback,
@@ -6643,7 +6643,7 @@ pub const IDWriteFontSet2 = extern union {
         base: IDWriteFontSet1.VTable,
         GetExpirationEvent: *const fn(
             self: *const IDWriteFontSet2,
-        ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
+        ) callconv(.winapi) ?HANDLE,
     };
     vtable: *const VTable,
     IDWriteFontSet1: IDWriteFontSet1,
@@ -6661,7 +6661,7 @@ pub const IDWriteFontCollection3 = extern union {
         base: IDWriteFontCollection2.VTable,
         GetExpirationEvent: *const fn(
             self: *const IDWriteFontCollection3,
-        ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
+        ) callconv(.winapi) ?HANDLE,
     };
     vtable: *const VTable,
     IDWriteFontCollection2: IDWriteFontCollection2,
@@ -6682,13 +6682,13 @@ pub const IDWriteFactory7 = extern union {
             self: *const IDWriteFactory7,
             includeDownloadableFonts: BOOL,
             fontSet: **IDWriteFontSet2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSystemFontCollection: *const fn(
             self: *const IDWriteFactory7,
             includeDownloadableFonts: BOOL,
             fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
             fontCollection: **IDWriteFontCollection3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFactory6: IDWriteFactory6,
@@ -6728,17 +6728,17 @@ pub const IDWriteFontSet3 = extern union {
         GetFontSourceType: *const fn(
             self: *const IDWriteFontSet3,
             fontIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SOURCE_TYPE,
+        ) callconv(.winapi) DWRITE_FONT_SOURCE_TYPE,
         GetFontSourceNameLength: *const fn(
             self: *const IDWriteFontSet3,
             listIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetFontSourceName: *const fn(
             self: *const IDWriteFontSet3,
             listIndex: u32,
             stringBuffer: [*:0]u16,
             stringBufferSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontSet2: IDWriteFontSet2,
@@ -6765,12 +6765,12 @@ pub const IDWriteFontFace6 = extern union {
             self: *const IDWriteFontFace6,
             fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
             names: **IDWriteLocalizedStrings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFaceNames: *const fn(
             self: *const IDWriteFontFace6,
             fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
             names: **IDWriteLocalizedStrings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDWriteFontFace5: IDWriteFontFace5,
@@ -6797,7 +6797,7 @@ pub extern "dwrite" fn DWriteCreateFactory(
     factoryType: DWRITE_FACTORY_TYPE,
     iid: ?*const Guid,
     factory: **IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

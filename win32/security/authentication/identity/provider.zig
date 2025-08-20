@@ -78,7 +78,7 @@ pub const IIdentityAdvise = extern union {
             self: *const IIdentityAdvise,
             dwIdentityUpdateEvents: IdentityUpdateEvent,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -96,10 +96,10 @@ pub const AsyncIIdentityAdvise = extern union {
             self: *const AsyncIIdentityAdvise,
             dwIdentityUpdateEvents: u32,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_IdentityUpdated: *const fn(
             self: *const AsyncIIdentityAdvise,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -123,41 +123,41 @@ pub const IIdentityProvider = extern union {
             pFilterkey: ?*const PROPERTYKEY,
             pFilterPropVarValue: ?*const PROPVARIANT,
             ppIdentityEnum: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const IIdentityProvider,
             lpszUserName: ?[*:0]const u16,
             ppPropertyStore: ?*?*IPropertyStore,
             pKeywordsToAdd: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Import: *const fn(
             self: *const IIdentityProvider,
             pPropertyStore: ?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IIdentityProvider,
             lpszUniqueID: ?[*:0]const u16,
             pKeywordsToDelete: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindByUniqueID: *const fn(
             self: *const IIdentityProvider,
             lpszUniqueID: ?[*:0]const u16,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProviderPropertyStore: *const fn(
             self: *const IIdentityProvider,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Advise: *const fn(
             self: *const IIdentityProvider,
             pIdentityAdvise: ?*IIdentityAdvise,
             dwIdentityUpdateEvents: IdentityUpdateEvent,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnAdvise: *const fn(
             self: *const IIdentityProvider,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -197,66 +197,66 @@ pub const AsyncIIdentityProvider = extern union {
             eIdentityType: IDENTITY_TYPE,
             pFilterkey: ?*const PROPERTYKEY,
             pFilterPropVarValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_GetIdentityEnum: *const fn(
             self: *const AsyncIIdentityProvider,
             ppIdentityEnum: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_Create: *const fn(
             self: *const AsyncIIdentityProvider,
             lpszUserName: ?[*:0]const u16,
             pKeywordsToAdd: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_Create: *const fn(
             self: *const AsyncIIdentityProvider,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_Import: *const fn(
             self: *const AsyncIIdentityProvider,
             pPropertyStore: ?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_Import: *const fn(
             self: *const AsyncIIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_Delete: *const fn(
             self: *const AsyncIIdentityProvider,
             lpszUniqueID: ?[*:0]const u16,
             pKeywordsToDelete: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_Delete: *const fn(
             self: *const AsyncIIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_FindByUniqueID: *const fn(
             self: *const AsyncIIdentityProvider,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_FindByUniqueID: *const fn(
             self: *const AsyncIIdentityProvider,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_GetProviderPropertyStore: *const fn(
             self: *const AsyncIIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_GetProviderPropertyStore: *const fn(
             self: *const AsyncIIdentityProvider,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_Advise: *const fn(
             self: *const AsyncIIdentityProvider,
             pIdentityAdvise: ?*IIdentityAdvise,
             dwIdentityUpdateEvents: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_Advise: *const fn(
             self: *const AsyncIIdentityProvider,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_UnAdvise: *const fn(
             self: *const AsyncIIdentityProvider,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_UnAdvise: *const fn(
             self: *const AsyncIIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -320,17 +320,17 @@ pub const IAssociatedIdentityProvider = extern union {
             self: *const IAssociatedIdentityProvider,
             hwndParent: ?HWND,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisassociateIdentity: *const fn(
             self: *const IAssociatedIdentityProvider,
             hwndParent: ?HWND,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ChangeCredential: *const fn(
             self: *const IAssociatedIdentityProvider,
             hwndParent: ?HWND,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -353,27 +353,27 @@ pub const AsyncIAssociatedIdentityProvider = extern union {
         Begin_AssociateIdentity: *const fn(
             self: *const AsyncIAssociatedIdentityProvider,
             hwndParent: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_AssociateIdentity: *const fn(
             self: *const AsyncIAssociatedIdentityProvider,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_DisassociateIdentity: *const fn(
             self: *const AsyncIAssociatedIdentityProvider,
             hwndParent: ?HWND,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_DisassociateIdentity: *const fn(
             self: *const AsyncIAssociatedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_ChangeCredential: *const fn(
             self: *const AsyncIAssociatedIdentityProvider,
             hwndParent: ?HWND,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_ChangeCredential: *const fn(
             self: *const AsyncIAssociatedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -433,25 +433,25 @@ pub const IConnectedIdentityProvider = extern union {
             self: *const IConnectedIdentityProvider,
             AuthBuffer: [*:0]u8,
             AuthBufferSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisconnectIdentity: *const fn(
             self: *const IConnectedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsConnected: *const fn(
             self: *const IConnectedIdentityProvider,
             Connected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUrl: *const fn(
             self: *const IConnectedIdentityProvider,
             Identifier: IDENTITY_URL,
             Context: ?*IBindCtx,
             PostData: ?*VARIANT,
             Url: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAccountState: *const fn(
             self: *const IConnectedIdentityProvider,
             pState: ?*ACCOUNT_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -481,40 +481,40 @@ pub const AsyncIConnectedIdentityProvider = extern union {
             self: *const AsyncIConnectedIdentityProvider,
             AuthBuffer: [*:0]u8,
             AuthBufferSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_ConnectIdentity: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_DisconnectIdentity: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_DisconnectIdentity: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_IsConnected: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_IsConnected: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
             Connected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_GetUrl: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
             Identifier: IDENTITY_URL,
             Context: ?*IBindCtx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_GetUrl: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
             PostData: ?*VARIANT,
             Url: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_GetAccountState: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_GetAccountState: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
             pState: ?*ACCOUNT_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -559,13 +559,13 @@ pub const IIdentityAuthentication = extern union {
             self: *const IIdentityAuthentication,
             CredBuffer: ?[*:0]u8,
             CredBufferLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ValidateIdentityCredential: *const fn(
             self: *const IIdentityAuthentication,
             CredBuffer: [*:0]u8,
             CredBufferLength: u32,
             ppIdentityProperties: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -586,20 +586,20 @@ pub const AsyncIIdentityAuthentication = extern union {
             self: *const AsyncIIdentityAuthentication,
             CredBuffer: ?[*:0]u8,
             CredBufferLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_SetIdentityCredential: *const fn(
             self: *const AsyncIIdentityAuthentication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_ValidateIdentityCredential: *const fn(
             self: *const AsyncIIdentityAuthentication,
             CredBuffer: [*:0]u8,
             CredBufferLength: u32,
             ppIdentityProperties: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_ValidateIdentityCredential: *const fn(
             self: *const AsyncIIdentityAuthentication,
             ppIdentityProperties: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -632,18 +632,18 @@ pub const IIdentityStore = extern union {
         GetCount: *const fn(
             self: *const IIdentityStore,
             pdwProviders: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IIdentityStore,
             dwProvider: u32,
             pProvGuid: ?*Guid,
             ppIdentityProvider: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddToCache: *const fn(
             self: *const IIdentityStore,
             lpszUniqueID: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertToSid: *const fn(
             self: *const IIdentityStore,
             lpszUniqueID: ?[*:0]const u16,
@@ -651,17 +651,17 @@ pub const IIdentityStore = extern union {
             cbSid: u16,
             pSid: ?[*:0]u8,
             pcbRequiredSid: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateIdentities: *const fn(
             self: *const IIdentityStore,
             eIdentityType: IDENTITY_TYPE,
             pFilterkey: ?*const PROPERTYKEY,
             pFilterPropVarValue: ?*const PROPVARIANT,
             ppIdentityEnum: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IIdentityStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -692,57 +692,57 @@ pub const AsyncIIdentityStore = extern union {
         base: IUnknown.VTable,
         Begin_GetCount: *const fn(
             self: *const AsyncIIdentityStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_GetCount: *const fn(
             self: *const AsyncIIdentityStore,
             pdwProviders: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_GetAt: *const fn(
             self: *const AsyncIIdentityStore,
             dwProvider: u32,
             pProvGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_GetAt: *const fn(
             self: *const AsyncIIdentityStore,
             pProvGuid: ?*Guid,
             ppIdentityProvider: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_AddToCache: *const fn(
             self: *const AsyncIIdentityStore,
             lpszUniqueID: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_AddToCache: *const fn(
             self: *const AsyncIIdentityStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_ConvertToSid: *const fn(
             self: *const AsyncIIdentityStore,
             lpszUniqueID: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
             cbSid: u16,
             pSid: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_ConvertToSid: *const fn(
             self: *const AsyncIIdentityStore,
             pSid: ?*u8,
             pcbRequiredSid: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_EnumerateIdentities: *const fn(
             self: *const AsyncIIdentityStore,
             eIdentityType: IDENTITY_TYPE,
             pFilterkey: ?*const PROPERTYKEY,
             pFilterPropVarValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_EnumerateIdentities: *const fn(
             self: *const AsyncIIdentityStore,
             ppIdentityEnum: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_Reset: *const fn(
             self: *const AsyncIIdentityStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_Reset: *const fn(
             self: *const AsyncIIdentityStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -794,12 +794,12 @@ pub const IIdentityStoreEx = extern union {
             LocalName: ?[*:0]const u16,
             ConnectedName: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteConnectedIdentity: *const fn(
             self: *const IIdentityStoreEx,
             ConnectedName: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -821,18 +821,18 @@ pub const AsyncIIdentityStoreEx = extern union {
             LocalName: ?[*:0]const u16,
             ConnectedName: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_CreateConnectedIdentity: *const fn(
             self: *const AsyncIIdentityStoreEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_DeleteConnectedIdentity: *const fn(
             self: *const AsyncIIdentityStoreEx,
             ConnectedName: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_DeleteConnectedIdentity: *const fn(
             self: *const AsyncIIdentityStoreEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

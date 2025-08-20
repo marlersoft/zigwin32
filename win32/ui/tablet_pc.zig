@@ -343,7 +343,7 @@ pub const PfnRecoCallback = *const fn(
     param0: u32,
     param1: ?*u8,
     param2: ?HRECOCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HRECOALT = *opaque{};
@@ -1848,66 +1848,66 @@ pub const IInkRectangle = extern union {
         get_Top: *const fn(
             self: *const IInkRectangle,
             Units: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Top: *const fn(
             self: *const IInkRectangle,
             Units: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Left: *const fn(
             self: *const IInkRectangle,
             Units: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Left: *const fn(
             self: *const IInkRectangle,
             Units: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Bottom: *const fn(
             self: *const IInkRectangle,
             Units: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Bottom: *const fn(
             self: *const IInkRectangle,
             Units: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Right: *const fn(
             self: *const IInkRectangle,
             Units: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Right: *const fn(
             self: *const IInkRectangle,
             Units: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Data: *const fn(
             self: *const IInkRectangle,
             Rect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Data: *const fn(
             self: *const IInkRectangle,
             Rect: RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRectangle: *const fn(
             self: *const IInkRectangle,
             Top: ?*i32,
             Left: ?*i32,
             Bottom: ?*i32,
             Right: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRectangle: *const fn(
             self: *const IInkRectangle,
             Top: i32,
             Left: i32,
             Bottom: i32,
             Right: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1960,17 +1960,17 @@ pub const IInkExtendedProperty = extern union {
         get_Guid: *const fn(
             self: *const IInkExtendedProperty,
             Guid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Data: *const fn(
             self: *const IInkExtendedProperty,
             Data: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Data: *const fn(
             self: *const IInkExtendedProperty,
             Data: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1996,35 +1996,35 @@ pub const IInkExtendedProperties = extern union {
         get_Count: *const fn(
             self: *const IInkExtendedProperties,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IInkExtendedProperties,
             _NewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IInkExtendedProperties,
             Identifier: VARIANT,
             Item: ?*?*IInkExtendedProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IInkExtendedProperties,
             Guid: ?BSTR,
             Data: VARIANT,
             InkExtendedProperty: ?*?*IInkExtendedProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IInkExtendedProperties,
             Identifier: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IInkExtendedProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoesPropertyExist: *const fn(
             self: *const IInkExtendedProperties,
             Guid: ?BSTR,
             DoesPropertyExist: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2061,101 +2061,101 @@ pub const IInkDrawingAttributes = extern union {
         get_Color: *const fn(
             self: *const IInkDrawingAttributes,
             CurrentColor: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Color: *const fn(
             self: *const IInkDrawingAttributes,
             NewColor: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Width: *const fn(
             self: *const IInkDrawingAttributes,
             CurrentWidth: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Width: *const fn(
             self: *const IInkDrawingAttributes,
             NewWidth: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Height: *const fn(
             self: *const IInkDrawingAttributes,
             CurrentHeight: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Height: *const fn(
             self: *const IInkDrawingAttributes,
             NewHeight: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FitToCurve: *const fn(
             self: *const IInkDrawingAttributes,
             Flag: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FitToCurve: *const fn(
             self: *const IInkDrawingAttributes,
             Flag: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IgnorePressure: *const fn(
             self: *const IInkDrawingAttributes,
             Flag: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IgnorePressure: *const fn(
             self: *const IInkDrawingAttributes,
             Flag: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntiAliased: *const fn(
             self: *const IInkDrawingAttributes,
             Flag: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AntiAliased: *const fn(
             self: *const IInkDrawingAttributes,
             Flag: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Transparency: *const fn(
             self: *const IInkDrawingAttributes,
             CurrentTransparency: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Transparency: *const fn(
             self: *const IInkDrawingAttributes,
             NewTransparency: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RasterOperation: *const fn(
             self: *const IInkDrawingAttributes,
             CurrentRasterOperation: ?*InkRasterOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RasterOperation: *const fn(
             self: *const IInkDrawingAttributes,
             NewRasterOperation: InkRasterOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PenTip: *const fn(
             self: *const IInkDrawingAttributes,
             CurrentPenTip: ?*InkPenTip,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PenTip: *const fn(
             self: *const IInkDrawingAttributes,
             NewPenTip: InkPenTip,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtendedProperties: *const fn(
             self: *const IInkDrawingAttributes,
             Properties: ?*?*IInkExtendedProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IInkDrawingAttributes,
             DrawingAttributes: ?*?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2229,33 +2229,33 @@ pub const IInkTransform = extern union {
         base: IDispatch.VTable,
         Reset: *const fn(
             self: *const IInkTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Translate: *const fn(
             self: *const IInkTransform,
             HorizontalComponent: f32,
             VerticalComponent: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Rotate: *const fn(
             self: *const IInkTransform,
             Degrees: f32,
             x: f32,
             y: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reflect: *const fn(
             self: *const IInkTransform,
             Horizontally: i16,
             Vertically: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shear: *const fn(
             self: *const IInkTransform,
             HorizontalComponent: f32,
             VerticalComponent: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScaleTransform: *const fn(
             self: *const IInkTransform,
             HorizontalMultiplier: f32,
             VerticalMultiplier: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransform: *const fn(
             self: *const IInkTransform,
             eM11: ?*f32,
@@ -2264,7 +2264,7 @@ pub const IInkTransform = extern union {
             eM22: ?*f32,
             eDx: ?*f32,
             eDy: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransform: *const fn(
             self: *const IInkTransform,
             eM11: f32,
@@ -2273,77 +2273,77 @@ pub const IInkTransform = extern union {
             eM22: f32,
             eDx: f32,
             eDy: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_eM11: *const fn(
             self: *const IInkTransform,
             Value: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_eM11: *const fn(
             self: *const IInkTransform,
             Value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_eM12: *const fn(
             self: *const IInkTransform,
             Value: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_eM12: *const fn(
             self: *const IInkTransform,
             Value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_eM21: *const fn(
             self: *const IInkTransform,
             Value: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_eM21: *const fn(
             self: *const IInkTransform,
             Value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_eM22: *const fn(
             self: *const IInkTransform,
             Value: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_eM22: *const fn(
             self: *const IInkTransform,
             Value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_eDx: *const fn(
             self: *const IInkTransform,
             Value: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_eDx: *const fn(
             self: *const IInkTransform,
             Value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_eDy: *const fn(
             self: *const IInkTransform,
             Value: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_eDy: *const fn(
             self: *const IInkTransform,
             Value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Data: *const fn(
             self: *const IInkTransform,
             XForm: ?*XFORM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Data: *const fn(
             self: *const IInkTransform,
             XForm: XFORM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2426,17 +2426,17 @@ pub const IInkGesture = extern union {
         get_Confidence: *const fn(
             self: *const IInkGesture,
             Confidence: ?*InkRecognitionConfidence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IInkGesture,
             Id: ?*InkApplicationGesture,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHotPoint: *const fn(
             self: *const IInkGesture,
             X: ?*i32,
             Y: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2462,36 +2462,36 @@ pub const IInkCursor = extern union {
         get_Name: *const fn(
             self: *const IInkCursor,
             Name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IInkCursor,
             Id: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Inverted: *const fn(
             self: *const IInkCursor,
             Status: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DrawingAttributes: *const fn(
             self: *const IInkCursor,
             Attributes: ?*?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_DrawingAttributes: *const fn(
             self: *const IInkCursor,
             Attributes: ?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tablet: *const fn(
             self: *const IInkCursor,
             Tablet: ?*?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Buttons: *const fn(
             self: *const IInkCursor,
             Buttons: ?*?*IInkCursorButtons,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2529,17 +2529,17 @@ pub const IInkCursors = extern union {
         get_Count: *const fn(
             self: *const IInkCursors,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IInkCursors,
             _NewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IInkCursors,
             Index: i32,
             Cursor: ?*?*IInkCursor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2565,17 +2565,17 @@ pub const IInkCursorButton = extern union {
         get_Name: *const fn(
             self: *const IInkCursorButton,
             Name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IInkCursorButton,
             Id: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const IInkCursorButton,
             CurrentState: ?*InkCursorButtonState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2601,17 +2601,17 @@ pub const IInkCursorButtons = extern union {
         get_Count: *const fn(
             self: *const IInkCursorButtons,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IInkCursorButtons,
             _NewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IInkCursorButtons,
             Identifier: VARIANT,
             Button: ?*?*IInkCursorButton,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2637,27 +2637,27 @@ pub const IInkTablet = extern union {
         get_Name: *const fn(
             self: *const IInkTablet,
             Name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PlugAndPlayId: *const fn(
             self: *const IInkTablet,
             Id: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaximumInputRectangle: *const fn(
             self: *const IInkTablet,
             Rectangle: ?*?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HardwareCapabilities: *const fn(
             self: *const IInkTablet,
             Capabilities: ?*TabletHardwareCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPacketPropertySupported: *const fn(
             self: *const IInkTablet,
             packetPropertyName: ?BSTR,
             Supported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyMetrics: *const fn(
             self: *const IInkTablet,
             propertyName: ?BSTR,
@@ -2665,7 +2665,7 @@ pub const IInkTablet = extern union {
             Maximum: ?*i32,
             Units: ?*TabletPropertyMetricUnit,
             Resolution: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2700,7 +2700,7 @@ pub const IInkTablet2 = extern union {
         get_DeviceKind: *const fn(
             self: *const IInkTablet2,
             Kind: ?*TabletDeviceKind,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2720,12 +2720,12 @@ pub const IInkTablet3 = extern union {
         get_IsMultiTouch: *const fn(
             self: *const IInkTablet3,
             pIsMultiTouch: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaximumCursors: *const fn(
             self: *const IInkTablet3,
             pMaximumCursors: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2747,27 +2747,27 @@ pub const IInkTablets = extern union {
         get_Count: *const fn(
             self: *const IInkTablets,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IInkTablets,
             _NewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultTablet: *const fn(
             self: *const IInkTablets,
             DefaultTablet: ?*?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IInkTablets,
             Index: i32,
             Tablet: ?*?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPacketPropertySupported: *const fn(
             self: *const IInkTablets,
             packetPropertyName: ?BSTR,
             Supported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2799,104 +2799,104 @@ pub const IInkStrokeDisp = extern union {
         get_ID: *const fn(
             self: *const IInkStrokeDisp,
             ID: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BezierPoints: *const fn(
             self: *const IInkStrokeDisp,
             Points: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DrawingAttributes: *const fn(
             self: *const IInkStrokeDisp,
             DrawAttrs: ?*?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_DrawingAttributes: *const fn(
             self: *const IInkStrokeDisp,
             DrawAttrs: ?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ink: *const fn(
             self: *const IInkStrokeDisp,
             Ink: ?*?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtendedProperties: *const fn(
             self: *const IInkStrokeDisp,
             Properties: ?*?*IInkExtendedProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolylineCusps: *const fn(
             self: *const IInkStrokeDisp,
             Cusps: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BezierCusps: *const fn(
             self: *const IInkStrokeDisp,
             Cusps: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelfIntersections: *const fn(
             self: *const IInkStrokeDisp,
             Intersections: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PacketCount: *const fn(
             self: *const IInkStrokeDisp,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PacketSize: *const fn(
             self: *const IInkStrokeDisp,
             plSize: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PacketDescription: *const fn(
             self: *const IInkStrokeDisp,
             PacketDescription: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Deleted: *const fn(
             self: *const IInkStrokeDisp,
             Deleted: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBoundingBox: *const fn(
             self: *const IInkStrokeDisp,
             BoundingBoxMode: InkBoundingBoxMode,
             Rectangle: ?*?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindIntersections: *const fn(
             self: *const IInkStrokeDisp,
             Strokes: ?*IInkStrokes,
             Intersections: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRectangleIntersections: *const fn(
             self: *const IInkStrokeDisp,
             Rectangle: ?*IInkRectangle,
             Intersections: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clip: *const fn(
             self: *const IInkStrokeDisp,
             Rectangle: ?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HitTestCircle: *const fn(
             self: *const IInkStrokeDisp,
             X: i32,
             Y: i32,
             Radius: f32,
             Intersects: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NearestPoint: *const fn(
             self: *const IInkStrokeDisp,
             X: i32,
             Y: i32,
             Distance: ?*f32,
             Point: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Split: *const fn(
             self: *const IInkStrokeDisp,
             SplitAt: f32,
             NewStroke: ?*?*IInkStrokeDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPacketDescriptionPropertyMetrics: *const fn(
             self: *const IInkStrokeDisp,
             PropertyName: ?BSTR,
@@ -2904,33 +2904,33 @@ pub const IInkStrokeDisp = extern union {
             Maximum: ?*i32,
             Units: ?*TabletPropertyMetricUnit,
             Resolution: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPoints: *const fn(
             self: *const IInkStrokeDisp,
             Index: i32,
             Count: i32,
             Points: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPoints: *const fn(
             self: *const IInkStrokeDisp,
             Points: VARIANT,
             Index: i32,
             Count: i32,
             NumberOfPointsSet: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPacketData: *const fn(
             self: *const IInkStrokeDisp,
             Index: i32,
             Count: i32,
             PacketData: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPacketValuesByProperty: *const fn(
             self: *const IInkStrokeDisp,
             PropertyName: ?BSTR,
             Index: i32,
             Count: i32,
             PacketValues: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPacketValuesByProperty: *const fn(
             self: *const IInkStrokeDisp,
             bstrPropertyName: ?BSTR,
@@ -2938,42 +2938,42 @@ pub const IInkStrokeDisp = extern union {
             Index: i32,
             Count: i32,
             NumberOfPacketsSet: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlattenedBezierPoints: *const fn(
             self: *const IInkStrokeDisp,
             FittingError: i32,
             FlattenedBezierPoints: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Transform: *const fn(
             self: *const IInkStrokeDisp,
             Transform: ?*IInkTransform,
             ApplyOnPenWidth: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScaleToRectangle: *const fn(
             self: *const IInkStrokeDisp,
             Rectangle: ?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Move: *const fn(
             self: *const IInkStrokeDisp,
             HorizontalComponent: f32,
             VerticalComponent: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Rotate: *const fn(
             self: *const IInkStrokeDisp,
             Degrees: f32,
             x: f32,
             y: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shear: *const fn(
             self: *const IInkStrokeDisp,
             HorizontalMultiplier: f32,
             VerticalMultiplier: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScaleTransform: *const fn(
             self: *const IInkStrokeDisp,
             HorizontalMultiplier: f32,
             VerticalMultiplier: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3088,93 +3088,93 @@ pub const IInkStrokes = extern union {
         get_Count: *const fn(
             self: *const IInkStrokes,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IInkStrokes,
             _NewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ink: *const fn(
             self: *const IInkStrokes,
             Ink: ?*?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecognitionResult: *const fn(
             self: *const IInkStrokes,
             RecognitionResult: ?*?*IInkRecognitionResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ToString: *const fn(
             self: *const IInkStrokes,
             ToString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IInkStrokes,
             Index: i32,
             Stroke: ?*?*IInkStrokeDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IInkStrokes,
             InkStroke: ?*IInkStrokeDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStrokes: *const fn(
             self: *const IInkStrokes,
             InkStrokes: ?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IInkStrokes,
             InkStroke: ?*IInkStrokeDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStrokes: *const fn(
             self: *const IInkStrokes,
             InkStrokes: ?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ModifyDrawingAttributes: *const fn(
             self: *const IInkStrokes,
             DrawAttrs: ?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBoundingBox: *const fn(
             self: *const IInkStrokes,
             BoundingBoxMode: InkBoundingBoxMode,
             BoundingBox: ?*?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Transform: *const fn(
             self: *const IInkStrokes,
             Transform: ?*IInkTransform,
             ApplyOnPenWidth: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScaleToRectangle: *const fn(
             self: *const IInkStrokes,
             Rectangle: ?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Move: *const fn(
             self: *const IInkStrokes,
             HorizontalComponent: f32,
             VerticalComponent: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Rotate: *const fn(
             self: *const IInkStrokes,
             Degrees: f32,
             x: f32,
             y: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shear: *const fn(
             self: *const IInkStrokes,
             HorizontalMultiplier: f32,
             VerticalMultiplier: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScaleTransform: *const fn(
             self: *const IInkStrokes,
             HorizontalMultiplier: f32,
             VerticalMultiplier: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clip: *const fn(
             self: *const IInkStrokes,
             Rectangle: ?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveRecognitionResult: *const fn(
             self: *const IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3251,29 +3251,29 @@ pub const IInkCustomStrokes = extern union {
         get_Count: *const fn(
             self: *const IInkCustomStrokes,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IInkCustomStrokes,
             _NewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IInkCustomStrokes,
             Identifier: VARIANT,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IInkCustomStrokes,
             Name: ?BSTR,
             Strokes: ?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IInkCustomStrokes,
             Identifier: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IInkCustomStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3318,80 +3318,80 @@ pub const IInkDisp = extern union {
         get_Strokes: *const fn(
             self: *const IInkDisp,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtendedProperties: *const fn(
             self: *const IInkDisp,
             Properties: ?*?*IInkExtendedProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Dirty: *const fn(
             self: *const IInkDisp,
             Dirty: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Dirty: *const fn(
             self: *const IInkDisp,
             Dirty: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CustomStrokes: *const fn(
             self: *const IInkDisp,
             ppunkInkCustomStrokes: ?*?*IInkCustomStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBoundingBox: *const fn(
             self: *const IInkDisp,
             BoundingBoxMode: InkBoundingBoxMode,
             Rectangle: ?*?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteStrokes: *const fn(
             self: *const IInkDisp,
             Strokes: ?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteStroke: *const fn(
             self: *const IInkDisp,
             Stroke: ?*IInkStrokeDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExtractStrokes: *const fn(
             self: *const IInkDisp,
             Strokes: ?*IInkStrokes,
             ExtractFlags: InkExtractFlags,
             ExtractedInk: ?*?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExtractWithRectangle: *const fn(
             self: *const IInkDisp,
             Rectangle: ?*IInkRectangle,
             extractFlags: InkExtractFlags,
             ExtractedInk: ?*?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clip: *const fn(
             self: *const IInkDisp,
             Rectangle: ?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IInkDisp,
             NewInk: ?*?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HitTestCircle: *const fn(
             self: *const IInkDisp,
             X: i32,
             Y: i32,
             radius: f32,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HitTestWithRectangle: *const fn(
             self: *const IInkDisp,
             SelectionRectangle: ?*IInkRectangle,
             IntersectPercent: f32,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HitTestWithLasso: *const fn(
             self: *const IInkDisp,
             Points: VARIANT,
             IntersectPercent: f32,
             LassoPoints: ?*VARIANT,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NearestPoint: *const fn(
             self: *const IInkDisp,
             X: i32,
@@ -3399,59 +3399,59 @@ pub const IInkDisp = extern union {
             PointOnStroke: ?*f32,
             DistanceFromPacket: ?*f32,
             Stroke: ?*?*IInkStrokeDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStrokes: *const fn(
             self: *const IInkDisp,
             StrokeIds: VARIANT,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStrokesAtRectangle: *const fn(
             self: *const IInkDisp,
             SourceStrokes: ?*IInkStrokes,
             TargetRectangle: ?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Save: *const fn(
             self: *const IInkDisp,
             PersistenceFormat: InkPersistenceFormat,
             CompressionMode: InkPersistenceCompressionMode,
             Data: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Load: *const fn(
             self: *const IInkDisp,
             Data: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStroke: *const fn(
             self: *const IInkDisp,
             PacketData: VARIANT,
             PacketDescription: VARIANT,
             Stroke: ?*?*IInkStrokeDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClipboardCopyWithRectangle: *const fn(
             self: *const IInkDisp,
             Rectangle: ?*IInkRectangle,
             ClipboardFormats: InkClipboardFormats,
             ClipboardModes: InkClipboardModes,
             DataObject: ?*?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClipboardCopy: *const fn(
             self: *const IInkDisp,
             strokes: ?*IInkStrokes,
             ClipboardFormats: InkClipboardFormats,
             ClipboardModes: InkClipboardModes,
             DataObject: ?*?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CanPaste: *const fn(
             self: *const IInkDisp,
             DataObject: ?*IDataObject,
             CanPaste: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClipboardPaste: *const fn(
             self: *const IInkDisp,
             x: i32,
             y: i32,
             DataObject: ?*IDataObject,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3552,80 +3552,80 @@ pub const IInkRenderer = extern union {
         GetViewTransform: *const fn(
             self: *const IInkRenderer,
             ViewTransform: ?*IInkTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetViewTransform: *const fn(
             self: *const IInkRenderer,
             ViewTransform: ?*IInkTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectTransform: *const fn(
             self: *const IInkRenderer,
             ObjectTransform: ?*IInkTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetObjectTransform: *const fn(
             self: *const IInkRenderer,
             ObjectTransform: ?*IInkTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Draw: *const fn(
             self: *const IInkRenderer,
             hDC: isize,
             Strokes: ?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawStroke: *const fn(
             self: *const IInkRenderer,
             hDC: isize,
             Stroke: ?*IInkStrokeDisp,
             DrawingAttributes: ?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PixelToInkSpace: *const fn(
             self: *const IInkRenderer,
             hDC: isize,
             x: ?*i32,
             y: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InkSpaceToPixel: *const fn(
             self: *const IInkRenderer,
             hdcDisplay: isize,
             x: ?*i32,
             y: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PixelToInkSpaceFromPoints: *const fn(
             self: *const IInkRenderer,
             hDC: isize,
             Points: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InkSpaceToPixelFromPoints: *const fn(
             self: *const IInkRenderer,
             hDC: isize,
             Points: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Measure: *const fn(
             self: *const IInkRenderer,
             Strokes: ?*IInkStrokes,
             Rectangle: ?*?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MeasureStroke: *const fn(
             self: *const IInkRenderer,
             Stroke: ?*IInkStrokeDisp,
             DrawingAttributes: ?*IInkDrawingAttributes,
             Rectangle: ?*?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Move: *const fn(
             self: *const IInkRenderer,
             HorizontalComponent: f32,
             VerticalComponent: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Rotate: *const fn(
             self: *const IInkRenderer,
             Degrees: f32,
             x: f32,
             y: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScaleTransform: *const fn(
             self: *const IInkRenderer,
             HorizontalMultiplier: f32,
             VerticalMultiplier: f32,
             ApplyOnPenWidth: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3686,194 +3686,194 @@ pub const IInkCollector = extern union {
         get_hWnd: *const fn(
             self: *const IInkCollector,
             CurrentWindow: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_hWnd: *const fn(
             self: *const IInkCollector,
             NewWindow: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IInkCollector,
             Collecting: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IInkCollector,
             Collecting: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultDrawingAttributes: *const fn(
             self: *const IInkCollector,
             CurrentAttributes: ?*?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_DefaultDrawingAttributes: *const fn(
             self: *const IInkCollector,
             NewAttributes: ?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Renderer: *const fn(
             self: *const IInkCollector,
             CurrentInkRenderer: ?*?*IInkRenderer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Renderer: *const fn(
             self: *const IInkCollector,
             NewInkRenderer: ?*IInkRenderer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ink: *const fn(
             self: *const IInkCollector,
             Ink: ?*?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Ink: *const fn(
             self: *const IInkCollector,
             NewInk: ?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoRedraw: *const fn(
             self: *const IInkCollector,
             AutoRedraw: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoRedraw: *const fn(
             self: *const IInkCollector,
             AutoRedraw: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CollectingInk: *const fn(
             self: *const IInkCollector,
             Collecting: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CollectionMode: *const fn(
             self: *const IInkCollector,
             Mode: ?*InkCollectionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CollectionMode: *const fn(
             self: *const IInkCollector,
             Mode: InkCollectionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DynamicRendering: *const fn(
             self: *const IInkCollector,
             Enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DynamicRendering: *const fn(
             self: *const IInkCollector,
             Enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredPacketDescription: *const fn(
             self: *const IInkCollector,
             PacketGuids: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredPacketDescription: *const fn(
             self: *const IInkCollector,
             PacketGuids: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MouseIcon: *const fn(
             self: *const IInkCollector,
             MouseIcon: ?*?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MouseIcon: *const fn(
             self: *const IInkCollector,
             MouseIcon: ?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_MouseIcon: *const fn(
             self: *const IInkCollector,
             MouseIcon: ?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MousePointer: *const fn(
             self: *const IInkCollector,
             MousePointer: ?*InkMousePointer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MousePointer: *const fn(
             self: *const IInkCollector,
             MousePointer: InkMousePointer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cursors: *const fn(
             self: *const IInkCollector,
             Cursors: ?*?*IInkCursors,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MarginX: *const fn(
             self: *const IInkCollector,
             MarginX: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MarginX: *const fn(
             self: *const IInkCollector,
             MarginX: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MarginY: *const fn(
             self: *const IInkCollector,
             MarginY: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MarginY: *const fn(
             self: *const IInkCollector,
             MarginY: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tablet: *const fn(
             self: *const IInkCollector,
             SingleTablet: ?*?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportHighContrastInk: *const fn(
             self: *const IInkCollector,
             Support: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SupportHighContrastInk: *const fn(
             self: *const IInkCollector,
             Support: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGestureStatus: *const fn(
             self: *const IInkCollector,
             Gesture: InkApplicationGesture,
             Listen: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGestureStatus: *const fn(
             self: *const IInkCollector,
             Gesture: InkApplicationGesture,
             Listening: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWindowInputRectangle: *const fn(
             self: *const IInkCollector,
             WindowInputRectangle: ?*?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWindowInputRectangle: *const fn(
             self: *const IInkCollector,
             WindowInputRectangle: ?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllTabletsMode: *const fn(
             self: *const IInkCollector,
             UseMouseForInput: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSingleTabletIntegratedMode: *const fn(
             self: *const IInkCollector,
             Tablet: ?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEventInterest: *const fn(
             self: *const IInkCollector,
             EventId: InkCollectorEventInterest,
             Listen: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventInterest: *const fn(
             self: *const IInkCollector,
             EventId: InkCollectorEventInterest,
             Listen: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4020,264 +4020,264 @@ pub const IInkOverlay = extern union {
         get_hWnd: *const fn(
             self: *const IInkOverlay,
             CurrentWindow: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_hWnd: *const fn(
             self: *const IInkOverlay,
             NewWindow: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IInkOverlay,
             Collecting: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IInkOverlay,
             Collecting: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultDrawingAttributes: *const fn(
             self: *const IInkOverlay,
             CurrentAttributes: ?*?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_DefaultDrawingAttributes: *const fn(
             self: *const IInkOverlay,
             NewAttributes: ?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Renderer: *const fn(
             self: *const IInkOverlay,
             CurrentInkRenderer: ?*?*IInkRenderer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Renderer: *const fn(
             self: *const IInkOverlay,
             NewInkRenderer: ?*IInkRenderer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ink: *const fn(
             self: *const IInkOverlay,
             Ink: ?*?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Ink: *const fn(
             self: *const IInkOverlay,
             NewInk: ?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoRedraw: *const fn(
             self: *const IInkOverlay,
             AutoRedraw: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoRedraw: *const fn(
             self: *const IInkOverlay,
             AutoRedraw: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CollectingInk: *const fn(
             self: *const IInkOverlay,
             Collecting: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CollectionMode: *const fn(
             self: *const IInkOverlay,
             Mode: ?*InkCollectionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CollectionMode: *const fn(
             self: *const IInkOverlay,
             Mode: InkCollectionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DynamicRendering: *const fn(
             self: *const IInkOverlay,
             Enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DynamicRendering: *const fn(
             self: *const IInkOverlay,
             Enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredPacketDescription: *const fn(
             self: *const IInkOverlay,
             PacketGuids: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredPacketDescription: *const fn(
             self: *const IInkOverlay,
             PacketGuids: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MouseIcon: *const fn(
             self: *const IInkOverlay,
             MouseIcon: ?*?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MouseIcon: *const fn(
             self: *const IInkOverlay,
             MouseIcon: ?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_MouseIcon: *const fn(
             self: *const IInkOverlay,
             MouseIcon: ?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MousePointer: *const fn(
             self: *const IInkOverlay,
             MousePointer: ?*InkMousePointer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MousePointer: *const fn(
             self: *const IInkOverlay,
             MousePointer: InkMousePointer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EditingMode: *const fn(
             self: *const IInkOverlay,
             EditingMode: ?*InkOverlayEditingMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EditingMode: *const fn(
             self: *const IInkOverlay,
             EditingMode: InkOverlayEditingMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Selection: *const fn(
             self: *const IInkOverlay,
             Selection: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Selection: *const fn(
             self: *const IInkOverlay,
             Selection: ?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EraserMode: *const fn(
             self: *const IInkOverlay,
             EraserMode: ?*InkOverlayEraserMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EraserMode: *const fn(
             self: *const IInkOverlay,
             EraserMode: InkOverlayEraserMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EraserWidth: *const fn(
             self: *const IInkOverlay,
             EraserWidth: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EraserWidth: *const fn(
             self: *const IInkOverlay,
             newEraserWidth: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AttachMode: *const fn(
             self: *const IInkOverlay,
             AttachMode: ?*InkOverlayAttachMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttachMode: *const fn(
             self: *const IInkOverlay,
             AttachMode: InkOverlayAttachMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cursors: *const fn(
             self: *const IInkOverlay,
             Cursors: ?*?*IInkCursors,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MarginX: *const fn(
             self: *const IInkOverlay,
             MarginX: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MarginX: *const fn(
             self: *const IInkOverlay,
             MarginX: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MarginY: *const fn(
             self: *const IInkOverlay,
             MarginY: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MarginY: *const fn(
             self: *const IInkOverlay,
             MarginY: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tablet: *const fn(
             self: *const IInkOverlay,
             SingleTablet: ?*?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportHighContrastInk: *const fn(
             self: *const IInkOverlay,
             Support: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SupportHighContrastInk: *const fn(
             self: *const IInkOverlay,
             Support: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportHighContrastSelectionUI: *const fn(
             self: *const IInkOverlay,
             Support: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SupportHighContrastSelectionUI: *const fn(
             self: *const IInkOverlay,
             Support: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HitTestSelection: *const fn(
             self: *const IInkOverlay,
             x: i32,
             y: i32,
             SelArea: ?*SelectionHitResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Draw: *const fn(
             self: *const IInkOverlay,
             Rect: ?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGestureStatus: *const fn(
             self: *const IInkOverlay,
             Gesture: InkApplicationGesture,
             Listen: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGestureStatus: *const fn(
             self: *const IInkOverlay,
             Gesture: InkApplicationGesture,
             Listening: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWindowInputRectangle: *const fn(
             self: *const IInkOverlay,
             WindowInputRectangle: ?*?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWindowInputRectangle: *const fn(
             self: *const IInkOverlay,
             WindowInputRectangle: ?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllTabletsMode: *const fn(
             self: *const IInkOverlay,
             UseMouseForInput: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSingleTabletIntegratedMode: *const fn(
             self: *const IInkOverlay,
             Tablet: ?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEventInterest: *const fn(
             self: *const IInkOverlay,
             EventId: InkCollectorEventInterest,
             Listen: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventInterest: *const fn(
             self: *const IInkOverlay,
             EventId: InkCollectorEventInterest,
             Listen: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4466,289 +4466,289 @@ pub const IInkPicture = extern union {
         get_hWnd: *const fn(
             self: *const IInkPicture,
             CurrentWindow: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultDrawingAttributes: *const fn(
             self: *const IInkPicture,
             CurrentAttributes: ?*?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_DefaultDrawingAttributes: *const fn(
             self: *const IInkPicture,
             NewAttributes: ?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Renderer: *const fn(
             self: *const IInkPicture,
             CurrentInkRenderer: ?*?*IInkRenderer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Renderer: *const fn(
             self: *const IInkPicture,
             NewInkRenderer: ?*IInkRenderer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ink: *const fn(
             self: *const IInkPicture,
             Ink: ?*?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Ink: *const fn(
             self: *const IInkPicture,
             NewInk: ?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoRedraw: *const fn(
             self: *const IInkPicture,
             AutoRedraw: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoRedraw: *const fn(
             self: *const IInkPicture,
             AutoRedraw: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CollectingInk: *const fn(
             self: *const IInkPicture,
             Collecting: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CollectionMode: *const fn(
             self: *const IInkPicture,
             Mode: ?*InkCollectionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CollectionMode: *const fn(
             self: *const IInkPicture,
             Mode: InkCollectionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DynamicRendering: *const fn(
             self: *const IInkPicture,
             Enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DynamicRendering: *const fn(
             self: *const IInkPicture,
             Enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredPacketDescription: *const fn(
             self: *const IInkPicture,
             PacketGuids: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredPacketDescription: *const fn(
             self: *const IInkPicture,
             PacketGuids: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MouseIcon: *const fn(
             self: *const IInkPicture,
             MouseIcon: ?*?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MouseIcon: *const fn(
             self: *const IInkPicture,
             MouseIcon: ?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_MouseIcon: *const fn(
             self: *const IInkPicture,
             MouseIcon: ?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MousePointer: *const fn(
             self: *const IInkPicture,
             MousePointer: ?*InkMousePointer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MousePointer: *const fn(
             self: *const IInkPicture,
             MousePointer: InkMousePointer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EditingMode: *const fn(
             self: *const IInkPicture,
             EditingMode: ?*InkOverlayEditingMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EditingMode: *const fn(
             self: *const IInkPicture,
             EditingMode: InkOverlayEditingMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Selection: *const fn(
             self: *const IInkPicture,
             Selection: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Selection: *const fn(
             self: *const IInkPicture,
             Selection: ?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EraserMode: *const fn(
             self: *const IInkPicture,
             EraserMode: ?*InkOverlayEraserMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EraserMode: *const fn(
             self: *const IInkPicture,
             EraserMode: InkOverlayEraserMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EraserWidth: *const fn(
             self: *const IInkPicture,
             EraserWidth: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EraserWidth: *const fn(
             self: *const IInkPicture,
             newEraserWidth: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Picture: *const fn(
             self: *const IInkPicture,
             pPicture: ?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Picture: *const fn(
             self: *const IInkPicture,
             pPicture: ?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Picture: *const fn(
             self: *const IInkPicture,
             ppPicture: ?*?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SizeMode: *const fn(
             self: *const IInkPicture,
             smNewSizeMode: InkPictureSizeMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SizeMode: *const fn(
             self: *const IInkPicture,
             smSizeMode: ?*InkPictureSizeMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BackColor: *const fn(
             self: *const IInkPicture,
             newColor: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackColor: *const fn(
             self: *const IInkPicture,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cursors: *const fn(
             self: *const IInkPicture,
             Cursors: ?*?*IInkCursors,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MarginX: *const fn(
             self: *const IInkPicture,
             MarginX: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MarginX: *const fn(
             self: *const IInkPicture,
             MarginX: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MarginY: *const fn(
             self: *const IInkPicture,
             MarginY: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MarginY: *const fn(
             self: *const IInkPicture,
             MarginY: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tablet: *const fn(
             self: *const IInkPicture,
             SingleTablet: ?*?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportHighContrastInk: *const fn(
             self: *const IInkPicture,
             Support: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SupportHighContrastInk: *const fn(
             self: *const IInkPicture,
             Support: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportHighContrastSelectionUI: *const fn(
             self: *const IInkPicture,
             Support: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SupportHighContrastSelectionUI: *const fn(
             self: *const IInkPicture,
             Support: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HitTestSelection: *const fn(
             self: *const IInkPicture,
             x: i32,
             y: i32,
             SelArea: ?*SelectionHitResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGestureStatus: *const fn(
             self: *const IInkPicture,
             Gesture: InkApplicationGesture,
             Listen: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGestureStatus: *const fn(
             self: *const IInkPicture,
             Gesture: InkApplicationGesture,
             Listening: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWindowInputRectangle: *const fn(
             self: *const IInkPicture,
             WindowInputRectangle: ?*?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWindowInputRectangle: *const fn(
             self: *const IInkPicture,
             WindowInputRectangle: ?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllTabletsMode: *const fn(
             self: *const IInkPicture,
             UseMouseForInput: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSingleTabletIntegratedMode: *const fn(
             self: *const IInkPicture,
             Tablet: ?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEventInterest: *const fn(
             self: *const IInkPicture,
             EventId: InkCollectorEventInterest,
             Listen: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventInterest: *const fn(
             self: *const IInkPicture,
             EventId: InkCollectorEventInterest,
             Listen: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InkEnabled: *const fn(
             self: *const IInkPicture,
             Collecting: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InkEnabled: *const fn(
             self: *const IInkPicture,
             Collecting: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IInkPicture,
             pbool: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IInkPicture,
             vbool: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4953,36 +4953,36 @@ pub const IInkRecognizer = extern union {
         get_Name: *const fn(
             self: *const IInkRecognizer,
             Name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Vendor: *const fn(
             self: *const IInkRecognizer,
             Vendor: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Capabilities: *const fn(
             self: *const IInkRecognizer,
             CapabilitiesFlags: ?*InkRecognizerCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Languages: *const fn(
             self: *const IInkRecognizer,
             Languages: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedProperties: *const fn(
             self: *const IInkRecognizer,
             SupportedProperties: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PreferredPacketDescription: *const fn(
             self: *const IInkRecognizer,
             PreferredPacketDescription: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRecognizerContext: *const fn(
             self: *const IInkRecognizer,
             Context: ?*?*IInkRecognizerContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5020,12 +5020,12 @@ pub const IInkRecognizer2 = extern union {
         get_Id: *const fn(
             self: *const IInkRecognizer2,
             pbstrId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UnicodeRanges: *const fn(
             self: *const IInkRecognizer2,
             UnicodeRanges: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5047,22 +5047,22 @@ pub const IInkRecognizers = extern union {
         get_Count: *const fn(
             self: *const IInkRecognizers,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IInkRecognizers,
             _NewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultRecognizer: *const fn(
             self: *const IInkRecognizers,
             lcid: i32,
             DefaultRecognizer: ?*?*IInkRecognizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IInkRecognizers,
             Index: i32,
             InkRecognizer: ?*?*IInkRecognizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5101,112 +5101,112 @@ pub const IInkRecognizerContext = extern union {
         get_Strokes: *const fn(
             self: *const IInkRecognizerContext,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Strokes: *const fn(
             self: *const IInkRecognizerContext,
             Strokes: ?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CharacterAutoCompletionMode: *const fn(
             self: *const IInkRecognizerContext,
             Mode: ?*InkRecognizerCharacterAutoCompletionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CharacterAutoCompletionMode: *const fn(
             self: *const IInkRecognizerContext,
             Mode: InkRecognizerCharacterAutoCompletionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Factoid: *const fn(
             self: *const IInkRecognizerContext,
             Factoid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Factoid: *const fn(
             self: *const IInkRecognizerContext,
             factoid: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Guide: *const fn(
             self: *const IInkRecognizerContext,
             RecognizerGuide: ?*?*IInkRecognizerGuide,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Guide: *const fn(
             self: *const IInkRecognizerContext,
             RecognizerGuide: ?*IInkRecognizerGuide,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrefixText: *const fn(
             self: *const IInkRecognizerContext,
             Prefix: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PrefixText: *const fn(
             self: *const IInkRecognizerContext,
             Prefix: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SuffixText: *const fn(
             self: *const IInkRecognizerContext,
             Suffix: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SuffixText: *const fn(
             self: *const IInkRecognizerContext,
             Suffix: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecognitionFlags: *const fn(
             self: *const IInkRecognizerContext,
             Modes: ?*InkRecognitionModes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RecognitionFlags: *const fn(
             self: *const IInkRecognizerContext,
             Modes: InkRecognitionModes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WordList: *const fn(
             self: *const IInkRecognizerContext,
             WordList: ?*?*IInkWordList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_WordList: *const fn(
             self: *const IInkRecognizerContext,
             WordList: ?*IInkWordList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recognizer: *const fn(
             self: *const IInkRecognizerContext,
             Recognizer: ?*?*IInkRecognizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Recognize: *const fn(
             self: *const IInkRecognizerContext,
             RecognitionStatus: ?*InkRecognitionStatus,
             RecognitionResult: ?*?*IInkRecognitionResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopBackgroundRecognition: *const fn(
             self: *const IInkRecognizerContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndInkInput: *const fn(
             self: *const IInkRecognizerContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BackgroundRecognize: *const fn(
             self: *const IInkRecognizerContext,
             CustomData: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BackgroundRecognizeWithAlternates: *const fn(
             self: *const IInkRecognizerContext,
             CustomData: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IInkRecognizerContext,
             RecoContext: ?*?*IInkRecognizerContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsStringSupported: *const fn(
             self: *const IInkRecognizerContext,
             String: ?BSTR,
             Supported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5295,12 +5295,12 @@ pub const IInkRecognizerContext2 = extern union {
         get_EnabledUnicodeRanges: *const fn(
             self: *const IInkRecognizerContext2,
             UnicodeRanges: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnabledUnicodeRanges: *const fn(
             self: *const IInkRecognizerContext2,
             UnicodeRanges: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5323,36 +5323,36 @@ pub const IInkRecognitionResult = extern union {
         get_TopString: *const fn(
             self: *const IInkRecognitionResult,
             TopString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TopAlternate: *const fn(
             self: *const IInkRecognitionResult,
             TopAlternate: ?*?*IInkRecognitionAlternate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TopConfidence: *const fn(
             self: *const IInkRecognitionResult,
             TopConfidence: ?*InkRecognitionConfidence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Strokes: *const fn(
             self: *const IInkRecognitionResult,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AlternatesFromSelection: *const fn(
             self: *const IInkRecognitionResult,
             selectionStart: i32,
             selectionLength: i32,
             maximumAlternates: i32,
             AlternatesFromSelection: ?*?*IInkRecognitionAlternates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ModifyTopAlternate: *const fn(
             self: *const IInkRecognitionResult,
             Alternate: ?*IInkRecognitionAlternate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetResultOnStrokes: *const fn(
             self: *const IInkRecognitionResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5390,79 +5390,79 @@ pub const IInkRecognitionAlternate = extern union {
         get_String: *const fn(
             self: *const IInkRecognitionAlternate,
             RecoString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Confidence: *const fn(
             self: *const IInkRecognitionAlternate,
             Confidence: ?*InkRecognitionConfidence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Baseline: *const fn(
             self: *const IInkRecognitionAlternate,
             Baseline: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Midline: *const fn(
             self: *const IInkRecognitionAlternate,
             Midline: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ascender: *const fn(
             self: *const IInkRecognitionAlternate,
             Ascender: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Descender: *const fn(
             self: *const IInkRecognitionAlternate,
             Descender: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LineNumber: *const fn(
             self: *const IInkRecognitionAlternate,
             LineNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Strokes: *const fn(
             self: *const IInkRecognitionAlternate,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LineAlternates: *const fn(
             self: *const IInkRecognitionAlternate,
             LineAlternates: ?*?*IInkRecognitionAlternates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConfidenceAlternates: *const fn(
             self: *const IInkRecognitionAlternate,
             ConfidenceAlternates: ?*?*IInkRecognitionAlternates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokesFromStrokeRanges: *const fn(
             self: *const IInkRecognitionAlternate,
             Strokes: ?*IInkStrokes,
             GetStrokesFromStrokeRanges: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokesFromTextRange: *const fn(
             self: *const IInkRecognitionAlternate,
             selectionStart: ?*i32,
             selectionLength: ?*i32,
             GetStrokesFromTextRange: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextRangeFromStrokes: *const fn(
             self: *const IInkRecognitionAlternate,
             Strokes: ?*IInkStrokes,
             selectionStart: ?*i32,
             selectionLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AlternatesWithConstantPropertyValues: *const fn(
             self: *const IInkRecognitionAlternate,
             PropertyType: ?BSTR,
             AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyValue: *const fn(
             self: *const IInkRecognitionAlternate,
             PropertyType: ?BSTR,
             PropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5524,22 +5524,22 @@ pub const IInkRecognitionAlternates = extern union {
         get_Count: *const fn(
             self: *const IInkRecognitionAlternates,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IInkRecognitionAlternates,
             _NewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Strokes: *const fn(
             self: *const IInkRecognitionAlternates,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IInkRecognitionAlternates,
             Index: i32,
             InkRecoAlternate: ?*?*IInkRecognitionAlternate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5567,62 +5567,62 @@ pub const IInkRecognizerGuide = extern union {
         get_WritingBox: *const fn(
             self: *const IInkRecognizerGuide,
             Rectangle: ?*?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WritingBox: *const fn(
             self: *const IInkRecognizerGuide,
             Rectangle: ?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DrawnBox: *const fn(
             self: *const IInkRecognizerGuide,
             Rectangle: ?*?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DrawnBox: *const fn(
             self: *const IInkRecognizerGuide,
             Rectangle: ?*IInkRectangle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rows: *const fn(
             self: *const IInkRecognizerGuide,
             Units: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Rows: *const fn(
             self: *const IInkRecognizerGuide,
             Units: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Columns: *const fn(
             self: *const IInkRecognizerGuide,
             Units: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Columns: *const fn(
             self: *const IInkRecognizerGuide,
             Units: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Midline: *const fn(
             self: *const IInkRecognizerGuide,
             Units: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Midline: *const fn(
             self: *const IInkRecognizerGuide,
             Units: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GuideData: *const fn(
             self: *const IInkRecognizerGuide,
             pRecoGuide: ?*InkRecoGuide,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GuideData: *const fn(
             self: *const IInkRecognizerGuide,
             recoGuide: InkRecoGuide,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5673,15 +5673,15 @@ pub const IInkWordList = extern union {
         AddWord: *const fn(
             self: *const IInkWordList,
             NewWord: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveWord: *const fn(
             self: *const IInkWordList,
             RemoveWord: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Merge: *const fn(
             self: *const IInkWordList,
             MergeWordList: ?*IInkWordList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5706,7 +5706,7 @@ pub const IInkWordList2 = extern union {
         AddWords: *const fn(
             self: *const IInkWordList2,
             NewWords: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5736,31 +5736,31 @@ pub const IInkLineInfo = extern union {
         SetFormat: *const fn(
             self: *const IInkLineInfo,
             pim: ?*INKMETRIC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const IInkLineInfo,
             pim: ?*INKMETRIC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInkExtent: *const fn(
             self: *const IInkLineInfo,
             pim: ?*INKMETRIC,
             pnWidth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidate: *const fn(
             self: *const IInkLineInfo,
             nCandidateNum: u32,
             pwcRecogWord: ?PWSTR,
             pcwcRecogWord: ?*u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCandidate: *const fn(
             self: *const IInkLineInfo,
             nCandidateNum: u32,
             strRecogWord: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Recognize: *const fn(
             self: *const IInkLineInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5856,34 +5856,34 @@ pub const IInkDivider = extern union {
         get_Strokes: *const fn(
             self: *const IInkDivider,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Strokes: *const fn(
             self: *const IInkDivider,
             Strokes: ?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecognizerContext: *const fn(
             self: *const IInkDivider,
             RecognizerContext: ?*?*IInkRecognizerContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_RecognizerContext: *const fn(
             self: *const IInkDivider,
             RecognizerContext: ?*IInkRecognizerContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LineHeight: *const fn(
             self: *const IInkDivider,
             LineHeight: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LineHeight: *const fn(
             self: *const IInkDivider,
             LineHeight: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Divide: *const fn(
             self: *const IInkDivider,
             InkDivisionResult: ?*?*IInkDivisionResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5921,12 +5921,12 @@ pub const IInkDivisionResult = extern union {
         get_Strokes: *const fn(
             self: *const IInkDivisionResult,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResultByType: *const fn(
             self: *const IInkDivisionResult,
             divisionType: InkDivisionType,
             InkDivisionUnits: ?*?*IInkDivisionUnits,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5949,22 +5949,22 @@ pub const IInkDivisionUnit = extern union {
         get_Strokes: *const fn(
             self: *const IInkDivisionUnit,
             Strokes: ?*?*IInkStrokes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DivisionType: *const fn(
             self: *const IInkDivisionUnit,
             divisionType: ?*InkDivisionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecognizedString: *const fn(
             self: *const IInkDivisionUnit,
             RecoString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RotationTransform: *const fn(
             self: *const IInkDivisionUnit,
             RotationTransform: ?*?*IInkTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5993,17 +5993,17 @@ pub const IInkDivisionUnits = extern union {
         get_Count: *const fn(
             self: *const IInkDivisionUnits,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IInkDivisionUnits,
             _NewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IInkDivisionUnits,
             Index: i32,
             InkDivisionUnit: ?*?*IInkDivisionUnit,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -6201,122 +6201,122 @@ pub const IPenInputPanel = extern union {
         get_Busy: *const fn(
             self: *const IPenInputPanel,
             Busy: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Factoid: *const fn(
             self: *const IPenInputPanel,
             Factoid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Factoid: *const fn(
             self: *const IPenInputPanel,
             Factoid: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AttachedEditWindow: *const fn(
             self: *const IPenInputPanel,
             AttachedEditWindow: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttachedEditWindow: *const fn(
             self: *const IPenInputPanel,
             AttachedEditWindow: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentPanel: *const fn(
             self: *const IPenInputPanel,
             CurrentPanel: ?*PanelType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CurrentPanel: *const fn(
             self: *const IPenInputPanel,
             CurrentPanel: PanelType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultPanel: *const fn(
             self: *const IPenInputPanel,
             pDefaultPanel: ?*PanelType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DefaultPanel: *const fn(
             self: *const IPenInputPanel,
             DefaultPanel: PanelType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Visible: *const fn(
             self: *const IPenInputPanel,
             Visible: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Visible: *const fn(
             self: *const IPenInputPanel,
             Visible: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Top: *const fn(
             self: *const IPenInputPanel,
             Top: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Left: *const fn(
             self: *const IPenInputPanel,
             Left: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Width: *const fn(
             self: *const IPenInputPanel,
             Width: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Height: *const fn(
             self: *const IPenInputPanel,
             Height: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VerticalOffset: *const fn(
             self: *const IPenInputPanel,
             VerticalOffset: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_VerticalOffset: *const fn(
             self: *const IPenInputPanel,
             VerticalOffset: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HorizontalOffset: *const fn(
             self: *const IPenInputPanel,
             HorizontalOffset: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HorizontalOffset: *const fn(
             self: *const IPenInputPanel,
             HorizontalOffset: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoShow: *const fn(
             self: *const IPenInputPanel,
             pAutoShow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoShow: *const fn(
             self: *const IPenInputPanel,
             AutoShow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveTo: *const fn(
             self: *const IPenInputPanel,
             Left: i32,
             Top: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitPendingInput: *const fn(
             self: *const IPenInputPanel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IPenInputPanel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableTsf: *const fn(
             self: *const IPenInputPanel,
             Enable: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -6420,13 +6420,13 @@ pub const IHandwrittenTextInsertion = extern union {
             psaAlternates: ?*SAFEARRAY,
             locale: u32,
             fAlternateContainsAutoSpacingInformation: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertInkRecognitionResult: *const fn(
             self: *const IHandwrittenTextInsertion,
             pIInkRecoResult: ?*IInkRecognitionResult,
             locale: u32,
             fAlternateContainsAutoSpacingInformation: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6448,60 +6448,60 @@ pub const ITextInputPanelEventSink = extern union {
             self: *const ITextInputPanelEventSink,
             oldInPlaceState: InPlaceState,
             newInPlaceState: InPlaceState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InPlaceStateChanged: *const fn(
             self: *const ITextInputPanelEventSink,
             oldInPlaceState: InPlaceState,
             newInPlaceState: InPlaceState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InPlaceSizeChanging: *const fn(
             self: *const ITextInputPanelEventSink,
             oldBoundingRectangle: RECT,
             newBoundingRectangle: RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InPlaceSizeChanged: *const fn(
             self: *const ITextInputPanelEventSink,
             oldBoundingRectangle: RECT,
             newBoundingRectangle: RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InputAreaChanging: *const fn(
             self: *const ITextInputPanelEventSink,
             oldInputArea: PanelInputArea,
             newInputArea: PanelInputArea,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InputAreaChanged: *const fn(
             self: *const ITextInputPanelEventSink,
             oldInputArea: PanelInputArea,
             newInputArea: PanelInputArea,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CorrectionModeChanging: *const fn(
             self: *const ITextInputPanelEventSink,
             oldCorrectionMode: CorrectionMode,
             newCorrectionMode: CorrectionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CorrectionModeChanged: *const fn(
             self: *const ITextInputPanelEventSink,
             oldCorrectionMode: CorrectionMode,
             newCorrectionMode: CorrectionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InPlaceVisibilityChanging: *const fn(
             self: *const ITextInputPanelEventSink,
             oldVisible: BOOL,
             newVisible: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InPlaceVisibilityChanged: *const fn(
             self: *const ITextInputPanelEventSink,
             oldVisible: BOOL,
             newVisible: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TextInserting: *const fn(
             self: *const ITextInputPanelEventSink,
             Ink: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TextInserted: *const fn(
             self: *const ITextInputPanelEventSink,
             Ink: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6553,124 +6553,124 @@ pub const ITextInputPanel = extern union {
         get_AttachedEditWindow: *const fn(
             self: *const ITextInputPanel,
             AttachedEditWindow: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttachedEditWindow: *const fn(
             self: *const ITextInputPanel,
             AttachedEditWindow: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentInteractionMode: *const fn(
             self: *const ITextInputPanel,
             CurrentInteractionMode: ?*InteractionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultInPlaceState: *const fn(
             self: *const ITextInputPanel,
             State: ?*InPlaceState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DefaultInPlaceState: *const fn(
             self: *const ITextInputPanel,
             State: InPlaceState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentInPlaceState: *const fn(
             self: *const ITextInputPanel,
             State: ?*InPlaceState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultInputArea: *const fn(
             self: *const ITextInputPanel,
             Area: ?*PanelInputArea,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DefaultInputArea: *const fn(
             self: *const ITextInputPanel,
             Area: PanelInputArea,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentInputArea: *const fn(
             self: *const ITextInputPanel,
             Area: ?*PanelInputArea,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCorrectionMode: *const fn(
             self: *const ITextInputPanel,
             Mode: ?*CorrectionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PreferredInPlaceDirection: *const fn(
             self: *const ITextInputPanel,
             Direction: ?*InPlaceDirection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PreferredInPlaceDirection: *const fn(
             self: *const ITextInputPanel,
             Direction: InPlaceDirection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExpandPostInsertionCorrection: *const fn(
             self: *const ITextInputPanel,
             Expand: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExpandPostInsertionCorrection: *const fn(
             self: *const ITextInputPanel,
             Expand: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InPlaceVisibleOnFocus: *const fn(
             self: *const ITextInputPanel,
             Visible: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InPlaceVisibleOnFocus: *const fn(
             self: *const ITextInputPanel,
             Visible: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InPlaceBoundingRectangle: *const fn(
             self: *const ITextInputPanel,
             BoundingRectangle: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PopUpCorrectionHeight: *const fn(
             self: *const ITextInputPanel,
             Height: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PopDownCorrectionHeight: *const fn(
             self: *const ITextInputPanel,
             Height: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitPendingInput: *const fn(
             self: *const ITextInputPanel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInPlaceVisibility: *const fn(
             self: *const ITextInputPanel,
             Visible: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInPlacePosition: *const fn(
             self: *const ITextInputPanel,
             xPosition: i32,
             yPosition: i32,
             position: CorrectionPosition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInPlaceHoverTargetPosition: *const fn(
             self: *const ITextInputPanel,
             xPosition: i32,
             yPosition: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Advise: *const fn(
             self: *const ITextInputPanel,
             EventSink: ?*ITextInputPanelEventSink,
             EventMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unadvise: *const fn(
             self: *const ITextInputPanel,
             EventSink: ?*ITextInputPanelEventSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6760,22 +6760,22 @@ pub const IInputPanelWindowHandle = extern union {
         get_AttachedEditWindow32: *const fn(
             self: *const IInputPanelWindowHandle,
             AttachedEditWindow: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttachedEditWindow32: *const fn(
             self: *const IInputPanelWindowHandle,
             AttachedEditWindow: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AttachedEditWindow64: *const fn(
             self: *const IInputPanelWindowHandle,
             AttachedEditWindow: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttachedEditWindow64: *const fn(
             self: *const IInputPanelWindowHandle,
             AttachedEditWindow: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6802,7 +6802,7 @@ pub const ITextInputPanelRunInfo = extern union {
         IsTipRunning: *const fn(
             self: *const ITextInputPanelRunInfo,
             pfRunning: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7105,379 +7105,379 @@ pub const IInkEdit = extern union {
         get_Status: *const fn(
             self: *const IInkEdit,
             pStatus: ?*InkEditStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseMouseForInput: *const fn(
             self: *const IInkEdit,
             pVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseMouseForInput: *const fn(
             self: *const IInkEdit,
             newVal: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InkMode: *const fn(
             self: *const IInkEdit,
             pVal: ?*InkMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InkMode: *const fn(
             self: *const IInkEdit,
             newVal: InkMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InkInsertMode: *const fn(
             self: *const IInkEdit,
             pVal: ?*InkInsertMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InkInsertMode: *const fn(
             self: *const IInkEdit,
             newVal: InkInsertMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DrawingAttributes: *const fn(
             self: *const IInkEdit,
             pVal: ?*?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_DrawingAttributes: *const fn(
             self: *const IInkEdit,
             newVal: ?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecognitionTimeout: *const fn(
             self: *const IInkEdit,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RecognitionTimeout: *const fn(
             self: *const IInkEdit,
             newVal: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recognizer: *const fn(
             self: *const IInkEdit,
             pVal: ?*?*IInkRecognizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Recognizer: *const fn(
             self: *const IInkEdit,
             newVal: ?*IInkRecognizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Factoid: *const fn(
             self: *const IInkEdit,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Factoid: *const fn(
             self: *const IInkEdit,
             newVal: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelInks: *const fn(
             self: *const IInkEdit,
             pSelInk: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelInks: *const fn(
             self: *const IInkEdit,
             SelInk: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelInksDisplayMode: *const fn(
             self: *const IInkEdit,
             pInkDisplayMode: ?*InkDisplayMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelInksDisplayMode: *const fn(
             self: *const IInkEdit,
             InkDisplayMode: InkDisplayMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Recognize: *const fn(
             self: *const IInkEdit,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGestureStatus: *const fn(
             self: *const IInkEdit,
             Gesture: InkApplicationGesture,
             pListen: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGestureStatus: *const fn(
             self: *const IInkEdit,
             Gesture: InkApplicationGesture,
             Listen: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BackColor: *const fn(
             self: *const IInkEdit,
             clr: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackColor: *const fn(
             self: *const IInkEdit,
             pclr: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Appearance: *const fn(
             self: *const IInkEdit,
             pAppearance: ?*AppearanceConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Appearance: *const fn(
             self: *const IInkEdit,
             pAppearance: AppearanceConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BorderStyle: *const fn(
             self: *const IInkEdit,
             pBorderStyle: ?*BorderStyleConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BorderStyle: *const fn(
             self: *const IInkEdit,
             pBorderStyle: BorderStyleConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Hwnd: *const fn(
             self: *const IInkEdit,
             pohHwnd: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Font: *const fn(
             self: *const IInkEdit,
             ppFont: ?*?*IFontDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Font: *const fn(
             self: *const IInkEdit,
             ppFont: ?*IFontDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Text: *const fn(
             self: *const IInkEdit,
             pbstrText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Text: *const fn(
             self: *const IInkEdit,
             pbstrText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MouseIcon: *const fn(
             self: *const IInkEdit,
             MouseIcon: ?*?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MouseIcon: *const fn(
             self: *const IInkEdit,
             MouseIcon: ?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_MouseIcon: *const fn(
             self: *const IInkEdit,
             MouseIcon: ?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MousePointer: *const fn(
             self: *const IInkEdit,
             MousePointer: ?*InkMousePointer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MousePointer: *const fn(
             self: *const IInkEdit,
             MousePointer: InkMousePointer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Locked: *const fn(
             self: *const IInkEdit,
             pVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Locked: *const fn(
             self: *const IInkEdit,
             newVal: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IInkEdit,
             pVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IInkEdit,
             newVal: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxLength: *const fn(
             self: *const IInkEdit,
             plMaxLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxLength: *const fn(
             self: *const IInkEdit,
             lMaxLength: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MultiLine: *const fn(
             self: *const IInkEdit,
             pVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MultiLine: *const fn(
             self: *const IInkEdit,
             newVal: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ScrollBars: *const fn(
             self: *const IInkEdit,
             pVal: ?*ScrollBarsConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ScrollBars: *const fn(
             self: *const IInkEdit,
             newVal: ScrollBarsConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisableNoScroll: *const fn(
             self: *const IInkEdit,
             pVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisableNoScroll: *const fn(
             self: *const IInkEdit,
             newVal: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelAlignment: *const fn(
             self: *const IInkEdit,
             pvarSelAlignment: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelAlignment: *const fn(
             self: *const IInkEdit,
             pvarSelAlignment: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelBold: *const fn(
             self: *const IInkEdit,
             pvarSelBold: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelBold: *const fn(
             self: *const IInkEdit,
             pvarSelBold: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelItalic: *const fn(
             self: *const IInkEdit,
             pvarSelItalic: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelItalic: *const fn(
             self: *const IInkEdit,
             pvarSelItalic: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelUnderline: *const fn(
             self: *const IInkEdit,
             pvarSelUnderline: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelUnderline: *const fn(
             self: *const IInkEdit,
             pvarSelUnderline: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelColor: *const fn(
             self: *const IInkEdit,
             pvarSelColor: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelColor: *const fn(
             self: *const IInkEdit,
             pvarSelColor: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelFontName: *const fn(
             self: *const IInkEdit,
             pvarSelFontName: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelFontName: *const fn(
             self: *const IInkEdit,
             pvarSelFontName: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelFontSize: *const fn(
             self: *const IInkEdit,
             pvarSelFontSize: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelFontSize: *const fn(
             self: *const IInkEdit,
             pvarSelFontSize: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelCharOffset: *const fn(
             self: *const IInkEdit,
             pvarSelCharOffset: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelCharOffset: *const fn(
             self: *const IInkEdit,
             pvarSelCharOffset: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TextRTF: *const fn(
             self: *const IInkEdit,
             pbstrTextRTF: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TextRTF: *const fn(
             self: *const IInkEdit,
             pbstrTextRTF: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelStart: *const fn(
             self: *const IInkEdit,
             plSelStart: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelStart: *const fn(
             self: *const IInkEdit,
             plSelStart: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelLength: *const fn(
             self: *const IInkEdit,
             plSelLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelLength: *const fn(
             self: *const IInkEdit,
             plSelLength: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelText: *const fn(
             self: *const IInkEdit,
             pbstrSelText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelText: *const fn(
             self: *const IInkEdit,
             pbstrSelText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelRTF: *const fn(
             self: *const IInkEdit,
             pbstrSelRTF: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelRTF: *const fn(
             self: *const IInkEdit,
             pbstrSelRTF: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IInkEdit,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -7781,76 +7781,76 @@ pub const IMathInputControl = extern union {
         base: IDispatch.VTable,
         Show: *const fn(
             self: *const IMathInputControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Hide: *const fn(
             self: *const IMathInputControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsVisible: *const fn(
             self: *const IMathInputControl,
             pvbShown: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPosition: *const fn(
             self: *const IMathInputControl,
             Left: ?*i32,
             Top: ?*i32,
             Right: ?*i32,
             Bottom: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPosition: *const fn(
             self: *const IMathInputControl,
             Left: i32,
             Top: i32,
             Right: i32,
             Bottom: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IMathInputControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCustomPaint: *const fn(
             self: *const IMathInputControl,
             Element: i32,
             Paint: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCaptionText: *const fn(
             self: *const IMathInputControl,
             CaptionText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadInk: *const fn(
             self: *const IMathInputControl,
             Ink: ?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOwnerWindow: *const fn(
             self: *const IMathInputControl,
             OwnerWindow: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableExtendedButtons: *const fn(
             self: *const IMathInputControl,
             Extended: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreviewHeight: *const fn(
             self: *const IMathInputControl,
             Height: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPreviewHeight: *const fn(
             self: *const IMathInputControl,
             Height: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableAutoGrow: *const fn(
             self: *const IMathInputControl,
             AutoGrow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddFunctionName: *const fn(
             self: *const IMathInputControl,
             FunctionName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveFunctionName: *const fn(
             self: *const IMathInputControl,
             FunctionName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHoverIcon: *const fn(
             self: *const IMathInputControl,
             HoverImage: ?*?*IPictureDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -8025,141 +8025,141 @@ pub const IRealTimeStylus = extern union {
         get_Enabled: *const fn(
             self: *const IRealTimeStylus,
             pfEnable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IRealTimeStylus,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HWND: *const fn(
             self: *const IRealTimeStylus,
             phwnd: ?*HANDLE_PTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HWND: *const fn(
             self: *const IRealTimeStylus,
             hwnd: HANDLE_PTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowInputRectangle: *const fn(
             self: *const IRealTimeStylus,
             prcWndInputRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WindowInputRectangle: *const fn(
             self: *const IRealTimeStylus,
             prcWndInputRect: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStylusSyncPlugin: *const fn(
             self: *const IRealTimeStylus,
             iIndex: u32,
             piPlugin: ?*IStylusSyncPlugin,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStylusSyncPlugin: *const fn(
             self: *const IRealTimeStylus,
             iIndex: u32,
             ppiPlugin: ?*?*IStylusSyncPlugin,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllStylusSyncPlugins: *const fn(
             self: *const IRealTimeStylus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStylusSyncPlugin: *const fn(
             self: *const IRealTimeStylus,
             iIndex: u32,
             ppiPlugin: ?*?*IStylusSyncPlugin,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStylusSyncPluginCount: *const fn(
             self: *const IRealTimeStylus,
             pcPlugins: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStylusAsyncPlugin: *const fn(
             self: *const IRealTimeStylus,
             iIndex: u32,
             piPlugin: ?*IStylusAsyncPlugin,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStylusAsyncPlugin: *const fn(
             self: *const IRealTimeStylus,
             iIndex: u32,
             ppiPlugin: ?*?*IStylusAsyncPlugin,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllStylusAsyncPlugins: *const fn(
             self: *const IRealTimeStylus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStylusAsyncPlugin: *const fn(
             self: *const IRealTimeStylus,
             iIndex: u32,
             ppiPlugin: ?*?*IStylusAsyncPlugin,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStylusAsyncPluginCount: *const fn(
             self: *const IRealTimeStylus,
             pcPlugins: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ChildRealTimeStylusPlugin: *const fn(
             self: *const IRealTimeStylus,
             ppiRTS: ?*?*IRealTimeStylus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_ChildRealTimeStylusPlugin: *const fn(
             self: *const IRealTimeStylus,
             piRTS: ?*IRealTimeStylus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddCustomStylusDataToQueue: *const fn(
             self: *const IRealTimeStylus,
             sq: StylusQueue,
             pGuidId: ?*const Guid,
             cbData: u32,
             pbData: ?[*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearStylusQueues: *const fn(
             self: *const IRealTimeStylus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllTabletsMode: *const fn(
             self: *const IRealTimeStylus,
             fUseMouseForInput: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSingleTabletMode: *const fn(
             self: *const IRealTimeStylus,
             piTablet: ?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTablet: *const fn(
             self: *const IRealTimeStylus,
             ppiSingleTablet: ?*?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTabletContextIdFromTablet: *const fn(
             self: *const IRealTimeStylus,
             piTablet: ?*IInkTablet,
             ptcid: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTabletFromTabletContextId: *const fn(
             self: *const IRealTimeStylus,
             tcid: u32,
             ppiTablet: ?*?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllTabletContextIds: *const fn(
             self: *const IRealTimeStylus,
             pcTcidCount: ?*u32,
             ppTcids: [*]?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStyluses: *const fn(
             self: *const IRealTimeStylus,
             ppiInkCursors: ?*?*IInkCursors,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStylusForId: *const fn(
             self: *const IRealTimeStylus,
             sid: u32,
             ppiInkCursor: ?*?*IInkCursor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDesiredPacketDescription: *const fn(
             self: *const IRealTimeStylus,
             cProperties: u32,
             pPropertyGuids: [*]const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDesiredPacketDescription: *const fn(
             self: *const IRealTimeStylus,
             pcProperties: ?*u32,
             ppPropertyGuids: [*]?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPacketDescriptionData: *const fn(
             self: *const IRealTimeStylus,
             tcid: u32,
@@ -8167,7 +8167,7 @@ pub const IRealTimeStylus = extern union {
             pfInkToDeviceScaleY: ?*f32,
             pcPacketProperties: ?*u32,
             ppPacketProperties: [*]?*PACKET_PROPERTY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8276,12 +8276,12 @@ pub const IRealTimeStylus2 = extern union {
         get_FlicksEnabled: *const fn(
             self: *const IRealTimeStylus2,
             pfEnable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FlicksEnabled: *const fn(
             self: *const IRealTimeStylus2,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8303,12 +8303,12 @@ pub const IRealTimeStylus3 = extern union {
         get_MultiTouchEnabled: *const fn(
             self: *const IRealTimeStylus3,
             pfEnable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MultiTouchEnabled: *const fn(
             self: *const IRealTimeStylus3,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8329,11 +8329,11 @@ pub const IRealTimeStylusSynchronization = extern union {
         AcquireLock: *const fn(
             self: *const IRealTimeStylusSynchronization,
             lock: RealTimeStylusLockType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseLock: *const fn(
             self: *const IRealTimeStylusSynchronization,
             lock: RealTimeStylusLockType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8360,7 +8360,7 @@ pub const IStrokeBuilder = extern union {
             fInkToDeviceScaleX: f32,
             fInkToDeviceScaleY: f32,
             ppIInkStroke: ?*?*IInkStrokeDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginStroke: *const fn(
             self: *const IStrokeBuilder,
             tcid: u32,
@@ -8371,30 +8371,30 @@ pub const IStrokeBuilder = extern union {
             fInkToDeviceScaleX: f32,
             fInkToDeviceScaleY: f32,
             ppIInkStroke: ?*?*IInkStrokeDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AppendPackets: *const fn(
             self: *const IStrokeBuilder,
             tcid: u32,
             sid: u32,
             cPktBuffLength: u32,
             pPackets: [*]const i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndStroke: *const fn(
             self: *const IStrokeBuilder,
             tcid: u32,
             sid: u32,
             ppIInkStroke: ?*?*IInkStrokeDisp,
             pDirtyRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ink: *const fn(
             self: *const IStrokeBuilder,
             ppiInkObj: ?*?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Ink: *const fn(
             self: *const IStrokeBuilder,
             piInkObj: ?*IInkDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8429,25 +8429,25 @@ pub const IStylusPlugin = extern union {
             piRtsSrc: ?*IRealTimeStylus,
             cTcidCount: u32,
             pTcids: [*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RealTimeStylusDisabled: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             cTcidCount: u32,
             pTcids: [*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StylusInRange: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             tcid: u32,
             sid: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StylusOutOfRange: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             tcid: u32,
             sid: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StylusDown: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
@@ -8455,7 +8455,7 @@ pub const IStylusPlugin = extern union {
             cPropCountPerPkt: u32,
             pPacket: [*]i32,
             ppInOutPkt: ?*?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StylusUp: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
@@ -8463,21 +8463,21 @@ pub const IStylusPlugin = extern union {
             cPropCountPerPkt: u32,
             pPacket: [*]i32,
             ppInOutPkt: ?*?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StylusButtonDown: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             sid: u32,
             pGuidStylusButton: ?*const Guid,
             pStylusPos: ?*POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StylusButtonUp: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             sid: u32,
             pGuidStylusButton: ?*const Guid,
             pStylusPos: ?*POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InAirPackets: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
@@ -8487,7 +8487,7 @@ pub const IStylusPlugin = extern union {
             pPackets: [*]i32,
             pcInOutPkts: ?*u32,
             ppInOutPkts: ?*?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Packets: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
@@ -8497,14 +8497,14 @@ pub const IStylusPlugin = extern union {
             pPackets: [*]i32,
             pcInOutPkts: ?*u32,
             ppInOutPkts: ?*?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CustomStylusDataAdded: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             pGuidId: ?*const Guid,
             cbData: u32,
             pbData: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SystemEvent: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
@@ -8512,17 +8512,17 @@ pub const IStylusPlugin = extern union {
             sid: u32,
             event: u16,
             eventdata: SYSTEM_EVENT_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TabletAdded: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             piTablet: ?*IInkTablet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TabletRemoved: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             iTabletIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Error: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
@@ -8530,15 +8530,15 @@ pub const IStylusPlugin = extern union {
             dataInterest: RealTimeStylusDataInterest,
             hrErrorCode: HRESULT,
             lptrKey: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateMapping: *const fn(
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DataInterest: *const fn(
             self: *const IStylusPlugin,
             pDataInterest: ?*RealTimeStylusDataInterest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8629,72 +8629,72 @@ pub const IDynamicRenderer = extern union {
         get_Enabled: *const fn(
             self: *const IDynamicRenderer,
             bEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IDynamicRenderer,
             bEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HWND: *const fn(
             self: *const IDynamicRenderer,
             hwnd: ?*HANDLE_PTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HWND: *const fn(
             self: *const IDynamicRenderer,
             hwnd: HANDLE_PTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClipRectangle: *const fn(
             self: *const IDynamicRenderer,
             prcClipRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClipRectangle: *const fn(
             self: *const IDynamicRenderer,
             prcClipRect: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClipRegion: *const fn(
             self: *const IDynamicRenderer,
             phClipRgn: ?*HANDLE_PTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClipRegion: *const fn(
             self: *const IDynamicRenderer,
             hClipRgn: HANDLE_PTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DrawingAttributes: *const fn(
             self: *const IDynamicRenderer,
             ppiDA: ?*?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_DrawingAttributes: *const fn(
             self: *const IDynamicRenderer,
             piDA: ?*IInkDrawingAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataCacheEnabled: *const fn(
             self: *const IDynamicRenderer,
             pfCacheData: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DataCacheEnabled: *const fn(
             self: *const IDynamicRenderer,
             fCacheData: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseCachedData: *const fn(
             self: *const IDynamicRenderer,
             strokeId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IDynamicRenderer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Draw: *const fn(
             self: *const IDynamicRenderer,
             hDC: HANDLE_PTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8755,30 +8755,30 @@ pub const IGestureRecognizer = extern union {
         get_Enabled: *const fn(
             self: *const IGestureRecognizer,
             pfEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IGestureRecognizer,
             fEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxStrokeCount: *const fn(
             self: *const IGestureRecognizer,
             pcStrokes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxStrokeCount: *const fn(
             self: *const IGestureRecognizer,
             cStrokes: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableGestures: *const fn(
             self: *const IGestureRecognizer,
             cGestures: u32,
             pGestures: [*]const i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IGestureRecognizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8927,11 +8927,11 @@ pub const ITipAutoCompleteProvider = extern union {
         UpdatePendingText: *const fn(
             self: *const ITipAutoCompleteProvider,
             bstrPendingText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Show: *const fn(
             self: *const ITipAutoCompleteProvider,
             fShow: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8952,27 +8952,27 @@ pub const ITipAutoCompleteClient = extern union {
             self: *const ITipAutoCompleteClient,
             hWndField: ?HWND,
             pIProvider: ?*ITipAutoCompleteProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseProvider: *const fn(
             self: *const ITipAutoCompleteClient,
             hWndField: ?HWND,
             pIProvider: ?*ITipAutoCompleteProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UserSelection: *const fn(
             self: *const ITipAutoCompleteClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PreferredRects: *const fn(
             self: *const ITipAutoCompleteClient,
             prcACList: ?*RECT,
             prcField: ?*RECT,
             prcModifiedACList: ?*RECT,
             pfShownAboveTip: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestShowUI: *const fn(
             self: *const ITipAutoCompleteClient,
             hWndList: ?HWND,
             pfAllowShowing: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9001,43 +9001,43 @@ pub const ITipAutoCompleteClient = extern union {
 pub extern "inkobjcore" fn CreateRecognizer(
     pCLSID: ?*Guid,
     phrec: ?*?HRECOGNIZER,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn DestroyRecognizer(
     hrec: ?HRECOGNIZER,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetRecoAttributes(
     hrec: ?HRECOGNIZER,
     pRecoAttrs: ?*RECO_ATTRS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn CreateContext(
     hrec: ?HRECOGNIZER,
     phrc: ?*?HRECOCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn DestroyContext(
     hrc: ?HRECOCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetResultPropertyList(
     hrec: ?HRECOGNIZER,
     pPropertyCount: ?*u32,
     pPropertyGuid: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetUnicodeRanges(
     hrec: ?HRECOGNIZER,
     pcRanges: ?*u32,
     pcr: ?*CHARACTER_RANGE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn AddStroke(
@@ -9046,57 +9046,57 @@ pub extern "inkobjcore" fn AddStroke(
     cbPacket: u32,
     pPacket: ?*const u8,
     pXForm: ?*const XFORM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetBestResultString(
     hrc: ?HRECOCONTEXT,
     pcSize: ?*u32,
     pwcBestResult: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetGuide(
     hrc: ?HRECOCONTEXT,
     pGuide: ?*const RECO_GUIDE,
     iIndex: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn AdviseInkChange(
     hrc: ?HRECOCONTEXT,
     bNewStroke: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn EndInkInput(
     hrc: ?HRECOCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn Process(
     hrc: ?HRECOCONTEXT,
     pbPartialProcessing: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetFactoid(
     hrc: ?HRECOCONTEXT,
     cwcFactoid: u32,
     pwcFactoid: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetFlags(
     hrc: ?HRECOCONTEXT,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetLatticePtr(
     hrc: ?HRECOCONTEXT,
     ppLattice: ?*?*RECO_LATTICE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetTextContext(
@@ -9105,71 +9105,71 @@ pub extern "inkobjcore" fn SetTextContext(
     pwcBefore: [*:0]const u16,
     cwcAfter: u32,
     pwcAfter: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetEnabledUnicodeRanges(
     hrc: ?HRECOCONTEXT,
     cRanges: u32,
     pcr: ?*CHARACTER_RANGE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn IsStringSupported(
     hrc: ?HRECOCONTEXT,
     wcString: u32,
     pwcString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetWordList(
     hrc: ?HRECOCONTEXT,
     hwl: ?HRECOWORDLIST,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetRightSeparator(
     hrc: ?HRECOCONTEXT,
     pcSize: ?*u32,
     pwcRightSeparator: [*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetLeftSeparator(
     hrc: ?HRECOCONTEXT,
     pcSize: ?*u32,
     pwcLeftSeparator: [*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn DestroyWordList(
     hwl: ?HRECOWORDLIST,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn AddWordsToWordList(
     hwl: ?HRECOWORDLIST,
     pwcWords: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn MakeWordList(
     hrec: ?HRECOGNIZER,
     pBuffer: ?PWSTR,
     phwl: ?*?HRECOWORDLIST,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetAllRecognizers(
     recognizerClsids: ?*?*Guid,
     count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn LoadCachedAttributes(
     clsid: Guid,
     pRecoAttributes: ?*RECO_ATTRS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

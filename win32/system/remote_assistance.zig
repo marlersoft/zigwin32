@@ -57,26 +57,26 @@ pub const IRendezvousSession = extern union {
         get_State: *const fn(
             self: *const IRendezvousSession,
             pSessionState: ?*RENDEZVOUS_SESSION_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteUser: *const fn(
             self: *const IRendezvousSession,
             bstrUserName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: *const fn(
             self: *const IRendezvousSession,
             pFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendContextData: *const fn(
             self: *const IRendezvousSession,
             bstrData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Terminate: *const fn(
             self: *const IRendezvousSession,
             hr: HRESULT,
             bstrAppData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -118,7 +118,7 @@ pub const IRendezvousApplication = extern union {
         SetRendezvousSession: *const fn(
             self: *const IRendezvousApplication,
             pRendezvousSession: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

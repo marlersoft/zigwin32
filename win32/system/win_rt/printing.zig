@@ -16,13 +16,13 @@ pub const IPrinting3DManagerInterop = extern union {
             appWindow: ?HWND,
             riid: ?*const Guid,
             printManager: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowPrintUIForWindowAsync: *const fn(
             self: *const IPrinting3DManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
             asyncOperation: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -46,13 +46,13 @@ pub const IPrintManagerInterop = extern union {
             appWindow: ?HWND,
             riid: ?*const Guid,
             printManager: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowPrintUIForWindowAsync: *const fn(
             self: *const IPrintManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
             asyncOperation: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -73,27 +73,27 @@ pub const IPrintWorkflowXpsReceiver = extern union {
         SetDocumentSequencePrintTicket: *const fn(
             self: *const IPrintWorkflowXpsReceiver,
             documentSequencePrintTicket: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDocumentSequenceUri: *const fn(
             self: *const IPrintWorkflowXpsReceiver,
             documentSequenceUri: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDocumentData: *const fn(
             self: *const IPrintWorkflowXpsReceiver,
             documentId: u32,
             documentPrintTicket: ?*IStream,
             documentUri: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPage: *const fn(
             self: *const IPrintWorkflowXpsReceiver,
             documentId: u32,
             pageId: u32,
             pageReference: ?*IXpsOMPageReference,
             pageUri: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IPrintWorkflowXpsReceiver,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -122,7 +122,7 @@ pub const IPrintWorkflowXpsReceiver2 = extern union {
         Failed: *const fn(
             self: *const IPrintWorkflowXpsReceiver2,
             XpsError: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintWorkflowXpsReceiver: IPrintWorkflowXpsReceiver,
@@ -140,12 +140,12 @@ pub const IPrintWorkflowObjectModelSourceFileContentNative = extern union {
         StartXpsOMGeneration: *const fn(
             self: *const IPrintWorkflowObjectModelSourceFileContentNative,
             receiver: ?*IPrintWorkflowXpsReceiver,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectFactory: *const fn(
             self: *const IPrintWorkflowObjectModelSourceFileContentNative,
             value: ?*?*IXpsOMObjectFactory1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -166,7 +166,7 @@ pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern union {
         get_DocumentPackageTarget: *const fn(
             self: *const IPrintWorkflowXpsObjectModelTargetPackageNative,
             value: ?*?*IXpsDocumentPackageTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -184,17 +184,17 @@ pub const IPrintWorkflowConfigurationNative = extern union {
         get_PrinterQueue: *const fn(
             self: *const IPrintWorkflowConfigurationNative,
             value: ?*?*IPrinterQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverProperties: *const fn(
             self: *const IPrintWorkflowConfigurationNative,
             value: ?*?*IPrinterPropertyBag,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserProperties: *const fn(
             self: *const IPrintWorkflowConfigurationNative,
             value: ?*?*IPrinterPropertyBag,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

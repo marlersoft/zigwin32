@@ -54,12 +54,12 @@ pub const ISideShowSession = extern union {
             in_applicationId: ?*Guid,
             in_endpointId: ?*Guid,
             out_ppIContent: ?*?*ISideShowContentManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterNotifications: *const fn(
             self: *const ISideShowSession,
             in_applicationId: ?*Guid,
             out_ppINotification: ?*?*ISideShowNotificationManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -79,14 +79,14 @@ pub const ISideShowNotificationManager = extern union {
         Show: *const fn(
             self: *const ISideShowNotificationManager,
             in_pINotification: ?*ISideShowNotification,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Revoke: *const fn(
             self: *const ISideShowNotificationManager,
             in_notificationId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RevokeAll: *const fn(
             self: *const ISideShowNotificationManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -110,52 +110,52 @@ pub const ISideShowNotification = extern union {
         get_NotificationId: *const fn(
             self: *const ISideShowNotification,
             out_pNotificationId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NotificationId: *const fn(
             self: *const ISideShowNotification,
             in_notificationId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Title: *const fn(
             self: *const ISideShowNotification,
             out_ppwszTitle: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Title: *const fn(
             self: *const ISideShowNotification,
             in_pwszTitle: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Message: *const fn(
             self: *const ISideShowNotification,
             out_ppwszMessage: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Message: *const fn(
             self: *const ISideShowNotification,
             in_pwszMessage: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Image: *const fn(
             self: *const ISideShowNotification,
             out_phIcon: ?*?HICON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Image: *const fn(
             self: *const ISideShowNotification,
             in_hIcon: ?HICON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExpirationTime: *const fn(
             self: *const ISideShowNotification,
             out_pTime: ?*SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExpirationTime: *const fn(
             self: *const ISideShowNotification,
             in_pTime: ?*SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -199,22 +199,22 @@ pub const ISideShowContentManager = extern union {
         Add: *const fn(
             self: *const ISideShowContentManager,
             in_pIContent: ?*ISideShowContent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ISideShowContentManager,
             in_contentId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAll: *const fn(
             self: *const ISideShowContentManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventSink: *const fn(
             self: *const ISideShowContentManager,
             in_pIEvents: ?*ISideShowEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceCapabilities: *const fn(
             self: *const ISideShowContentManager,
             out_ppCollection: ?*?*ISideShowCapabilitiesCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -245,17 +245,17 @@ pub const ISideShowContent = extern union {
             in_pICapabilities: ?*ISideShowCapabilities,
             out_pdwSize: ?*u32,
             out_ppbData: [*]?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContentId: *const fn(
             self: *const ISideShowContent,
             out_pcontentId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DifferentiateContent: *const fn(
             self: *const ISideShowContent,
             out_pfDifferentiateContent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -279,22 +279,22 @@ pub const ISideShowEvents = extern union {
             self: *const ISideShowEvents,
             in_contentId: u32,
             out_ppIContent: ?*?*ISideShowContent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ApplicationEvent: *const fn(
             self: *const ISideShowEvents,
             in_pICapabilities: ?*ISideShowCapabilities,
             in_dwEventId: u32,
             in_dwEventSize: u32,
             in_pbEventData: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceAdded: *const fn(
             self: *const ISideShowEvents,
             in_pIDevice: ?*ISideShowCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceRemoved: *const fn(
             self: *const ISideShowEvents,
             in_pIDevice: ?*ISideShowCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -321,7 +321,7 @@ pub const ISideShowCapabilities = extern union {
             self: *const ISideShowCapabilities,
             in_keyCapability: ?*const PROPERTYKEY,
             inout_pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -338,12 +338,12 @@ pub const ISideShowCapabilitiesCollection = extern union {
         GetCount: *const fn(
             self: *const ISideShowCapabilitiesCollection,
             out_pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const ISideShowCapabilitiesCollection,
             in_dwIndex: u32,
             out_ppCapabilities: ?*?*ISideShowCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -364,7 +364,7 @@ pub const ISideShowBulkCapabilities = extern union {
             self: *const ISideShowBulkCapabilities,
             in_keyCollection: ?*ISideShowKeyCollection,
             inout_pValues: ?*?*ISideShowPropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISideShowCapabilities: ISideShowCapabilities,
@@ -382,23 +382,23 @@ pub const ISideShowKeyCollection = extern union {
         Add: *const fn(
             self: *const ISideShowKeyCollection,
             Key: ?*const PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ISideShowKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const ISideShowKeyCollection,
             dwIndex: u32,
             pKey: ?*PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const ISideShowKeyCollection,
             pcElems: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const ISideShowKeyCollection,
             dwIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -427,23 +427,23 @@ pub const ISideShowPropVariantCollection = extern union {
         Add: *const fn(
             self: *const ISideShowPropVariantCollection,
             pValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ISideShowPropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const ISideShowPropVariantCollection,
             dwIndex: u32,
             pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const ISideShowPropVariantCollection,
             pcElems: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const ISideShowPropVariantCollection,
             dwIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

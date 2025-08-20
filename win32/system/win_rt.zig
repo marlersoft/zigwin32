@@ -59,7 +59,7 @@ pub const IAgileReference = extern union {
             self: *const IAgileReference,
             riid: ?*const Guid,
             ppvObjectReference: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -77,7 +77,7 @@ pub const IApartmentShutdown = extern union {
         OnUninitialize: *const fn(
             self: *const IApartmentShutdown,
             ui64ApartmentIdentifier: u64,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -110,7 +110,7 @@ pub const ISpatialInteractionManagerInterop = extern union {
             window: ?HWND,
             riid: ?*const Guid,
             spatialInteractionManager: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -131,7 +131,7 @@ pub const IHolographicSpaceInterop = extern union {
             window: ?HWND,
             riid: ?*const Guid,
             holographicSpace: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -160,15 +160,15 @@ pub const IInspectable = extern union {
             self: *const IInspectable,
             iidCount: ?*u32,
             iids: [*]?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRuntimeClassName: *const fn(
             self: *const IInspectable,
             className: ?*?HSTRING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTrustLevel: *const fn(
             self: *const IInspectable,
             trustLevel: ?*TrustLevel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -188,14 +188,14 @@ pub const PINSPECT_HSTRING_CALLBACK = *const fn(
     readAddress: usize,
     length: u32,
     buffer: [*:0]u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PINSPECT_HSTRING_CALLBACK2 = *const fn(
     context: ?*anyopaque,
     readAddress: u64,
     length: u32,
     buffer: [*:0]u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const DISPATCHERQUEUE_THREAD_APARTMENTTYPE = enum(i32) {
     NONE = 0,
@@ -229,19 +229,19 @@ pub const IAccountsSettingsPaneInterop = extern union {
             appWindow: ?HWND,
             riid: ?*const Guid,
             accountsSettingsPane: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowManageAccountsForWindowAsync: *const fn(
             self: *const IAccountsSettingsPaneInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
             asyncAction: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowAddAccountForWindowAsync: *const fn(
             self: *const IAccountsSettingsPaneInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
             asyncAction: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -266,7 +266,7 @@ pub const IAppServiceConnectionExtendedExecution = extern union {
             self: *const IAppServiceConnectionExtendedExecution,
             riid: ?*const Guid,
             operation: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -284,7 +284,7 @@ pub const ICorrelationVectorSource = extern union {
         get_CorrelationVector: *const fn(
             self: *const ICorrelationVectorSource,
             cv: ?*?HSTRING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -331,12 +331,12 @@ pub const ICastingEventHandler = extern union {
         OnStateChanged: *const fn(
             self: *const ICastingEventHandler,
             newState: CASTING_CONNECTION_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnError: *const fn(
             self: *const ICastingEventHandler,
             errorStatus: CASTING_CONNECTION_ERROR_STATUS,
             errorMessage: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -357,22 +357,22 @@ pub const ICastingController = extern union {
             self: *const ICastingController,
             castingEngine: ?*IUnknown,
             castingSource: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Connect: *const fn(
             self: *const ICastingController,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const ICastingController,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Advise: *const fn(
             self: *const ICastingController,
             eventHandler: ?*ICastingEventHandler,
             cookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnAdvise: *const fn(
             self: *const ICastingController,
             cookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -401,11 +401,11 @@ pub const ICastingSourceInfo = extern union {
         GetController: *const fn(
             self: *const ICastingSourceInfo,
             controller: ?*?*ICastingController,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperties: *const fn(
             self: *const ICastingSourceInfo,
             props: ?*?*INamedPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -427,7 +427,7 @@ pub const IDragDropManagerInterop = extern union {
             hwnd: ?HWND,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -448,7 +448,7 @@ pub const IInputPaneInterop = extern union {
             appWindow: ?HWND,
             riid: ?*const Guid,
             inputPane: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -469,11 +469,11 @@ pub const IPlayToManagerInterop = extern union {
             appWindow: ?HWND,
             riid: ?*const Guid,
             playToManager: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowPlayToUIForWindow: *const fn(
             self: *const IPlayToManagerInterop,
             appWindow: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -495,17 +495,17 @@ pub const ICorrelationVectorInformation = extern union {
         get_LastCorrelationVectorForThread: *const fn(
             self: *const ICorrelationVectorInformation,
             cv: ?*?HSTRING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NextCorrelationVectorForThread: *const fn(
             self: *const ICorrelationVectorInformation,
             cv: ?*?HSTRING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NextCorrelationVectorForThread: *const fn(
             self: *const ICorrelationVectorInformation,
             cv: ?HSTRING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -531,7 +531,7 @@ pub const IUIViewSettingsInterop = extern union {
             hwnd: ?HWND,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -551,7 +551,7 @@ pub const IUserActivityInterop = extern union {
             window: ?HWND,
             iid: ?*const Guid,
             value: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -569,7 +569,7 @@ pub const IUserActivitySourceHostInterop = extern union {
         SetActivitySourceHost: *const fn(
             self: *const IUserActivitySourceHostInterop,
             activitySourceHost: ?HSTRING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -589,7 +589,7 @@ pub const IUserActivityRequestManagerInterop = extern union {
             window: ?HWND,
             iid: ?*const Guid,
             value: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -610,7 +610,7 @@ pub const IUserConsentVerifierInterop = extern union {
             message: ?HSTRING,
             riid: ?*const Guid,
             asyncOperation: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -631,7 +631,7 @@ pub const IWebAuthenticationCoreManagerInterop = extern union {
             request: ?*IInspectable,
             riid: ?*const Guid,
             asyncInfo: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestTokenWithWebAccountForWindowAsync: *const fn(
             self: *const IWebAuthenticationCoreManagerInterop,
             appWindow: ?HWND,
@@ -639,7 +639,7 @@ pub const IWebAuthenticationCoreManagerInterop = extern union {
             webAccount: ?*IInspectable,
             riid: ?*const Guid,
             asyncInfo: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -665,11 +665,11 @@ pub const IRestrictedErrorInfo = extern union {
             @"error": ?*HRESULT,
             restrictedDescription: ?*?BSTR,
             capabilitySid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReference: *const fn(
             self: *const IRestrictedErrorInfo,
             reference: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -690,7 +690,7 @@ pub const ILanguageExceptionErrorInfo = extern union {
         GetLanguageException: *const fn(
             self: *const ILanguageExceptionErrorInfo,
             languageException: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -708,7 +708,7 @@ pub const ILanguageExceptionTransform = extern union {
         GetTransformedRestrictedErrorInfo: *const fn(
             self: *const ILanguageExceptionTransform,
             restrictedErrorInfo: ?*?*IRestrictedErrorInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -728,7 +728,7 @@ pub const ILanguageExceptionStackBackTrace = extern union {
             maxFramesToCapture: u32,
             stackBackTrace: ?*usize,
             framesCaptured: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -746,15 +746,15 @@ pub const ILanguageExceptionErrorInfo2 = extern union {
         GetPreviousLanguageExceptionErrorInfo: *const fn(
             self: *const ILanguageExceptionErrorInfo2,
             previousLanguageExceptionErrorInfo: ?*?*ILanguageExceptionErrorInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CapturePropagationContext: *const fn(
             self: *const ILanguageExceptionErrorInfo2,
             languageException: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropagationContextHead: *const fn(
             self: *const ILanguageExceptionErrorInfo2,
             propagatedLanguageExceptionErrorInfoHead: ?*?*ILanguageExceptionErrorInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ILanguageExceptionErrorInfo: ILanguageExceptionErrorInfo,
@@ -779,7 +779,7 @@ pub const IActivationFactory = extern union {
         ActivateInstance: *const fn(
             self: *const IActivationFactory,
             instance: ?*?*IInspectable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -808,7 +808,7 @@ pub const IBufferByteAccess = extern union {
         Buffer: *const fn(
             self: *const IBufferByteAccess,
             value: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -862,63 +862,63 @@ pub const PINSPECT_MEMORY_CALLBACK = *const fn(
     readAddress: usize,
     length: u32,
     buffer: [*:0]u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const IRoSimpleMetaDataBuilder = extern union {
     pub const VTable = extern struct {
         SetWinRtInterface: *const fn(
             self: *const IRoSimpleMetaDataBuilder,
             iid: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDelegate: *const fn(
             self: *const IRoSimpleMetaDataBuilder,
             iid: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInterfaceGroupSimpleDefault: *const fn(
             self: *const IRoSimpleMetaDataBuilder,
             name: ?[*:0]const u16,
             defaultInterfaceName: ?[*:0]const u16,
             defaultInterfaceIID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInterfaceGroupParameterizedDefault: *const fn(
             self: *const IRoSimpleMetaDataBuilder,
             name: ?[*:0]const u16,
             elementCount: u32,
             defaultInterfaceNameElements: [*]?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRuntimeClassSimpleDefault: *const fn(
             self: *const IRoSimpleMetaDataBuilder,
             name: ?[*:0]const u16,
             defaultInterfaceName: ?[*:0]const u16,
             defaultInterfaceIID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRuntimeClassParameterizedDefault: *const fn(
             self: *const IRoSimpleMetaDataBuilder,
             name: ?[*:0]const u16,
             elementCount: u32,
             defaultInterfaceNameElements: [*]const ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStruct: *const fn(
             self: *const IRoSimpleMetaDataBuilder,
             name: ?[*:0]const u16,
             numFields: u32,
             fieldTypeNames: [*]const ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnum: *const fn(
             self: *const IRoSimpleMetaDataBuilder,
             name: ?[*:0]const u16,
             baseType: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetParameterizedInterface: *const fn(
             self: *const IRoSimpleMetaDataBuilder,
             piid: Guid,
             numArgs: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetParameterizedDelegate: *const fn(
             self: *const IRoSimpleMetaDataBuilder,
             piid: Guid,
             numArgs: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     pub fn SetWinRtInterface(self: *const IRoSimpleMetaDataBuilder, iid: Guid) callconv(.Inline) HRESULT {
@@ -959,7 +959,7 @@ pub const IRoMetaDataLocator = extern union {
             self: *const IRoMetaDataLocator,
             nameElement: ?[*:0]const u16,
             metaDataDestination: ?*IRoSimpleMetaDataBuilder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     pub fn Locate(self: *const IRoMetaDataLocator, nameElement: ?[*:0]const u16, metaDataDestination: ?*IRoSimpleMetaDataBuilder) callconv(.Inline) HRESULT {
@@ -983,7 +983,7 @@ pub const IMemoryBufferByteAccess = extern union {
             self: *const IMemoryBufferByteAccess,
             value: ?*?*u8,
             capacity: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1002,7 +1002,7 @@ pub const IWeakReference = extern union {
             self: *const IWeakReference,
             riid: ?*const Guid,
             objectReference: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1020,7 +1020,7 @@ pub const IWeakReferenceSource = extern union {
         GetWeakReference: *const fn(
             self: *const IWeakReferenceSource,
             weakReference: ?*?*IWeakReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1039,7 +1039,7 @@ pub const ISystemMediaTransportControlsInterop = extern union {
             appWindow: ?HWND,
             riid: ?*const Guid,
             mediaTransportControl: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -1057,7 +1057,7 @@ pub const IShareWindowCommandEventArgsInterop = extern union {
         GetWindow: *const fn(
             self: *const IShareWindowCommandEventArgsInterop,
             value: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1076,7 +1076,7 @@ pub const IShareWindowCommandSourceInterop = extern union {
             appWindow: ?HWND,
             riid: ?*const Guid,
             shareWindowCommandSource: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1092,7 +1092,7 @@ pub const IMessageDispatcher = extern union {
         base: IInspectable.VTable,
         PumpMessages: *const fn(
             self: *const IMessageDispatcher,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -1111,12 +1111,12 @@ pub const ICoreWindowInterop = extern union {
         get_WindowHandle: *const fn(
             self: *const ICoreWindowInterop,
             hwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MessageHandled: *const fn(
             self: *const ICoreWindowInterop,
             value: u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1136,12 +1136,12 @@ pub const ICoreInputInterop = extern union {
         SetInputSource: *const fn(
             self: *const ICoreInputInterop,
             value: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MessageHandled: *const fn(
             self: *const ICoreInputInterop,
             value: u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1163,11 +1163,11 @@ pub const ICoreWindowComponentInterop = extern union {
             hostViewInstanceId: u32,
             hwndHost: ?HWND,
             inputSourceVisual: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetViewInstanceId: *const fn(
             self: *const ICoreWindowComponentInterop,
             componentViewInstanceId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1188,41 +1188,41 @@ pub const ICoreWindowAdapterInterop = extern union {
         get_AppActivationClientAdapter: *const fn(
             self: *const ICoreWindowAdapterInterop,
             value: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationViewClientAdapter: *const fn(
             self: *const ICoreWindowAdapterInterop,
             value: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CoreApplicationViewClientAdapter: *const fn(
             self: *const ICoreWindowAdapterInterop,
             value: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HoloViewClientAdapter: *const fn(
             self: *const ICoreWindowAdapterInterop,
             value: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PositionerClientAdapter: *const fn(
             self: *const ICoreWindowAdapterInterop,
             value: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SystemNavigationClientAdapter: *const fn(
             self: *const ICoreWindowAdapterInterop,
             value: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TitleBarClientAdapter: *const fn(
             self: *const ICoreWindowAdapterInterop,
             value: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWindowClientAdapter: *const fn(
             self: *const ICoreWindowAdapterInterop,
             value: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -1261,7 +1261,7 @@ pub extern "ole32" fn CoDecodeProxy(
     dwClientPid: u32,
     ui64ProxyAddress: u64,
     pServerInformation: ?*ServerInformation,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ole32" fn RoGetAgileReference(
@@ -1269,68 +1269,68 @@ pub extern "ole32" fn RoGetAgileReference(
     riid: ?*const Guid,
     pUnk: ?*IUnknown,
     ppAgileReference: **IAgileReference,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserSize(
     param0: ?*u32,
     param1: u32,
     param2: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserMarshal(
     param0: ?*u32,
     param1: ?*u8,
     param2: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
+) callconv(.winapi) ?*u8;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserUnmarshal(
     param0: ?*u32,
     param1: [*:0]u8,
     param2: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
+) callconv(.winapi) ?*u8;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserFree(
     param0: ?*u32,
     param1: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserSize64(
     param0: ?*u32,
     param1: u32,
     param2: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserMarshal64(
     param0: ?*u32,
     param1: ?*u8,
     param2: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
+) callconv(.winapi) ?*u8;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserUnmarshal64(
     param0: ?*u32,
     param1: [*:0]u8,
     param2: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
+) callconv(.winapi) ?*u8;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserFree64(
     param0: ?*u32,
     param1: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsCreateString(
     sourceString: ?[*:0]const u16,
     length: u32,
     string: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsCreateStringReference(
@@ -1338,54 +1338,54 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsCreateStringReference
     length: u32,
     hstringHeader: ?*HSTRING_HEADER,
     string: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsDeleteString(
     string: ?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsDuplicateString(
     string: ?HSTRING,
     newString: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsGetStringLen(
     string: ?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsGetStringRawBuffer(
     string: ?HSTRING,
     length: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsIsStringEmpty(
     string: ?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsStringHasEmbeddedNull(
     string: ?HSTRING,
     hasEmbedNull: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsCompareStringOrdinal(
     string1: ?HSTRING,
     string2: ?HSTRING,
     result: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsSubstring(
     string: ?HSTRING,
     startIndex: u32,
     newString: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsSubstringWithSpecifiedLength(
@@ -1393,14 +1393,14 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsSubstringWithSpecifie
     startIndex: u32,
     length: u32,
     newString: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsConcatString(
     string1: ?HSTRING,
     string2: ?HSTRING,
     newString: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsReplaceString(
@@ -1408,39 +1408,39 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsReplaceString(
     stringReplaced: ?HSTRING,
     stringReplaceWith: ?HSTRING,
     newString: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsTrimStringStart(
     string: ?HSTRING,
     trimString: ?HSTRING,
     newString: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsTrimStringEnd(
     string: ?HSTRING,
     trimString: ?HSTRING,
     newString: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsPreallocateStringBuffer(
     length: u32,
     charBuffer: ?*?*u16,
     bufferHandle: ?*?HSTRING_BUFFER,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsPromoteStringBuffer(
     bufferHandle: ?HSTRING_BUFFER,
     string: ?*?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsDeleteStringBuffer(
     bufferHandle: ?HSTRING_BUFFER,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsInspectString(
@@ -1450,7 +1450,7 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsInspectString(
     context: ?*anyopaque,
     length: ?*u32,
     targetStringAddress: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-1" fn WindowsInspectString2(
@@ -1460,27 +1460,27 @@ pub extern "api-ms-win-core-winrt-string-l1-1-1" fn WindowsInspectString2(
     context: ?*anyopaque,
     length: ?*u32,
     targetStringAddress: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "coremessaging" fn CreateDispatcherQueueController(
     options: DispatcherQueueOptions,
     dispatcherQueueController: ?**struct{comment: []const u8 = "MissingClrType DispatcherQueueController.Windows.System"},
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoInitialize(
     initType: RO_INIT_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoUninitialize(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoActivateInstance(
     activatableClassId: ?HSTRING,
     instance: **IInspectable,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoRegisterActivationFactories(
@@ -1488,80 +1488,80 @@ pub extern "api-ms-win-core-winrt-l1-1-0" fn RoRegisterActivationFactories(
     activationFactoryCallbacks: [*]isize,
     count: u32,
     cookie: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoRevokeActivationFactories(
     cookie: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoGetActivationFactory(
     activatableClassId: ?HSTRING,
     iid: ?*const Guid,
     factory: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoRegisterForApartmentShutdown(
     callbackObject: ?*IApartmentShutdown,
     apartmentIdentifier: ?*u64,
     regCookie: ?*APARTMENT_SHUTDOWN_REGISTRATION_COOKIE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoUnregisterForApartmentShutdown(
     regCookie: APARTMENT_SHUTDOWN_REGISTRATION_COOKIE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoGetApartmentIdentifier(
     apartmentIdentifier: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-robuffer-l1-1-0" fn RoGetBufferMarshaler(
     bufferMarshaler: ?*?*IMarshal,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoGetErrorReportingFlags(
     pflags: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoSetErrorReportingFlags(
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoResolveRestrictedErrorInfoReference(
     reference: ?[*:0]const u16,
     ppRestrictedErrorInfo: ?*?*IRestrictedErrorInfo,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn SetRestrictedErrorInfo(
     pRestrictedErrorInfo: ?*IRestrictedErrorInfo,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn GetRestrictedErrorInfo(
     ppRestrictedErrorInfo: ?*?*IRestrictedErrorInfo,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoOriginateErrorW(
     @"error": HRESULT,
     cchMax: u32,
     message: ?*[512]u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoOriginateError(
     @"error": HRESULT,
     message: ?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoTransformErrorW(
@@ -1569,39 +1569,39 @@ pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoTransformErrorW(
     newError: HRESULT,
     cchMax: u32,
     message: ?*[512]u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoTransformError(
     oldError: HRESULT,
     newError: HRESULT,
     message: ?HSTRING,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoCaptureErrorContext(
     hr: HRESULT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoFailFastWithErrorContext(
     hrError: HRESULT,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoOriginateLanguageException(
     @"error": HRESULT,
     message: ?HSTRING,
     languageException: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoClearError(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoReportUnhandledError(
     pRestrictedErrorInfo: ?*IRestrictedErrorInfo,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoInspectThreadErrorInfo(
@@ -1610,7 +1610,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoInspectThreadErrorInfo(
     readMemoryCallback: ?PINSPECT_MEMORY_CALLBACK,
     context: ?*anyopaque,
     targetErrorInfoAddress: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoInspectCapturedStackBackTrace(
@@ -1620,28 +1620,28 @@ pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoInspectCapturedStackBackTra
     context: ?*anyopaque,
     frameCount: ?*u32,
     targetBackTraceAddress: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoGetMatchingRestrictedErrorInfo(
     hrIn: HRESULT,
     ppRestrictedErrorInfo: **IRestrictedErrorInfo,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoReportFailedDelegate(
     punkDelegate: ?*IUnknown,
     pRestrictedErrorInfo: ?*IRestrictedErrorInfo,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn IsErrorPropagationEnabled(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "rometadata" fn MetaDataGetDispenser(
     rclsid: ?*const Guid,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-roparameterizediid-l1-1-0" fn RoGetParameterizedTypeInstanceIID(
@@ -1650,24 +1650,24 @@ pub extern "api-ms-win-core-winrt-roparameterizediid-l1-1-0" fn RoGetParameteriz
     metaDataLocator: ?*IRoMetaDataLocator,
     iid: ?*Guid,
     pExtra: ?*ROPARAMIIDHANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-roparameterizediid-l1-1-0" fn RoFreeParameterizedTypeExtra(
     extra: ROPARAMIIDHANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-roparameterizediid-l1-1-0" fn RoParameterizedTypeExtraGetTypeSignature(
     extra: ROPARAMIIDHANDLE,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-registration-l1-1-0" fn RoGetServerActivatableClasses(
     serverName: ?HSTRING,
     activatableClassIds: ?*?*?HSTRING,
     count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOnFile(
@@ -1675,7 +1675,7 @@ pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOn
     accessMode: u32,
     riid: ?*const Guid,
     ppv: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOverStream(
@@ -1683,25 +1683,25 @@ pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOv
     options: BSOS_OPTIONS,
     riid: ?*const Guid,
     ppv: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateStreamOverRandomAccessStream(
     randomAccessStream: ?*IUnknown,
     riid: ?*const Guid,
     ppv: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "windows.ui" fn CreateControlInput(
     riid: ?*const Guid,
     ppv: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "windows.ui" fn CreateControlInputEx(
     pCoreWindow: ?*IUnknown,
     riid: ?*const Guid,
     ppv: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

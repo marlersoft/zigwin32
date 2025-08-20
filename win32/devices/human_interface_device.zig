@@ -2528,7 +2528,7 @@ pub const DIFILEEFFECT = extern struct {
 pub const LPDIENUMEFFECTSINFILECALLBACK = *const fn(
     param0: ?*DIFILEEFFECT,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const DIEFFESCAPE = extern struct {
     dwSize: u32,
@@ -2549,43 +2549,43 @@ pub const IDirectInputEffect = extern union {
             param0: ?HINSTANCE,
             param1: u32,
             param2: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectGuid: *const fn(
             self: *const IDirectInputEffect,
             param0: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParameters: *const fn(
             self: *const IDirectInputEffect,
             param0: ?*DIEFFECT,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetParameters: *const fn(
             self: *const IDirectInputEffect,
             param0: ?*DIEFFECT,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Start: *const fn(
             self: *const IDirectInputEffect,
             param0: u32,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IDirectInputEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectStatus: *const fn(
             self: *const IDirectInputEffect,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Download: *const fn(
             self: *const IDirectInputEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unload: *const fn(
             self: *const IDirectInputEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Escape: *const fn(
             self: *const IDirectInputEffect,
             param0: ?*DIEFFESCAPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2859,12 +2859,12 @@ pub const DIDEVICEOBJECTINSTANCEW = extern struct {
 pub const LPDIENUMDEVICEOBJECTSCALLBACKA = *const fn(
     param0: ?*DIDEVICEOBJECTINSTANCEA,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPDIENUMDEVICEOBJECTSCALLBACKW = *const fn(
     param0: ?*DIDEVICEOBJECTINSTANCEW,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const DIPROPHEADER = extern struct {
     dwSize: u32,
@@ -2989,75 +2989,75 @@ pub const IDirectInputDeviceW = extern union {
         GetCapabilities: *const fn(
             self: *const IDirectInputDeviceW,
             param0: ?*DIDEVCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumObjects: *const fn(
             self: *const IDirectInputDeviceW,
             param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW,
             param1: ?*anyopaque,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IDirectInputDeviceW,
             param0: ?*const Guid,
             param1: ?*DIPROPHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IDirectInputDeviceW,
             param0: ?*const Guid,
             param1: ?*DIPROPHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Acquire: *const fn(
             self: *const IDirectInputDeviceW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unacquire: *const fn(
             self: *const IDirectInputDeviceW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceState: *const fn(
             self: *const IDirectInputDeviceW,
             param0: u32,
             param1: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceData: *const fn(
             self: *const IDirectInputDeviceW,
             param0: u32,
             param1: ?*DIDEVICEOBJECTDATA,
             param2: ?*u32,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDataFormat: *const fn(
             self: *const IDirectInputDeviceW,
             param0: ?*DIDATAFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventNotification: *const fn(
             self: *const IDirectInputDeviceW,
             param0: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCooperativeLevel: *const fn(
             self: *const IDirectInputDeviceW,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectInfo: *const fn(
             self: *const IDirectInputDeviceW,
             param0: ?*DIDEVICEOBJECTINSTANCEW,
             param1: u32,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceInfo: *const fn(
             self: *const IDirectInputDeviceW,
             param0: ?*DIDEVICEINSTANCEW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RunControlPanel: *const fn(
             self: *const IDirectInputDeviceW,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectInputDeviceW,
             param0: ?HINSTANCE,
             param1: u32,
             param2: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3116,75 +3116,75 @@ pub const IDirectInputDeviceA = extern union {
         GetCapabilities: *const fn(
             self: *const IDirectInputDeviceA,
             param0: ?*DIDEVCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumObjects: *const fn(
             self: *const IDirectInputDeviceA,
             param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA,
             param1: ?*anyopaque,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IDirectInputDeviceA,
             param0: ?*const Guid,
             param1: ?*DIPROPHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IDirectInputDeviceA,
             param0: ?*const Guid,
             param1: ?*DIPROPHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Acquire: *const fn(
             self: *const IDirectInputDeviceA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unacquire: *const fn(
             self: *const IDirectInputDeviceA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceState: *const fn(
             self: *const IDirectInputDeviceA,
             param0: u32,
             param1: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceData: *const fn(
             self: *const IDirectInputDeviceA,
             param0: u32,
             param1: ?*DIDEVICEOBJECTDATA,
             param2: ?*u32,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDataFormat: *const fn(
             self: *const IDirectInputDeviceA,
             param0: ?*DIDATAFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventNotification: *const fn(
             self: *const IDirectInputDeviceA,
             param0: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCooperativeLevel: *const fn(
             self: *const IDirectInputDeviceA,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectInfo: *const fn(
             self: *const IDirectInputDeviceA,
             param0: ?*DIDEVICEOBJECTINSTANCEA,
             param1: u32,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceInfo: *const fn(
             self: *const IDirectInputDeviceA,
             param0: ?*DIDEVICEINSTANCEA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RunControlPanel: *const fn(
             self: *const IDirectInputDeviceA,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectInputDeviceA,
             param0: ?HINSTANCE,
             param1: u32,
             param2: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3256,17 +3256,17 @@ pub const DIEFFECTINFOW = extern struct {
 pub const LPDIENUMEFFECTSCALLBACKA = *const fn(
     param0: ?*DIEFFECTINFOA,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPDIENUMEFFECTSCALLBACKW = *const fn(
     param0: ?*DIEFFECTINFOW,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPDIENUMCREATEDEFFECTOBJECTSCALLBACK = *const fn(
     param0: ?*IDirectInputEffect,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 const IID_IDirectInputDevice2W_Value = Guid.initString("5944e683-c92e-11cf-bfc7-444553540000");
 pub const IID_IDirectInputDevice2W = &IID_IDirectInputDevice2W_Value;
@@ -3279,46 +3279,46 @@ pub const IDirectInputDevice2W = extern union {
             param1: ?*DIEFFECT,
             param2: ?*?*IDirectInputEffect,
             param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumEffects: *const fn(
             self: *const IDirectInputDevice2W,
             param0: ?LPDIENUMEFFECTSCALLBACKW,
             param1: ?*anyopaque,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectInfo: *const fn(
             self: *const IDirectInputDevice2W,
             param0: ?*DIEFFECTINFOW,
             param1: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetForceFeedbackState: *const fn(
             self: *const IDirectInputDevice2W,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendForceFeedbackCommand: *const fn(
             self: *const IDirectInputDevice2W,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumCreatedEffectObjects: *const fn(
             self: *const IDirectInputDevice2W,
             param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
             param1: ?*anyopaque,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Escape: *const fn(
             self: *const IDirectInputDevice2W,
             param0: ?*DIEFFESCAPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Poll: *const fn(
             self: *const IDirectInputDevice2W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendDeviceData: *const fn(
             self: *const IDirectInputDevice2W,
             param0: u32,
             param1: ?*DIDEVICEOBJECTDATA,
             param2: ?*u32,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectInputDeviceW: IDirectInputDeviceW,
@@ -3363,46 +3363,46 @@ pub const IDirectInputDevice2A = extern union {
             param1: ?*DIEFFECT,
             param2: ?*?*IDirectInputEffect,
             param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumEffects: *const fn(
             self: *const IDirectInputDevice2A,
             param0: ?LPDIENUMEFFECTSCALLBACKA,
             param1: ?*anyopaque,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectInfo: *const fn(
             self: *const IDirectInputDevice2A,
             param0: ?*DIEFFECTINFOA,
             param1: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetForceFeedbackState: *const fn(
             self: *const IDirectInputDevice2A,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendForceFeedbackCommand: *const fn(
             self: *const IDirectInputDevice2A,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumCreatedEffectObjects: *const fn(
             self: *const IDirectInputDevice2A,
             param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
             param1: ?*anyopaque,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Escape: *const fn(
             self: *const IDirectInputDevice2A,
             param0: ?*DIEFFESCAPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Poll: *const fn(
             self: *const IDirectInputDevice2A,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendDeviceData: *const fn(
             self: *const IDirectInputDevice2A,
             param0: u32,
             param1: ?*DIDEVICEOBJECTDATA,
             param2: ?*u32,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectInputDeviceA: IDirectInputDeviceA,
@@ -3447,14 +3447,14 @@ pub const IDirectInputDevice7W = extern union {
             param1: ?LPDIENUMEFFECTSINFILECALLBACK,
             param2: ?*anyopaque,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteEffectToFile: *const fn(
             self: *const IDirectInputDevice7W,
             param0: ?[*:0]const u16,
             param1: u32,
             param2: ?*DIFILEEFFECT,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectInputDevice2W: IDirectInputDevice2W,
@@ -3479,14 +3479,14 @@ pub const IDirectInputDevice7A = extern union {
             param1: ?LPDIENUMEFFECTSINFILECALLBACK,
             param2: ?*anyopaque,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteEffectToFile: *const fn(
             self: *const IDirectInputDevice7A,
             param0: ?[*:0]const u8,
             param1: u32,
             param2: ?*DIFILEEFFECT,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectInputDevice2A: IDirectInputDevice2A,
@@ -3508,151 +3508,151 @@ pub const IDirectInputDevice8W = extern union {
         GetCapabilities: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*DIDEVCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumObjects: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW,
             param1: ?*anyopaque,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*const Guid,
             param1: ?*DIPROPHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*const Guid,
             param1: ?*DIPROPHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Acquire: *const fn(
             self: *const IDirectInputDevice8W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unacquire: *const fn(
             self: *const IDirectInputDevice8W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceState: *const fn(
             self: *const IDirectInputDevice8W,
             param0: u32,
             param1: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceData: *const fn(
             self: *const IDirectInputDevice8W,
             param0: u32,
             param1: ?*DIDEVICEOBJECTDATA,
             param2: ?*u32,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDataFormat: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*DIDATAFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventNotification: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCooperativeLevel: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectInfo: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*DIDEVICEOBJECTINSTANCEW,
             param1: u32,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceInfo: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*DIDEVICEINSTANCEW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RunControlPanel: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?HINSTANCE,
             param1: u32,
             param2: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEffect: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*const Guid,
             param1: ?*DIEFFECT,
             param2: ?*?*IDirectInputEffect,
             param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumEffects: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?LPDIENUMEFFECTSCALLBACKW,
             param1: ?*anyopaque,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectInfo: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*DIEFFECTINFOW,
             param1: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetForceFeedbackState: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendForceFeedbackCommand: *const fn(
             self: *const IDirectInputDevice8W,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumCreatedEffectObjects: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
             param1: ?*anyopaque,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Escape: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*DIEFFESCAPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Poll: *const fn(
             self: *const IDirectInputDevice8W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendDeviceData: *const fn(
             self: *const IDirectInputDevice8W,
             param0: u32,
             param1: ?*DIDEVICEOBJECTDATA,
             param2: ?*u32,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumEffectsInFile: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?[*:0]const u16,
             param1: ?LPDIENUMEFFECTSINFILECALLBACK,
             param2: ?*anyopaque,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteEffectToFile: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?[*:0]const u16,
             param1: u32,
             param2: ?*DIFILEEFFECT,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BuildActionMap: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*DIACTIONFORMATW,
             param1: ?[*:0]const u16,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetActionMap: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*DIACTIONFORMATW,
             param1: ?[*:0]const u16,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImageInfo: *const fn(
             self: *const IDirectInputDevice8W,
             param0: ?*DIDEVICEIMAGEINFOHEADERW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3753,151 +3753,151 @@ pub const IDirectInputDevice8A = extern union {
         GetCapabilities: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*DIDEVCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumObjects: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA,
             param1: ?*anyopaque,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*const Guid,
             param1: ?*DIPROPHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*const Guid,
             param1: ?*DIPROPHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Acquire: *const fn(
             self: *const IDirectInputDevice8A,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unacquire: *const fn(
             self: *const IDirectInputDevice8A,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceState: *const fn(
             self: *const IDirectInputDevice8A,
             param0: u32,
             param1: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceData: *const fn(
             self: *const IDirectInputDevice8A,
             param0: u32,
             param1: ?*DIDEVICEOBJECTDATA,
             param2: ?*u32,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDataFormat: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*DIDATAFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventNotification: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCooperativeLevel: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectInfo: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*DIDEVICEOBJECTINSTANCEA,
             param1: u32,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceInfo: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*DIDEVICEINSTANCEA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RunControlPanel: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?HINSTANCE,
             param1: u32,
             param2: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEffect: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*const Guid,
             param1: ?*DIEFFECT,
             param2: ?*?*IDirectInputEffect,
             param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumEffects: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?LPDIENUMEFFECTSCALLBACKA,
             param1: ?*anyopaque,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectInfo: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*DIEFFECTINFOA,
             param1: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetForceFeedbackState: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendForceFeedbackCommand: *const fn(
             self: *const IDirectInputDevice8A,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumCreatedEffectObjects: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
             param1: ?*anyopaque,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Escape: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*DIEFFESCAPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Poll: *const fn(
             self: *const IDirectInputDevice8A,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendDeviceData: *const fn(
             self: *const IDirectInputDevice8A,
             param0: u32,
             param1: ?*DIDEVICEOBJECTDATA,
             param2: ?*u32,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumEffectsInFile: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?[*:0]const u8,
             param1: ?LPDIENUMEFFECTSINFILECALLBACK,
             param2: ?*anyopaque,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteEffectToFile: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?[*:0]const u8,
             param1: u32,
             param2: ?*DIFILEEFFECT,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BuildActionMap: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*DIACTIONFORMATA,
             param1: ?[*:0]const u8,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetActionMap: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*DIACTIONFORMATA,
             param1: ?[*:0]const u8,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImageInfo: *const fn(
             self: *const IDirectInputDevice8A,
             param0: ?*DIDEVICEIMAGEINFOHEADERA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4052,17 +4052,17 @@ pub const DIJOYSTATE2 = extern struct {
 pub const LPDIENUMDEVICESCALLBACKA = *const fn(
     param0: ?*DIDEVICEINSTANCEA,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPDIENUMDEVICESCALLBACKW = *const fn(
     param0: ?*DIDEVICEINSTANCEW,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPDICONFIGUREDEVICESCALLBACK = *const fn(
     param0: ?*IUnknown,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPDIENUMDEVICESBYSEMANTICSCBA = *const fn(
     param0: ?*DIDEVICEINSTANCEA,
@@ -4070,7 +4070,7 @@ pub const LPDIENUMDEVICESBYSEMANTICSCBA = *const fn(
     param2: u32,
     param3: u32,
     param4: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPDIENUMDEVICESBYSEMANTICSCBW = *const fn(
     param0: ?*DIDEVICEINSTANCEW,
@@ -4078,7 +4078,7 @@ pub const LPDIENUMDEVICESBYSEMANTICSCBW = *const fn(
     param2: u32,
     param3: u32,
     param4: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 const IID_IDirectInputW_Value = Guid.initString("89521361-aa8a-11cf-bfc7-444553540000");
 pub const IID_IDirectInputW = &IID_IDirectInputW_Value;
@@ -4090,28 +4090,28 @@ pub const IDirectInputW = extern union {
             param0: ?*const Guid,
             param1: ?*?*IDirectInputDeviceW,
             param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDevices: *const fn(
             self: *const IDirectInputW,
             param0: u32,
             param1: ?LPDIENUMDEVICESCALLBACKW,
             param2: ?*anyopaque,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceStatus: *const fn(
             self: *const IDirectInputW,
             param0: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RunControlPanel: *const fn(
             self: *const IDirectInputW,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectInputW,
             param0: ?HINSTANCE,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4142,28 +4142,28 @@ pub const IDirectInputA = extern union {
             param0: ?*const Guid,
             param1: ?*?*IDirectInputDeviceA,
             param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDevices: *const fn(
             self: *const IDirectInputA,
             param0: u32,
             param1: ?LPDIENUMDEVICESCALLBACKA,
             param2: ?*anyopaque,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceStatus: *const fn(
             self: *const IDirectInputA,
             param0: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RunControlPanel: *const fn(
             self: *const IDirectInputA,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectInputA,
             param0: ?HINSTANCE,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4194,7 +4194,7 @@ pub const IDirectInput2W = extern union {
             param0: ?*const Guid,
             param1: ?[*:0]const u16,
             param2: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectInputW: IDirectInputW,
@@ -4214,7 +4214,7 @@ pub const IDirectInput2A = extern union {
             param0: ?*const Guid,
             param1: ?[*:0]const u8,
             param2: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectInputA: IDirectInputA,
@@ -4235,7 +4235,7 @@ pub const IDirectInput7W = extern union {
             param1: ?*const Guid,
             param2: ?*?*anyopaque,
             param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectInput2W: IDirectInput2W,
@@ -4257,7 +4257,7 @@ pub const IDirectInput7A = extern union {
             param1: ?*const Guid,
             param2: ?*?*anyopaque,
             param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectInput2A: IDirectInput2A,
@@ -4278,34 +4278,34 @@ pub const IDirectInput8W = extern union {
             param0: ?*const Guid,
             param1: ?*?*IDirectInputDevice8W,
             param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDevices: *const fn(
             self: *const IDirectInput8W,
             param0: u32,
             param1: ?LPDIENUMDEVICESCALLBACKW,
             param2: ?*anyopaque,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceStatus: *const fn(
             self: *const IDirectInput8W,
             param0: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RunControlPanel: *const fn(
             self: *const IDirectInput8W,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectInput8W,
             param0: ?HINSTANCE,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindDevice: *const fn(
             self: *const IDirectInput8W,
             param0: ?*const Guid,
             param1: ?[*:0]const u16,
             param2: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDevicesBySemantics: *const fn(
             self: *const IDirectInput8W,
             param0: ?[*:0]const u16,
@@ -4313,14 +4313,14 @@ pub const IDirectInput8W = extern union {
             param2: ?LPDIENUMDEVICESBYSEMANTICSCBW,
             param3: ?*anyopaque,
             param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConfigureDevices: *const fn(
             self: *const IDirectInput8W,
             param0: ?LPDICONFIGUREDEVICESCALLBACK,
             param1: ?*DICONFIGUREDEVICESPARAMSW,
             param2: u32,
             param3: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4360,34 +4360,34 @@ pub const IDirectInput8A = extern union {
             param0: ?*const Guid,
             param1: ?*?*IDirectInputDevice8A,
             param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDevices: *const fn(
             self: *const IDirectInput8A,
             param0: u32,
             param1: ?LPDIENUMDEVICESCALLBACKA,
             param2: ?*anyopaque,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceStatus: *const fn(
             self: *const IDirectInput8A,
             param0: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RunControlPanel: *const fn(
             self: *const IDirectInput8A,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectInput8A,
             param0: ?HINSTANCE,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindDevice: *const fn(
             self: *const IDirectInput8A,
             param0: ?*const Guid,
             param1: ?[*:0]const u8,
             param2: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDevicesBySemantics: *const fn(
             self: *const IDirectInput8A,
             param0: ?[*:0]const u8,
@@ -4395,14 +4395,14 @@ pub const IDirectInput8A = extern union {
             param2: ?LPDIENUMDEVICESBYSEMANTICSCBA,
             param3: ?*anyopaque,
             param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConfigureDevices: *const fn(
             self: *const IDirectInput8A,
             param0: ?LPDICONFIGUREDEVICESCALLBACK,
             param1: ?*DICONFIGUREDEVICESPARAMSA,
             param2: u32,
             param3: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4434,7 +4434,7 @@ pub const IDirectInput8A = extern union {
 
 pub const LPFNSHOWJOYCPL = *const fn(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const DIOBJECTATTRIBUTES = extern struct {
     dwFlags: u32,
@@ -4503,32 +4503,32 @@ pub const IDirectInputEffectDriver = extern union {
             param2: u32,
             param3: u32,
             param4: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVersions: *const fn(
             self: *const IDirectInputEffectDriver,
             param0: ?*DIDRIVERVERSIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Escape: *const fn(
             self: *const IDirectInputEffectDriver,
             param0: u32,
             param1: u32,
             param2: ?*DIEFFESCAPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGain: *const fn(
             self: *const IDirectInputEffectDriver,
             param0: u32,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendForceFeedbackCommand: *const fn(
             self: *const IDirectInputEffectDriver,
             param0: u32,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetForceFeedbackState: *const fn(
             self: *const IDirectInputEffectDriver,
             param0: u32,
             param1: ?*DIDEVICESTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DownloadEffect: *const fn(
             self: *const IDirectInputEffectDriver,
             param0: u32,
@@ -4536,30 +4536,30 @@ pub const IDirectInputEffectDriver = extern union {
             param2: ?*u32,
             param3: ?*DIEFFECT,
             param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestroyEffect: *const fn(
             self: *const IDirectInputEffectDriver,
             param0: u32,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartEffect: *const fn(
             self: *const IDirectInputEffectDriver,
             param0: u32,
             param1: u32,
             param2: u32,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopEffect: *const fn(
             self: *const IDirectInputEffectDriver,
             param0: u32,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectStatus: *const fn(
             self: *const IDirectInputEffectDriver,
             param0: u32,
             param1: u32,
             param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4650,7 +4650,7 @@ pub const JOYCALIBRATE = extern struct {
 pub const LPDIJOYTYPECALLBACK = *const fn(
     param0: ?[*:0]const u16,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const DIJOYTYPEINFO_DX5 = extern struct {
     dwSize: u32,
@@ -4715,82 +4715,82 @@ pub const IDirectInputJoyConfig = extern union {
         base: IUnknown.VTable,
         Acquire: *const fn(
             self: *const IDirectInputJoyConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unacquire: *const fn(
             self: *const IDirectInputJoyConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCooperativeLevel: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendNotify: *const fn(
             self: *const IDirectInputJoyConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumTypes: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: ?LPDIJOYTYPECALLBACK,
             param1: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTypeInfo: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: ?[*:0]const u16,
             param1: ?*DIJOYTYPEINFO,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTypeInfo: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: ?[*:0]const u16,
             param1: ?*DIJOYTYPEINFO,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteType: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConfig: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: u32,
             param1: ?*DIJOYCONFIG,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConfig: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: u32,
             param1: ?*DIJOYCONFIG,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteConfig: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUserValues: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: ?*DIJOYUSERVALUES,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUserValues: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: ?*DIJOYUSERVALUES,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddNewHardware: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: ?HWND,
             param1: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenTypeKey: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: ?[*:0]const u16,
             param1: u32,
             param2: ?*?HKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenConfigKey: *const fn(
             self: *const IDirectInputJoyConfig,
             param0: u32,
             param1: u32,
             param2: ?*?HKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4851,81 +4851,81 @@ pub const IDirectInputJoyConfig8 = extern union {
         base: IUnknown.VTable,
         Acquire: *const fn(
             self: *const IDirectInputJoyConfig8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unacquire: *const fn(
             self: *const IDirectInputJoyConfig8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCooperativeLevel: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendNotify: *const fn(
             self: *const IDirectInputJoyConfig8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumTypes: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: ?LPDIJOYTYPECALLBACK,
             param1: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTypeInfo: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: ?[*:0]const u16,
             param1: ?*DIJOYTYPEINFO,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTypeInfo: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: ?[*:0]const u16,
             param1: ?*DIJOYTYPEINFO,
             param2: u32,
             param3: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteType: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConfig: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: u32,
             param1: ?*DIJOYCONFIG,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConfig: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: u32,
             param1: ?*DIJOYCONFIG,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteConfig: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUserValues: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: ?*DIJOYUSERVALUES,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUserValues: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: ?*DIJOYUSERVALUES,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddNewHardware: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: ?HWND,
             param1: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenTypeKey: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: ?[*:0]const u16,
             param1: u32,
             param2: ?*?HKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenAppStatusKey: *const fn(
             self: *const IDirectInputJoyConfig8,
             param0: ?*?HKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5253,11 +5253,11 @@ pub const PHIDP_INSERT_SCANCODES = *const fn(
     // TODO: what to do with BytesParamIndex 2?
     NewScanCodes: ?[*]u8,
     Length: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub const PFN_HidP_GetVersionInternal = *const fn(
     Version: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub const HIDD_CONFIGURATION = extern struct {
     cookie: ?*anyopaque align(4),
@@ -5346,23 +5346,23 @@ pub extern "dinput8" fn DirectInput8Create(
     riidltf: ?*const Guid,
     ppvOut: ?*?*anyopaque,
     punkOuter: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn joyConfigChanged(
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "hid" fn HidP_GetCaps(
     PreparsedData: isize,
     Capabilities: ?*HIDP_CAPS,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetLinkCollectionNodes(
     LinkCollectionNodes: [*]HIDP_LINK_COLLECTION_NODE,
     LinkCollectionNodesLength: ?*u32,
     PreparsedData: isize,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetSpecificButtonCaps(
     ReportType: HIDP_REPORT_TYPE,
@@ -5372,14 +5372,14 @@ pub extern "hid" fn HidP_GetSpecificButtonCaps(
     ButtonCaps: [*]HIDP_BUTTON_CAPS,
     ButtonCapsLength: ?*u16,
     PreparsedData: isize,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetButtonCaps(
     ReportType: HIDP_REPORT_TYPE,
     ButtonCaps: [*]HIDP_BUTTON_CAPS,
     ButtonCapsLength: ?*u16,
     PreparsedData: isize,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetSpecificValueCaps(
     ReportType: HIDP_REPORT_TYPE,
@@ -5389,14 +5389,14 @@ pub extern "hid" fn HidP_GetSpecificValueCaps(
     ValueCaps: [*]HIDP_VALUE_CAPS,
     ValueCapsLength: ?*u16,
     PreparsedData: isize,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetValueCaps(
     ReportType: HIDP_REPORT_TYPE,
     ValueCaps: [*]HIDP_VALUE_CAPS,
     ValueCapsLength: ?*u16,
     PreparsedData: isize,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetExtendedAttributes(
     ReportType: HIDP_REPORT_TYPE,
@@ -5404,7 +5404,7 @@ pub extern "hid" fn HidP_GetExtendedAttributes(
     PreparsedData: isize,
     Attributes: [*]HIDP_EXTENDED_ATTRIBUTES,
     LengthAttributes: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_InitializeReportForID(
     ReportType: HIDP_REPORT_TYPE,
@@ -5413,7 +5413,7 @@ pub extern "hid" fn HidP_InitializeReportForID(
     // TODO: what to do with BytesParamIndex 4?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_SetData(
     ReportType: HIDP_REPORT_TYPE,
@@ -5423,7 +5423,7 @@ pub extern "hid" fn HidP_SetData(
     // TODO: what to do with BytesParamIndex 5?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetData(
     ReportType: HIDP_REPORT_TYPE,
@@ -5433,12 +5433,12 @@ pub extern "hid" fn HidP_GetData(
     // TODO: what to do with BytesParamIndex 5?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_MaxDataListLength(
     ReportType: HIDP_REPORT_TYPE,
     PreparsedData: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "hid" fn HidP_SetUsages(
     ReportType: HIDP_REPORT_TYPE,
@@ -5450,7 +5450,7 @@ pub extern "hid" fn HidP_SetUsages(
     // TODO: what to do with BytesParamIndex 7?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_UnsetUsages(
     ReportType: HIDP_REPORT_TYPE,
@@ -5462,7 +5462,7 @@ pub extern "hid" fn HidP_UnsetUsages(
     // TODO: what to do with BytesParamIndex 7?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetUsages(
     ReportType: HIDP_REPORT_TYPE,
@@ -5474,7 +5474,7 @@ pub extern "hid" fn HidP_GetUsages(
     // TODO: what to do with BytesParamIndex 7?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetUsagesEx(
     ReportType: HIDP_REPORT_TYPE,
@@ -5485,13 +5485,13 @@ pub extern "hid" fn HidP_GetUsagesEx(
     // TODO: what to do with BytesParamIndex 6?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_MaxUsageListLength(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     PreparsedData: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "hid" fn HidP_SetUsageValue(
     ReportType: HIDP_REPORT_TYPE,
@@ -5503,7 +5503,7 @@ pub extern "hid" fn HidP_SetUsageValue(
     // TODO: what to do with BytesParamIndex 7?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_SetScaledUsageValue(
     ReportType: HIDP_REPORT_TYPE,
@@ -5515,7 +5515,7 @@ pub extern "hid" fn HidP_SetScaledUsageValue(
     // TODO: what to do with BytesParamIndex 7?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_SetUsageValueArray(
     ReportType: HIDP_REPORT_TYPE,
@@ -5529,7 +5529,7 @@ pub extern "hid" fn HidP_SetUsageValueArray(
     // TODO: what to do with BytesParamIndex 8?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetUsageValue(
     ReportType: HIDP_REPORT_TYPE,
@@ -5541,7 +5541,7 @@ pub extern "hid" fn HidP_GetUsageValue(
     // TODO: what to do with BytesParamIndex 7?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetScaledUsageValue(
     ReportType: HIDP_REPORT_TYPE,
@@ -5553,7 +5553,7 @@ pub extern "hid" fn HidP_GetScaledUsageValue(
     // TODO: what to do with BytesParamIndex 7?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetUsageValueArray(
     ReportType: HIDP_REPORT_TYPE,
@@ -5567,7 +5567,7 @@ pub extern "hid" fn HidP_GetUsageValueArray(
     // TODO: what to do with BytesParamIndex 8?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_UsageListDifference(
     PreviousUsageList: [*:0]u16,
@@ -5575,7 +5575,7 @@ pub extern "hid" fn HidP_UsageListDifference(
     BreakUsageList: [*:0]u16,
     MakeUsageList: [*:0]u16,
     UsageListLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_GetButtonArray(
     ReportType: HIDP_REPORT_TYPE,
@@ -5588,7 +5588,7 @@ pub extern "hid" fn HidP_GetButtonArray(
     // TODO: what to do with BytesParamIndex 8?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_SetButtonArray(
     ReportType: HIDP_REPORT_TYPE,
@@ -5601,7 +5601,7 @@ pub extern "hid" fn HidP_SetButtonArray(
     // TODO: what to do with BytesParamIndex 8?
     Report: ?[*]u8,
     ReportLength: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidP_TranslateUsagesToI8042ScanCodes(
     ChangedUsageList: [*:0]u16,
@@ -5610,102 +5610,102 @@ pub extern "hid" fn HidP_TranslateUsagesToI8042ScanCodes(
     ModifierState: ?*HIDP_KEYBOARD_MODIFIER_STATE,
     InsertCodesProcedure: ?PHIDP_INSERT_SCANCODES,
     InsertCodesContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "hid" fn HidD_GetAttributes(
     HidDeviceObject: ?HANDLE,
     Attributes: ?*HIDD_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetHidGuid(
     HidGuid: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "hid" fn HidD_GetPreparsedData(
     HidDeviceObject: ?HANDLE,
     PreparsedData: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_FreePreparsedData(
     PreparsedData: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_FlushQueue(
     HidDeviceObject: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetConfiguration(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Configuration: ?*HIDD_CONFIGURATION,
     ConfigurationLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_SetConfiguration(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Configuration: ?*HIDD_CONFIGURATION,
     ConfigurationLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetFeature(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_SetFeature(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetInputReport(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_SetOutputReport(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetNumInputBuffers(
     HidDeviceObject: ?HANDLE,
     NumberBuffers: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_SetNumInputBuffers(
     HidDeviceObject: ?HANDLE,
     NumberBuffers: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetPhysicalDescriptor(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*anyopaque,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetManufacturerString(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*anyopaque,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetProductString(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*anyopaque,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetIndexedString(
     HidDeviceObject: ?HANDLE,
@@ -5713,21 +5713,21 @@ pub extern "hid" fn HidD_GetIndexedString(
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*anyopaque,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetSerialNumberString(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*anyopaque,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetMsGenreDescriptor(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*anyopaque,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 
 //--------------------------------------------------------------------------------

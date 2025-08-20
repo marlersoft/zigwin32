@@ -784,7 +784,7 @@ pub const PFN_AUTHZ_DYNAMIC_ACCESS_CHECK = *const fn(
     pAce: ?*ACE_HEADER,
     pArgs: ?*anyopaque,
     pbAceApplicable: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS = *const fn(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
@@ -793,11 +793,11 @@ pub const PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS = *const fn(
     pSidCount: ?*u32,
     pRestrictedSidAttrArray: ?*?*SID_AND_ATTRIBUTES,
     pRestrictedSidCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PFN_AUTHZ_FREE_DYNAMIC_GROUPS = *const fn(
     pSidAttrArray: ?*SID_AND_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY = *const fn(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
@@ -805,11 +805,11 @@ pub const PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY = *const fn(
     pArgs: ?*anyopaque,
     pCentralAccessPolicyApplicable: ?*BOOL,
     ppCentralAccessPolicy: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY = *const fn(
     pCentralAccessPolicy: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
     Version: u64,
@@ -978,264 +978,264 @@ pub const IAzAuthorizationStore = extern union {
         get_Description: *const fn(
             self: *const IAzAuthorizationStore,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzAuthorizationStore,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: *const fn(
             self: *const IAzAuthorizationStore,
             pbstrApplicationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: *const fn(
             self: *const IAzAuthorizationStore,
             bstrApplicationData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DomainTimeout: *const fn(
             self: *const IAzAuthorizationStore,
             plProp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DomainTimeout: *const fn(
             self: *const IAzAuthorizationStore,
             lProp: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ScriptEngineTimeout: *const fn(
             self: *const IAzAuthorizationStore,
             plProp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ScriptEngineTimeout: *const fn(
             self: *const IAzAuthorizationStore,
             lProp: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxScriptEngines: *const fn(
             self: *const IAzAuthorizationStore,
             plProp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxScriptEngines: *const fn(
             self: *const IAzAuthorizationStore,
             lProp: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GenerateAudits: *const fn(
             self: *const IAzAuthorizationStore,
             pbProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GenerateAudits: *const fn(
             self: *const IAzAuthorizationStore,
             bProp: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzAuthorizationStore,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzAuthorizationStore,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzAuthorizationStore,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyItem: *const fn(
             self: *const IAzAuthorizationStore,
             lPropId: AZ_PROP_CONSTANTS,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyItem: *const fn(
             self: *const IAzAuthorizationStore,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministrators: *const fn(
             self: *const IAzAuthorizationStore,
             pvarAdmins: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReaders: *const fn(
             self: *const IAzAuthorizationStore,
             pvarReaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyAdministrator: *const fn(
             self: *const IAzAuthorizationStore,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyAdministrator: *const fn(
             self: *const IAzAuthorizationStore,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyReader: *const fn(
             self: *const IAzAuthorizationStore,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyReader: *const fn(
             self: *const IAzAuthorizationStore,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IAzAuthorizationStore,
             lFlags: AZ_PROP_CONSTANTS,
             bstrPolicyURL: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateCache: *const fn(
             self: *const IAzAuthorizationStore,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IAzAuthorizationStore,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Applications: *const fn(
             self: *const IAzAuthorizationStore,
             ppAppCollection: ?*?*IAzApplications,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenApplication: *const fn(
             self: *const IAzAuthorizationStore,
             bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
             ppApplication: ?*?*IAzApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateApplication: *const fn(
             self: *const IAzAuthorizationStore,
             bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
             ppApplication: ?*?*IAzApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteApplication: *const fn(
             self: *const IAzAuthorizationStore,
             bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationGroups: *const fn(
             self: *const IAzAuthorizationStore,
             ppGroupCollection: ?*?*IAzApplicationGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateApplicationGroup: *const fn(
             self: *const IAzAuthorizationStore,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
             ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenApplicationGroup: *const fn(
             self: *const IAzAuthorizationStore,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
             ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteApplicationGroup: *const fn(
             self: *const IAzAuthorizationStore,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzAuthorizationStore,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelegatedPolicyUsers: *const fn(
             self: *const IAzAuthorizationStore,
             pvarDelegatedPolicyUsers: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDelegatedPolicyUser: *const fn(
             self: *const IAzAuthorizationStore,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteDelegatedPolicyUser: *const fn(
             self: *const IAzAuthorizationStore,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetMachine: *const fn(
             self: *const IAzAuthorizationStore,
             pbstrTargetMachine: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplyStoreSacl: *const fn(
             self: *const IAzAuthorizationStore,
             pbApplyStoreSacl: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplyStoreSacl: *const fn(
             self: *const IAzAuthorizationStore,
             bApplyStoreSacl: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministratorsName: *const fn(
             self: *const IAzAuthorizationStore,
             pvarAdmins: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReadersName: *const fn(
             self: *const IAzAuthorizationStore,
             pvarReaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyAdministratorName: *const fn(
             self: *const IAzAuthorizationStore,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyAdministratorName: *const fn(
             self: *const IAzAuthorizationStore,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyReaderName: *const fn(
             self: *const IAzAuthorizationStore,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyReaderName: *const fn(
             self: *const IAzAuthorizationStore,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelegatedPolicyUsersName: *const fn(
             self: *const IAzAuthorizationStore,
             pvarDelegatedPolicyUsers: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDelegatedPolicyUserName: *const fn(
             self: *const IAzAuthorizationStore,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteDelegatedPolicyUserName: *const fn(
             self: *const IAzAuthorizationStore,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseApplication: *const fn(
             self: *const IAzAuthorizationStore,
             bstrApplicationName: ?BSTR,
             lFlag: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1406,13 +1406,13 @@ pub const IAzAuthorizationStore2 = extern union {
             bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
             ppApplication: ?*?*IAzApplication2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateApplication2: *const fn(
             self: *const IAzAuthorizationStore2,
             bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
             ppApplication: ?*?*IAzApplication2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzAuthorizationStore: IAzAuthorizationStore,
@@ -1435,25 +1435,25 @@ pub const IAzAuthorizationStore3 = extern union {
         IsUpdateNeeded: *const fn(
             self: *const IAzAuthorizationStore3,
             pbIsUpdateNeeded: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BizruleGroupSupported: *const fn(
             self: *const IAzAuthorizationStore3,
             pbSupported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpgradeStoresFunctionalLevel: *const fn(
             self: *const IAzAuthorizationStore3,
             lFunctionalLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsFunctionalLevelUpgradeSupported: *const fn(
             self: *const IAzAuthorizationStore3,
             lFunctionalLevel: i32,
             pbSupported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSchemaVersion: *const fn(
             self: *const IAzAuthorizationStore3,
             plMajorVersion: ?*i32,
             plMinorVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzAuthorizationStore2: IAzAuthorizationStore2,
@@ -1487,326 +1487,326 @@ pub const IAzApplication = extern union {
         get_Name: *const fn(
             self: *const IAzApplication,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IAzApplication,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IAzApplication,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzApplication,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: *const fn(
             self: *const IAzApplication,
             pbstrApplicationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: *const fn(
             self: *const IAzApplication,
             bstrApplicationData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthzInterfaceClsid: *const fn(
             self: *const IAzApplication,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthzInterfaceClsid: *const fn(
             self: *const IAzApplication,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
             self: *const IAzApplication,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Version: *const fn(
             self: *const IAzApplication,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GenerateAudits: *const fn(
             self: *const IAzApplication,
             pbProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GenerateAudits: *const fn(
             self: *const IAzApplication,
             bProp: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplyStoreSacl: *const fn(
             self: *const IAzApplication,
             pbProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplyStoreSacl: *const fn(
             self: *const IAzApplication,
             bProp: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzApplication,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzApplication,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzApplication,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministrators: *const fn(
             self: *const IAzApplication,
             pvarAdmins: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReaders: *const fn(
             self: *const IAzApplication,
             pvarReaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyAdministrator: *const fn(
             self: *const IAzApplication,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyAdministrator: *const fn(
             self: *const IAzApplication,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyReader: *const fn(
             self: *const IAzApplication,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyReader: *const fn(
             self: *const IAzApplication,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scopes: *const fn(
             self: *const IAzApplication,
             ppScopeCollection: ?*?*IAzScopes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenScope: *const fn(
             self: *const IAzApplication,
             bstrScopeName: ?BSTR,
             varReserved: VARIANT,
             ppScope: ?*?*IAzScope,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateScope: *const fn(
             self: *const IAzApplication,
             bstrScopeName: ?BSTR,
             varReserved: VARIANT,
             ppScope: ?*?*IAzScope,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteScope: *const fn(
             self: *const IAzApplication,
             bstrScopeName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operations: *const fn(
             self: *const IAzApplication,
             ppOperationCollection: ?*?*IAzOperations,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenOperation: *const fn(
             self: *const IAzApplication,
             bstrOperationName: ?BSTR,
             varReserved: VARIANT,
             ppOperation: ?*?*IAzOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateOperation: *const fn(
             self: *const IAzApplication,
             bstrOperationName: ?BSTR,
             varReserved: VARIANT,
             ppOperation: ?*?*IAzOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteOperation: *const fn(
             self: *const IAzApplication,
             bstrOperationName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tasks: *const fn(
             self: *const IAzApplication,
             ppTaskCollection: ?*?*IAzTasks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenTask: *const fn(
             self: *const IAzApplication,
             bstrTaskName: ?BSTR,
             varReserved: VARIANT,
             ppTask: ?*?*IAzTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTask: *const fn(
             self: *const IAzApplication,
             bstrTaskName: ?BSTR,
             varReserved: VARIANT,
             ppTask: ?*?*IAzTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTask: *const fn(
             self: *const IAzApplication,
             bstrTaskName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationGroups: *const fn(
             self: *const IAzApplication,
             ppGroupCollection: ?*?*IAzApplicationGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenApplicationGroup: *const fn(
             self: *const IAzApplication,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
             ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateApplicationGroup: *const fn(
             self: *const IAzApplication,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
             ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteApplicationGroup: *const fn(
             self: *const IAzApplication,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Roles: *const fn(
             self: *const IAzApplication,
             ppRoleCollection: ?*?*IAzRoles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRole: *const fn(
             self: *const IAzApplication,
             bstrRoleName: ?BSTR,
             varReserved: VARIANT,
             ppRole: ?*?*IAzRole,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRole: *const fn(
             self: *const IAzApplication,
             bstrRoleName: ?BSTR,
             varReserved: VARIANT,
             ppRole: ?*?*IAzRole,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRole: *const fn(
             self: *const IAzApplication,
             bstrRoleName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeClientContextFromToken: *const fn(
             self: *const IAzApplication,
             ullTokenHandle: u64,
             varReserved: VARIANT,
             ppClientContext: ?*?*IAzClientContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyItem: *const fn(
             self: *const IAzApplication,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyItem: *const fn(
             self: *const IAzApplication,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzApplication,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeClientContextFromName: *const fn(
             self: *const IAzApplication,
             ClientName: ?BSTR,
             DomainName: ?BSTR,
             varReserved: VARIANT,
             ppClientContext: ?*?*IAzClientContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelegatedPolicyUsers: *const fn(
             self: *const IAzApplication,
             pvarDelegatedPolicyUsers: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDelegatedPolicyUser: *const fn(
             self: *const IAzApplication,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteDelegatedPolicyUser: *const fn(
             self: *const IAzApplication,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeClientContextFromStringSid: *const fn(
             self: *const IAzApplication,
             SidString: ?BSTR,
             lOptions: i32,
             varReserved: VARIANT,
             ppClientContext: ?*?*IAzClientContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministratorsName: *const fn(
             self: *const IAzApplication,
             pvarAdmins: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReadersName: *const fn(
             self: *const IAzApplication,
             pvarReaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyAdministratorName: *const fn(
             self: *const IAzApplication,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyAdministratorName: *const fn(
             self: *const IAzApplication,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyReaderName: *const fn(
             self: *const IAzApplication,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyReaderName: *const fn(
             self: *const IAzApplication,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelegatedPolicyUsersName: *const fn(
             self: *const IAzApplication,
             pvarDelegatedPolicyUsers: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDelegatedPolicyUserName: *const fn(
             self: *const IAzApplication,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteDelegatedPolicyUserName: *const fn(
             self: *const IAzApplication,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2008,13 +2008,13 @@ pub const IAzApplication2 = extern union {
             ulTokenHandleHighPart: u32,
             varReserved: VARIANT,
             ppClientContext: ?*?*IAzClientContext2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeClientContext2: *const fn(
             self: *const IAzApplication2,
             IdentifyingString: ?BSTR,
             varReserved: VARIANT,
             ppClientContext: ?*?*IAzClientContext2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzApplication: IAzApplication,
@@ -2038,17 +2038,17 @@ pub const IAzApplications = extern union {
             self: *const IAzApplications,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzApplications,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzApplications,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2074,64 +2074,64 @@ pub const IAzOperation = extern union {
         get_Name: *const fn(
             self: *const IAzOperation,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IAzOperation,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IAzOperation,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzOperation,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: *const fn(
             self: *const IAzOperation,
             pbstrApplicationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: *const fn(
             self: *const IAzOperation,
             bstrApplicationData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OperationID: *const fn(
             self: *const IAzOperation,
             plProp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OperationID: *const fn(
             self: *const IAzOperation,
             lProp: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzOperation,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzOperation,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzOperation,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzOperation,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2184,17 +2184,17 @@ pub const IAzOperations = extern union {
             self: *const IAzOperations,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzOperations,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzOperations,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2220,136 +2220,136 @@ pub const IAzTask = extern union {
         get_Name: *const fn(
             self: *const IAzTask,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IAzTask,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IAzTask,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzTask,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: *const fn(
             self: *const IAzTask,
             pbstrApplicationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: *const fn(
             self: *const IAzTask,
             bstrApplicationData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRule: *const fn(
             self: *const IAzTask,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRule: *const fn(
             self: *const IAzTask,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleLanguage: *const fn(
             self: *const IAzTask,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleLanguage: *const fn(
             self: *const IAzTask,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleImportedPath: *const fn(
             self: *const IAzTask,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleImportedPath: *const fn(
             self: *const IAzTask,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRoleDefinition: *const fn(
             self: *const IAzTask,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsRoleDefinition: *const fn(
             self: *const IAzTask,
             fProp: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operations: *const fn(
             self: *const IAzTask,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tasks: *const fn(
             self: *const IAzTask,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddOperation: *const fn(
             self: *const IAzTask,
             bstrOp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteOperation: *const fn(
             self: *const IAzTask,
             bstrOp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddTask: *const fn(
             self: *const IAzTask,
             bstrTask: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTask: *const fn(
             self: *const IAzTask,
             bstrTask: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzTask,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzTask,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzTask,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyItem: *const fn(
             self: *const IAzTask,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyItem: *const fn(
             self: *const IAzTask,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzTask,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2444,17 +2444,17 @@ pub const IAzTasks = extern union {
             self: *const IAzTasks,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzTasks,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzTasks,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2480,202 +2480,202 @@ pub const IAzScope = extern union {
         get_Name: *const fn(
             self: *const IAzScope,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IAzScope,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IAzScope,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzScope,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: *const fn(
             self: *const IAzScope,
             pbstrApplicationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: *const fn(
             self: *const IAzScope,
             bstrApplicationData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzScope,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzScope,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzScope,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyItem: *const fn(
             self: *const IAzScope,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyItem: *const fn(
             self: *const IAzScope,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministrators: *const fn(
             self: *const IAzScope,
             pvarAdmins: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReaders: *const fn(
             self: *const IAzScope,
             pvarReaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyAdministrator: *const fn(
             self: *const IAzScope,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyAdministrator: *const fn(
             self: *const IAzScope,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyReader: *const fn(
             self: *const IAzScope,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyReader: *const fn(
             self: *const IAzScope,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationGroups: *const fn(
             self: *const IAzScope,
             ppGroupCollection: ?*?*IAzApplicationGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenApplicationGroup: *const fn(
             self: *const IAzScope,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
             ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateApplicationGroup: *const fn(
             self: *const IAzScope,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
             ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteApplicationGroup: *const fn(
             self: *const IAzScope,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Roles: *const fn(
             self: *const IAzScope,
             ppRoleCollection: ?*?*IAzRoles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRole: *const fn(
             self: *const IAzScope,
             bstrRoleName: ?BSTR,
             varReserved: VARIANT,
             ppRole: ?*?*IAzRole,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRole: *const fn(
             self: *const IAzScope,
             bstrRoleName: ?BSTR,
             varReserved: VARIANT,
             ppRole: ?*?*IAzRole,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRole: *const fn(
             self: *const IAzScope,
             bstrRoleName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tasks: *const fn(
             self: *const IAzScope,
             ppTaskCollection: ?*?*IAzTasks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenTask: *const fn(
             self: *const IAzScope,
             bstrTaskName: ?BSTR,
             varReserved: VARIANT,
             ppTask: ?*?*IAzTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTask: *const fn(
             self: *const IAzScope,
             bstrTaskName: ?BSTR,
             varReserved: VARIANT,
             ppTask: ?*?*IAzTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTask: *const fn(
             self: *const IAzScope,
             bstrTaskName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzScope,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanBeDelegated: *const fn(
             self: *const IAzScope,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizrulesWritable: *const fn(
             self: *const IAzScope,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministratorsName: *const fn(
             self: *const IAzScope,
             pvarAdmins: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReadersName: *const fn(
             self: *const IAzScope,
             pvarReaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyAdministratorName: *const fn(
             self: *const IAzScope,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyAdministratorName: *const fn(
             self: *const IAzScope,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyReaderName: *const fn(
             self: *const IAzScope,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyReaderName: *const fn(
             self: *const IAzScope,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2806,17 +2806,17 @@ pub const IAzScopes = extern union {
             self: *const IAzScopes,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzScopes,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzScopes,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2842,166 +2842,166 @@ pub const IAzApplicationGroup = extern union {
         get_Name: *const fn(
             self: *const IAzApplicationGroup,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IAzApplicationGroup,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const IAzApplicationGroup,
             plProp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Type: *const fn(
             self: *const IAzApplicationGroup,
             lProp: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LdapQuery: *const fn(
             self: *const IAzApplicationGroup,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LdapQuery: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppMembers: *const fn(
             self: *const IAzApplicationGroup,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppNonMembers: *const fn(
             self: *const IAzApplicationGroup,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Members: *const fn(
             self: *const IAzApplicationGroup,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NonMembers: *const fn(
             self: *const IAzApplicationGroup,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IAzApplicationGroup,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzApplicationGroup,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAppMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAppMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAppNonMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAppNonMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddNonMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteNonMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzApplicationGroup,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzApplicationGroup,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzApplicationGroup,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyItem: *const fn(
             self: *const IAzApplicationGroup,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyItem: *const fn(
             self: *const IAzApplicationGroup,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzApplicationGroup,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMemberName: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteMemberName: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddNonMemberName: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteNonMemberName: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MembersName: *const fn(
             self: *const IAzApplicationGroup,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NonMembersName: *const fn(
             self: *const IAzApplicationGroup,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3114,17 +3114,17 @@ pub const IAzApplicationGroups = extern union {
             self: *const IAzApplicationGroups,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzApplicationGroups,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzApplicationGroups,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3150,141 +3150,141 @@ pub const IAzRole = extern union {
         get_Name: *const fn(
             self: *const IAzRole,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IAzRole,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IAzRole,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzRole,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: *const fn(
             self: *const IAzRole,
             pbstrApplicationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: *const fn(
             self: *const IAzRole,
             bstrApplicationData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAppMember: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAppMember: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddTask: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTask: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddOperation: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteOperation: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMember: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteMember: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzRole,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzRole,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzRole,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppMembers: *const fn(
             self: *const IAzRole,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Members: *const fn(
             self: *const IAzRole,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operations: *const fn(
             self: *const IAzRole,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tasks: *const fn(
             self: *const IAzRole,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyItem: *const fn(
             self: *const IAzRole,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyItem: *const fn(
             self: *const IAzRole,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzRole,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMemberName: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteMemberName: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MembersName: *const fn(
             self: *const IAzRole,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3382,17 +3382,17 @@ pub const IAzRoles = extern union {
             self: *const IAzRoles,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzRoles,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzRoles,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3425,67 +3425,67 @@ pub const IAzClientContext = extern union {
             varInterfaceFlags: VARIANT,
             varInterfaces: VARIANT,
             pvarResults: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBusinessRuleString: *const fn(
             self: *const IAzClientContext,
             pbstrBusinessRuleString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserDn: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserSamCompat: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserDisplay: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserGuid: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserCanonical: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserUpn: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserDnsSamCompat: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzClientContext,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRoles: *const fn(
             self: *const IAzClientContext,
             bstrScopeName: ?BSTR,
             pvarRoleNames: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleForAccessCheck: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RoleForAccessCheck: *const fn(
             self: *const IAzClientContext,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3543,30 +3543,30 @@ pub const IAzClientContext2 = extern union {
             PageSize: i32,
             pvarCursor: ?*VARIANT,
             pvarScopeNames: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRoles: *const fn(
             self: *const IAzClientContext2,
             varRoles: VARIANT,
             bstrScopeName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddApplicationGroups: *const fn(
             self: *const IAzClientContext2,
             varApplicationGroups: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStringSids: *const fn(
             self: *const IAzClientContext2,
             varStringSids: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LDAPQueryDN: *const fn(
             self: *const IAzClientContext2,
             bstrLDAPQueryDN: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LDAPQueryDN: *const fn(
             self: *const IAzClientContext2,
             pbstrLDAPQueryDN: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzClientContext: IAzClientContext,
@@ -3602,22 +3602,22 @@ pub const IAzBizRuleContext = extern union {
         put_BusinessRuleResult: *const fn(
             self: *const IAzBizRuleContext,
             bResult: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BusinessRuleString: *const fn(
             self: *const IAzBizRuleContext,
             bstrBusinessRuleString: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BusinessRuleString: *const fn(
             self: *const IAzBizRuleContext,
             pbstrBusinessRuleString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParameter: *const fn(
             self: *const IAzBizRuleContext,
             bstrParameterName: ?BSTR,
             pvarParameterValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3646,29 +3646,29 @@ pub const IAzBizRuleParameters = extern union {
             self: *const IAzBizRuleParameters,
             bstrParameterName: ?BSTR,
             varParameterValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddParameters: *const fn(
             self: *const IAzBizRuleParameters,
             varParameterNames: VARIANT,
             varParameterValues: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParameterValue: *const fn(
             self: *const IAzBizRuleParameters,
             bstrParameterName: ?BSTR,
             pvarParameterValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IAzBizRuleParameters,
             varParameterName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAll: *const fn(
             self: *const IAzBizRuleParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzBizRuleParameters,
             plCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3704,31 +3704,31 @@ pub const IAzBizRuleInterfaces = extern union {
             bstrInterfaceName: ?BSTR,
             lInterfaceFlag: i32,
             varInterface: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddInterfaces: *const fn(
             self: *const IAzBizRuleInterfaces,
             varInterfaceNames: VARIANT,
             varInterfaceFlags: VARIANT,
             varInterfaces: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInterfaceValue: *const fn(
             self: *const IAzBizRuleInterfaces,
             bstrInterfaceName: ?BSTR,
             lInterfaceFlag: ?*i32,
             varInterface: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IAzBizRuleInterfaces,
             bstrInterfaceName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAll: *const fn(
             self: *const IAzBizRuleInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzBizRuleInterfaces,
             plCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3765,44 +3765,44 @@ pub const IAzClientContext3 = extern union {
             bstrScopeName: ?BSTR,
             lOperation: i32,
             plResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsInRoleAssignment: *const fn(
             self: *const IAzClientContext3,
             bstrScopeName: ?BSTR,
             bstrRoleName: ?BSTR,
             pbIsInRole: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOperations: *const fn(
             self: *const IAzClientContext3,
             bstrScopeName: ?BSTR,
             ppOperationCollection: ?*?*IAzOperations,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTasks: *const fn(
             self: *const IAzClientContext3,
             bstrScopeName: ?BSTR,
             ppTaskCollection: ?*?*IAzTasks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleParameters: *const fn(
             self: *const IAzClientContext3,
             ppBizRuleParam: ?*?*IAzBizRuleParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleInterfaces: *const fn(
             self: *const IAzClientContext3,
             ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGroups: *const fn(
             self: *const IAzClientContext3,
             bstrScopeName: ?BSTR,
             ulOptions: AZ_PROP_CONSTANTS,
             pGroupArray: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Sids: *const fn(
             self: *const IAzClientContext3,
             pStringSidArray: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzClientContext2: IAzClientContext2,
@@ -3845,40 +3845,40 @@ pub const IAzScope2 = extern union {
         get_RoleDefinitions: *const fn(
             self: *const IAzScope2,
             ppRoleDefinitions: ?*?*IAzRoleDefinitions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRoleDefinition: *const fn(
             self: *const IAzScope2,
             bstrRoleDefinitionName: ?BSTR,
             ppRoleDefinitions: ?*?*IAzRoleDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRoleDefinition: *const fn(
             self: *const IAzScope2,
             bstrRoleDefinitionName: ?BSTR,
             ppRoleDefinitions: ?*?*IAzRoleDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRoleDefinition: *const fn(
             self: *const IAzScope2,
             bstrRoleDefinitionName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleAssignments: *const fn(
             self: *const IAzScope2,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRoleAssignment: *const fn(
             self: *const IAzScope2,
             bstrRoleAssignmentName: ?BSTR,
             ppRoleAssignment: ?*?*IAzRoleAssignment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRoleAssignment: *const fn(
             self: *const IAzScope2,
             bstrRoleAssignmentName: ?BSTR,
             ppRoleAssignment: ?*?*IAzRoleAssignment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRoleAssignment: *const fn(
             self: *const IAzScope2,
             bstrRoleAssignmentName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzScope: IAzScope,
@@ -3920,69 +3920,69 @@ pub const IAzApplication3 = extern union {
             self: *const IAzApplication3,
             bstrScopeName: ?BSTR,
             pbExist: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenScope2: *const fn(
             self: *const IAzApplication3,
             bstrScopeName: ?BSTR,
             ppScope2: ?*?*IAzScope2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateScope2: *const fn(
             self: *const IAzApplication3,
             bstrScopeName: ?BSTR,
             ppScope2: ?*?*IAzScope2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteScope2: *const fn(
             self: *const IAzApplication3,
             bstrScopeName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleDefinitions: *const fn(
             self: *const IAzApplication3,
             ppRoleDefinitions: ?*?*IAzRoleDefinitions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRoleDefinition: *const fn(
             self: *const IAzApplication3,
             bstrRoleDefinitionName: ?BSTR,
             ppRoleDefinitions: ?*?*IAzRoleDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRoleDefinition: *const fn(
             self: *const IAzApplication3,
             bstrRoleDefinitionName: ?BSTR,
             ppRoleDefinitions: ?*?*IAzRoleDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRoleDefinition: *const fn(
             self: *const IAzApplication3,
             bstrRoleDefinitionName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleAssignments: *const fn(
             self: *const IAzApplication3,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRoleAssignment: *const fn(
             self: *const IAzApplication3,
             bstrRoleAssignmentName: ?BSTR,
             ppRoleAssignment: ?*?*IAzRoleAssignment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRoleAssignment: *const fn(
             self: *const IAzApplication3,
             bstrRoleAssignmentName: ?BSTR,
             ppRoleAssignment: ?*?*IAzRoleAssignment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRoleAssignment: *const fn(
             self: *const IAzApplication3,
             bstrRoleAssignmentName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRulesEnabled: *const fn(
             self: *const IAzApplication3,
             pbEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRulesEnabled: *const fn(
             self: *const IAzApplication3,
             bEnabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzApplication2: IAzApplication2,
@@ -4044,7 +4044,7 @@ pub const IAzOperation2 = extern union {
             bstrScopeName: ?BSTR,
             bRecursive: i16,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzOperation: IAzOperation,
@@ -4065,17 +4065,17 @@ pub const IAzRoleDefinitions = extern union {
             self: *const IAzRoleDefinitions,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzRoleDefinitions,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzRoleDefinitions,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4102,20 +4102,20 @@ pub const IAzRoleDefinition = extern union {
             bstrScopeName: ?BSTR,
             bRecursive: i16,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRoleDefinition: *const fn(
             self: *const IAzRoleDefinition,
             bstrRoleDefinition: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRoleDefinition: *const fn(
             self: *const IAzRoleDefinition,
             bstrRoleDefinition: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleDefinitions: *const fn(
             self: *const IAzRoleDefinition,
             ppRoleDefinitions: ?*?*IAzRoleDefinitions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzTask: IAzTask,
@@ -4144,21 +4144,21 @@ pub const IAzRoleAssignment = extern union {
         AddRoleDefinition: *const fn(
             self: *const IAzRoleAssignment,
             bstrRoleDefinition: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRoleDefinition: *const fn(
             self: *const IAzRoleAssignment,
             bstrRoleDefinition: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleDefinitions: *const fn(
             self: *const IAzRoleAssignment,
             ppRoleDefinitions: ?*?*IAzRoleDefinitions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scope: *const fn(
             self: *const IAzRoleAssignment,
             ppScope: ?*?*IAzScope,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzRole: IAzRole,
@@ -4188,17 +4188,17 @@ pub const IAzRoleAssignments = extern union {
             self: *const IAzRoleAssignments,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzRoleAssignments,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzRoleAssignments,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4224,12 +4224,12 @@ pub const IAzPrincipalLocator = extern union {
         get_NameResolver: *const fn(
             self: *const IAzPrincipalLocator,
             ppNameResolver: ?*?*IAzNameResolver,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectPicker: *const fn(
             self: *const IAzPrincipalLocator,
             ppObjectPicker: ?*?*IAzObjectPicker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4253,13 +4253,13 @@ pub const IAzNameResolver = extern union {
             bstrSid: ?BSTR,
             pSidType: ?*i32,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NamesFromSids: *const fn(
             self: *const IAzNameResolver,
             vSids: VARIANT,
             pvSidTypes: ?*VARIANT,
             pvNames: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4285,12 +4285,12 @@ pub const IAzObjectPicker = extern union {
             pvSidTypes: ?*VARIANT,
             pvNames: ?*VARIANT,
             pvSids: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IAzObjectPicker,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4313,38 +4313,38 @@ pub const IAzApplicationGroup2 = extern union {
         get_BizRule: *const fn(
             self: *const IAzApplicationGroup2,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRule: *const fn(
             self: *const IAzApplicationGroup2,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleLanguage: *const fn(
             self: *const IAzApplicationGroup2,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleLanguage: *const fn(
             self: *const IAzApplicationGroup2,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleImportedPath: *const fn(
             self: *const IAzApplicationGroup2,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleImportedPath: *const fn(
             self: *const IAzApplicationGroup2,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RoleAssignments: *const fn(
             self: *const IAzApplicationGroup2,
             bstrScopeName: ?BSTR,
             bRecursive: i16,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzApplicationGroup: IAzApplicationGroup,
@@ -4384,7 +4384,7 @@ pub const IAzTask2 = extern union {
             bstrScopeName: ?BSTR,
             bRecursive: i16,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzTask: IAzTask,
@@ -4600,7 +4600,7 @@ pub const FN_PROGRESS = *const fn(
     pInvokeSetting: ?*PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
     SecuritySet: BOOL,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const AUTHZ_ACCESS_CHECK_RESULTS_HANDLE = isize;
@@ -4635,7 +4635,7 @@ pub extern "authz" fn AuthzAccessCheck(
     OptionalSecurityDescriptorCount: u32,
     pReply: ?*AUTHZ_ACCESS_REPLY,
     phAccessCheckResults: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzCachedAccessCheck(
@@ -4644,7 +4644,7 @@ pub extern "authz" fn AuthzCachedAccessCheck(
     pRequest: ?*AUTHZ_ACCESS_REQUEST,
     hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
     pReply: ?*AUTHZ_ACCESS_REPLY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzOpenObjectAudit(
@@ -4656,12 +4656,12 @@ pub extern "authz" fn AuthzOpenObjectAudit(
     OptionalSecurityDescriptorArray: ?[*]?PSECURITY_DESCRIPTOR,
     OptionalSecurityDescriptorCount: u32,
     pReply: ?*AUTHZ_ACCESS_REPLY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzFreeHandle(
     hAccessCheckResults: AUTHZ_ACCESS_CHECK_RESULTS_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzInitializeResourceManager(
@@ -4671,7 +4671,7 @@ pub extern "authz" fn AuthzInitializeResourceManager(
     pfnFreeDynamicGroups: ?PFN_AUTHZ_FREE_DYNAMIC_GROUPS,
     szResourceManagerName: ?[*:0]const u16,
     phAuthzResourceManager: ?*AUTHZ_RESOURCE_MANAGER_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 // This function from dll 'AUTHZ' is being skipped because it has some sort of issue
@@ -4681,12 +4681,12 @@ pub fn AuthzInitializeResourceManagerEx() void { @panic("this function is not wo
 pub extern "authz" fn AuthzInitializeRemoteResourceManager(
     pRpcInitInfo: ?*AUTHZ_RPC_INIT_INFO_CLIENT,
     phAuthzResourceManager: ?*AUTHZ_RESOURCE_MANAGER_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzFreeResourceManager(
     hAuthzResourceManager: AUTHZ_RESOURCE_MANAGER_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzInitializeContextFromToken(
@@ -4697,7 +4697,7 @@ pub extern "authz" fn AuthzInitializeContextFromToken(
     Identifier: LUID,
     DynamicGroupArgs: ?*anyopaque,
     phAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzInitializeContextFromSid(
@@ -4708,7 +4708,7 @@ pub extern "authz" fn AuthzInitializeContextFromSid(
     Identifier: LUID,
     DynamicGroupArgs: ?*anyopaque,
     phAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzInitializeContextFromAuthzContext(
@@ -4718,14 +4718,14 @@ pub extern "authz" fn AuthzInitializeContextFromAuthzContext(
     Identifier: LUID,
     DynamicGroupArgs: ?*anyopaque,
     phNewAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzInitializeCompoundContext(
     UserContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     DeviceContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     phCompoundContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzAddSidsToContext(
@@ -4735,14 +4735,14 @@ pub extern "authz" fn AuthzAddSidsToContext(
     RestrictedSids: ?*SID_AND_ATTRIBUTES,
     RestrictedSidCount: u32,
     phNewAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "authz" fn AuthzModifySecurityAttributes(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
     pAttributes: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzModifyClaims(
@@ -4750,7 +4750,7 @@ pub extern "authz" fn AuthzModifyClaims(
     ClaimClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
     pClaimOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
     pClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzModifySids(
@@ -4758,7 +4758,7 @@ pub extern "authz" fn AuthzModifySids(
     SidClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
     pSidOperations: ?*AUTHZ_SID_OPERATION,
     pSids: ?*TOKEN_GROUPS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzSetAppContainerInformation(
@@ -4766,7 +4766,7 @@ pub extern "authz" fn AuthzSetAppContainerInformation(
     pAppContainerSid: ?PSID,
     CapabilityCount: u32,
     pCapabilitySids: ?[*]SID_AND_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzGetInformationFromContext(
@@ -4775,12 +4775,12 @@ pub extern "authz" fn AuthzGetInformationFromContext(
     BufferSize: u32,
     pSizeRequired: ?*u32,
     Buffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzFreeContext(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent(
@@ -4792,7 +4792,7 @@ pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent(
     szAdditionalInfo: ?PWSTR,
     phAuditEvent: ?*isize,
     dwAdditionalParameterCount: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent2(
@@ -4805,12 +4805,12 @@ pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent2(
     szAdditionalInfo2: ?PWSTR,
     phAuditEvent: ?*isize,
     dwAdditionalParameterCount: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzFreeAuditEvent(
     hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "authz" fn AuthzEvaluateSacl(
     AuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
@@ -4819,19 +4819,19 @@ pub extern "authz" fn AuthzEvaluateSacl(
     GrantedAccess: u32,
     AccessGranted: BOOL,
     pbGenerateAudit: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzInstallSecurityEventSource(
     dwFlags: u32,
     pRegistration: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzUninstallSecurityEventSource(
     dwFlags: u32,
     szEventSourceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzEnumerateSecurityEventSources(
@@ -4839,20 +4839,20 @@ pub extern "authz" fn AuthzEnumerateSecurityEventSources(
     Buffer: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
     pdwCount: ?*u32,
     pdwLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzRegisterSecurityEventSource(
     dwFlags: u32,
     szEventSourceName: ?[*:0]const u16,
     phEventProvider: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzUnregisterSecurityEventSource(
     dwFlags: u32,
     phEventProvider: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzReportSecurityEvent(
@@ -4861,7 +4861,7 @@ pub extern "authz" fn AuthzReportSecurityEvent(
     dwAuditId: u32,
     pUserSid: ?PSID,
     dwCount: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzReportSecurityEventFromParams(
@@ -4870,23 +4870,23 @@ pub extern "authz" fn AuthzReportSecurityEventFromParams(
     dwAuditId: u32,
     pUserSid: ?PSID,
     pParams: ?*AUDIT_PARAMS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzRegisterCapChangeNotification(
     phCapChangeSubscription: ?*?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
     pfnCapChangeCallback: ?LPTHREAD_START_ROUTINE,
     pCallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzUnregisterCapChangeNotification(
     hCapChangeSubscription: ?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzFreeCentralAccessPolicyCache(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetEntriesInAclA(
@@ -4894,7 +4894,7 @@ pub extern "advapi32" fn SetEntriesInAclA(
     pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_A,
     OldAcl: ?*ACL,
     NewAcl: ?*?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetEntriesInAclW(
@@ -4902,35 +4902,35 @@ pub extern "advapi32" fn SetEntriesInAclW(
     pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_W,
     OldAcl: ?*ACL,
     NewAcl: ?*?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetExplicitEntriesFromAclA(
     pacl: ?*ACL,
     pcCountOfExplicitEntries: ?*u32,
     pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_A,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetExplicitEntriesFromAclW(
     pacl: ?*ACL,
     pcCountOfExplicitEntries: ?*u32,
     pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_W,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetEffectiveRightsFromAclA(
     pacl: ?*ACL,
     pTrustee: ?*TRUSTEE_A,
     pAccessRights: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetEffectiveRightsFromAclW(
     pacl: ?*ACL,
     pTrustee: ?*TRUSTEE_W,
     pAccessRights: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetAuditedPermissionsFromAclA(
@@ -4938,7 +4938,7 @@ pub extern "advapi32" fn GetAuditedPermissionsFromAclA(
     pTrustee: ?*TRUSTEE_A,
     pSuccessfulAuditedRights: ?*u32,
     pFailedAuditRights: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetAuditedPermissionsFromAclW(
@@ -4946,7 +4946,7 @@ pub extern "advapi32" fn GetAuditedPermissionsFromAclW(
     pTrustee: ?*TRUSTEE_W,
     pSuccessfulAuditedRights: ?*u32,
     pFailedAuditRights: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetNamedSecurityInfoA(
@@ -4958,7 +4958,7 @@ pub extern "advapi32" fn GetNamedSecurityInfoA(
     ppDacl: ?*?*ACL,
     ppSacl: ?*?*ACL,
     ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetNamedSecurityInfoW(
@@ -4970,7 +4970,7 @@ pub extern "advapi32" fn GetNamedSecurityInfoW(
     ppDacl: ?*?*ACL,
     ppSacl: ?*?*ACL,
     ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetSecurityInfo(
@@ -4982,7 +4982,7 @@ pub extern "advapi32" fn GetSecurityInfo(
     ppDacl: ?*?*ACL,
     ppSacl: ?*?*ACL,
     ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetNamedSecurityInfoA(
@@ -4993,7 +4993,7 @@ pub extern "advapi32" fn SetNamedSecurityInfoA(
     psidGroup: ?PSID,
     pDacl: ?*ACL,
     pSacl: ?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetNamedSecurityInfoW(
@@ -5004,7 +5004,7 @@ pub extern "advapi32" fn SetNamedSecurityInfoW(
     psidGroup: ?PSID,
     pDacl: ?*ACL,
     pSacl: ?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetSecurityInfo(
@@ -5015,7 +5015,7 @@ pub extern "advapi32" fn SetSecurityInfo(
     psidGroup: ?PSID,
     pDacl: ?*ACL,
     pSacl: ?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetInheritanceSourceA(
@@ -5029,7 +5029,7 @@ pub extern "advapi32" fn GetInheritanceSourceA(
     pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
     pGenericMapping: ?*GENERIC_MAPPING,
     pInheritArray: ?*INHERITED_FROMA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetInheritanceSourceW(
@@ -5043,14 +5043,14 @@ pub extern "advapi32" fn GetInheritanceSourceW(
     pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
     pGenericMapping: ?*GENERIC_MAPPING,
     pInheritArray: ?*INHERITED_FROMW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn FreeInheritedFromArray(
     pInheritArray: [*]INHERITED_FROMW,
     AceCnt: u16,
     pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn TreeResetNamedSecurityInfoA(
@@ -5065,7 +5065,7 @@ pub extern "advapi32" fn TreeResetNamedSecurityInfoA(
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn TreeResetNamedSecurityInfoW(
@@ -5080,7 +5080,7 @@ pub extern "advapi32" fn TreeResetNamedSecurityInfoW(
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn TreeSetNamedSecurityInfoA(
@@ -5095,7 +5095,7 @@ pub extern "advapi32" fn TreeSetNamedSecurityInfoA(
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn TreeSetNamedSecurityInfoW(
@@ -5110,7 +5110,7 @@ pub extern "advapi32" fn TreeSetNamedSecurityInfoW(
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildSecurityDescriptorA(
@@ -5123,7 +5123,7 @@ pub extern "advapi32" fn BuildSecurityDescriptorA(
     pOldSD: ?PSECURITY_DESCRIPTOR,
     pSizeNewSD: ?*u32,
     pNewSD: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildSecurityDescriptorW(
@@ -5136,7 +5136,7 @@ pub extern "advapi32" fn BuildSecurityDescriptorW(
     pOldSD: ?PSECURITY_DESCRIPTOR,
     pSizeNewSD: ?*u32,
     pNewSD: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LookupSecurityDescriptorPartsA(
@@ -5147,7 +5147,7 @@ pub extern "advapi32" fn LookupSecurityDescriptorPartsA(
     pcCountOfAuditEntries: ?*u32,
     ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_A,
     pSD: ?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LookupSecurityDescriptorPartsW(
@@ -5158,7 +5158,7 @@ pub extern "advapi32" fn LookupSecurityDescriptorPartsW(
     pcCountOfAuditEntries: ?*u32,
     ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_W,
     pSD: ?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildExplicitAccessWithNameA(
@@ -5167,7 +5167,7 @@ pub extern "advapi32" fn BuildExplicitAccessWithNameA(
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
     Inheritance: ACE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildExplicitAccessWithNameW(
@@ -5176,7 +5176,7 @@ pub extern "advapi32" fn BuildExplicitAccessWithNameW(
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
     Inheritance: ACE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameA(
     pExplicitAccess: ?*EXPLICIT_ACCESS_A,
@@ -5185,7 +5185,7 @@ pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameA(
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
     Inheritance: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameW(
     pExplicitAccess: ?*EXPLICIT_ACCESS_W,
@@ -5194,41 +5194,41 @@ pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameW(
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
     Inheritance: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithNameA(
     pTrustee: ?*TRUSTEE_A,
     pName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithNameW(
     pTrustee: ?*TRUSTEE_W,
     pName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "advapi32" fn BuildImpersonateTrusteeA(
     pTrustee: ?*TRUSTEE_A,
     pImpersonateTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "advapi32" fn BuildImpersonateTrusteeW(
     pTrustee: ?*TRUSTEE_W,
     pImpersonateTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithSidA(
     pTrustee: ?*TRUSTEE_A,
     pSid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithSidW(
     pTrustee: ?*TRUSTEE_W,
     pSid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidA(
@@ -5237,7 +5237,7 @@ pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidA(
     pObjectGuid: ?*Guid,
     pInheritedObjectGuid: ?*Guid,
     pSid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidW(
@@ -5246,7 +5246,7 @@ pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidW(
     pObjectGuid: ?*Guid,
     pInheritedObjectGuid: ?*Guid,
     pSid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 // This function from dll 'ADVAPI32' is being skipped because it has some sort of issue
@@ -5259,72 +5259,72 @@ pub fn BuildTrusteeWithObjectsAndNameW() void { @panic("this function is not wor
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeNameA(
     pTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeNameW(
     pTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeTypeA(
     pTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) TRUSTEE_TYPE;
+) callconv(.winapi) TRUSTEE_TYPE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeTypeW(
     pTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) TRUSTEE_TYPE;
+) callconv(.winapi) TRUSTEE_TYPE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeFormA(
     pTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) TRUSTEE_FORM;
+) callconv(.winapi) TRUSTEE_FORM;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeFormW(
     pTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) TRUSTEE_FORM;
+) callconv(.winapi) TRUSTEE_FORM;
 
 pub extern "advapi32" fn GetMultipleTrusteeOperationA(
     pTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) MULTIPLE_TRUSTEE_OPERATION;
+) callconv(.winapi) MULTIPLE_TRUSTEE_OPERATION;
 
 pub extern "advapi32" fn GetMultipleTrusteeOperationW(
     pTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) MULTIPLE_TRUSTEE_OPERATION;
+) callconv(.winapi) MULTIPLE_TRUSTEE_OPERATION;
 
 pub extern "advapi32" fn GetMultipleTrusteeA(
     pTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) ?*TRUSTEE_A;
+) callconv(.winapi) ?*TRUSTEE_A;
 
 pub extern "advapi32" fn GetMultipleTrusteeW(
     pTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) ?*TRUSTEE_W;
+) callconv(.winapi) ?*TRUSTEE_W;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertSidToStringSidA(
     Sid: ?PSID,
     StringSid: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertSidToStringSidW(
     Sid: ?PSID,
     StringSid: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertStringSidToSidA(
     StringSid: ?[*:0]const u8,
     Sid: ?*?PSID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertStringSidToSidW(
     StringSid: ?[*:0]const u16,
     Sid: ?*?PSID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorA(
@@ -5332,7 +5332,7 @@ pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorA(
     StringSDRevision: u32,
     SecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     SecurityDescriptorSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorW(
@@ -5340,7 +5340,7 @@ pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorW(
     StringSDRevision: u32,
     SecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     SecurityDescriptorSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
@@ -5349,7 +5349,7 @@ pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
     SecurityInformation: u32,
     StringSecurityDescriptor: ?*?PSTR,
     StringSecurityDescriptorLen: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorW(
@@ -5358,7 +5358,7 @@ pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorW(
     SecurityInformation: u32,
     StringSecurityDescriptor: ?*?PWSTR,
     StringSecurityDescriptorLen: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

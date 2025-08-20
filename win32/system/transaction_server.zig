@@ -36,22 +36,22 @@ pub const ICatalog = extern union {
             self: *const ICatalog,
             bstrCollName: ?BSTR,
             ppCatalogCollection: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Connect: *const fn(
             self: *const ICatalog,
             bstrConnectString: ?BSTR,
             ppCatalogCollection: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MajorVersion: *const fn(
             self: *const ICatalog,
             retval: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinorVersion: *const fn(
             self: *const ICatalog,
             retval: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -80,21 +80,21 @@ pub const IComponentUtil = extern union {
             bstrDLLFile: ?BSTR,
             bstrTypelibFile: ?BSTR,
             bstrProxyStubDLLFile: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportComponent: *const fn(
             self: *const IComponentUtil,
             bstrCLSID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportComponentByName: *const fn(
             self: *const IComponentUtil,
             bstrProgID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCLSIDs: *const fn(
             self: *const IComponentUtil,
             bstrDLLFile: ?BSTR,
             bstrTypelibFile: ?BSTR,
             aCLSIDs: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -123,17 +123,17 @@ pub const IPackageUtil = extern union {
             bstrPackageFile: ?BSTR,
             bstrInstallPath: ?BSTR,
             lOptions: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExportPackage: *const fn(
             self: *const IPackageUtil,
             bstrPackageID: ?BSTR,
             bstrPackageFile: ?BSTR,
             lOptions: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShutdownPackage: *const fn(
             self: *const IPackageUtil,
             bstrPackageID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -159,13 +159,13 @@ pub const IRemoteComponentUtil = extern union {
             bstrServer: ?BSTR,
             bstrPackageID: ?BSTR,
             bstrCLSID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallRemoteComponentByName: *const fn(
             self: *const IRemoteComponentUtil,
             bstrServer: ?BSTR,
             bstrPackageName: ?BSTR,
             bstrProgID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -186,11 +186,11 @@ pub const IRoleAssociationUtil = extern union {
         AssociateRole: *const fn(
             self: *const IRoleAssociationUtil,
             bstrRoleID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AssociateRoleByName: *const fn(
             self: *const IRoleAssociationUtil,
             bstrRoleName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,

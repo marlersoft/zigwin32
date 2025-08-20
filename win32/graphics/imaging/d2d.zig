@@ -17,19 +17,19 @@ pub const IWICImageEncoder = extern union {
             pImage: ?*ID2D1Image,
             pFrameEncode: ?*IWICBitmapFrameEncode,
             pImageParameters: ?*const WICImageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteFrameThumbnail: *const fn(
             self: *const IWICImageEncoder,
             pImage: ?*ID2D1Image,
             pFrameEncode: ?*IWICBitmapFrameEncode,
             pImageParameters: ?*const WICImageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteThumbnail: *const fn(
             self: *const IWICImageEncoder,
             pImage: ?*ID2D1Image,
             pEncoder: ?*IWICBitmapEncoder,
             pImageParameters: ?*const WICImageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -54,7 +54,7 @@ pub const IWICImagingFactory2 = extern union {
             self: *const IWICImagingFactory2,
             pD2DDevice: ?*ID2D1Device,
             ppWICImageEncoder: ?*?*IWICImageEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICImagingFactory: IWICImagingFactory,

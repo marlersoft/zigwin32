@@ -108,7 +108,7 @@ pub const PFN_DXCORE_NOTIFICATION_CALLBACK = *const fn(
     notificationType: DXCoreNotificationType,
     object: ?*IUnknown,
     context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 const IID_IDXCoreAdapter_Value = Guid.initString("f0db4c7f-fe5a-42a2-bd62-f2a6cf6fc83e");
 pub const IID_IDXCoreAdapter = &IID_IDXCoreAdapter_Value;
@@ -117,31 +117,31 @@ pub const IDXCoreAdapter = extern union {
         base: IUnknown.VTable,
         IsValid: *const fn(
             self: *const IDXCoreAdapter,
-        ) callconv(@import("std").os.windows.WINAPI) bool,
+        ) callconv(.winapi) bool,
         IsAttributeSupported: *const fn(
             self: *const IDXCoreAdapter,
             attributeGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) bool,
+        ) callconv(.winapi) bool,
         IsPropertySupported: *const fn(
             self: *const IDXCoreAdapter,
             property: DXCoreAdapterProperty,
-        ) callconv(@import("std").os.windows.WINAPI) bool,
+        ) callconv(.winapi) bool,
         GetProperty: *const fn(
             self: *const IDXCoreAdapter,
             property: DXCoreAdapterProperty,
             bufferSize: usize,
             // TODO: what to do with BytesParamIndex 1?
             propertyData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertySize: *const fn(
             self: *const IDXCoreAdapter,
             property: DXCoreAdapterProperty,
             bufferSize: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsQueryStateSupported: *const fn(
             self: *const IDXCoreAdapter,
             property: DXCoreAdapterState,
-        ) callconv(@import("std").os.windows.WINAPI) bool,
+        ) callconv(.winapi) bool,
         QueryState: *const fn(
             self: *const IDXCoreAdapter,
             state: DXCoreAdapterState,
@@ -151,11 +151,11 @@ pub const IDXCoreAdapter = extern union {
             outputBufferSize: usize,
             // TODO: what to do with BytesParamIndex 3?
             outputBuffer: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSetStateSupported: *const fn(
             self: *const IDXCoreAdapter,
             property: DXCoreAdapterState,
-        ) callconv(@import("std").os.windows.WINAPI) bool,
+        ) callconv(.winapi) bool,
         SetState: *const fn(
             self: *const IDXCoreAdapter,
             state: DXCoreAdapterState,
@@ -165,12 +165,12 @@ pub const IDXCoreAdapter = extern union {
             inputDataSize: usize,
             // TODO: what to do with BytesParamIndex 3?
             inputData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFactory: *const fn(
             self: *const IDXCoreAdapter,
             riid: ?*const Guid,
             ppvFactory: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -216,27 +216,27 @@ pub const IDXCoreAdapterList = extern union {
             index: u32,
             riid: ?*const Guid,
             ppvAdapter: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAdapterCount: *const fn(
             self: *const IDXCoreAdapterList,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         IsStale: *const fn(
             self: *const IDXCoreAdapterList,
-        ) callconv(@import("std").os.windows.WINAPI) bool,
+        ) callconv(.winapi) bool,
         GetFactory: *const fn(
             self: *const IDXCoreAdapterList,
             riid: ?*const Guid,
             ppvFactory: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Sort: *const fn(
             self: *const IDXCoreAdapterList,
             numPreferences: u32,
             preferences: [*]const DXCoreAdapterPreference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsAdapterPreferenceSupported: *const fn(
             self: *const IDXCoreAdapterList,
             preference: DXCoreAdapterPreference,
-        ) callconv(@import("std").os.windows.WINAPI) bool,
+        ) callconv(.winapi) bool,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -271,17 +271,17 @@ pub const IDXCoreAdapterFactory = extern union {
             filterAttributes: [*]const Guid,
             riid: ?*const Guid,
             ppvAdapterList: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAdapterByLuid: *const fn(
             self: *const IDXCoreAdapterFactory,
             adapterLUID: ?*const LUID,
             riid: ?*const Guid,
             ppvAdapter: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsNotificationTypeSupported: *const fn(
             self: *const IDXCoreAdapterFactory,
             notificationType: DXCoreNotificationType,
-        ) callconv(@import("std").os.windows.WINAPI) bool,
+        ) callconv(.winapi) bool,
         RegisterEventNotification: *const fn(
             self: *const IDXCoreAdapterFactory,
             dxCoreObject: ?*IUnknown,
@@ -289,11 +289,11 @@ pub const IDXCoreAdapterFactory = extern union {
             callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK,
             callbackContext: ?*anyopaque,
             eventCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterEventNotification: *const fn(
             self: *const IDXCoreAdapterFactory,
             eventCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -321,7 +321,7 @@ pub const IDXCoreAdapterFactory = extern union {
 pub extern "dxcore" fn DXCoreCreateAdapterFactory(
     riid: ?*const Guid,
     ppvFactory: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

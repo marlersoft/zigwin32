@@ -15,7 +15,7 @@ pub const IDirect3DDxgiInterfaceAccess = extern union {
             self: *const IDirect3DDxgiInterfaceAccess,
             iid: ?*const Guid,
             p: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -31,12 +31,12 @@ pub const IDirect3DDxgiInterfaceAccess = extern union {
 pub extern "d3d11" fn CreateDirect3D11DeviceFromDXGIDevice(
     dxgiDevice: ?*IDXGIDevice,
     graphicsDevice: **IInspectable,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d11" fn CreateDirect3D11SurfaceFromDXGISurface(
     dgxiSurface: ?*IDXGISurface,
     graphicsSurface: **IInspectable,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

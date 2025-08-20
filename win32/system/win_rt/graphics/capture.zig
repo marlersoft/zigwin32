@@ -16,13 +16,13 @@ pub const IGraphicsCaptureItemInterop = extern union {
             window: ?HWND,
             riid: ?*const Guid,
             result: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateForMonitor: *const fn(
             self: *const IGraphicsCaptureItemInterop,
             monitor: ?HMONITOR,
             riid: ?*const Guid,
             result: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

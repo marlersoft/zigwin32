@@ -199,18 +199,18 @@ pub const IEnumSTATSTG = extern union {
             celt: u32,
             rgelt: [*]STATSTG,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSTATSTG,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSTATSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumSTATSTG,
             ppenum: ?*?*IEnumSTATSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -247,7 +247,7 @@ pub const IStorage = extern union {
             reserved1: u32,
             reserved2: u32,
             ppstm: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenStream: *const fn(
             self: *const IStorage,
             pwcsName: ?[*:0]const u16,
@@ -255,7 +255,7 @@ pub const IStorage = extern union {
             grfMode: STGM,
             reserved2: u32,
             ppstm: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStorage: *const fn(
             self: *const IStorage,
             pwcsName: ?[*:0]const u16,
@@ -263,7 +263,7 @@ pub const IStorage = extern union {
             reserved1: u32,
             reserved2: u32,
             ppstg: ?*?*IStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenStorage: *const fn(
             self: *const IStorage,
             pwcsName: ?[*:0]const u16,
@@ -272,65 +272,65 @@ pub const IStorage = extern union {
             snbExclude: ?*?*u16,
             reserved: u32,
             ppstg: ?*?*IStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyTo: *const fn(
             self: *const IStorage,
             ciidExclude: u32,
             rgiidExclude: ?[*]const Guid,
             snbExclude: ?*?*u16,
             pstgDest: ?*IStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveElementTo: *const fn(
             self: *const IStorage,
             pwcsName: ?[*:0]const u16,
             pstgDest: ?*IStorage,
             pwcsNewName: ?[*:0]const u16,
             grfFlags: STGMOVE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const IStorage,
             grfCommitFlags: STGC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Revert: *const fn(
             self: *const IStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumElements: *const fn(
             self: *const IStorage,
             reserved1: u32,
             reserved2: ?*anyopaque,
             reserved3: u32,
             ppenum: ?*?*IEnumSTATSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestroyElement: *const fn(
             self: *const IStorage,
             pwcsName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RenameElement: *const fn(
             self: *const IStorage,
             pwcsOldName: ?[*:0]const u16,
             pwcsNewName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetElementTimes: *const fn(
             self: *const IStorage,
             pwcsName: ?[*:0]const u16,
             pctime: ?*const FILETIME,
             patime: ?*const FILETIME,
             pmtime: ?*const FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClass: *const fn(
             self: *const IStorage,
             clsid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStateBits: *const fn(
             self: *const IStorage,
             grfStateBits: u32,
             grfMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stat: *const fn(
             self: *const IStorage,
             pstatstg: ?*STATSTG,
             grfStatFlag: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -389,27 +389,27 @@ pub const IPersistStorage = extern union {
         base: IPersist.VTable,
         IsDirty: *const fn(
             self: *const IPersistStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitNew: *const fn(
             self: *const IPersistStorage,
             pStg: ?*IStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Load: *const fn(
             self: *const IPersistStorage,
             pStg: ?*IStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Save: *const fn(
             self: *const IPersistStorage,
             pStgSave: ?*IStorage,
             fSameAsLoad: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveCompleted: *const fn(
             self: *const IPersistStorage,
             pStgNew: ?*IStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HandsOffStorage: *const fn(
             self: *const IPersistStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPersist: IPersist,
@@ -447,7 +447,7 @@ pub const ILockBytes = extern union {
             pv: ?*anyopaque,
             cb: u32,
             pcbRead: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteAt: *const fn(
             self: *const ILockBytes,
             ulOffset: ULARGE_INTEGER,
@@ -455,31 +455,31 @@ pub const ILockBytes = extern union {
             pv: ?*const anyopaque,
             cb: u32,
             pcbWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const ILockBytes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSize: *const fn(
             self: *const ILockBytes,
             cb: ULARGE_INTEGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LockRegion: *const fn(
             self: *const ILockBytes,
             libOffset: ULARGE_INTEGER,
             cb: ULARGE_INTEGER,
             dwLockType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockRegion: *const fn(
             self: *const ILockBytes,
             libOffset: ULARGE_INTEGER,
             cb: ULARGE_INTEGER,
             dwLockType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stat: *const fn(
             self: *const ILockBytes,
             pstatstg: ?*STATSTG,
             grfStatFlag: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -515,7 +515,7 @@ pub const IRootStorage = extern union {
         SwitchToFile: *const fn(
             self: *const IRootStorage,
             pszFile: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -536,7 +536,7 @@ pub const IFillLockBytes = extern union {
             pv: ?*const anyopaque,
             cb: u32,
             pcbWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FillAt: *const fn(
             self: *const IFillLockBytes,
             ulOffset: ULARGE_INTEGER,
@@ -544,15 +544,15 @@ pub const IFillLockBytes = extern union {
             pv: ?*const anyopaque,
             cb: u32,
             pcbWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFillSize: *const fn(
             self: *const IFillLockBytes,
             ulSize: ULARGE_INTEGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Terminate: *const fn(
             self: *const IFillLockBytes,
             bCanceled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -581,21 +581,21 @@ pub const ILayoutStorage = extern union {
             pStorageLayout: [*]StorageLayout,
             nEntries: u32,
             glfInterleavedFlag: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginMonitor: *const fn(
             self: *const ILayoutStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndMonitor: *const fn(
             self: *const ILayoutStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReLayoutDocfile: *const fn(
             self: *const ILayoutStorage,
             pwcsNewDfName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReLayoutDocfileOnILockBytes: *const fn(
             self: *const ILayoutStorage,
             pILockBytes: ?*ILockBytes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -625,13 +625,13 @@ pub const IDirectWriterLock = extern union {
         WaitForWriteAccess: *const fn(
             self: *const IDirectWriterLock,
             dwTimeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseWriteAccess: *const fn(
             self: *const IDirectWriterLock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HaveWriteAccess: *const fn(
             self: *const IDirectWriterLock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -883,61 +883,61 @@ pub const IPropertyStorage = extern union {
             cpspec: u32,
             rgpspec: [*]const PROPSPEC,
             rgpropvar: [*]PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteMultiple: *const fn(
             self: *const IPropertyStorage,
             cpspec: u32,
             rgpspec: [*]const PROPSPEC,
             rgpropvar: [*]const PROPVARIANT,
             propidNameFirst: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteMultiple: *const fn(
             self: *const IPropertyStorage,
             cpspec: u32,
             rgpspec: [*]const PROPSPEC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReadPropertyNames: *const fn(
             self: *const IPropertyStorage,
             cpropid: u32,
             rgpropid: [*]const u32,
             rglpwstrName: [*]?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WritePropertyNames: *const fn(
             self: *const IPropertyStorage,
             cpropid: u32,
             rgpropid: [*]const u32,
             rglpwstrName: [*]const ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyNames: *const fn(
             self: *const IPropertyStorage,
             cpropid: u32,
             rgpropid: [*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const IPropertyStorage,
             grfCommitFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Revert: *const fn(
             self: *const IPropertyStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enum: *const fn(
             self: *const IPropertyStorage,
             ppenum: ?*?*IEnumSTATPROPSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTimes: *const fn(
             self: *const IPropertyStorage,
             pctime: ?*const FILETIME,
             patime: ?*const FILETIME,
             pmtime: ?*const FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClass: *const fn(
             self: *const IPropertyStorage,
             clsid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stat: *const fn(
             self: *const IPropertyStorage,
             pstatpsstg: ?*STATPROPSETSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -992,21 +992,21 @@ pub const IPropertySetStorage = extern union {
             grfFlags: u32,
             grfMode: u32,
             ppprstg: ?*?*IPropertyStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Open: *const fn(
             self: *const IPropertySetStorage,
             rfmtid: ?*const Guid,
             grfMode: u32,
             ppprstg: ?*?*IPropertyStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IPropertySetStorage,
             rfmtid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enum: *const fn(
             self: *const IPropertySetStorage,
             ppenum: ?*?*IEnumSTATPROPSETSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1035,18 +1035,18 @@ pub const IEnumSTATPROPSTG = extern union {
             celt: u32,
             rgelt: [*]STATPROPSTG,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSTATPROPSTG,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSTATPROPSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumSTATPROPSTG,
             ppenum: ?*?*IEnumSTATPROPSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1075,18 +1075,18 @@ pub const IEnumSTATPROPSETSTG = extern union {
             celt: u32,
             rgelt: [*]STATPROPSETSTG,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSTATPROPSETSTG,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSTATPROPSETSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumSTATPROPSETSTG,
             ppenum: ?*?*IEnumSTATPROPSETSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1153,12 +1153,12 @@ pub const IPropertyBag = extern union {
             pszPropName: ?[*:0]const u16,
             pVar: ?*VARIANT,
             pErrorLog: ?*IErrorLog,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Write: *const fn(
             self: *const IPropertyBag,
             pszPropName: ?[*:0]const u16,
             pVar: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1200,31 +1200,31 @@ pub const IPropertyBag2 = extern union {
             pErrLog: ?*IErrorLog,
             pvarValue: [*]VARIANT,
             phrError: [*]HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Write: *const fn(
             self: *const IPropertyBag2,
             cProperties: u32,
             pPropBag: [*]PROPBAG2,
             pvarValue: [*]VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CountProperties: *const fn(
             self: *const IPropertyBag2,
             pcProperties: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyInfo: *const fn(
             self: *const IPropertyBag2,
             iProperty: u32,
             cProperties: u32,
             pPropBag: [*]PROPBAG2,
             pcProperties: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadObject: *const fn(
             self: *const IPropertyBag2,
             pstrName: ?[*:0]const u16,
             dwHint: u32,
             pUnkObject: ?*IUnknown,
             pErrLog: ?*IErrorLog,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1259,7 +1259,7 @@ pub extern "ole32" fn CoGetInstanceFromFile(
     pwszName: ?PWSTR,
     dwCount: u32,
     pResults: [*]MULTI_QI,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn CoGetInstanceFromIStorage(
@@ -1270,68 +1270,68 @@ pub extern "ole32" fn CoGetInstanceFromIStorage(
     pstg: ?*IStorage,
     dwCount: u32,
     pResults: [*]MULTI_QI,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "ole32" fn StgOpenAsyncDocfileOnIFillLockBytes(
     pflb: ?*IFillLockBytes,
     grfMode: u32,
     asyncFlags: u32,
     ppstgOpen: ?*?*IStorage,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "ole32" fn StgGetIFillLockBytesOnILockBytes(
     pilb: ?*ILockBytes,
     ppflb: ?*?*IFillLockBytes,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "ole32" fn StgGetIFillLockBytesOnFile(
     pwcsName: ?[*:0]const u16,
     ppflb: ?*?*IFillLockBytes,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dflayout" fn StgOpenLayoutDocfile(
     pwcsDfName: ?[*:0]const u16,
     grfMode: u32,
     reserved: u32,
     ppstgOpen: ?*?*IStorage,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn CreateStreamOnHGlobal(
     hGlobal: isize,
     fDeleteOnRelease: BOOL,
     ppstm: ?*?*IStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn GetHGlobalFromStream(
     pstm: ?*IStream,
     phglobal: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn CoGetInterfaceAndReleaseStream(
     pStm: ?*IStream,
     iid: ?*const Guid,
     ppv: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn PropVariantCopy(
     pvarDest: ?*PROPVARIANT,
     pvarSrc: ?*const PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn PropVariantClear(
     pvar: ?*PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn FreePropVariantArray(
     cVariants: u32,
     rgvars: [*]PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgCreateDocfile(
@@ -1339,7 +1339,7 @@ pub extern "ole32" fn StgCreateDocfile(
     grfMode: STGM,
     reserved: u32,
     ppstgOpen: ?*?*IStorage,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgCreateDocfileOnILockBytes(
@@ -1347,7 +1347,7 @@ pub extern "ole32" fn StgCreateDocfileOnILockBytes(
     grfMode: STGM,
     reserved: u32,
     ppstgOpen: ?*?*IStorage,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgOpenStorage(
@@ -1357,7 +1357,7 @@ pub extern "ole32" fn StgOpenStorage(
     snbExclude: ?*?*u16,
     reserved: u32,
     ppstgOpen: ?*?*IStorage,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgOpenStorageOnILockBytes(
@@ -1367,17 +1367,17 @@ pub extern "ole32" fn StgOpenStorageOnILockBytes(
     snbExclude: ?*?*u16,
     reserved: u32,
     ppstgOpen: ?*?*IStorage,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgIsStorageFile(
     pwcsName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgIsStorageILockBytes(
     plkbyt: ?*ILockBytes,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgSetTimes(
@@ -1385,7 +1385,7 @@ pub extern "ole32" fn StgSetTimes(
     pctime: ?*const FILETIME,
     patime: ?*const FILETIME,
     pmtime: ?*const FILETIME,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgCreateStorageEx(
@@ -1397,7 +1397,7 @@ pub extern "ole32" fn StgCreateStorageEx(
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     riid: ?*const Guid,
     ppObjectOpen: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgOpenStorageEx(
@@ -1409,7 +1409,7 @@ pub extern "ole32" fn StgOpenStorageEx(
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     riid: ?*const Guid,
     ppObjectOpen: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgCreatePropStg(
@@ -1419,7 +1419,7 @@ pub extern "ole32" fn StgCreatePropStg(
     grfFlags: u32,
     dwReserved: u32,
     ppPropStg: ?*?*IPropertyStorage,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgOpenPropStg(
@@ -1428,68 +1428,68 @@ pub extern "ole32" fn StgOpenPropStg(
     grfFlags: u32,
     dwReserved: u32,
     ppPropStg: ?*?*IPropertyStorage,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgCreatePropSetStg(
     pStorage: ?*IStorage,
     dwReserved: u32,
     ppPropSetStg: ?*?*IPropertySetStorage,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn FmtIdToPropStgName(
     pfmtid: ?*const Guid,
     oszName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn PropStgNameToFmtId(
     oszName: ?[*:0]const u16,
     pfmtid: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn ReadClassStg(
     pStg: ?*IStorage,
     pclsid: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn WriteClassStg(
     pStg: ?*IStorage,
     rclsid: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn ReadClassStm(
     pStm: ?*IStream,
     pclsid: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn WriteClassStm(
     pStm: ?*IStream,
     rclsid: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn GetHGlobalFromILockBytes(
     plkbyt: ?*ILockBytes,
     phglobal: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn CreateILockBytesOnHGlobal(
     hGlobal: isize,
     fDeleteOnRelease: BOOL,
     pplkbyt: ?*?*ILockBytes,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn GetConvertStg(
     pStg: ?*IStorage,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgConvertVariantToProperty(
@@ -1501,7 +1501,7 @@ pub extern "ole32" fn StgConvertVariantToProperty(
     pid: u32,
     fReserved: BOOLEAN,
     pcIndirect: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*SERIALIZEDPROPERTYVALUE;
+) callconv(.winapi) ?*SERIALIZEDPROPERTYVALUE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgConvertPropertyToVariant(
@@ -1509,7 +1509,7 @@ pub extern "ole32" fn StgConvertPropertyToVariant(
     CodePage: u16,
     pvar: ?*PROPVARIANT,
     pma: ?*PMemoryAllocator,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgPropertyLengthAsVariant(
@@ -1518,40 +1518,40 @@ pub extern "ole32" fn StgPropertyLengthAsVariant(
     cbProp: u32,
     CodePage: u16,
     bReserved: u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn WriteFmtUserTypeStg(
     pstg: ?*IStorage,
     cf: u16,
     lpszUserType: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn ReadFmtUserTypeStg(
     pstg: ?*IStorage,
     pcf: ?*u16,
     lplpszUserType: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn OleConvertOLESTREAMToIStorage(
     lpolestream: ?*OLESTREAM,
     pstg: ?*IStorage,
     ptd: ?*const DVTARGETDEVICE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn OleConvertIStorageToOLESTREAM(
     pstg: ?*IStorage,
     lpolestream: ?*OLESTREAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn SetConvertStg(
     pStg: ?*IStorage,
     fConvert: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn OleConvertIStorageToOLESTREAMEx(
@@ -1562,7 +1562,7 @@ pub extern "ole32" fn OleConvertIStorageToOLESTREAMEx(
     dwSize: u32,
     pmedium: ?*STGMEDIUM,
     polestm: ?*OLESTREAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn OleConvertOLESTREAMToIStorageEx(
@@ -1573,21 +1573,21 @@ pub extern "ole32" fn OleConvertOLESTREAMToIStorageEx(
     plHeight: ?*i32,
     pdwSize: ?*u32,
     pmedium: ?*STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "propsys" fn StgSerializePropVariant(
     ppropvar: ?*const PROPVARIANT,
     ppProp: ?*?*SERIALIZEDPROPERTYVALUE,
     pcb: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "propsys" fn StgDeserializePropVariant(
     pprop: ?*const SERIALIZEDPROPERTYVALUE,
     cbMax: u32,
     ppropvar: ?*PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

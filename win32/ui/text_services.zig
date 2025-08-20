@@ -739,20 +739,20 @@ pub const ITextStoreACP = extern union {
             riid: ?*const Guid,
             punk: ?*IUnknown,
             dwMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseSink: *const fn(
             self: *const ITextStoreACP,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestLock: *const fn(
             self: *const ITextStoreACP,
             dwLockFlags: u32,
             phrSession: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const ITextStoreACP,
             pdcs: ?*TS_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryInsert: *const fn(
             self: *const ITextStoreACP,
             acpTestStart: i32,
@@ -760,19 +760,19 @@ pub const ITextStoreACP = extern union {
             cch: u32,
             pacpResultStart: ?*i32,
             pacpResultEnd: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSelection: *const fn(
             self: *const ITextStoreACP,
             ulIndex: u32,
             ulCount: u32,
             pSelection: [*]TS_SELECTION_ACP,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSelection: *const fn(
             self: *const ITextStoreACP,
             ulCount: u32,
             pSelection: [*]const TS_SELECTION_ACP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetText: *const fn(
             self: *const ITextStoreACP,
             acpStart: i32,
@@ -784,7 +784,7 @@ pub const ITextStoreACP = extern union {
             cRunInfoReq: u32,
             pcRunInfoRet: ?*u32,
             pacpNext: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetText: *const fn(
             self: *const ITextStoreACP,
             dwFlags: u32,
@@ -793,26 +793,26 @@ pub const ITextStoreACP = extern union {
             pchText: [*:0]const u16,
             cch: u32,
             pChange: ?*TS_TEXTCHANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormattedText: *const fn(
             self: *const ITextStoreACP,
             acpStart: i32,
             acpEnd: i32,
             ppDataObject: ?*?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEmbedded: *const fn(
             self: *const ITextStoreACP,
             acpPos: i32,
             rguidService: ?*const Guid,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryInsertEmbedded: *const fn(
             self: *const ITextStoreACP,
             pguidService: ?*const Guid,
             pFormatEtc: ?*const FORMATETC,
             pfInsertable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertEmbedded: *const fn(
             self: *const ITextStoreACP,
             dwFlags: u32,
@@ -820,7 +820,7 @@ pub const ITextStoreACP = extern union {
             acpEnd: i32,
             pDataObject: ?*IDataObject,
             pChange: ?*TS_TEXTCHANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertTextAtSelection: *const fn(
             self: *const ITextStoreACP,
             dwFlags: u32,
@@ -829,7 +829,7 @@ pub const ITextStoreACP = extern union {
             pacpStart: ?*i32,
             pacpEnd: ?*i32,
             pChange: ?*TS_TEXTCHANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertEmbeddedAtSelection: *const fn(
             self: *const ITextStoreACP,
             dwFlags: u32,
@@ -837,27 +837,27 @@ pub const ITextStoreACP = extern union {
             pacpStart: ?*i32,
             pacpEnd: ?*i32,
             pChange: ?*TS_TEXTCHANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestSupportedAttrs: *const fn(
             self: *const ITextStoreACP,
             dwFlags: u32,
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestAttrsAtPosition: *const fn(
             self: *const ITextStoreACP,
             acpPos: i32,
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestAttrsTransitioningAtPosition: *const fn(
             self: *const ITextStoreACP,
             acpPos: i32,
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindNextAttrTransition: *const fn(
             self: *const ITextStoreACP,
             acpStart: i32,
@@ -868,28 +868,28 @@ pub const ITextStoreACP = extern union {
             pacpNext: ?*i32,
             pfFound: ?*BOOL,
             plFoundOffset: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RetrieveRequestedAttrs: *const fn(
             self: *const ITextStoreACP,
             ulCount: u32,
             paAttrVals: [*]TS_ATTRVAL,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEndACP: *const fn(
             self: *const ITextStoreACP,
             pacp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActiveView: *const fn(
             self: *const ITextStoreACP,
             pvcView: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetACPFromPoint: *const fn(
             self: *const ITextStoreACP,
             vcView: u32,
             ptScreen: ?*const POINT,
             dwFlags: u32,
             pacp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextExt: *const fn(
             self: *const ITextStoreACP,
             vcView: u32,
@@ -897,17 +897,17 @@ pub const ITextStoreACP = extern union {
             acpEnd: i32,
             prc: ?*RECT,
             pfClipped: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScreenExt: *const fn(
             self: *const ITextStoreACP,
             vcView: u32,
             prc: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWnd: *const fn(
             self: *const ITextStoreACP,
             vcView: u32,
             phwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1002,20 +1002,20 @@ pub const ITextStoreACP2 = extern union {
             riid: ?*const Guid,
             punk: ?*IUnknown,
             dwMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseSink: *const fn(
             self: *const ITextStoreACP2,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestLock: *const fn(
             self: *const ITextStoreACP2,
             dwLockFlags: u32,
             phrSession: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const ITextStoreACP2,
             pdcs: ?*TS_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryInsert: *const fn(
             self: *const ITextStoreACP2,
             acpTestStart: i32,
@@ -1023,19 +1023,19 @@ pub const ITextStoreACP2 = extern union {
             cch: u32,
             pacpResultStart: ?*i32,
             pacpResultEnd: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSelection: *const fn(
             self: *const ITextStoreACP2,
             ulIndex: u32,
             ulCount: u32,
             pSelection: [*]TS_SELECTION_ACP,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSelection: *const fn(
             self: *const ITextStoreACP2,
             ulCount: u32,
             pSelection: [*]const TS_SELECTION_ACP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetText: *const fn(
             self: *const ITextStoreACP2,
             acpStart: i32,
@@ -1047,7 +1047,7 @@ pub const ITextStoreACP2 = extern union {
             cRunInfoReq: u32,
             pcRunInfoRet: ?*u32,
             pacpNext: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetText: *const fn(
             self: *const ITextStoreACP2,
             dwFlags: u32,
@@ -1056,26 +1056,26 @@ pub const ITextStoreACP2 = extern union {
             pchText: [*:0]const u16,
             cch: u32,
             pChange: ?*TS_TEXTCHANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormattedText: *const fn(
             self: *const ITextStoreACP2,
             acpStart: i32,
             acpEnd: i32,
             ppDataObject: ?*?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEmbedded: *const fn(
             self: *const ITextStoreACP2,
             acpPos: i32,
             rguidService: ?*const Guid,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryInsertEmbedded: *const fn(
             self: *const ITextStoreACP2,
             pguidService: ?*const Guid,
             pFormatEtc: ?*const FORMATETC,
             pfInsertable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertEmbedded: *const fn(
             self: *const ITextStoreACP2,
             dwFlags: u32,
@@ -1083,7 +1083,7 @@ pub const ITextStoreACP2 = extern union {
             acpEnd: i32,
             pDataObject: ?*IDataObject,
             pChange: ?*TS_TEXTCHANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertTextAtSelection: *const fn(
             self: *const ITextStoreACP2,
             dwFlags: u32,
@@ -1092,7 +1092,7 @@ pub const ITextStoreACP2 = extern union {
             pacpStart: ?*i32,
             pacpEnd: ?*i32,
             pChange: ?*TS_TEXTCHANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertEmbeddedAtSelection: *const fn(
             self: *const ITextStoreACP2,
             dwFlags: u32,
@@ -1100,27 +1100,27 @@ pub const ITextStoreACP2 = extern union {
             pacpStart: ?*i32,
             pacpEnd: ?*i32,
             pChange: ?*TS_TEXTCHANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestSupportedAttrs: *const fn(
             self: *const ITextStoreACP2,
             dwFlags: u32,
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestAttrsAtPosition: *const fn(
             self: *const ITextStoreACP2,
             acpPos: i32,
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestAttrsTransitioningAtPosition: *const fn(
             self: *const ITextStoreACP2,
             acpPos: i32,
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindNextAttrTransition: *const fn(
             self: *const ITextStoreACP2,
             acpStart: i32,
@@ -1131,28 +1131,28 @@ pub const ITextStoreACP2 = extern union {
             pacpNext: ?*i32,
             pfFound: ?*BOOL,
             plFoundOffset: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RetrieveRequestedAttrs: *const fn(
             self: *const ITextStoreACP2,
             ulCount: u32,
             paAttrVals: [*]TS_ATTRVAL,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEndACP: *const fn(
             self: *const ITextStoreACP2,
             pacp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActiveView: *const fn(
             self: *const ITextStoreACP2,
             pvcView: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetACPFromPoint: *const fn(
             self: *const ITextStoreACP2,
             vcView: u32,
             ptScreen: ?*const POINT,
             dwFlags: u32,
             pacp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextExt: *const fn(
             self: *const ITextStoreACP2,
             vcView: u32,
@@ -1160,12 +1160,12 @@ pub const ITextStoreACP2 = extern union {
             acpEnd: i32,
             prc: ?*RECT,
             pfClipped: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScreenExt: *const fn(
             self: *const ITextStoreACP2,
             vcView: u32,
             prc: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1256,36 +1256,36 @@ pub const ITextStoreACPSink = extern union {
             self: *const ITextStoreACPSink,
             dwFlags: TEXT_STORE_TEXT_CHANGE_FLAGS,
             pChange: ?*const TS_TEXTCHANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSelectionChange: *const fn(
             self: *const ITextStoreACPSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnLayoutChange: *const fn(
             self: *const ITextStoreACPSink,
             lcode: TsLayoutCode,
             vcView: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnStatusChange: *const fn(
             self: *const ITextStoreACPSink,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnAttrsChange: *const fn(
             self: *const ITextStoreACPSink,
             acpStart: i32,
             acpEnd: i32,
             cAttrs: u32,
             paAttrs: [*]const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnLockGranted: *const fn(
             self: *const ITextStoreACPSink,
             dwLockFlags: TEXT_STORE_LOCK_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnStartEditTransaction: *const fn(
             self: *const ITextStoreACPSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEndEditTransaction: *const fn(
             self: *const ITextStoreACPSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1338,53 +1338,53 @@ pub const IAnchor = extern union {
         SetGravity: *const fn(
             self: *const IAnchor,
             gravity: TsGravity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGravity: *const fn(
             self: *const IAnchor,
             pgravity: ?*TsGravity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEqual: *const fn(
             self: *const IAnchor,
             paWith: ?*IAnchor,
             pfEqual: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Compare: *const fn(
             self: *const IAnchor,
             paWith: ?*IAnchor,
             plResult: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shift: *const fn(
             self: *const IAnchor,
             dwFlags: u32,
             cchReq: i32,
             pcch: ?*i32,
             paHaltAnchor: ?*IAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShiftTo: *const fn(
             self: *const IAnchor,
             paSite: ?*IAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShiftRegion: *const fn(
             self: *const IAnchor,
             dwFlags: u32,
             dir: TsShiftDir,
             pfNoRegion: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetChangeHistoryMask: *const fn(
             self: *const IAnchor,
             dwMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChangeHistory: *const fn(
             self: *const IAnchor,
             pdwHistory: ?*ANCHOR_CHANGE_HISTORY_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearChangeHistory: *const fn(
             self: *const IAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IAnchor,
             ppaClone: ?*?*IAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1434,20 +1434,20 @@ pub const ITextStoreAnchor = extern union {
             riid: ?*const Guid,
             punk: ?*IUnknown,
             dwMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseSink: *const fn(
             self: *const ITextStoreAnchor,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestLock: *const fn(
             self: *const ITextStoreAnchor,
             dwLockFlags: u32,
             phrSession: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const ITextStoreAnchor,
             pdcs: ?*TS_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryInsert: *const fn(
             self: *const ITextStoreAnchor,
             paTestStart: ?*IAnchor,
@@ -1455,19 +1455,19 @@ pub const ITextStoreAnchor = extern union {
             cch: u32,
             ppaResultStart: ?*?*IAnchor,
             ppaResultEnd: ?*?*IAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSelection: *const fn(
             self: *const ITextStoreAnchor,
             ulIndex: u32,
             ulCount: u32,
             pSelection: [*]TS_SELECTION_ANCHOR,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSelection: *const fn(
             self: *const ITextStoreAnchor,
             ulCount: u32,
             pSelection: [*]const TS_SELECTION_ANCHOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetText: *const fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
@@ -1477,7 +1477,7 @@ pub const ITextStoreAnchor = extern union {
             cchReq: u32,
             pcch: ?*u32,
             fUpdateAnchor: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetText: *const fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
@@ -1485,13 +1485,13 @@ pub const ITextStoreAnchor = extern union {
             paEnd: ?*IAnchor,
             pchText: [*:0]const u16,
             cch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormattedText: *const fn(
             self: *const ITextStoreAnchor,
             paStart: ?*IAnchor,
             paEnd: ?*IAnchor,
             ppDataObject: ?*?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEmbedded: *const fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
@@ -1499,34 +1499,34 @@ pub const ITextStoreAnchor = extern union {
             rguidService: ?*const Guid,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertEmbedded: *const fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
             paStart: ?*IAnchor,
             paEnd: ?*IAnchor,
             pDataObject: ?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestSupportedAttrs: *const fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestAttrsAtPosition: *const fn(
             self: *const ITextStoreAnchor,
             paPos: ?*IAnchor,
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestAttrsTransitioningAtPosition: *const fn(
             self: *const ITextStoreAnchor,
             paPos: ?*IAnchor,
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindNextAttrTransition: *const fn(
             self: *const ITextStoreAnchor,
             paStart: ?*IAnchor,
@@ -1536,32 +1536,32 @@ pub const ITextStoreAnchor = extern union {
             dwFlags: u32,
             pfFound: ?*BOOL,
             plFoundOffset: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RetrieveRequestedAttrs: *const fn(
             self: *const ITextStoreAnchor,
             ulCount: u32,
             paAttrVals: [*]TS_ATTRVAL,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStart: *const fn(
             self: *const ITextStoreAnchor,
             ppaStart: ?*?*IAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnd: *const fn(
             self: *const ITextStoreAnchor,
             ppaEnd: ?*?*IAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActiveView: *const fn(
             self: *const ITextStoreAnchor,
             pvcView: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAnchorFromPoint: *const fn(
             self: *const ITextStoreAnchor,
             vcView: u32,
             ptScreen: ?*const POINT,
             dwFlags: u32,
             ppaSite: ?*?*IAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextExt: *const fn(
             self: *const ITextStoreAnchor,
             vcView: u32,
@@ -1569,23 +1569,23 @@ pub const ITextStoreAnchor = extern union {
             paEnd: ?*IAnchor,
             prc: ?*RECT,
             pfClipped: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScreenExt: *const fn(
             self: *const ITextStoreAnchor,
             vcView: u32,
             prc: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWnd: *const fn(
             self: *const ITextStoreAnchor,
             vcView: u32,
             phwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryInsertEmbedded: *const fn(
             self: *const ITextStoreAnchor,
             pguidService: ?*const Guid,
             pFormatEtc: ?*const FORMATETC,
             pfInsertable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertTextAtSelection: *const fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
@@ -1593,14 +1593,14 @@ pub const ITextStoreAnchor = extern union {
             cch: u32,
             ppaStart: ?*?*IAnchor,
             ppaEnd: ?*?*IAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertEmbeddedAtSelection: *const fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
             pDataObject: ?*IDataObject,
             ppaStart: ?*?*IAnchor,
             ppaEnd: ?*?*IAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1698,36 +1698,36 @@ pub const ITextStoreAnchorSink = extern union {
             dwFlags: TEXT_STORE_CHANGE_FLAGS,
             paStart: ?*IAnchor,
             paEnd: ?*IAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSelectionChange: *const fn(
             self: *const ITextStoreAnchorSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnLayoutChange: *const fn(
             self: *const ITextStoreAnchorSink,
             lcode: TsLayoutCode,
             vcView: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnStatusChange: *const fn(
             self: *const ITextStoreAnchorSink,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnAttrsChange: *const fn(
             self: *const ITextStoreAnchorSink,
             paStart: ?*IAnchor,
             paEnd: ?*IAnchor,
             cAttrs: u32,
             paAttrs: [*]const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnLockGranted: *const fn(
             self: *const ITextStoreAnchorSink,
             dwLockFlags: TEXT_STORE_LOCK_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnStartEditTransaction: *const fn(
             self: *const ITextStoreAnchorSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEndEditTransaction: *const fn(
             self: *const ITextStoreAnchorSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1769,49 +1769,49 @@ pub const ITfLangBarMgr = extern union {
             hwnd: ?HWND,
             dwFlags: u32,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseEventSink: *const fn(
             self: *const ITfLangBarMgr,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetThreadMarshalInterface: *const fn(
             self: *const ITfLangBarMgr,
             dwThreadId: u32,
             dwType: u32,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetThreadLangBarItemMgr: *const fn(
             self: *const ITfLangBarMgr,
             dwThreadId: u32,
             pplbi: ?*?*ITfLangBarItemMgr,
             pdwThreadid: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputProcessorProfiles: *const fn(
             self: *const ITfLangBarMgr,
             dwThreadId: u32,
             ppaip: ?*?*ITfInputProcessorProfiles,
             pdwThreadid: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestoreLastFocus: *const fn(
             self: *const ITfLangBarMgr,
             pdwThreadId: ?*u32,
             fPrev: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetModalInput: *const fn(
             self: *const ITfLangBarMgr,
             pSink: ?*ITfLangBarEventSink,
             dwThreadId: u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowFloating: *const fn(
             self: *const ITfLangBarMgr,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetShowFloatingStatus: *const fn(
             self: *const ITfLangBarMgr,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1853,32 +1853,32 @@ pub const ITfLangBarEventSink = extern union {
         OnSetFocus: *const fn(
             self: *const ITfLangBarEventSink,
             dwThreadId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnThreadTerminate: *const fn(
             self: *const ITfLangBarEventSink,
             dwThreadId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnThreadItemChange: *const fn(
             self: *const ITfLangBarEventSink,
             dwThreadId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnModalInput: *const fn(
             self: *const ITfLangBarEventSink,
             dwThreadId: u32,
             uMsg: u32,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowFloating: *const fn(
             self: *const ITfLangBarEventSink,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemFloatingRect: *const fn(
             self: *const ITfLangBarEventSink,
             dwThreadId: u32,
             rguid: ?*const Guid,
             prc: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1911,7 +1911,7 @@ pub const ITfLangBarItemSink = extern union {
         OnUpdate: *const fn(
             self: *const ITfLangBarItemSink,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1929,20 +1929,20 @@ pub const IEnumTfLangBarItems = extern union {
         Clone: *const fn(
             self: *const IEnumTfLangBarItems,
             ppEnum: ?*?*IEnumTfLangBarItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfLangBarItems,
             ulCount: u32,
             ppItem: [*]?*ITfLangBarItem,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfLangBarItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfLangBarItems,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1977,46 +1977,46 @@ pub const ITfLangBarItemMgr = extern union {
         EnumItems: *const fn(
             self: *const ITfLangBarItemMgr,
             ppEnum: ?*?*IEnumTfLangBarItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItem: *const fn(
             self: *const ITfLangBarItemMgr,
             rguid: ?*const Guid,
             ppItem: ?*?*ITfLangBarItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddItem: *const fn(
             self: *const ITfLangBarItemMgr,
             punk: ?*ITfLangBarItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveItem: *const fn(
             self: *const ITfLangBarItemMgr,
             punk: ?*ITfLangBarItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AdviseItemSink: *const fn(
             self: *const ITfLangBarItemMgr,
             punk: ?*ITfLangBarItemSink,
             pdwCookie: ?*u32,
             rguidItem: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseItemSink: *const fn(
             self: *const ITfLangBarItemMgr,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemFloatingRect: *const fn(
             self: *const ITfLangBarItemMgr,
             dwThreadId: u32,
             rguid: ?*const Guid,
             prc: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemsStatus: *const fn(
             self: *const ITfLangBarItemMgr,
             ulCount: u32,
             prgguid: [*]const Guid,
             pdwStatus: [*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemNum: *const fn(
             self: *const ITfLangBarItemMgr,
             pulCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItems: *const fn(
             self: *const ITfLangBarItemMgr,
             ulCount: u32,
@@ -2024,19 +2024,19 @@ pub const ITfLangBarItemMgr = extern union {
             pInfo: [*]TF_LANGBARITEMINFO,
             pdwStatus: [*]u32,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AdviseItemsSink: *const fn(
             self: *const ITfLangBarItemMgr,
             ulCount: u32,
             ppunk: [*]?*ITfLangBarItemSink,
             pguidItem: [*]const Guid,
             pdwCookie: [*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseItemsSink: *const fn(
             self: *const ITfLangBarItemMgr,
             ulCount: u32,
             pdwCookie: [*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2087,19 +2087,19 @@ pub const ITfLangBarItem = extern union {
         GetInfo: *const fn(
             self: *const ITfLangBarItem,
             pInfo: ?*TF_LANGBARITEMINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const ITfLangBarItem,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Show: *const fn(
             self: *const ITfLangBarItem,
             fShow: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTooltipString: *const fn(
             self: *const ITfLangBarItem,
             pbstrToolTip: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2126,11 +2126,11 @@ pub const ITfSystemLangBarItemSink = extern union {
         InitMenu: *const fn(
             self: *const ITfSystemLangBarItemSink,
             pMenu: ?*ITfMenu,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnMenuSelect: *const fn(
             self: *const ITfSystemLangBarItemSink,
             wID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2151,12 +2151,12 @@ pub const ITfSystemLangBarItem = extern union {
         SetIcon: *const fn(
             self: *const ITfSystemLangBarItem,
             hIcon: ?HICON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTooltipString: *const fn(
             self: *const ITfSystemLangBarItem,
             pchToolTip: [*:0]u16,
             cch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2178,11 +2178,11 @@ pub const ITfSystemLangBarItemText = extern union {
             self: *const ITfSystemLangBarItemText,
             pch: [*:0]const u16,
             cch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemText: *const fn(
             self: *const ITfSystemLangBarItemText,
             pbstrText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2203,11 +2203,11 @@ pub const ITfSystemDeviceTypeLangBarItem = extern union {
         SetIconMode: *const fn(
             self: *const ITfSystemDeviceTypeLangBarItem,
             dwFlags: LANG_BAR_ITEM_ICON_MODE_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIconMode: *const fn(
             self: *const ITfSystemDeviceTypeLangBarItem,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2237,23 +2237,23 @@ pub const ITfLangBarItemButton = extern union {
             click: TfLBIClick,
             pt: POINT,
             prcArea: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitMenu: *const fn(
             self: *const ITfLangBarItemButton,
             pMenu: ?*ITfMenu,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnMenuSelect: *const fn(
             self: *const ITfLangBarItemButton,
             wID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIcon: *const fn(
             self: *const ITfLangBarItemButton,
             phIcon: ?*?HICON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetText: *const fn(
             self: *const ITfLangBarItemButton,
             pbstrText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfLangBarItem: ITfLangBarItem,
@@ -2286,20 +2286,20 @@ pub const ITfLangBarItemBitmapButton = extern union {
             click: TfLBIClick,
             pt: POINT,
             prcArea: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitMenu: *const fn(
             self: *const ITfLangBarItemBitmapButton,
             pMenu: ?*ITfMenu,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnMenuSelect: *const fn(
             self: *const ITfLangBarItemBitmapButton,
             wID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreferredSize: *const fn(
             self: *const ITfLangBarItemBitmapButton,
             pszDefault: ?*const SIZE,
             psz: ?*SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawBitmap: *const fn(
             self: *const ITfLangBarItemBitmapButton,
             bmWidth: i32,
@@ -2307,11 +2307,11 @@ pub const ITfLangBarItemBitmapButton = extern union {
             dwFlags: u32,
             phbmp: ?*?HBITMAP,
             phbmpMask: ?*?HBITMAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetText: *const fn(
             self: *const ITfLangBarItemBitmapButton,
             pbstrText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfLangBarItem: ITfLangBarItem,
@@ -2347,12 +2347,12 @@ pub const ITfLangBarItemBitmap = extern union {
             click: TfLBIClick,
             pt: POINT,
             prcArea: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreferredSize: *const fn(
             self: *const ITfLangBarItemBitmap,
             pszDefault: ?*const SIZE,
             psz: ?*SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawBitmap: *const fn(
             self: *const ITfLangBarItemBitmap,
             bmWidth: i32,
@@ -2360,7 +2360,7 @@ pub const ITfLangBarItemBitmap = extern union {
             dwFlags: u32,
             phbmp: ?*?HBITMAP,
             phbmpMask: ?*?HBITMAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfLangBarItem: ITfLangBarItem,
@@ -2401,16 +2401,16 @@ pub const ITfLangBarItemBalloon = extern union {
             click: TfLBIClick,
             pt: POINT,
             prcArea: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreferredSize: *const fn(
             self: *const ITfLangBarItemBalloon,
             pszDefault: ?*const SIZE,
             psz: ?*SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBalloonInfo: *const fn(
             self: *const ITfLangBarItemBalloon,
             pInfo: ?*TF_LBBALLOONINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfLangBarItem: ITfLangBarItem,
@@ -2441,7 +2441,7 @@ pub const ITfMenu = extern union {
             pch: [*:0]const u16,
             cch: u32,
             ppMenu: ?*?*ITfMenu,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2483,49 +2483,49 @@ pub const ITfThreadMgr = extern union {
         Activate: *const fn(
             self: *const ITfThreadMgr,
             ptid: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Deactivate: *const fn(
             self: *const ITfThreadMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDocumentMgr: *const fn(
             self: *const ITfThreadMgr,
             ppdim: ?*?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDocumentMgrs: *const fn(
             self: *const ITfThreadMgr,
             ppEnum: ?*?*IEnumTfDocumentMgrs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFocus: *const fn(
             self: *const ITfThreadMgr,
             ppdimFocus: ?*?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFocus: *const fn(
             self: *const ITfThreadMgr,
             pdimFocus: ?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AssociateFocus: *const fn(
             self: *const ITfThreadMgr,
             hwnd: ?HWND,
             pdimNew: ?*ITfDocumentMgr,
             ppdimPrev: ?*?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsThreadFocus: *const fn(
             self: *const ITfThreadMgr,
             pfThreadFocus: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFunctionProvider: *const fn(
             self: *const ITfThreadMgr,
             clsid: ?*const Guid,
             ppFuncProv: ?*?*ITfFunctionProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumFunctionProviders: *const fn(
             self: *const ITfThreadMgr,
             ppEnum: ?*?*IEnumTfFunctionProviders,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlobalCompartment: *const fn(
             self: *const ITfThreadMgr,
             ppCompMgr: ?*?*ITfCompartmentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2574,11 +2574,11 @@ pub const ITfThreadMgrEx = extern union {
             self: *const ITfThreadMgrEx,
             ptid: ?*u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActiveFlags: *const fn(
             self: *const ITfThreadMgrEx,
             lpdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfThreadMgr: ITfThreadMgr,
@@ -2600,58 +2600,58 @@ pub const ITfThreadMgr2 = extern union {
         Activate: *const fn(
             self: *const ITfThreadMgr2,
             ptid: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Deactivate: *const fn(
             self: *const ITfThreadMgr2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDocumentMgr: *const fn(
             self: *const ITfThreadMgr2,
             ppdim: ?*?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDocumentMgrs: *const fn(
             self: *const ITfThreadMgr2,
             ppEnum: ?*?*IEnumTfDocumentMgrs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFocus: *const fn(
             self: *const ITfThreadMgr2,
             ppdimFocus: ?*?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFocus: *const fn(
             self: *const ITfThreadMgr2,
             pdimFocus: ?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsThreadFocus: *const fn(
             self: *const ITfThreadMgr2,
             pfThreadFocus: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFunctionProvider: *const fn(
             self: *const ITfThreadMgr2,
             clsid: ?*const Guid,
             ppFuncProv: ?*?*ITfFunctionProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumFunctionProviders: *const fn(
             self: *const ITfThreadMgr2,
             ppEnum: ?*?*IEnumTfFunctionProviders,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlobalCompartment: *const fn(
             self: *const ITfThreadMgr2,
             ppCompMgr: ?*?*ITfCompartmentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ActivateEx: *const fn(
             self: *const ITfThreadMgr2,
             ptid: ?*u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActiveFlags: *const fn(
             self: *const ITfThreadMgr2,
             lpdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SuspendKeystrokeHandling: *const fn(
             self: *const ITfThreadMgr2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResumeKeystrokeHandling: *const fn(
             self: *const ITfThreadMgr2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2708,24 +2708,24 @@ pub const ITfThreadMgrEventSink = extern union {
         OnInitDocumentMgr: *const fn(
             self: *const ITfThreadMgrEventSink,
             pdim: ?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnUninitDocumentMgr: *const fn(
             self: *const ITfThreadMgrEventSink,
             pdim: ?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSetFocus: *const fn(
             self: *const ITfThreadMgrEventSink,
             pdimFocus: ?*ITfDocumentMgr,
             pdimPrevFocus: ?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnPushContext: *const fn(
             self: *const ITfThreadMgrEventSink,
             pic: ?*ITfContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnPopContext: *const fn(
             self: *const ITfThreadMgrEventSink,
             pic: ?*ITfContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2754,10 +2754,10 @@ pub const ITfConfigureSystemKeystrokeFeed = extern union {
         base: IUnknown.VTable,
         DisableSystemKeystrokeFeed: *const fn(
             self: *const ITfConfigureSystemKeystrokeFeed,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableSystemKeystrokeFeed: *const fn(
             self: *const ITfConfigureSystemKeystrokeFeed,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2778,20 +2778,20 @@ pub const IEnumTfDocumentMgrs = extern union {
         Clone: *const fn(
             self: *const IEnumTfDocumentMgrs,
             ppEnum: ?*?*IEnumTfDocumentMgrs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfDocumentMgrs,
             ulCount: u32,
             rgDocumentMgr: [*]?*ITfDocumentMgr,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfDocumentMgrs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfDocumentMgrs,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2822,27 +2822,27 @@ pub const ITfDocumentMgr = extern union {
             punk: ?*IUnknown,
             ppic: ?*?*ITfContext,
             pecTextStore: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Push: *const fn(
             self: *const ITfDocumentMgr,
             pic: ?*ITfContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pop: *const fn(
             self: *const ITfDocumentMgr,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTop: *const fn(
             self: *const ITfDocumentMgr,
             ppic: ?*?*ITfContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBase: *const fn(
             self: *const ITfDocumentMgr,
             ppic: ?*?*ITfContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumContexts: *const fn(
             self: *const ITfDocumentMgr,
             ppEnum: ?*?*IEnumTfContexts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2875,20 +2875,20 @@ pub const IEnumTfContexts = extern union {
         Clone: *const fn(
             self: *const IEnumTfContexts,
             ppEnum: ?*?*IEnumTfContexts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfContexts,
             ulCount: u32,
             rgContext: [*]?*ITfContext,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfContexts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfContexts,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2915,11 +2915,11 @@ pub const ITfCompositionView = extern union {
         GetOwnerClsid: *const fn(
             self: *const ITfCompositionView,
             pclsid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRange: *const fn(
             self: *const ITfCompositionView,
             ppRange: ?*?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2940,20 +2940,20 @@ pub const IEnumITfCompositionView = extern union {
         Clone: *const fn(
             self: *const IEnumITfCompositionView,
             ppEnum: ?*?*IEnumITfCompositionView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumITfCompositionView,
             ulCount: u32,
             rgCompositionView: [*]?*ITfCompositionView,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumITfCompositionView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumITfCompositionView,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2980,21 +2980,21 @@ pub const ITfComposition = extern union {
         GetRange: *const fn(
             self: *const ITfComposition,
             ppRange: ?*?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShiftStart: *const fn(
             self: *const ITfComposition,
             ecWrite: u32,
             pNewStart: ?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShiftEnd: *const fn(
             self: *const ITfComposition,
             ecWrite: u32,
             pNewEnd: ?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndComposition: *const fn(
             self: *const ITfComposition,
             ecWrite: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3022,7 +3022,7 @@ pub const ITfCompositionSink = extern union {
             self: *const ITfCompositionSink,
             ecWrite: u32,
             pComposition: ?*ITfComposition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3043,24 +3043,24 @@ pub const ITfContextComposition = extern union {
             pCompositionRange: ?*ITfRange,
             pSink: ?*ITfCompositionSink,
             ppComposition: ?*?*ITfComposition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumCompositions: *const fn(
             self: *const ITfContextComposition,
             ppEnum: ?*?*IEnumITfCompositionView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindComposition: *const fn(
             self: *const ITfContextComposition,
             ecRead: u32,
             pTestRange: ?*ITfRange,
             ppEnum: ?*?*IEnumITfCompositionView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TakeOwnership: *const fn(
             self: *const ITfContextComposition,
             ecWrite: u32,
             pComposition: ?*ITfCompositionView,
             pSink: ?*ITfCompositionSink,
             ppComposition: ?*?*ITfComposition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3087,7 +3087,7 @@ pub const ITfContextOwnerCompositionServices = extern union {
         TerminateComposition: *const fn(
             self: *const ITfContextOwnerCompositionServices,
             pComposition: ?*ITfCompositionView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfContextComposition: ITfContextComposition,
@@ -3107,16 +3107,16 @@ pub const ITfContextOwnerCompositionSink = extern union {
             self: *const ITfContextOwnerCompositionSink,
             pComposition: ?*ITfCompositionView,
             pfOk: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnUpdateComposition: *const fn(
             self: *const ITfContextOwnerCompositionSink,
             pComposition: ?*ITfCompositionView,
             pRangeNew: ?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEndComposition: *const fn(
             self: *const ITfContextOwnerCompositionSink,
             pComposition: ?*ITfCompositionView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3143,22 +3143,22 @@ pub const ITfContextView = extern union {
             ppt: ?*const POINT,
             dwFlags: u32,
             ppRange: ?*?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextExt: *const fn(
             self: *const ITfContextView,
             ec: u32,
             pRange: ?*ITfRange,
             prc: ?*RECT,
             pfClipped: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScreenExt: *const fn(
             self: *const ITfContextView,
             prc: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWnd: *const fn(
             self: *const ITfContextView,
             phwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3184,20 +3184,20 @@ pub const IEnumTfContextViews = extern union {
         Clone: *const fn(
             self: *const IEnumTfContextViews,
             ppEnum: ?*?*IEnumTfContextViews,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfContextViews,
             ulCount: u32,
             rgViews: [*]?*ITfContextView,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfContextViews,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfContextViews,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3246,12 +3246,12 @@ pub const ITfContext = extern union {
             pes: ?*ITfEditSession,
             dwFlags: TF_CONTEXT_EDIT_CONTEXT_FLAGS,
             phrSession: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InWriteSession: *const fn(
             self: *const ITfContext,
             tid: u32,
             pfWriteSession: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSelection: *const fn(
             self: *const ITfContext,
             ec: u32,
@@ -3259,45 +3259,45 @@ pub const ITfContext = extern union {
             ulCount: u32,
             pSelection: [*]TF_SELECTION,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSelection: *const fn(
             self: *const ITfContext,
             ec: u32,
             ulCount: u32,
             pSelection: [*]const TF_SELECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStart: *const fn(
             self: *const ITfContext,
             ec: u32,
             ppStart: ?*?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnd: *const fn(
             self: *const ITfContext,
             ec: u32,
             ppEnd: ?*?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActiveView: *const fn(
             self: *const ITfContext,
             ppView: ?*?*ITfContextView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumViews: *const fn(
             self: *const ITfContext,
             ppEnum: ?*?*IEnumTfContextViews,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const ITfContext,
             pdcs: ?*TS_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const ITfContext,
             guidProp: ?*const Guid,
             ppProp: ?*?*ITfProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAppProperty: *const fn(
             self: *const ITfContext,
             guidProp: ?*const Guid,
             ppProp: ?*?*ITfReadOnlyProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TrackProperties: *const fn(
             self: *const ITfContext,
             prgProp: [*]const ?*const Guid,
@@ -3305,21 +3305,21 @@ pub const ITfContext = extern union {
             prgAppProp: [*]const ?*const Guid,
             cAppProp: u32,
             ppProperty: ?*?*ITfReadOnlyProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumProperties: *const fn(
             self: *const ITfContext,
             ppEnum: ?*?*IEnumTfProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDocumentMgr: *const fn(
             self: *const ITfContext,
             ppDm: ?*?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRangeBackup: *const fn(
             self: *const ITfContext,
             ec: u32,
             pRange: ?*ITfRange,
             ppBackup: ?*?*ITfRangeBackup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3381,7 +3381,7 @@ pub const ITfQueryEmbedded = extern union {
             pguidService: ?*const Guid,
             pFormatEtc: ?*const FORMATETC,
             pfInsertable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3403,14 +3403,14 @@ pub const ITfInsertAtSelection = extern union {
             pchText: [*:0]const u16,
             cch: i32,
             ppRange: ?*?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertEmbeddedAtSelection: *const fn(
             self: *const ITfInsertAtSelection,
             ec: u32,
             dwFlags: u32,
             pDataObject: ?*IDataObject,
             ppRange: ?*?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3432,7 +3432,7 @@ pub const ITfCleanupContextSink = extern union {
             self: *const ITfCleanupContextSink,
             ecWrite: u32,
             pic: ?*ITfContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3449,10 +3449,10 @@ pub const ITfCleanupContextDurationSink = extern union {
         base: IUnknown.VTable,
         OnStartCleanupContext: *const fn(
             self: *const ITfCleanupContextDurationSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEndCleanupContext: *const fn(
             self: *const ITfCleanupContextDurationSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3473,23 +3473,23 @@ pub const ITfReadOnlyProperty = extern union {
         GetType: *const fn(
             self: *const ITfReadOnlyProperty,
             pguid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumRanges: *const fn(
             self: *const ITfReadOnlyProperty,
             ec: u32,
             ppEnum: ?*?*IEnumTfRanges,
             pTargetRange: ?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const ITfReadOnlyProperty,
             ec: u32,
             pRange: ?*ITfRange,
             pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContext: *const fn(
             self: *const ITfReadOnlyProperty,
             ppContext: ?*?*ITfContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3521,20 +3521,20 @@ pub const IEnumTfPropertyValue = extern union {
         Clone: *const fn(
             self: *const IEnumTfPropertyValue,
             ppEnum: ?*?*IEnumTfPropertyValue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfPropertyValue,
             ulCount: u32,
             rgValues: [*]TF_PROPERTYVAL,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfPropertyValue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfPropertyValue,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3563,11 +3563,11 @@ pub const ITfMouseTracker = extern union {
             range: ?*ITfRange,
             pSink: ?*ITfMouseSink,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseMouseSink: *const fn(
             self: *const ITfMouseTracker,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3590,11 +3590,11 @@ pub const ITfMouseTrackerACP = extern union {
             range: ?*ITfRangeACP,
             pSink: ?*ITfMouseSink,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseMouseSink: *const fn(
             self: *const ITfMouseTrackerACP,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3618,7 +3618,7 @@ pub const ITfMouseSink = extern union {
             uQuadrant: u32,
             dwBtnStatus: u32,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3636,14 +3636,14 @@ pub const ITfEditRecord = extern union {
         GetSelectionStatus: *const fn(
             self: *const ITfEditRecord,
             pfChanged: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextAndPropertyUpdates: *const fn(
             self: *const ITfEditRecord,
             dwFlags: GET_TEXT_AND_PROPERTY_UPDATES_FLAGS,
             prgProperties: [*]const ?*const Guid,
             cProperties: u32,
             ppEnum: ?*?*IEnumTfRanges,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3666,7 +3666,7 @@ pub const ITfTextEditSink = extern union {
             pic: ?*ITfContext,
             ecReadOnly: u32,
             pEditRecord: ?*ITfEditRecord,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3695,7 +3695,7 @@ pub const ITfTextLayoutSink = extern union {
             pic: ?*ITfContext,
             lcode: TfLayoutCode,
             pView: ?*ITfContextView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3714,7 +3714,7 @@ pub const ITfStatusSink = extern union {
             self: *const ITfStatusSink,
             pic: ?*ITfContext,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3732,11 +3732,11 @@ pub const ITfEditTransactionSink = extern union {
         OnStartEditTransaction: *const fn(
             self: *const ITfEditTransactionSink,
             pic: ?*ITfContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEndEditTransaction: *const fn(
             self: *const ITfEditTransactionSink,
             pic: ?*ITfContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3759,31 +3759,31 @@ pub const ITfContextOwner = extern union {
             ptScreen: ?*const POINT,
             dwFlags: u32,
             pacp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextExt: *const fn(
             self: *const ITfContextOwner,
             acpStart: i32,
             acpEnd: i32,
             prc: ?*RECT,
             pfClipped: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScreenExt: *const fn(
             self: *const ITfContextOwner,
             prc: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const ITfContextOwner,
             pdcs: ?*TS_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWnd: *const fn(
             self: *const ITfContextOwner,
             phwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttribute: *const fn(
             self: *const ITfContextOwner,
             rguidAttribute: ?*const Guid,
             pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3815,39 +3815,39 @@ pub const ITfContextOwnerServices = extern union {
         base: IUnknown.VTable,
         OnLayoutChange: *const fn(
             self: *const ITfContextOwnerServices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnStatusChange: *const fn(
             self: *const ITfContextOwnerServices,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnAttributeChange: *const fn(
             self: *const ITfContextOwnerServices,
             rguidAttribute: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Serialize: *const fn(
             self: *const ITfContextOwnerServices,
             pProp: ?*ITfProperty,
             pRange: ?*ITfRange,
             pHdr: ?*TF_PERSISTENT_PROPERTY_HEADER_ACP,
             pStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unserialize: *const fn(
             self: *const ITfContextOwnerServices,
             pProp: ?*ITfProperty,
             pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP,
             pStream: ?*IStream,
             pLoader: ?*ITfPersistentPropertyLoaderACP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ForceLoadProperty: *const fn(
             self: *const ITfContextOwnerServices,
             pProp: ?*ITfProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRange: *const fn(
             self: *const ITfContextOwnerServices,
             acpStart: i32,
             acpEnd: i32,
             ppRange: ?*?*ITfRangeACP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3885,25 +3885,25 @@ pub const ITfContextKeyEventSink = extern union {
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnKeyUp: *const fn(
             self: *const ITfContextKeyEventSink,
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTestKeyDown: *const fn(
             self: *const ITfContextKeyEventSink,
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTestKeyUp: *const fn(
             self: *const ITfContextKeyEventSink,
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3930,7 +3930,7 @@ pub const ITfEditSession = extern union {
         DoEditSession: *const fn(
             self: *const ITfEditSession,
             ec: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3972,133 +3972,133 @@ pub const ITfRange = extern union {
             pchText: [*:0]u16,
             cchMax: u32,
             pcch: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetText: *const fn(
             self: *const ITfRange,
             ec: u32,
             dwFlags: u32,
             pchText: [*:0]const u16,
             cch: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormattedText: *const fn(
             self: *const ITfRange,
             ec: u32,
             ppDataObject: ?*?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEmbedded: *const fn(
             self: *const ITfRange,
             ec: u32,
             rguidService: ?*const Guid,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertEmbedded: *const fn(
             self: *const ITfRange,
             ec: u32,
             dwFlags: u32,
             pDataObject: ?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShiftStart: *const fn(
             self: *const ITfRange,
             ec: u32,
             cchReq: i32,
             pcch: ?*i32,
             pHalt: ?*const TF_HALTCOND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShiftEnd: *const fn(
             self: *const ITfRange,
             ec: u32,
             cchReq: i32,
             pcch: ?*i32,
             pHalt: ?*const TF_HALTCOND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShiftStartToRange: *const fn(
             self: *const ITfRange,
             ec: u32,
             pRange: ?*ITfRange,
             aPos: TfAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShiftEndToRange: *const fn(
             self: *const ITfRange,
             ec: u32,
             pRange: ?*ITfRange,
             aPos: TfAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShiftStartRegion: *const fn(
             self: *const ITfRange,
             ec: u32,
             dir: TfShiftDir,
             pfNoRegion: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShiftEndRegion: *const fn(
             self: *const ITfRange,
             ec: u32,
             dir: TfShiftDir,
             pfNoRegion: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEmpty: *const fn(
             self: *const ITfRange,
             ec: u32,
             pfEmpty: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Collapse: *const fn(
             self: *const ITfRange,
             ec: u32,
             aPos: TfAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEqualStart: *const fn(
             self: *const ITfRange,
             ec: u32,
             pWith: ?*ITfRange,
             aPos: TfAnchor,
             pfEqual: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEqualEnd: *const fn(
             self: *const ITfRange,
             ec: u32,
             pWith: ?*ITfRange,
             aPos: TfAnchor,
             pfEqual: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CompareStart: *const fn(
             self: *const ITfRange,
             ec: u32,
             pWith: ?*ITfRange,
             aPos: TfAnchor,
             plResult: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CompareEnd: *const fn(
             self: *const ITfRange,
             ec: u32,
             pWith: ?*ITfRange,
             aPos: TfAnchor,
             plResult: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AdjustForInsert: *const fn(
             self: *const ITfRange,
             ec: u32,
             cchInsert: u32,
             pfInsertOk: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGravity: *const fn(
             self: *const ITfRange,
             pgStart: ?*TfGravity,
             pgEnd: ?*TfGravity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGravity: *const fn(
             self: *const ITfRange,
             ec: u32,
             gStart: TfGravity,
             gEnd: TfGravity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const ITfRange,
             ppClone: ?*?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContext: *const fn(
             self: *const ITfRange,
             ppContext: ?*?*ITfContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4180,12 +4180,12 @@ pub const ITfRangeACP = extern union {
             self: *const ITfRangeACP,
             pacpAnchor: ?*i32,
             pcch: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetExtent: *const fn(
             self: *const ITfRangeACP,
             acpAnchor: i32,
             cch: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfRange: ITfRange,
@@ -4210,24 +4210,24 @@ pub const ITextStoreACPServices = extern union {
             pRange: ?*ITfRange,
             pHdr: ?*TF_PERSISTENT_PROPERTY_HEADER_ACP,
             pStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unserialize: *const fn(
             self: *const ITextStoreACPServices,
             pProp: ?*ITfProperty,
             pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP,
             pStream: ?*IStream,
             pLoader: ?*ITfPersistentPropertyLoaderACP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ForceLoadProperty: *const fn(
             self: *const ITextStoreACPServices,
             pProp: ?*ITfProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRange: *const fn(
             self: *const ITextStoreACPServices,
             acpStart: i32,
             acpEnd: i32,
             ppRange: ?*?*ITfRangeACP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4255,7 +4255,7 @@ pub const ITfRangeBackup = extern union {
             self: *const ITfRangeBackup,
             ec: u32,
             pRange: ?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4273,45 +4273,45 @@ pub const ITfPropertyStore = extern union {
         GetType: *const fn(
             self: *const ITfPropertyStore,
             pguid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataType: *const fn(
             self: *const ITfPropertyStore,
             pdwReserved: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetData: *const fn(
             self: *const ITfPropertyStore,
             pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTextUpdated: *const fn(
             self: *const ITfPropertyStore,
             dwFlags: u32,
             pRangeNew: ?*ITfRange,
             pfAccept: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shrink: *const fn(
             self: *const ITfPropertyStore,
             pRangeNew: ?*ITfRange,
             pfFree: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Divide: *const fn(
             self: *const ITfPropertyStore,
             pRangeThis: ?*ITfRange,
             pRangeNew: ?*ITfRange,
             ppPropStore: ?*?*ITfPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const ITfPropertyStore,
             pPropStore: ?*?*ITfPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyRangeCreator: *const fn(
             self: *const ITfPropertyStore,
             pclsid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Serialize: *const fn(
             self: *const ITfPropertyStore,
             pStream: ?*IStream,
             pcb: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4353,20 +4353,20 @@ pub const IEnumTfRanges = extern union {
         Clone: *const fn(
             self: *const IEnumTfRanges,
             ppEnum: ?*?*IEnumTfRanges,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfRanges,
             ulCount: u32,
             ppRange: [*]?*ITfRange,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfRanges,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfRanges,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4396,7 +4396,7 @@ pub const ITfCreatePropertyStore = extern union {
             pRange: ?*ITfRange,
             pPropStore: ?*ITfPropertyStore,
             pfSerializable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePropertyStore: *const fn(
             self: *const ITfCreatePropertyStore,
             guidProp: ?*const Guid,
@@ -4404,7 +4404,7 @@ pub const ITfCreatePropertyStore = extern union {
             cb: u32,
             pStream: ?*IStream,
             ppStore: ?*?*ITfPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4426,7 +4426,7 @@ pub const ITfPersistentPropertyLoaderACP = extern union {
             self: *const ITfPersistentPropertyLoaderACP,
             pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP,
             ppStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4447,24 +4447,24 @@ pub const ITfProperty = extern union {
             pRange: ?*ITfRange,
             ppRange: ?*?*ITfRange,
             aPos: TfAnchor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValueStore: *const fn(
             self: *const ITfProperty,
             ec: u32,
             pRange: ?*ITfRange,
             pPropStore: ?*ITfPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValue: *const fn(
             self: *const ITfProperty,
             ec: u32,
             pRange: ?*ITfRange,
             pvarValue: ?*const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ITfProperty,
             ec: u32,
             pRange: ?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfReadOnlyProperty: ITfReadOnlyProperty,
@@ -4492,20 +4492,20 @@ pub const IEnumTfProperties = extern union {
         Clone: *const fn(
             self: *const IEnumTfProperties,
             ppEnum: ?*?*IEnumTfProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfProperties,
             ulCount: u32,
             ppProp: [*]?*ITfProperty,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfProperties,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4533,11 +4533,11 @@ pub const ITfCompartment = extern union {
             self: *const ITfCompartment,
             tid: u32,
             pvarValue: ?*const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const ITfCompartment,
             pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4558,7 +4558,7 @@ pub const ITfCompartmentEventSink = extern union {
         OnChange: *const fn(
             self: *const ITfCompartmentEventSink,
             rguid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4577,16 +4577,16 @@ pub const ITfCompartmentMgr = extern union {
             self: *const ITfCompartmentMgr,
             rguid: ?*const Guid,
             ppcomp: ?*?*ITfCompartment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearCompartment: *const fn(
             self: *const ITfCompartmentMgr,
             tid: u32,
             rguid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumCompartments: *const fn(
             self: *const ITfCompartmentMgr,
             ppEnum: ?*?*IEnumGUID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4610,7 +4610,7 @@ pub const ITfFunction = extern union {
         GetDisplayName: *const fn(
             self: *const ITfFunction,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4628,17 +4628,17 @@ pub const ITfFunctionProvider = extern union {
         GetType: *const fn(
             self: *const ITfFunctionProvider,
             pguid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const ITfFunctionProvider,
             pbstrDesc: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFunction: *const fn(
             self: *const ITfFunctionProvider,
             rguid: ?*const Guid,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4662,20 +4662,20 @@ pub const IEnumTfFunctionProviders = extern union {
         Clone: *const fn(
             self: *const IEnumTfFunctionProviders,
             ppEnum: ?*?*IEnumTfFunctionProviders,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfFunctionProviders,
             ulCount: u32,
             ppCmdobj: [*]?*ITfFunctionProvider,
             pcFetch: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfFunctionProviders,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfFunctionProviders,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4702,11 +4702,11 @@ pub const ITfInputProcessorProfiles = extern union {
         Register: *const fn(
             self: *const ITfInputProcessorProfiles,
             rclsid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unregister: *const fn(
             self: *const ITfInputProcessorProfiles,
             rclsid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddLanguageProfile: *const fn(
             self: *const ITfInputProcessorProfiles,
             rclsid: ?*const Guid,
@@ -4717,95 +4717,95 @@ pub const ITfInputProcessorProfiles = extern union {
             pchIconFile: [*:0]const u16,
             cchFile: u32,
             uIconIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveLanguageProfile: *const fn(
             self: *const ITfInputProcessorProfiles,
             rclsid: ?*const Guid,
             langid: u16,
             guidProfile: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumInputProcessorInfo: *const fn(
             self: *const ITfInputProcessorProfiles,
             ppEnum: ?*?*IEnumGUID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultLanguageProfile: *const fn(
             self: *const ITfInputProcessorProfiles,
             langid: u16,
             catid: ?*const Guid,
             pclsid: ?*Guid,
             pguidProfile: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultLanguageProfile: *const fn(
             self: *const ITfInputProcessorProfiles,
             langid: u16,
             rclsid: ?*const Guid,
             guidProfiles: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ActivateLanguageProfile: *const fn(
             self: *const ITfInputProcessorProfiles,
             rclsid: ?*const Guid,
             langid: u16,
             guidProfiles: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActiveLanguageProfile: *const fn(
             self: *const ITfInputProcessorProfiles,
             rclsid: ?*const Guid,
             plangid: ?*u16,
             pguidProfile: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLanguageProfileDescription: *const fn(
             self: *const ITfInputProcessorProfiles,
             rclsid: ?*const Guid,
             langid: u16,
             guidProfile: ?*const Guid,
             pbstrProfile: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentLanguage: *const fn(
             self: *const ITfInputProcessorProfiles,
             plangid: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ChangeCurrentLanguage: *const fn(
             self: *const ITfInputProcessorProfiles,
             langid: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLanguageList: *const fn(
             self: *const ITfInputProcessorProfiles,
             ppLangId: [*]?*u16,
             pulCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumLanguageProfiles: *const fn(
             self: *const ITfInputProcessorProfiles,
             langid: u16,
             ppEnum: ?*?*IEnumTfLanguageProfiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableLanguageProfile: *const fn(
             self: *const ITfInputProcessorProfiles,
             rclsid: ?*const Guid,
             langid: u16,
             guidProfile: ?*const Guid,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEnabledLanguageProfile: *const fn(
             self: *const ITfInputProcessorProfiles,
             rclsid: ?*const Guid,
             langid: u16,
             guidProfile: ?*const Guid,
             pfEnable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableLanguageProfileByDefault: *const fn(
             self: *const ITfInputProcessorProfiles,
             rclsid: ?*const Guid,
             langid: u16,
             guidProfile: ?*const Guid,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SubstituteKeyboardLayout: *const fn(
             self: *const ITfInputProcessorProfiles,
             rclsid: ?*const Guid,
             langid: u16,
             guidProfile: ?*const Guid,
             hKL: ?HKL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4879,7 +4879,7 @@ pub const ITfInputProcessorProfilesEx = extern union {
             pchFile: [*:0]const u16,
             cchFile: u32,
             uResId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfInputProcessorProfiles: ITfInputProcessorProfiles,
@@ -4901,7 +4901,7 @@ pub const ITfInputProcessorProfileSubstituteLayout = extern union {
             langid: u16,
             guidProfile: ?*const Guid,
             phKL: ?*?HKL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4921,7 +4921,7 @@ pub const ITfActiveLanguageProfileNotifySink = extern union {
             clsid: ?*const Guid,
             guidProfile: ?*const Guid,
             fActivated: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4939,20 +4939,20 @@ pub const IEnumTfLanguageProfiles = extern union {
         Clone: *const fn(
             self: *const IEnumTfLanguageProfiles,
             ppEnum: ?*?*IEnumTfLanguageProfiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfLanguageProfiles,
             ulCount: u32,
             pProfile: [*]TF_LANGUAGEPROFILE,
             pcFetch: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfLanguageProfiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfLanguageProfiles,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4980,10 +4980,10 @@ pub const ITfLanguageProfileNotifySink = extern union {
             self: *const ITfLanguageProfileNotifySink,
             langid: u16,
             pfAccept: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnLanguageChanged: *const fn(
             self: *const ITfLanguageProfileNotifySink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5021,7 +5021,7 @@ pub const ITfInputProcessorProfileMgr = extern union {
             guidProfile: ?*const Guid,
             hkl: ?HKL,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeactivateProfile: *const fn(
             self: *const ITfInputProcessorProfileMgr,
             dwProfileType: u32,
@@ -5030,7 +5030,7 @@ pub const ITfInputProcessorProfileMgr = extern union {
             guidProfile: ?*const Guid,
             hkl: ?HKL,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProfile: *const fn(
             self: *const ITfInputProcessorProfileMgr,
             dwProfileType: u32,
@@ -5039,17 +5039,17 @@ pub const ITfInputProcessorProfileMgr = extern union {
             guidProfile: ?*const Guid,
             hkl: ?HKL,
             pProfile: ?*TF_INPUTPROCESSORPROFILE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumProfiles: *const fn(
             self: *const ITfInputProcessorProfileMgr,
             langid: u16,
             ppEnum: ?*?*IEnumTfInputProcessorProfiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseInputProcessor: *const fn(
             self: *const ITfInputProcessorProfileMgr,
             rclsid: ?*const Guid,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterProfile: *const fn(
             self: *const ITfInputProcessorProfileMgr,
             rclsid: ?*const Guid,
@@ -5064,19 +5064,19 @@ pub const ITfInputProcessorProfileMgr = extern union {
             dwPreferredLayout: u32,
             bEnabledByDefault: BOOL,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterProfile: *const fn(
             self: *const ITfInputProcessorProfileMgr,
             rclsid: ?*const Guid,
             langid: u16,
             guidProfile: ?*const Guid,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActiveProfile: *const fn(
             self: *const ITfInputProcessorProfileMgr,
             catid: ?*const Guid,
             pProfile: ?*TF_INPUTPROCESSORPROFILE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5115,20 +5115,20 @@ pub const IEnumTfInputProcessorProfiles = extern union {
         Clone: *const fn(
             self: *const IEnumTfInputProcessorProfiles,
             ppEnum: ?*?*IEnumTfInputProcessorProfiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfInputProcessorProfiles,
             ulCount: u32,
             pProfile: [*]TF_INPUTPROCESSORPROFILE,
             pcFetch: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfInputProcessorProfiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfInputProcessorProfiles,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5161,7 +5161,7 @@ pub const ITfInputProcessorProfileActivationSink = extern union {
             guidProfile: ?*const Guid,
             hkl: ?HKL,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5186,51 +5186,51 @@ pub const ITfKeystrokeMgr = extern union {
             tid: u32,
             pSink: ?*ITfKeyEventSink,
             fForeground: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseKeyEventSink: *const fn(
             self: *const ITfKeystrokeMgr,
             tid: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetForeground: *const fn(
             self: *const ITfKeystrokeMgr,
             pclsid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TestKeyDown: *const fn(
             self: *const ITfKeystrokeMgr,
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TestKeyUp: *const fn(
             self: *const ITfKeystrokeMgr,
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         KeyDown: *const fn(
             self: *const ITfKeystrokeMgr,
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         KeyUp: *const fn(
             self: *const ITfKeystrokeMgr,
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreservedKey: *const fn(
             self: *const ITfKeystrokeMgr,
             pic: ?*ITfContext,
             pprekey: ?*const TF_PRESERVEDKEY,
             pguid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPreservedKey: *const fn(
             self: *const ITfKeystrokeMgr,
             rguid: ?*const Guid,
             pprekey: ?*const TF_PRESERVEDKEY,
             pfRegistered: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PreserveKey: *const fn(
             self: *const ITfKeystrokeMgr,
             tid: u32,
@@ -5238,29 +5238,29 @@ pub const ITfKeystrokeMgr = extern union {
             prekey: ?*const TF_PRESERVEDKEY,
             pchDesc: [*:0]const u16,
             cchDesc: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnpreserveKey: *const fn(
             self: *const ITfKeystrokeMgr,
             rguid: ?*const Guid,
             pprekey: ?*const TF_PRESERVEDKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPreservedKeyDescription: *const fn(
             self: *const ITfKeystrokeMgr,
             rguid: ?*const Guid,
             pchDesc: [*:0]const u16,
             cchDesc: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreservedKeyDescription: *const fn(
             self: *const ITfKeystrokeMgr,
             rguid: ?*const Guid,
             pbstrDesc: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SimulatePreservedKey: *const fn(
             self: *const ITfKeystrokeMgr,
             pic: ?*ITfContext,
             rguid: ?*const Guid,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5317,41 +5317,41 @@ pub const ITfKeyEventSink = extern union {
         OnSetFocus: *const fn(
             self: *const ITfKeyEventSink,
             fForeground: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTestKeyDown: *const fn(
             self: *const ITfKeyEventSink,
             pic: ?*ITfContext,
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTestKeyUp: *const fn(
             self: *const ITfKeyEventSink,
             pic: ?*ITfContext,
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnKeyDown: *const fn(
             self: *const ITfKeyEventSink,
             pic: ?*ITfContext,
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnKeyUp: *const fn(
             self: *const ITfKeyEventSink,
             pic: ?*ITfContext,
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnPreservedKey: *const fn(
             self: *const ITfKeyEventSink,
             pic: ?*ITfContext,
             rguid: ?*const Guid,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5385,12 +5385,12 @@ pub const ITfKeyTraceEventSink = extern union {
             self: *const ITfKeyTraceEventSink,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnKeyTraceUp: *const fn(
             self: *const ITfKeyTraceEventSink,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5411,7 +5411,7 @@ pub const ITfPreservedKeyNotifySink = extern union {
         OnUpdated: *const fn(
             self: *const ITfPreservedKeyNotifySink,
             pprekey: ?*const TF_PRESERVEDKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5434,7 +5434,7 @@ pub const ITfMessagePump = extern union {
             wMsgFilterMax: u32,
             wRemoveMsg: u32,
             pfResult: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMessageA: *const fn(
             self: *const ITfMessagePump,
             pMsg: ?*MSG,
@@ -5442,7 +5442,7 @@ pub const ITfMessagePump = extern union {
             wMsgFilterMin: u32,
             wMsgFilterMax: u32,
             pfResult: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekMessageW: *const fn(
             self: *const ITfMessagePump,
             pMsg: ?*MSG,
@@ -5451,7 +5451,7 @@ pub const ITfMessagePump = extern union {
             wMsgFilterMax: u32,
             wRemoveMsg: u32,
             pfResult: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMessageW: *const fn(
             self: *const ITfMessagePump,
             pMsg: ?*MSG,
@@ -5459,7 +5459,7 @@ pub const ITfMessagePump = extern union {
             wMsgFilterMin: u32,
             wMsgFilterMax: u32,
             pfResult: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5485,10 +5485,10 @@ pub const ITfThreadFocusSink = extern union {
         base: IUnknown.VTable,
         OnSetThreadFocus: *const fn(
             self: *const ITfThreadFocusSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnKillThreadFocus: *const fn(
             self: *const ITfThreadFocusSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5510,10 +5510,10 @@ pub const ITfTextInputProcessor = extern union {
             self: *const ITfTextInputProcessor,
             ptim: ?*ITfThreadMgr,
             tid: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Deactivate: *const fn(
             self: *const ITfTextInputProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5536,7 +5536,7 @@ pub const ITfTextInputProcessorEx = extern union {
             ptim: ?*ITfThreadMgr,
             tid: u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfTextInputProcessor: ITfTextInputProcessor,
@@ -5556,7 +5556,7 @@ pub const ITfClientId = extern union {
             self: *const ITfClientId,
             rclsid: ?*const Guid,
             ptid: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5630,22 +5630,22 @@ pub const ITfDisplayAttributeInfo = extern union {
         GetGUID: *const fn(
             self: *const ITfDisplayAttributeInfo,
             pguid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const ITfDisplayAttributeInfo,
             pbstrDesc: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeInfo: *const fn(
             self: *const ITfDisplayAttributeInfo,
             pda: ?*TF_DISPLAYATTRIBUTE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAttributeInfo: *const fn(
             self: *const ITfDisplayAttributeInfo,
             pda: ?*const TF_DISPLAYATTRIBUTE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ITfDisplayAttributeInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5675,20 +5675,20 @@ pub const IEnumTfDisplayAttributeInfo = extern union {
         Clone: *const fn(
             self: *const IEnumTfDisplayAttributeInfo,
             ppEnum: ?*?*IEnumTfDisplayAttributeInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfDisplayAttributeInfo,
             ulCount: u32,
             rgInfo: [*]?*ITfDisplayAttributeInfo,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfDisplayAttributeInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfDisplayAttributeInfo,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5715,12 +5715,12 @@ pub const ITfDisplayAttributeProvider = extern union {
         EnumDisplayAttributeInfo: *const fn(
             self: *const ITfDisplayAttributeProvider,
             ppEnum: ?*?*IEnumTfDisplayAttributeInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayAttributeInfo: *const fn(
             self: *const ITfDisplayAttributeProvider,
             guid: ?*const Guid,
             ppInfo: ?*?*ITfDisplayAttributeInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5740,17 +5740,17 @@ pub const ITfDisplayAttributeMgr = extern union {
         base: IUnknown.VTable,
         OnUpdateInfo: *const fn(
             self: *const ITfDisplayAttributeMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDisplayAttributeInfo: *const fn(
             self: *const ITfDisplayAttributeMgr,
             ppEnum: ?*?*IEnumTfDisplayAttributeInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayAttributeInfo: *const fn(
             self: *const ITfDisplayAttributeMgr,
             guid: ?*const Guid,
             ppInfo: ?*?*ITfDisplayAttributeInfo,
             pclsidOwner: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5773,7 +5773,7 @@ pub const ITfDisplayAttributeNotifySink = extern union {
         base: IUnknown.VTable,
         OnUpdateInfo: *const fn(
             self: *const ITfDisplayAttributeNotifySink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5793,79 +5793,79 @@ pub const ITfCategoryMgr = extern union {
             rclsid: ?*const Guid,
             rcatid: ?*const Guid,
             rguid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterCategory: *const fn(
             self: *const ITfCategoryMgr,
             rclsid: ?*const Guid,
             rcatid: ?*const Guid,
             rguid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumCategoriesInItem: *const fn(
             self: *const ITfCategoryMgr,
             rguid: ?*const Guid,
             ppEnum: ?*?*IEnumGUID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumItemsInCategory: *const fn(
             self: *const ITfCategoryMgr,
             rcatid: ?*const Guid,
             ppEnum: ?*?*IEnumGUID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindClosestCategory: *const fn(
             self: *const ITfCategoryMgr,
             rguid: ?*const Guid,
             pcatid: ?*Guid,
             ppcatidList: [*]const ?*const Guid,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterGUIDDescription: *const fn(
             self: *const ITfCategoryMgr,
             rclsid: ?*const Guid,
             rguid: ?*const Guid,
             pchDesc: [*:0]const u16,
             cch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterGUIDDescription: *const fn(
             self: *const ITfCategoryMgr,
             rclsid: ?*const Guid,
             rguid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGUIDDescription: *const fn(
             self: *const ITfCategoryMgr,
             rguid: ?*const Guid,
             pbstrDesc: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterGUIDDWORD: *const fn(
             self: *const ITfCategoryMgr,
             rclsid: ?*const Guid,
             rguid: ?*const Guid,
             dw: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterGUIDDWORD: *const fn(
             self: *const ITfCategoryMgr,
             rclsid: ?*const Guid,
             rguid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGUIDDWORD: *const fn(
             self: *const ITfCategoryMgr,
             rguid: ?*const Guid,
             pdw: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterGUID: *const fn(
             self: *const ITfCategoryMgr,
             rguid: ?*const Guid,
             pguidatom: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGUID: *const fn(
             self: *const ITfCategoryMgr,
             guidatom: u32,
             pguid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEqualTfGuidAtom: *const fn(
             self: *const ITfCategoryMgr,
             guidatom: u32,
             rguid: ?*const Guid,
             pfEqual: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5924,11 +5924,11 @@ pub const ITfSource = extern union {
             riid: ?*const Guid,
             punk: ?*IUnknown,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseSink: *const fn(
             self: *const ITfSource,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5951,12 +5951,12 @@ pub const ITfSourceSingle = extern union {
             tid: u32,
             riid: ?*const Guid,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseSingleSink: *const fn(
             self: *const ITfSourceSingle,
             tid: u32,
             riid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5979,24 +5979,24 @@ pub const ITfUIElementMgr = extern union {
             pElement: ?*ITfUIElement,
             pbShow: ?*BOOL,
             pdwUIElementId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateUIElement: *const fn(
             self: *const ITfUIElementMgr,
             dwUIElementId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndUIElement: *const fn(
             self: *const ITfUIElementMgr,
             dwUIElementId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUIElement: *const fn(
             self: *const ITfUIElementMgr,
             dwUIELementId: u32,
             ppElement: ?*?*ITfUIElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumUIElements: *const fn(
             self: *const ITfUIElementMgr,
             ppEnum: ?*?*IEnumTfUIElements,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6026,20 +6026,20 @@ pub const IEnumTfUIElements = extern union {
         Clone: *const fn(
             self: *const IEnumTfUIElements,
             ppEnum: ?*?*IEnumTfUIElements,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfUIElements,
             ulCount: u32,
             ppElement: [*]?*ITfUIElement,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfUIElements,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfUIElements,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6067,15 +6067,15 @@ pub const ITfUIElementSink = extern union {
             self: *const ITfUIElementSink,
             dwUIElementId: u32,
             pbShow: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateUIElement: *const fn(
             self: *const ITfUIElementSink,
             dwUIElementId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndUIElement: *const fn(
             self: *const ITfUIElementSink,
             dwUIElementId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6099,19 +6099,19 @@ pub const ITfUIElement = extern union {
         GetDescription: *const fn(
             self: *const ITfUIElement,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGUID: *const fn(
             self: *const ITfUIElement,
             pguid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Show: *const fn(
             self: *const ITfUIElement,
             bShow: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsShown: *const fn(
             self: *const ITfUIElement,
             pbShow: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6138,39 +6138,39 @@ pub const ITfCandidateListUIElement = extern union {
         GetUpdatedFlags: *const fn(
             self: *const ITfCandidateListUIElement,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDocumentMgr: *const fn(
             self: *const ITfCandidateListUIElement,
             ppdim: ?*?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const ITfCandidateListUIElement,
             puCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSelection: *const fn(
             self: *const ITfCandidateListUIElement,
             puIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetString: *const fn(
             self: *const ITfCandidateListUIElement,
             uIndex: u32,
             pstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPageIndex: *const fn(
             self: *const ITfCandidateListUIElement,
             pIndex: [*]u32,
             uSize: u32,
             puPageCnt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPageIndex: *const fn(
             self: *const ITfCandidateListUIElement,
             pIndex: [*]u32,
             uPageCnt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentPage: *const fn(
             self: *const ITfCandidateListUIElement,
             puPage: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfUIElement: ITfUIElement,
@@ -6210,13 +6210,13 @@ pub const ITfCandidateListUIElementBehavior = extern union {
         SetSelection: *const fn(
             self: *const ITfCandidateListUIElementBehavior,
             nIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finalize: *const fn(
             self: *const ITfCandidateListUIElementBehavior,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Abort: *const fn(
             self: *const ITfCandidateListUIElementBehavior,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfCandidateListUIElement: ITfCandidateListUIElement,
@@ -6242,27 +6242,27 @@ pub const ITfReadingInformationUIElement = extern union {
         GetUpdatedFlags: *const fn(
             self: *const ITfReadingInformationUIElement,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContext: *const fn(
             self: *const ITfReadingInformationUIElement,
             ppic: ?*?*ITfContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetString: *const fn(
             self: *const ITfReadingInformationUIElement,
             pstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxReadingStringLength: *const fn(
             self: *const ITfReadingInformationUIElement,
             pcchMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorIndex: *const fn(
             self: *const ITfReadingInformationUIElement,
             pErrorIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsVerticalOrderPreferred: *const fn(
             self: *const ITfReadingInformationUIElement,
             pfVertical: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfUIElement: ITfUIElement,
@@ -6296,7 +6296,7 @@ pub const ITfTransitoryExtensionUIElement = extern union {
         GetDocumentMgr: *const fn(
             self: *const ITfTransitoryExtensionUIElement,
             ppdim: ?*?*ITfDocumentMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfUIElement: ITfUIElement,
@@ -6319,7 +6319,7 @@ pub const ITfTransitoryExtensionSink = extern union {
             pResultRange: ?*ITfRange,
             pCompositionRange: ?*ITfRange,
             pfDeleteResultRange: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6337,7 +6337,7 @@ pub const ITfToolTipUIElement = extern union {
         GetString: *const fn(
             self: *const ITfToolTipUIElement,
             pstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfUIElement: ITfUIElement,
@@ -6356,12 +6356,12 @@ pub const ITfReverseConversionList = extern union {
         GetLength: *const fn(
             self: *const ITfReverseConversionList,
             puIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetString: *const fn(
             self: *const ITfReverseConversionList,
             uIndex: u32,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6383,7 +6383,7 @@ pub const ITfReverseConversion = extern union {
             self: *const ITfReverseConversion,
             lpstr: ?[*:0]const u16,
             ppList: ?*?*ITfReverseConversionList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6404,7 +6404,7 @@ pub const ITfReverseConversionMgr = extern union {
             guidProfile: ?*const Guid,
             dwflag: u32,
             ppReverseConversion: ?*?*ITfReverseConversion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6422,11 +6422,11 @@ pub const ITfCandidateString = extern union {
         GetString: *const fn(
             self: *const ITfCandidateString,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIndex: *const fn(
             self: *const ITfCandidateString,
             pnIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6447,20 +6447,20 @@ pub const IEnumTfCandidates = extern union {
         Clone: *const fn(
             self: *const IEnumTfCandidates,
             ppEnum: ?*?*IEnumTfCandidates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfCandidates,
             ulCount: u32,
             ppCand: [*]?*ITfCandidateString,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfCandidates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfCandidates,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6496,21 +6496,21 @@ pub const ITfCandidateList = extern union {
         EnumCandidates: *const fn(
             self: *const ITfCandidateList,
             ppEnum: ?*?*IEnumTfCandidates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidate: *const fn(
             self: *const ITfCandidateList,
             nIndex: u32,
             ppCand: ?*?*ITfCandidateString,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidateNum: *const fn(
             self: *const ITfCandidateList,
             pnCnt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetResult: *const fn(
             self: *const ITfCandidateList,
             nIndex: u32,
             imcr: TfCandidateResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6539,16 +6539,16 @@ pub const ITfFnReconversion = extern union {
             pRange: ?*ITfRange,
             ppNewRange: ?*?*ITfRange,
             pfConvertable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReconversion: *const fn(
             self: *const ITfFnReconversion,
             pRange: ?*ITfRange,
             ppCandList: ?*?*ITfCandidateList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reconvert: *const fn(
             self: *const ITfFnReconversion,
             pRange: ?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -6575,11 +6575,11 @@ pub const ITfFnPlayBack = extern union {
             pRange: ?*ITfRange,
             ppNewRange: ?*?*ITfRange,
             pfPlayable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Play: *const fn(
             self: *const ITfFnPlayBack,
             pRange: ?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -6600,12 +6600,12 @@ pub const ITfFnLangProfileUtil = extern union {
         base: ITfFunction.VTable,
         RegisterActiveProfiles: *const fn(
             self: *const ITfFnLangProfileUtil,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsProfileAvailableForLang: *const fn(
             self: *const ITfFnLangProfileUtil,
             langid: u16,
             pfAvailable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -6629,7 +6629,7 @@ pub const ITfFnConfigure = extern union {
             hwndParent: ?HWND,
             langid: u16,
             rguidProfile: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -6651,7 +6651,7 @@ pub const ITfFnConfigureRegisterWord = extern union {
             langid: u16,
             rguidProfile: ?*const Guid,
             bstrRegistered: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -6673,7 +6673,7 @@ pub const ITfFnConfigureRegisterEudc = extern union {
             langid: u16,
             rguidProfile: ?*const Guid,
             bstrRegistered: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -6692,7 +6692,7 @@ pub const ITfFnShowHelp = extern union {
         Show: *const fn(
             self: *const ITfFnShowHelp,
             hwndParent: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -6713,7 +6713,7 @@ pub const ITfFnBalloon = extern union {
             style: TfLBBalloonStyle,
             pch: [*:0]const u16,
             cch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6747,7 +6747,7 @@ pub const ITfFnGetSAPIObject = extern union {
             self: *const ITfFnGetSAPIObject,
             sObj: TfSapiObject,
             ppunk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -6767,12 +6767,12 @@ pub const ITfFnPropertyUIStatus = extern union {
             self: *const ITfFnPropertyUIStatus,
             refguidProp: ?*const Guid,
             pdw: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStatus: *const fn(
             self: *const ITfFnPropertyUIStatus,
             refguidProp: ?*const Guid,
             dw: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -6793,20 +6793,20 @@ pub const IEnumSpeechCommands = extern union {
         Clone: *const fn(
             self: *const IEnumSpeechCommands,
             ppEnum: ?*?*IEnumSpeechCommands,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumSpeechCommands,
             ulCount: u32,
             pSpCmds: [*]?*u16,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSpeechCommands,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSpeechCommands,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6833,13 +6833,13 @@ pub const ISpeechCommandProvider = extern union {
             self: *const ISpeechCommandProvider,
             langid: u16,
             ppEnum: ?*?*IEnumSpeechCommands,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessCommand: *const fn(
             self: *const ISpeechCommandProvider,
             pszCommand: [*:0]const u16,
             cch: u32,
             langid: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6859,7 +6859,7 @@ pub const ITfFnCustomSpeechCommand = extern union {
         SetSpeechCommandProvider: *const fn(
             self: *const ITfFnCustomSpeechCommand,
             pspcmdProvider: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -6880,39 +6880,39 @@ pub const ITfFnLMProcessor = extern union {
             pRange: ?*ITfRange,
             ppNewRange: ?*?*ITfRange,
             pfAccepted: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryLangID: *const fn(
             self: *const ITfFnLMProcessor,
             langid: u16,
             pfAccepted: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReconversion: *const fn(
             self: *const ITfFnLMProcessor,
             pRange: ?*ITfRange,
             ppCandList: ?*?*ITfCandidateList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reconvert: *const fn(
             self: *const ITfFnLMProcessor,
             pRange: ?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryKey: *const fn(
             self: *const ITfFnLMProcessor,
             fUp: BOOL,
             vKey: WPARAM,
             lparamKeydata: LPARAM,
             pfInterested: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InvokeKey: *const fn(
             self: *const ITfFnLMProcessor,
             fUp: BOOL,
             vKey: WPARAM,
             lparamKeyData: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InvokeFunc: *const fn(
             self: *const ITfFnLMProcessor,
             pic: ?*ITfContext,
             refguidFunc: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -6949,7 +6949,7 @@ pub const ITfFnLMInternal = extern union {
         ProcessLattice: *const fn(
             self: *const ITfFnLMInternal,
             pRange: ?*ITfRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFnLMProcessor: ITfFnLMProcessor,
@@ -6979,20 +6979,20 @@ pub const IEnumTfLatticeElements = extern union {
         Clone: *const fn(
             self: *const IEnumTfLatticeElements,
             ppEnum: ?*?*IEnumTfLatticeElements,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumTfLatticeElements,
             ulCount: u32,
             rgsElements: [*]TF_LMLATTELEMENT,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTfLatticeElements,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTfLatticeElements,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7020,13 +7020,13 @@ pub const ITfLMLattice = extern union {
             self: *const ITfLMLattice,
             rguidType: ?*const Guid,
             pfSupported: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumLatticeElements: *const fn(
             self: *const ITfLMLattice,
             dwFrameStart: u32,
             rguidType: ?*const Guid,
             ppEnum: ?*?*IEnumTfLatticeElements,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7049,12 +7049,12 @@ pub const ITfFnAdviseText = extern union {
             pRange: ?*ITfRange,
             pchText: [*:0]const u16,
             cch: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnLatticeUpdate: *const fn(
             self: *const ITfFnAdviseText,
             pRange: ?*ITfRange,
             pLattice: ?*ITfLMLattice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -7078,13 +7078,13 @@ pub const ITfFnSearchCandidateProvider = extern union {
             bstrQuery: ?BSTR,
             bstrApplicationId: ?BSTR,
             pplist: ?*?*ITfCandidateList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetResult: *const fn(
             self: *const ITfFnSearchCandidateProvider,
             bstrQuery: ?BSTR,
             bstrApplicationID: ?BSTR,
             bstrResult: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -7113,24 +7113,24 @@ pub const ITfIntegratableCandidateListUIElement = extern union {
         SetIntegrationStyle: *const fn(
             self: *const ITfIntegratableCandidateListUIElement,
             guidIntegrationStyle: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSelectionStyle: *const fn(
             self: *const ITfIntegratableCandidateListUIElement,
             ptfSelectionStyle: ?*TfIntegratableCandidateListSelectionStyle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnKeyDown: *const fn(
             self: *const ITfIntegratableCandidateListUIElement,
             wParam: WPARAM,
             lParam: LPARAM,
             pfEaten: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowCandidateNumbers: *const fn(
             self: *const ITfIntegratableCandidateListUIElement,
             pfShow: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FinalizeExactCompositionString: *const fn(
             self: *const ITfIntegratableCandidateListUIElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7170,7 +7170,7 @@ pub const ITfFnGetPreferredTouchKeyboardLayout = extern union {
             self: *const ITfFnGetPreferredTouchKeyboardLayout,
             pTKBLayoutType: ?*TKBLayoutType,
             pwPreferredLayoutId: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -7190,7 +7190,7 @@ pub const ITfFnGetLinguisticAlternates = extern union {
             self: *const ITfFnGetLinguisticAlternates,
             pRange: ?*ITfRange,
             ppCandidateList: **ITfCandidateList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfFunction: ITfFunction,
@@ -7209,25 +7209,25 @@ pub const IUIManagerEventSink = extern union {
         OnWindowOpening: *const fn(
             self: *const IUIManagerEventSink,
             prcBounds: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnWindowOpened: *const fn(
             self: *const IUIManagerEventSink,
             prcBounds: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnWindowUpdating: *const fn(
             self: *const IUIManagerEventSink,
             prcUpdatedBounds: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnWindowUpdated: *const fn(
             self: *const IUIManagerEventSink,
             prcUpdatedBounds: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnWindowClosing: *const fn(
             self: *const IUIManagerEventSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnWindowClosed: *const fn(
             self: *const IUIManagerEventSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7412,24 +7412,24 @@ pub const ITfInputScope = extern union {
             self: *const ITfInputScope,
             pprgInputScopes: [*]?*InputScope,
             pcCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPhrase: *const fn(
             self: *const ITfInputScope,
             ppbstrPhrases: [*]?*?BSTR,
             pcCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegularExpression: *const fn(
             self: *const ITfInputScope,
             pbstrRegExp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSRGS: *const fn(
             self: *const ITfInputScope,
             pbstrSRGS: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXML: *const fn(
             self: *const ITfInputScope,
             pbstrXML: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7459,7 +7459,7 @@ pub const ITfInputScope2 = extern union {
         EnumWordList: *const fn(
             self: *const ITfInputScope2,
             ppEnumString: ?*?*IEnumString,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITfInputScope: ITfInputScope,
@@ -7495,10 +7495,10 @@ pub const ITfMSAAControl = extern union {
         base: IUnknown.VTable,
         SystemEnableMSAA: *const fn(
             self: *const ITfMSAAControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SystemDisableMSAA: *const fn(
             self: *const ITfMSAAControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7517,7 +7517,7 @@ pub const IInternalDocWrap = extern union {
         base: IUnknown.VTable,
         NotifyRevoke: *const fn(
             self: *const IInternalDocWrap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7537,7 +7537,7 @@ pub const ITextStoreACPEx = extern union {
             acpEnd: i32,
             rc: RECT,
             dwPosition: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7557,7 +7557,7 @@ pub const ITextStoreAnchorEx = extern union {
             pEnd: ?*IAnchor,
             rc: RECT,
             dwPosition: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7573,7 +7573,7 @@ pub const ITextStoreACPSinkEx = extern union {
         base: ITextStoreACPSink.VTable,
         OnDisconnect: *const fn(
             self: *const ITextStoreACPSinkEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITextStoreACPSink: ITextStoreACPSink,
@@ -7590,7 +7590,7 @@ pub const ITextStoreSinkAnchorEx = extern union {
         base: ITextStoreAnchorSink.VTable,
         OnDisconnect: *const fn(
             self: *const ITextStoreSinkAnchorEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITextStoreAnchorSink: ITextStoreAnchorSink,
@@ -7612,22 +7612,22 @@ pub const IAccDictionary = extern union {
             lcid: u32,
             pResult: ?*?BSTR,
             plcid: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParentTerm: *const fn(
             self: *const IAccDictionary,
             Term: ?*const Guid,
             pParentTerm: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMnemonicString: *const fn(
             self: *const IAccDictionary,
             Term: ?*const Guid,
             pResult: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LookupMnemonicTerm: *const fn(
             self: *const IAccDictionary,
             bstrMnemonic: ?BSTR,
             pTerm: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertValueToString: *const fn(
             self: *const IAccDictionary,
             Term: ?*const Guid,
@@ -7635,7 +7635,7 @@ pub const IAccDictionary = extern union {
             varValue: VARIANT,
             pbstrResult: ?*?BSTR,
             plcid: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7666,28 +7666,28 @@ pub const IVersionInfo = extern union {
             self: *const IVersionInfo,
             ulSub: u32,
             ulCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImplementationID: *const fn(
             self: *const IVersionInfo,
             ulSub: u32,
             implid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBuildVersion: *const fn(
             self: *const IVersionInfo,
             ulSub: u32,
             pdwMajor: ?*u32,
             pdwMinor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetComponentDescription: *const fn(
             self: *const IVersionInfo,
             ulSub: u32,
             pImplStr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInstanceDescription: *const fn(
             self: *const IVersionInfo,
             ulSub: u32,
             pImplStr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7723,7 +7723,7 @@ pub const ICoCreateLocally = extern union {
             riidParam: ?*const Guid,
             punkParam: ?*IUnknown,
             varParam: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7744,7 +7744,7 @@ pub const ICoCreatedLocally = extern union {
             riidParam: ?*const Guid,
             punkParam: ?*IUnknown,
             varParam: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7762,36 +7762,36 @@ pub const IAccStore = extern union {
             self: *const IAccStore,
             riid: ?*const Guid,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unregister: *const fn(
             self: *const IAccStore,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDocuments: *const fn(
             self: *const IAccStore,
             enumUnknown: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LookupByHWND: *const fn(
             self: *const IAccStore,
             hWnd: ?HWND,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LookupByPoint: *const fn(
             self: *const IAccStore,
             pt: POINT,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDocumentFocus: *const fn(
             self: *const IAccStore,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFocused: *const fn(
             self: *const IAccStore,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7828,15 +7828,15 @@ pub const IAccServerDocMgr = extern union {
             self: *const IAccServerDocMgr,
             riid: ?*const Guid,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RevokeDocument: *const fn(
             self: *const IAccServerDocMgr,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDocumentFocus: *const fn(
             self: *const IAccServerDocMgr,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7860,24 +7860,24 @@ pub const IAccClientDocMgr = extern union {
         GetDocuments: *const fn(
             self: *const IAccClientDocMgr,
             enumUnknown: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LookupByHWND: *const fn(
             self: *const IAccClientDocMgr,
             hWnd: ?HWND,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LookupByPoint: *const fn(
             self: *const IAccClientDocMgr,
             pt: POINT,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFocused: *const fn(
             self: *const IAccClientDocMgr,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7904,12 +7904,12 @@ pub const IDocWrap = extern union {
             self: *const IDocWrap,
             riid: ?*const Guid,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWrappedDoc: *const fn(
             self: *const IDocWrap,
             riid: ?*const Guid,
             ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7930,7 +7930,7 @@ pub const IClonableWrapper = extern union {
             self: *const IClonableWrapper,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7947,17 +7947,17 @@ pub const ITfSpeechUIServer = extern union {
         base: IUnknown.VTable,
         Initialize: *const fn(
             self: *const ITfSpeechUIServer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowUI: *const fn(
             self: *const ITfSpeechUIServer,
             fShow: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateBalloon: *const fn(
             self: *const ITfSpeechUIServer,
             style: TfLBBalloonStyle,
             pch: [*:0]const u16,
             cch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7979,16 +7979,16 @@ pub const ITfSpeechUIServer = extern union {
 pub extern "msctfmonitor" fn DoMsCtfMonitor(
     dwFlags: u32,
     hEventForServiceStop: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "msctfmonitor" fn InitLocalMsCtfMonitor(
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "msctfmonitor" fn UninitLocalMsCtfMonitor(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

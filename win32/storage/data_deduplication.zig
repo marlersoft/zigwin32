@@ -42,20 +42,20 @@ pub const IDedupReadFileCallback = extern union {
             FileBuffer: [*:0]u8,
             ReturnedSize: ?*u32,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OrderContainersRestore: *const fn(
             self: *const IDedupReadFileCallback,
             NumberOfContainers: u32,
             ContainerPaths: [*]?BSTR,
             ReadPlanEntries: ?*u32,
             ReadPlan: [*]?*DEDUP_CONTAINER_EXTENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PreviewContainerRead: *const fn(
             self: *const IDedupReadFileCallback,
             FileFullPath: ?BSTR,
             NumberOfReads: u32,
             ReadOffsets: [*]DDP_FILE_EXTENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -83,7 +83,7 @@ pub const IDedupBackupSupport = extern union {
             Store: ?*IDedupReadFileCallback,
             Flags: u32,
             FileResults: [*]HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -119,20 +119,20 @@ pub const IDedupChunkLibrary = extern union {
         base: IUnknown.VTable,
         InitializeForPushBuffers: *const fn(
             self: *const IDedupChunkLibrary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Uninitialize: *const fn(
             self: *const IDedupChunkLibrary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetParameter: *const fn(
             self: *const IDedupChunkLibrary,
             dwParamType: u32,
             vParamValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartChunking: *const fn(
             self: *const IDedupChunkLibrary,
             iidIteratorInterfaceID: Guid,
             ppChunksEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -159,19 +159,19 @@ pub const IDedupIterateChunksHash32 = extern union {
             self: *const IDedupIterateChunksHash32,
             pBuffer: [*:0]u8,
             ulBufferLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IDedupIterateChunksHash32,
             ulMaxChunks: u32,
             pArrChunks: [*]DEDUP_CHUNK_INFO_HASH32,
             pulFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Drain: *const fn(
             self: *const IDedupIterateChunksHash32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IDedupIterateChunksHash32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -294,13 +294,13 @@ pub const IDedupDataPort = extern union {
             self: *const IDedupDataPort,
             pStatus: ?*DedupDataPortVolumeStatus,
             pDataHeadroomMb: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LookupChunks: *const fn(
             self: *const IDedupDataPort,
             Count: u32,
             pHashes: [*]DedupHash,
             pRequestId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertChunks: *const fn(
             self: *const IDedupDataPort,
             ChunkCount: u32,
@@ -308,7 +308,7 @@ pub const IDedupDataPort = extern union {
             DataByteCount: u32,
             pChunkData: [*:0]u8,
             pRequestId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertChunksWithStream: *const fn(
             self: *const IDedupDataPort,
             ChunkCount: u32,
@@ -316,7 +316,7 @@ pub const IDedupDataPort = extern union {
             DataByteCount: u32,
             pChunkDataStream: ?*IStream,
             pRequestId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitStreams: *const fn(
             self: *const IDedupDataPort,
             StreamCount: u32,
@@ -324,7 +324,7 @@ pub const IDedupDataPort = extern union {
             EntryCount: u32,
             pEntries: [*]DedupStreamEntry,
             pRequestId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitStreamsWithStream: *const fn(
             self: *const IDedupDataPort,
             StreamCount: u32,
@@ -332,13 +332,13 @@ pub const IDedupDataPort = extern union {
             EntryCount: u32,
             pEntriesStream: ?*IStream,
             pRequestId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreams: *const fn(
             self: *const IDedupDataPort,
             StreamCount: u32,
             pStreamPaths: [*]?BSTR,
             pRequestId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamsResults: *const fn(
             self: *const IDedupDataPort,
             RequestId: Guid,
@@ -350,13 +350,13 @@ pub const IDedupDataPort = extern union {
             ppEntries: [*]?*DedupStreamEntry,
             pStatus: ?*DedupDataPortRequestStatus,
             ppItemResults: [*]?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChunks: *const fn(
             self: *const IDedupDataPort,
             Count: u32,
             pHashes: [*]DedupHash,
             pRequestId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChunksResults: *const fn(
             self: *const IDedupDataPort,
             RequestId: Guid,
@@ -368,12 +368,12 @@ pub const IDedupDataPort = extern union {
             ppChunkData: [*]?*u8,
             pStatus: ?*DedupDataPortRequestStatus,
             ppItemResults: [*]?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestStatus: *const fn(
             self: *const IDedupDataPort,
             RequestId: Guid,
             pStatus: ?*DedupDataPortRequestStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestResults: *const fn(
             self: *const IDedupDataPort,
             RequestId: Guid,
@@ -382,7 +382,7 @@ pub const IDedupDataPort = extern union {
             pBatchCount: ?*u32,
             pStatus: ?*DedupDataPortRequestStatus,
             ppItemResults: [*]?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -436,19 +436,19 @@ pub const IDedupDataPortManager = extern union {
             pChunkingAlgorithm: ?*DedupChunkingAlgorithm,
             pHashingAlgorithm: ?*DedupHashingAlgorithm,
             pCompressionAlgorithm: ?*DedupCompressionAlgorithm,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVolumeStatus: *const fn(
             self: *const IDedupDataPortManager,
             Options: u32,
             Path: ?BSTR,
             pStatus: ?*DedupDataPortVolumeStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVolumeDataPort: *const fn(
             self: *const IDedupDataPortManager,
             Options: u32,
             Path: ?BSTR,
             ppDataPort: ?*?*IDedupDataPort,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

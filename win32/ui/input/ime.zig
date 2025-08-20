@@ -853,21 +853,21 @@ pub const IMECHARPOSITION = extern struct {
 pub const IMCENUMPROC = *const fn(
     param0: ?HIMC,
     param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const REGISTERWORDENUMPROCA = *const fn(
     lpszReading: ?[*:0]const u8,
     param1: u32,
     lpszString: ?[*:0]const u8,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const REGISTERWORDENUMPROCW = *const fn(
     lpszReading: ?[*:0]const u16,
     param1: u32,
     lpszString: ?[*:0]const u16,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const IFEClassFactory = extern union {
     pub const VTable = extern struct {
@@ -894,18 +894,18 @@ pub const IFECommon = extern union {
             self: *const IFECommon,
             szName: [*:0]const u8,
             cszName: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultIME: *const fn(
             self: *const IFECommon,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InvokeWordRegDialog: *const fn(
             self: *const IFECommon,
             pimedlg: ?*IMEDLG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InvokeDictToolDialog: *const fn(
             self: *const IFECommon,
             pimedlg: ?*IMEDLG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -972,10 +972,10 @@ pub const IFELanguage = extern union {
         base: IUnknown.VTable,
         Open: *const fn(
             self: *const IFELanguage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IFELanguage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetJMorphResult: *const fn(
             self: *const IFELanguage,
             dwRequest: u32,
@@ -984,25 +984,25 @@ pub const IFELanguage = extern union {
             pwchInput: ?[*:0]const u16,
             pfCInfo: ?*u32,
             ppResult: ?*?*MORRSLT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConversionModeCaps: *const fn(
             self: *const IFELanguage,
             pdwCaps: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPhonetic: *const fn(
             self: *const IFELanguage,
             string: ?BSTR,
             start: i32,
             length: i32,
             phonetic: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConversion: *const fn(
             self: *const IFELanguage,
             string: ?BSTR,
             start: i32,
             length: i32,
             result: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1196,7 +1196,7 @@ pub const IMEDP = extern struct {
 pub const PFNLOG = *const fn(
     param0: ?*IMEDP,
     param1: HRESULT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 const IID_IFEDictionary_Value = Guid.initString("019f7153-e6db-11d0-83c3-00c04fddb82e");
 pub const IID_IFEDictionary = &IID_IFEDictionary_Value;
@@ -1207,26 +1207,26 @@ pub const IFEDictionary = extern union {
             self: *const IFEDictionary,
             pchDictPath: ?*[260]u8,
             pshf: ?*IMESHF,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IFEDictionary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHeader: *const fn(
             self: *const IFEDictionary,
             pchDictPath: ?*[260]u8,
             pshf: ?*IMESHF,
             pjfmt: ?*IMEFMT,
             pulType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayProperty: *const fn(
             self: *const IFEDictionary,
             hwnd: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPosTable: *const fn(
             self: *const IFEDictionary,
             prgPosTbl: ?*?*POSTBL,
             pcPosTbl: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWords: *const fn(
             self: *const IFEDictionary,
             pwchFirst: ?[*:0]const u16,
@@ -1238,40 +1238,40 @@ pub const IFEDictionary = extern union {
             pchBuffer: ?*u8,
             cbBuffer: u32,
             pcWrd: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NextWords: *const fn(
             self: *const IFEDictionary,
             pchBuffer: ?*u8,
             cbBuffer: u32,
             pcWrd: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const IFEDictionary,
             pchDictPath: ?[*:0]const u8,
             pshf: ?*IMESHF,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetHeader: *const fn(
             self: *const IFEDictionary,
             pshf: ?*IMESHF,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExistWord: *const fn(
             self: *const IFEDictionary,
             pwrd: ?*IMEWRD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExistDependency: *const fn(
             self: *const IFEDictionary,
             pdp: ?*IMEDP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterWord: *const fn(
             self: *const IFEDictionary,
             reg: IMEREG,
             pwrd: ?*IMEWRD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterDependency: *const fn(
             self: *const IFEDictionary,
             reg: IMEREG,
             pdp: ?*IMEDP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDependencies: *const fn(
             self: *const IFEDictionary,
             pwchKakariReading: ?[*:0]const u16,
@@ -1285,22 +1285,22 @@ pub const IFEDictionary = extern union {
             pchBuffer: ?*u8,
             cbBuffer: u32,
             pcdp: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NextDependencies: *const fn(
             self: *const IFEDictionary,
             pchBuffer: ?*u8,
             cbBuffer: u32,
             pcDp: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertFromOldMSIME: *const fn(
             self: *const IFEDictionary,
             pchDic: ?[*:0]const u8,
             pfnLog: ?PFNLOG,
             reg: IMEREG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertFromUserToSys: *const fn(
             self: *const IFEDictionary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1414,16 +1414,16 @@ pub const IMEKMSFUNCDESC = extern struct {
 
 pub const fpCreateIFECommonInstanceType = *const fn(
     ppvObj: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const fpCreateIFELanguageInstanceType = *const fn(
     clsid: ?*const Guid,
     ppvObj: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const fpCreateIFEDictionaryInstanceType = *const fn(
     ppvObj: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const COMPOSITIONSTRING = extern struct {
     dwSize: u32,
@@ -1616,7 +1616,7 @@ pub const IImeSpecifyApplets = extern union {
             self: *const IImeSpecifyApplets,
             refiid: ?*const Guid,
             lpIIDList: ?*APPLETIDLIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1633,26 +1633,26 @@ pub const IImePadApplet = extern union {
         Initialize: *const fn(
             self: *const IImePadApplet,
             lpIImePad: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Terminate: *const fn(
             self: *const IImePadApplet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAppletConfig: *const fn(
             self: *const IImePadApplet,
             lpAppletCfg: ?*IMEAPPLETCFG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateUI: *const fn(
             self: *const IImePadApplet,
             hwndParent: ?HWND,
             lpImeAppletUI: ?*IMEAPPLETUI,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Notify: *const fn(
             self: *const IImePadApplet,
             lpImePad: ?*IUnknown,
             notify: i32,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1684,7 +1684,7 @@ pub const IImePad = extern union {
             reqId: IME_PAD_REQUEST_FLAGS,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1704,11 +1704,11 @@ pub const IImePlugInDictDictionaryList = extern union {
             prgDictionaryGUID: ?*?*SAFEARRAY,
             prgDateCreated: ?*?*SAFEARRAY,
             prgfEncrypted: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteDictionary: *const fn(
             self: *const IImePlugInDictDictionaryList,
             bstrDictionaryGUID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1731,20 +1731,20 @@ pub const IEnumRegisterWordA = extern union {
         Clone: *const fn(
             self: *const IEnumRegisterWordA,
             ppEnum: ?*?*IEnumRegisterWordA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumRegisterWordA,
             ulCount: u32,
             rgRegisterWord: ?*REGISTERWORDA,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumRegisterWordA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumRegisterWordA,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1770,20 +1770,20 @@ pub const IEnumRegisterWordW = extern union {
         Clone: *const fn(
             self: *const IEnumRegisterWordW,
             ppEnum: ?*?*IEnumRegisterWordW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumRegisterWordW,
             ulCount: u32,
             rgRegisterWord: ?*REGISTERWORDW,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumRegisterWordW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumRegisterWordW,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1809,20 +1809,20 @@ pub const IEnumInputContext = extern union {
         Clone: *const fn(
             self: *const IEnumInputContext,
             ppEnum: ?*?*IEnumInputContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumInputContext,
             ulCount: u32,
             rgInputContext: ?*?HIMC,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumInputContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumInputContext,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1851,11 +1851,11 @@ pub const IActiveIMMRegistrar = extern union {
             lgid: u16,
             pszIconFile: ?[*:0]const u16,
             pszDesc: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterIME: *const fn(
             self: *const IActiveIMMRegistrar,
             rclsid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1874,22 +1874,22 @@ pub const IActiveIMMMessagePumpOwner = extern union {
         base: IUnknown.VTable,
         Start: *const fn(
             self: *const IActiveIMMMessagePumpOwner,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         End: *const fn(
             self: *const IActiveIMMMessagePumpOwner,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnTranslateMessage: *const fn(
             self: *const IActiveIMMMessagePumpOwner,
             pMsg: ?*const MSG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const IActiveIMMMessagePumpOwner,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const IActiveIMMMessagePumpOwner,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1920,29 +1920,29 @@ pub const IActiveIMMApp = extern union {
             hWnd: ?HWND,
             hIME: ?HIMC,
             phPrev: ?*?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConfigureIMEA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             hWnd: ?HWND,
             dwMode: u32,
             pData: ?*REGISTERWORDA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConfigureIMEW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             hWnd: ?HWND,
             dwMode: u32,
             pData: ?*REGISTERWORDW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateContext: *const fn(
             self: *const IActiveIMMApp,
             phIMC: ?*?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestroyContext: *const fn(
             self: *const IActiveIMMApp,
             hIME: ?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumRegisterWordA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
@@ -1951,7 +1951,7 @@ pub const IActiveIMMApp = extern union {
             szRegister: ?PSTR,
             pData: ?*anyopaque,
             pEnum: ?*?*IEnumRegisterWordA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumRegisterWordW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
@@ -1960,7 +1960,7 @@ pub const IActiveIMMApp = extern union {
             szRegister: ?PWSTR,
             pData: ?*anyopaque,
             pEnum: ?*?*IEnumRegisterWordW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EscapeA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
@@ -1968,7 +1968,7 @@ pub const IActiveIMMApp = extern union {
             uEscape: u32,
             pData: ?*anyopaque,
             plResult: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EscapeW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
@@ -1976,7 +1976,7 @@ pub const IActiveIMMApp = extern union {
             uEscape: u32,
             pData: ?*anyopaque,
             plResult: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidateListA: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
@@ -1984,7 +1984,7 @@ pub const IActiveIMMApp = extern union {
             uBufLen: u32,
             pCandList: ?*CANDIDATELIST,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidateListW: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
@@ -1992,35 +1992,35 @@ pub const IActiveIMMApp = extern union {
             uBufLen: u32,
             pCandList: ?*CANDIDATELIST,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidateListCountA: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             pdwListSize: ?*u32,
             pdwBufLen: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidateListCountW: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             pdwListSize: ?*u32,
             pdwBufLen: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidateWindow: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             dwIndex: u32,
             pCandidate: ?*CANDIDATEFORM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompositionFontA: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             plf: ?*LOGFONTA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompositionFontW: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             plf: ?*LOGFONTW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompositionStringA: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
@@ -2028,7 +2028,7 @@ pub const IActiveIMMApp = extern union {
             dwBufLen: u32,
             plCopied: ?*i32,
             pBuf: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompositionStringW: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
@@ -2036,17 +2036,17 @@ pub const IActiveIMMApp = extern union {
             dwBufLen: u32,
             plCopied: ?*i32,
             pBuf: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompositionWindow: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             pCompForm: ?*COMPOSITIONFORM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContext: *const fn(
             self: *const IActiveIMMApp,
             hWnd: ?HWND,
             phIMC: ?*?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConversionListA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
@@ -2056,7 +2056,7 @@ pub const IActiveIMMApp = extern union {
             uFlag: u32,
             pDst: ?*CANDIDATELIST,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConversionListW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
@@ -2066,32 +2066,32 @@ pub const IActiveIMMApp = extern union {
             uFlag: u32,
             pDst: ?*CANDIDATELIST,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConversionStatus: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             pfdwConversion: ?*u32,
             pfdwSentence: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultIMEWnd: *const fn(
             self: *const IActiveIMMApp,
             hWnd: ?HWND,
             phDefWnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescriptionA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             uBufLen: u32,
             szDescription: ?PSTR,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescriptionW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             uBufLen: u32,
             szDescription: ?PWSTR,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGuideLineA: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
@@ -2099,7 +2099,7 @@ pub const IActiveIMMApp = extern union {
             dwBufLen: u32,
             pBuf: ?PSTR,
             pdwResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGuideLineW: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
@@ -2107,126 +2107,126 @@ pub const IActiveIMMApp = extern union {
             dwBufLen: u32,
             pBuf: ?PWSTR,
             pdwResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIMEFileNameA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             uBufLen: u32,
             szFileName: ?PSTR,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIMEFileNameW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             uBufLen: u32,
             szFileName: ?PWSTR,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOpenStatus: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             fdwIndex: u32,
             pdwProperty: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegisterWordStyleA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             nItem: u32,
             pStyleBuf: ?*STYLEBUFA,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegisterWordStyleW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             nItem: u32,
             pStyleBuf: ?*STYLEBUFW,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatusWindowPos: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             pptPos: ?*POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVirtualKey: *const fn(
             self: *const IActiveIMMApp,
             hWnd: ?HWND,
             puVirtualKey: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallIMEA: *const fn(
             self: *const IActiveIMMApp,
             szIMEFileName: ?PSTR,
             szLayoutText: ?PSTR,
             phKL: ?*?HKL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallIMEW: *const fn(
             self: *const IActiveIMMApp,
             szIMEFileName: ?PWSTR,
             szLayoutText: ?PWSTR,
             phKL: ?*?HKL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsIME: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUIMessageA: *const fn(
             self: *const IActiveIMMApp,
             hWndIME: ?HWND,
             msg: u32,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUIMessageW: *const fn(
             self: *const IActiveIMMApp,
             hWndIME: ?HWND,
             msg: u32,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyIME: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             dwAction: u32,
             dwIndex: u32,
             dwValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterWordA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             szReading: ?PSTR,
             dwStyle: u32,
             szRegister: ?PSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterWordW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             szReading: ?PWSTR,
             dwStyle: u32,
             szRegister: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseContext: *const fn(
             self: *const IActiveIMMApp,
             hWnd: ?HWND,
             hIMC: ?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCandidateWindow: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             pCandidate: ?*CANDIDATEFORM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCompositionFontA: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             plf: ?*LOGFONTA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCompositionFontW: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             plf: ?*LOGFONTW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCompositionStringA: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
@@ -2235,7 +2235,7 @@ pub const IActiveIMMApp = extern union {
             dwCompLen: u32,
             pRead: ?*anyopaque,
             dwReadLen: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCompositionStringW: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
@@ -2244,54 +2244,54 @@ pub const IActiveIMMApp = extern union {
             dwCompLen: u32,
             pRead: ?*anyopaque,
             dwReadLen: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCompositionWindow: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             pCompForm: ?*COMPOSITIONFORM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConversionStatus: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             fdwConversion: u32,
             fdwSentence: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOpenStatus: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             fOpen: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStatusWindowPos: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             pptPos: ?*POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SimulateHotKey: *const fn(
             self: *const IActiveIMMApp,
             hWnd: ?HWND,
             dwHotKeyID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterWordA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             szReading: ?PSTR,
             dwStyle: u32,
             szUnregister: ?PSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterWordW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             szReading: ?PWSTR,
             dwStyle: u32,
             szUnregister: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Activate: *const fn(
             self: *const IActiveIMMApp,
             fRestoreLayout: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Deactivate: *const fn(
             self: *const IActiveIMMApp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDefWindowProc: *const fn(
             self: *const IActiveIMMApp,
             hWnd: ?HWND,
@@ -2299,32 +2299,32 @@ pub const IActiveIMMApp = extern union {
             wParam: WPARAM,
             lParam: LPARAM,
             plResult: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FilterClientWindows: *const fn(
             self: *const IActiveIMMApp,
             aaClassList: ?*u16,
             uSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodePageA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             uCodePage: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLangId: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             plid: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AssociateContextEx: *const fn(
             self: *const IActiveIMMApp,
             hWnd: ?HWND,
             hIMC: ?HIMC,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableIME: *const fn(
             self: *const IActiveIMMApp,
             idThread: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImeMenuItemsA: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
@@ -2334,7 +2334,7 @@ pub const IActiveIMMApp = extern union {
             pImeMenu: ?*IMEMENUITEMINFOA,
             dwSize: u32,
             pdwResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImeMenuItemsW: *const fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
@@ -2344,12 +2344,12 @@ pub const IActiveIMMApp = extern union {
             pImeMenu: ?*IMEMENUITEMINFOW,
             dwSize: u32,
             pdwResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumInputContext: *const fn(
             self: *const IActiveIMMApp,
             idThread: u32,
             ppEnum: ?*?*IEnumInputContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2569,29 +2569,29 @@ pub const IActiveIMMIME = extern union {
             hWnd: ?HWND,
             hIME: ?HIMC,
             phPrev: ?*?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConfigureIMEA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             hWnd: ?HWND,
             dwMode: u32,
             pData: ?*REGISTERWORDA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConfigureIMEW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             hWnd: ?HWND,
             dwMode: u32,
             pData: ?*REGISTERWORDW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateContext: *const fn(
             self: *const IActiveIMMIME,
             phIMC: ?*?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestroyContext: *const fn(
             self: *const IActiveIMMIME,
             hIME: ?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumRegisterWordA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
@@ -2600,7 +2600,7 @@ pub const IActiveIMMIME = extern union {
             szRegister: ?PSTR,
             pData: ?*anyopaque,
             pEnum: ?*?*IEnumRegisterWordA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumRegisterWordW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
@@ -2609,7 +2609,7 @@ pub const IActiveIMMIME = extern union {
             szRegister: ?PWSTR,
             pData: ?*anyopaque,
             pEnum: ?*?*IEnumRegisterWordW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EscapeA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
@@ -2617,7 +2617,7 @@ pub const IActiveIMMIME = extern union {
             uEscape: u32,
             pData: ?*anyopaque,
             plResult: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EscapeW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
@@ -2625,7 +2625,7 @@ pub const IActiveIMMIME = extern union {
             uEscape: u32,
             pData: ?*anyopaque,
             plResult: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidateListA: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
@@ -2633,7 +2633,7 @@ pub const IActiveIMMIME = extern union {
             uBufLen: u32,
             pCandList: ?*CANDIDATELIST,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidateListW: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
@@ -2641,35 +2641,35 @@ pub const IActiveIMMIME = extern union {
             uBufLen: u32,
             pCandList: ?*CANDIDATELIST,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidateListCountA: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             pdwListSize: ?*u32,
             pdwBufLen: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidateListCountW: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             pdwListSize: ?*u32,
             pdwBufLen: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCandidateWindow: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             dwIndex: u32,
             pCandidate: ?*CANDIDATEFORM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompositionFontA: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             plf: ?*LOGFONTA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompositionFontW: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             plf: ?*LOGFONTW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompositionStringA: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
@@ -2677,7 +2677,7 @@ pub const IActiveIMMIME = extern union {
             dwBufLen: u32,
             plCopied: ?*i32,
             pBuf: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompositionStringW: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
@@ -2685,17 +2685,17 @@ pub const IActiveIMMIME = extern union {
             dwBufLen: u32,
             plCopied: ?*i32,
             pBuf: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompositionWindow: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             pCompForm: ?*COMPOSITIONFORM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContext: *const fn(
             self: *const IActiveIMMIME,
             hWnd: ?HWND,
             phIMC: ?*?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConversionListA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
@@ -2705,7 +2705,7 @@ pub const IActiveIMMIME = extern union {
             uFlag: u32,
             pDst: ?*CANDIDATELIST,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConversionListW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
@@ -2715,32 +2715,32 @@ pub const IActiveIMMIME = extern union {
             uFlag: u32,
             pDst: ?*CANDIDATELIST,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConversionStatus: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             pfdwConversion: ?*u32,
             pfdwSentence: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultIMEWnd: *const fn(
             self: *const IActiveIMMIME,
             hWnd: ?HWND,
             phDefWnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescriptionA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             uBufLen: u32,
             szDescription: ?PSTR,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescriptionW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             uBufLen: u32,
             szDescription: ?PWSTR,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGuideLineA: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
@@ -2748,7 +2748,7 @@ pub const IActiveIMMIME = extern union {
             dwBufLen: u32,
             pBuf: ?PSTR,
             pdwResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGuideLineW: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
@@ -2756,126 +2756,126 @@ pub const IActiveIMMIME = extern union {
             dwBufLen: u32,
             pBuf: ?PWSTR,
             pdwResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIMEFileNameA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             uBufLen: u32,
             szFileName: ?PSTR,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIMEFileNameW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             uBufLen: u32,
             szFileName: ?PWSTR,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOpenStatus: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             fdwIndex: u32,
             pdwProperty: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegisterWordStyleA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             nItem: u32,
             pStyleBuf: ?*STYLEBUFA,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegisterWordStyleW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             nItem: u32,
             pStyleBuf: ?*STYLEBUFW,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatusWindowPos: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             pptPos: ?*POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVirtualKey: *const fn(
             self: *const IActiveIMMIME,
             hWnd: ?HWND,
             puVirtualKey: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallIMEA: *const fn(
             self: *const IActiveIMMIME,
             szIMEFileName: ?PSTR,
             szLayoutText: ?PSTR,
             phKL: ?*?HKL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallIMEW: *const fn(
             self: *const IActiveIMMIME,
             szIMEFileName: ?PWSTR,
             szLayoutText: ?PWSTR,
             phKL: ?*?HKL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsIME: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUIMessageA: *const fn(
             self: *const IActiveIMMIME,
             hWndIME: ?HWND,
             msg: u32,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUIMessageW: *const fn(
             self: *const IActiveIMMIME,
             hWndIME: ?HWND,
             msg: u32,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyIME: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             dwAction: u32,
             dwIndex: u32,
             dwValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterWordA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             szReading: ?PSTR,
             dwStyle: u32,
             szRegister: ?PSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterWordW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             szReading: ?PWSTR,
             dwStyle: u32,
             szRegister: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseContext: *const fn(
             self: *const IActiveIMMIME,
             hWnd: ?HWND,
             hIMC: ?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCandidateWindow: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             pCandidate: ?*CANDIDATEFORM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCompositionFontA: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             plf: ?*LOGFONTA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCompositionFontW: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             plf: ?*LOGFONTW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCompositionStringA: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
@@ -2884,7 +2884,7 @@ pub const IActiveIMMIME = extern union {
             dwCompLen: u32,
             pRead: ?*anyopaque,
             dwReadLen: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCompositionStringW: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
@@ -2893,113 +2893,113 @@ pub const IActiveIMMIME = extern union {
             dwCompLen: u32,
             pRead: ?*anyopaque,
             dwReadLen: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCompositionWindow: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             pCompForm: ?*COMPOSITIONFORM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConversionStatus: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             fdwConversion: u32,
             fdwSentence: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOpenStatus: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             fOpen: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStatusWindowPos: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             pptPos: ?*POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SimulateHotKey: *const fn(
             self: *const IActiveIMMIME,
             hWnd: ?HWND,
             dwHotKeyID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterWordA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             szReading: ?PSTR,
             dwStyle: u32,
             szUnregister: ?PSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterWordW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             szReading: ?PWSTR,
             dwStyle: u32,
             szUnregister: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateMessage: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LockIMC: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             ppIMC: ?*?*INPUTCONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockIMC: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIMCLockCount: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             pdwLockCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateIMCC: *const fn(
             self: *const IActiveIMMIME,
             dwSize: u32,
             phIMCC: ?*?HIMCC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestroyIMCC: *const fn(
             self: *const IActiveIMMIME,
             hIMCC: ?HIMCC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LockIMCC: *const fn(
             self: *const IActiveIMMIME,
             hIMCC: ?HIMCC,
             ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockIMCC: *const fn(
             self: *const IActiveIMMIME,
             hIMCC: ?HIMCC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReSizeIMCC: *const fn(
             self: *const IActiveIMMIME,
             hIMCC: ?HIMCC,
             dwSize: u32,
             phIMCC: ?*?HIMCC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIMCCSize: *const fn(
             self: *const IActiveIMMIME,
             hIMCC: ?HIMCC,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIMCCLockCount: *const fn(
             self: *const IActiveIMMIME,
             hIMCC: ?HIMCC,
             pdwLockCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHotKey: *const fn(
             self: *const IActiveIMMIME,
             dwHotKeyID: u32,
             puModifiers: ?*u32,
             puVKey: ?*u32,
             phKL: ?*?HKL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetHotKey: *const fn(
             self: *const IActiveIMMIME,
             dwHotKeyID: u32,
             uModifiers: u32,
             uVKey: u32,
             hKL: ?HKL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSoftKeyboard: *const fn(
             self: *const IActiveIMMIME,
             uType: u32,
@@ -3007,26 +3007,26 @@ pub const IActiveIMMIME = extern union {
             x: i32,
             y: i32,
             phSoftKbdWnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestroySoftKeyboard: *const fn(
             self: *const IActiveIMMIME,
             hSoftKbdWnd: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowSoftKeyboard: *const fn(
             self: *const IActiveIMMIME,
             hSoftKbdWnd: ?HWND,
             nCmdShow: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodePageA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             uCodePage: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLangId: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             plid: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         KeybdEvent: *const fn(
             self: *const IActiveIMMIME,
             lgidIME: u16,
@@ -3034,23 +3034,23 @@ pub const IActiveIMMIME = extern union {
             bScan: u8,
             dwFlags: u32,
             dwExtraInfo: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LockModal: *const fn(
             self: *const IActiveIMMIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockModal: *const fn(
             self: *const IActiveIMMIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AssociateContextEx: *const fn(
             self: *const IActiveIMMIME,
             hWnd: ?HWND,
             hIMC: ?HIMC,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableIME: *const fn(
             self: *const IActiveIMMIME,
             idThread: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImeMenuItemsA: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
@@ -3060,7 +3060,7 @@ pub const IActiveIMMIME = extern union {
             pImeMenu: ?*IMEMENUITEMINFOA,
             dwSize: u32,
             pdwResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImeMenuItemsW: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
@@ -3070,26 +3070,26 @@ pub const IActiveIMMIME = extern union {
             pImeMenu: ?*IMEMENUITEMINFOW,
             dwSize: u32,
             pdwResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumInputContext: *const fn(
             self: *const IActiveIMMIME,
             idThread: u32,
             ppEnum: ?*?*IEnumInputContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestMessageA: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             wParam: WPARAM,
             lParam: LPARAM,
             plResult: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestMessageW: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             wParam: WPARAM,
             lParam: LPARAM,
             plResult: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendIMCA: *const fn(
             self: *const IActiveIMMIME,
             hWnd: ?HWND,
@@ -3097,7 +3097,7 @@ pub const IActiveIMMIME = extern union {
             wParam: WPARAM,
             lParam: LPARAM,
             plResult: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendIMCW: *const fn(
             self: *const IActiveIMMIME,
             hWnd: ?HWND,
@@ -3105,10 +3105,10 @@ pub const IActiveIMMIME = extern union {
             wParam: WPARAM,
             lParam: LPARAM,
             plResult: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSleeping: *const fn(
             self: *const IActiveIMMIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3389,7 +3389,7 @@ pub const IActiveIME = extern union {
             pIMEInfo: ?*IMEINFO,
             szWndClass: ?PWSTR,
             pdwPrivate: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConversionList: *const fn(
             self: *const IActiveIME,
             hIMC: ?HIMC,
@@ -3398,49 +3398,49 @@ pub const IActiveIME = extern union {
             uBufLen: u32,
             pDest: ?*CANDIDATELIST,
             puCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Configure: *const fn(
             self: *const IActiveIME,
             hKL: ?HKL,
             hWnd: ?HWND,
             dwMode: u32,
             pRegisterWord: ?*REGISTERWORDW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Destroy: *const fn(
             self: *const IActiveIME,
             uReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Escape: *const fn(
             self: *const IActiveIME,
             hIMC: ?HIMC,
             uEscape: u32,
             pData: ?*anyopaque,
             plResult: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetActiveContext: *const fn(
             self: *const IActiveIME,
             hIMC: ?HIMC,
             fFlag: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessKey: *const fn(
             self: *const IActiveIME,
             hIMC: ?HIMC,
             uVirKey: u32,
             lParam: u32,
             pbKeyState: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Notify: *const fn(
             self: *const IActiveIME,
             hIMC: ?HIMC,
             dwAction: u32,
             dwIndex: u32,
             dwValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Select: *const fn(
             self: *const IActiveIME,
             hIMC: ?HIMC,
             fSelect: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCompositionString: *const fn(
             self: *const IActiveIME,
             hIMC: ?HIMC,
@@ -3449,7 +3449,7 @@ pub const IActiveIME = extern union {
             dwCompLen: u32,
             pRead: ?*anyopaque,
             dwReadLen: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ToAsciiEx: *const fn(
             self: *const IActiveIME,
             uVirKey: u32,
@@ -3459,25 +3459,25 @@ pub const IActiveIME = extern union {
             hIMC: ?HIMC,
             pdwTransBuf: ?*u32,
             puSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterWord: *const fn(
             self: *const IActiveIME,
             szReading: ?PWSTR,
             dwStyle: u32,
             szString: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterWord: *const fn(
             self: *const IActiveIME,
             szReading: ?PWSTR,
             dwStyle: u32,
             szString: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegisterWordStyle: *const fn(
             self: *const IActiveIME,
             nItem: u32,
             pStyleBuf: ?*STYLEBUFW,
             puBufSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumRegisterWord: *const fn(
             self: *const IActiveIME,
             szReading: ?PWSTR,
@@ -3485,15 +3485,15 @@ pub const IActiveIME = extern union {
             szRegister: ?PWSTR,
             pData: ?*anyopaque,
             ppEnum: ?*?*IEnumRegisterWordW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodePageA: *const fn(
             self: *const IActiveIME,
             uCodePage: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLangId: *const fn(
             self: *const IActiveIME,
             plid: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3557,11 +3557,11 @@ pub const IActiveIME2 = extern union {
         base: IActiveIME.VTable,
         Sleep: *const fn(
             self: *const IActiveIME2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unsleep: *const fn(
             self: *const IActiveIME2,
             fDead: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IActiveIME: IActiveIME,
@@ -3582,96 +3582,96 @@ pub const IActiveIME2 = extern union {
 pub extern "imm32" fn ImmInstallIMEA(
     lpszIMEFileName: ?[*:0]const u8,
     lpszLayoutText: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HKL;
+) callconv(.winapi) ?HKL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmInstallIMEW(
     lpszIMEFileName: ?[*:0]const u16,
     lpszLayoutText: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HKL;
+) callconv(.winapi) ?HKL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetDefaultIMEWnd(
     param0: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetDescriptionA(
     param0: ?HKL,
     lpszDescription: ?[*:0]u8,
     uBufLen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetDescriptionW(
     param0: ?HKL,
     lpszDescription: ?[*:0]u16,
     uBufLen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetIMEFileNameA(
     param0: ?HKL,
     lpszFileName: ?[*:0]u8,
     uBufLen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetIMEFileNameW(
     param0: ?HKL,
     lpszFileName: ?[*:0]u16,
     uBufLen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetProperty(
     param0: ?HKL,
     param1: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmIsIME(
     param0: ?HKL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmSimulateHotKey(
     param0: ?HWND,
     param1: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmCreateContext(
-) callconv(@import("std").os.windows.WINAPI) ?HIMC;
+) callconv(.winapi) ?HIMC;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmDestroyContext(
     param0: ?HIMC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetContext(
     param0: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) ?HIMC;
+) callconv(.winapi) ?HIMC;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmReleaseContext(
     param0: ?HWND,
     param1: ?HIMC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmAssociateContext(
     param0: ?HWND,
     param1: ?HIMC,
-) callconv(@import("std").os.windows.WINAPI) ?HIMC;
+) callconv(.winapi) ?HIMC;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmAssociateContextEx(
     param0: ?HWND,
     param1: ?HIMC,
     param2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetCompositionStringA(
@@ -3680,7 +3680,7 @@ pub extern "imm32" fn ImmGetCompositionStringA(
     // TODO: what to do with BytesParamIndex 3?
     lpBuf: ?*anyopaque,
     dwBufLen: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetCompositionStringW(
@@ -3689,7 +3689,7 @@ pub extern "imm32" fn ImmGetCompositionStringW(
     // TODO: what to do with BytesParamIndex 3?
     lpBuf: ?*anyopaque,
     dwBufLen: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmSetCompositionStringA(
@@ -3701,7 +3701,7 @@ pub extern "imm32" fn ImmSetCompositionStringA(
     // TODO: what to do with BytesParamIndex 5?
     lpRead: ?*anyopaque,
     dwReadLen: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmSetCompositionStringW(
@@ -3713,19 +3713,19 @@ pub extern "imm32" fn ImmSetCompositionStringW(
     // TODO: what to do with BytesParamIndex 5?
     lpRead: ?*anyopaque,
     dwReadLen: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetCandidateListCountA(
     param0: ?HIMC,
     lpdwListCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetCandidateListCountW(
     param0: ?HIMC,
     lpdwListCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetCandidateListA(
@@ -3734,7 +3734,7 @@ pub extern "imm32" fn ImmGetCandidateListA(
     // TODO: what to do with BytesParamIndex 3?
     lpCandList: ?*CANDIDATELIST,
     dwBufLen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetCandidateListW(
@@ -3743,7 +3743,7 @@ pub extern "imm32" fn ImmGetCandidateListW(
     // TODO: what to do with BytesParamIndex 3?
     lpCandList: ?*CANDIDATELIST,
     dwBufLen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetGuideLineA(
@@ -3752,7 +3752,7 @@ pub extern "imm32" fn ImmGetGuideLineA(
     // TODO: what to do with BytesParamIndex 3?
     lpBuf: ?PSTR,
     dwBufLen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetGuideLineW(
@@ -3761,56 +3761,56 @@ pub extern "imm32" fn ImmGetGuideLineW(
     // TODO: what to do with BytesParamIndex 3?
     lpBuf: ?PWSTR,
     dwBufLen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetConversionStatus(
     param0: ?HIMC,
     lpfdwConversion: ?*u32,
     lpfdwSentence: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmSetConversionStatus(
     param0: ?HIMC,
     param1: u32,
     param2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetOpenStatus(
     param0: ?HIMC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmSetOpenStatus(
     param0: ?HIMC,
     param1: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetCompositionFontA(
     param0: ?HIMC,
     lplf: ?*LOGFONTA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetCompositionFontW(
     param0: ?HIMC,
     lplf: ?*LOGFONTW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmSetCompositionFontA(
     param0: ?HIMC,
     lplf: ?*LOGFONTA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmSetCompositionFontW(
     param0: ?HIMC,
     lplf: ?*LOGFONTW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmConfigureIMEA(
@@ -3818,7 +3818,7 @@ pub extern "imm32" fn ImmConfigureIMEA(
     param1: ?HWND,
     param2: u32,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmConfigureIMEW(
@@ -3826,7 +3826,7 @@ pub extern "imm32" fn ImmConfigureIMEW(
     param1: ?HWND,
     param2: u32,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmEscapeA(
@@ -3834,7 +3834,7 @@ pub extern "imm32" fn ImmEscapeA(
     param1: ?HIMC,
     param2: u32,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmEscapeW(
@@ -3842,7 +3842,7 @@ pub extern "imm32" fn ImmEscapeW(
     param1: ?HIMC,
     param2: u32,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetConversionListA(
@@ -3853,7 +3853,7 @@ pub extern "imm32" fn ImmGetConversionListA(
     lpDst: ?*CANDIDATELIST,
     dwBufLen: u32,
     uFlag: GET_CONVERSION_LIST_FLAG,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetConversionListW(
@@ -3864,7 +3864,7 @@ pub extern "imm32" fn ImmGetConversionListW(
     lpDst: ?*CANDIDATELIST,
     dwBufLen: u32,
     uFlag: GET_CONVERSION_LIST_FLAG,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmNotifyIME(
@@ -3872,44 +3872,44 @@ pub extern "imm32" fn ImmNotifyIME(
     dwAction: NOTIFY_IME_ACTION,
     dwIndex: NOTIFY_IME_INDEX,
     dwValue: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetStatusWindowPos(
     param0: ?HIMC,
     lpptPos: ?*POINT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmSetStatusWindowPos(
     param0: ?HIMC,
     lpptPos: ?*POINT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetCompositionWindow(
     param0: ?HIMC,
     lpCompForm: ?*COMPOSITIONFORM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmSetCompositionWindow(
     param0: ?HIMC,
     lpCompForm: ?*COMPOSITIONFORM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetCandidateWindow(
     param0: ?HIMC,
     param1: u32,
     lpCandidate: ?*CANDIDATEFORM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmSetCandidateWindow(
     param0: ?HIMC,
     lpCandidate: ?*CANDIDATEFORM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmIsUIMessageA(
@@ -3917,7 +3917,7 @@ pub extern "imm32" fn ImmIsUIMessageA(
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmIsUIMessageW(
@@ -3925,12 +3925,12 @@ pub extern "imm32" fn ImmIsUIMessageW(
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetVirtualKey(
     param0: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmRegisterWordA(
@@ -3938,7 +3938,7 @@ pub extern "imm32" fn ImmRegisterWordA(
     lpszReading: ?[*:0]const u8,
     param2: u32,
     lpszRegister: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmRegisterWordW(
@@ -3946,7 +3946,7 @@ pub extern "imm32" fn ImmRegisterWordW(
     lpszReading: ?[*:0]const u16,
     param2: u32,
     lpszRegister: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmUnregisterWordA(
@@ -3954,7 +3954,7 @@ pub extern "imm32" fn ImmUnregisterWordA(
     lpszReading: ?[*:0]const u8,
     param2: u32,
     lpszUnregister: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmUnregisterWordW(
@@ -3962,21 +3962,21 @@ pub extern "imm32" fn ImmUnregisterWordW(
     lpszReading: ?[*:0]const u16,
     param2: u32,
     lpszUnregister: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetRegisterWordStyleA(
     param0: ?HKL,
     nItem: u32,
     lpStyleBuf: [*]STYLEBUFA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetRegisterWordStyleW(
     param0: ?HKL,
     nItem: u32,
     lpStyleBuf: [*]STYLEBUFW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmEnumRegisterWordA(
@@ -3986,7 +3986,7 @@ pub extern "imm32" fn ImmEnumRegisterWordA(
     param3: u32,
     lpszRegister: ?[*:0]const u8,
     param5: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmEnumRegisterWordW(
@@ -3996,19 +3996,19 @@ pub extern "imm32" fn ImmEnumRegisterWordW(
     param3: u32,
     lpszRegister: ?[*:0]const u16,
     param5: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmDisableIME(
     param0: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmEnumInputContext(
     idThread: u32,
     lpfn: ?IMCENUMPROC,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetImeMenuItemsA(
@@ -4019,7 +4019,7 @@ pub extern "imm32" fn ImmGetImeMenuItemsA(
     // TODO: what to do with BytesParamIndex 5?
     lpImeMenu: ?*IMEMENUITEMINFOA,
     dwSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetImeMenuItemsW(
@@ -4030,105 +4030,105 @@ pub extern "imm32" fn ImmGetImeMenuItemsW(
     // TODO: what to do with BytesParamIndex 5?
     lpImeMenu: ?*IMEMENUITEMINFOW,
     dwSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmDisableTextFrameService(
     idThread: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "imm32" fn ImmDisableLegacyIME(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "imm32" fn ImmGetHotKey(
     param0: u32,
     lpuModifiers: ?*u32,
     lpuVKey: ?*u32,
     phKL: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "imm32" fn ImmSetHotKey(
     param0: u32,
     param1: u32,
     param2: u32,
     param3: ?HKL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "imm32" fn ImmGenerateMessage(
     param0: ?HIMC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmRequestMessageA(
     param0: ?HIMC,
     param1: WPARAM,
     param2: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmRequestMessageW(
     param0: ?HIMC,
     param1: WPARAM,
     param2: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 pub extern "imm32" fn ImmCreateSoftKeyboard(
     param0: u32,
     param1: ?HWND,
     param2: i32,
     param3: i32,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 pub extern "imm32" fn ImmDestroySoftKeyboard(
     param0: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "imm32" fn ImmShowSoftKeyboard(
     param0: ?HWND,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "imm32" fn ImmLockIMC(
     param0: ?HIMC,
-) callconv(@import("std").os.windows.WINAPI) ?*INPUTCONTEXT;
+) callconv(.winapi) ?*INPUTCONTEXT;
 
 pub extern "imm32" fn ImmUnlockIMC(
     param0: ?HIMC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "imm32" fn ImmGetIMCLockCount(
     param0: ?HIMC,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "imm32" fn ImmCreateIMCC(
     param0: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HIMCC;
+) callconv(.winapi) ?HIMCC;
 
 pub extern "imm32" fn ImmDestroyIMCC(
     param0: ?HIMCC,
-) callconv(@import("std").os.windows.WINAPI) ?HIMCC;
+) callconv(.winapi) ?HIMCC;
 
 pub extern "imm32" fn ImmLockIMCC(
     param0: ?HIMCC,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 pub extern "imm32" fn ImmUnlockIMCC(
     param0: ?HIMCC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "imm32" fn ImmGetIMCCLockCount(
     param0: ?HIMCC,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "imm32" fn ImmReSizeIMCC(
     param0: ?HIMCC,
     param1: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HIMCC;
+) callconv(.winapi) ?HIMCC;
 
 pub extern "imm32" fn ImmGetIMCCSize(
     param0: ?HIMCC,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

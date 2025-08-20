@@ -175,13 +175,13 @@ pub const IObjectArray = extern union {
         GetCount: *const fn(
             self: *const IObjectArray,
             pcObjects: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IObjectArray,
             uiIndex: u32,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -202,18 +202,18 @@ pub const IObjectCollection = extern union {
         AddObject: *const fn(
             self: *const IObjectCollection,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddFromArray: *const fn(
             self: *const IObjectCollection,
             poaSource: ?*IObjectArray,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveObjectAt: *const fn(
             self: *const IObjectCollection,
             uiIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IObjectCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IObjectArray: IObjectArray,

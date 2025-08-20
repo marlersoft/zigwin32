@@ -186,41 +186,41 @@ pub const IDirectManipulationManager = extern union {
         Activate: *const fn(
             self: *const IDirectManipulationManager,
             window: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Deactivate: *const fn(
             self: *const IDirectManipulationManager,
             window: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterHitTestTarget: *const fn(
             self: *const IDirectManipulationManager,
             window: ?HWND,
             hitTestWindow: ?HWND,
             type: DIRECTMANIPULATION_HITTEST_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessInput: *const fn(
             self: *const IDirectManipulationManager,
             message: ?*const MSG,
             handled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUpdateManager: *const fn(
             self: *const IDirectManipulationManager,
             riid: ?*const Guid,
             object: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateViewport: *const fn(
             self: *const IDirectManipulationManager,
             frameInfo: ?*IDirectManipulationFrameInfoProvider,
             window: ?HWND,
             riid: ?*const Guid,
             object: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateContent: *const fn(
             self: *const IDirectManipulationManager,
             frameInfo: ?*IDirectManipulationFrameInfoProvider,
             clsid: ?*const Guid,
             riid: ?*const Guid,
             object: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -258,7 +258,7 @@ pub const IDirectManipulationManager2 = extern union {
             clsid: ?*const Guid,
             riid: ?*const Guid,
             object: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectManipulationManager: IDirectManipulationManager,
@@ -279,7 +279,7 @@ pub const IDirectManipulationManager3 = extern union {
             clsid: ?*const Guid,
             riid: ?*const Guid,
             object: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectManipulationManager2: IDirectManipulationManager2,
@@ -298,44 +298,44 @@ pub const IDirectManipulationViewport = extern union {
         base: IUnknown.VTable,
         Enable: *const fn(
             self: *const IDirectManipulationViewport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disable: *const fn(
             self: *const IDirectManipulationViewport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContact: *const fn(
             self: *const IDirectManipulationViewport,
             pointerId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseContact: *const fn(
             self: *const IDirectManipulationViewport,
             pointerId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseAllContacts: *const fn(
             self: *const IDirectManipulationViewport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IDirectManipulationViewport,
             status: ?*DIRECTMANIPULATION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTag: *const fn(
             self: *const IDirectManipulationViewport,
             riid: ?*const Guid,
             object: ?**anyopaque,
             id: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTag: *const fn(
             self: *const IDirectManipulationViewport,
             object: ?*IUnknown,
             id: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetViewportRect: *const fn(
             self: *const IDirectManipulationViewport,
             viewport: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetViewportRect: *const fn(
             self: *const IDirectManipulationViewport,
             viewport: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ZoomToRect: *const fn(
             self: *const IDirectManipulationViewport,
             left: f32,
@@ -343,78 +343,78 @@ pub const IDirectManipulationViewport = extern union {
             right: f32,
             bottom: f32,
             animate: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetViewportTransform: *const fn(
             self: *const IDirectManipulationViewport,
             matrix: [*]const f32,
             pointCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SyncDisplayTransform: *const fn(
             self: *const IDirectManipulationViewport,
             matrix: [*]const f32,
             pointCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrimaryContent: *const fn(
             self: *const IDirectManipulationViewport,
             riid: ?*const Guid,
             object: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddContent: *const fn(
             self: *const IDirectManipulationViewport,
             content: ?*IDirectManipulationContent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveContent: *const fn(
             self: *const IDirectManipulationViewport,
             content: ?*IDirectManipulationContent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetViewportOptions: *const fn(
             self: *const IDirectManipulationViewport,
             options: DIRECTMANIPULATION_VIEWPORT_OPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddConfiguration: *const fn(
             self: *const IDirectManipulationViewport,
             configuration: DIRECTMANIPULATION_CONFIGURATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveConfiguration: *const fn(
             self: *const IDirectManipulationViewport,
             configuration: DIRECTMANIPULATION_CONFIGURATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ActivateConfiguration: *const fn(
             self: *const IDirectManipulationViewport,
             configuration: DIRECTMANIPULATION_CONFIGURATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetManualGesture: *const fn(
             self: *const IDirectManipulationViewport,
             configuration: DIRECTMANIPULATION_GESTURE_CONFIGURATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetChaining: *const fn(
             self: *const IDirectManipulationViewport,
             enabledTypes: DIRECTMANIPULATION_MOTION_TYPES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddEventHandler: *const fn(
             self: *const IDirectManipulationViewport,
             window: ?HWND,
             eventHandler: ?*IDirectManipulationViewportEventHandler,
             cookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveEventHandler: *const fn(
             self: *const IDirectManipulationViewport,
             cookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInputMode: *const fn(
             self: *const IDirectManipulationViewport,
             mode: DIRECTMANIPULATION_INPUT_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUpdateMode: *const fn(
             self: *const IDirectManipulationViewport,
             mode: DIRECTMANIPULATION_INPUT_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IDirectManipulationViewport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Abandon: *const fn(
             self: *const IDirectManipulationViewport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -514,14 +514,14 @@ pub const IDirectManipulationViewport2 = extern union {
             self: *const IDirectManipulationViewport2,
             behavior: ?*IUnknown,
             cookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveBehavior: *const fn(
             self: *const IDirectManipulationViewport2,
             cookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllBehaviors: *const fn(
             self: *const IDirectManipulationViewport2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectManipulationViewport: IDirectManipulationViewport,
@@ -548,16 +548,16 @@ pub const IDirectManipulationViewportEventHandler = extern union {
             viewport: ?*IDirectManipulationViewport,
             current: DIRECTMANIPULATION_STATUS,
             previous: DIRECTMANIPULATION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnViewportUpdated: *const fn(
             self: *const IDirectManipulationViewportEventHandler,
             viewport: ?*IDirectManipulationViewport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnContentUpdated: *const fn(
             self: *const IDirectManipulationViewportEventHandler,
             viewport: ?*IDirectManipulationViewport,
             content: ?*IDirectManipulationContent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -581,42 +581,42 @@ pub const IDirectManipulationContent = extern union {
         GetContentRect: *const fn(
             self: *const IDirectManipulationContent,
             contentSize: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContentRect: *const fn(
             self: *const IDirectManipulationContent,
             contentSize: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetViewport: *const fn(
             self: *const IDirectManipulationContent,
             riid: ?*const Guid,
             object: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTag: *const fn(
             self: *const IDirectManipulationContent,
             riid: ?*const Guid,
             object: ?**anyopaque,
             id: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTag: *const fn(
             self: *const IDirectManipulationContent,
             object: ?*IUnknown,
             id: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputTransform: *const fn(
             self: *const IDirectManipulationContent,
             matrix: [*]f32,
             pointCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContentTransform: *const fn(
             self: *const IDirectManipulationContent,
             matrix: [*]f32,
             pointCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SyncContentTransform: *const fn(
             self: *const IDirectManipulationContent,
             matrix: [*]const f32,
             pointCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -657,47 +657,47 @@ pub const IDirectManipulationPrimaryContent = extern union {
             motion: DIRECTMANIPULATION_MOTION_TYPES,
             interval: f32,
             offset: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSnapPoints: *const fn(
             self: *const IDirectManipulationPrimaryContent,
             motion: DIRECTMANIPULATION_MOTION_TYPES,
             points: ?[*]const f32,
             pointCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSnapType: *const fn(
             self: *const IDirectManipulationPrimaryContent,
             motion: DIRECTMANIPULATION_MOTION_TYPES,
             type: DIRECTMANIPULATION_SNAPPOINT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSnapCoordinate: *const fn(
             self: *const IDirectManipulationPrimaryContent,
             motion: DIRECTMANIPULATION_MOTION_TYPES,
             coordinate: DIRECTMANIPULATION_SNAPPOINT_COORDINATE,
             origin: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetZoomBoundaries: *const fn(
             self: *const IDirectManipulationPrimaryContent,
             zoomMinimum: f32,
             zoomMaximum: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetHorizontalAlignment: *const fn(
             self: *const IDirectManipulationPrimaryContent,
             alignment: DIRECTMANIPULATION_HORIZONTALALIGNMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVerticalAlignment: *const fn(
             self: *const IDirectManipulationPrimaryContent,
             alignment: DIRECTMANIPULATION_VERTICALALIGNMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInertiaEndTransform: *const fn(
             self: *const IDirectManipulationPrimaryContent,
             matrix: [*]f32,
             pointCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCenterPoint: *const fn(
             self: *const IDirectManipulationPrimaryContent,
             centerX: ?*f32,
             centerY: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -756,7 +756,7 @@ pub const IDirectManipulationDragDropEventHandler = extern union {
             viewport: ?*IDirectManipulationViewport2,
             current: DIRECTMANIPULATION_DRAG_DROP_STATUS,
             previous: DIRECTMANIPULATION_DRAG_DROP_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -787,11 +787,11 @@ pub const IDirectManipulationDragDropBehavior = extern union {
         SetConfiguration: *const fn(
             self: *const IDirectManipulationDragDropBehavior,
             configuration: DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IDirectManipulationDragDropBehavior,
             status: ?*DIRECTMANIPULATION_DRAG_DROP_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -830,7 +830,7 @@ pub const IDirectManipulationInteractionEventHandler = extern union {
             self: *const IDirectManipulationInteractionEventHandler,
             viewport: ?*IDirectManipulationViewport2,
             interaction: DIRECTMANIPULATION_INTERACTION_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -850,7 +850,7 @@ pub const IDirectManipulationFrameInfoProvider = extern union {
             time: ?*u64,
             processTime: ?*u64,
             compositionTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -871,18 +871,18 @@ pub const IDirectManipulationCompositor = extern union {
             device: ?*IUnknown,
             parentVisual: ?*IUnknown,
             childVisual: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveContent: *const fn(
             self: *const IDirectManipulationCompositor,
             content: ?*IDirectManipulationContent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUpdateManager: *const fn(
             self: *const IDirectManipulationCompositor,
             updateManager: ?*IDirectManipulationUpdateManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IDirectManipulationCompositor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -912,7 +912,7 @@ pub const IDirectManipulationCompositor2 = extern union {
             device: ?*IUnknown,
             parentVisual: ?*IUnknown,
             childVisual: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectManipulationCompositor: IDirectManipulationCompositor,
@@ -930,7 +930,7 @@ pub const IDirectManipulationUpdateHandler = extern union {
         base: IUnknown.VTable,
         Update: *const fn(
             self: *const IDirectManipulationUpdateHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -950,15 +950,15 @@ pub const IDirectManipulationUpdateManager = extern union {
             handle: ?HANDLE,
             eventHandler: ?*IDirectManipulationUpdateHandler,
             cookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterWaitHandleCallback: *const fn(
             self: *const IDirectManipulationUpdateManager,
             cookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Update: *const fn(
             self: *const IDirectManipulationUpdateManager,
             frameInfo: ?*IDirectManipulationFrameInfoProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -992,7 +992,7 @@ pub const IDirectManipulationAutoScrollBehavior = extern union {
             self: *const IDirectManipulationAutoScrollBehavior,
             motionTypes: DIRECTMANIPULATION_MOTION_TYPES,
             scrollMotion: DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1011,15 +1011,15 @@ pub const IDirectManipulationDeferContactService = extern union {
             self: *const IDirectManipulationDeferContactService,
             pointerId: u32,
             timeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelContact: *const fn(
             self: *const IDirectManipulationDeferContactService,
             pointerId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelDeferral: *const fn(
             self: *const IDirectManipulationDeferContactService,
             pointerId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

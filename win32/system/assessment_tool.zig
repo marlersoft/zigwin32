@@ -82,17 +82,17 @@ pub const IProvideWinSATAssessmentInfo = extern union {
         get_Score: *const fn(
             self: *const IProvideWinSATAssessmentInfo,
             score: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Title: *const fn(
             self: *const IProvideWinSATAssessmentInfo,
             title: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IProvideWinSATAssessmentInfo,
             description: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -118,27 +118,27 @@ pub const IProvideWinSATResultsInfo = extern union {
             self: *const IProvideWinSATResultsInfo,
             assessment: WINSAT_ASSESSMENT_TYPE,
             ppinfo: ?*?*IProvideWinSATAssessmentInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AssessmentState: *const fn(
             self: *const IProvideWinSATResultsInfo,
             state: ?*WINSAT_ASSESSMENT_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AssessmentDateTime: *const fn(
             self: *const IProvideWinSATResultsInfo,
             fileTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SystemRating: *const fn(
             self: *const IProvideWinSATResultsInfo,
             level: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RatingStateDesc: *const fn(
             self: *const IProvideWinSATResultsInfo,
             description: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -171,12 +171,12 @@ pub const IQueryRecentWinSATAssessment = extern union {
             xPath: ?BSTR,
             namespaces: ?BSTR,
             ppDomNodeList: ?*?*IXMLDOMNodeList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Info: *const fn(
             self: *const IQueryRecentWinSATAssessment,
             ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -201,7 +201,7 @@ pub const IProvideWinSATVisuals = extern union {
             state: WINSAT_ASSESSMENT_STATE,
             rating: f32,
             pBitmap: ?*?HBITMAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -221,7 +221,7 @@ pub const IQueryAllWinSATAssessments = extern union {
             xPath: ?BSTR,
             namespaces: ?BSTR,
             ppDomNodeList: ?*?*IXMLDOMNodeList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -241,13 +241,13 @@ pub const IWinSATInitiateEvents = extern union {
             self: *const IWinSATInitiateEvents,
             hresult: HRESULT,
             strDescription: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WinSATUpdate: *const fn(
             self: *const IWinSATInitiateEvents,
             uCurrentTick: u32,
             uTickTotal: u32,
             strCurrentState: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -270,15 +270,15 @@ pub const IInitiateWinSATAssessment = extern union {
             cmdLine: ?[*:0]const u16,
             pCallbacks: ?*IWinSATInitiateEvents,
             callerHwnd: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitiateFormalAssessment: *const fn(
             self: *const IInitiateWinSATAssessment,
             pCallbacks: ?*IWinSATInitiateEvents,
             callerHwnd: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelAssessment: *const fn(
             self: *const IInitiateWinSATAssessment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -303,7 +303,7 @@ pub const IAccessibleWinSAT = extern union {
             wsName: ?[*:0]const u16,
             wsValue: ?[*:0]const u16,
             wsDesc: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAccessible: IAccessible,
@@ -322,7 +322,7 @@ pub const IQueryOEMWinSATCustomization = extern union {
         GetOEMPrePopulationInfo: *const fn(
             self: *const IQueryOEMWinSATCustomization,
             state: ?*WINSAT_OEM_DATA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

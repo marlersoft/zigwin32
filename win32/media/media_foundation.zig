@@ -2149,77 +2149,77 @@ pub const ICodecAPI = extern union {
         IsSupported: *const fn(
             self: *const ICodecAPI,
             Api: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsModifiable: *const fn(
             self: *const ICodecAPI,
             Api: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParameterRange: *const fn(
             self: *const ICodecAPI,
             Api: ?*const Guid,
             ValueMin: ?*VARIANT,
             ValueMax: ?*VARIANT,
             SteppingDelta: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParameterValues: *const fn(
             self: *const ICodecAPI,
             Api: ?*const Guid,
             Values: [*]?*VARIANT,
             ValuesCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultValue: *const fn(
             self: *const ICodecAPI,
             Api: ?*const Guid,
             Value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const ICodecAPI,
             Api: ?*const Guid,
             Value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValue: *const fn(
             self: *const ICodecAPI,
             Api: ?*const Guid,
             Value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterForEvent: *const fn(
             self: *const ICodecAPI,
             Api: ?*const Guid,
             userData: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterForEvent: *const fn(
             self: *const ICodecAPI,
             Api: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllDefaults: *const fn(
             self: *const ICodecAPI,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValueWithNotify: *const fn(
             self: *const ICodecAPI,
             Api: ?*const Guid,
             Value: ?*VARIANT,
             ChangedParam: [*]?*Guid,
             ChangedParamCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllDefaultsWithNotify: *const fn(
             self: *const ICodecAPI,
             ChangedParam: [*]?*Guid,
             ChangedParamCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllSettings: *const fn(
             self: *const ICodecAPI,
             __MIDL__ICodecAPI0000: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllSettings: *const fn(
             self: *const ICodecAPI,
             __MIDL__ICodecAPI0001: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllSettingsWithNotify: *const fn(
             self: *const ICodecAPI,
             __MIDL__ICodecAPI0002: ?*IStream,
             ChangedParam: [*]?*Guid,
             ChangedParamCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2337,7 +2337,7 @@ pub const IDirect3D9ExOverlayExtension = extern union {
             pDisplayMode: ?*D3DDISPLAYMODEEX,
             DisplayRotation: D3DDISPLAYROTATION,
             pOverlayCaps: ?*D3DOVERLAYCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2357,20 +2357,20 @@ pub const IDirect3DDevice9Video = extern union {
             pCryptoType: ?*const Guid,
             pDecodeProfile: ?*const Guid,
             pCaps: ?*D3DCONTENTPROTECTIONCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAuthenticatedChannel: *const fn(
             self: *const IDirect3DDevice9Video,
             ChannelType: D3DAUTHENTICATEDCHANNELTYPE,
             ppAuthenticatedChannel: ?*?*IDirect3DAuthenticatedChannel9,
             pChannelHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCryptoSession: *const fn(
             self: *const IDirect3DDevice9Video,
             pCryptoType: ?*const Guid,
             pDecodeProfile: ?*const Guid,
             ppCryptoSession: ?*?*IDirect3DCryptoSession9,
             pCryptoHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2394,30 +2394,30 @@ pub const IDirect3DAuthenticatedChannel9 = extern union {
         GetCertificateSize: *const fn(
             self: *const IDirect3DAuthenticatedChannel9,
             pCertificateSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificate: *const fn(
             self: *const IDirect3DAuthenticatedChannel9,
             CertifacteSize: u32,
             ppCertificate: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NegotiateKeyExchange: *const fn(
             self: *const IDirect3DAuthenticatedChannel9,
             DataSize: u32,
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Query: *const fn(
             self: *const IDirect3DAuthenticatedChannel9,
             InputSize: u32,
             pInput: ?*const anyopaque,
             OutputSize: u32,
             pOutput: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Configure: *const fn(
             self: *const IDirect3DAuthenticatedChannel9,
             InputSize: u32,
             pInput: ?*const anyopaque,
             pOutput: ?*D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2447,24 +2447,24 @@ pub const IDirect3DCryptoSession9 = extern union {
         GetCertificateSize: *const fn(
             self: *const IDirect3DCryptoSession9,
             pCertificateSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificate: *const fn(
             self: *const IDirect3DCryptoSession9,
             CertifacteSize: u32,
             ppCertificate: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NegotiateKeyExchange: *const fn(
             self: *const IDirect3DCryptoSession9,
             DataSize: u32,
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EncryptionBlt: *const fn(
             self: *const IDirect3DCryptoSession9,
             pSrcSurface: ?*IDirect3DSurface9,
             pDstSurface: ?*IDirect3DSurface9,
             DstSurfaceSize: u32,
             pIV: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DecryptionBlt: *const fn(
             self: *const IDirect3DCryptoSession9,
             pSrcSurface: ?*IDirect3DSurface9,
@@ -2473,25 +2473,25 @@ pub const IDirect3DCryptoSession9 = extern union {
             pEncryptedBlockInfo: ?*D3DENCRYPTED_BLOCK_INFO,
             pContentKey: ?*anyopaque,
             pIV: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSurfacePitch: *const fn(
             self: *const IDirect3DCryptoSession9,
             pSrcSurface: ?*IDirect3DSurface9,
             pSurfacePitch: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartSessionKeyRefresh: *const fn(
             self: *const IDirect3DCryptoSession9,
             pRandomNumber: ?*anyopaque,
             RandomNumberSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FinishSessionKeyRefresh: *const fn(
             self: *const IDirect3DCryptoSession9,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEncryptionBltKey: *const fn(
             self: *const IDirect3DCryptoSession9,
             pReadbackKey: ?*anyopaque,
             KeySize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2816,7 +2816,7 @@ pub const ID3D12VideoDecoderHeap = extern union {
         base: ID3D12Pageable.VTable,
         GetDesc: *const fn(
             self: *const ID3D12VideoDecoderHeap,
-        ) callconv(@import("std").os.windows.WINAPI) D3D12_VIDEO_DECODER_HEAP_DESC,
+        ) callconv(.winapi) D3D12_VIDEO_DECODER_HEAP_DESC,
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
@@ -2840,19 +2840,19 @@ pub const ID3D12VideoDevice = extern union {
             // TODO: what to do with BytesParamIndex 2?
             pFeatureSupportData: ?*anyopaque,
             FeatureSupportDataSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoDecoder: *const fn(
             self: *const ID3D12VideoDevice,
             pDesc: ?*const D3D12_VIDEO_DECODER_DESC,
             riid: ?*const Guid,
             ppVideoDecoder: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoDecoderHeap: *const fn(
             self: *const ID3D12VideoDevice,
             pVideoDecoderHeapDesc: ?*const D3D12_VIDEO_DECODER_HEAP_DESC,
             riid: ?*const Guid,
             ppVideoDecoderHeap: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoProcessor: *const fn(
             self: *const ID3D12VideoDevice,
             NodeMask: u32,
@@ -2861,7 +2861,7 @@ pub const ID3D12VideoDevice = extern union {
             pInputStreamDescs: [*]const D3D12_VIDEO_PROCESS_INPUT_STREAM_DESC,
             riid: ?*const Guid,
             ppVideoProcessor: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2887,7 +2887,7 @@ pub const ID3D12VideoDecoder = extern union {
         base: ID3D12Pageable.VTable,
         GetDesc: *const fn(
             self: *const ID3D12VideoDecoder,
-        ) callconv(@import("std").os.windows.WINAPI) D3D12_VIDEO_DECODER_DESC,
+        ) callconv(.winapi) D3D12_VIDEO_DECODER_DESC,
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
@@ -3288,18 +3288,18 @@ pub const ID3D12VideoProcessor = extern union {
         base: ID3D12Pageable.VTable,
         GetNodeMask: *const fn(
             self: *const ID3D12VideoProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetNumInputStreamDescs: *const fn(
             self: *const ID3D12VideoProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetInputStreamDescs: *const fn(
             self: *const ID3D12VideoProcessor,
             NumInputStreamDescs: u32,
             pInputStreamDescs: [*]D3D12_VIDEO_PROCESS_INPUT_STREAM_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputStreamDesc: *const fn(
             self: *const ID3D12VideoProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) D3D12_VIDEO_PROCESS_OUTPUT_STREAM_DESC,
+        ) callconv(.winapi) D3D12_VIDEO_PROCESS_OUTPUT_STREAM_DESC,
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
@@ -3597,36 +3597,36 @@ pub const ID3D12VideoDecodeCommandList = extern union {
         base: ID3D12CommandList.VTable,
         Close: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             pAllocator: ?*ID3D12CommandAllocator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearState: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ResourceBarrier: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             NumBarriers: u32,
             pBarriers: [*]const D3D12_RESOURCE_BARRIER,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DiscardResource: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             pResource: ?*ID3D12Resource,
             pRegion: ?*const D3D12_DISCARD_REGION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         BeginQuery: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             pQueryHeap: ?*ID3D12QueryHeap,
             Type: D3D12_QUERY_TYPE,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         EndQuery: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             pQueryHeap: ?*ID3D12QueryHeap,
             Type: D3D12_QUERY_TYPE,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ResolveQueryData: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             pQueryHeap: ?*ID3D12QueryHeap,
@@ -3635,42 +3635,42 @@ pub const ID3D12VideoDecodeCommandList = extern union {
             NumQueries: u32,
             pDestinationBuffer: ?*ID3D12Resource,
             AlignedDestinationBufferOffset: u64,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetPredication: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             pBuffer: ?*ID3D12Resource,
             AlignedBufferOffset: u64,
             Operation: D3D12_PREDICATION_OP,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetMarker: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             Metadata: u32,
             // TODO: what to do with BytesParamIndex 2?
             pData: ?*const anyopaque,
             Size: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         BeginEvent: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             Metadata: u32,
             // TODO: what to do with BytesParamIndex 2?
             pData: ?*const anyopaque,
             Size: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         EndEvent: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DecodeFrame: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             pDecoder: ?*ID3D12VideoDecoder,
             pOutputArguments: ?*const D3D12_VIDEO_DECODE_OUTPUT_STREAM_ARGUMENTS,
             pInputArguments: ?*const D3D12_VIDEO_DECODE_INPUT_STREAM_ARGUMENTS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         WriteBufferImmediate: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             Count: u32,
             pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER,
             pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D12CommandList: ID3D12CommandList,
@@ -3729,36 +3729,36 @@ pub const ID3D12VideoProcessCommandList = extern union {
         base: ID3D12CommandList.VTable,
         Close: *const fn(
             self: *const ID3D12VideoProcessCommandList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             pAllocator: ?*ID3D12CommandAllocator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearState: *const fn(
             self: *const ID3D12VideoProcessCommandList,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ResourceBarrier: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             NumBarriers: u32,
             pBarriers: [*]const D3D12_RESOURCE_BARRIER,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DiscardResource: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             pResource: ?*ID3D12Resource,
             pRegion: ?*const D3D12_DISCARD_REGION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         BeginQuery: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             pQueryHeap: ?*ID3D12QueryHeap,
             Type: D3D12_QUERY_TYPE,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         EndQuery: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             pQueryHeap: ?*ID3D12QueryHeap,
             Type: D3D12_QUERY_TYPE,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ResolveQueryData: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             pQueryHeap: ?*ID3D12QueryHeap,
@@ -3767,43 +3767,43 @@ pub const ID3D12VideoProcessCommandList = extern union {
             NumQueries: u32,
             pDestinationBuffer: ?*ID3D12Resource,
             AlignedDestinationBufferOffset: u64,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetPredication: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             pBuffer: ?*ID3D12Resource,
             AlignedBufferOffset: u64,
             Operation: D3D12_PREDICATION_OP,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetMarker: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             Metadata: u32,
             // TODO: what to do with BytesParamIndex 2?
             pData: ?*const anyopaque,
             Size: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         BeginEvent: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             Metadata: u32,
             // TODO: what to do with BytesParamIndex 2?
             pData: ?*const anyopaque,
             Size: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         EndEvent: *const fn(
             self: *const ID3D12VideoProcessCommandList,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ProcessFrames: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             pVideoProcessor: ?*ID3D12VideoProcessor,
             pOutputArguments: ?*const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_ARGUMENTS,
             NumInputStreams: u32,
             pInputArguments: [*]const D3D12_VIDEO_PROCESS_INPUT_STREAM_ARGUMENTS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         WriteBufferImmediate: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             Count: u32,
             pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER,
             pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D12CommandList: ID3D12CommandList,
@@ -3887,7 +3887,7 @@ pub const ID3D12VideoDecodeCommandList1 = extern union {
             pDecoder: ?*ID3D12VideoDecoder,
             pOutputArguments: ?*const D3D12_VIDEO_DECODE_OUTPUT_STREAM_ARGUMENTS1,
             pInputArguments: ?*const D3D12_VIDEO_DECODE_INPUT_STREAM_ARGUMENTS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D12VideoDecodeCommandList: ID3D12VideoDecodeCommandList,
@@ -3922,7 +3922,7 @@ pub const ID3D12VideoProcessCommandList1 = extern union {
             pOutputArguments: ?*const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_ARGUMENTS,
             NumInputStreams: u32,
             pInputArguments: [*]const D3D12_VIDEO_PROCESS_INPUT_STREAM_ARGUMENTS1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D12VideoProcessCommandList: ID3D12VideoProcessCommandList,
@@ -4067,12 +4067,12 @@ pub const ID3D12VideoMotionEstimator = extern union {
         base: ID3D12Pageable.VTable,
         GetDesc: *const fn(
             self: *const ID3D12VideoMotionEstimator,
-        ) callconv(@import("std").os.windows.WINAPI) D3D12_VIDEO_MOTION_ESTIMATOR_DESC,
+        ) callconv(.winapi) D3D12_VIDEO_MOTION_ESTIMATOR_DESC,
         GetProtectedResourceSession: *const fn(
             self: *const ID3D12VideoMotionEstimator,
             riid: ?*const Guid,
             ppProtectedSession: ?**anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
@@ -4104,12 +4104,12 @@ pub const ID3D12VideoMotionVectorHeap = extern union {
         base: ID3D12Pageable.VTable,
         GetDesc: *const fn(
             self: *const ID3D12VideoMotionVectorHeap,
-        ) callconv(@import("std").os.windows.WINAPI) D3D12_VIDEO_MOTION_VECTOR_HEAP_DESC,
+        ) callconv(.winapi) D3D12_VIDEO_MOTION_VECTOR_HEAP_DESC,
         GetProtectedResourceSession: *const fn(
             self: *const ID3D12VideoMotionVectorHeap,
             riid: ?*const Guid,
             ppProtectedSession: ?**anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
@@ -4136,14 +4136,14 @@ pub const ID3D12VideoDevice1 = extern union {
             pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
             riid: ?*const Guid,
             ppVideoMotionEstimator: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoMotionVectorHeap: *const fn(
             self: *const ID3D12VideoDevice1,
             pDesc: ?*const D3D12_VIDEO_MOTION_VECTOR_HEAP_DESC,
             pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
             riid: ?*const Guid,
             ppVideoMotionVectorHeap: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D12VideoDevice: ID3D12VideoDevice,
@@ -4195,36 +4195,36 @@ pub const ID3D12VideoEncodeCommandList = extern union {
         base: ID3D12CommandList.VTable,
         Close: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             pAllocator: ?*ID3D12CommandAllocator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearState: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ResourceBarrier: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             NumBarriers: u32,
             pBarriers: [*]const D3D12_RESOURCE_BARRIER,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DiscardResource: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             pResource: ?*ID3D12Resource,
             pRegion: ?*const D3D12_DISCARD_REGION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         BeginQuery: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             pQueryHeap: ?*ID3D12QueryHeap,
             Type: D3D12_QUERY_TYPE,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         EndQuery: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             pQueryHeap: ?*ID3D12QueryHeap,
             Type: D3D12_QUERY_TYPE,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ResolveQueryData: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             pQueryHeap: ?*ID3D12QueryHeap,
@@ -4233,51 +4233,51 @@ pub const ID3D12VideoEncodeCommandList = extern union {
             NumQueries: u32,
             pDestinationBuffer: ?*ID3D12Resource,
             AlignedDestinationBufferOffset: u64,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetPredication: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             pBuffer: ?*ID3D12Resource,
             AlignedBufferOffset: u64,
             Operation: D3D12_PREDICATION_OP,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetMarker: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             Metadata: u32,
             // TODO: what to do with BytesParamIndex 2?
             pData: ?*const anyopaque,
             Size: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         BeginEvent: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             Metadata: u32,
             // TODO: what to do with BytesParamIndex 2?
             pData: ?*const anyopaque,
             Size: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         EndEvent: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         EstimateMotion: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             pMotionEstimator: ?*ID3D12VideoMotionEstimator,
             pOutputArguments: ?*const D3D12_VIDEO_MOTION_ESTIMATOR_OUTPUT,
             pInputArguments: ?*const D3D12_VIDEO_MOTION_ESTIMATOR_INPUT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ResolveMotionVectorHeap: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             pOutputArguments: ?*const D3D12_RESOLVE_VIDEO_MOTION_VECTOR_HEAP_OUTPUT,
             pInputArguments: ?*const D3D12_RESOLVE_VIDEO_MOTION_VECTOR_HEAP_INPUT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         WriteBufferImmediate: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             Count: u32,
             pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER,
             pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetProtectedResourceSession: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D12CommandList: ID3D12CommandList,
@@ -4555,7 +4555,7 @@ pub const ID3D12VideoDecoder1 = extern union {
             self: *const ID3D12VideoDecoder1,
             riid: ?*const Guid,
             ppProtectedSession: ?**anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D12VideoDecoder: ID3D12VideoDecoder,
@@ -4578,7 +4578,7 @@ pub const ID3D12VideoDecoderHeap1 = extern union {
             self: *const ID3D12VideoDecoderHeap1,
             riid: ?*const Guid,
             ppProtectedSession: ?**anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D12VideoDecoderHeap: ID3D12VideoDecoderHeap,
@@ -4601,7 +4601,7 @@ pub const ID3D12VideoProcessor1 = extern union {
             self: *const ID3D12VideoProcessor1,
             riid: ?*const Guid,
             ppProtectedSession: ?**anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D12VideoProcessor: ID3D12VideoProcessor,
@@ -4623,12 +4623,12 @@ pub const ID3D12VideoExtensionCommand = extern union {
         base: ID3D12Pageable.VTable,
         GetDesc: *const fn(
             self: *const ID3D12VideoExtensionCommand,
-        ) callconv(@import("std").os.windows.WINAPI) D3D12_VIDEO_EXTENSION_COMMAND_DESC,
+        ) callconv(.winapi) D3D12_VIDEO_EXTENSION_COMMAND_DESC,
         GetProtectedResourceSession: *const fn(
             self: *const ID3D12VideoExtensionCommand,
             riid: ?*const Guid,
             ppProtectedSession: ?**anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
@@ -4655,14 +4655,14 @@ pub const ID3D12VideoDevice2 = extern union {
             pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
             riid: ?*const Guid,
             ppVideoDecoder: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoDecoderHeap1: *const fn(
             self: *const ID3D12VideoDevice2,
             pVideoDecoderHeapDesc: ?*const D3D12_VIDEO_DECODER_HEAP_DESC,
             pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
             riid: ?*const Guid,
             ppVideoDecoderHeap: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoProcessor1: *const fn(
             self: *const ID3D12VideoDevice2,
             NodeMask: u32,
@@ -4672,7 +4672,7 @@ pub const ID3D12VideoDevice2 = extern union {
             pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
             riid: ?*const Guid,
             ppVideoProcessor: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoExtensionCommand: *const fn(
             self: *const ID3D12VideoDevice2,
             pDesc: ?*const D3D12_VIDEO_EXTENSION_COMMAND_DESC,
@@ -4682,7 +4682,7 @@ pub const ID3D12VideoDevice2 = extern union {
             pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
             riid: ?*const Guid,
             ppVideoExtensionCommand: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExecuteExtensionCommand: *const fn(
             self: *const ID3D12VideoDevice2,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
@@ -4692,7 +4692,7 @@ pub const ID3D12VideoDevice2 = extern union {
             // TODO: what to do with BytesParamIndex 4?
             pOutputData: ?*anyopaque,
             OutputDataSizeInBytes: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D12VideoDevice1: ID3D12VideoDevice1,
@@ -4724,21 +4724,21 @@ pub const ID3D12VideoDecodeCommandList2 = extern union {
         SetProtectedResourceSession: *const fn(
             self: *const ID3D12VideoDecodeCommandList2,
             pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         InitializeExtensionCommand: *const fn(
             self: *const ID3D12VideoDecodeCommandList2,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
             // TODO: what to do with BytesParamIndex 2?
             pInitializationParameters: ?*const anyopaque,
             InitializationParametersSizeInBytes: usize,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ExecuteExtensionCommand: *const fn(
             self: *const ID3D12VideoDecodeCommandList2,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
             // TODO: what to do with BytesParamIndex 2?
             pExecutionParameters: ?*const anyopaque,
             ExecutionParametersSizeInBytes: usize,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D12VideoDecodeCommandList1: ID3D12VideoDecodeCommandList1,
@@ -4767,21 +4767,21 @@ pub const ID3D12VideoProcessCommandList2 = extern union {
         SetProtectedResourceSession: *const fn(
             self: *const ID3D12VideoProcessCommandList2,
             pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         InitializeExtensionCommand: *const fn(
             self: *const ID3D12VideoProcessCommandList2,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
             // TODO: what to do with BytesParamIndex 2?
             pInitializationParameters: ?*const anyopaque,
             InitializationParametersSizeInBytes: usize,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ExecuteExtensionCommand: *const fn(
             self: *const ID3D12VideoProcessCommandList2,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
             // TODO: what to do with BytesParamIndex 2?
             pExecutionParameters: ?*const anyopaque,
             ExecutionParametersSizeInBytes: usize,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D12VideoProcessCommandList1: ID3D12VideoProcessCommandList1,
@@ -4813,14 +4813,14 @@ pub const ID3D12VideoEncodeCommandList1 = extern union {
             // TODO: what to do with BytesParamIndex 2?
             pInitializationParameters: ?*const anyopaque,
             InitializationParametersSizeInBytes: usize,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ExecuteExtensionCommand: *const fn(
             self: *const ID3D12VideoEncodeCommandList1,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
             // TODO: what to do with BytesParamIndex 2?
             pExecutionParameters: ?*const anyopaque,
             ExecutionParametersSizeInBytes: usize,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D12VideoEncodeCommandList: ID3D12VideoEncodeCommandList,
@@ -5790,27 +5790,27 @@ pub const ID3D12VideoEncoder = extern union {
         base: ID3D12Pageable.VTable,
         GetNodeMask: *const fn(
             self: *const ID3D12VideoEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetEncoderFlags: *const fn(
             self: *const ID3D12VideoEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) D3D12_VIDEO_ENCODER_FLAGS,
+        ) callconv(.winapi) D3D12_VIDEO_ENCODER_FLAGS,
         GetCodec: *const fn(
             self: *const ID3D12VideoEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) D3D12_VIDEO_ENCODER_CODEC,
+        ) callconv(.winapi) D3D12_VIDEO_ENCODER_CODEC,
         GetCodecProfile: *const fn(
             self: *const ID3D12VideoEncoder,
             dstProfile: D3D12_VIDEO_ENCODER_PROFILE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodecConfiguration: *const fn(
             self: *const ID3D12VideoEncoder,
             dstCodecConfig: D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputFormat: *const fn(
             self: *const ID3D12VideoEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) DXGI_FORMAT,
+        ) callconv(.winapi) DXGI_FORMAT,
         GetMaxMotionEstimationPrecision: *const fn(
             self: *const ID3D12VideoEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) D3D12_VIDEO_ENCODER_MOTION_ESTIMATION_PRECISION_MODE,
+        ) callconv(.winapi) D3D12_VIDEO_ENCODER_MOTION_ESTIMATION_PRECISION_MODE,
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
@@ -5848,29 +5848,29 @@ pub const ID3D12VideoEncoderHeap = extern union {
         base: ID3D12Pageable.VTable,
         GetNodeMask: *const fn(
             self: *const ID3D12VideoEncoderHeap,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetEncoderHeapFlags: *const fn(
             self: *const ID3D12VideoEncoderHeap,
-        ) callconv(@import("std").os.windows.WINAPI) D3D12_VIDEO_ENCODER_HEAP_FLAGS,
+        ) callconv(.winapi) D3D12_VIDEO_ENCODER_HEAP_FLAGS,
         GetCodec: *const fn(
             self: *const ID3D12VideoEncoderHeap,
-        ) callconv(@import("std").os.windows.WINAPI) D3D12_VIDEO_ENCODER_CODEC,
+        ) callconv(.winapi) D3D12_VIDEO_ENCODER_CODEC,
         GetCodecProfile: *const fn(
             self: *const ID3D12VideoEncoderHeap,
             dstProfile: D3D12_VIDEO_ENCODER_PROFILE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodecLevel: *const fn(
             self: *const ID3D12VideoEncoderHeap,
             dstLevel: D3D12_VIDEO_ENCODER_LEVEL_SETTING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResolutionListCount: *const fn(
             self: *const ID3D12VideoEncoderHeap,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetResolutionList: *const fn(
             self: *const ID3D12VideoEncoderHeap,
             ResolutionsListCount: u32,
             pResolutionList: [*]D3D12_VIDEO_ENCODER_PICTURE_RESOLUTION_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D12Pageable: ID3D12Pageable,
@@ -5911,13 +5911,13 @@ pub const ID3D12VideoDevice3 = extern union {
             pDesc: ?*const D3D12_VIDEO_ENCODER_DESC,
             riid: ?*const Guid,
             ppVideoEncoder: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoEncoderHeap: *const fn(
             self: *const ID3D12VideoDevice3,
             pDesc: ?*const D3D12_VIDEO_ENCODER_HEAP_DESC,
             riid: ?*const Guid,
             ppVideoEncoderHeap: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D12VideoDevice2: ID3D12VideoDevice2,
@@ -6346,12 +6346,12 @@ pub const ID3D12VideoEncodeCommandList2 = extern union {
             pHeap: ?*ID3D12VideoEncoderHeap,
             pInputArguments: ?*const D3D12_VIDEO_ENCODER_ENCODEFRAME_INPUT_ARGUMENTS,
             pOutputArguments: ?*const D3D12_VIDEO_ENCODER_ENCODEFRAME_OUTPUT_ARGUMENTS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ResolveEncoderOutputMetadata: *const fn(
             self: *const ID3D12VideoEncodeCommandList2,
             pInputArguments: ?*const D3D12_VIDEO_ENCODER_RESOLVE_METADATA_INPUT_ARGUMENTS,
             pOutputArguments: ?*const D3D12_VIDEO_ENCODER_RESOLVE_METADATA_OUTPUT_ARGUMENTS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D12VideoEncodeCommandList1: ID3D12VideoEncodeCommandList1,
@@ -6681,7 +6681,7 @@ pub const IWMValidate = extern union {
         SetIdentifier: *const fn(
             self: *const IWMValidate,
             guidValidationID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6702,7 +6702,7 @@ pub const IValidateBinding = extern union {
             cbEphemeron: u32,
             ppbBlobValidationID: [*]?*u8,
             pcbBlobSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6720,11 +6720,11 @@ pub const IWMVideoDecoderHurryup = extern union {
         SetHurryup: *const fn(
             self: *const IWMVideoDecoderHurryup,
             lHurryup: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHurryup: *const fn(
             self: *const IWMVideoDecoderHurryup,
             plHurryup: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6744,7 +6744,7 @@ pub const IWMVideoForceKeyFrame = extern union {
         base: IUnknown.VTable,
         SetKeyFrame: *const fn(
             self: *const IWMVideoForceKeyFrame,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6765,14 +6765,14 @@ pub const IWMCodecStrings = extern union {
             cchLength: u32,
             szName: ?[*:0]u16,
             pcchLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const IWMCodecStrings,
             pmt: ?*DMO_MEDIA_TYPE,
             cchLength: u32,
             szDescription: ?[*:0]u16,
             pcchLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6797,7 +6797,7 @@ pub const IWMCodecProps = extern union {
             pType: ?*WMT_PROP_DATATYPE,
             pValue: ?*u8,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodecProp: *const fn(
             self: *const IWMCodecProps,
             dwFormat: u32,
@@ -6805,7 +6805,7 @@ pub const IWMCodecProps = extern union {
             pType: ?*WMT_PROP_DATATYPE,
             pValue: ?*u8,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6826,19 +6826,19 @@ pub const IWMCodecLeakyBucket = extern union {
         SetBufferSizeBits: *const fn(
             self: *const IWMCodecLeakyBucket,
             ulBufferSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferSizeBits: *const fn(
             self: *const IWMCodecLeakyBucket,
             pulBufferSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBufferFullnessBits: *const fn(
             self: *const IWMCodecLeakyBucket,
             ulBufferFullness: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferFullnessBits: *const fn(
             self: *const IWMCodecLeakyBucket,
             pulBufferFullness: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6865,7 +6865,7 @@ pub const IWMCodecOutputTimestamp = extern union {
         GetNextOutputTime: *const fn(
             self: *const IWMCodecOutputTimestamp,
             prtTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6883,15 +6883,15 @@ pub const IWMVideoDecoderReconBuffer = extern union {
         GetReconstructedVideoFrameSize: *const fn(
             self: *const IWMVideoDecoderReconBuffer,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReconstructedVideoFrame: *const fn(
             self: *const IWMVideoDecoderReconBuffer,
             pBuf: ?*IMediaBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetReconstructedVideoFrame: *const fn(
             self: *const IWMVideoDecoderReconBuffer,
             pBuf: ?*IMediaBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6915,12 +6915,12 @@ pub const IWMCodecPrivateData = extern union {
         SetPartialOutputType: *const fn(
             self: *const IWMCodecPrivateData,
             pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrivateData: *const fn(
             self: *const IWMCodecPrivateData,
             pbData: ?*u8,
             pcbData: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6941,7 +6941,7 @@ pub const IWMSampleExtensionSupport = extern union {
         SetUseSampleExtensions: *const fn(
             self: *const IWMSampleExtensionSupport,
             fUseExtensions: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6959,11 +6959,11 @@ pub const IWMResamplerProps = extern union {
         SetHalfFilterLength: *const fn(
             self: *const IWMResamplerProps,
             lhalfFilterLen: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUserChannelMtx: *const fn(
             self: *const IWMResamplerProps,
             userChannelMtx: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6984,18 +6984,18 @@ pub const IWMResizerProps = extern union {
         SetResizerQuality: *const fn(
             self: *const IWMResizerProps,
             lquality: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInterlaceMode: *const fn(
             self: *const IWMResizerProps,
             lmode: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClipRegion: *const fn(
             self: *const IWMResizerProps,
             lClipOriXSrc: i32,
             lClipOriYSrc: i32,
             lClipWidthSrc: i32,
             lClipHeightSrc: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFullCropRegion: *const fn(
             self: *const IWMResizerProps,
             lClipOriXSrc: i32,
@@ -7006,7 +7006,7 @@ pub const IWMResizerProps = extern union {
             lClipOriYDst: i32,
             lClipWidthDst: i32,
             lClipHeightDst: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFullCropRegion: *const fn(
             self: *const IWMResizerProps,
             lClipOriXSrc: ?*i32,
@@ -7017,7 +7017,7 @@ pub const IWMResizerProps = extern union {
             lClipOriYDst: ?*i32,
             lClipWidthDst: ?*i32,
             lClipHeightDst: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7046,7 +7046,7 @@ pub const IWMColorLegalizerProps = extern union {
         SetColorLegalizerQuality: *const fn(
             self: *const IWMColorLegalizerProps,
             lquality: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7063,14 +7063,14 @@ pub const IWMInterlaceProps = extern union {
         SetProcessType: *const fn(
             self: *const IWMInterlaceProps,
             iProcessType: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInitInverseTeleCinePattern: *const fn(
             self: *const IWMInterlaceProps,
             iInitPattern: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLastFrame: *const fn(
             self: *const IWMInterlaceProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7094,20 +7094,20 @@ pub const IWMFrameInterpProps = extern union {
             self: *const IWMFrameInterpProps,
             lFrameRate: i32,
             lScale: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFrameRateOut: *const fn(
             self: *const IWMFrameInterpProps,
             lFrameRate: i32,
             lScale: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFrameInterpEnabled: *const fn(
             self: *const IWMFrameInterpProps,
             bFIEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetComplexityLevel: *const fn(
             self: *const IWMFrameInterpProps,
             iComplexity: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7134,7 +7134,7 @@ pub const IWMColorConvProps = extern union {
         SetMode: *const fn(
             self: *const IWMColorConvProps,
             lMode: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFullCroppingParam: *const fn(
             self: *const IWMColorConvProps,
             lSrcCropLeft: i32,
@@ -7143,7 +7143,7 @@ pub const IWMColorConvProps = extern union {
             lDstCropTop: i32,
             lCropWidth: i32,
             lCropHeight: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7283,42 +7283,42 @@ pub const ITocEntry = extern union {
         SetTitle: *const fn(
             self: *const ITocEntry,
             pwszTitle: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTitle: *const fn(
             self: *const ITocEntry,
             pwTitleSize: ?*u16,
             pwszTitle: ?[*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDescriptor: *const fn(
             self: *const ITocEntry,
             pDescriptor: ?*TOC_ENTRY_DESCRIPTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescriptor: *const fn(
             self: *const ITocEntry,
             pDescriptor: ?*TOC_ENTRY_DESCRIPTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSubEntries: *const fn(
             self: *const ITocEntry,
             dwNumSubEntries: u32,
             pwSubEntryIndices: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubEntries: *const fn(
             self: *const ITocEntry,
             pdwNumSubEntries: ?*u32,
             pwSubEntryIndices: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDescriptionData: *const fn(
             self: *const ITocEntry,
             dwDescriptionDataSize: u32,
             pbtDescriptionData: ?*u8,
             pguidType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescriptionData: *const fn(
             self: *const ITocEntry,
             pdwDescriptionDataSize: ?*u32,
             pbtDescriptionData: ?*u8,
             pGuidType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7357,26 +7357,26 @@ pub const ITocEntryList = extern union {
         GetEntryCount: *const fn(
             self: *const ITocEntryList,
             pdwEntryCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEntryByIndex: *const fn(
             self: *const ITocEntryList,
             dwEntryIndex: u32,
             ppEntry: ?*?*ITocEntry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddEntry: *const fn(
             self: *const ITocEntryList,
             pEntry: ?*ITocEntry,
             pdwEntryIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddEntryByIndex: *const fn(
             self: *const ITocEntryList,
             dwEntryIndex: u32,
             pEntry: ?*ITocEntry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveEntryByIndex: *const fn(
             self: *const ITocEntryList,
             dwEntryIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7406,53 +7406,53 @@ pub const IToc = extern union {
         SetDescriptor: *const fn(
             self: *const IToc,
             pDescriptor: ?*TOC_DESCRIPTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescriptor: *const fn(
             self: *const IToc,
             pDescriptor: ?*TOC_DESCRIPTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDescription: *const fn(
             self: *const IToc,
             pwszDescription: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const IToc,
             pwDescriptionSize: ?*u16,
             pwszDescription: ?[*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContext: *const fn(
             self: *const IToc,
             dwContextSize: u32,
             pbtContext: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContext: *const fn(
             self: *const IToc,
             pdwContextSize: ?*u32,
             pbtContext: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEntryListCount: *const fn(
             self: *const IToc,
             pwCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEntryListByIndex: *const fn(
             self: *const IToc,
             wEntryListIndex: u16,
             ppEntryList: ?*?*ITocEntryList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddEntryList: *const fn(
             self: *const IToc,
             pEntryList: ?*ITocEntryList,
             pwEntryListIndex: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddEntryListByIndex: *const fn(
             self: *const IToc,
             wEntryListIndex: u16,
             pEntryList: ?*ITocEntryList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveEntryListByIndex: *const fn(
             self: *const IToc,
             wEntryListIndex: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7500,26 +7500,26 @@ pub const ITocCollection = extern union {
         GetEntryCount: *const fn(
             self: *const ITocCollection,
             pdwEntryCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEntryByIndex: *const fn(
             self: *const ITocCollection,
             dwEntryIndex: u32,
             ppToc: ?*?*IToc,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddEntry: *const fn(
             self: *const ITocCollection,
             pToc: ?*IToc,
             pdwEntryIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddEntryByIndex: *const fn(
             self: *const ITocCollection,
             dwEntryIndex: u32,
             pToc: ?*IToc,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveEntryByIndex: *const fn(
             self: *const ITocCollection,
             dwEntryIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7549,43 +7549,43 @@ pub const ITocParser = extern union {
         Init: *const fn(
             self: *const ITocParser,
             pwszFileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTocCount: *const fn(
             self: *const ITocParser,
             enumTocPosType: TOC_POS_TYPE,
             pdwTocCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTocByIndex: *const fn(
             self: *const ITocParser,
             enumTocPosType: TOC_POS_TYPE,
             dwTocIndex: u32,
             ppToc: ?*?*IToc,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTocByType: *const fn(
             self: *const ITocParser,
             enumTocPosType: TOC_POS_TYPE,
             guidTocType: Guid,
             ppTocs: ?*?*ITocCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddToc: *const fn(
             self: *const ITocParser,
             enumTocPosType: TOC_POS_TYPE,
             pToc: ?*IToc,
             pdwTocIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveTocByIndex: *const fn(
             self: *const ITocParser,
             enumTocPosType: TOC_POS_TYPE,
             dwTocIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveTocByType: *const fn(
             self: *const ITocParser,
             enumTocPosType: TOC_POS_TYPE,
             guidTocType: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const ITocParser,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7656,49 +7656,49 @@ pub const IFileIo = extern union {
             eAccessMode: FILE_ACCESSMODE,
             eOpenMode: FILE_OPENMODE,
             pwszFileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLength: *const fn(
             self: *const IFileIo,
             pqwLength: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLength: *const fn(
             self: *const IFileIo,
             qwLength: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentPosition: *const fn(
             self: *const IFileIo,
             pqwPosition: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCurrentPosition: *const fn(
             self: *const IFileIo,
             qwPosition: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEndOfStream: *const fn(
             self: *const IFileIo,
             pbEndOfStream: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Read: *const fn(
             self: *const IFileIo,
             pbt: ?*u8,
             ul: u32,
             pulRead: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Write: *const fn(
             self: *const IFileIo,
             pbt: ?*u8,
             ul: u32,
             pulWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Seek: *const fn(
             self: *const IFileIo,
             eSeekOrigin: SEEK_ORIGIN,
             qwSeekOffset: u64,
             dwSeekFlags: u32,
             pqwCurrentPosition: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IFileIo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7742,15 +7742,15 @@ pub const IFileClient = extern union {
         GetObjectDiskSize: *const fn(
             self: *const IFileClient,
             pqwSize: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Write: *const fn(
             self: *const IFileClient,
             pFio: ?*IFileIo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Read: *const fn(
             self: *const IFileClient,
             pFio: ?*IFileIo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7774,7 +7774,7 @@ pub const IClusterDetector = extern union {
             self: *const IClusterDetector,
             wBaseEntryLevel: u16,
             wClusterEntryLevel: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Detect: *const fn(
             self: *const IClusterDetector,
             dwMaxNumClusters: u32,
@@ -7782,7 +7782,7 @@ pub const IClusterDetector = extern union {
             fMaxClusterDuration: f32,
             pSrcToc: ?*IToc,
             ppDstToc: ?*?*IToc,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10504,42 +10504,42 @@ pub const IDXVAHD_Device = extern union {
             NumSurfaces: u32,
             ppSurfaces: [*]?*IDirect3DSurface9,
             pSharedHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorDeviceCaps: *const fn(
             self: *const IDXVAHD_Device,
             pCaps: ?*DXVAHD_VPDEVCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorOutputFormats: *const fn(
             self: *const IDXVAHD_Device,
             Count: u32,
             pFormats: [*]D3DFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorInputFormats: *const fn(
             self: *const IDXVAHD_Device,
             Count: u32,
             pFormats: [*]D3DFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorCaps: *const fn(
             self: *const IDXVAHD_Device,
             Count: u32,
             pCaps: [*]DXVAHD_VPCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorCustomRates: *const fn(
             self: *const IDXVAHD_Device,
             pVPGuid: ?*const Guid,
             Count: u32,
             pRates: [*]DXVAHD_CUSTOM_RATE_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorFilterRange: *const fn(
             self: *const IDXVAHD_Device,
             Filter: DXVAHD_FILTER,
             pRange: ?*DXVAHD_FILTER_RANGE_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoProcessor: *const fn(
             self: *const IDXVAHD_Device,
             pVPGuid: ?*const Guid,
             ppVideoProcessor: ?*?*IDXVAHD_VideoProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10581,14 +10581,14 @@ pub const IDXVAHD_VideoProcessor = extern union {
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessBltState: *const fn(
             self: *const IDXVAHD_VideoProcessor,
             State: DXVAHD_BLT_STATE,
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVideoProcessStreamState: *const fn(
             self: *const IDXVAHD_VideoProcessor,
             StreamNumber: u32,
@@ -10596,7 +10596,7 @@ pub const IDXVAHD_VideoProcessor = extern union {
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 2?
             pData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessStreamState: *const fn(
             self: *const IDXVAHD_VideoProcessor,
             StreamNumber: u32,
@@ -10604,14 +10604,14 @@ pub const IDXVAHD_VideoProcessor = extern union {
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 2?
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         VideoProcessBltHD: *const fn(
             self: *const IDXVAHD_VideoProcessor,
             pOutputSurface: ?*IDirect3DSurface9,
             OutputFrame: u32,
             StreamCount: u32,
             pStreams: [*]const DXVAHD_STREAM_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10635,19 +10635,19 @@ pub const IDXVAHD_VideoProcessor = extern union {
 pub const PDXVAHDSW_CreateDevice = *const fn(
     pD3DDevice: ?*IDirect3DDevice9Ex,
     phDevice: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_ProposeVideoPrivateFormat = *const fn(
     hDevice: ?HANDLE,
     pFormat: ?*D3DFORMAT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_GetVideoProcessorDeviceCaps = *const fn(
     hDevice: ?HANDLE,
     pContentDesc: ?*const DXVAHD_CONTENT_DESC,
     Usage: DXVAHD_DEVICE_USAGE,
     pCaps: ?*DXVAHD_VPDEVCAPS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_GetVideoProcessorOutputFormats = *const fn(
     hDevice: ?HANDLE,
@@ -10655,7 +10655,7 @@ pub const PDXVAHDSW_GetVideoProcessorOutputFormats = *const fn(
     Usage: DXVAHD_DEVICE_USAGE,
     Count: u32,
     pFormats: [*]D3DFORMAT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_GetVideoProcessorInputFormats = *const fn(
     hDevice: ?HANDLE,
@@ -10663,7 +10663,7 @@ pub const PDXVAHDSW_GetVideoProcessorInputFormats = *const fn(
     Usage: DXVAHD_DEVICE_USAGE,
     Count: u32,
     pFormats: [*]D3DFORMAT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_GetVideoProcessorCaps = *const fn(
     hDevice: ?HANDLE,
@@ -10671,30 +10671,30 @@ pub const PDXVAHDSW_GetVideoProcessorCaps = *const fn(
     Usage: DXVAHD_DEVICE_USAGE,
     Count: u32,
     pCaps: [*]DXVAHD_VPCAPS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_GetVideoProcessorCustomRates = *const fn(
     hDevice: ?HANDLE,
     pVPGuid: ?*const Guid,
     Count: u32,
     pRates: [*]DXVAHD_CUSTOM_RATE_DATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_GetVideoProcessorFilterRange = *const fn(
     hDevice: ?HANDLE,
     Filter: DXVAHD_FILTER,
     pRange: ?*DXVAHD_FILTER_RANGE_DATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_DestroyDevice = *const fn(
     hDevice: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_CreateVideoProcessor = *const fn(
     hDevice: ?HANDLE,
     pVPGuid: ?*const Guid,
     phVideoProcessor: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_SetVideoProcessBltState = *const fn(
     hVideoProcessor: ?HANDLE,
@@ -10702,12 +10702,12 @@ pub const PDXVAHDSW_SetVideoProcessBltState = *const fn(
     DataSize: u32,
     // TODO: what to do with BytesParamIndex 2?
     pData: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_GetVideoProcessBltStatePrivate = *const fn(
     hVideoProcessor: ?HANDLE,
     pData: ?*DXVAHD_BLT_STATE_PRIVATE_DATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_SetVideoProcessStreamState = *const fn(
     hVideoProcessor: ?HANDLE,
@@ -10716,13 +10716,13 @@ pub const PDXVAHDSW_SetVideoProcessStreamState = *const fn(
     DataSize: u32,
     // TODO: what to do with BytesParamIndex 3?
     pData: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_GetVideoProcessStreamStatePrivate = *const fn(
     hVideoProcessor: ?HANDLE,
     StreamNumber: u32,
     pData: ?*DXVAHD_STREAM_STATE_PRIVATE_DATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_VideoProcessBltHD = *const fn(
     hVideoProcessor: ?HANDLE,
@@ -10730,11 +10730,11 @@ pub const PDXVAHDSW_VideoProcessBltHD = *const fn(
     OutputFrame: u32,
     StreamCount: u32,
     pStreams: [*]const DXVAHD_STREAM_DATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDXVAHDSW_DestroyVideoProcessor = *const fn(
     hVideoProcessor: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const DXVAHDSW_CALLBACKS = extern struct {
     CreateDevice: ?PDXVAHDSW_CreateDevice,
@@ -10759,7 +10759,7 @@ pub const PDXVAHDSW_Plugin = *const fn(
     Size: u32,
     // TODO: what to do with BytesParamIndex 0?
     pCallbacks: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const DXVAHDETW_CREATEVIDEOPROCESSOR = extern struct {
     pObject: u64,
@@ -10818,7 +10818,7 @@ pub const PDXVAHD_CreateDevice = *const fn(
     Usage: DXVAHD_DEVICE_USAGE,
     pPlugin: ?PDXVAHDSW_Plugin,
     ppDevice: ?*?*IDXVAHD_Device,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const DXVA2_ExtendedFormat = extern struct {
     Anonymous: extern union {
@@ -11325,36 +11325,36 @@ pub const IDirect3DDeviceManager9 = extern union {
             self: *const IDirect3DDeviceManager9,
             pDevice: ?*IDirect3DDevice9,
             resetToken: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenDeviceHandle: *const fn(
             self: *const IDirect3DDeviceManager9,
             phDevice: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseDeviceHandle: *const fn(
             self: *const IDirect3DDeviceManager9,
             hDevice: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TestDevice: *const fn(
             self: *const IDirect3DDeviceManager9,
             hDevice: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LockDevice: *const fn(
             self: *const IDirect3DDeviceManager9,
             hDevice: ?HANDLE,
             ppDevice: ?*?*IDirect3DDevice9,
             fBlock: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockDevice: *const fn(
             self: *const IDirect3DDeviceManager9,
             hDevice: ?HANDLE,
             fSaveState: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoService: *const fn(
             self: *const IDirect3DDeviceManager9,
             hDevice: ?HANDLE,
             riid: ?*const Guid,
             ppService: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11398,7 +11398,7 @@ pub const IDirectXVideoAccelerationService = extern union {
             DxvaType: DXVA2_VideoRenderTargetType,
             ppSurface: ?*?*IDirect3DSurface9,
             pSharedHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11417,13 +11417,13 @@ pub const IDirectXVideoDecoderService = extern union {
             self: *const IDirectXVideoDecoderService,
             pCount: ?*u32,
             pGuids: ?*?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDecoderRenderTargets: *const fn(
             self: *const IDirectXVideoDecoderService,
             Guid: ?*const Guid,
             pCount: ?*u32,
             pFormats: ?*?*D3DFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDecoderConfigurations: *const fn(
             self: *const IDirectXVideoDecoderService,
             Guid: ?*const Guid,
@@ -11431,7 +11431,7 @@ pub const IDirectXVideoDecoderService = extern union {
             pReserved: ?*anyopaque,
             pCount: ?*u32,
             ppConfigs: ?*?*DXVA2_ConfigPictureDecode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoDecoder: *const fn(
             self: *const IDirectXVideoDecoderService,
             Guid: ?*const Guid,
@@ -11440,7 +11440,7 @@ pub const IDirectXVideoDecoderService = extern union {
             ppDecoderRenderTargets: [*]?*IDirect3DSurface9,
             NumRenderTargets: u32,
             ppDecode: ?*?*IDirectXVideoDecoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectXVideoAccelerationService: IDirectXVideoAccelerationService,
@@ -11468,20 +11468,20 @@ pub const IDirectXVideoProcessorService = extern union {
         RegisterVideoProcessorSoftwareDevice: *const fn(
             self: *const IDirectXVideoProcessorService,
             pCallbacks: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorDeviceGuids: *const fn(
             self: *const IDirectXVideoProcessorService,
             pVideoDesc: ?*const DXVA2_VideoDesc,
             pCount: ?*u32,
             pGuids: ?*?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorRenderTargets: *const fn(
             self: *const IDirectXVideoProcessorService,
             VideoProcDeviceGuid: ?*const Guid,
             pVideoDesc: ?*const DXVA2_VideoDesc,
             pCount: ?*u32,
             pFormats: ?*?*D3DFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorSubStreamFormats: *const fn(
             self: *const IDirectXVideoProcessorService,
             VideoProcDeviceGuid: ?*const Guid,
@@ -11489,14 +11489,14 @@ pub const IDirectXVideoProcessorService = extern union {
             RenderTargetFormat: D3DFORMAT,
             pCount: ?*u32,
             pFormats: ?*?*D3DFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorCaps: *const fn(
             self: *const IDirectXVideoProcessorService,
             VideoProcDeviceGuid: ?*const Guid,
             pVideoDesc: ?*const DXVA2_VideoDesc,
             RenderTargetFormat: D3DFORMAT,
             pCaps: ?*DXVA2_VideoProcessorCaps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProcAmpRange: *const fn(
             self: *const IDirectXVideoProcessorService,
             VideoProcDeviceGuid: ?*const Guid,
@@ -11504,7 +11504,7 @@ pub const IDirectXVideoProcessorService = extern union {
             RenderTargetFormat: D3DFORMAT,
             ProcAmpCap: u32,
             pRange: ?*DXVA2_ValueRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilterPropertyRange: *const fn(
             self: *const IDirectXVideoProcessorService,
             VideoProcDeviceGuid: ?*const Guid,
@@ -11512,7 +11512,7 @@ pub const IDirectXVideoProcessorService = extern union {
             RenderTargetFormat: D3DFORMAT,
             FilterSetting: u32,
             pRange: ?*DXVA2_ValueRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoProcessor: *const fn(
             self: *const IDirectXVideoProcessorService,
             VideoProcDeviceGuid: ?*const Guid,
@@ -11520,7 +11520,7 @@ pub const IDirectXVideoProcessorService = extern union {
             RenderTargetFormat: D3DFORMAT,
             MaxNumSubStreams: u32,
             ppVidProcess: ?*?*IDirectXVideoProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectXVideoAccelerationService: IDirectXVideoAccelerationService,
@@ -11560,7 +11560,7 @@ pub const IDirectXVideoDecoder = extern union {
         GetVideoDecoderService: *const fn(
             self: *const IDirectXVideoDecoder,
             ppService: ?*?*IDirectXVideoDecoderService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCreationParameters: *const fn(
             self: *const IDirectXVideoDecoder,
             pDeviceGuid: ?*Guid,
@@ -11568,30 +11568,30 @@ pub const IDirectXVideoDecoder = extern union {
             pConfig: ?*DXVA2_ConfigPictureDecode,
             pDecoderRenderTargets: [*]?*?*IDirect3DSurface9,
             pNumSurfaces: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBuffer: *const fn(
             self: *const IDirectXVideoDecoder,
             BufferType: DXVA2_BufferfType,
             ppBuffer: ?*?*anyopaque,
             pBufferSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseBuffer: *const fn(
             self: *const IDirectXVideoDecoder,
             BufferType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginFrame: *const fn(
             self: *const IDirectXVideoDecoder,
             pRenderTarget: ?*IDirect3DSurface9,
             pvPVPData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndFrame: *const fn(
             self: *const IDirectXVideoDecoder,
             pHandleComplete: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Execute: *const fn(
             self: *const IDirectXVideoDecoder,
             pExecuteParams: ?*const DXVA2_DecodeExecuteParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11627,28 +11627,28 @@ pub const IDirectXVideoProcessor = extern union {
         GetVideoProcessorService: *const fn(
             self: *const IDirectXVideoProcessor,
             ppService: ?*?*IDirectXVideoProcessorService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCreationParameters: *const fn(
             self: *const IDirectXVideoProcessor,
             pDeviceGuid: ?*Guid,
             pVideoDesc: ?*DXVA2_VideoDesc,
             pRenderTargetFormat: ?*D3DFORMAT,
             pMaxNumSubStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorCaps: *const fn(
             self: *const IDirectXVideoProcessor,
             pCaps: ?*DXVA2_VideoProcessorCaps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProcAmpRange: *const fn(
             self: *const IDirectXVideoProcessor,
             ProcAmpCap: u32,
             pRange: ?*DXVA2_ValueRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilterPropertyRange: *const fn(
             self: *const IDirectXVideoProcessor,
             FilterSetting: u32,
             pRange: ?*DXVA2_ValueRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         VideoProcessBlt: *const fn(
             self: *const IDirectXVideoProcessor,
             pRenderTarget: ?*IDirect3DSurface9,
@@ -11656,7 +11656,7 @@ pub const IDirectXVideoProcessor = extern union {
             pSamples: [*]const DXVA2_VideoSample,
             NumSamples: u32,
             pHandleComplete: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11699,11 +11699,11 @@ pub const IDirectXVideoMemoryConfiguration = extern union {
             self: *const IDirectXVideoMemoryConfiguration,
             dwTypeIndex: u32,
             pdwType: ?*DXVA2_SurfaceType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSurfaceType: *const fn(
             self: *const IDirectXVideoMemoryConfiguration,
             dwType: DXVA2_SurfaceType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12156,28 +12156,28 @@ pub const IOPMVideoOutput = extern union {
             prnRandomNumber: ?*OPM_RANDOM_NUMBER,
             ppbCertificate: ?*?*u8,
             pulCertificateLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FinishInitialization: *const fn(
             self: *const IOPMVideoOutput,
             pParameters: ?*const OPM_ENCRYPTED_INITIALIZATION_PARAMETERS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInformation: *const fn(
             self: *const IOPMVideoOutput,
             pParameters: ?*const OPM_GET_INFO_PARAMETERS,
             pRequestedInformation: ?*OPM_REQUESTED_INFORMATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         COPPCompatibleGetInformation: *const fn(
             self: *const IOPMVideoOutput,
             pParameters: ?*const OPM_COPP_COMPATIBLE_GET_INFO_PARAMETERS,
             pRequestedInformation: ?*OPM_REQUESTED_INFORMATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Configure: *const fn(
             self: *const IOPMVideoOutput,
             pParameters: ?*const OPM_CONFIGURE_PARAMETERS,
             ulAdditionalParametersSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pbAdditionalParameters: ?*const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12250,154 +12250,154 @@ pub const IMFAttributes = extern union {
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemType: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             pType: ?*MF_ATTRIBUTE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CompareItem: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             Value: ?*const PROPVARIANT,
             pbResult: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Compare: *const fn(
             self: *const IMFAttributes,
             pTheirs: ?*IMFAttributes,
             MatchType: MF_ATTRIBUTES_MATCH_TYPE,
             pbResult: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUINT32: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             punValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUINT64: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             punValue: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDouble: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             pfValue: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGUID: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             pguidValue: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringLength: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             pcchLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetString: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             pwszValue: [*:0]u16,
             cchBufSize: u32,
             pcchLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllocatedString: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             ppwszValue: ?*?PWSTR,
             pcchLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBlobSize: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             pcbBlobSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBlob: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             pBuf: [*:0]u8,
             cbBufSize: u32,
             pcbBlobSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllocatedBlob: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             ppBuf: [*]?*u8,
             pcbSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUnknown: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetItem: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             Value: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItem: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAllItems: *const fn(
             self: *const IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUINT32: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             unValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUINT64: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             unValue: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDouble: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             fValue: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGUID: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             guidValue: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetString: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             wszValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlob: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             pBuf: [*:0]const u8,
             cbBufSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUnknown: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
             pUnknown: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LockStore: *const fn(
             self: *const IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockStore: *const fn(
             self: *const IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IMFAttributes,
             pcItems: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemByIndex: *const fn(
             self: *const IMFAttributes,
             unIndex: u32,
             pguidKey: ?*Guid,
             pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyAllItems: *const fn(
             self: *const IMFAttributes,
             pDest: ?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12510,22 +12510,22 @@ pub const IMFMediaBuffer = extern union {
             ppbBuffer: ?*?*u8,
             pcbMaxLength: ?*u32,
             pcbCurrentLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unlock: *const fn(
             self: *const IMFMediaBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentLength: *const fn(
             self: *const IMFMediaBuffer,
             pcbCurrentLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCurrentLength: *const fn(
             self: *const IMFMediaBuffer,
             cbCurrentLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxLength: *const fn(
             self: *const IMFMediaBuffer,
             pcbMaxLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12555,59 +12555,59 @@ pub const IMFSample = extern union {
         GetSampleFlags: *const fn(
             self: *const IMFSample,
             pdwSampleFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSampleFlags: *const fn(
             self: *const IMFSample,
             dwSampleFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSampleTime: *const fn(
             self: *const IMFSample,
             phnsSampleTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSampleTime: *const fn(
             self: *const IMFSample,
             hnsSampleTime: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSampleDuration: *const fn(
             self: *const IMFSample,
             phnsSampleDuration: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSampleDuration: *const fn(
             self: *const IMFSample,
             hnsSampleDuration: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferCount: *const fn(
             self: *const IMFSample,
             pdwBufferCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferByIndex: *const fn(
             self: *const IMFSample,
             dwIndex: u32,
             ppBuffer: ?*?*IMFMediaBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertToContiguousBuffer: *const fn(
             self: *const IMFSample,
             ppBuffer: ?*?*IMFMediaBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddBuffer: *const fn(
             self: *const IMFSample,
             pBuffer: ?*IMFMediaBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveBufferByIndex: *const fn(
             self: *const IMFSample,
             dwIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllBuffers: *const fn(
             self: *const IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTotalLength: *const fn(
             self: *const IMFSample,
             pcbTotalLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyToBuffer: *const fn(
             self: *const IMFSample,
             pBuffer: ?*IMFMediaBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -12666,35 +12666,35 @@ pub const IMF2DBuffer = extern union {
             self: *const IMF2DBuffer,
             ppbScanline0: ?*?*u8,
             plPitch: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unlock2D: *const fn(
             self: *const IMF2DBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScanline0AndPitch: *const fn(
             self: *const IMF2DBuffer,
             pbScanline0: ?*?*u8,
             plPitch: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsContiguousFormat: *const fn(
             self: *const IMF2DBuffer,
             pfIsContiguous: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContiguousLength: *const fn(
             self: *const IMF2DBuffer,
             pcbLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ContiguousCopyTo: *const fn(
             self: *const IMF2DBuffer,
             // TODO: what to do with BytesParamIndex 1?
             pbDestBuffer: ?*u8,
             cbDestBuffer: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ContiguousCopyFrom: *const fn(
             self: *const IMF2DBuffer,
             // TODO: what to do with BytesParamIndex 1?
             pbSrcBuffer: ?*const u8,
             cbSrcBuffer: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12747,11 +12747,11 @@ pub const IMF2DBuffer2 = extern union {
             plPitch: ?*i32,
             ppbBufferStart: ?*?*u8,
             pcbBufferLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Copy2DTo: *const fn(
             self: *const IMF2DBuffer2,
             pDestBuffer: ?*IMF2DBuffer2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMF2DBuffer: IMF2DBuffer,
@@ -12774,22 +12774,22 @@ pub const IMFDXGIBuffer = extern union {
             self: *const IMFDXGIBuffer,
             riid: ?*const Guid,
             ppvObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubresourceIndex: *const fn(
             self: *const IMFDXGIBuffer,
             puSubresource: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUnknown: *const fn(
             self: *const IMFDXGIBuffer,
             guid: ?*const Guid,
             riid: ?*const Guid,
             ppvObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUnknown: *const fn(
             self: *const IMFDXGIBuffer,
             guid: ?*const Guid,
             pUnkData: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12816,26 +12816,26 @@ pub const IMFMediaType = extern union {
         GetMajorType: *const fn(
             self: *const IMFMediaType,
             pguidMajorType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsCompressedFormat: *const fn(
             self: *const IMFMediaType,
             pfCompressed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEqual: *const fn(
             self: *const IMFMediaType,
             pIMediaType: ?*IMFMediaType,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRepresentation: *const fn(
             self: *const IMFMediaType,
             guidRepresentation: Guid,
             ppvRepresentation: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FreeRepresentation: *const fn(
             self: *const IMFMediaType,
             guidRepresentation: Guid,
             pvRepresentation: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -12865,7 +12865,7 @@ pub const IMFAudioMediaType = extern union {
         base: IMFMediaType.VTable,
         GetAudioFormat: *const fn(
             self: *const IMFAudioMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) ?*WAVEFORMATEX,
+        ) callconv(.winapi) ?*WAVEFORMATEX,
     };
     vtable: *const VTable,
     IMFMediaType: IMFMediaType,
@@ -13207,13 +13207,13 @@ pub const IMFVideoMediaType = extern union {
         base: IMFMediaType.VTable,
         GetVideoFormat: *const fn(
             self: *const IMFVideoMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) ?*MFVIDEOFORMAT,
+        ) callconv(.winapi) ?*MFVIDEOFORMAT,
         GetVideoRepresentation: *const fn(
             self: *const IMFVideoMediaType,
             guidRepresentation: Guid,
             ppvRepresentation: ?*?*anyopaque,
             lStride: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaType: IMFMediaType,
@@ -13236,21 +13236,21 @@ pub const IMFAsyncResult = extern union {
         GetState: *const fn(
             self: *const IMFAsyncResult,
             ppunkState: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStatus: *const fn(
             self: *const IMFAsyncResult,
             hrStatus: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObject: *const fn(
             self: *const IMFAsyncResult,
             ppObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStateNoAddRef: *const fn(
             self: *const IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) ?*IUnknown,
+        ) callconv(.winapi) ?*IUnknown,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -13281,11 +13281,11 @@ pub const IMFAsyncCallback = extern union {
             self: *const IMFAsyncCallback,
             pdwFlags: ?*u32,
             pdwQueue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Invoke: *const fn(
             self: *const IMFAsyncCallback,
             pAsyncResult: ?*IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -13305,10 +13305,10 @@ pub const IMFAsyncCallbackLogging = extern union {
         base: IMFAsyncCallback.VTable,
         GetObjectPointer: *const fn(
             self: *const IMFAsyncCallbackLogging,
-        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+        ) callconv(.winapi) ?*anyopaque,
         GetObjectTag: *const fn(
             self: *const IMFAsyncCallbackLogging,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     IMFAsyncCallback: IMFAsyncCallback,
@@ -13573,19 +13573,19 @@ pub const IMFMediaEvent = extern union {
         GetType: *const fn(
             self: *const IMFMediaEvent,
             pmet: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExtendedType: *const fn(
             self: *const IMFMediaEvent,
             pguidExtendedType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IMFMediaEvent,
             phrStatus: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const IMFMediaEvent,
             pvValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -13614,24 +13614,24 @@ pub const IMFMediaEventGenerator = extern union {
             self: *const IMFMediaEventGenerator,
             dwFlags: MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS,
             ppEvent: ?*?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginGetEvent: *const fn(
             self: *const IMFMediaEventGenerator,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndGetEvent: *const fn(
             self: *const IMFMediaEventGenerator,
             pResult: ?*IMFAsyncResult,
             ppEvent: ?*?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueueEvent: *const fn(
             self: *const IMFMediaEventGenerator,
             met: u32,
             guidExtendedType: ?*const Guid,
             hrStatus: HRESULT,
             pvValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -13659,7 +13659,7 @@ pub const IMFRemoteAsyncCallback = extern union {
             self: *const IMFRemoteAsyncCallback,
             hr: HRESULT,
             pRemoteResult: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -13684,33 +13684,33 @@ pub const IMFByteStream = extern union {
         GetCapabilities: *const fn(
             self: *const IMFByteStream,
             pdwCapabilities: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLength: *const fn(
             self: *const IMFByteStream,
             pqwLength: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLength: *const fn(
             self: *const IMFByteStream,
             qwLength: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentPosition: *const fn(
             self: *const IMFByteStream,
             pqwPosition: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCurrentPosition: *const fn(
             self: *const IMFByteStream,
             qwPosition: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEndOfStream: *const fn(
             self: *const IMFByteStream,
             pfEndOfStream: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Read: *const fn(
             self: *const IMFByteStream,
             pb: [*:0]u8,
             cb: u32,
             pcbRead: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginRead: *const fn(
             self: *const IMFByteStream,
             // TODO: what to do with BytesParamIndex 1?
@@ -13718,18 +13718,18 @@ pub const IMFByteStream = extern union {
             cb: u32,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndRead: *const fn(
             self: *const IMFByteStream,
             pResult: ?*IMFAsyncResult,
             pcbRead: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Write: *const fn(
             self: *const IMFByteStream,
             pb: [*:0]const u8,
             cb: u32,
             pcbWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginWrite: *const fn(
             self: *const IMFByteStream,
             // TODO: what to do with BytesParamIndex 1?
@@ -13737,25 +13737,25 @@ pub const IMFByteStream = extern union {
             cb: u32,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndWrite: *const fn(
             self: *const IMFByteStream,
             pResult: ?*IMFAsyncResult,
             pcbWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Seek: *const fn(
             self: *const IMFByteStream,
             SeekOrigin: MFBYTESTREAM_SEEK_ORIGIN,
             llSeekOffset: i64,
             dwSeekFlags: u32,
             pqwCurrentPosition: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IMFByteStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMFByteStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -13818,7 +13818,7 @@ pub const IMFByteStreamProxyClassFactory = extern union {
             pAttributes: ?*IMFAttributes,
             riid: ?*const Guid,
             ppvObject: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -13869,14 +13869,14 @@ pub const IMFSampleOutputStream = extern union {
             pSample: ?*IMFSample,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndWriteSample: *const fn(
             self: *const IMFSampleOutputStream,
             pResult: ?*IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMFSampleOutputStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -13900,29 +13900,29 @@ pub const IMFCollection = extern union {
         GetElementCount: *const fn(
             self: *const IMFCollection,
             pcElements: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetElement: *const fn(
             self: *const IMFCollection,
             dwElementIndex: u32,
             ppUnkElement: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddElement: *const fn(
             self: *const IMFCollection,
             pUnkElement: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveElement: *const fn(
             self: *const IMFCollection,
             dwElementIndex: u32,
             ppUnkElement: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertElementAt: *const fn(
             self: *const IMFCollection,
             dwIndex: u32,
             pUnknown: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllElements: *const fn(
             self: *const IMFCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -13956,38 +13956,38 @@ pub const IMFMediaEventQueue = extern union {
             self: *const IMFMediaEventQueue,
             dwFlags: u32,
             ppEvent: ?*?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginGetEvent: *const fn(
             self: *const IMFMediaEventQueue,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndGetEvent: *const fn(
             self: *const IMFMediaEventQueue,
             pResult: ?*IMFAsyncResult,
             ppEvent: ?*?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueueEvent: *const fn(
             self: *const IMFMediaEventQueue,
             pEvent: ?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueueEventParamVar: *const fn(
             self: *const IMFMediaEventQueue,
             met: u32,
             guidExtendedType: ?*const Guid,
             hrStatus: HRESULT,
             pvValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueueEventParamUnk: *const fn(
             self: *const IMFMediaEventQueue,
             met: u32,
             guidExtendedType: ?*const Guid,
             hrStatus: HRESULT,
             pUnk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IMFMediaEventQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -14024,13 +14024,13 @@ pub const IMFActivate = extern union {
             self: *const IMFActivate,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShutdownObject: *const fn(
             self: *const IMFActivate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DetachObject: *const fn(
             self: *const IMFActivate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -14057,37 +14057,37 @@ pub const IMFPluginControl = extern union {
             pluginType: u32,
             selector: ?[*:0]const u16,
             clsid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreferredClsidByIndex: *const fn(
             self: *const IMFPluginControl,
             pluginType: u32,
             index: u32,
             selector: ?*?PWSTR,
             clsid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPreferredClsid: *const fn(
             self: *const IMFPluginControl,
             pluginType: u32,
             selector: ?[*:0]const u16,
             clsid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsDisabled: *const fn(
             self: *const IMFPluginControl,
             pluginType: u32,
             clsid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisabledByIndex: *const fn(
             self: *const IMFPluginControl,
             pluginType: u32,
             index: u32,
             clsid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDisabled: *const fn(
             self: *const IMFPluginControl,
             pluginType: u32,
             clsid: ?*const Guid,
             disabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -14131,7 +14131,7 @@ pub const IMFPluginControl2 = extern union {
         SetPolicy: *const fn(
             self: *const IMFPluginControl2,
             policy: MF_PLUGIN_CONTROL_POLICY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFPluginControl: IMFPluginControl,
@@ -14150,38 +14150,38 @@ pub const IMFDXGIDeviceManager = extern union {
         CloseDeviceHandle: *const fn(
             self: *const IMFDXGIDeviceManager,
             hDevice: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoService: *const fn(
             self: *const IMFDXGIDeviceManager,
             hDevice: ?HANDLE,
             riid: ?*const Guid,
             ppService: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LockDevice: *const fn(
             self: *const IMFDXGIDeviceManager,
             hDevice: ?HANDLE,
             riid: ?*const Guid,
             ppUnkDevice: ?*?*anyopaque,
             fBlock: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenDeviceHandle: *const fn(
             self: *const IMFDXGIDeviceManager,
             phDevice: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetDevice: *const fn(
             self: *const IMFDXGIDeviceManager,
             pUnkDevice: ?*IUnknown,
             resetToken: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TestDevice: *const fn(
             self: *const IMFDXGIDeviceManager,
             hDevice: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockDevice: *const fn(
             self: *const IMFDXGIDeviceManager,
             hDevice: ?HANDLE,
             fSaveState: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -14226,12 +14226,12 @@ pub const IMFMuxStreamAttributesManager = extern union {
         GetStreamCount: *const fn(
             self: *const IMFMuxStreamAttributesManager,
             pdwMuxStreamCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributes: *const fn(
             self: *const IMFMuxStreamAttributesManager,
             dwMuxStreamIndex: u32,
             ppStreamAttributes: **IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -14252,29 +14252,29 @@ pub const IMFMuxStreamMediaTypeManager = extern union {
         GetStreamCount: *const fn(
             self: *const IMFMuxStreamMediaTypeManager,
             pdwMuxStreamCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMediaType: *const fn(
             self: *const IMFMuxStreamMediaTypeManager,
             dwMuxStreamIndex: u32,
             ppMediaType: **IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamConfigurationCount: *const fn(
             self: *const IMFMuxStreamMediaTypeManager,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStreamConfiguration: *const fn(
             self: *const IMFMuxStreamMediaTypeManager,
             ullStreamMask: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStreamConfiguration: *const fn(
             self: *const IMFMuxStreamMediaTypeManager,
             ullStreamMask: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamConfiguration: *const fn(
             self: *const IMFMuxStreamMediaTypeManager,
             ulIndex: u32,
             pullStreamMask: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -14307,15 +14307,15 @@ pub const IMFMuxStreamSampleManager = extern union {
         GetStreamCount: *const fn(
             self: *const IMFMuxStreamSampleManager,
             pdwMuxStreamCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSample: *const fn(
             self: *const IMFMuxStreamSampleManager,
             dwMuxStreamIndex: u32,
             ppSample: **IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamConfiguration: *const fn(
             self: *const IMFMuxStreamSampleManager,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -14338,7 +14338,7 @@ pub const IMFSecureBuffer = extern union {
         GetIdentifier: *const fn(
             self: *const IMFSecureBuffer,
             pGuidIdentifier: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -14503,123 +14503,123 @@ pub const IMFTransform = extern union {
             pdwInputMaximum: ?*u32,
             pdwOutputMinimum: ?*u32,
             pdwOutputMaximum: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamCount: *const fn(
             self: *const IMFTransform,
             pcInputStreams: ?*u32,
             pcOutputStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamIDs: *const fn(
             self: *const IMFTransform,
             dwInputIDArraySize: u32,
             pdwInputIDs: [*]u32,
             dwOutputIDArraySize: u32,
             pdwOutputIDs: [*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputStreamInfo: *const fn(
             self: *const IMFTransform,
             dwInputStreamID: u32,
             pStreamInfo: ?*MFT_INPUT_STREAM_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputStreamInfo: *const fn(
             self: *const IMFTransform,
             dwOutputStreamID: u32,
             pStreamInfo: ?*MFT_OUTPUT_STREAM_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributes: *const fn(
             self: *const IMFTransform,
             pAttributes: ?*?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputStreamAttributes: *const fn(
             self: *const IMFTransform,
             dwInputStreamID: u32,
             pAttributes: ?*?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputStreamAttributes: *const fn(
             self: *const IMFTransform,
             dwOutputStreamID: u32,
             pAttributes: ?*?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteInputStream: *const fn(
             self: *const IMFTransform,
             dwStreamID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddInputStreams: *const fn(
             self: *const IMFTransform,
             cStreams: u32,
             adwStreamIDs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputAvailableType: *const fn(
             self: *const IMFTransform,
             dwInputStreamID: u32,
             dwTypeIndex: u32,
             ppType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputAvailableType: *const fn(
             self: *const IMFTransform,
             dwOutputStreamID: u32,
             dwTypeIndex: u32,
             ppType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInputType: *const fn(
             self: *const IMFTransform,
             dwInputStreamID: u32,
             pType: ?*IMFMediaType,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputType: *const fn(
             self: *const IMFTransform,
             dwOutputStreamID: u32,
             pType: ?*IMFMediaType,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputCurrentType: *const fn(
             self: *const IMFTransform,
             dwInputStreamID: u32,
             ppType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputCurrentType: *const fn(
             self: *const IMFTransform,
             dwOutputStreamID: u32,
             ppType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputStatus: *const fn(
             self: *const IMFTransform,
             dwInputStreamID: u32,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputStatus: *const fn(
             self: *const IMFTransform,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputBounds: *const fn(
             self: *const IMFTransform,
             hnsLowerBound: i64,
             hnsUpperBound: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessEvent: *const fn(
             self: *const IMFTransform,
             dwInputStreamID: u32,
             pEvent: ?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessMessage: *const fn(
             self: *const IMFTransform,
             eMessage: MFT_MESSAGE_TYPE,
             ulParam: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessInput: *const fn(
             self: *const IMFTransform,
             dwInputStreamID: u32,
             pSample: ?*IMFSample,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessOutput: *const fn(
             self: *const IMFTransform,
             dwFlags: u32,
             cOutputBufferCount: u32,
             pOutputSamples: [*]MFT_OUTPUT_DATA_BUFFER,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -14719,114 +14719,114 @@ pub const IMFDeviceTransform = extern union {
         InitializeTransform: *const fn(
             self: *const IMFDeviceTransform,
             pAttributes: ?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputAvailableType: *const fn(
             self: *const IMFDeviceTransform,
             dwInputStreamID: u32,
             dwTypeIndex: u32,
             pMediaType: **IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputCurrentType: *const fn(
             self: *const IMFDeviceTransform,
             dwInputStreamID: u32,
             pMediaType: **IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputStreamAttributes: *const fn(
             self: *const IMFDeviceTransform,
             dwInputStreamID: u32,
             ppAttributes: **IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputAvailableType: *const fn(
             self: *const IMFDeviceTransform,
             dwOutputStreamID: u32,
             dwTypeIndex: u32,
             pMediaType: **IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputCurrentType: *const fn(
             self: *const IMFDeviceTransform,
             dwOutputStreamID: u32,
             pMediaType: **IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputStreamAttributes: *const fn(
             self: *const IMFDeviceTransform,
             dwOutputStreamID: u32,
             ppAttributes: **IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamCount: *const fn(
             self: *const IMFDeviceTransform,
             pcInputStreams: ?*u32,
             pcOutputStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamIDs: *const fn(
             self: *const IMFDeviceTransform,
             dwInputIDArraySize: u32,
             pdwInputStreamIds: ?*u32,
             dwOutputIDArraySize: u32,
             pdwOutputStreamIds: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessEvent: *const fn(
             self: *const IMFDeviceTransform,
             dwInputStreamID: u32,
             pEvent: ?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessInput: *const fn(
             self: *const IMFDeviceTransform,
             dwInputStreamID: u32,
             pSample: ?*IMFSample,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessMessage: *const fn(
             self: *const IMFDeviceTransform,
             eMessage: MFT_MESSAGE_TYPE,
             ulParam: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessOutput: *const fn(
             self: *const IMFDeviceTransform,
             dwFlags: u32,
             cOutputBufferCount: u32,
             pOutputSample: ?*MFT_OUTPUT_DATA_BUFFER,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInputStreamState: *const fn(
             self: *const IMFDeviceTransform,
             dwStreamID: u32,
             pMediaType: ?*IMFMediaType,
             value: DeviceStreamState,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputStreamState: *const fn(
             self: *const IMFDeviceTransform,
             dwStreamID: u32,
             value: ?*DeviceStreamState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputStreamState: *const fn(
             self: *const IMFDeviceTransform,
             dwStreamID: u32,
             pMediaType: ?*IMFMediaType,
             value: DeviceStreamState,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputStreamState: *const fn(
             self: *const IMFDeviceTransform,
             dwStreamID: u32,
             value: ?*DeviceStreamState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputStreamPreferredState: *const fn(
             self: *const IMFDeviceTransform,
             dwStreamID: u32,
             value: ?*DeviceStreamState,
             ppMediaType: **IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FlushInputStream: *const fn(
             self: *const IMFDeviceTransform,
             dwStreamIndex: u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FlushOutputStream: *const fn(
             self: *const IMFDeviceTransform,
             dwStreamIndex: u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -14902,7 +14902,7 @@ pub const IMFDeviceTransformCallback = extern union {
             self: *const IMFDeviceTransformCallback,
             pCallbackAttributes: ?*IMFAttributes,
             pinId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -14977,41 +14977,41 @@ pub const IMFMediaSession = extern union {
             self: *const IMFMediaSession,
             dwSetTopologyFlags: u32,
             pTopology: ?*IMFTopology,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearTopologies: *const fn(
             self: *const IMFMediaSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Start: *const fn(
             self: *const IMFMediaSession,
             pguidTimeFormat: ?*const Guid,
             pvarStartPosition: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const IMFMediaSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IMFMediaSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMFMediaSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IMFMediaSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClock: *const fn(
             self: *const IMFMediaSession,
             ppClock: ?*?*IMFClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSessionCapabilities: *const fn(
             self: *const IMFMediaSession,
             pdwCaps: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFullTopology: *const fn(
             self: *const IMFMediaSession,
             dwGetFullTopologyFlags: u32,
             TopoId: u64,
             ppFullTopology: ?*?*IMFTopology,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaEventGenerator: IMFMediaEventGenerator,
@@ -15140,7 +15140,7 @@ pub const IMFSourceResolver = extern union {
             pProps: ?*IPropertyStore,
             pObjectType: ?*MF_OBJECT_TYPE,
             ppObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateObjectFromByteStream: *const fn(
             self: *const IMFSourceResolver,
             pByteStream: ?*IMFByteStream,
@@ -15149,7 +15149,7 @@ pub const IMFSourceResolver = extern union {
             pProps: ?*IPropertyStore,
             pObjectType: ?*MF_OBJECT_TYPE,
             ppObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginCreateObjectFromURL: *const fn(
             self: *const IMFSourceResolver,
             pwszURL: ?[*:0]const u16,
@@ -15158,13 +15158,13 @@ pub const IMFSourceResolver = extern union {
             ppIUnknownCancelCookie: ?*?*IUnknown,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndCreateObjectFromURL: *const fn(
             self: *const IMFSourceResolver,
             pResult: ?*IMFAsyncResult,
             pObjectType: ?*MF_OBJECT_TYPE,
             ppObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginCreateObjectFromByteStream: *const fn(
             self: *const IMFSourceResolver,
             pByteStream: ?*IMFByteStream,
@@ -15174,17 +15174,17 @@ pub const IMFSourceResolver = extern union {
             ppIUnknownCancelCookie: ?*?*IUnknown,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndCreateObjectFromByteStream: *const fn(
             self: *const IMFSourceResolver,
             pResult: ?*IMFAsyncResult,
             pObjectType: ?*MF_OBJECT_TYPE,
             ppObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelObjectCreation: *const fn(
             self: *const IMFSourceResolver,
             pIUnknownCancelCookie: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -15239,26 +15239,26 @@ pub const IMFMediaSource = extern union {
         GetCharacteristics: *const fn(
             self: *const IMFMediaSource,
             pdwCharacteristics: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePresentationDescriptor: *const fn(
             self: *const IMFMediaSource,
             ppPresentationDescriptor: ?*?*IMFPresentationDescriptor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Start: *const fn(
             self: *const IMFMediaSource,
             pPresentationDescriptor: ?*IMFPresentationDescriptor,
             pguidTimeFormat: ?*const Guid,
             pvarStartPosition: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IMFMediaSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const IMFMediaSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IMFMediaSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaEventGenerator: IMFMediaEventGenerator,
@@ -15292,16 +15292,16 @@ pub const IMFMediaSourceEx = extern union {
         GetSourceAttributes: *const fn(
             self: *const IMFMediaSourceEx,
             ppAttributes: ?*?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamAttributes: *const fn(
             self: *const IMFMediaSourceEx,
             dwStreamIdentifier: u32,
             ppAttributes: ?*?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetD3DManager: *const fn(
             self: *const IMFMediaSourceEx,
             pManager: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaSource: IMFMediaSource,
@@ -15327,11 +15327,11 @@ pub const IMFClockConsumer = extern union {
         SetPresentationClock: *const fn(
             self: *const IMFClockConsumer,
             pPresentationClock: ?*IMFPresentationClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPresentationClock: *const fn(
             self: *const IMFClockConsumer,
             ppPresentationClock: ?*?*IMFPresentationClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -15352,15 +15352,15 @@ pub const IMFMediaStream = extern union {
         GetMediaSource: *const fn(
             self: *const IMFMediaStream,
             ppMediaSource: ?*?*IMFMediaSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamDescriptor: *const fn(
             self: *const IMFMediaStream,
             ppStreamDescriptor: ?*?*IMFStreamDescriptor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestSample: *const fn(
             self: *const IMFMediaStream,
             pToken: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaEventGenerator: IMFMediaEventGenerator,
@@ -15385,42 +15385,42 @@ pub const IMFMediaSink = extern union {
         GetCharacteristics: *const fn(
             self: *const IMFMediaSink,
             pdwCharacteristics: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStreamSink: *const fn(
             self: *const IMFMediaSink,
             dwStreamSinkIdentifier: u32,
             pMediaType: ?*IMFMediaType,
             ppStreamSink: ?*?*IMFStreamSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStreamSink: *const fn(
             self: *const IMFMediaSink,
             dwStreamSinkIdentifier: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamSinkCount: *const fn(
             self: *const IMFMediaSink,
             pcStreamSinkCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamSinkByIndex: *const fn(
             self: *const IMFMediaSink,
             dwIndex: u32,
             ppStreamSink: ?*?*IMFStreamSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamSinkById: *const fn(
             self: *const IMFMediaSink,
             dwStreamSinkIdentifier: u32,
             ppStreamSink: ?*?*IMFStreamSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPresentationClock: *const fn(
             self: *const IMFMediaSink,
             pPresentationClock: ?*IMFPresentationClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPresentationClock: *const fn(
             self: *const IMFMediaSink,
             ppPresentationClock: ?*?*IMFPresentationClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IMFMediaSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -15473,28 +15473,28 @@ pub const IMFStreamSink = extern union {
         GetMediaSink: *const fn(
             self: *const IMFStreamSink,
             ppMediaSink: ?*?*IMFMediaSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIdentifier: *const fn(
             self: *const IMFStreamSink,
             pdwIdentifier: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMediaTypeHandler: *const fn(
             self: *const IMFStreamSink,
             ppHandler: ?*?*IMFMediaTypeHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessSample: *const fn(
             self: *const IMFStreamSink,
             pSample: ?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PlaceMarker: *const fn(
             self: *const IMFStreamSink,
             eMarkerType: MFSTREAMSINK_MARKER_TYPE,
             pvarMarkerValue: ?*const PROPVARIANT,
             pvarContextValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IMFStreamSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaEventGenerator: IMFMediaEventGenerator,
@@ -15528,19 +15528,19 @@ pub const IMFVideoSampleAllocator = extern union {
         SetDirectXManager: *const fn(
             self: *const IMFVideoSampleAllocator,
             pManager: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UninitializeSampleAllocator: *const fn(
             self: *const IMFVideoSampleAllocator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeSampleAllocator: *const fn(
             self: *const IMFVideoSampleAllocator,
             cRequestedFrames: u32,
             pMediaType: ?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AllocateSample: *const fn(
             self: *const IMFVideoSampleAllocator,
             ppSample: ?*?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -15566,7 +15566,7 @@ pub const IMFVideoSampleAllocatorNotify = extern union {
         base: IUnknown.VTable,
         NotifyRelease: *const fn(
             self: *const IMFVideoSampleAllocatorNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -15584,7 +15584,7 @@ pub const IMFVideoSampleAllocatorNotifyEx = extern union {
         NotifyPrune: *const fn(
             self: *const IMFVideoSampleAllocatorNotifyEx,
             __MIDL__IMFVideoSampleAllocatorNotifyEx0000: ?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFVideoSampleAllocatorNotify: IMFVideoSampleAllocatorNotify,
@@ -15603,11 +15603,11 @@ pub const IMFVideoSampleAllocatorCallback = extern union {
         SetCallback: *const fn(
             self: *const IMFVideoSampleAllocatorCallback,
             pNotify: ?*IMFVideoSampleAllocatorNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFreeSampleCount: *const fn(
             self: *const IMFVideoSampleAllocatorCallback,
             plSamples: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -15631,7 +15631,7 @@ pub const IMFVideoSampleAllocatorEx = extern union {
             cMaximumSamples: u32,
             pAttributes: ?*IMFAttributes,
             pMediaType: ?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFVideoSampleAllocator: IMFVideoSampleAllocator,
@@ -15650,7 +15650,7 @@ pub const IMFDXGIDeviceManagerSource = extern union {
         GetManager: *const fn(
             self: *const IMFDXGIDeviceManagerSource,
             ppManager: ?*?*IMFDXGIDeviceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -15684,27 +15684,27 @@ pub const IMFVideoProcessorControl = extern union {
         SetBorderColor: *const fn(
             self: *const IMFVideoProcessorControl,
             pBorderColor: ?*MFARGB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSourceRectangle: *const fn(
             self: *const IMFVideoProcessorControl,
             pSrcRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDestinationRectangle: *const fn(
             self: *const IMFVideoProcessorControl,
             pDstRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMirror: *const fn(
             self: *const IMFVideoProcessorControl,
             eMirror: MF_VIDEO_PROCESSOR_MIRROR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRotation: *const fn(
             self: *const IMFVideoProcessorControl,
             eRotation: MF_VIDEO_PROCESSOR_ROTATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConstrictionSize: *const fn(
             self: *const IMFVideoProcessorControl,
             pConstrictionSize: ?*SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -15737,15 +15737,15 @@ pub const IMFVideoProcessorControl2 = extern union {
         SetRotationOverride: *const fn(
             self: *const IMFVideoProcessorControl2,
             uiRotation: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableHardwareEffects: *const fn(
             self: *const IMFVideoProcessorControl2,
             fEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSupportedHardwareEffects: *const fn(
             self: *const IMFVideoProcessorControl2,
             puiSupport: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFVideoProcessorControl: IMFVideoProcessorControl,
@@ -15787,13 +15787,13 @@ pub const IMFVideoProcessorControl3 = extern union {
         GetNaturalOutputType: *const fn(
             self: *const IMFVideoProcessorControl3,
             ppType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableSphericalVideoProcessing: *const fn(
             self: *const IMFVideoProcessorControl3,
             fEnable: BOOL,
             eFormat: MFVideoSphericalFormat,
             eProjectionMode: MFVideoSphericalProjectionMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSphericalVideoProperties: *const fn(
             self: *const IMFVideoProcessorControl3,
             X: f32,
@@ -15801,11 +15801,11 @@ pub const IMFVideoProcessorControl3 = extern union {
             Z: f32,
             W: f32,
             fieldOfView: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputDevice: *const fn(
             self: *const IMFVideoProcessorControl3,
             pOutputDevice: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFVideoProcessorControl2: IMFVideoProcessorControl2,
@@ -15833,7 +15833,7 @@ pub const IMFVideoRendererEffectControl = extern union {
         OnAppServiceConnectionEstablished: *const fn(
             self: *const IMFVideoRendererEffectControl,
             pAppServiceConnection: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -15851,44 +15851,44 @@ pub const IMFTopology = extern union {
         GetTopologyID: *const fn(
             self: *const IMFTopology,
             pID: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddNode: *const fn(
             self: *const IMFTopology,
             pNode: ?*IMFTopologyNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveNode: *const fn(
             self: *const IMFTopology,
             pNode: ?*IMFTopologyNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNodeCount: *const fn(
             self: *const IMFTopology,
             pwNodes: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNode: *const fn(
             self: *const IMFTopology,
             wIndex: u16,
             ppNode: ?*?*IMFTopologyNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IMFTopology,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloneFrom: *const fn(
             self: *const IMFTopology,
             pTopology: ?*IMFTopology,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNodeByID: *const fn(
             self: *const IMFTopology,
             qwTopoNodeID: u64,
             ppNode: ?*?*IMFTopologyNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceNodeCollection: *const fn(
             self: *const IMFTopology,
             ppCollection: ?*?*IMFCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputNodeCollection: *const fn(
             self: *const IMFTopology,
             ppCollection: ?*?*IMFCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -15965,77 +15965,77 @@ pub const IMFTopologyNode = extern union {
         SetObject: *const fn(
             self: *const IMFTopologyNode,
             pObject: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObject: *const fn(
             self: *const IMFTopologyNode,
             ppObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNodeType: *const fn(
             self: *const IMFTopologyNode,
             pType: ?*MF_TOPOLOGY_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTopoNodeID: *const fn(
             self: *const IMFTopologyNode,
             pID: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTopoNodeID: *const fn(
             self: *const IMFTopologyNode,
             ullTopoID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputCount: *const fn(
             self: *const IMFTopologyNode,
             pcInputs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputCount: *const fn(
             self: *const IMFTopologyNode,
             pcOutputs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConnectOutput: *const fn(
             self: *const IMFTopologyNode,
             dwOutputIndex: u32,
             pDownstreamNode: ?*IMFTopologyNode,
             dwInputIndexOnDownstreamNode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisconnectOutput: *const fn(
             self: *const IMFTopologyNode,
             dwOutputIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInput: *const fn(
             self: *const IMFTopologyNode,
             dwInputIndex: u32,
             ppUpstreamNode: ?*?*IMFTopologyNode,
             pdwOutputIndexOnUpstreamNode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutput: *const fn(
             self: *const IMFTopologyNode,
             dwOutputIndex: u32,
             ppDownstreamNode: ?*?*IMFTopologyNode,
             pdwInputIndexOnDownstreamNode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputPrefType: *const fn(
             self: *const IMFTopologyNode,
             dwOutputIndex: u32,
             pType: ?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputPrefType: *const fn(
             self: *const IMFTopologyNode,
             dwOutputIndex: u32,
             ppType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInputPrefType: *const fn(
             self: *const IMFTopologyNode,
             dwInputIndex: u32,
             pType: ?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputPrefType: *const fn(
             self: *const IMFTopologyNode,
             dwInputIndex: u32,
             ppType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloneFrom: *const fn(
             self: *const IMFTopologyNode,
             pNode: ?*IMFTopologyNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -16119,7 +16119,7 @@ pub const IMFGetService = extern union {
             guidService: ?*const Guid,
             riid: ?*const Guid,
             ppvObject: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16171,26 +16171,26 @@ pub const IMFClock = extern union {
         GetClockCharacteristics: *const fn(
             self: *const IMFClock,
             pdwCharacteristics: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCorrelatedTime: *const fn(
             self: *const IMFClock,
             dwReserved: u32,
             pllClockTime: ?*i64,
             phnsSystemTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContinuityKey: *const fn(
             self: *const IMFClock,
             pdwContinuityKey: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetState: *const fn(
             self: *const IMFClock,
             dwReserved: u32,
             peClockState: ?*MFCLOCK_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperties: *const fn(
             self: *const IMFClock,
             pClockProperties: ?*MFCLOCK_PROPERTIES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16220,33 +16220,33 @@ pub const IMFPresentationClock = extern union {
         SetTimeSource: *const fn(
             self: *const IMFPresentationClock,
             pTimeSource: ?*IMFPresentationTimeSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTimeSource: *const fn(
             self: *const IMFPresentationClock,
             ppTimeSource: ?*?*IMFPresentationTimeSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTime: *const fn(
             self: *const IMFPresentationClock,
             phnsClockTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddClockStateSink: *const fn(
             self: *const IMFPresentationClock,
             pStateSink: ?*IMFClockStateSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveClockStateSink: *const fn(
             self: *const IMFPresentationClock,
             pStateSink: ?*IMFClockStateSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Start: *const fn(
             self: *const IMFPresentationClock,
             llClockStartOffset: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IMFPresentationClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const IMFPresentationClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFClock: IMFClock,
@@ -16286,7 +16286,7 @@ pub const IMFPresentationTimeSource = extern union {
         GetUnderlyingClock: *const fn(
             self: *const IMFPresentationTimeSource,
             ppClock: ?*?*IMFClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFClock: IMFClock,
@@ -16306,24 +16306,24 @@ pub const IMFClockStateSink = extern union {
             self: *const IMFClockStateSink,
             hnsSystemTime: i64,
             llClockStartOffset: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnClockStop: *const fn(
             self: *const IMFClockStateSink,
             hnsSystemTime: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnClockPause: *const fn(
             self: *const IMFClockStateSink,
             hnsSystemTime: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnClockRestart: *const fn(
             self: *const IMFClockStateSink,
             hnsSystemTime: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnClockSetRate: *const fn(
             self: *const IMFClockStateSink,
             hnsSystemTime: i64,
             flRate: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16353,25 +16353,25 @@ pub const IMFPresentationDescriptor = extern union {
         GetStreamDescriptorCount: *const fn(
             self: *const IMFPresentationDescriptor,
             pdwDescriptorCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamDescriptorByIndex: *const fn(
             self: *const IMFPresentationDescriptor,
             dwIndex: u32,
             pfSelected: ?*BOOL,
             ppDescriptor: ?*?*IMFStreamDescriptor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SelectStream: *const fn(
             self: *const IMFPresentationDescriptor,
             dwDescriptorIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeselectStream: *const fn(
             self: *const IMFPresentationDescriptor,
             dwDescriptorIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IMFPresentationDescriptor,
             ppPresentationDescriptor: ?*?*IMFPresentationDescriptor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -16402,11 +16402,11 @@ pub const IMFStreamDescriptor = extern union {
         GetStreamIdentifier: *const fn(
             self: *const IMFStreamDescriptor,
             pdwStreamIdentifier: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMediaTypeHandler: *const fn(
             self: *const IMFStreamDescriptor,
             ppMediaTypeHandler: ?*?*IMFMediaTypeHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -16429,28 +16429,28 @@ pub const IMFMediaTypeHandler = extern union {
             self: *const IMFMediaTypeHandler,
             pMediaType: ?*IMFMediaType,
             ppMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMediaTypeCount: *const fn(
             self: *const IMFMediaTypeHandler,
             pdwTypeCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMediaTypeByIndex: *const fn(
             self: *const IMFMediaTypeHandler,
             dwIndex: u32,
             ppType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCurrentMediaType: *const fn(
             self: *const IMFMediaTypeHandler,
             pMediaType: ?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentMediaType: *const fn(
             self: *const IMFMediaTypeHandler,
             ppMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMajorType: *const fn(
             self: *const IMFMediaTypeHandler,
             pguidMajorType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16492,11 +16492,11 @@ pub const IMFTimer = extern union {
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
             ppunkKey: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelTimer: *const fn(
             self: *const IMFTimer,
             punkKey: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16533,11 +16533,11 @@ pub const IMFShutdown = extern union {
         base: IUnknown.VTable,
         Shutdown: *const fn(
             self: *const IMFShutdown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetShutdownStatus: *const fn(
             self: *const IMFShutdown,
             pStatus: ?*MFSHUTDOWN_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16560,7 +16560,7 @@ pub const IMFTopoLoader = extern union {
             pInputTopo: ?*IMFTopology,
             ppOutputTopo: ?*?*IMFTopology,
             pCurrentTopo: ?*IMFTopology,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16581,11 +16581,11 @@ pub const IMFContentProtectionManager = extern union {
             pTopo: ?*IMFTopology,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndEnableContent: *const fn(
             self: *const IMFContentProtectionManager,
             pResult: ?*IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16615,31 +16615,31 @@ pub const IMFContentEnabler = extern union {
         GetEnableType: *const fn(
             self: *const IMFContentEnabler,
             pType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnableURL: *const fn(
             self: *const IMFContentEnabler,
             ppwszURL: [*]?PWSTR,
             pcchURL: ?*u32,
             pTrustStatus: ?*MF_URL_TRUST_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnableData: *const fn(
             self: *const IMFContentEnabler,
             ppbData: [*]?*u8,
             pcbData: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsAutomaticSupported: *const fn(
             self: *const IMFContentEnabler,
             pfAutomatic: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AutomaticEnable: *const fn(
             self: *const IMFContentEnabler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MonitorEnable: *const fn(
             self: *const IMFContentEnabler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const IMFContentEnabler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16699,33 +16699,33 @@ pub const IMFMetadata = extern union {
         SetLanguage: *const fn(
             self: *const IMFMetadata,
             pwszRFC1766: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLanguage: *const fn(
             self: *const IMFMetadata,
             ppwszRFC1766: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllLanguages: *const fn(
             self: *const IMFMetadata,
             ppvLanguages: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IMFMetadata,
             pwszName: ?[*:0]const u16,
             ppvValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IMFMetadata,
             pwszName: ?[*:0]const u16,
             ppvValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteProperty: *const fn(
             self: *const IMFMetadata,
             pwszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllPropertyNames: *const fn(
             self: *const IMFMetadata,
             ppvNames: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16764,7 +16764,7 @@ pub const IMFMetadataProvider = extern union {
             dwStreamIdentifier: u32,
             dwFlags: u32,
             ppMFMetadata: ?*?*IMFMetadata,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16791,19 +16791,19 @@ pub const IMFRateSupport = extern union {
             eDirection: MFRATE_DIRECTION,
             fThin: BOOL,
             pflRate: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFastestRate: *const fn(
             self: *const IMFRateSupport,
             eDirection: MFRATE_DIRECTION,
             fThin: BOOL,
             pflRate: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsRateSupported: *const fn(
             self: *const IMFRateSupport,
             fThin: BOOL,
             flRate: f32,
             pflNearestSupportedRate: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16828,12 +16828,12 @@ pub const IMFRateControl = extern union {
             self: *const IMFRateControl,
             fThin: BOOL,
             flRate: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRate: *const fn(
             self: *const IMFRateControl,
             pfThin: ?*BOOL,
             pflRate: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16856,23 +16856,23 @@ pub const IMFTimecodeTranslate = extern union {
             pPropVarTimecode: ?*const PROPVARIANT,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndConvertTimecodeToHNS: *const fn(
             self: *const IMFTimecodeTranslate,
             pResult: ?*IMFAsyncResult,
             phnsTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginConvertHNSToTimecode: *const fn(
             self: *const IMFTimecodeTranslate,
             hnsTime: i64,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndConvertHNSToTimecode: *const fn(
             self: *const IMFTimecodeTranslate,
             pResult: ?*IMFAsyncResult,
             pPropVarTimecode: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16902,7 +16902,7 @@ pub const IMFSeekInfo = extern union {
             pvarStartPosition: ?*const PROPVARIANT,
             pvarPreviousKeyFrame: ?*PROPVARIANT,
             pvarNextKeyFrame: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16920,19 +16920,19 @@ pub const IMFSimpleAudioVolume = extern union {
         SetMasterVolume: *const fn(
             self: *const IMFSimpleAudioVolume,
             fLevel: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMasterVolume: *const fn(
             self: *const IMFSimpleAudioVolume,
             pfLevel: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMute: *const fn(
             self: *const IMFSimpleAudioVolume,
             bMute: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMute: *const fn(
             self: *const IMFSimpleAudioVolume,
             pbMute: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -16959,27 +16959,27 @@ pub const IMFAudioStreamVolume = extern union {
         GetChannelCount: *const fn(
             self: *const IMFAudioStreamVolume,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetChannelVolume: *const fn(
             self: *const IMFAudioStreamVolume,
             dwIndex: u32,
             fLevel: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelVolume: *const fn(
             self: *const IMFAudioStreamVolume,
             dwIndex: u32,
             pfLevel: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllVolumes: *const fn(
             self: *const IMFAudioStreamVolume,
             dwCount: u32,
             pfVolumes: [*]const f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllVolumes: *const fn(
             self: *const IMFAudioStreamVolume,
             dwCount: u32,
             pfVolumes: [*]f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17009,27 +17009,27 @@ pub const IMFAudioPolicy = extern union {
         SetGroupingParam: *const fn(
             self: *const IMFAudioPolicy,
             rguidClass: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGroupingParam: *const fn(
             self: *const IMFAudioPolicy,
             pguidClass: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDisplayName: *const fn(
             self: *const IMFAudioPolicy,
             pszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayName: *const fn(
             self: *const IMFAudioPolicy,
             pszName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIconPath: *const fn(
             self: *const IMFAudioPolicy,
             pszPath: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIconPath: *const fn(
             self: *const IMFAudioPolicy,
             pszPath: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17062,7 +17062,7 @@ pub const IMFSampleGrabberSinkCallback = extern union {
         OnSetPresentationClock: *const fn(
             self: *const IMFSampleGrabberSinkCallback,
             pPresentationClock: ?*IMFPresentationClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnProcessSample: *const fn(
             self: *const IMFSampleGrabberSinkCallback,
             guidMajorMediaType: ?*const Guid,
@@ -17072,10 +17072,10 @@ pub const IMFSampleGrabberSinkCallback = extern union {
             // TODO: what to do with BytesParamIndex 5?
             pSampleBuffer: ?*const u8,
             dwSampleSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnShutdown: *const fn(
             self: *const IMFSampleGrabberSinkCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFClockStateSink: IMFClockStateSink,
@@ -17107,7 +17107,7 @@ pub const IMFSampleGrabberSinkCallback2 = extern union {
             pSampleBuffer: ?*const u8,
             dwSampleSize: u32,
             pAttributes: ?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFSampleGrabberSinkCallback: IMFSampleGrabberSinkCallback,
@@ -17128,31 +17128,31 @@ pub const IMFWorkQueueServices = extern union {
             self: *const IMFWorkQueueServices,
             pCallback: ?*IMFAsyncCallback,
             pState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndRegisterTopologyWorkQueuesWithMMCSS: *const fn(
             self: *const IMFWorkQueueServices,
             pResult: ?*IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginUnregisterTopologyWorkQueuesWithMMCSS: *const fn(
             self: *const IMFWorkQueueServices,
             pCallback: ?*IMFAsyncCallback,
             pState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndUnregisterTopologyWorkQueuesWithMMCSS: *const fn(
             self: *const IMFWorkQueueServices,
             pResult: ?*IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTopologyWorkQueueMMCSSClass: *const fn(
             self: *const IMFWorkQueueServices,
             dwTopologyWorkQueueId: u32,
             pwszClass: [*:0]u16,
             pcchClass: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTopologyWorkQueueMMCSSTaskId: *const fn(
             self: *const IMFWorkQueueServices,
             dwTopologyWorkQueueId: u32,
             pdwTaskId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginRegisterPlatformWorkQueueWithMMCSS: *const fn(
             self: *const IMFWorkQueueServices,
             dwPlatformWorkQueue: u32,
@@ -17160,33 +17160,33 @@ pub const IMFWorkQueueServices = extern union {
             dwTaskId: u32,
             pCallback: ?*IMFAsyncCallback,
             pState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndRegisterPlatformWorkQueueWithMMCSS: *const fn(
             self: *const IMFWorkQueueServices,
             pResult: ?*IMFAsyncResult,
             pdwTaskId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginUnregisterPlatformWorkQueueWithMMCSS: *const fn(
             self: *const IMFWorkQueueServices,
             dwPlatformWorkQueue: u32,
             pCallback: ?*IMFAsyncCallback,
             pState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndUnregisterPlatformWorkQueueWithMMCSS: *const fn(
             self: *const IMFWorkQueueServices,
             pResult: ?*IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPlaftormWorkQueueMMCSSClass: *const fn(
             self: *const IMFWorkQueueServices,
             dwPlatformWorkQueueId: u32,
             pwszClass: [*:0]u16,
             pcchClass: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPlatformWorkQueueMMCSSTaskId: *const fn(
             self: *const IMFWorkQueueServices,
             dwPlatformWorkQueueId: u32,
             pdwTaskId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17238,7 +17238,7 @@ pub const IMFWorkQueueServicesEx = extern union {
             self: *const IMFWorkQueueServicesEx,
             dwTopologyWorkQueueId: u32,
             plPriority: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginRegisterPlatformWorkQueueWithMMCSSEx: *const fn(
             self: *const IMFWorkQueueServicesEx,
             dwPlatformWorkQueue: u32,
@@ -17247,12 +17247,12 @@ pub const IMFWorkQueueServicesEx = extern union {
             lPriority: i32,
             pCallback: ?*IMFAsyncCallback,
             pState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPlatformWorkQueueMMCSSPriority: *const fn(
             self: *const IMFWorkQueueServicesEx,
             dwPlatformWorkQueueId: u32,
             plPriority: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFWorkQueueServices: IMFWorkQueueServices,
@@ -17316,31 +17316,31 @@ pub const IMFQualityManager = extern union {
         NotifyTopology: *const fn(
             self: *const IMFQualityManager,
             pTopology: ?*IMFTopology,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyPresentationClock: *const fn(
             self: *const IMFQualityManager,
             pClock: ?*IMFPresentationClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyProcessInput: *const fn(
             self: *const IMFQualityManager,
             pNode: ?*IMFTopologyNode,
             lInputIndex: i32,
             pSample: ?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyProcessOutput: *const fn(
             self: *const IMFQualityManager,
             pNode: ?*IMFTopologyNode,
             lOutputIndex: i32,
             pSample: ?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyQualityEvent: *const fn(
             self: *const IMFQualityManager,
             pObject: ?*IUnknown,
             pEvent: ?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IMFQualityManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17373,23 +17373,23 @@ pub const IMFQualityAdvise = extern union {
         SetDropMode: *const fn(
             self: *const IMFQualityAdvise,
             eDropMode: MF_QUALITY_DROP_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetQualityLevel: *const fn(
             self: *const IMFQualityAdvise,
             eQualityLevel: MF_QUALITY_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDropMode: *const fn(
             self: *const IMFQualityAdvise,
             peDropMode: ?*MF_QUALITY_DROP_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetQualityLevel: *const fn(
             self: *const IMFQualityAdvise,
             peQualityLevel: ?*MF_QUALITY_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DropTime: *const fn(
             self: *const IMFQualityAdvise,
             hnsAmountToDrop: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17420,7 +17420,7 @@ pub const IMFQualityAdvise2 = extern union {
             self: *const IMFQualityAdvise2,
             pEvent: ?*IMFMediaEvent,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFQualityAdvise: IMFQualityAdvise,
@@ -17439,11 +17439,11 @@ pub const IMFQualityAdviseLimits = extern union {
         GetMaximumDropMode: *const fn(
             self: *const IMFQualityAdviseLimits,
             peDropMode: ?*MF_QUALITY_DROP_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMinimumQualityLevel: *const fn(
             self: *const IMFQualityAdviseLimits,
             peQualityLevel: ?*MF_QUALITY_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17465,14 +17465,14 @@ pub const IMFRealTimeClient = extern union {
             self: *const IMFRealTimeClient,
             dwTaskIndex: u32,
             wszClass: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterThreads: *const fn(
             self: *const IMFRealTimeClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWorkQueue: *const fn(
             self: *const IMFRealTimeClient,
             dwWorkQueueId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17498,15 +17498,15 @@ pub const IMFRealTimeClientEx = extern union {
             pdwTaskIndex: ?*u32,
             wszClassName: ?[*:0]const u16,
             lBasePriority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterThreads: *const fn(
             self: *const IMFRealTimeClientEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWorkQueueEx: *const fn(
             self: *const IMFRealTimeClientEx,
             dwMultithreadedWorkQueueId: u32,
             lWorkItemBasePriority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17537,27 +17537,27 @@ pub const IMFSequencerSource = extern union {
             pTopology: ?*IMFTopology,
             dwFlags: u32,
             pdwId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTopology: *const fn(
             self: *const IMFSequencerSource,
             dwId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPresentationContext: *const fn(
             self: *const IMFSequencerSource,
             pPD: ?*IMFPresentationDescriptor,
             pId: ?*u32,
             ppTopology: ?*?*IMFTopology,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateTopology: *const fn(
             self: *const IMFSequencerSource,
             dwId: u32,
             pTopology: ?*IMFTopology,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateTopologyFlags: *const fn(
             self: *const IMFSequencerSource,
             dwId: u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17588,7 +17588,7 @@ pub const IMFMediaSourceTopologyProvider = extern union {
             self: *const IMFMediaSourceTopologyProvider,
             pPresentationDescriptor: ?*IMFPresentationDescriptor,
             ppTopology: ?*?*IMFTopology,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17606,7 +17606,7 @@ pub const IMFMediaSourcePresentationProvider = extern union {
         ForceEndOfPresentation: *const fn(
             self: *const IMFMediaSourcePresentationProvider,
             pPresentationDescriptor: ?*IMFPresentationDescriptor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17637,7 +17637,7 @@ pub const IMFTopologyNodeAttributeEditor = extern union {
             TopoId: u64,
             cUpdates: u32,
             pUpdates: [*]MFTOPONODE_ATTRIBUTE_UPDATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17671,14 +17671,14 @@ pub const IMFByteStreamBuffering = extern union {
         SetBufferingParams: *const fn(
             self: *const IMFByteStreamBuffering,
             pParams: ?*MFBYTESTREAM_BUFFERING_PARAMS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableBuffering: *const fn(
             self: *const IMFByteStreamBuffering,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopBuffering: *const fn(
             self: *const IMFByteStreamBuffering,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17701,7 +17701,7 @@ pub const IMFByteStreamCacheControl = extern union {
         base: IUnknown.VTable,
         StopBackgroundTransfer: *const fn(
             self: *const IMFByteStreamCacheControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17719,17 +17719,17 @@ pub const IMFByteStreamTimeSeek = extern union {
         IsTimeSeekSupported: *const fn(
             self: *const IMFByteStreamTimeSeek,
             pfTimeSeekIsSupported: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TimeSeek: *const fn(
             self: *const IMFByteStreamTimeSeek,
             qwTimePosition: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTimeSeekResult: *const fn(
             self: *const IMFByteStreamTimeSeek,
             pqwStartTime: ?*u64,
             pqwStopTime: ?*u64,
             pqwDuration: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17759,15 +17759,15 @@ pub const IMFByteStreamCacheControl2 = extern union {
             self: *const IMFByteStreamCacheControl2,
             pcRanges: ?*u32,
             ppRanges: [*]?*MF_BYTE_STREAM_CACHE_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCacheLimit: *const fn(
             self: *const IMFByteStreamCacheControl2,
             qwBytes: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsBackgroundTransferActive: *const fn(
             self: *const IMFByteStreamCacheControl2,
             pfActive: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFByteStreamCacheControl: IMFByteStreamCacheControl,
@@ -17795,30 +17795,30 @@ pub const IMFNetCredential = extern union {
             pbData: ?*u8,
             cbData: u32,
             fDataIsEncrypted: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPassword: *const fn(
             self: *const IMFNetCredential,
             // TODO: what to do with BytesParamIndex 1?
             pbData: ?*u8,
             cbData: u32,
             fDataIsEncrypted: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUser: *const fn(
             self: *const IMFNetCredential,
             pbData: ?[*:0]u8,
             pcbData: ?*u32,
             fEncryptData: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPassword: *const fn(
             self: *const IMFNetCredential,
             pbData: ?[*:0]u8,
             pcbData: ?*u32,
             fEncryptData: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoggedOnUser: *const fn(
             self: *const IMFNetCredential,
             pfLoggedOnUser: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17861,17 +17861,17 @@ pub const IMFNetCredentialManager = extern union {
             pParam: ?*MFNetCredentialManagerGetParam,
             pCallback: ?*IMFAsyncCallback,
             pState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndGetCredentials: *const fn(
             self: *const IMFNetCredentialManager,
             pResult: ?*IMFAsyncResult,
             ppCred: ?*?*IMFNetCredential,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGood: *const fn(
             self: *const IMFNetCredentialManager,
             pCred: ?*IMFNetCredential,
             fGood: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17924,17 +17924,17 @@ pub const IMFNetCredentialCache = extern union {
             dwAuthenticationFlags: u32,
             ppCred: ?*?*IMFNetCredential,
             pdwRequirementsFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGood: *const fn(
             self: *const IMFNetCredentialCache,
             pCred: ?*IMFNetCredential,
             fGood: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUserOptions: *const fn(
             self: *const IMFNetCredentialCache,
             pCred: ?*IMFNetCredential,
             dwOptionsFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -17960,25 +17960,25 @@ pub const IMFSSLCertificateManager = extern union {
             pszURL: ?[*:0]const u16,
             ppbData: ?*?*u8,
             pcbData: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginGetClientCertificate: *const fn(
             self: *const IMFSSLCertificateManager,
             pszURL: ?[*:0]const u16,
             pCallback: ?*IMFAsyncCallback,
             pState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndGetClientCertificate: *const fn(
             self: *const IMFSSLCertificateManager,
             pResult: ?*IMFAsyncResult,
             ppbData: ?*?*u8,
             pcbData: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificatePolicy: *const fn(
             self: *const IMFSSLCertificateManager,
             pszURL: ?[*:0]const u16,
             pfOverrideAutomaticCheck: ?*BOOL,
             pfClientCertificateAvailable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnServerCertificate: *const fn(
             self: *const IMFSSLCertificateManager,
             pszURL: ?[*:0]const u16,
@@ -17986,7 +17986,7 @@ pub const IMFSSLCertificateManager = extern union {
             pbData: ?*u8,
             cbData: u32,
             pfIsGood: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18017,11 +18017,11 @@ pub const IMFNetResourceFilter = extern union {
             self: *const IMFNetResourceFilter,
             pszUrl: ?[*:0]const u16,
             pvbCancel: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSendingRequest: *const fn(
             self: *const IMFNetResourceFilter,
             pszUrl: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18042,7 +18042,7 @@ pub const IMFSourceOpenMonitor = extern union {
         OnSourceEvent: *const fn(
             self: *const IMFSourceOpenMonitor,
             pEvent: ?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18062,23 +18062,23 @@ pub const IMFNetProxyLocator = extern union {
             pszHost: ?[*:0]const u16,
             pszUrl: ?[*:0]const u16,
             fReserved: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindNextProxy: *const fn(
             self: *const IMFNetProxyLocator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterProxyResult: *const fn(
             self: *const IMFNetProxyLocator,
             hrOp: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentProxy: *const fn(
             self: *const IMFNetProxyLocator,
             pszStr: ?[*:0]u16,
             pcchStr: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IMFNetProxyLocator,
             ppProxyLocator: ?*?*IMFNetProxyLocator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18109,7 +18109,7 @@ pub const IMFNetProxyLocatorFactory = extern union {
             self: *const IMFNetProxyLocatorFactory,
             pszProtocol: ?[*:0]const u16,
             ppProxyLocator: ?*?*IMFNetProxyLocator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18129,18 +18129,18 @@ pub const IMFSaveJob = extern union {
             pStream: ?*IMFByteStream,
             pCallback: ?*IMFAsyncCallback,
             pState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndSave: *const fn(
             self: *const IMFSaveJob,
             pResult: ?*IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelSave: *const fn(
             self: *const IMFSaveJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProgress: *const fn(
             self: *const IMFSaveJob,
             pdwPercentComplete: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18180,15 +18180,15 @@ pub const IMFNetSchemeHandlerConfig = extern union {
         GetNumberOfSupportedProtocols: *const fn(
             self: *const IMFNetSchemeHandlerConfig,
             pcProtocols: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSupportedProtocolType: *const fn(
             self: *const IMFNetSchemeHandlerConfig,
             nProtocolIndex: u32,
             pnProtocolType: ?*MFNETSOURCE_PROTOCOL_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetProtocolRolloverSettings: *const fn(
             self: *const IMFNetSchemeHandlerConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18307,17 +18307,17 @@ pub const IMFSchemeHandler = extern union {
             ppIUnknownCancelCookie: ?*?*IUnknown,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndCreateObject: *const fn(
             self: *const IMFSchemeHandler,
             pResult: ?*IMFAsyncResult,
             pObjectType: ?*MF_OBJECT_TYPE,
             ppObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelObjectCreation: *const fn(
             self: *const IMFSchemeHandler,
             pIUnknownCancelCookie: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18347,21 +18347,21 @@ pub const IMFByteStreamHandler = extern union {
             ppIUnknownCancelCookie: ?*?*IUnknown,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndCreateObject: *const fn(
             self: *const IMFByteStreamHandler,
             pResult: ?*IMFAsyncResult,
             pObjectType: ?*MF_OBJECT_TYPE,
             ppObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelObjectCreation: *const fn(
             self: *const IMFByteStreamHandler,
             pIUnknownCancelCookie: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxNumberOfBytesRequiredForResolution: *const fn(
             self: *const IMFByteStreamHandler,
             pqwBytes: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18390,7 +18390,7 @@ pub const IMFTrustedInput = extern union {
             dwStreamID: u32,
             riid: ?*const Guid,
             ppunkObject: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18447,28 +18447,28 @@ pub const IMFInputTrustAuthority = extern union {
             self: *const IMFInputTrustAuthority,
             riid: ?*const Guid,
             ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestAccess: *const fn(
             self: *const IMFInputTrustAuthority,
             Action: MFPOLICYMANAGER_ACTION,
             ppContentEnablerActivate: ?*?*IMFActivate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPolicy: *const fn(
             self: *const IMFInputTrustAuthority,
             Action: MFPOLICYMANAGER_ACTION,
             ppPolicy: ?*?*IMFOutputPolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindAccess: *const fn(
             self: *const IMFInputTrustAuthority,
             pParam: ?*MFINPUTTRUSTAUTHORITY_ACCESS_PARAMS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateAccess: *const fn(
             self: *const IMFInputTrustAuthority,
             pParam: ?*MFINPUTTRUSTAUTHORITY_ACCESS_PARAMS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IMFInputTrustAuthority,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18501,16 +18501,16 @@ pub const IMFTrustedOutput = extern union {
         GetOutputTrustAuthorityCount: *const fn(
             self: *const IMFTrustedOutput,
             pcOutputTrustAuthorities: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputTrustAuthorityByIndex: *const fn(
             self: *const IMFTrustedOutput,
             dwIndex: u32,
             ppauthority: ?*?*IMFOutputTrustAuthority,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsFinal: *const fn(
             self: *const IMFTrustedOutput,
             pfIsFinal: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18534,14 +18534,14 @@ pub const IMFOutputTrustAuthority = extern union {
         GetAction: *const fn(
             self: *const IMFOutputTrustAuthority,
             pAction: ?*MFPOLICYMANAGER_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPolicy: *const fn(
             self: *const IMFOutputTrustAuthority,
             ppPolicy: ?[*]?*IMFOutputPolicy,
             nPolicy: u32,
             ppbTicket: ?*?*u8,
             pcbTicket: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18566,15 +18566,15 @@ pub const IMFOutputPolicy = extern union {
             rgGuidProtectionSchemasSupported: ?*Guid,
             cProtectionSchemasSupported: u32,
             ppRequiredProtectionSchemas: ?*?*IMFCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOriginatorID: *const fn(
             self: *const IMFOutputPolicy,
             pguidOriginatorID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMinimumGRLVersion: *const fn(
             self: *const IMFOutputPolicy,
             pdwMinimumGRLVersion: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -18599,15 +18599,15 @@ pub const IMFOutputSchema = extern union {
         GetSchemaType: *const fn(
             self: *const IMFOutputSchema,
             pguidSchemaType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConfigurationData: *const fn(
             self: *const IMFOutputSchema,
             pdwVal: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOriginatorID: *const fn(
             self: *const IMFOutputSchema,
             pguidOriginatorID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -18674,13 +18674,13 @@ pub const IMFSecureChannel = extern union {
             self: *const IMFSecureChannel,
             ppCert: ?*?*u8,
             pcbCert: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetupSession: *const fn(
             self: *const IMFSecureChannel,
             // TODO: what to do with BytesParamIndex 1?
             pbEncryptedSessionKey: ?*u8,
             cbSessionKey: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18714,17 +18714,17 @@ pub const IMFSampleProtection = extern union {
         GetInputProtectionVersion: *const fn(
             self: *const IMFSampleProtection,
             pdwVersion: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputProtectionVersion: *const fn(
             self: *const IMFSampleProtection,
             pdwVersion: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProtectionCertificate: *const fn(
             self: *const IMFSampleProtection,
             dwVersion: u32,
             ppCert: ?*?*u8,
             pcbCert: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitOutputProtection: *const fn(
             self: *const IMFSampleProtection,
             dwVersion: u32,
@@ -18733,14 +18733,14 @@ pub const IMFSampleProtection = extern union {
             cbCert: u32,
             ppbSeed: ?*?*u8,
             pcbSeed: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitInputProtection: *const fn(
             self: *const IMFSampleProtection,
             dwVersion: u32,
             dwInputId: u32,
             pbSeed: ?*u8,
             cbSeed: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18770,7 +18770,7 @@ pub const IMFMediaSinkPreroll = extern union {
         NotifyPreroll: *const fn(
             self: *const IMFMediaSinkPreroll,
             hnsUpcomingStartTime: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18789,11 +18789,11 @@ pub const IMFFinalizableMediaSink = extern union {
             self: *const IMFFinalizableMediaSink,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndFinalize: *const fn(
             self: *const IMFFinalizableMediaSink,
             pResult: ?*IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaSink: IMFMediaSink,
@@ -18816,7 +18816,7 @@ pub const IMFStreamingSinkConfig = extern union {
             self: *const IMFStreamingSinkConfig,
             fSeekOffsetIsByteOffset: BOOL,
             qwSeekOffset: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18835,12 +18835,12 @@ pub const IMFRemoteProxy = extern union {
             self: *const IMFRemoteProxy,
             riid: ?*const Guid,
             ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRemoteHost: *const fn(
             self: *const IMFRemoteProxy,
             riid: ?*const Guid,
             ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18862,12 +18862,12 @@ pub const IMFObjectReferenceStream = extern union {
             self: *const IMFObjectReferenceStream,
             riid: ?*const Guid,
             pUnk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadReference: *const fn(
             self: *const IMFObjectReferenceStream,
             riid: ?*const Guid,
             ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18887,17 +18887,17 @@ pub const IMFPMPHost = extern union {
         base: IUnknown.VTable,
         LockProcess: *const fn(
             self: *const IMFPMPHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockProcess: *const fn(
             self: *const IMFPMPHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateObjectByCLSID: *const fn(
             self: *const IMFPMPHost,
             clsid: ?*const Guid,
             pStream: ?*IStream,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18921,7 +18921,7 @@ pub const IMFPMPClient = extern union {
         SetPMPHost: *const fn(
             self: *const IMFPMPClient,
             pPMPHost: ?*IMFPMPHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18938,16 +18938,16 @@ pub const IMFPMPServer = extern union {
         base: IUnknown.VTable,
         LockProcess: *const fn(
             self: *const IMFPMPServer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockProcess: *const fn(
             self: *const IMFPMPServer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateObjectByCLSID: *const fn(
             self: *const IMFPMPServer,
             clsid: ?*const Guid,
             riid: ?*const Guid,
             ppObject: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18971,7 +18971,7 @@ pub const IMFRemoteDesktopPlugin = extern union {
         UpdateTopology: *const fn(
             self: *const IMFRemoteDesktopPlugin,
             pTopology: ?*IMFTopology,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -18989,19 +18989,19 @@ pub const IMFSAMIStyle = extern union {
         GetStyleCount: *const fn(
             self: *const IMFSAMIStyle,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStyles: *const fn(
             self: *const IMFSAMIStyle,
             pPropVarStyleArray: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSelectedStyle: *const fn(
             self: *const IMFSAMIStyle,
             pwszStyle: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSelectedStyle: *const fn(
             self: *const IMFSAMIStyle,
             ppwszStyle: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19028,27 +19028,27 @@ pub const IMFTranscodeProfile = extern union {
         SetAudioAttributes: *const fn(
             self: *const IMFTranscodeProfile,
             pAttrs: ?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAudioAttributes: *const fn(
             self: *const IMFTranscodeProfile,
             ppAttrs: ?*?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVideoAttributes: *const fn(
             self: *const IMFTranscodeProfile,
             pAttrs: ?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoAttributes: *const fn(
             self: *const IMFTranscodeProfile,
             ppAttrs: ?*?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContainerAttributes: *const fn(
             self: *const IMFTranscodeProfile,
             pAttrs: ?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContainerAttributes: *const fn(
             self: *const IMFTranscodeProfile,
             ppAttrs: ?*?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19109,19 +19109,19 @@ pub const IMFTranscodeSinkInfoProvider = extern union {
         SetOutputFile: *const fn(
             self: *const IMFTranscodeSinkInfoProvider,
             pwszFileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputByteStream: *const fn(
             self: *const IMFTranscodeSinkInfoProvider,
             pByteStreamActivate: ?*IMFActivate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProfile: *const fn(
             self: *const IMFTranscodeSinkInfoProvider,
             pProfile: ?*IMFTranscodeProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSinkInfo: *const fn(
             self: *const IMFTranscodeSinkInfoProvider,
             pSinkInfo: ?*MF_TRANSCODE_SINK_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19148,7 +19148,7 @@ pub const IMFFieldOfUseMFTUnlock = extern union {
         Unlock: *const fn(
             self: *const IMFFieldOfUseMFTUnlock,
             pUnkMFT: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19178,7 +19178,7 @@ pub const IMFLocalMFTRegistration = extern union {
             self: *const IMFLocalMFTRegistration,
             pMFTs: [*]MFT_REGISTRATION_INFO,
             cMFTs: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19195,15 +19195,15 @@ pub const IMFCapturePhotoConfirmation = extern union {
         SetPhotoConfirmationCallback: *const fn(
             self: *const IMFCapturePhotoConfirmation,
             pNotificationCallback: ?*IMFAsyncCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPixelFormat: *const fn(
             self: *const IMFCapturePhotoConfirmation,
             subtype: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelFormat: *const fn(
             self: *const IMFCapturePhotoConfirmation,
             subtype: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19226,17 +19226,17 @@ pub const IMFPMPHostApp = extern union {
         base: IUnknown.VTable,
         LockProcess: *const fn(
             self: *const IMFPMPHostApp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockProcess: *const fn(
             self: *const IMFPMPHostApp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ActivateClassById: *const fn(
             self: *const IMFPMPHostApp,
             id: ?[*:0]const u16,
             pStream: ?*IStream,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19260,7 +19260,7 @@ pub const IMFPMPClientApp = extern union {
         SetPMPHost: *const fn(
             self: *const IMFPMPClientApp,
             pPMPHost: ?*IMFPMPHostApp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19278,7 +19278,7 @@ pub const IMFMediaStreamSourceSampleRequest = extern union {
         SetSample: *const fn(
             self: *const IMFMediaStreamSourceSampleRequest,
             value: ?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19297,7 +19297,7 @@ pub const IMFTrackedSample = extern union {
             self: *const IMFTrackedSample,
             pSampleAllocator: ?*IMFAsyncCallback,
             pUnkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19320,12 +19320,12 @@ pub const IMFProtectedEnvironmentAccess = extern union {
             outputLength: u32,
             // TODO: what to do with BytesParamIndex 2?
             output: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReadGRL: *const fn(
             self: *const IMFProtectedEnvironmentAccess,
             outputLength: ?*u32,
             output: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19347,7 +19347,7 @@ pub const IMFSignedLibrary = extern union {
             self: *const IMFSignedLibrary,
             name: ?[*:0]const u8,
             address: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19366,7 +19366,7 @@ pub const IMFSystemId = extern union {
             self: *const IMFSystemId,
             size: ?*u32,
             data: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Setup: *const fn(
             self: *const IMFSystemId,
             stage: u32,
@@ -19375,7 +19375,7 @@ pub const IMFSystemId = extern union {
             pbIn: ?*const u8,
             pcbOut: ?*u32,
             ppbOut: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19426,12 +19426,12 @@ pub const IMFContentProtectionDevice = extern union {
             OutputBufferByteCount: ?*u32,
             // TODO: what to do with BytesParamIndex 3?
             OutputBuffer: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrivateDataByteCount: *const fn(
             self: *const IMFContentProtectionDevice,
             PrivateInputByteCount: ?*u32,
             PrivateOutputByteCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19454,7 +19454,7 @@ pub const IMFContentDecryptorContext = extern union {
             InputPrivateDataByteCount: u32,
             InputPrivateData: ?[*]const u8,
             OutputPrivateData: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19528,16 +19528,16 @@ pub const IMFNetCrossOriginSupport = extern union {
         GetCrossOriginPolicy: *const fn(
             self: *const IMFNetCrossOriginSupport,
             pPolicy: ?*MF_CROSS_ORIGIN_POLICY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceOrigin: *const fn(
             self: *const IMFNetCrossOriginSupport,
             wszSourceOrigin: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSameOrigin: *const fn(
             self: *const IMFNetCrossOriginSupport,
             wszURL: ?[*:0]const u16,
             pfIsSameOrigin: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19561,79 +19561,79 @@ pub const IMFHttpDownloadRequest = extern union {
         AddHeader: *const fn(
             self: *const IMFHttpDownloadRequest,
             szHeader: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginSendRequest: *const fn(
             self: *const IMFHttpDownloadRequest,
             pbPayload: ?[*:0]const u8,
             cbPayload: u32,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndSendRequest: *const fn(
             self: *const IMFHttpDownloadRequest,
             pResult: ?*IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginReceiveResponse: *const fn(
             self: *const IMFHttpDownloadRequest,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndReceiveResponse: *const fn(
             self: *const IMFHttpDownloadRequest,
             pResult: ?*IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginReadPayload: *const fn(
             self: *const IMFHttpDownloadRequest,
             pb: [*:0]u8,
             cb: u32,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndReadPayload: *const fn(
             self: *const IMFHttpDownloadRequest,
             pResult: ?*IMFAsyncResult,
             pqwOffset: ?*u64,
             pcbRead: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryHeader: *const fn(
             self: *const IMFHttpDownloadRequest,
             szHeaderName: ?[*:0]const u16,
             dwIndex: u32,
             ppszHeaderValue: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetURL: *const fn(
             self: *const IMFHttpDownloadRequest,
             ppszURL: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasNullSourceOrigin: *const fn(
             self: *const IMFHttpDownloadRequest,
             pfNullSourceOrigin: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTimeSeekResult: *const fn(
             self: *const IMFHttpDownloadRequest,
             pqwStartTime: ?*u64,
             pqwStopTime: ?*u64,
             pqwDuration: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHttpStatus: *const fn(
             self: *const IMFHttpDownloadRequest,
             pdwHttpStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAtEndOfPayload: *const fn(
             self: *const IMFHttpDownloadRequest,
             pfAtEndOfPayload: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTotalLength: *const fn(
             self: *const IMFHttpDownloadRequest,
             pqwTotalLength: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRangeEndOffset: *const fn(
             self: *const IMFHttpDownloadRequest,
             pqwRangeEnd: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMFHttpDownloadRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19697,7 +19697,7 @@ pub const IMFHttpDownloadSession = extern union {
             self: *const IMFHttpDownloadSession,
             szServerName: ?[*:0]const u16,
             nPort: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRequest: *const fn(
             self: *const IMFHttpDownloadSession,
             szObjectName: ?[*:0]const u16,
@@ -19706,10 +19706,10 @@ pub const IMFHttpDownloadSession = extern union {
             szVerb: ?[*:0]const u16,
             szReferrer: ?[*:0]const u16,
             ppRequest: **IMFHttpDownloadRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMFHttpDownloadSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19734,7 +19734,7 @@ pub const IMFHttpDownloadSessionProvider = extern union {
             self: *const IMFHttpDownloadSessionProvider,
             wszScheme: ?[*:0]const u16,
             ppDownloadSession: **IMFHttpDownloadSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19758,7 +19758,7 @@ pub const IMFMediaSource2 = extern union {
             self: *const IMFMediaSource2,
             dwStreamID: u32,
             pMediaType: ?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaSourceEx: IMFMediaSourceEx,
@@ -19778,11 +19778,11 @@ pub const IMFMediaStream2 = extern union {
         SetStreamState: *const fn(
             self: *const IMFMediaStream2,
             value: MF_STREAM_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamState: *const fn(
             self: *const IMFMediaStream2,
             value: ?*MF_STREAM_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaStream: IMFMediaStream,
@@ -19834,44 +19834,44 @@ pub const IMFSensorDevice = extern union {
         GetDeviceId: *const fn(
             self: *const IMFSensorDevice,
             pDeviceId: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceType: *const fn(
             self: *const IMFSensorDevice,
             pType: ?*MFSensorDeviceType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlags: *const fn(
             self: *const IMFSensorDevice,
             pFlags: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSymbolicLink: *const fn(
             self: *const IMFSensorDevice,
             SymbolicLink: [*:0]u16,
             cchSymbolicLink: i32,
             pcchWritten: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceAttributes: *const fn(
             self: *const IMFSensorDevice,
             ppAttributes: ?**IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamAttributesCount: *const fn(
             self: *const IMFSensorDevice,
             eType: MFSensorStreamType,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamAttributes: *const fn(
             self: *const IMFSensorDevice,
             eType: MFSensorStreamType,
             dwIndex: u32,
             ppAttributes: **IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSensorDeviceMode: *const fn(
             self: *const IMFSensorDevice,
             eMode: MFSensorDeviceMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSensorDeviceMode: *const fn(
             self: *const IMFSensorDevice,
             peMode: ?*MFSensorDeviceMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19915,36 +19915,36 @@ pub const IMFSensorGroup = extern union {
             SymbolicLink: [*:0]u16,
             cchSymbolicLink: i32,
             pcchWritten: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlags: *const fn(
             self: *const IMFSensorGroup,
             pFlags: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSensorGroupAttributes: *const fn(
             self: *const IMFSensorGroup,
             ppAttributes: ?**IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSensorDeviceCount: *const fn(
             self: *const IMFSensorGroup,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSensorDevice: *const fn(
             self: *const IMFSensorGroup,
             dwIndex: u32,
             ppDevice: **IMFSensorDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultSensorDeviceIndex: *const fn(
             self: *const IMFSensorGroup,
             dwIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultSensorDeviceIndex: *const fn(
             self: *const IMFSensorGroup,
             pdwIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMediaSource: *const fn(
             self: *const IMFSensorGroup,
             ppSource: **IMFMediaSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -19983,16 +19983,16 @@ pub const IMFSensorStream = extern union {
         GetMediaTypeCount: *const fn(
             self: *const IMFSensorStream,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMediaType: *const fn(
             self: *const IMFSensorStream,
             dwIndex: u32,
             ppMediaType: **IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloneSensorStream: *const fn(
             self: *const IMFSensorStream,
             ppStream: **IMFSensorStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -20017,30 +20017,30 @@ pub const IMFSensorTransformFactory = extern union {
         GetFactoryAttributes: *const fn(
             self: *const IMFSensorTransformFactory,
             ppAttributes: **IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFactory: *const fn(
             self: *const IMFSensorTransformFactory,
             dwMaxTransformCount: u32,
             pSensorDevices: ?*IMFCollection,
             pAttributes: ?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformCount: *const fn(
             self: *const IMFSensorTransformFactory,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformInformation: *const fn(
             self: *const IMFSensorTransformFactory,
             TransformIndex: u32,
             pguidTransformId: ?*Guid,
             ppAttributes: ?**IMFAttributes,
             ppStreamInformation: **IMFCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTransform: *const fn(
             self: *const IMFSensorTransformFactory,
             guidSensorTransformID: ?*const Guid,
             pAttributes: ?*IMFAttributes,
             ppDeviceMFT: **IMFDeviceTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20076,22 +20076,22 @@ pub const IMFSensorProfile = extern union {
         GetProfileId: *const fn(
             self: *const IMFSensorProfile,
             pId: ?*SENSORPROFILEID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddProfileFilter: *const fn(
             self: *const IMFSensorProfile,
             StreamId: u32,
             wzFilterSetString: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsMediaTypeSupported: *const fn(
             self: *const IMFSensorProfile,
             StreamId: u32,
             pMediaType: ?*IMFMediaType,
             pfSupported: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddBlockedControl: *const fn(
             self: *const IMFSensorProfile,
             wzBlockedControl: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20117,29 +20117,29 @@ pub const IMFSensorProfileCollection = extern union {
         base: IUnknown.VTable,
         GetProfileCount: *const fn(
             self: *const IMFSensorProfileCollection,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetProfile: *const fn(
             self: *const IMFSensorProfileCollection,
             Index: u32,
             ppProfile: **IMFSensorProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddProfile: *const fn(
             self: *const IMFSensorProfileCollection,
             pProfile: ?*IMFSensorProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindProfile: *const fn(
             self: *const IMFSensorProfileCollection,
             ProfileId: ?*SENSORPROFILEID,
             ppProfile: **IMFSensorProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveProfileByIndex: *const fn(
             self: *const IMFSensorProfileCollection,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RemoveProfile: *const fn(
             self: *const IMFSensorProfileCollection,
             ProfileId: ?*SENSORPROFILEID,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20172,19 +20172,19 @@ pub const IMFSensorProcessActivity = extern union {
         GetProcessId: *const fn(
             self: *const IMFSensorProcessActivity,
             pPID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamingState: *const fn(
             self: *const IMFSensorProcessActivity,
             pfStreaming: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamingMode: *const fn(
             self: *const IMFSensorProcessActivity,
             pMode: ?*MFSensorDeviceMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReportTime: *const fn(
             self: *const IMFSensorProcessActivity,
             pft: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20213,22 +20213,22 @@ pub const IMFSensorActivityReport = extern union {
             FriendlyName: [*:0]u16,
             cchFriendlyName: u32,
             pcchWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSymbolicLink: *const fn(
             self: *const IMFSensorActivityReport,
             SymbolicLink: [*:0]u16,
             cchSymbolicLink: u32,
             pcchWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProcessCount: *const fn(
             self: *const IMFSensorActivityReport,
             pcCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProcessActivity: *const fn(
             self: *const IMFSensorActivityReport,
             Index: u32,
             ppProcessActivity: **IMFSensorProcessActivity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20255,17 +20255,17 @@ pub const IMFSensorActivitiesReport = extern union {
         GetCount: *const fn(
             self: *const IMFSensorActivitiesReport,
             pcCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActivityReport: *const fn(
             self: *const IMFSensorActivitiesReport,
             Index: u32,
             sensorActivityReport: **IMFSensorActivityReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActivityReportByDeviceName: *const fn(
             self: *const IMFSensorActivitiesReport,
             SymbolicName: ?[*:0]const u16,
             sensorActivityReport: **IMFSensorActivityReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20289,7 +20289,7 @@ pub const IMFSensorActivitiesReportCallback = extern union {
         OnActivitiesReport: *const fn(
             self: *const IMFSensorActivitiesReportCallback,
             sensorActivitiesReport: ?*IMFSensorActivitiesReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20306,10 +20306,10 @@ pub const IMFSensorActivityMonitor = extern union {
         base: IUnknown.VTable,
         Start: *const fn(
             self: *const IMFSensorActivityMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IMFSensorActivityMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20369,15 +20369,15 @@ pub const IMFExtendedCameraIntrinsicModel = extern union {
         GetModel: *const fn(
             self: *const IMFExtendedCameraIntrinsicModel,
             pIntrinsicModel: ?*MFExtendedCameraIntrinsic_IntrinsicModel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetModel: *const fn(
             self: *const IMFExtendedCameraIntrinsicModel,
             pIntrinsicModel: ?*const MFExtendedCameraIntrinsic_IntrinsicModel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDistortionModelType: *const fn(
             self: *const IMFExtendedCameraIntrinsicModel,
             pDistortionModelType: ?*MFCameraIntrinsic_DistortionModelType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20400,11 +20400,11 @@ pub const IMFExtendedCameraIntrinsicsDistortionModel6KT = extern union {
         GetDistortionModel: *const fn(
             self: *const IMFExtendedCameraIntrinsicsDistortionModel6KT,
             pDistortionModel: ?*MFCameraIntrinsic_DistortionModel6KT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDistortionModel: *const fn(
             self: *const IMFExtendedCameraIntrinsicsDistortionModel6KT,
             pDistortionModel: ?*const MFCameraIntrinsic_DistortionModel6KT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20424,11 +20424,11 @@ pub const IMFExtendedCameraIntrinsicsDistortionModelArcTan = extern union {
         GetDistortionModel: *const fn(
             self: *const IMFExtendedCameraIntrinsicsDistortionModelArcTan,
             pDistortionModel: ?*MFCameraIntrinsic_DistortionModelArcTan,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDistortionModel: *const fn(
             self: *const IMFExtendedCameraIntrinsicsDistortionModelArcTan,
             pDistortionModel: ?*const MFCameraIntrinsic_DistortionModelArcTan,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20450,30 +20450,30 @@ pub const IMFExtendedCameraIntrinsics = extern union {
             // TODO: what to do with BytesParamIndex 1?
             pbBuffer: ?*u8,
             dwBufferSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferSize: *const fn(
             self: *const IMFExtendedCameraIntrinsics,
             pdwBufferSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SerializeToBuffer: *const fn(
             self: *const IMFExtendedCameraIntrinsics,
             // TODO: what to do with BytesParamIndex 1?
             pbBuffer: ?*u8,
             pdwBufferSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIntrinsicModelCount: *const fn(
             self: *const IMFExtendedCameraIntrinsics,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIntrinsicModelByIndex: *const fn(
             self: *const IMFExtendedCameraIntrinsics,
             dwIndex: u32,
             ppIntrinsicModel: **IMFExtendedCameraIntrinsicModel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddIntrinsicModel: *const fn(
             self: *const IMFExtendedCameraIntrinsics,
             pIntrinsicModel: ?*IMFExtendedCameraIntrinsicModel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20504,25 +20504,25 @@ pub const IMFExtendedCameraControl = extern union {
         base: IUnknown.VTable,
         GetCapabilities: *const fn(
             self: *const IMFExtendedCameraControl,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         SetFlags: *const fn(
             self: *const IMFExtendedCameraControl,
             ulFlags: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlags: *const fn(
             self: *const IMFExtendedCameraControl,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         LockPayload: *const fn(
             self: *const IMFExtendedCameraControl,
             ppPayload: ?*?*u8,
             pulPayload: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockPayload: *const fn(
             self: *const IMFExtendedCameraControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitSettings: *const fn(
             self: *const IMFExtendedCameraControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20556,7 +20556,7 @@ pub const IMFExtendedCameraController = extern union {
             dwStreamIndex: u32,
             ulPropertyId: u32,
             ppControl: **IMFExtendedCameraControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20574,7 +20574,7 @@ pub const IMFRelativePanelReport = extern union {
         GetRelativePanel: *const fn(
             self: *const IMFRelativePanelReport,
             panel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20593,16 +20593,16 @@ pub const IMFRelativePanelWatcher = extern union {
             self: *const IMFRelativePanelWatcher,
             pCallback: ?*IMFAsyncCallback,
             pState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndGetReport: *const fn(
             self: *const IMFRelativePanelWatcher,
             pResult: ?*IMFAsyncResult,
             ppRelativePanelReport: **IMFRelativePanelReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReport: *const fn(
             self: *const IMFRelativePanelWatcher,
             ppRelativePanelReport: **IMFRelativePanelReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFShutdown: IMFShutdown,
@@ -20635,7 +20635,7 @@ pub const IMFCameraOcclusionStateReport = extern union {
         GetOcclusionState: *const fn(
             self: *const IMFCameraOcclusionStateReport,
             occlusionState: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20652,7 +20652,7 @@ pub const IMFCameraOcclusionStateReportCallback = extern union {
         OnOcclusionStateReport: *const fn(
             self: *const IMFCameraOcclusionStateReportCallback,
             occlusionStateReport: ?*IMFCameraOcclusionStateReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20668,13 +20668,13 @@ pub const IMFCameraOcclusionStateMonitor = extern union {
         base: IUnknown.VTable,
         Start: *const fn(
             self: *const IMFCameraOcclusionStateMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IMFCameraOcclusionStateMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSupportedStates: *const fn(
             self: *const IMFCameraOcclusionStateMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20703,7 +20703,7 @@ pub const IMFVideoCaptureSampleAllocator = extern union {
             cMinimumSamples: u32,
             pAttributes: ?*IMFAttributes,
             pMediaType: ?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFVideoSampleAllocator: IMFVideoSampleAllocator,
@@ -20732,13 +20732,13 @@ pub const IMFSampleAllocatorControl = extern union {
             self: *const IMFSampleAllocatorControl,
             dwOutputStreamID: u32,
             pAllocator: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllocatorUsage: *const fn(
             self: *const IMFSampleAllocatorControl,
             dwOutputStreamID: u32,
             pdwInputStreamID: ?*u32,
             peUsage: ?*MFSampleAllocatorUsage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20760,34 +20760,34 @@ pub const IMFASFContentInfo = extern union {
             self: *const IMFASFContentInfo,
             pIStartOfContent: ?*IMFMediaBuffer,
             cbHeaderSize: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ParseHeader: *const fn(
             self: *const IMFASFContentInfo,
             pIHeaderBuffer: ?*IMFMediaBuffer,
             cbOffsetWithinHeader: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateHeader: *const fn(
             self: *const IMFASFContentInfo,
             pIHeader: ?*IMFMediaBuffer,
             pcbHeader: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProfile: *const fn(
             self: *const IMFASFContentInfo,
             ppIProfile: ?*?*IMFASFProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProfile: *const fn(
             self: *const IMFASFContentInfo,
             pIProfile: ?*IMFASFProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GeneratePresentationDescriptor: *const fn(
             self: *const IMFASFContentInfo,
             ppIPresentationDescriptor: ?*?*IMFPresentationDescriptor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEncodingConfigurationPropertyStore: *const fn(
             self: *const IMFASFContentInfo,
             wStreamNumber: u16,
             ppIStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -20823,71 +20823,71 @@ pub const IMFASFProfile = extern union {
         GetStreamCount: *const fn(
             self: *const IMFASFProfile,
             pcStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStream: *const fn(
             self: *const IMFASFProfile,
             dwStreamIndex: u32,
             pwStreamNumber: ?*u16,
             ppIStream: ?*?*IMFASFStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamByNumber: *const fn(
             self: *const IMFASFProfile,
             wStreamNumber: u16,
             ppIStream: ?*?*IMFASFStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStream: *const fn(
             self: *const IMFASFProfile,
             pIStream: ?*IMFASFStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStream: *const fn(
             self: *const IMFASFProfile,
             wStreamNumber: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStream: *const fn(
             self: *const IMFASFProfile,
             pIMediaType: ?*IMFMediaType,
             ppIStream: ?*?*IMFASFStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMutualExclusionCount: *const fn(
             self: *const IMFASFProfile,
             pcMutexs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMutualExclusion: *const fn(
             self: *const IMFASFProfile,
             dwMutexIndex: u32,
             ppIMutex: ?*?*IMFASFMutualExclusion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMutualExclusion: *const fn(
             self: *const IMFASFProfile,
             pIMutex: ?*IMFASFMutualExclusion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveMutualExclusion: *const fn(
             self: *const IMFASFProfile,
             dwMutexIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMutualExclusion: *const fn(
             self: *const IMFASFProfile,
             ppIMutex: ?*?*IMFASFMutualExclusion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamPrioritization: *const fn(
             self: *const IMFASFProfile,
             ppIStreamPrioritization: ?*?*IMFASFStreamPrioritization,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStreamPrioritization: *const fn(
             self: *const IMFASFProfile,
             pIStreamPrioritization: ?*IMFASFStreamPrioritization,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStreamPrioritization: *const fn(
             self: *const IMFASFProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStreamPrioritization: *const fn(
             self: *const IMFASFProfile,
             ppIStreamPrioritization: ?*?*IMFASFStreamPrioritization,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IMFASFProfile,
             ppIProfile: ?*?*IMFASFProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -20951,26 +20951,26 @@ pub const IMFASFStreamConfig = extern union {
         GetStreamType: *const fn(
             self: *const IMFASFStreamConfig,
             pguidStreamType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamNumber: *const fn(
             self: *const IMFASFStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) u16,
+        ) callconv(.winapi) u16,
         SetStreamNumber: *const fn(
             self: *const IMFASFStreamConfig,
             wStreamNum: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMediaType: *const fn(
             self: *const IMFASFStreamConfig,
             ppIMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMediaType: *const fn(
             self: *const IMFASFStreamConfig,
             pIMediaType: ?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPayloadExtensionCount: *const fn(
             self: *const IMFASFStreamConfig,
             pcPayloadExtensions: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPayloadExtension: *const fn(
             self: *const IMFASFStreamConfig,
             wPayloadExtensionNumber: u16,
@@ -20978,21 +20978,21 @@ pub const IMFASFStreamConfig = extern union {
             pcbExtensionDataSize: ?*u16,
             pbExtensionSystemInfo: ?*u8,
             pcbExtensionSystemInfo: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPayloadExtension: *const fn(
             self: *const IMFASFStreamConfig,
             guidExtensionSystemID: Guid,
             cbExtensionDataSize: u16,
             pbExtensionSystemInfo: [*:0]u8,
             cbExtensionSystemInfo: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllPayloadExtensions: *const fn(
             self: *const IMFASFStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IMFASFStreamConfig,
             ppIStreamConfig: ?*?*IMFASFStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -21038,43 +21038,43 @@ pub const IMFASFMutualExclusion = extern union {
         GetType: *const fn(
             self: *const IMFASFMutualExclusion,
             pguidType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetType: *const fn(
             self: *const IMFASFMutualExclusion,
             guidType: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecordCount: *const fn(
             self: *const IMFASFMutualExclusion,
             pdwRecordCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamsForRecord: *const fn(
             self: *const IMFASFMutualExclusion,
             dwRecordNumber: u32,
             pwStreamNumArray: ?*u16,
             pcStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStreamForRecord: *const fn(
             self: *const IMFASFMutualExclusion,
             dwRecordNumber: u32,
             wStreamNumber: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStreamFromRecord: *const fn(
             self: *const IMFASFMutualExclusion,
             dwRecordNumber: u32,
             wStreamNumber: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveRecord: *const fn(
             self: *const IMFASFMutualExclusion,
             dwRecordNumber: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRecord: *const fn(
             self: *const IMFASFMutualExclusion,
             pdwRecordNumber: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IMFASFMutualExclusion,
             ppIMutex: ?*?*IMFASFMutualExclusion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -21116,26 +21116,26 @@ pub const IMFASFStreamPrioritization = extern union {
         GetStreamCount: *const fn(
             self: *const IMFASFStreamPrioritization,
             pdwStreamCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStream: *const fn(
             self: *const IMFASFStreamPrioritization,
             dwStreamIndex: u32,
             pwStreamNumber: ?*u16,
             pwStreamFlags: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStream: *const fn(
             self: *const IMFASFStreamPrioritization,
             wStreamNumber: u16,
             wStreamFlags: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStream: *const fn(
             self: *const IMFASFStreamPrioritization,
             dwStreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IMFASFStreamPrioritization,
             ppIStreamPrioritization: ?*?*IMFASFStreamPrioritization,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -21186,42 +21186,42 @@ pub const IMFASFIndexer = extern union {
         SetFlags: *const fn(
             self: *const IMFASFIndexer,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlags: *const fn(
             self: *const IMFASFIndexer,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IMFASFIndexer,
             pIContentInfo: ?*IMFASFContentInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIndexPosition: *const fn(
             self: *const IMFASFIndexer,
             pIContentInfo: ?*IMFASFContentInfo,
             pcbIndexOffset: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIndexByteStreams: *const fn(
             self: *const IMFASFIndexer,
             ppIByteStreams: ?*?*IMFByteStream,
             cByteStreams: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIndexByteStreamCount: *const fn(
             self: *const IMFASFIndexer,
             pcByteStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIndexStatus: *const fn(
             self: *const IMFASFIndexer,
             pIndexIdentifier: ?*ASF_INDEX_IDENTIFIER,
             pfIsIndexed: ?*BOOL,
             pbIndexDescriptor: ?*u8,
             pcbIndexDescriptor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIndexStatus: *const fn(
             self: *const IMFASFIndexer,
             pbIndexDescriptor: ?*u8,
             cbIndexDescriptor: u32,
             fGenerateIndex: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSeekPositionForValue: *const fn(
             self: *const IMFASFIndexer,
             pvarValue: ?*const PROPVARIANT,
@@ -21229,24 +21229,24 @@ pub const IMFASFIndexer = extern union {
             pcbOffsetWithinData: ?*u64,
             phnsApproxTime: ?*i64,
             pdwPayloadNumberOfStreamWithinPacket: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateIndexEntries: *const fn(
             self: *const IMFASFIndexer,
             pIASFPacketSample: ?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitIndex: *const fn(
             self: *const IMFASFIndexer,
             pIContentInfo: ?*IMFASFContentInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIndexWriteSpace: *const fn(
             self: *const IMFASFIndexer,
             pcbIndexWriteSpace: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompletedIndex: *const fn(
             self: *const IMFASFIndexer,
             pIIndexBuffer: ?*IMFMediaBuffer,
             cbOffsetWithinIndex: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -21300,44 +21300,44 @@ pub const IMFASFSplitter = extern union {
         Initialize: *const fn(
             self: *const IMFASFSplitter,
             pIContentInfo: ?*IMFASFContentInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFlags: *const fn(
             self: *const IMFASFSplitter,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlags: *const fn(
             self: *const IMFASFSplitter,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SelectStreams: *const fn(
             self: *const IMFASFSplitter,
             pwStreamNumbers: ?*u16,
             wNumStreams: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSelectedStreams: *const fn(
             self: *const IMFASFSplitter,
             pwStreamNumbers: ?*u16,
             pwNumStreams: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ParseData: *const fn(
             self: *const IMFASFSplitter,
             pIBuffer: ?*IMFMediaBuffer,
             cbBufferOffset: u32,
             cbLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextSample: *const fn(
             self: *const IMFASFSplitter,
             pdwStatusFlags: ?*ASF_STATUSFLAGS,
             pwStreamNumber: ?*u16,
             ppISample: ?*?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IMFASFSplitter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastSendTime: *const fn(
             self: *const IMFASFSplitter,
             pdwLastSendTime: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -21403,42 +21403,42 @@ pub const IMFASFMultiplexer = extern union {
         Initialize: *const fn(
             self: *const IMFASFMultiplexer,
             pIContentInfo: ?*IMFASFContentInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFlags: *const fn(
             self: *const IMFASFMultiplexer,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlags: *const fn(
             self: *const IMFASFMultiplexer,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessSample: *const fn(
             self: *const IMFASFMultiplexer,
             wStreamNumber: u16,
             pISample: ?*IMFSample,
             hnsTimestampAdjust: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextPacket: *const fn(
             self: *const IMFASFMultiplexer,
             pdwStatusFlags: ?*u32,
             ppIPacket: ?*?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IMFASFMultiplexer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         End: *const fn(
             self: *const IMFASFMultiplexer,
             pIContentInfo: ?*IMFASFContentInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatistics: *const fn(
             self: *const IMFASFMultiplexer,
             wStreamNumber: u16,
             pMuxStats: ?*ASF_MUX_STATISTICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSyncTolerance: *const fn(
             self: *const IMFASFMultiplexer,
             msSyncTolerance: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -21496,73 +21496,73 @@ pub const IMFASFStreamSelector = extern union {
         GetStreamCount: *const fn(
             self: *const IMFASFStreamSelector,
             pcStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputCount: *const fn(
             self: *const IMFASFStreamSelector,
             pcOutputs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputStreamCount: *const fn(
             self: *const IMFASFStreamSelector,
             dwOutputNum: u32,
             pcStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputStreamNumbers: *const fn(
             self: *const IMFASFStreamSelector,
             dwOutputNum: u32,
             rgwStreamNumbers: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputFromStream: *const fn(
             self: *const IMFASFStreamSelector,
             wStreamNum: u16,
             pdwOutput: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputOverride: *const fn(
             self: *const IMFASFStreamSelector,
             dwOutputNum: u32,
             pSelection: ?*ASF_SELECTION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputOverride: *const fn(
             self: *const IMFASFStreamSelector,
             dwOutputNum: u32,
             Selection: ASF_SELECTION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputMutexCount: *const fn(
             self: *const IMFASFStreamSelector,
             dwOutputNum: u32,
             pcMutexes: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputMutex: *const fn(
             self: *const IMFASFStreamSelector,
             dwOutputNum: u32,
             dwMutexNum: u32,
             ppMutex: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputMutexSelection: *const fn(
             self: *const IMFASFStreamSelector,
             dwOutputNum: u32,
             dwMutexNum: u32,
             wSelectedRecord: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBandwidthStepCount: *const fn(
             self: *const IMFASFStreamSelector,
             pcStepCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBandwidthStep: *const fn(
             self: *const IMFASFStreamSelector,
             dwStepNum: u32,
             pdwBitrate: ?*u32,
             rgwStreamNumbers: ?*u16,
             rgSelections: ?*ASF_SELECTION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BitrateToStepNumber: *const fn(
             self: *const IMFASFStreamSelector,
             dwBitrate: u32,
             pdwStepNum: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStreamSelectorFlags: *const fn(
             self: *const IMFASFStreamSelector,
             dwStreamSelectorFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -21636,12 +21636,12 @@ pub const IMFDRMNetHelper = extern union {
             ppLicenseResponse: [*]?*u8,
             pcbLicenseResponse: ?*u32,
             pbstrKID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChainedLicenseResponse: *const fn(
             self: *const IMFDRMNetHelper,
             ppLicenseResponse: [*]?*u8,
             pcbLicenseResponse: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -21743,7 +21743,7 @@ pub const IMFCaptureEngineOnEventCallback = extern union {
         OnEvent: *const fn(
             self: *const IMFCaptureEngineOnEventCallback,
             pEvent: ?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -21761,7 +21761,7 @@ pub const IMFCaptureEngineOnSampleCallback = extern union {
         OnSample: *const fn(
             self: *const IMFCaptureEngineOnSampleCallback,
             pSample: ?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -21780,27 +21780,27 @@ pub const IMFCaptureSink = extern union {
             self: *const IMFCaptureSink,
             dwSinkStreamIndex: u32,
             ppMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetService: *const fn(
             self: *const IMFCaptureSink,
             dwSinkStreamIndex: u32,
             rguidService: ?*const Guid,
             riid: ?*const Guid,
             ppUnknown: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStream: *const fn(
             self: *const IMFCaptureSink,
             dwSourceStreamIndex: u32,
             pMediaType: ?*IMFMediaType,
             pAttributes: ?*IMFAttributes,
             pdwSinkStreamIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Prepare: *const fn(
             self: *const IMFCaptureSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllStreams: *const fn(
             self: *const IMFCaptureSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -21831,30 +21831,30 @@ pub const IMFCaptureRecordSink = extern union {
             self: *const IMFCaptureRecordSink,
             pByteStream: ?*IMFByteStream,
             guidContainerType: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputFileName: *const fn(
             self: *const IMFCaptureRecordSink,
             fileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSampleCallback: *const fn(
             self: *const IMFCaptureRecordSink,
             dwStreamSinkIndex: u32,
             pCallback: ?*IMFCaptureEngineOnSampleCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCustomSink: *const fn(
             self: *const IMFCaptureRecordSink,
             pMediaSink: ?*IMFMediaSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRotation: *const fn(
             self: *const IMFCaptureRecordSink,
             dwStreamIndex: u32,
             pdwRotationValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRotation: *const fn(
             self: *const IMFCaptureRecordSink,
             dwStreamIndex: u32,
             dwRotationValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFCaptureSink: IMFCaptureSink,
@@ -21888,44 +21888,44 @@ pub const IMFCapturePreviewSink = extern union {
         SetRenderHandle: *const fn(
             self: *const IMFCapturePreviewSink,
             handle: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRenderSurface: *const fn(
             self: *const IMFCapturePreviewSink,
             pSurface: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateVideo: *const fn(
             self: *const IMFCapturePreviewSink,
             pSrc: ?*const MFVideoNormalizedRect,
             pDst: ?*const RECT,
             pBorderClr: ?*const u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSampleCallback: *const fn(
             self: *const IMFCapturePreviewSink,
             dwStreamSinkIndex: u32,
             pCallback: ?*IMFCaptureEngineOnSampleCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMirrorState: *const fn(
             self: *const IMFCapturePreviewSink,
             pfMirrorState: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMirrorState: *const fn(
             self: *const IMFCapturePreviewSink,
             fMirrorState: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRotation: *const fn(
             self: *const IMFCapturePreviewSink,
             dwStreamIndex: u32,
             pdwRotationValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRotation: *const fn(
             self: *const IMFCapturePreviewSink,
             dwStreamIndex: u32,
             dwRotationValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCustomSink: *const fn(
             self: *const IMFCapturePreviewSink,
             pMediaSink: ?*IMFMediaSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFCaptureSink: IMFCaptureSink,
@@ -21968,15 +21968,15 @@ pub const IMFCapturePhotoSink = extern union {
         SetOutputFileName: *const fn(
             self: *const IMFCapturePhotoSink,
             fileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSampleCallback: *const fn(
             self: *const IMFCapturePhotoSink,
             pCallback: ?*IMFCaptureEngineOnSampleCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputByteStream: *const fn(
             self: *const IMFCapturePhotoSink,
             pByteStream: ?*IMFByteStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFCaptureSink: IMFCaptureSink,
@@ -22002,72 +22002,72 @@ pub const IMFCaptureSource = extern union {
             self: *const IMFCaptureSource,
             mfCaptureEngineDeviceType: MF_CAPTURE_ENGINE_DEVICE_TYPE,
             ppMediaSource: ?*?*IMFMediaSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaptureDeviceActivate: *const fn(
             self: *const IMFCaptureSource,
             mfCaptureEngineDeviceType: MF_CAPTURE_ENGINE_DEVICE_TYPE,
             ppActivate: ?*?*IMFActivate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetService: *const fn(
             self: *const IMFCaptureSource,
             rguidService: ?*const Guid,
             riid: ?*const Guid,
             ppUnknown: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddEffect: *const fn(
             self: *const IMFCaptureSource,
             dwSourceStreamIndex: u32,
             pUnknown: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveEffect: *const fn(
             self: *const IMFCaptureSource,
             dwSourceStreamIndex: u32,
             pUnknown: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllEffects: *const fn(
             self: *const IMFCaptureSource,
             dwSourceStreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAvailableDeviceMediaType: *const fn(
             self: *const IMFCaptureSource,
             dwSourceStreamIndex: u32,
             dwMediaTypeIndex: u32,
             ppMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCurrentDeviceMediaType: *const fn(
             self: *const IMFCaptureSource,
             dwSourceStreamIndex: u32,
             pMediaType: ?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentDeviceMediaType: *const fn(
             self: *const IMFCaptureSource,
             dwSourceStreamIndex: u32,
             ppMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceStreamCount: *const fn(
             self: *const IMFCaptureSource,
             pdwStreamCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceStreamCategory: *const fn(
             self: *const IMFCaptureSource,
             dwSourceStreamIndex: u32,
             pStreamCategory: ?*MF_CAPTURE_ENGINE_STREAM_CATEGORY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMirrorState: *const fn(
             self: *const IMFCaptureSource,
             dwStreamIndex: u32,
             pfMirrorState: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMirrorState: *const fn(
             self: *const IMFCaptureSource,
             dwStreamIndex: u32,
             fMirrorState: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamIndexFromFriendlyName: *const fn(
             self: *const IMFCaptureSource,
             uifriendlyName: u32,
             pdwActualStreamIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -22127,33 +22127,33 @@ pub const IMFCaptureEngine = extern union {
             pAttributes: ?*IMFAttributes,
             pAudioSource: ?*IUnknown,
             pVideoSource: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartPreview: *const fn(
             self: *const IMFCaptureEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopPreview: *const fn(
             self: *const IMFCaptureEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartRecord: *const fn(
             self: *const IMFCaptureEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopRecord: *const fn(
             self: *const IMFCaptureEngine,
             bFinalize: BOOL,
             bFlushUnprocessedSamples: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TakePhoto: *const fn(
             self: *const IMFCaptureEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSink: *const fn(
             self: *const IMFCaptureEngine,
             mfCaptureEngineSinkType: MF_CAPTURE_ENGINE_SINK_TYPE,
             ppSink: ?*?*IMFCaptureSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSource: *const fn(
             self: *const IMFCaptureEngine,
             ppSource: ?*?*IMFCaptureSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -22194,7 +22194,7 @@ pub const IMFCaptureEngineClassFactory = extern union {
             clsid: ?*const Guid,
             riid: ?*const Guid,
             ppvObject: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -22212,7 +22212,7 @@ pub const IMFCaptureEngineOnSampleCallback2 = extern union {
         OnSynchronizedEvent: *const fn(
             self: *const IMFCaptureEngineOnSampleCallback2,
             pEvent: ?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFCaptureEngineOnSampleCallback: IMFCaptureEngineOnSampleCallback,
@@ -22233,7 +22233,7 @@ pub const IMFCaptureSink2 = extern union {
             dwStreamIndex: u32,
             pMediaType: ?*IMFMediaType,
             pEncodingAttributes: ?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFCaptureSink: IMFCaptureSink,
@@ -22251,19 +22251,19 @@ pub const IMFD3D12SynchronizationObjectCommands = extern union {
         EnqueueResourceReady: *const fn(
             self: *const IMFD3D12SynchronizationObjectCommands,
             pProducerCommandQueue: ?*ID3D12CommandQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnqueueResourceReadyWait: *const fn(
             self: *const IMFD3D12SynchronizationObjectCommands,
             pConsumerCommandQueue: ?*ID3D12CommandQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SignalEventOnResourceReady: *const fn(
             self: *const IMFD3D12SynchronizationObjectCommands,
             hEvent: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnqueueResourceRelease: *const fn(
             self: *const IMFD3D12SynchronizationObjectCommands,
             pConsumerCommandQueue: ?*ID3D12CommandQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -22289,10 +22289,10 @@ pub const IMFD3D12SynchronizationObject = extern union {
         SignalEventOnFinalResourceRelease: *const fn(
             self: *const IMFD3D12SynchronizationObject,
             hEvent: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IMFD3D12SynchronizationObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -22313,7 +22313,7 @@ pub const MF_D3D12_RESOURCE = MF_MT_D3D_RESOURCE_VERSION_ENUM.@"2_RESOURCE";
 
 pub const MFPERIODICCALLBACK = *const fn(
     pContext: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const MFASYNC_WORKQUEUE_TYPE = enum(i32) {
     STANDARD_WORKQUEUE = 0,
@@ -22661,18 +22661,18 @@ pub const IMFMediaError = extern union {
         base: IUnknown.VTable,
         GetErrorCode: *const fn(
             self: *const IMFMediaError,
-        ) callconv(@import("std").os.windows.WINAPI) u16,
+        ) callconv(.winapi) u16,
         GetExtendedErrorCode: *const fn(
             self: *const IMFMediaError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetErrorCode: *const fn(
             self: *const IMFMediaError,
             @"error": MF_MEDIA_ENGINE_ERR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetExtendedErrorCode: *const fn(
             self: *const IMFMediaError,
             @"error": HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -22698,29 +22698,29 @@ pub const IMFMediaTimeRange = extern union {
         base: IUnknown.VTable,
         GetLength: *const fn(
             self: *const IMFMediaTimeRange,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetStart: *const fn(
             self: *const IMFMediaTimeRange,
             index: u32,
             pStart: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnd: *const fn(
             self: *const IMFMediaTimeRange,
             index: u32,
             pEnd: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ContainsTime: *const fn(
             self: *const IMFMediaTimeRange,
             time: f64,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         AddRange: *const fn(
             self: *const IMFMediaTimeRange,
             startTime: f64,
             endTime: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IMFMediaTimeRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -22836,7 +22836,7 @@ pub const IMFMediaEngineNotify = extern union {
             event: u32,
             param1: usize,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -22853,31 +22853,31 @@ pub const IMFMediaEngineSrcElements = extern union {
         base: IUnknown.VTable,
         GetLength: *const fn(
             self: *const IMFMediaEngineSrcElements,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetURL: *const fn(
             self: *const IMFMediaEngineSrcElements,
             index: u32,
             pURL: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const IMFMediaEngineSrcElements,
             index: u32,
             pType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMedia: *const fn(
             self: *const IMFMediaEngineSrcElements,
             index: u32,
             pMedia: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddElement: *const fn(
             self: *const IMFMediaEngineSrcElements,
             pURL: ?BSTR,
             pType: ?BSTR,
             pMedia: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllElements: *const fn(
             self: *const IMFMediaEngineSrcElements,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -22956,156 +22956,156 @@ pub const IMFMediaEngine = extern union {
         GetError: *const fn(
             self: *const IMFMediaEngine,
             ppError: ?*?*IMFMediaError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetErrorCode: *const fn(
             self: *const IMFMediaEngine,
             @"error": MF_MEDIA_ENGINE_ERR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSourceElements: *const fn(
             self: *const IMFMediaEngine,
             pSrcElements: ?*IMFMediaEngineSrcElements,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSource: *const fn(
             self: *const IMFMediaEngine,
             pUrl: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentSource: *const fn(
             self: *const IMFMediaEngine,
             ppUrl: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNetworkState: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) u16,
+        ) callconv(.winapi) u16,
         GetPreload: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) MF_MEDIA_ENGINE_PRELOAD,
+        ) callconv(.winapi) MF_MEDIA_ENGINE_PRELOAD,
         SetPreload: *const fn(
             self: *const IMFMediaEngine,
             Preload: MF_MEDIA_ENGINE_PRELOAD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBuffered: *const fn(
             self: *const IMFMediaEngine,
             ppBuffered: ?*?*IMFMediaTimeRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Load: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CanPlayType: *const fn(
             self: *const IMFMediaEngine,
             type: ?BSTR,
             pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReadyState: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) u16,
+        ) callconv(.winapi) u16,
         IsSeeking: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetCurrentTime: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         SetCurrentTime: *const fn(
             self: *const IMFMediaEngine,
             seekTime: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStartTime: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         GetDuration: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         IsPaused: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetDefaultPlaybackRate: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         SetDefaultPlaybackRate: *const fn(
             self: *const IMFMediaEngine,
             Rate: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPlaybackRate: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         SetPlaybackRate: *const fn(
             self: *const IMFMediaEngine,
             Rate: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPlayed: *const fn(
             self: *const IMFMediaEngine,
             ppPlayed: ?*?*IMFMediaTimeRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSeekable: *const fn(
             self: *const IMFMediaEngine,
             ppSeekable: ?*?*IMFMediaTimeRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEnded: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetAutoPlay: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         SetAutoPlay: *const fn(
             self: *const IMFMediaEngine,
             AutoPlay: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLoop: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         SetLoop: *const fn(
             self: *const IMFMediaEngine,
             Loop: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Play: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMuted: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         SetMuted: *const fn(
             self: *const IMFMediaEngine,
             Muted: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVolume: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         SetVolume: *const fn(
             self: *const IMFMediaEngine,
             Volume: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasVideo: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         HasAudio: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetNativeVideoSize: *const fn(
             self: *const IMFMediaEngine,
             cx: ?*u32,
             cy: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoAspectRatio: *const fn(
             self: *const IMFMediaEngine,
             cx: ?*u32,
             cy: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TransferVideoFrame: *const fn(
             self: *const IMFMediaEngine,
             pDstSurf: ?*IUnknown,
             pSrc: ?*const MFVideoNormalizedRect,
             pDst: ?*const RECT,
             pBorderClr: ?*const MFARGB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnVideoStreamTick: *const fn(
             self: *const IMFMediaEngine,
             pPts: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -23282,157 +23282,157 @@ pub const IMFMediaEngineEx = extern union {
             self: *const IMFMediaEngineEx,
             pByteStream: ?*IMFByteStream,
             pURL: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatistics: *const fn(
             self: *const IMFMediaEngineEx,
             StatisticID: MF_MEDIA_ENGINE_STATISTIC,
             pStatistic: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateVideoStream: *const fn(
             self: *const IMFMediaEngineEx,
             pSrc: ?*const MFVideoNormalizedRect,
             pDst: ?*const RECT,
             pBorderClr: ?*const MFARGB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBalance: *const fn(
             self: *const IMFMediaEngineEx,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         SetBalance: *const fn(
             self: *const IMFMediaEngineEx,
             balance: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPlaybackRateSupported: *const fn(
             self: *const IMFMediaEngineEx,
             rate: f64,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         FrameStep: *const fn(
             self: *const IMFMediaEngineEx,
             Forward: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResourceCharacteristics: *const fn(
             self: *const IMFMediaEngineEx,
             pCharacteristics: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPresentationAttribute: *const fn(
             self: *const IMFMediaEngineEx,
             guidMFAttribute: ?*const Guid,
             pvValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumberOfStreams: *const fn(
             self: *const IMFMediaEngineEx,
             pdwStreamCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamAttribute: *const fn(
             self: *const IMFMediaEngineEx,
             dwStreamIndex: u32,
             guidMFAttribute: ?*const Guid,
             pvValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamSelection: *const fn(
             self: *const IMFMediaEngineEx,
             dwStreamIndex: u32,
             pEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStreamSelection: *const fn(
             self: *const IMFMediaEngineEx,
             dwStreamIndex: u32,
             Enabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ApplyStreamSelections: *const fn(
             self: *const IMFMediaEngineEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsProtected: *const fn(
             self: *const IMFMediaEngineEx,
             pProtected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertVideoEffect: *const fn(
             self: *const IMFMediaEngineEx,
             pEffect: ?*IUnknown,
             fOptional: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAudioEffect: *const fn(
             self: *const IMFMediaEngineEx,
             pEffect: ?*IUnknown,
             fOptional: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllEffects: *const fn(
             self: *const IMFMediaEngineEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTimelineMarkerTimer: *const fn(
             self: *const IMFMediaEngineEx,
             timeToFire: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTimelineMarkerTimer: *const fn(
             self: *const IMFMediaEngineEx,
             pTimeToFire: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelTimelineMarkerTimer: *const fn(
             self: *const IMFMediaEngineEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsStereo3D: *const fn(
             self: *const IMFMediaEngineEx,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetStereo3DFramePackingMode: *const fn(
             self: *const IMFMediaEngineEx,
             packMode: ?*MF_MEDIA_ENGINE_S3D_PACKING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStereo3DFramePackingMode: *const fn(
             self: *const IMFMediaEngineEx,
             packMode: MF_MEDIA_ENGINE_S3D_PACKING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStereo3DRenderMode: *const fn(
             self: *const IMFMediaEngineEx,
             outputType: ?*MF3DVideoOutputType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStereo3DRenderMode: *const fn(
             self: *const IMFMediaEngineEx,
             outputType: MF3DVideoOutputType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableWindowlessSwapchainMode: *const fn(
             self: *const IMFMediaEngineEx,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoSwapchainHandle: *const fn(
             self: *const IMFMediaEngineEx,
             phSwapchain: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableHorizontalMirrorMode: *const fn(
             self: *const IMFMediaEngineEx,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAudioStreamCategory: *const fn(
             self: *const IMFMediaEngineEx,
             pCategory: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAudioStreamCategory: *const fn(
             self: *const IMFMediaEngineEx,
             category: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAudioEndpointRole: *const fn(
             self: *const IMFMediaEngineEx,
             pRole: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAudioEndpointRole: *const fn(
             self: *const IMFMediaEngineEx,
             role: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRealTimeMode: *const fn(
             self: *const IMFMediaEngineEx,
             pfEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRealTimeMode: *const fn(
             self: *const IMFMediaEngineEx,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCurrentTimeEx: *const fn(
             self: *const IMFMediaEngineEx,
             seekTime: f64,
             seekMode: MF_MEDIA_ENGINE_SEEK_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableTimeUpdateTimer: *const fn(
             self: *const IMFMediaEngineEx,
             fEnableTimer: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaEngine: IMFMediaEngine,
@@ -23558,11 +23558,11 @@ pub const IMFMediaEngineAudioEndpointId = extern union {
         SetAudioEndpointId: *const fn(
             self: *const IMFMediaEngineAudioEndpointId,
             pszEndpointId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAudioEndpointId: *const fn(
             self: *const IMFMediaEngineAudioEndpointId,
             ppszEndpointId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -23592,7 +23592,7 @@ pub const IMFMediaEngineExtension = extern union {
             AudioOnly: BOOL,
             MimeType: ?BSTR,
             pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginCreateObject: *const fn(
             self: *const IMFMediaEngineExtension,
             bstrURL: ?BSTR,
@@ -23601,16 +23601,16 @@ pub const IMFMediaEngineExtension = extern union {
             ppIUnknownCancelCookie: ?*?*IUnknown,
             pCallback: ?*IMFAsyncCallback,
             punkState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelObjectCreation: *const fn(
             self: *const IMFMediaEngineExtension,
             pIUnknownCancelCookie: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndCreateObject: *const fn(
             self: *const IMFMediaEngineExtension,
             pResult: ?*IMFAsyncResult,
             ppObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -23646,15 +23646,15 @@ pub const IMFMediaEngineProtectedContent = extern union {
         ShareResources: *const fn(
             self: *const IMFMediaEngineProtectedContent,
             pUnkDeviceContext: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequiredProtections: *const fn(
             self: *const IMFMediaEngineProtectedContent,
             pFrameProtectionFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOPMWindow: *const fn(
             self: *const IMFMediaEngineProtectedContent,
             hwnd: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TransferVideoFrame: *const fn(
             self: *const IMFMediaEngineProtectedContent,
             pDstSurf: ?*IUnknown,
@@ -23662,17 +23662,17 @@ pub const IMFMediaEngineProtectedContent = extern union {
             pDst: ?*const RECT,
             pBorderClr: ?*const MFARGB,
             pFrameProtectionFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContentProtectionManager: *const fn(
             self: *const IMFMediaEngineProtectedContent,
             pCPM: ?*IMFContentProtectionManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetApplicationCertificate: *const fn(
             self: *const IMFMediaEngineProtectedContent,
             // TODO: what to do with BytesParamIndex 1?
             pbBlob: ?*const u8,
             cbBlob: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -23706,7 +23706,7 @@ pub const IAudioSourceProvider = extern union {
             dwSampleCount: u32,
             pdwChannelCount: ?*u32,
             pInterleavedAudioData: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -23722,15 +23722,15 @@ pub const IMFMediaEngineWebSupport = extern union {
         base: IUnknown.VTable,
         ShouldDelayTheLoadEvent: *const fn(
             self: *const IMFMediaEngineWebSupport,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         ConnectWebAudio: *const fn(
             self: *const IMFMediaEngineWebSupport,
             dwSampleRate: u32,
             ppSourceProvider: **IAudioSourceProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisconnectWebAudio: *const fn(
             self: *const IMFMediaEngineWebSupport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -23769,13 +23769,13 @@ pub const IMFMediaSourceExtensionNotify = extern union {
         base: IUnknown.VTable,
         OnSourceOpen: *const fn(
             self: *const IMFMediaSourceExtensionNotify,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnSourceEnded: *const fn(
             self: *const IMFMediaSourceExtensionNotify,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnSourceClose: *const fn(
             self: *const IMFMediaSourceExtensionNotify,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -23798,10 +23798,10 @@ pub const IMFBufferListNotify = extern union {
         base: IUnknown.VTable,
         OnAddSourceBuffer: *const fn(
             self: *const IMFBufferListNotify,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnRemoveSourceBuffer: *const fn(
             self: *const IMFBufferListNotify,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -23821,20 +23821,20 @@ pub const IMFSourceBufferNotify = extern union {
         base: IUnknown.VTable,
         OnUpdateStart: *const fn(
             self: *const IMFSourceBufferNotify,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnAbort: *const fn(
             self: *const IMFSourceBufferNotify,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnError: *const fn(
             self: *const IMFSourceBufferNotify,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnUpdate: *const fn(
             self: *const IMFSourceBufferNotify,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnUpdateEnd: *const fn(
             self: *const IMFSourceBufferNotify,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -23863,51 +23863,51 @@ pub const IMFSourceBuffer = extern union {
         base: IUnknown.VTable,
         GetUpdating: *const fn(
             self: *const IMFSourceBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetBuffered: *const fn(
             self: *const IMFSourceBuffer,
             ppBuffered: ?*?*IMFMediaTimeRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTimeStampOffset: *const fn(
             self: *const IMFSourceBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         SetTimeStampOffset: *const fn(
             self: *const IMFSourceBuffer,
             offset: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAppendWindowStart: *const fn(
             self: *const IMFSourceBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         SetAppendWindowStart: *const fn(
             self: *const IMFSourceBuffer,
             time: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAppendWindowEnd: *const fn(
             self: *const IMFSourceBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         SetAppendWindowEnd: *const fn(
             self: *const IMFSourceBuffer,
             time: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IMFSourceBuffer,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*const u8,
             len: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AppendByteStream: *const fn(
             self: *const IMFSourceBuffer,
             pStream: ?*IMFByteStream,
             pMaxLen: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Abort: *const fn(
             self: *const IMFSourceBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IMFSourceBuffer,
             start: f64,
             end: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -23963,11 +23963,11 @@ pub const IMFSourceBufferAppendMode = extern union {
         base: IUnknown.VTable,
         GetAppendMode: *const fn(
             self: *const IMFSourceBufferAppendMode,
-        ) callconv(@import("std").os.windows.WINAPI) MF_MSE_APPEND_MODE,
+        ) callconv(.winapi) MF_MSE_APPEND_MODE,
         SetAppendMode: *const fn(
             self: *const IMFSourceBufferAppendMode,
             mode: MF_MSE_APPEND_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -23987,11 +23987,11 @@ pub const IMFSourceBufferList = extern union {
         base: IUnknown.VTable,
         GetLength: *const fn(
             self: *const IMFSourceBufferList,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetSourceBuffer: *const fn(
             self: *const IMFSourceBufferList,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*IMFSourceBuffer,
+        ) callconv(.winapi) ?*IMFSourceBuffer,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24031,42 +24031,42 @@ pub const IMFMediaSourceExtension = extern union {
         base: IUnknown.VTable,
         GetSourceBuffers: *const fn(
             self: *const IMFMediaSourceExtension,
-        ) callconv(@import("std").os.windows.WINAPI) ?*IMFSourceBufferList,
+        ) callconv(.winapi) ?*IMFSourceBufferList,
         GetActiveSourceBuffers: *const fn(
             self: *const IMFMediaSourceExtension,
-        ) callconv(@import("std").os.windows.WINAPI) ?*IMFSourceBufferList,
+        ) callconv(.winapi) ?*IMFSourceBufferList,
         GetReadyState: *const fn(
             self: *const IMFMediaSourceExtension,
-        ) callconv(@import("std").os.windows.WINAPI) MF_MSE_READY,
+        ) callconv(.winapi) MF_MSE_READY,
         GetDuration: *const fn(
             self: *const IMFMediaSourceExtension,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         SetDuration: *const fn(
             self: *const IMFMediaSourceExtension,
             duration: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddSourceBuffer: *const fn(
             self: *const IMFMediaSourceExtension,
             type: ?BSTR,
             pNotify: ?*IMFSourceBufferNotify,
             ppSourceBuffer: ?*?*IMFSourceBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveSourceBuffer: *const fn(
             self: *const IMFMediaSourceExtension,
             pSourceBuffer: ?*IMFSourceBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEndOfStream: *const fn(
             self: *const IMFMediaSourceExtension,
             @"error": MF_MSE_ERROR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsTypeSupported: *const fn(
             self: *const IMFMediaSourceExtension,
             type: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetSourceBuffer: *const fn(
             self: *const IMFMediaSourceExtension,
             dwStreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*IMFSourceBuffer,
+        ) callconv(.winapi) ?*IMFSourceBuffer,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24111,10 +24111,10 @@ pub const IMFMediaSourceExtensionLiveSeekableRange = extern union {
             self: *const IMFMediaSourceExtensionLiveSeekableRange,
             start: f64,
             end: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearLiveSeekableRange: *const fn(
             self: *const IMFMediaSourceExtensionLiveSeekableRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24136,11 +24136,11 @@ pub const IMFMediaEngineEME = extern union {
         get_Keys: *const fn(
             self: *const IMFMediaEngineEME,
             keys: ?**IMFMediaKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMediaKeys: *const fn(
             self: *const IMFMediaEngineEME,
             keys: ?*IMFMediaKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24164,12 +24164,12 @@ pub const IMFMediaEngineSrcElementsEx = extern union {
             pType: ?BSTR,
             pMedia: ?BSTR,
             keySystem: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKeySystem: *const fn(
             self: *const IMFMediaEngineSrcElementsEx,
             index: u32,
             pType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaEngineSrcElements: IMFMediaEngineSrcElements,
@@ -24193,7 +24193,7 @@ pub const IMFMediaEngineNeedKeyNotify = extern union {
             // TODO: what to do with BytesParamIndex 1?
             initData: ?*const u8,
             cb: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24219,19 +24219,19 @@ pub const IMFMediaKeys = extern union {
             cbCustomData: u32,
             notify: ?*IMFMediaKeySessionNotify,
             ppSession: **IMFMediaKeySession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeySystem: *const fn(
             self: *const IMFMediaKeys,
             keySystem: *BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IMFMediaKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSuspendNotify: *const fn(
             self: *const IMFMediaKeys,
             notify: **IMFCdmSuspendNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24274,26 +24274,26 @@ pub const IMFMediaKeySession = extern union {
             self: *const IMFMediaKeySession,
             code: ?*u16,
             systemCode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeySystem: *const fn(
             self: *const IMFMediaKeySession,
             keySystem: *BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SessionId: *const fn(
             self: *const IMFMediaKeySession,
             sessionId: *BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Update: *const fn(
             self: *const IMFMediaKeySession,
             // TODO: what to do with BytesParamIndex 1?
             key: ?*const u8,
             cb: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMFMediaKeySession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24326,15 +24326,15 @@ pub const IMFMediaKeySessionNotify = extern union {
             // TODO: what to do with BytesParamIndex 2?
             message: ?*const u8,
             cb: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         KeyAdded: *const fn(
             self: *const IMFMediaKeySessionNotify,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         KeyError: *const fn(
             self: *const IMFMediaKeySessionNotify,
             code: u16,
             systemCode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24357,10 +24357,10 @@ pub const IMFCdmSuspendNotify = extern union {
         base: IUnknown.VTable,
         Begin: *const fn(
             self: *const IMFCdmSuspendNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         End: *const fn(
             self: *const IMFCdmSuspendNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24390,11 +24390,11 @@ pub const IMFHDCPStatus = extern union {
             self: *const IMFHDCPStatus,
             pStatus: ?*MF_HDCP_STATUS,
             pfStatus: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Set: *const fn(
             self: *const IMFHDCPStatus,
             status: MF_HDCP_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24431,7 +24431,7 @@ pub const IMFMediaEngineOPMInfo = extern union {
             self: *const IMFMediaEngineOPMInfo,
             pStatus: ?*MF_MEDIA_ENGINE_OPM_STATUS,
             pConstricted: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24475,15 +24475,15 @@ pub const IMFMediaEngineClassFactory = extern union {
             dwFlags: u32,
             pAttr: ?*IMFAttributes,
             ppPlayer: ?*?*IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTimeRange: *const fn(
             self: *const IMFMediaEngineClassFactory,
             ppTimeRange: ?*?*IMFMediaTimeRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateError: *const fn(
             self: *const IMFMediaEngineClassFactory,
             ppError: ?*?*IMFMediaError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24509,19 +24509,19 @@ pub const IMFMediaEngineClassFactoryEx = extern union {
             dwFlags: u32,
             pAttr: ?*IMFAttributes,
             ppMSE: **IMFMediaSourceExtension,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMediaKeys: *const fn(
             self: *const IMFMediaEngineClassFactoryEx,
             keySystem: ?BSTR,
             cdmStorePath: ?BSTR,
             ppKeys: **IMFMediaKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsTypeSupported: *const fn(
             self: *const IMFMediaEngineClassFactoryEx,
             type: ?BSTR,
             keySystem: ?BSTR,
             isSupported: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaEngineClassFactory: IMFMediaEngineClassFactory,
@@ -24549,7 +24549,7 @@ pub const IMFMediaEngineClassFactory2 = extern union {
             defaultCdmStorePath: ?BSTR,
             inprivateCdmStorePath: ?BSTR,
             ppKeys: **IMFMediaKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24568,7 +24568,7 @@ pub const IMFExtendedDRMTypeSupport = extern union {
             type: ?BSTR,
             keySystem: ?BSTR,
             pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24586,19 +24586,19 @@ pub const IMFMediaEngineSupportsSourceTransfer = extern union {
         ShouldTransferSource: *const fn(
             self: *const IMFMediaEngineSupportsSourceTransfer,
             pfShouldTransfer: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DetachMediaSource: *const fn(
             self: *const IMFMediaEngineSupportsSourceTransfer,
             ppByteStream: **IMFByteStream,
             ppMediaSource: **IMFMediaSource,
             ppMSE: **IMFMediaSourceExtension,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AttachMediaSource: *const fn(
             self: *const IMFMediaEngineSupportsSourceTransfer,
             pByteStream: ?*IMFByteStream,
             pMediaSource: ?*IMFMediaSource,
             pMSE: ?*IMFMediaSourceExtension,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24621,7 +24621,7 @@ pub const IMFMediaEngineTransferSource = extern union {
         TransferSourceToMediaEngine: *const fn(
             self: *const IMFMediaEngineTransferSource,
             destination: ?*IMFMediaEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24817,12 +24817,12 @@ pub const IMFTimedText = extern union {
         RegisterNotifications: *const fn(
             self: *const IMFTimedText,
             notify: ?*IMFTimedTextNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SelectTrack: *const fn(
             self: *const IMFTimedText,
             trackId: u32,
             selected: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDataSource: *const fn(
             self: *const IMFTimedText,
             byteStream: ?*IMFByteStream,
@@ -24831,7 +24831,7 @@ pub const IMFTimedText = extern union {
             kind: MF_TIMED_TEXT_TRACK_KIND,
             isDefault: BOOL,
             trackId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDataSourceFromUrl: *const fn(
             self: *const IMFTimedText,
             url: ?[*:0]const u16,
@@ -24840,49 +24840,49 @@ pub const IMFTimedText = extern union {
             kind: MF_TIMED_TEXT_TRACK_KIND,
             isDefault: BOOL,
             trackId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddTrack: *const fn(
             self: *const IMFTimedText,
             label: ?[*:0]const u16,
             language: ?[*:0]const u16,
             kind: MF_TIMED_TEXT_TRACK_KIND,
             track: **IMFTimedTextTrack,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveTrack: *const fn(
             self: *const IMFTimedText,
             track: ?*IMFTimedTextTrack,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCueTimeOffset: *const fn(
             self: *const IMFTimedText,
             offset: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCueTimeOffset: *const fn(
             self: *const IMFTimedText,
             offset: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTracks: *const fn(
             self: *const IMFTimedText,
             tracks: **IMFTimedTextTrackList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActiveTracks: *const fn(
             self: *const IMFTimedText,
             activeTracks: **IMFTimedTextTrackList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextTracks: *const fn(
             self: *const IMFTimedText,
             textTracks: **IMFTimedTextTrackList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMetadataTracks: *const fn(
             self: *const IMFTimedText,
             metadataTracks: **IMFTimedTextTrackList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInBandEnabled: *const fn(
             self: *const IMFTimedText,
             enabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsInBandEnabled: *const fn(
             self: *const IMFTimedText,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -24939,35 +24939,35 @@ pub const IMFTimedTextNotify = extern union {
         TrackAdded: *const fn(
             self: *const IMFTimedTextNotify,
             trackId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         TrackRemoved: *const fn(
             self: *const IMFTimedTextNotify,
             trackId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         TrackSelected: *const fn(
             self: *const IMFTimedTextNotify,
             trackId: u32,
             selected: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         TrackReadyStateChanged: *const fn(
             self: *const IMFTimedTextNotify,
             trackId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Error: *const fn(
             self: *const IMFTimedTextNotify,
             errorCode: MF_TIMED_TEXT_ERROR_CODE,
             extendedErrorCode: HRESULT,
             sourceTrackId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Cue: *const fn(
             self: *const IMFTimedTextNotify,
             cueEvent: MF_TIMED_TEXT_CUE_EVENT,
             currentTime: f64,
             cue: ?*IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Reset: *const fn(
             self: *const IMFTimedTextNotify,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25002,49 +25002,49 @@ pub const IMFTimedTextTrack = extern union {
         base: IUnknown.VTable,
         GetId: *const fn(
             self: *const IMFTimedTextTrack,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetLabel: *const fn(
             self: *const IMFTimedTextTrack,
             label: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLabel: *const fn(
             self: *const IMFTimedTextTrack,
             label: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLanguage: *const fn(
             self: *const IMFTimedTextTrack,
             language: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTrackKind: *const fn(
             self: *const IMFTimedTextTrack,
-        ) callconv(@import("std").os.windows.WINAPI) MF_TIMED_TEXT_TRACK_KIND,
+        ) callconv(.winapi) MF_TIMED_TEXT_TRACK_KIND,
         IsInBand: *const fn(
             self: *const IMFTimedTextTrack,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetInBandMetadataTrackDispatchType: *const fn(
             self: *const IMFTimedTextTrack,
             dispatchType: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsActive: *const fn(
             self: *const IMFTimedTextTrack,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetErrorCode: *const fn(
             self: *const IMFTimedTextTrack,
-        ) callconv(@import("std").os.windows.WINAPI) MF_TIMED_TEXT_ERROR_CODE,
+        ) callconv(.winapi) MF_TIMED_TEXT_ERROR_CODE,
         GetExtendedErrorCode: *const fn(
             self: *const IMFTimedTextTrack,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataFormat: *const fn(
             self: *const IMFTimedTextTrack,
             format: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReadyState: *const fn(
             self: *const IMFTimedTextTrack,
-        ) callconv(@import("std").os.windows.WINAPI) MF_TIMED_TEXT_TRACK_READY_STATE,
+        ) callconv(.winapi) MF_TIMED_TEXT_TRACK_READY_STATE,
         GetCueList: *const fn(
             self: *const IMFTimedTextTrack,
             cues: **IMFTimedTextCueList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25097,17 +25097,17 @@ pub const IMFTimedTextTrackList = extern union {
         base: IUnknown.VTable,
         GetLength: *const fn(
             self: *const IMFTimedTextTrackList,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetTrack: *const fn(
             self: *const IMFTimedTextTrackList,
             index: u32,
             track: **IMFTimedTextTrack,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTrackById: *const fn(
             self: *const IMFTimedTextTrackList,
             trackId: u32,
             track: **IMFTimedTextTrack,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25130,43 +25130,43 @@ pub const IMFTimedTextCue = extern union {
         base: IUnknown.VTable,
         GetId: *const fn(
             self: *const IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetOriginalId: *const fn(
             self: *const IMFTimedTextCue,
             originalId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCueKind: *const fn(
             self: *const IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) MF_TIMED_TEXT_TRACK_KIND,
+        ) callconv(.winapi) MF_TIMED_TEXT_TRACK_KIND,
         GetStartTime: *const fn(
             self: *const IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         GetDuration: *const fn(
             self: *const IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) f64,
+        ) callconv(.winapi) f64,
         GetTrackId: *const fn(
             self: *const IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetData: *const fn(
             self: *const IMFTimedTextCue,
             data: ?**IMFTimedTextBinary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegion: *const fn(
             self: *const IMFTimedTextCue,
             region: ?**IMFTimedTextRegion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStyle: *const fn(
             self: *const IMFTimedTextCue,
             style: ?**IMFTimedTextStyle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLineCount: *const fn(
             self: *const IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetLine: *const fn(
             self: *const IMFTimedTextCue,
             index: u32,
             line: **IMFTimedTextFormattedText,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25214,17 +25214,17 @@ pub const IMFTimedTextFormattedText = extern union {
         GetText: *const fn(
             self: *const IMFTimedTextFormattedText,
             text: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubformattingCount: *const fn(
             self: *const IMFTimedTextFormattedText,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetSubformatting: *const fn(
             self: *const IMFTimedTextFormattedText,
             index: u32,
             firstChar: ?*u32,
             charLength: ?*u32,
             style: ?**IMFTimedTextStyle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25248,58 +25248,58 @@ pub const IMFTimedTextStyle = extern union {
         GetName: *const fn(
             self: *const IMFTimedTextStyle,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsExternal: *const fn(
             self: *const IMFTimedTextStyle,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetFontFamily: *const fn(
             self: *const IMFTimedTextStyle,
             fontFamily: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontSize: *const fn(
             self: *const IMFTimedTextStyle,
             fontSize: ?*f64,
             unitType: ?*MF_TIMED_TEXT_UNIT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColor: *const fn(
             self: *const IMFTimedTextStyle,
             color: ?*MFARGB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBackgroundColor: *const fn(
             self: *const IMFTimedTextStyle,
             bgColor: ?*MFARGB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetShowBackgroundAlways: *const fn(
             self: *const IMFTimedTextStyle,
             showBackgroundAlways: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontStyle: *const fn(
             self: *const IMFTimedTextStyle,
             fontStyle: ?*MF_TIMED_TEXT_FONT_STYLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBold: *const fn(
             self: *const IMFTimedTextStyle,
             bold: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRightToLeft: *const fn(
             self: *const IMFTimedTextStyle,
             rightToLeft: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextAlignment: *const fn(
             self: *const IMFTimedTextStyle,
             textAlign: ?*MF_TIMED_TEXT_ALIGNMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextDecoration: *const fn(
             self: *const IMFTimedTextStyle,
             textDecoration: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextOutline: *const fn(
             self: *const IMFTimedTextStyle,
             color: ?*MFARGB,
             thickness: ?*f64,
             blurRadius: ?*f64,
             unitType: ?*MF_TIMED_TEXT_UNIT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25353,40 +25353,40 @@ pub const IMFTimedTextRegion = extern union {
         GetName: *const fn(
             self: *const IMFTimedTextRegion,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPosition: *const fn(
             self: *const IMFTimedTextRegion,
             pX: ?*f64,
             pY: ?*f64,
             unitType: ?*MF_TIMED_TEXT_UNIT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExtent: *const fn(
             self: *const IMFTimedTextRegion,
             pWidth: ?*f64,
             pHeight: ?*f64,
             unitType: ?*MF_TIMED_TEXT_UNIT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBackgroundColor: *const fn(
             self: *const IMFTimedTextRegion,
             bgColor: ?*MFARGB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWritingMode: *const fn(
             self: *const IMFTimedTextRegion,
             writingMode: ?*MF_TIMED_TEXT_WRITING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayAlignment: *const fn(
             self: *const IMFTimedTextRegion,
             displayAlign: ?*MF_TIMED_TEXT_DISPLAY_ALIGNMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLineHeight: *const fn(
             self: *const IMFTimedTextRegion,
             pLineHeight: ?*f64,
             unitType: ?*MF_TIMED_TEXT_UNIT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClipOverflow: *const fn(
             self: *const IMFTimedTextRegion,
             clipOverflow: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPadding: *const fn(
             self: *const IMFTimedTextRegion,
             before: ?*f64,
@@ -25394,19 +25394,19 @@ pub const IMFTimedTextRegion = extern union {
             after: ?*f64,
             end: ?*f64,
             unitType: ?*MF_TIMED_TEXT_UNIT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWrap: *const fn(
             self: *const IMFTimedTextRegion,
             wrap: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetZIndex: *const fn(
             self: *const IMFTimedTextRegion,
             zIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScrollMode: *const fn(
             self: *const IMFTimedTextRegion,
             scrollMode: ?*MF_TIMED_TEXT_SCROLL_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25458,7 +25458,7 @@ pub const IMFTimedTextBinary = extern union {
             self: *const IMFTimedTextBinary,
             data: ?*const ?*u8,
             length: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25474,29 +25474,29 @@ pub const IMFTimedTextCueList = extern union {
         base: IUnknown.VTable,
         GetLength: *const fn(
             self: *const IMFTimedTextCueList,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetCueByIndex: *const fn(
             self: *const IMFTimedTextCueList,
             index: u32,
             cue: **IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCueById: *const fn(
             self: *const IMFTimedTextCueList,
             id: u32,
             cue: **IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCueByOriginalId: *const fn(
             self: *const IMFTimedTextCueList,
             originalId: ?[*:0]const u16,
             cue: **IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddTextCue: *const fn(
             self: *const IMFTimedTextCueList,
             start: f64,
             duration: f64,
             text: ?[*:0]const u16,
             cue: ?**IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDataCue: *const fn(
             self: *const IMFTimedTextCueList,
             start: f64,
@@ -25505,11 +25505,11 @@ pub const IMFTimedTextCueList = extern union {
             data: ?*const u8,
             dataSize: u32,
             cue: ?**IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveCue: *const fn(
             self: *const IMFTimedTextCueList,
             cue: ?*IMFTimedTextCue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25544,19 +25544,19 @@ pub const IMFTimedTextRuby = extern union {
         GetRubyText: *const fn(
             self: *const IMFTimedTextRuby,
             rubyText: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRubyPosition: *const fn(
             self: *const IMFTimedTextRuby,
             value: ?*MF_TIMED_TEXT_RUBY_POSITION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRubyAlign: *const fn(
             self: *const IMFTimedTextRuby,
             value: ?*MF_TIMED_TEXT_RUBY_ALIGN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRubyReserve: *const fn(
             self: *const IMFTimedTextRuby,
             value: ?*MF_TIMED_TEXT_RUBY_RESERVE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25582,15 +25582,15 @@ pub const IMFTimedTextBouten = extern union {
         GetBoutenType: *const fn(
             self: *const IMFTimedTextBouten,
             value: ?*MF_TIMED_TEXT_BOUTEN_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBoutenColor: *const fn(
             self: *const IMFTimedTextBouten,
             value: ?*MFARGB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBoutenPosition: *const fn(
             self: *const IMFTimedTextBouten,
             value: ?*MF_TIMED_TEXT_BOUTEN_POSITION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25613,19 +25613,19 @@ pub const IMFTimedTextStyle2 = extern union {
         GetRuby: *const fn(
             self: *const IMFTimedTextStyle2,
             ruby: ?**IMFTimedTextRuby,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBouten: *const fn(
             self: *const IMFTimedTextStyle2,
             bouten: ?**IMFTimedTextBouten,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsTextCombined: *const fn(
             self: *const IMFTimedTextStyle2,
             value: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontAngleInDegrees: *const fn(
             self: *const IMFTimedTextStyle2,
             value: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25663,10 +25663,10 @@ pub const IMFMediaEngineEMENotify = extern union {
             pbInitData: ?*const u8,
             cb: u32,
             bstrInitDataType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         WaitingForKey: *const fn(
             self: *const IMFMediaEngineEMENotify,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25699,10 +25699,10 @@ pub const IMFMediaKeySessionNotify2 = extern union {
             // TODO: what to do with BytesParamIndex 3?
             pbMessage: ?*const u8,
             cbMessage: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         KeyStatusChange: *const fn(
             self: *const IMFMediaKeySessionNotify2,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IMFMediaKeySessionNotify: IMFMediaKeySessionNotify,
@@ -25724,17 +25724,17 @@ pub const IMFMediaKeySystemAccess = extern union {
             self: *const IMFMediaKeySystemAccess,
             pCdmCustomConfig: ?*IPropertyStore,
             ppKeys: **IMFMediaKeys2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedConfiguration: *const fn(
             self: *const IMFMediaKeySystemAccess,
             ppSupportedConfiguration: **IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeySystem: *const fn(
             self: *const IMFMediaKeySystemAccess,
             pKeySystem: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25760,7 +25760,7 @@ pub const IMFMediaEngineClassFactory3 = extern union {
             ppSupportedConfigurationsArray: [*]?*IPropertyStore,
             uSize: u32,
             ppKeyAccess: **IMFMediaKeySystemAccess,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25779,18 +25779,18 @@ pub const IMFMediaKeys2 = extern union {
             eSessionType: MF_MEDIAKEYSESSION_TYPE,
             pMFMediaKeySessionNotify2: ?*IMFMediaKeySessionNotify2,
             ppSession: **IMFMediaKeySession2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetServerCertificate: *const fn(
             self: *const IMFMediaKeys2,
             // TODO: what to do with BytesParamIndex 1?
             pbServerCertificate: ?*const u8,
             cb: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDOMException: *const fn(
             self: *const IMFMediaKeys2,
             systemCode: HRESULT,
             code: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaKeys: IMFMediaKeys,
@@ -25815,30 +25815,30 @@ pub const IMFMediaKeySession2 = extern union {
             self: *const IMFMediaKeySession2,
             pKeyStatusesArray: ?*?*MFMediaKeyStatus,
             puSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Load: *const fn(
             self: *const IMFMediaKeySession2,
             bstrSessionId: ?BSTR,
             pfLoaded: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateRequest: *const fn(
             self: *const IMFMediaKeySession2,
             initDataType: ?BSTR,
             // TODO: what to do with BytesParamIndex 2?
             pbInitData: ?*const u8,
             cb: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Expiration: *const fn(
             self: *const IMFMediaKeySession2,
             dblExpiration: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IMFMediaKeySession2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IMFMediaKeySession2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaKeySession: IMFMediaKeySession,
@@ -25873,7 +25873,7 @@ pub const IMFMediaEngineClassFactory4 = extern union {
             keySystem: ?[*:0]const u16,
             riid: ?*const Guid,
             ppvObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25892,7 +25892,7 @@ pub const IMFDLNASinkInit = extern union {
             self: *const IMFDLNASinkInit,
             pByteStream: ?*IMFByteStream,
             fPal: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -25931,7 +25931,7 @@ pub const IMFReadWriteClassFactory = extern union {
             pAttributes: ?*IMFAttributes,
             riid: ?*const Guid,
             ppvObject: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInstanceFromObject: *const fn(
             self: *const IMFReadWriteClassFactory,
             clsid: ?*const Guid,
@@ -25939,7 +25939,7 @@ pub const IMFReadWriteClassFactory = extern union {
             pAttributes: ?*IMFAttributes,
             riid: ?*const Guid,
             ppvObject: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26003,34 +26003,34 @@ pub const IMFSourceReader = extern union {
             self: *const IMFSourceReader,
             dwStreamIndex: u32,
             pfSelected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStreamSelection: *const fn(
             self: *const IMFSourceReader,
             dwStreamIndex: u32,
             fSelected: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNativeMediaType: *const fn(
             self: *const IMFSourceReader,
             dwStreamIndex: u32,
             dwMediaTypeIndex: u32,
             ppMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentMediaType: *const fn(
             self: *const IMFSourceReader,
             dwStreamIndex: u32,
             ppMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCurrentMediaType: *const fn(
             self: *const IMFSourceReader,
             dwStreamIndex: u32,
             pdwReserved: ?*u32,
             pMediaType: ?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCurrentPosition: *const fn(
             self: *const IMFSourceReader,
             guidTimeFormat: ?*const Guid,
             varPosition: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReadSample: *const fn(
             self: *const IMFSourceReader,
             dwStreamIndex: u32,
@@ -26039,24 +26039,24 @@ pub const IMFSourceReader = extern union {
             pdwStreamFlags: ?*u32,
             pllTimestamp: ?*i64,
             ppSample: ?*?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IMFSourceReader,
             dwStreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetServiceForStream: *const fn(
             self: *const IMFSourceReader,
             dwStreamIndex: u32,
             guidService: ?*const Guid,
             riid: ?*const Guid,
             ppvObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPresentationAttribute: *const fn(
             self: *const IMFSourceReader,
             dwStreamIndex: u32,
             guidAttribute: ?*const Guid,
             pvarAttribute: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26103,23 +26103,23 @@ pub const IMFSourceReaderEx = extern union {
             dwStreamIndex: u32,
             pMediaType: ?*IMFMediaType,
             pdwStreamFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddTransformForStream: *const fn(
             self: *const IMFSourceReaderEx,
             dwStreamIndex: u32,
             pTransformOrActivate: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllTransformsForStream: *const fn(
             self: *const IMFSourceReaderEx,
             dwStreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformForStream: *const fn(
             self: *const IMFSourceReaderEx,
             dwStreamIndex: u32,
             dwTransformIndex: u32,
             pGuidCategory: ?*Guid,
             ppTransform: ?*?*IMFTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFSourceReader: IMFSourceReader,
@@ -26151,16 +26151,16 @@ pub const IMFSourceReaderCallback = extern union {
             dwStreamFlags: u32,
             llTimestamp: i64,
             pSample: ?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnFlush: *const fn(
             self: *const IMFSourceReaderCallback,
             dwStreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEvent: *const fn(
             self: *const IMFSourceReaderCallback,
             dwStreamIndex: u32,
             pEvent: ?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26182,12 +26182,12 @@ pub const IMFSourceReaderCallback2 = extern union {
         base: IMFSourceReaderCallback.VTable,
         OnTransformChange: *const fn(
             self: *const IMFSourceReaderCallback2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnStreamError: *const fn(
             self: *const IMFSourceReaderCallback2,
             dwStreamIndex: u32,
             hrStatus: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFSourceReaderCallback: IMFSourceReaderCallback,
@@ -26238,54 +26238,54 @@ pub const IMFSinkWriter = extern union {
             self: *const IMFSinkWriter,
             pTargetMediaType: ?*IMFMediaType,
             pdwStreamIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInputMediaType: *const fn(
             self: *const IMFSinkWriter,
             dwStreamIndex: u32,
             pInputMediaType: ?*IMFMediaType,
             pEncodingParameters: ?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginWriting: *const fn(
             self: *const IMFSinkWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteSample: *const fn(
             self: *const IMFSinkWriter,
             dwStreamIndex: u32,
             pSample: ?*IMFSample,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendStreamTick: *const fn(
             self: *const IMFSinkWriter,
             dwStreamIndex: u32,
             llTimestamp: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PlaceMarker: *const fn(
             self: *const IMFSinkWriter,
             dwStreamIndex: u32,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyEndOfSegment: *const fn(
             self: *const IMFSinkWriter,
             dwStreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IMFSinkWriter,
             dwStreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finalize: *const fn(
             self: *const IMFSinkWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetServiceForStream: *const fn(
             self: *const IMFSinkWriter,
             dwStreamIndex: u32,
             guidService: ?*const Guid,
             riid: ?*const Guid,
             ppvObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatistics: *const fn(
             self: *const IMFSinkWriter,
             dwStreamIndex: u32,
             pStats: ?*MF_SINK_WRITER_STATISTICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26336,7 +26336,7 @@ pub const IMFSinkWriterEx = extern union {
             dwTransformIndex: u32,
             pGuidCategory: ?*Guid,
             ppTransform: ?*?*IMFTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFSinkWriter: IMFSinkWriter,
@@ -26357,12 +26357,12 @@ pub const IMFSinkWriterEncoderConfig = extern union {
             dwStreamIndex: u32,
             pTargetMediaType: ?*IMFMediaType,
             pEncodingParameters: ?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PlaceEncodingParameters: *const fn(
             self: *const IMFSinkWriterEncoderConfig,
             dwStreamIndex: u32,
             pEncodingParameters: ?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26383,12 +26383,12 @@ pub const IMFSinkWriterCallback = extern union {
         OnFinalize: *const fn(
             self: *const IMFSinkWriterCallback,
             hrStatus: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnMarker: *const fn(
             self: *const IMFSinkWriterCallback,
             dwStreamIndex: u32,
             pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26407,12 +26407,12 @@ pub const IMFSinkWriterCallback2 = extern union {
         base: IMFSinkWriterCallback.VTable,
         OnTransformChange: *const fn(
             self: *const IMFSinkWriterCallback2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnStreamError: *const fn(
             self: *const IMFSinkWriterCallback2,
             dwStreamIndex: u32,
             hrStatus: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFSinkWriterCallback: IMFSinkWriterCallback,
@@ -26439,7 +26439,7 @@ pub const IMFVideoPositionMapper = extern union {
             dwInputStreamIndex: u32,
             pxIn: ?*f32,
             pyIn: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26457,7 +26457,7 @@ pub const IMFVideoDeviceID = extern union {
         GetDeviceID: *const fn(
             self: *const IMFVideoDeviceID,
             pDeviceID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26512,72 +26512,72 @@ pub const IMFVideoDisplayControl = extern union {
             self: *const IMFVideoDisplayControl,
             pszVideo: ?*SIZE,
             pszARVideo: ?*SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIdealVideoSize: *const fn(
             self: *const IMFVideoDisplayControl,
             pszMin: ?*SIZE,
             pszMax: ?*SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVideoPosition: *const fn(
             self: *const IMFVideoDisplayControl,
             pnrcSource: ?*const MFVideoNormalizedRect,
             prcDest: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoPosition: *const fn(
             self: *const IMFVideoDisplayControl,
             pnrcSource: ?*MFVideoNormalizedRect,
             prcDest: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAspectRatioMode: *const fn(
             self: *const IMFVideoDisplayControl,
             dwAspectRatioMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAspectRatioMode: *const fn(
             self: *const IMFVideoDisplayControl,
             pdwAspectRatioMode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVideoWindow: *const fn(
             self: *const IMFVideoDisplayControl,
             hwndVideo: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoWindow: *const fn(
             self: *const IMFVideoDisplayControl,
             phwndVideo: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RepaintVideo: *const fn(
             self: *const IMFVideoDisplayControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentImage: *const fn(
             self: *const IMFVideoDisplayControl,
             pBih: ?*BITMAPINFOHEADER,
             pDib: [*]?*u8,
             pcbDib: ?*u32,
             pTimeStamp: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBorderColor: *const fn(
             self: *const IMFVideoDisplayControl,
             Clr: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBorderColor: *const fn(
             self: *const IMFVideoDisplayControl,
             pClr: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRenderingPrefs: *const fn(
             self: *const IMFVideoDisplayControl,
             dwRenderFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRenderingPrefs: *const fn(
             self: *const IMFVideoDisplayControl,
             pdwRenderFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFullscreen: *const fn(
             self: *const IMFVideoDisplayControl,
             fFullscreen: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFullscreen: *const fn(
             self: *const IMFVideoDisplayControl,
             pfFullscreen: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26660,11 +26660,11 @@ pub const IMFVideoPresenter = extern union {
             self: *const IMFVideoPresenter,
             eMessage: MFVP_MESSAGE_TYPE,
             ulParam: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentMediaType: *const fn(
             self: *const IMFVideoPresenter,
             ppMediaType: ?*?*IMFVideoMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFClockStateSink: IMFClockStateSink,
@@ -26687,15 +26687,15 @@ pub const IMFDesiredSample = extern union {
             self: *const IMFDesiredSample,
             phnsSampleTime: ?*i64,
             phnsSampleDuration: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDesiredSampleTimeAndDuration: *const fn(
             self: *const IMFDesiredSample,
             hnsSampleTime: i64,
             hnsSampleDuration: i64,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Clear: *const fn(
             self: *const IMFDesiredSample,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26720,22 +26720,22 @@ pub const IMFVideoMixerControl = extern union {
             self: *const IMFVideoMixerControl,
             dwStreamID: u32,
             dwZ: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamZOrder: *const fn(
             self: *const IMFVideoMixerControl,
             dwStreamID: u32,
             pdwZ: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStreamOutputRect: *const fn(
             self: *const IMFVideoMixerControl,
             dwStreamID: u32,
             pnrcOutput: ?*const MFVideoNormalizedRect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamOutputRect: *const fn(
             self: *const IMFVideoMixerControl,
             dwStreamID: u32,
             pnrcOutput: ?*MFVideoNormalizedRect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26777,11 +26777,11 @@ pub const IMFVideoMixerControl2 = extern union {
         SetMixingPrefs: *const fn(
             self: *const IMFVideoMixerControl2,
             dwMixFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMixingPrefs: *const fn(
             self: *const IMFVideoMixerControl2,
             pdwMixFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFVideoMixerControl: IMFVideoMixerControl,
@@ -26804,7 +26804,7 @@ pub const IMFVideoRenderer = extern union {
             self: *const IMFVideoRenderer,
             pVideoMixer: ?*IMFTransform,
             pVideoPresenter: ?*IMFVideoPresenter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26822,11 +26822,11 @@ pub const IEVRFilterConfig = extern union {
         SetNumberOfStreams: *const fn(
             self: *const IEVRFilterConfig,
             dwMaxStreams: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumberOfStreams: *const fn(
             self: *const IEVRFilterConfig,
             pdwMaxStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26854,11 +26854,11 @@ pub const IEVRFilterConfigEx = extern union {
         SetConfigPrefs: *const fn(
             self: *const IEVRFilterConfigEx,
             dwConfigFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConfigPrefs: *const fn(
             self: *const IEVRFilterConfigEx,
             pdwConfigFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IEVRFilterConfig: IEVRFilterConfig,
@@ -26900,7 +26900,7 @@ pub const IMFTopologyServiceLookup = extern union {
             riid: ?*const Guid,
             ppvObjects: [*]?*anyopaque,
             pnObjects: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26918,10 +26918,10 @@ pub const IMFTopologyServiceLookupClient = extern union {
         InitServicePointers: *const fn(
             self: *const IMFTopologyServiceLookupClient,
             pLookup: ?*IMFTopologyServiceLookup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseServicePointers: *const fn(
             self: *const IMFTopologyServiceLookupClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -26942,19 +26942,19 @@ pub const IEVRTrustedVideoPlugin = extern union {
         IsInTrustedVideoMode: *const fn(
             self: *const IEVRTrustedVideoPlugin,
             pYes: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CanConstrict: *const fn(
             self: *const IEVRTrustedVideoPlugin,
             pYes: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConstriction: *const fn(
             self: *const IEVRTrustedVideoPlugin,
             dwKPix: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableImageExport: *const fn(
             self: *const IEVRTrustedVideoPlugin,
             bDisable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -27030,154 +27030,154 @@ pub const IMFPMediaPlayer = extern union {
         base: IUnknown.VTable,
         Play: *const fn(
             self: *const IMFPMediaPlayer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const IMFPMediaPlayer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IMFPMediaPlayer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FrameStep: *const fn(
             self: *const IMFPMediaPlayer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPosition: *const fn(
             self: *const IMFPMediaPlayer,
             guidPositionType: ?*const Guid,
             pvPositionValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPosition: *const fn(
             self: *const IMFPMediaPlayer,
             guidPositionType: ?*const Guid,
             pvPositionValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDuration: *const fn(
             self: *const IMFPMediaPlayer,
             guidPositionType: ?*const Guid,
             pvDurationValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRate: *const fn(
             self: *const IMFPMediaPlayer,
             flRate: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRate: *const fn(
             self: *const IMFPMediaPlayer,
             pflRate: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSupportedRates: *const fn(
             self: *const IMFPMediaPlayer,
             fForwardDirection: BOOL,
             pflSlowestRate: ?*f32,
             pflFastestRate: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetState: *const fn(
             self: *const IMFPMediaPlayer,
             peState: ?*MFP_MEDIAPLAYER_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMediaItemFromURL: *const fn(
             self: *const IMFPMediaPlayer,
             pwszURL: ?[*:0]const u16,
             fSync: BOOL,
             dwUserData: usize,
             ppMediaItem: ?*?*IMFPMediaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMediaItemFromObject: *const fn(
             self: *const IMFPMediaPlayer,
             pIUnknownObj: ?*IUnknown,
             fSync: BOOL,
             dwUserData: usize,
             ppMediaItem: ?*?*IMFPMediaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMediaItem: *const fn(
             self: *const IMFPMediaPlayer,
             pIMFPMediaItem: ?*IMFPMediaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearMediaItem: *const fn(
             self: *const IMFPMediaPlayer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMediaItem: *const fn(
             self: *const IMFPMediaPlayer,
             ppIMFPMediaItem: ?*?*IMFPMediaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVolume: *const fn(
             self: *const IMFPMediaPlayer,
             pflVolume: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVolume: *const fn(
             self: *const IMFPMediaPlayer,
             flVolume: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBalance: *const fn(
             self: *const IMFPMediaPlayer,
             pflBalance: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBalance: *const fn(
             self: *const IMFPMediaPlayer,
             flBalance: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMute: *const fn(
             self: *const IMFPMediaPlayer,
             pfMute: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMute: *const fn(
             self: *const IMFPMediaPlayer,
             fMute: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNativeVideoSize: *const fn(
             self: *const IMFPMediaPlayer,
             pszVideo: ?*SIZE,
             pszARVideo: ?*SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIdealVideoSize: *const fn(
             self: *const IMFPMediaPlayer,
             pszMin: ?*SIZE,
             pszMax: ?*SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVideoSourceRect: *const fn(
             self: *const IMFPMediaPlayer,
             pnrcSource: ?*const MFVideoNormalizedRect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoSourceRect: *const fn(
             self: *const IMFPMediaPlayer,
             pnrcSource: ?*MFVideoNormalizedRect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAspectRatioMode: *const fn(
             self: *const IMFPMediaPlayer,
             dwAspectRatioMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAspectRatioMode: *const fn(
             self: *const IMFPMediaPlayer,
             pdwAspectRatioMode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoWindow: *const fn(
             self: *const IMFPMediaPlayer,
             phwndVideo: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateVideo: *const fn(
             self: *const IMFPMediaPlayer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBorderColor: *const fn(
             self: *const IMFPMediaPlayer,
             Clr: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBorderColor: *const fn(
             self: *const IMFPMediaPlayer,
             pClr: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertEffect: *const fn(
             self: *const IMFPMediaPlayer,
             pEffect: ?*IUnknown,
             fOptional: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveEffect: *const fn(
             self: *const IMFPMediaPlayer,
             pEffect: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllEffects: *const fn(
             self: *const IMFPMediaPlayer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IMFPMediaPlayer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -27300,94 +27300,94 @@ pub const IMFPMediaItem = extern union {
         GetMediaPlayer: *const fn(
             self: *const IMFPMediaItem,
             ppMediaPlayer: ?*?*IMFPMediaPlayer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetURL: *const fn(
             self: *const IMFPMediaItem,
             ppwszURL: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObject: *const fn(
             self: *const IMFPMediaItem,
             ppIUnknown: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUserData: *const fn(
             self: *const IMFPMediaItem,
             pdwUserData: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUserData: *const fn(
             self: *const IMFPMediaItem,
             dwUserData: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStartStopPosition: *const fn(
             self: *const IMFPMediaItem,
             pguidStartPositionType: ?*Guid,
             pvStartValue: ?*PROPVARIANT,
             pguidStopPositionType: ?*Guid,
             pvStopValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStartStopPosition: *const fn(
             self: *const IMFPMediaItem,
             pguidStartPositionType: ?*const Guid,
             pvStartValue: ?*const PROPVARIANT,
             pguidStopPositionType: ?*const Guid,
             pvStopValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasVideo: *const fn(
             self: *const IMFPMediaItem,
             pfHasVideo: ?*BOOL,
             pfSelected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasAudio: *const fn(
             self: *const IMFPMediaItem,
             pfHasAudio: ?*BOOL,
             pfSelected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsProtected: *const fn(
             self: *const IMFPMediaItem,
             pfProtected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDuration: *const fn(
             self: *const IMFPMediaItem,
             guidPositionType: ?*const Guid,
             pvDurationValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumberOfStreams: *const fn(
             self: *const IMFPMediaItem,
             pdwStreamCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamSelection: *const fn(
             self: *const IMFPMediaItem,
             dwStreamIndex: u32,
             pfEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStreamSelection: *const fn(
             self: *const IMFPMediaItem,
             dwStreamIndex: u32,
             fEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamAttribute: *const fn(
             self: *const IMFPMediaItem,
             dwStreamIndex: u32,
             guidMFAttribute: ?*const Guid,
             pvValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPresentationAttribute: *const fn(
             self: *const IMFPMediaItem,
             guidMFAttribute: ?*const Guid,
             pvValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCharacteristics: *const fn(
             self: *const IMFPMediaItem,
             pCharacteristics: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStreamSink: *const fn(
             self: *const IMFPMediaItem,
             dwStreamIndex: u32,
             pMediaSink: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMetadata: *const fn(
             self: *const IMFPMediaItem,
             ppMetadataStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -27573,7 +27573,7 @@ pub const IMFPMediaPlayerCallback = extern union {
         OnMediaPlayerEvent: *const fn(
             self: *const IMFPMediaPlayerCallback,
             pEventHeader: ?*MFP_EVENT_HEADER,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -27619,7 +27619,7 @@ pub const IMFSharingEngineClassFactory = extern union {
             dwFlags: u32,
             pAttr: ?*IMFAttributes,
             ppEngine: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -27637,7 +27637,7 @@ pub const IMFMediaSharingEngine = extern union {
         GetDevice: *const fn(
             self: *const IMFMediaSharingEngine,
             pDevice: ?*DEVICE_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaEngine: IMFMediaEngine,
@@ -27658,7 +27658,7 @@ pub const IMFMediaSharingEngineClassFactory = extern union {
             dwFlags: u32,
             pAttr: ?*IMFAttributes,
             ppEngine: ?*?*IMFMediaSharingEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -27676,14 +27676,14 @@ pub const IMFImageSharingEngine = extern union {
         SetSource: *const fn(
             self: *const IMFImageSharingEngine,
             pStream: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDevice: *const fn(
             self: *const IMFImageSharingEngine,
             pDevice: ?*DEVICE_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IMFImageSharingEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -27708,7 +27708,7 @@ pub const IMFImageSharingEngineClassFactory = extern union {
             self: *const IMFImageSharingEngineClassFactory,
             pUniqueDeviceName: ?BSTR,
             ppEngine: **IMFImageSharingEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -27739,10 +27739,10 @@ pub const IPlayToControl = extern union {
         Connect: *const fn(
             self: *const IPlayToControl,
             pFactory: ?*IMFSharingEngineClassFactory,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const IPlayToControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -27763,7 +27763,7 @@ pub const IPlayToControlWithCapabilities = extern union {
         GetCapabilities: *const fn(
             self: *const IPlayToControlWithCapabilities,
             pCapabilities: ?*PLAYTO_SOURCE_CREATEFLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPlayToControl: IPlayToControl,
@@ -27784,7 +27784,7 @@ pub const IPlayToSourceClassFactory = extern union {
             dwFlags: u32,
             pControl: ?*IPlayToControl,
             ppSource: ?*?*IInspectable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -27802,11 +27802,11 @@ pub const IEVRVideoStreamControl = extern union {
         SetStreamActiveState: *const fn(
             self: *const IEVRVideoStreamControl,
             fActive: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamActiveState: *const fn(
             self: *const IEVRVideoStreamControl,
             lpfActive: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -27828,58 +27828,58 @@ pub const IMFVideoProcessor = extern union {
             self: *const IMFVideoProcessor,
             lpdwNumProcessingModes: ?*u32,
             ppVideoProcessingModes: [*]?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorCaps: *const fn(
             self: *const IMFVideoProcessor,
             lpVideoProcessorMode: ?*Guid,
             lpVideoProcessorCaps: ?*DXVA2_VideoProcessorCaps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorMode: *const fn(
             self: *const IMFVideoProcessor,
             lpMode: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVideoProcessorMode: *const fn(
             self: *const IMFVideoProcessor,
             lpMode: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProcAmpRange: *const fn(
             self: *const IMFVideoProcessor,
             dwProperty: u32,
             pPropRange: ?*DXVA2_ValueRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProcAmpValues: *const fn(
             self: *const IMFVideoProcessor,
             dwFlags: u32,
             Values: ?*DXVA2_ProcAmpValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProcAmpValues: *const fn(
             self: *const IMFVideoProcessor,
             dwFlags: u32,
             pValues: ?*DXVA2_ProcAmpValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteringRange: *const fn(
             self: *const IMFVideoProcessor,
             dwProperty: u32,
             pPropRange: ?*DXVA2_ValueRange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteringValue: *const fn(
             self: *const IMFVideoProcessor,
             dwProperty: u32,
             pValue: ?*DXVA2_Fixed32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFilteringValue: *const fn(
             self: *const IMFVideoProcessor,
             dwProperty: u32,
             pValue: ?*DXVA2_Fixed32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBackgroundColor: *const fn(
             self: *const IMFVideoProcessor,
             lpClrBkg: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBackgroundColor: *const fn(
             self: *const IMFVideoProcessor,
             ClrBkg: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -27965,18 +27965,18 @@ pub const IMFVideoMixerBitmap = extern union {
         SetAlphaBitmap: *const fn(
             self: *const IMFVideoMixerBitmap,
             pBmpParms: ?*const MFVideoAlphaBitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearAlphaBitmap: *const fn(
             self: *const IMFVideoMixerBitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateAlphaBitmapParameters: *const fn(
             self: *const IMFVideoMixerBitmap,
             pBmpParms: ?*const MFVideoAlphaBitmapParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAlphaBitmapParameters: *const fn(
             self: *const IMFVideoMixerBitmap,
             pBmpParms: ?*MFVideoAlphaBitmapParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -28003,7 +28003,7 @@ pub const IAdvancedMediaCaptureInitializationSettings = extern union {
         SetDirectxDeviceManager: *const fn(
             self: *const IAdvancedMediaCaptureInitializationSettings,
             value: ?*IMFDXGIDeviceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -28021,7 +28021,7 @@ pub const IAdvancedMediaCaptureSettings = extern union {
         GetDirectxDeviceManager: *const fn(
             self: *const IAdvancedMediaCaptureSettings,
             value: ?*?*IMFDXGIDeviceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -28039,7 +28039,7 @@ pub const IAdvancedMediaCapture = extern union {
         GetAdvancedMediaCaptureSettings: *const fn(
             self: *const IAdvancedMediaCapture,
             value: ?*?*IAdvancedMediaCaptureSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -28057,23 +28057,23 @@ pub const IMFSpatialAudioObjectBuffer = extern union {
         SetID: *const fn(
             self: *const IMFSpatialAudioObjectBuffer,
             u32ID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetID: *const fn(
             self: *const IMFSpatialAudioObjectBuffer,
             pu32ID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetType: *const fn(
             self: *const IMFSpatialAudioObjectBuffer,
             type: AudioObjectType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const IMFSpatialAudioObjectBuffer,
             pType: ?*AudioObjectType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMetadataItems: *const fn(
             self: *const IMFSpatialAudioObjectBuffer,
             ppMetadataItems: ?*?*ISpatialAudioMetadataItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFMediaBuffer: IMFMediaBuffer,
@@ -28104,16 +28104,16 @@ pub const IMFSpatialAudioSample = extern union {
         GetObjectCount: *const fn(
             self: *const IMFSpatialAudioSample,
             pdwObjectCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddSpatialAudioObject: *const fn(
             self: *const IMFSpatialAudioSample,
             pAudioObjBuffer: ?*IMFSpatialAudioObjectBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpatialAudioObjectByIndex: *const fn(
             self: *const IMFSpatialAudioSample,
             dwIndex: u32,
             ppAudioObjBuffer: **IMFSpatialAudioObjectBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFSample: IMFSample,
@@ -28139,38 +28139,38 @@ pub const IMFContentDecryptionModuleSession = extern union {
         GetSessionId: *const fn(
             self: *const IMFContentDecryptionModuleSession,
             sessionId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExpiration: *const fn(
             self: *const IMFContentDecryptionModuleSession,
             expiration: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKeyStatuses: *const fn(
             self: *const IMFContentDecryptionModuleSession,
             keyStatuses: [*]?*MFMediaKeyStatus,
             numKeyStatuses: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Load: *const fn(
             self: *const IMFContentDecryptionModuleSession,
             sessionId: ?[*:0]const u16,
             loaded: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateRequest: *const fn(
             self: *const IMFContentDecryptionModuleSession,
             initDataType: ?[*:0]const u16,
             initData: [*:0]const u8,
             initDataSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Update: *const fn(
             self: *const IMFContentDecryptionModuleSession,
             response: [*:0]const u8,
             responseSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMFContentDecryptionModuleSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IMFContentDecryptionModuleSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -28212,10 +28212,10 @@ pub const IMFContentDecryptionModuleSessionCallbacks = extern union {
             message: [*:0]const u8,
             messageSize: u32,
             destinationURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         KeyStatusChanged: *const fn(
             self: *const IMFContentDecryptionModuleSessionCallbacks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -28237,37 +28237,37 @@ pub const IMFContentDecryptionModule = extern union {
             self: *const IMFContentDecryptionModule,
             contentEnabler: ?*IMFContentEnabler,
             result: ?*IMFAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSuspendNotify: *const fn(
             self: *const IMFContentDecryptionModule,
             notify: ?*?*IMFCdmSuspendNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPMPHostApp: *const fn(
             self: *const IMFContentDecryptionModule,
             pmpHostApp: ?*IMFPMPHostApp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSession: *const fn(
             self: *const IMFContentDecryptionModule,
             sessionType: MF_MEDIAKEYSESSION_TYPE,
             callbacks: ?*IMFContentDecryptionModuleSessionCallbacks,
             session: ?*?*IMFContentDecryptionModuleSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetServerCertificate: *const fn(
             self: *const IMFContentDecryptionModule,
             certificate: [*:0]const u8,
             certificateSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTrustedInput: *const fn(
             self: *const IMFContentDecryptionModule,
             contentInitData: [*:0]const u8,
             contentInitDataSize: u32,
             trustedInput: ?*?*IMFTrustedInput,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProtectionSystemIds: *const fn(
             self: *const IMFContentDecryptionModule,
             systemIds: [*]?*Guid,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -28304,15 +28304,15 @@ pub const IMFContentDecryptionModuleAccess = extern union {
             self: *const IMFContentDecryptionModuleAccess,
             contentDecryptionModuleProperties: ?*IPropertyStore,
             contentDecryptionModule: ?*?*IMFContentDecryptionModule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConfiguration: *const fn(
             self: *const IMFContentDecryptionModuleAccess,
             configuration: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKeySystem: *const fn(
             self: *const IMFContentDecryptionModuleAccess,
             keySystem: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -28337,14 +28337,14 @@ pub const IMFContentDecryptionModuleFactory = extern union {
             self: *const IMFContentDecryptionModuleFactory,
             keySystem: ?[*:0]const u16,
             contentType: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         CreateContentDecryptionModuleAccess: *const fn(
             self: *const IMFContentDecryptionModuleFactory,
             keySystem: ?[*:0]const u16,
             configurations: [*]?*IPropertyStore,
             numConfigurations: u32,
             contentDecryptionModuleAccess: ?*?*IMFContentDecryptionModuleAccess,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -28383,10 +28383,10 @@ pub const IMFCameraSyncObject = extern union {
         WaitOnSignal: *const fn(
             self: *const IMFCameraSyncObject,
             timeOutInMs: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IMFCameraSyncObject,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -28406,7 +28406,7 @@ pub const IMFVirtualCamera = extern union {
         AddDeviceSourceInfo: *const fn(
             self: *const IMFVirtualCamera,
             DeviceSourceInfo: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddProperty: *const fn(
             self: *const IMFVirtualCamera,
             pKey: ?*const DEVPROPKEY,
@@ -28414,7 +28414,7 @@ pub const IMFVirtualCamera = extern union {
             // TODO: what to do with BytesParamIndex 3?
             pbData: ?*const u8,
             cbData: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRegistryEntry: *const fn(
             self: *const IMFVirtualCamera,
             EntryName: ?[*:0]const u16,
@@ -28423,21 +28423,21 @@ pub const IMFVirtualCamera = extern union {
             // TODO: what to do with BytesParamIndex 4?
             pbData: ?*const u8,
             cbData: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Start: *const fn(
             self: *const IMFVirtualCamera,
             pCallback: ?*IMFAsyncCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IMFVirtualCamera,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IMFVirtualCamera,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMediaSource: *const fn(
             self: *const IMFVirtualCamera,
             ppMediaSource: **IMFMediaSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendCameraProperty: *const fn(
             self: *const IMFVirtualCamera,
             propertySet: ?*const Guid,
@@ -28450,7 +28450,7 @@ pub const IMFVirtualCamera = extern union {
             data: ?*anyopaque,
             dataLength: u32,
             dataWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSyncEvent: *const fn(
             self: *const IMFVirtualCamera,
             kseventSet: ?*const Guid,
@@ -28458,7 +28458,7 @@ pub const IMFVirtualCamera = extern union {
             kseventFlags: u32,
             eventHandle: ?HANDLE,
             cameraSyncObject: **IMFCameraSyncObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSyncSemaphore: *const fn(
             self: *const IMFVirtualCamera,
             kseventSet: ?*const Guid,
@@ -28467,10 +28467,10 @@ pub const IMFVirtualCamera = extern union {
             semaphoreHandle: ?HANDLE,
             semaphoreAdjustment: i32,
             cameraSyncObject: **IMFCameraSyncObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IMFVirtualCamera,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMFAttributes: IMFAttributes,
@@ -28604,20 +28604,20 @@ pub extern "dxva2" fn DXVAHD_CreateDevice(
     Usage: DXVAHD_DEVICE_USAGE,
     pPlugin: ?PDXVAHDSW_Plugin,
     ppDevice: ?*?*IDXVAHD_Device,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn DXVA2CreateDirect3DDeviceManager9(
     pResetToken: ?*u32,
     ppDeviceManager: ?*?*IDirect3DDeviceManager9,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn DXVA2CreateVideoService(
     pDD: ?*IDirect3DDevice9,
     riid: ?*const Guid,
     ppService: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn OPMGetVideoOutputsFromHMONITOR(
@@ -28625,7 +28625,7 @@ pub extern "dxva2" fn OPMGetVideoOutputsFromHMONITOR(
     vos: OPM_VIDEO_OUTPUT_SEMANTICS,
     pulNumVideoOutputs: ?*u32,
     pppOPMVideoOutputArray: ?*?*?*IOPMVideoOutput,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn OPMGetVideoOutputForTarget(
@@ -28633,7 +28633,7 @@ pub extern "dxva2" fn OPMGetVideoOutputForTarget(
     VidPnTarget: u32,
     vos: OPM_VIDEO_OUTPUT_SEMANTICS,
     ppOPMVideoOutput: **IOPMVideoOutput,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn OPMGetVideoOutputsFromIDirect3DDevice9Object(
@@ -28641,32 +28641,32 @@ pub extern "dxva2" fn OPMGetVideoOutputsFromIDirect3DDevice9Object(
     vos: OPM_VIDEO_OUTPUT_SEMANTICS,
     pulNumVideoOutputs: ?*u32,
     pppOPMVideoOutputArray: ?*?*?*IOPMVideoOutput,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFSerializeAttributesToStream(
     pAttr: ?*IMFAttributes,
     dwOptions: u32,
     pStm: ?*IStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFDeserializeAttributesFromStream(
     pAttr: ?*IMFAttributes,
     dwOptions: u32,
     pStm: ?*IStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFCreateTransformActivate(
     ppActivate: ?*?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateMediaSession(
     pConfiguration: ?*IMFAttributes,
     ppMediaSession: ?*?*IMFMediaSession,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreatePMPMediaSession(
@@ -28674,38 +28674,38 @@ pub extern "mf" fn MFCreatePMPMediaSession(
     pConfiguration: ?*IMFAttributes,
     ppMediaSession: ?*?*IMFMediaSession,
     ppEnablerActivate: ?*?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateSourceResolver(
     ppISourceResolver: ?*?*IMFSourceResolver,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn CreatePropertyStore(
     ppStore: ?*?*IPropertyStore,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFGetSupportedSchemes(
     pPropVarSchemeArray: ?*PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFGetSupportedMimeTypes(
     pPropVarMimeTypeArray: ?*PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateTopology(
     ppTopo: ?*?*IMFTopology,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateTopologyNode(
     NodeType: MF_TOPOLOGY_TYPE,
     ppNode: ?*?*IMFTopologyNode,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFGetTopoNodeCurrentType(
@@ -28713,7 +28713,7 @@ pub extern "mf" fn MFGetTopoNodeCurrentType(
     dwStreamIndex: u32,
     fOutput: BOOL,
     ppType: ?*?*IMFMediaType,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFGetService(
@@ -28721,33 +28721,33 @@ pub extern "mf" fn MFGetService(
     guidService: ?*const Guid,
     riid: ?*const Guid,
     ppvObject: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFGetSystemTime(
-) callconv(@import("std").os.windows.WINAPI) i64;
+) callconv(.winapi) i64;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreatePresentationClock(
     ppPresentationClock: ?*?*IMFPresentationClock,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateSystemTimeSource(
     ppSystemTimeSource: ?*?*IMFPresentationTimeSource,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreatePresentationDescriptor(
     cStreamDescriptors: u32,
     apStreamDescriptors: ?[*]?*IMFStreamDescriptor,
     ppPresentationDescriptor: ?*?*IMFPresentationDescriptor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFRequireProtectedEnvironment(
     pPresentationDescriptor: ?*IMFPresentationDescriptor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFSerializePresentationDescriptor(
@@ -28755,14 +28755,14 @@ pub extern "mfplat" fn MFSerializePresentationDescriptor(
     pcbData: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
     ppbData: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFDeserializePresentationDescriptor(
     cbData: u32,
     pbData: [*:0]u8,
     ppPD: ?*?*IMFPresentationDescriptor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateStreamDescriptor(
@@ -28770,34 +28770,34 @@ pub extern "mfplat" fn MFCreateStreamDescriptor(
     cMediaTypes: u32,
     apMediaTypes: [*]?*IMFMediaType,
     ppDescriptor: ?*?*IMFStreamDescriptor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateSimpleTypeHandler(
     ppHandler: ?*?*IMFMediaTypeHandler,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFShutdownObject(
     pUnk: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateAudioRenderer(
     pAudioAttributes: ?*IMFAttributes,
     ppSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateAudioRendererActivate(
     ppActivate: ?*?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateVideoRendererActivate(
     hwndVideo: ?HWND,
     ppActivate: ?*?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFCreateMPEG4MediaSink(
@@ -28805,7 +28805,7 @@ pub extern "mf" fn MFCreateMPEG4MediaSink(
     pVideoMediaType: ?*IMFMediaType,
     pAudioMediaType: ?*IMFMediaType,
     ppIMediaSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFCreate3GPMediaSink(
@@ -28813,27 +28813,27 @@ pub extern "mf" fn MFCreate3GPMediaSink(
     pVideoMediaType: ?*IMFMediaType,
     pAudioMediaType: ?*IMFMediaType,
     ppIMediaSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFCreateMP3MediaSink(
     pTargetByteStream: ?*IMFByteStream,
     ppMediaSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mf" fn MFCreateAC3MediaSink(
     pTargetByteStream: ?*IMFByteStream,
     pAudioMediaType: ?*IMFMediaType,
     ppMediaSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mf" fn MFCreateADTSMediaSink(
     pTargetByteStream: ?*IMFByteStream,
     pAudioMediaType: ?*IMFMediaType,
     ppMediaSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mf" fn MFCreateMuxSink(
@@ -28841,7 +28841,7 @@ pub extern "mf" fn MFCreateMuxSink(
     pOutputAttributes: ?*IMFAttributes,
     pOutputByteStream: ?*IMFByteStream,
     ppMuxSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mf" fn MFCreateFMPEG4MediaSink(
@@ -28849,7 +28849,7 @@ pub extern "mf" fn MFCreateFMPEG4MediaSink(
     pVideoMediaType: ?*IMFMediaType,
     pAudioMediaType: ?*IMFMediaType,
     ppIMediaSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "mfsrcsnk" fn MFCreateAVIMediaSink(
@@ -28857,94 +28857,94 @@ pub extern "mfsrcsnk" fn MFCreateAVIMediaSink(
     pVideoMediaType: ?*IMFMediaType,
     pAudioMediaType: ?*IMFMediaType,
     ppIMediaSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "mfsrcsnk" fn MFCreateWAVEMediaSink(
     pTargetByteStream: ?*IMFByteStream,
     pAudioMediaType: ?*IMFMediaType,
     ppMediaSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateTopoLoader(
     ppObj: ?*?*IMFTopoLoader,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateSampleGrabberSinkActivate(
     pIMFMediaType: ?*IMFMediaType,
     pIMFSampleGrabberSinkCallback: ?*IMFSampleGrabberSinkCallback,
     ppIActivate: ?*?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateStandardQualityManager(
     ppQualityManager: ?*?*IMFQualityManager,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateSequencerSource(
     pReserved: ?*IUnknown,
     ppSequencerSource: ?*?*IMFSequencerSource,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateSequencerSegmentOffset(
     dwId: u32,
     hnsOffset: i64,
     pvarSegmentOffset: ?*PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFCreateAggregateSource(
     pSourceCollection: ?*IMFCollection,
     ppAggSource: ?*?*IMFMediaSource,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateCredentialCache(
     ppCache: ?*?*IMFNetCredentialCache,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateProxyLocator(
     pszProtocol: ?[*:0]const u16,
     pProxyConfig: ?*IPropertyStore,
     ppProxyLocator: ?*?*IMFNetProxyLocator,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateNetSchemePlugin(
     riid: ?*const Guid,
     ppvHandler: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreatePMPServer(
     dwCreationFlags: u32,
     ppPMPServer: ?*?*IMFPMPServer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateRemoteDesktopPlugin(
     ppPlugin: ?*?*IMFRemoteDesktopPlugin,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn CreateNamedPropertyStore(
     ppStore: ?*?*INamedPropertyStore,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFCreateSampleCopierMFT(
     ppCopierMFT: ?*?*IMFTransform,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFCreateTranscodeProfile(
     ppTranscodeProfile: ?*?*IMFTranscodeProfile,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFCreateTranscodeTopology(
@@ -28952,7 +28952,7 @@ pub extern "mf" fn MFCreateTranscodeTopology(
     pwszOutputFilePath: ?[*:0]const u16,
     pProfile: ?*IMFTranscodeProfile,
     ppTranscodeTopo: ?*?*IMFTopology,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mf" fn MFCreateTranscodeTopologyFromByteStream(
@@ -28960,7 +28960,7 @@ pub extern "mf" fn MFCreateTranscodeTopologyFromByteStream(
     pOutputStream: ?*IMFByteStream,
     pProfile: ?*IMFTranscodeProfile,
     ppTranscodeTopo: ?*?*IMFTopology,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFTranscodeGetAudioOutputAvailableTypes(
@@ -28968,90 +28968,90 @@ pub extern "mf" fn MFTranscodeGetAudioOutputAvailableTypes(
     dwMFTFlags: u32,
     pCodecConfig: ?*IMFAttributes,
     ppAvailableTypes: ?*?*IMFCollection,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFCreateTranscodeSinkActivate(
     ppActivate: ?*?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreateTrackedSample(
     ppMFSample: ?*?*IMFTrackedSample,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFCreateMFByteStreamOnStream(
     pStream: ?*IStream,
     ppByteStream: ?*?*IMFByteStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreateStreamOnMFByteStream(
     pByteStream: ?*IMFByteStream,
     ppStream: ?*?*IStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreateMFByteStreamOnStreamEx(
     punkStream: ?*IUnknown,
     ppByteStream: ?*?*IMFByteStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreateStreamOnMFByteStreamEx(
     pByteStream: ?*IMFByteStream,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreateMediaTypeFromProperties(
     punkStream: ?*IUnknown,
     ppMediaType: ?*?*IMFMediaType,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreatePropertiesFromMediaType(
     pMediaType: ?*IMFMediaType,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFEnumDeviceSources(
     pAttributes: ?*IMFAttributes,
     pppSourceActivate: ?*?*?*IMFActivate,
     pcSourceActivate: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFCreateDeviceSource(
     pAttributes: ?*IMFAttributes,
     ppSource: ?*?*IMFMediaSource,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFCreateDeviceSourceActivate(
     pAttributes: ?*IMFAttributes,
     ppActivate: ?*?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mf" fn MFCreateProtectedEnvironmentAccess(
     ppAccess: ?*?*IMFProtectedEnvironmentAccess,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mf" fn MFLoadSignedLibrary(
     pszName: ?[*:0]const u16,
     ppLib: ?*?*IMFSignedLibrary,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mf" fn MFGetSystemId(
     ppId: ?*?*IMFSystemId,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mf" fn MFGetLocalId(
@@ -29059,19 +29059,19 @@ pub extern "mf" fn MFGetLocalId(
     verifier: ?*const u8,
     size: u32,
     id: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "mfplat" fn MFCreateContentProtectionDevice(
     ProtectionSystemId: ?*const Guid,
     ContentProtectionDevice: ?*?*IMFContentProtectionDevice,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "mfplat" fn MFIsContentProtectionDeviceSupported(
     ProtectionSystemId: ?*const Guid,
     isSupported: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "mfplat" fn MFCreateContentDecryptorContext(
@@ -29079,13 +29079,13 @@ pub extern "mfplat" fn MFCreateContentDecryptorContext(
     pD3DManager: ?*IMFDXGIDeviceManager,
     pContentProtectionDevice: ?*IMFContentProtectionDevice,
     ppContentDecryptorContext: ?*?*IMFContentDecryptorContext,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "mfsensorgroup" fn MFCreateSensorGroup(
     SensorGroupSymbolicLink: ?[*:0]const u16,
     ppSensorGroup: **IMFSensorGroup,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "mfsensorgroup" fn MFCreateSensorStream(
@@ -29093,7 +29093,7 @@ pub extern "mfsensorgroup" fn MFCreateSensorStream(
     pAttributes: ?*IMFAttributes,
     pMediaTypeCollection: ?*IMFCollection,
     ppStream: **IMFSensorStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "mfsensorgroup" fn MFCreateSensorProfile(
@@ -29101,160 +29101,160 @@ pub extern "mfsensorgroup" fn MFCreateSensorProfile(
     ProfileIndex: u32,
     Constraints: ?[*:0]const u16,
     ppProfile: **IMFSensorProfile,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "mfsensorgroup" fn MFCreateSensorProfileCollection(
     ppSensorProfile: **IMFSensorProfileCollection,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mfsensorgroup" fn MFCreateSensorActivityMonitor(
     pCallback: ?*IMFSensorActivitiesReportCallback,
     ppActivityMonitor: **IMFSensorActivityMonitor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mfcore" fn MFCreateExtendedCameraIntrinsics(
     ppExtendedCameraIntrinsics: **IMFExtendedCameraIntrinsics,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mfcore" fn MFCreateExtendedCameraIntrinsicModel(
     distortionModelType: MFCameraIntrinsic_DistortionModelType,
     ppExtendedCameraIntrinsicModel: **IMFExtendedCameraIntrinsicModel,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "mfsensorgroup" fn MFCreateRelativePanelWatcher(
     videoDeviceId: ?[*:0]const u16,
     displayMonitorDeviceId: ?[*:0]const u16,
     ppRelativePanelWatcher: **IMFRelativePanelWatcher,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mfsensorgroup" fn MFCreateCameraOcclusionStateMonitor(
     symbolicLink: ?[*:0]const u16,
     callback: ?*IMFCameraOcclusionStateReportCallback,
     occlusionStateMonitor: **IMFCameraOcclusionStateMonitor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateASFContentInfo(
     ppIContentInfo: ?*?*IMFASFContentInfo,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateASFIndexer(
     ppIIndexer: ?*?*IMFASFIndexer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateASFIndexerByteStream(
     pIContentByteStream: ?*IMFByteStream,
     cbIndexStartOffset: u64,
     pIIndexByteStream: ?*?*IMFByteStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateASFSplitter(
     ppISplitter: ?*?*IMFASFSplitter,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateASFProfile(
     ppIProfile: ?*?*IMFASFProfile,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateASFProfileFromPresentationDescriptor(
     pIPD: ?*IMFPresentationDescriptor,
     ppIProfile: ?*?*IMFASFProfile,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreatePresentationDescriptorFromASFProfile(
     pIProfile: ?*IMFASFProfile,
     ppIPD: ?*?*IMFPresentationDescriptor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateASFMultiplexer(
     ppIMultiplexer: ?*?*IMFASFMultiplexer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateASFStreamSelector(
     pIASFProfile: ?*IMFASFProfile,
     ppSelector: ?*?*IMFASFStreamSelector,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateASFMediaSink(
     pIByteStream: ?*IMFByteStream,
     ppIMediaSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateASFMediaSinkActivate(
     pwszFileName: ?[*:0]const u16,
     pContentInfo: ?*IMFASFContentInfo,
     ppIActivate: ?*?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateWMVEncoderActivate(
     pMediaType: ?*IMFMediaType,
     pEncodingConfigurationProperties: ?*IPropertyStore,
     ppActivate: ?*?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mf" fn MFCreateWMAEncoderActivate(
     pMediaType: ?*IMFMediaType,
     pEncodingConfigurationProperties: ?*IPropertyStore,
     ppActivate: ?*?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFCreateASFStreamingMediaSink(
     pIByteStream: ?*IMFByteStream,
     ppIMediaSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mf" fn MFCreateASFStreamingMediaSinkActivate(
     pByteStreamActivate: ?*IMFActivate,
     pContentInfo: ?*IMFASFContentInfo,
     ppIActivate: ?*?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mfplat" fn MFCreateD3D12SynchronizationObject(
     pDevice: ?*ID3D12Device,
     riid: ?*const Guid,
     ppvSyncObject: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFStartup(
     Version: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFShutdown(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFLockPlatform(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFUnlockPlatform(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFPutWorkItem(
     dwQueue: u32,
     pCallback: ?*IMFAsyncCallback,
     pState: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFPutWorkItem2(
@@ -29262,20 +29262,20 @@ pub extern "mfplat" fn MFPutWorkItem2(
     Priority: i32,
     pCallback: ?*IMFAsyncCallback,
     pState: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFPutWorkItemEx(
     dwQueue: u32,
     pResult: ?*IMFAsyncResult,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFPutWorkItemEx2(
     dwQueue: u32,
     Priority: i32,
     pResult: ?*IMFAsyncResult,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFPutWaitingWorkItem(
@@ -29283,20 +29283,20 @@ pub extern "mfplat" fn MFPutWaitingWorkItem(
     Priority: i32,
     pResult: ?*IMFAsyncResult,
     pKey: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFAllocateSerialWorkQueue(
     dwWorkQueue: u32,
     pdwWorkQueue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFScheduleWorkItemEx(
     pResult: ?*IMFAsyncResult,
     Timeout: i64,
     pKey: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFScheduleWorkItem(
@@ -29304,50 +29304,50 @@ pub extern "mfplat" fn MFScheduleWorkItem(
     pState: ?*IUnknown,
     Timeout: i64,
     pKey: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCancelWorkItem(
     Key: u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFGetTimerPeriodicity(
     Periodicity: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFAddPeriodicCallback(
     Callback: ?MFPERIODICCALLBACK,
     pContext: ?*IUnknown,
     pdwKey: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFRemovePeriodicCallback(
     dwKey: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFAllocateWorkQueueEx(
     WorkQueueType: MFASYNC_WORKQUEUE_TYPE,
     pdwWorkQueue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFAllocateWorkQueue(
     pdwWorkQueue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFLockWorkQueue(
     dwWorkQueue: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFUnlockWorkQueue(
     dwWorkQueue: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFBeginRegisterWorkQueueWithMMCSS(
@@ -29356,7 +29356,7 @@ pub extern "mfplat" fn MFBeginRegisterWorkQueueWithMMCSS(
     dwTaskId: u32,
     pDoneCallback: ?*IMFAsyncCallback,
     pDoneState: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFBeginRegisterWorkQueueWithMMCSSEx(
@@ -29366,49 +29366,49 @@ pub extern "mfplat" fn MFBeginRegisterWorkQueueWithMMCSSEx(
     lPriority: i32,
     pDoneCallback: ?*IMFAsyncCallback,
     pDoneState: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFEndRegisterWorkQueueWithMMCSS(
     pResult: ?*IMFAsyncResult,
     pdwTaskId: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFBeginUnregisterWorkQueueWithMMCSS(
     dwWorkQueueId: u32,
     pDoneCallback: ?*IMFAsyncCallback,
     pDoneState: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFEndUnregisterWorkQueueWithMMCSS(
     pResult: ?*IMFAsyncResult,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFGetWorkQueueMMCSSClass(
     dwWorkQueueId: u32,
     pwszClass: ?[*:0]u16,
     pcchClass: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFGetWorkQueueMMCSSTaskId(
     dwWorkQueueId: u32,
     pdwTaskId: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFRegisterPlatformWithMMCSS(
     wszClass: ?[*:0]const u16,
     pdwTaskId: ?*u32,
     lPriority: i32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFUnregisterPlatformFromMMCSS(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFLockSharedWorkQueue(
@@ -29416,13 +29416,13 @@ pub extern "mfplat" fn MFLockSharedWorkQueue(
     BasePriority: i32,
     pdwTaskId: ?*u32,
     pID: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFGetWorkQueueMMCSSPriority(
     dwWorkQueueId: u32,
     lPriority: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateAsyncResult(
@@ -29430,12 +29430,12 @@ pub extern "mfplat" fn MFCreateAsyncResult(
     pCallback: ?*IMFAsyncCallback,
     punkState: ?*IUnknown,
     ppAsyncResult: ?*?*IMFAsyncResult,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInvokeCallback(
     pAsyncResult: ?*IMFAsyncResult,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateFile(
@@ -29444,7 +29444,7 @@ pub extern "mfplat" fn MFCreateFile(
     fFlags: MF_FILE_FLAGS,
     pwszFileURL: ?[*:0]const u16,
     ppIByteStream: ?*?*IMFByteStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateTempFile(
@@ -29452,7 +29452,7 @@ pub extern "mfplat" fn MFCreateTempFile(
     OpenMode: MF_FILE_OPENMODE,
     fFlags: MF_FILE_FLAGS,
     ppIByteStream: ?*?*IMFByteStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFBeginCreateFile(
@@ -29463,24 +29463,24 @@ pub extern "mfplat" fn MFBeginCreateFile(
     pCallback: ?*IMFAsyncCallback,
     pState: ?*IUnknown,
     ppCancelCookie: ?*?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFEndCreateFile(
     pResult: ?*IMFAsyncResult,
     ppFile: ?*?*IMFByteStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCancelCreateFile(
     pCancelCookie: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateMemoryBuffer(
     cbMaxLength: u32,
     ppBuffer: ?*?*IMFMediaBuffer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateMediaBufferWrapper(
@@ -29488,7 +29488,7 @@ pub extern "mfplat" fn MFCreateMediaBufferWrapper(
     cbOffset: u32,
     dwLength: u32,
     ppBuffer: ?*?*IMFMediaBuffer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateLegacyMediaBufferOnMFMediaBuffer(
@@ -29496,27 +29496,27 @@ pub extern "mfplat" fn MFCreateLegacyMediaBufferOnMFMediaBuffer(
     pMFMediaBuffer: ?*IMFMediaBuffer,
     cbOffset: u32,
     ppMediaBuffer: ?*?*IMediaBuffer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFMapDX9FormatToDXGIFormat(
     dx9: u32,
-) callconv(@import("std").os.windows.WINAPI) DXGI_FORMAT;
+) callconv(.winapi) DXGI_FORMAT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFMapDXGIFormatToDX9Format(
     dx11: DXGI_FORMAT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFLockDXGIDeviceManager(
     pResetToken: ?*u32,
     ppManager: ?*?*IMFDXGIDeviceManager,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFUnlockDXGIDeviceManager(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateDXSurfaceBuffer(
@@ -29524,14 +29524,14 @@ pub extern "mfplat" fn MFCreateDXSurfaceBuffer(
     punkSurface: ?*IUnknown,
     fBottomUpWhenLinear: BOOL,
     ppBuffer: ?*?*IMFMediaBuffer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreateWICBitmapBuffer(
     riid: ?*const Guid,
     punkSurface: ?*IUnknown,
     ppBuffer: ?*?*IMFMediaBuffer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreateDXGISurfaceBuffer(
@@ -29540,26 +29540,26 @@ pub extern "mfplat" fn MFCreateDXGISurfaceBuffer(
     uSubresourceIndex: u32,
     fBottomUpWhenLinear: BOOL,
     ppBuffer: ?*?*IMFMediaBuffer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreateVideoSampleAllocatorEx(
     riid: ?*const Guid,
     ppSampleAllocator: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreateDXGIDeviceManager(
     resetToken: ?*u32,
     ppDeviceManager: ?*?*IMFDXGIDeviceManager,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateAlignedMemoryBuffer(
     cbMaxLength: u32,
     cbAligment: u32,
     ppBuffer: ?*?*IMFMediaBuffer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateMediaEvent(
@@ -29568,23 +29568,23 @@ pub extern "mfplat" fn MFCreateMediaEvent(
     hrStatus: HRESULT,
     pvValue: ?*const PROPVARIANT,
     ppEvent: ?*?*IMFMediaEvent,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateEventQueue(
     ppMediaEventQueue: ?*?*IMFMediaEventQueue,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateSample(
     ppIMFSample: ?*?*IMFSample,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateAttributes(
     ppMFAttributes: ?*?*IMFAttributes,
     cInitialSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitAttributesFromBlob(
@@ -29592,13 +29592,13 @@ pub extern "mfplat" fn MFInitAttributesFromBlob(
     // TODO: what to do with BytesParamIndex 2?
     pBuf: ?*const u8,
     cbBufSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFGetAttributesAsBlobSize(
     pAttributes: ?*IMFAttributes,
     pcbBufSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFGetAttributesAsBlob(
@@ -29606,7 +29606,7 @@ pub extern "mfplat" fn MFGetAttributesAsBlob(
     // TODO: what to do with BytesParamIndex 2?
     pBuf: ?*u8,
     cbBufSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFTRegister(
@@ -29619,12 +29619,12 @@ pub extern "mfplat" fn MFTRegister(
     cOutputTypes: u32,
     pOutputTypes: ?[*]MFT_REGISTER_TYPE_INFO,
     pAttributes: ?*IMFAttributes,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFTUnregister(
     clsidMFT: Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFTRegisterLocal(
@@ -29636,12 +29636,12 @@ pub extern "mfplat" fn MFTRegisterLocal(
     pInputTypes: ?[*]const MFT_REGISTER_TYPE_INFO,
     cOutputTypes: u32,
     pOutputTypes: ?[*]const MFT_REGISTER_TYPE_INFO,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFTUnregisterLocal(
     pClassFactory: ?*IClassFactory,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFTRegisterLocalByCLSID(
@@ -29653,12 +29653,12 @@ pub extern "mfplat" fn MFTRegisterLocalByCLSID(
     pInputTypes: ?[*]const MFT_REGISTER_TYPE_INFO,
     cOutputTypes: u32,
     pOutputTypes: ?[*]const MFT_REGISTER_TYPE_INFO,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFTUnregisterLocalByCLSID(
     clsidMFT: Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFTEnum(
@@ -29669,7 +29669,7 @@ pub extern "mfplat" fn MFTEnum(
     pAttributes: ?*IMFAttributes,
     ppclsidMFT: ?*?*Guid,
     pcMFTs: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFTEnumEx(
@@ -29679,7 +29679,7 @@ pub extern "mfplat" fn MFTEnumEx(
     pOutputType: ?*const MFT_REGISTER_TYPE_INFO,
     pppMFTActivate: ?*?*?*IMFActivate,
     pnumMFTActivate: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "mfplat" fn MFTEnum2(
@@ -29690,7 +29690,7 @@ pub extern "mfplat" fn MFTEnum2(
     pAttributes: ?*IMFAttributes,
     pppMFTActivate: ?*?*?*IMFActivate,
     pnumMFTActivate: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFTGetInfo(
@@ -29701,12 +29701,12 @@ pub extern "mfplat" fn MFTGetInfo(
     ppOutputTypes: ?*?*MFT_REGISTER_TYPE_INFO,
     pcOutputTypes: ?*u32,
     ppAttributes: ?*?*IMFAttributes,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFGetPluginControl(
     ppPluginControl: ?*?*IMFPluginControl,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFGetMFTMerit(
@@ -29715,26 +29715,26 @@ pub extern "mfplat" fn MFGetMFTMerit(
     // TODO: what to do with BytesParamIndex 1?
     verifier: ?*const u8,
     merit: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFRegisterLocalSchemeHandler(
     szScheme: ?[*:0]const u16,
     pActivate: ?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFRegisterLocalByteStreamHandler(
     szFileExtension: ?[*:0]const u16,
     szMimeType: ?[*:0]const u16,
     pActivate: ?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreateMFByteStreamWrapper(
     pStream: ?*IMFByteStream,
     ppStreamWrapper: ?*?*IMFByteStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreateMediaExtensionActivate(
@@ -29742,25 +29742,25 @@ pub extern "mfplat" fn MFCreateMediaExtensionActivate(
     pConfiguration: ?*IUnknown,
     riid: ?*const Guid,
     ppvObject: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "mfplat" fn MFCreateMuxStreamAttributes(
     pAttributesToMux: ?*IMFCollection,
     ppMuxAttribs: **IMFAttributes,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "mfplat" fn MFCreateMuxStreamMediaType(
     pMediaTypesToMux: ?*IMFCollection,
     ppMuxMediaType: **IMFMediaType,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "mfplat" fn MFCreateMuxStreamSample(
     pSamplesToMux: ?*IMFCollection,
     ppMuxSample: **IMFSample,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFValidateMediaTypeSize(
@@ -29768,19 +29768,19 @@ pub extern "mfplat" fn MFValidateMediaTypeSize(
     // TODO: what to do with BytesParamIndex 2?
     pBlock: ?*u8,
     cbSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateMediaType(
     ppMFType: ?*?*IMFMediaType,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateMFVideoFormatFromMFMediaType(
     pMFType: ?*IMFMediaType,
     ppMFVF: ?*?*MFVIDEOFORMAT,
     pcbSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateWaveFormatExFromMFMediaType(
@@ -29788,7 +29788,7 @@ pub extern "mfplat" fn MFCreateWaveFormatExFromMFMediaType(
     ppWF: ?*?*WAVEFORMATEX,
     pcbSize: ?*u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromVideoInfoHeader(
@@ -29797,7 +29797,7 @@ pub extern "mfplat" fn MFInitMediaTypeFromVideoInfoHeader(
     pVIH: ?*const VIDEOINFOHEADER,
     cbBufSize: u32,
     pSubtype: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromVideoInfoHeader2(
@@ -29806,7 +29806,7 @@ pub extern "mfplat" fn MFInitMediaTypeFromVideoInfoHeader2(
     pVIH2: ?*const VIDEOINFOHEADER2,
     cbBufSize: u32,
     pSubtype: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromMPEG1VideoInfo(
@@ -29815,7 +29815,7 @@ pub extern "mfplat" fn MFInitMediaTypeFromMPEG1VideoInfo(
     pMP1VI: ?*const MPEG1VIDEOINFO,
     cbBufSize: u32,
     pSubtype: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromMPEG2VideoInfo(
@@ -29824,7 +29824,7 @@ pub extern "mfplat" fn MFInitMediaTypeFromMPEG2VideoInfo(
     pMP2VI: ?*const MPEG2VIDEOINFO,
     cbBufSize: u32,
     pSubtype: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCalculateBitmapImageSize(
@@ -29833,7 +29833,7 @@ pub extern "mfplat" fn MFCalculateBitmapImageSize(
     cbBufSize: u32,
     pcbImageSize: ?*u32,
     pbKnown: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCalculateImageSize(
@@ -29841,21 +29841,21 @@ pub extern "mfplat" fn MFCalculateImageSize(
     unWidth: u32,
     unHeight: u32,
     pcbImageSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFFrameRateToAverageTimePerFrame(
     unNumerator: u32,
     unDenominator: u32,
     punAverageTimePerFrame: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFAverageTimePerFrameToFrameRate(
     unAverageTimePerFrame: u64,
     punNumerator: ?*u32,
     punDenominator: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromMFVideoFormat(
@@ -29863,7 +29863,7 @@ pub extern "mfplat" fn MFInitMediaTypeFromMFVideoFormat(
     // TODO: what to do with BytesParamIndex 2?
     pMFVF: ?*const MFVIDEOFORMAT,
     cbBufSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromWaveFormatEx(
@@ -29871,33 +29871,33 @@ pub extern "mfplat" fn MFInitMediaTypeFromWaveFormatEx(
     // TODO: what to do with BytesParamIndex 2?
     pWaveFormat: ?*const WAVEFORMATEX,
     cbBufSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromAMMediaType(
     pMFType: ?*IMFMediaType,
     pAMType: ?*const AM_MEDIA_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitAMMediaTypeFromMFMediaType(
     pMFType: ?*IMFMediaType,
     guidFormatBlockType: Guid,
     pAMType: ?*AM_MEDIA_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateAMMediaTypeFromMFMediaType(
     pMFType: ?*IMFMediaType,
     guidFormatBlockType: Guid,
     ppAMType: ?*?*AM_MEDIA_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCompareFullToPartialMediaType(
     pMFTypeFull: ?*IMFMediaType,
     pMFTypePartial: ?*IMFMediaType,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFWrapMediaType(
@@ -29905,30 +29905,30 @@ pub extern "mfplat" fn MFWrapMediaType(
     MajorType: ?*const Guid,
     SubType: ?*const Guid,
     ppWrap: ?*?*IMFMediaType,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFUnwrapMediaType(
     pWrap: ?*IMFMediaType,
     ppOrig: ?*?*IMFMediaType,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateVideoMediaType(
     pVideoFormat: ?*const MFVIDEOFORMAT,
     ppIVideoMediaType: ?*?*IMFVideoMediaType,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateVideoMediaTypeFromSubtype(
     pAMSubtype: ?*const Guid,
     ppIVideoMediaType: ?*?*IMFVideoMediaType,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "evr" fn MFIsFormatYUV(
     Format: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateVideoMediaTypeFromBitMapInfoHeader(
@@ -29941,14 +29941,14 @@ pub extern "mfplat" fn MFCreateVideoMediaTypeFromBitMapInfoHeader(
     qwFramesPerSecondDenominator: u64,
     dwMaxBitRate: u32,
     ppIVideoMediaType: ?*?*IMFVideoMediaType,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFGetStrideForBitmapInfoHeader(
     format: u32,
     dwWidth: u32,
     pStride: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "evr" fn MFGetPlaneSize(
@@ -29956,7 +29956,7 @@ pub extern "evr" fn MFGetPlaneSize(
     dwWidth: u32,
     dwHeight: u32,
     pdwPlaneSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFCreateVideoMediaTypeFromBitMapInfoHeaderEx(
@@ -29971,31 +29971,31 @@ pub extern "mfplat" fn MFCreateVideoMediaTypeFromBitMapInfoHeaderEx(
     dwFramesPerSecondDenominator: u32,
     dwMaxBitRate: u32,
     ppIVideoMediaType: ?*?*IMFVideoMediaType,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateMediaTypeFromRepresentation(
     guidRepresentation: Guid,
     pvRepresentation: ?*anyopaque,
     ppIMediaType: ?*?*IMFMediaType,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateAudioMediaType(
     pAudioFormat: ?*const WAVEFORMATEX,
     ppIAudioMediaType: ?*?*IMFAudioMediaType,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFGetUncompressedVideoFormat(
     pVideoFormat: ?*const MFVIDEOFORMAT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitVideoFormat(
     pVideoFormat: ?*MFVIDEOFORMAT,
     type: MFStandardVideoFormat,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitVideoFormat_RGB(
@@ -30003,19 +30003,19 @@ pub extern "mfplat" fn MFInitVideoFormat_RGB(
     dwWidth: u32,
     dwHeight: u32,
     D3Dfmt: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFConvertColorInfoToDXVA(
     pdwToDXVA: ?*u32,
     pFromFormat: ?*const MFVIDEOFORMAT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFConvertColorInfoFromDXVA(
     pToFormat: ?*MFVIDEOFORMAT,
     dwFromDXVA: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCopyImage(
@@ -30025,21 +30025,21 @@ pub extern "mfplat" fn MFCopyImage(
     lSrcStride: i32,
     dwWidthInBytes: u32,
     dwLines: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFConvertFromFP16Array(
     pDest: [*]f32,
     pSrc: [*:0]const u16,
     dwCount: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFConvertToFP16Array(
     pDest: [*:0]u16,
     pSrc: [*]const f32,
     dwCount: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreate2DMediaBuffer(
@@ -30048,7 +30048,7 @@ pub extern "mfplat" fn MFCreate2DMediaBuffer(
     dwFourCC: u32,
     fBottomUp: BOOL,
     ppBuffer: ?*?*IMFMediaBuffer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFCreateMediaBufferFromMediaType(
@@ -30057,12 +30057,12 @@ pub extern "mfplat" fn MFCreateMediaBufferFromMediaType(
     dwMinLength: u32,
     dwMinAlignment: u32,
     ppBuffer: ?*?*IMFMediaBuffer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCreateCollection(
     ppIMFCollection: ?*?*IMFCollection,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFHeapAlloc(
@@ -30071,12 +30071,12 @@ pub extern "mfplat" fn MFHeapAlloc(
     pszFile: ?PSTR,
     line: i32,
     eat: EAllocationType,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFHeapFree(
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFllMulDiv(
@@ -30084,13 +30084,13 @@ pub extern "mfplat" fn MFllMulDiv(
     b: i64,
     c: i64,
     d: i64,
-) callconv(@import("std").os.windows.WINAPI) i64;
+) callconv(.winapi) i64;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mfplat" fn MFGetContentProtectionSystemCLSID(
     guidProtectionSystemID: ?*const Guid,
     pclsid: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "mfplat" fn MFCombineSamples(
@@ -30098,7 +30098,7 @@ pub extern "mfplat" fn MFCombineSamples(
     pSampleToAdd: ?*IMFSample,
     dwMaxMergedDurationInMS: u32,
     pMerged: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "mfplat" fn MFSplitSample(
@@ -30106,28 +30106,28 @@ pub extern "mfplat" fn MFSplitSample(
     pOutputSamples: [*]?*IMFSample,
     dwOutputSampleMaxCount: u32,
     pdwOutputSampleCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfreadwrite" fn MFCreateSourceReaderFromURL(
     pwszURL: ?[*:0]const u16,
     pAttributes: ?*IMFAttributes,
     ppSourceReader: ?*?*IMFSourceReader,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfreadwrite" fn MFCreateSourceReaderFromByteStream(
     pByteStream: ?*IMFByteStream,
     pAttributes: ?*IMFAttributes,
     ppSourceReader: ?*?*IMFSourceReader,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfreadwrite" fn MFCreateSourceReaderFromMediaSource(
     pMediaSource: ?*IMFMediaSource,
     pAttributes: ?*IMFAttributes,
     ppSourceReader: ?*?*IMFSourceReader,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfreadwrite" fn MFCreateSinkWriterFromURL(
@@ -30135,28 +30135,28 @@ pub extern "mfreadwrite" fn MFCreateSinkWriterFromURL(
     pByteStream: ?*IMFByteStream,
     pAttributes: ?*IMFAttributes,
     ppSinkWriter: ?*?*IMFSinkWriter,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfreadwrite" fn MFCreateSinkWriterFromMediaSink(
     pMediaSink: ?*IMFMediaSink,
     pAttributes: ?*IMFAttributes,
     ppSinkWriter: ?*?*IMFSinkWriter,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "evr" fn MFCreateVideoPresenter(
     pOwner: ?*IUnknown,
     riidDevice: ?*const Guid,
     riid: ?*const Guid,
     ppVideoPresenter: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "evr" fn MFCreateVideoMixer(
     pOwner: ?*IUnknown,
     riidDevice: ?*const Guid,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "evr" fn MFCreateVideoMixerAndPresenter(
     pMixerOwner: ?*IUnknown,
@@ -30165,22 +30165,22 @@ pub extern "evr" fn MFCreateVideoMixerAndPresenter(
     ppvVideoMixer: ?*?*anyopaque,
     riidPresenter: ?*const Guid,
     ppvVideoPresenter: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mf" fn MFCreateVideoRenderer(
     riidRenderer: ?*const Guid,
     ppVideoRenderer: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "evr" fn MFCreateVideoSampleFromSurface(
     pUnkSurface: ?*IUnknown,
     ppSample: ?*?*IMFSample,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "evr" fn MFCreateVideoSampleAllocator(
     riid: ?*const Guid,
     ppSampleAllocator: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 // This function from dll 'MFPlay' is being skipped because it has some sort of issue
@@ -30192,7 +30192,7 @@ pub extern "mf" fn MFCreateEncryptedMediaExtensionsStoreActivate(
     objectStream: ?*IStream,
     classId: ?[*:0]const u16,
     activate: ?*?*IMFActivate,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mfsensorgroup" fn MFCreateVirtualCamera(
     type: MFVirtualCameraType,
@@ -30203,25 +30203,25 @@ pub extern "mfsensorgroup" fn MFCreateVirtualCamera(
     categories: ?[*]const Guid,
     categoryCount: u32,
     virtualCamera: **IMFVirtualCamera,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mfsensorgroup" fn MFIsVirtualCameraTypeSupported(
     type: MFVirtualCameraType,
     supported: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "opmxbox" fn OPMXboxEnableHDCP(
     HDCPType: OPM_HDCP_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "opmxbox" fn OPMXboxGetHDCPStatus(
     pHDCPStatus: ?*OPM_HDCP_STATUS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "opmxbox" fn OPMXboxGetHDCPStatusAndType(
     pHDCPStatus: ?*OPM_HDCP_STATUS,
     pHDCPType: ?*OPM_HDCP_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

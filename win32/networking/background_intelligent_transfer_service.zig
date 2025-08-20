@@ -240,15 +240,15 @@ pub const IBackgroundCopyFile = extern union {
         GetRemoteName: *const fn(
             self: *const IBackgroundCopyFile,
             pVal: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocalName: *const fn(
             self: *const IBackgroundCopyFile,
             pVal: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProgress: *const fn(
             self: *const IBackgroundCopyFile,
             pVal: ?*BG_FILE_PROGRESS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -274,22 +274,22 @@ pub const IEnumBackgroundCopyFiles = extern union {
             celt: u32,
             rgelt: ?*?*IBackgroundCopyFile,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumBackgroundCopyFiles,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumBackgroundCopyFiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumBackgroundCopyFiles,
             ppenum: ?*?*IEnumBackgroundCopyFiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumBackgroundCopyFiles,
             puCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -341,25 +341,25 @@ pub const IBackgroundCopyError = extern union {
             self: *const IBackgroundCopyError,
             pContext: ?*BG_ERROR_CONTEXT,
             pCode: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFile: *const fn(
             self: *const IBackgroundCopyError,
             pVal: ?*?*IBackgroundCopyFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorDescription: *const fn(
             self: *const IBackgroundCopyError,
             LanguageId: u32,
             pErrorDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorContextDescription: *const fn(
             self: *const IBackgroundCopyError,
             LanguageId: u32,
             pContextDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProtocol: *const fn(
             self: *const IBackgroundCopyError,
             pProtocol: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -460,131 +460,131 @@ pub const IBackgroundCopyJob = extern union {
             self: *const IBackgroundCopyJob,
             cFileCount: u32,
             pFileSet: [*]BG_FILE_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddFile: *const fn(
             self: *const IBackgroundCopyJob,
             RemoteUrl: ?[*:0]const u16,
             LocalName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumFiles: *const fn(
             self: *const IBackgroundCopyJob,
             pEnum: ?*?*IEnumBackgroundCopyFiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Suspend: *const fn(
             self: *const IBackgroundCopyJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const IBackgroundCopyJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const IBackgroundCopyJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Complete: *const fn(
             self: *const IBackgroundCopyJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetId: *const fn(
             self: *const IBackgroundCopyJob,
             pVal: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const IBackgroundCopyJob,
             pVal: ?*BG_JOB_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProgress: *const fn(
             self: *const IBackgroundCopyJob,
             pVal: ?*BG_JOB_PROGRESS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTimes: *const fn(
             self: *const IBackgroundCopyJob,
             pVal: ?*BG_JOB_TIMES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetState: *const fn(
             self: *const IBackgroundCopyJob,
             pVal: ?*BG_JOB_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetError: *const fn(
             self: *const IBackgroundCopyJob,
             ppError: ?*?*IBackgroundCopyError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOwner: *const fn(
             self: *const IBackgroundCopyJob,
             pVal: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDisplayName: *const fn(
             self: *const IBackgroundCopyJob,
             Val: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayName: *const fn(
             self: *const IBackgroundCopyJob,
             pVal: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDescription: *const fn(
             self: *const IBackgroundCopyJob,
             Val: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const IBackgroundCopyJob,
             pVal: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPriority: *const fn(
             self: *const IBackgroundCopyJob,
             Val: BG_JOB_PRIORITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPriority: *const fn(
             self: *const IBackgroundCopyJob,
             pVal: ?*BG_JOB_PRIORITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNotifyFlags: *const fn(
             self: *const IBackgroundCopyJob,
             Val: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNotifyFlags: *const fn(
             self: *const IBackgroundCopyJob,
             pVal: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNotifyInterface: *const fn(
             self: *const IBackgroundCopyJob,
             Val: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNotifyInterface: *const fn(
             self: *const IBackgroundCopyJob,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMinimumRetryDelay: *const fn(
             self: *const IBackgroundCopyJob,
             Seconds: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMinimumRetryDelay: *const fn(
             self: *const IBackgroundCopyJob,
             Seconds: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNoProgressTimeout: *const fn(
             self: *const IBackgroundCopyJob,
             Seconds: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNoProgressTimeout: *const fn(
             self: *const IBackgroundCopyJob,
             Seconds: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorCount: *const fn(
             self: *const IBackgroundCopyJob,
             Errors: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProxySettings: *const fn(
             self: *const IBackgroundCopyJob,
             ProxyUsage: BG_JOB_PROXY_USAGE,
             ProxyList: ?[*:0]const u16,
             ProxyBypassList: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProxySettings: *const fn(
             self: *const IBackgroundCopyJob,
             pProxyUsage: ?*BG_JOB_PROXY_USAGE,
             pProxyList: ?*?PWSTR,
             pProxyBypassList: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TakeOwnership: *const fn(
             self: *const IBackgroundCopyJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -697,22 +697,22 @@ pub const IEnumBackgroundCopyJobs = extern union {
             celt: u32,
             rgelt: ?*?*IBackgroundCopyJob,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumBackgroundCopyJobs,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumBackgroundCopyJobs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumBackgroundCopyJobs,
             ppenum: ?*?*IEnumBackgroundCopyJobs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumBackgroundCopyJobs,
             puCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -742,17 +742,17 @@ pub const IBackgroundCopyCallback = extern union {
         JobTransferred: *const fn(
             self: *const IBackgroundCopyCallback,
             pJob: ?*IBackgroundCopyJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         JobError: *const fn(
             self: *const IBackgroundCopyCallback,
             pJob: ?*IBackgroundCopyJob,
             pError: ?*IBackgroundCopyError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         JobModification: *const fn(
             self: *const IBackgroundCopyCallback,
             pJob: ?*IBackgroundCopyJob,
             dwReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -775,26 +775,26 @@ pub const AsyncIBackgroundCopyCallback = extern union {
         Begin_JobTransferred: *const fn(
             self: *const AsyncIBackgroundCopyCallback,
             pJob: ?*IBackgroundCopyJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_JobTransferred: *const fn(
             self: *const AsyncIBackgroundCopyCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_JobError: *const fn(
             self: *const AsyncIBackgroundCopyCallback,
             pJob: ?*IBackgroundCopyJob,
             pError: ?*IBackgroundCopyError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_JobError: *const fn(
             self: *const AsyncIBackgroundCopyCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_JobModification: *const fn(
             self: *const AsyncIBackgroundCopyCallback,
             pJob: ?*IBackgroundCopyJob,
             dwReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_JobModification: *const fn(
             self: *const AsyncIBackgroundCopyCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -830,23 +830,23 @@ pub const IBackgroundCopyManager = extern union {
             Type: BG_JOB_TYPE,
             pJobId: ?*Guid,
             ppJob: ?*?*IBackgroundCopyJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetJob: *const fn(
             self: *const IBackgroundCopyManager,
             jobID: ?*const Guid,
             ppJob: ?*?*IBackgroundCopyJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumJobs: *const fn(
             self: *const IBackgroundCopyManager,
             dwFlags: u32,
             ppEnum: ?*?*IEnumBackgroundCopyJobs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorDescription: *const fn(
             self: *const IBackgroundCopyManager,
             hResult: HRESULT,
             LanguageId: u32,
             pErrorDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -917,38 +917,38 @@ pub const IBackgroundCopyJob2 = extern union {
             self: *const IBackgroundCopyJob2,
             Program: ?[*:0]const u16,
             Parameters: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNotifyCmdLine: *const fn(
             self: *const IBackgroundCopyJob2,
             pProgram: ?*?PWSTR,
             pParameters: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReplyProgress: *const fn(
             self: *const IBackgroundCopyJob2,
             pProgress: ?*BG_JOB_REPLY_PROGRESS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReplyData: *const fn(
             self: *const IBackgroundCopyJob2,
             ppBuffer: ?*?*u8,
             pLength: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetReplyFileName: *const fn(
             self: *const IBackgroundCopyJob2,
             ReplyFileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReplyFileName: *const fn(
             self: *const IBackgroundCopyJob2,
             pReplyFileName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCredentials: *const fn(
             self: *const IBackgroundCopyJob2,
             credentials: ?*BG_AUTH_CREDENTIALS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveCredentials: *const fn(
             self: *const IBackgroundCopyJob2,
             Target: BG_AUTH_TARGET,
             Scheme: BG_AUTH_SCHEME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyJob: IBackgroundCopyJob,
@@ -997,22 +997,22 @@ pub const IBackgroundCopyJob3 = extern union {
             self: *const IBackgroundCopyJob3,
             OldPrefix: ?[*:0]const u16,
             NewPrefix: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddFileWithRanges: *const fn(
             self: *const IBackgroundCopyJob3,
             RemoteUrl: ?[*:0]const u16,
             LocalName: ?[*:0]const u16,
             RangeCount: u32,
             Ranges: [*]BG_FILE_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFileACLFlags: *const fn(
             self: *const IBackgroundCopyJob3,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileACLFlags: *const fn(
             self: *const IBackgroundCopyJob3,
             Flags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyJob2: IBackgroundCopyJob2,
@@ -1042,11 +1042,11 @@ pub const IBackgroundCopyFile2 = extern union {
             self: *const IBackgroundCopyFile2,
             RangeCount: ?*u32,
             Ranges: [*]?*BG_FILE_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRemoteName: *const fn(
             self: *const IBackgroundCopyFile2,
             Val: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyFile: IBackgroundCopyFile,
@@ -1092,39 +1092,39 @@ pub const IBackgroundCopyJobHttpOptions = extern union {
             StoreLocation: BG_CERT_STORE_LOCATION,
             StoreName: ?[*:0]const u16,
             pCertHashBlob: *[20]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClientCertificateByName: *const fn(
             self: *const IBackgroundCopyJobHttpOptions,
             StoreLocation: BG_CERT_STORE_LOCATION,
             StoreName: ?[*:0]const u16,
             SubjectName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveClientCertificate: *const fn(
             self: *const IBackgroundCopyJobHttpOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClientCertificate: *const fn(
             self: *const IBackgroundCopyJobHttpOptions,
             pStoreLocation: ?*BG_CERT_STORE_LOCATION,
             pStoreName: ?*?PWSTR,
             ppCertHashBlob: *[20]?*u8,
             pSubjectName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCustomHeaders: *const fn(
             self: *const IBackgroundCopyJobHttpOptions,
             RequestHeaders: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCustomHeaders: *const fn(
             self: *const IBackgroundCopyJobHttpOptions,
             pRequestHeaders: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSecurityFlags: *const fn(
             self: *const IBackgroundCopyJobHttpOptions,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSecurityFlags: *const fn(
             self: *const IBackgroundCopyJobHttpOptions,
             pFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1166,31 +1166,31 @@ pub const IBitsPeerCacheRecord = extern union {
         GetId: *const fn(
             self: *const IBitsPeerCacheRecord,
             pVal: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOriginUrl: *const fn(
             self: *const IBitsPeerCacheRecord,
             pVal: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileSize: *const fn(
             self: *const IBitsPeerCacheRecord,
             pVal: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileModificationTime: *const fn(
             self: *const IBitsPeerCacheRecord,
             pVal: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastAccessTime: *const fn(
             self: *const IBitsPeerCacheRecord,
             pVal: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsFileValidated: *const fn(
             self: *const IBitsPeerCacheRecord,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileRanges: *const fn(
             self: *const IBitsPeerCacheRecord,
             pRangeCount: ?*u32,
             ppRanges: [*]?*BG_FILE_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1228,22 +1228,22 @@ pub const IEnumBitsPeerCacheRecords = extern union {
             celt: u32,
             rgelt: ?*?*IBitsPeerCacheRecord,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumBitsPeerCacheRecords,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumBitsPeerCacheRecords,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumBitsPeerCacheRecords,
             ppenum: ?*?*IEnumBitsPeerCacheRecords,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumBitsPeerCacheRecords,
             puCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1273,15 +1273,15 @@ pub const IBitsPeer = extern union {
         GetPeerName: *const fn(
             self: *const IBitsPeer,
             pName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsAuthenticated: *const fn(
             self: *const IBitsPeer,
             pAuth: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsAvailable: *const fn(
             self: *const IBitsPeer,
             pOnline: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1307,22 +1307,22 @@ pub const IEnumBitsPeers = extern union {
             celt: u32,
             rgelt: ?*?*IBitsPeer,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumBitsPeers,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumBitsPeers,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumBitsPeers,
             ppenum: ?*?*IEnumBitsPeers,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumBitsPeers,
             puCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1352,57 +1352,57 @@ pub const IBitsPeerCacheAdministration = extern union {
         GetMaximumCacheSize: *const fn(
             self: *const IBitsPeerCacheAdministration,
             pBytes: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaximumCacheSize: *const fn(
             self: *const IBitsPeerCacheAdministration,
             Bytes: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaximumContentAge: *const fn(
             self: *const IBitsPeerCacheAdministration,
             pSeconds: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaximumContentAge: *const fn(
             self: *const IBitsPeerCacheAdministration,
             Seconds: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConfigurationFlags: *const fn(
             self: *const IBitsPeerCacheAdministration,
             pFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConfigurationFlags: *const fn(
             self: *const IBitsPeerCacheAdministration,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumRecords: *const fn(
             self: *const IBitsPeerCacheAdministration,
             ppEnum: ?*?*IEnumBitsPeerCacheRecords,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecord: *const fn(
             self: *const IBitsPeerCacheAdministration,
             id: ?*const Guid,
             ppRecord: ?*?*IBitsPeerCacheRecord,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearRecords: *const fn(
             self: *const IBitsPeerCacheAdministration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRecord: *const fn(
             self: *const IBitsPeerCacheAdministration,
             id: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteUrl: *const fn(
             self: *const IBitsPeerCacheAdministration,
             url: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumPeers: *const fn(
             self: *const IBitsPeerCacheAdministration,
             ppEnum: ?*?*IEnumBitsPeers,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearPeers: *const fn(
             self: *const IBitsPeerCacheAdministration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DiscoverPeers: *const fn(
             self: *const IBitsPeerCacheAdministration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1459,27 +1459,27 @@ pub const IBackgroundCopyJob4 = extern union {
         SetPeerCachingFlags: *const fn(
             self: *const IBackgroundCopyJob4,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPeerCachingFlags: *const fn(
             self: *const IBackgroundCopyJob4,
             pFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOwnerIntegrityLevel: *const fn(
             self: *const IBackgroundCopyJob4,
             pLevel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOwnerElevationState: *const fn(
             self: *const IBackgroundCopyJob4,
             pElevated: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaximumDownloadTime: *const fn(
             self: *const IBackgroundCopyJob4,
             Timeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaximumDownloadTime: *const fn(
             self: *const IBackgroundCopyJob4,
             pTimeout: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyJob3: IBackgroundCopyJob3,
@@ -1515,19 +1515,19 @@ pub const IBackgroundCopyFile3 = extern union {
         GetTemporaryName: *const fn(
             self: *const IBackgroundCopyFile3,
             pFilename: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValidationState: *const fn(
             self: *const IBackgroundCopyFile3,
             state: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValidationState: *const fn(
             self: *const IBackgroundCopyFile3,
             pState: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsDownloadedFromPeer: *const fn(
             self: *const IBackgroundCopyFile3,
             pVal: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyFile2: IBackgroundCopyFile2,
@@ -1557,7 +1557,7 @@ pub const IBackgroundCopyCallback2 = extern union {
             self: *const IBackgroundCopyCallback2,
             pJob: ?*IBackgroundCopyJob,
             pFile: ?*IBackgroundCopyFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyCallback: IBackgroundCopyCallback,
@@ -1579,21 +1579,21 @@ pub const IBitsTokenOptions = extern union {
         SetHelperTokenFlags: *const fn(
             self: *const IBitsTokenOptions,
             UsageFlags: BG_TOKEN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHelperTokenFlags: *const fn(
             self: *const IBitsTokenOptions,
             pFlags: ?*BG_TOKEN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetHelperToken: *const fn(
             self: *const IBitsTokenOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearHelperToken: *const fn(
             self: *const IBitsTokenOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHelperTokenSid: *const fn(
             self: *const IBitsTokenOptions,
             pSid: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1624,7 +1624,7 @@ pub const IBackgroundCopyFile4 = extern union {
             self: *const IBackgroundCopyFile4,
             pFromOrigin: ?*u64,
             pFromPeers: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyFile3: IBackgroundCopyFile3,
@@ -1698,12 +1698,12 @@ pub const IBackgroundCopyJob5 = extern union {
             self: *const IBackgroundCopyJob5,
             PropertyId: BITS_JOB_PROPERTY_ID,
             PropertyValue: BITS_JOB_PROPERTY_VALUE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IBackgroundCopyJob5,
             PropertyId: BITS_JOB_PROPERTY_ID,
             PropertyValue: ?*BITS_JOB_PROPERTY_VALUE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyJob4: IBackgroundCopyJob4,
@@ -1729,12 +1729,12 @@ pub const IBackgroundCopyFile5 = extern union {
             self: *const IBackgroundCopyFile5,
             PropertyId: BITS_FILE_PROPERTY_ID,
             PropertyValue: BITS_FILE_PROPERTY_VALUE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IBackgroundCopyFile5,
             PropertyId: BITS_FILE_PROPERTY_ID,
             PropertyValue: ?*BITS_FILE_PROPERTY_VALUE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyFile4: IBackgroundCopyFile4,
@@ -1765,7 +1765,7 @@ pub const IBackgroundCopyCallback3 = extern union {
             file: ?*IBackgroundCopyFile,
             rangeCount: u32,
             ranges: [*]const BG_FILE_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyCallback2: IBackgroundCopyCallback2,
@@ -1785,17 +1785,17 @@ pub const IBackgroundCopyFile6 = extern union {
         UpdateDownloadPosition: *const fn(
             self: *const IBackgroundCopyFile6,
             offset: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestFileRanges: *const fn(
             self: *const IBackgroundCopyFile6,
             rangeCount: u32,
             ranges: [*]const BG_FILE_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilledFileRanges: *const fn(
             self: *const IBackgroundCopyFile6,
             rangeCount: ?*u32,
             ranges: [*]?*BG_FILE_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyFile5: IBackgroundCopyFile5,
@@ -1827,11 +1827,11 @@ pub const IBackgroundCopyJobHttpOptions2 = extern union {
         SetHttpMethod: *const fn(
             self: *const IBackgroundCopyJobHttpOptions2,
             method: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHttpMethod: *const fn(
             self: *const IBackgroundCopyJobHttpOptions2,
             method: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyJobHttpOptions: IBackgroundCopyJobHttpOptions,
@@ -1861,7 +1861,7 @@ pub const IBackgroundCopyServerCertificateValidationCallback = extern union {
             certEncodingType: u32,
             certStoreLength: u32,
             certStoreData: [*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1878,10 +1878,10 @@ pub const IBackgroundCopyJobHttpOptions3 = extern union {
         SetServerCertificateValidationInterface: *const fn(
             self: *const IBackgroundCopyJobHttpOptions3,
             certValidationCallback: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MakeCustomHeadersWriteOnly: *const fn(
             self: *const IBackgroundCopyJobHttpOptions3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBackgroundCopyJobHttpOptions2: IBackgroundCopyJobHttpOptions2,
@@ -1906,19 +1906,19 @@ pub const IBITSExtensionSetup = extern union {
         base: IDispatch.VTable,
         EnableBITSUploads: *const fn(
             self: *const IBITSExtensionSetup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableBITSUploads: *const fn(
             self: *const IBITSExtensionSetup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCleanupTaskName: *const fn(
             self: *const IBITSExtensionSetup,
             pTaskName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCleanupTask: *const fn(
             self: *const IBITSExtensionSetup,
             riid: ?*const Guid,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1947,7 +1947,7 @@ pub const IBITSExtensionSetupFactory = extern union {
             self: *const IBITSExtensionSetupFactory,
             Path: ?BSTR,
             ppExtensionSetup: ?*?*IBITSExtensionSetup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1974,41 +1974,41 @@ pub const IBackgroundCopyJob1 = extern union {
         base: IUnknown.VTable,
         CancelJob: *const fn(
             self: *const IBackgroundCopyJob1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProgress: *const fn(
             self: *const IBackgroundCopyJob1,
             dwFlags: u32,
             pdwProgress: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IBackgroundCopyJob1,
             pdwStatus: ?*u32,
             pdwWin32Result: ?*u32,
             pdwTransportResult: ?*u32,
             pdwNumOfRetries: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddFiles: *const fn(
             self: *const IBackgroundCopyJob1,
             cFileCount: u32,
             ppFileSet: [*]?*FILESETINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFile: *const fn(
             self: *const IBackgroundCopyJob1,
             cFileIndex: u32,
             pFileInfo: ?*FILESETINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileCount: *const fn(
             self: *const IBackgroundCopyJob1,
             pdwFileCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SwitchToForeground: *const fn(
             self: *const IBackgroundCopyJob1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JobID: *const fn(
             self: *const IBackgroundCopyJob1,
             pguidJobID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2049,22 +2049,22 @@ pub const IEnumBackgroundCopyJobs1 = extern union {
             celt: u32,
             rgelt: [*]Guid,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumBackgroundCopyJobs1,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumBackgroundCopyJobs1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumBackgroundCopyJobs1,
             ppenum: ?*?*IEnumBackgroundCopyJobs1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumBackgroundCopyJobs1,
             puCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2124,69 +2124,69 @@ pub const IBackgroundCopyGroup = extern union {
             self: *const IBackgroundCopyGroup,
             propID: GROUPPROP,
             pvarVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProp: *const fn(
             self: *const IBackgroundCopyGroup,
             propID: GROUPPROP,
             pvarVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProgress: *const fn(
             self: *const IBackgroundCopyGroup,
             dwFlags: u32,
             pdwProgress: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IBackgroundCopyGroup,
             pdwStatus: ?*u32,
             pdwJobIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetJob: *const fn(
             self: *const IBackgroundCopyGroup,
             jobID: Guid,
             ppJob: ?*?*IBackgroundCopyJob1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SuspendGroup: *const fn(
             self: *const IBackgroundCopyGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResumeGroup: *const fn(
             self: *const IBackgroundCopyGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelGroup: *const fn(
             self: *const IBackgroundCopyGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Size: *const fn(
             self: *const IBackgroundCopyGroup,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GroupID: *const fn(
             self: *const IBackgroundCopyGroup,
             pguidGroupID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateJob: *const fn(
             self: *const IBackgroundCopyGroup,
             guidJobID: Guid,
             ppJob: ?*?*IBackgroundCopyJob1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumJobs: *const fn(
             self: *const IBackgroundCopyGroup,
             dwFlags: u32,
             ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SwitchToForeground: *const fn(
             self: *const IBackgroundCopyGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryNewJobInterface: *const fn(
             self: *const IBackgroundCopyGroup,
             iid: ?*const Guid,
             pUnk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNotificationPointer: *const fn(
             self: *const IBackgroundCopyGroup,
             iid: ?*const Guid,
             pUnk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2248,22 +2248,22 @@ pub const IEnumBackgroundCopyGroups = extern union {
             celt: u32,
             rgelt: [*]Guid,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumBackgroundCopyGroups,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumBackgroundCopyGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumBackgroundCopyGroups,
             ppenum: ?*?*IEnumBackgroundCopyGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumBackgroundCopyGroups,
             puCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2299,7 +2299,7 @@ pub const IBackgroundCopyCallback1 = extern union {
             dwNumOfRetries: u32,
             dwWin32Result: u32,
             dwTransportResult: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnProgress: *const fn(
             self: *const IBackgroundCopyCallback1,
             ProgressType: u32,
@@ -2307,7 +2307,7 @@ pub const IBackgroundCopyCallback1 = extern union {
             pJob: ?*IBackgroundCopyJob1,
             dwFileIndex: u32,
             dwProgressValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnProgressEx: *const fn(
             self: *const IBackgroundCopyCallback1,
             ProgressType: u32,
@@ -2317,7 +2317,7 @@ pub const IBackgroundCopyCallback1 = extern union {
             dwProgressValue: u32,
             dwByteArraySize: u32,
             pByte: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2342,17 +2342,17 @@ pub const IBackgroundCopyQMgr = extern union {
             self: *const IBackgroundCopyQMgr,
             guidGroupID: Guid,
             ppGroup: ?*?*IBackgroundCopyGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGroup: *const fn(
             self: *const IBackgroundCopyQMgr,
             groupID: Guid,
             ppGroup: ?*?*IBackgroundCopyGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumGroups: *const fn(
             self: *const IBackgroundCopyQMgr,
             dwFlags: u32,
             ppEnumGroups: ?*?*IEnumBackgroundCopyGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

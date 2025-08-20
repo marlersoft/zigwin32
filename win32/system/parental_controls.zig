@@ -126,10 +126,10 @@ pub const IWPCProviderState = extern union {
         base: IUnknown.VTable,
         Enable: *const fn(
             self: *const IWPCProviderState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disable: *const fn(
             self: *const IWPCProviderState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -156,18 +156,18 @@ pub const IWPCProviderConfig = extern union {
             self: *const IWPCProviderConfig,
             bstrSID: ?BSTR,
             pbstrUserSummary: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Configure: *const fn(
             self: *const IWPCProviderConfig,
             hWnd: ?HWND,
             bstrSID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestOverride: *const fn(
             self: *const IWPCProviderConfig,
             hWnd: ?HWND,
             bstrPath: ?BSTR,
             dwFlags: WPCFLAG_RESTRICTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -210,15 +210,15 @@ pub const IWPCSettings = extern union {
         IsLoggingRequired: *const fn(
             self: *const IWPCSettings,
             pfRequired: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastSettingsChangeTime: *const fn(
             self: *const IWPCSettings,
             pTime: ?*SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRestrictions: *const fn(
             self: *const IWPCSettings,
             pdwRestrictions: ?*WPCFLAG_RESTRICTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -243,7 +243,7 @@ pub const IWPCGamesSettings = extern union {
             self: *const IWPCGamesSettings,
             guidAppID: Guid,
             pdwReasons: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWPCSettings: IWPCSettings,
@@ -269,7 +269,7 @@ pub const IWPCWebSettings = extern union {
         GetSettings: *const fn(
             self: *const IWPCWebSettings,
             pdwSettings: ?*WPCFLAG_WEB_SETTING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestURLOverride: *const fn(
             self: *const IWPCWebSettings,
             hWnd: ?HWND,
@@ -277,7 +277,7 @@ pub const IWPCWebSettings = extern union {
             cURLs: u32,
             ppcszSubURLs: ?[*]?PWSTR,
             pfChanged: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWPCSettings: IWPCSettings,
@@ -306,22 +306,22 @@ pub const IWindowsParentalControlsCore = extern union {
         GetVisibility: *const fn(
             self: *const IWindowsParentalControlsCore,
             peVisibility: ?*WPCFLAG_VISIBILITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUserSettings: *const fn(
             self: *const IWindowsParentalControlsCore,
             pcszSID: ?[*:0]const u16,
             ppSettings: ?*?*IWPCSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWebSettings: *const fn(
             self: *const IWindowsParentalControlsCore,
             pcszSID: ?[*:0]const u16,
             ppSettings: ?*?*IWPCWebSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWebFilterInfo: *const fn(
             self: *const IWindowsParentalControlsCore,
             pguidID: ?*Guid,
             ppszName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -349,7 +349,7 @@ pub const IWindowsParentalControls = extern union {
             self: *const IWindowsParentalControls,
             pcszSID: ?[*:0]const u16,
             ppSettings: ?*?*IWPCGamesSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWindowsParentalControlsCore: IWindowsParentalControlsCore,
@@ -368,7 +368,7 @@ pub const IWPCProviderSupport = extern union {
         GetCurrent: *const fn(
             self: *const IWPCProviderSupport,
             pguidProvider: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

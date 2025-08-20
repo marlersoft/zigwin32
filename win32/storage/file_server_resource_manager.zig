@@ -708,23 +708,23 @@ pub const IFsrmObject = extern union {
         get_Id: *const fn(
             self: *const IFsrmObject,
             id: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IFsrmObject,
             description: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IFsrmObject,
             description: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IFsrmObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const IFsrmObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -756,35 +756,35 @@ pub const IFsrmCollection = extern union {
         get__NewEnum: *const fn(
             self: *const IFsrmCollection,
             unknown: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IFsrmCollection,
             index: i32,
             item: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IFsrmCollection,
             count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const IFsrmCollection,
             state: ?*FsrmCollectionState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForCompletion: *const fn(
             self: *const IFsrmCollection,
             waitSeconds: i32,
             completed: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetById: *const fn(
             self: *const IFsrmCollection,
             id: Guid,
             entry: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -821,19 +821,19 @@ pub const IFsrmMutableCollection = extern union {
         Add: *const fn(
             self: *const IFsrmMutableCollection,
             item: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IFsrmMutableCollection,
             index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveById: *const fn(
             self: *const IFsrmMutableCollection,
             id: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IFsrmMutableCollection,
             collection: ?*?*IFsrmMutableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmCollection: IFsrmCollection,
@@ -863,7 +863,7 @@ pub const IFsrmCommittableCollection = extern union {
             self: *const IFsrmCommittableCollection,
             options: FsrmCommitOptions,
             results: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmMutableCollection: IFsrmMutableCollection,
@@ -885,25 +885,25 @@ pub const IFsrmAction = extern union {
         get_Id: *const fn(
             self: *const IFsrmAction,
             id: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActionType: *const fn(
             self: *const IFsrmAction,
             actionType: ?*FsrmActionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunLimitInterval: *const fn(
             self: *const IFsrmAction,
             minutes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RunLimitInterval: *const fn(
             self: *const IFsrmAction,
             minutes: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IFsrmAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -935,72 +935,72 @@ pub const IFsrmActionEmail = extern union {
         get_MailFrom: *const fn(
             self: *const IFsrmActionEmail,
             mailFrom: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailFrom: *const fn(
             self: *const IFsrmActionEmail,
             mailFrom: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailReplyTo: *const fn(
             self: *const IFsrmActionEmail,
             mailReplyTo: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailReplyTo: *const fn(
             self: *const IFsrmActionEmail,
             mailReplyTo: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailTo: *const fn(
             self: *const IFsrmActionEmail,
             mailTo: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailTo: *const fn(
             self: *const IFsrmActionEmail,
             mailTo: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailCc: *const fn(
             self: *const IFsrmActionEmail,
             mailCc: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailCc: *const fn(
             self: *const IFsrmActionEmail,
             mailCc: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailBcc: *const fn(
             self: *const IFsrmActionEmail,
             mailBcc: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailBcc: *const fn(
             self: *const IFsrmActionEmail,
             mailBcc: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailSubject: *const fn(
             self: *const IFsrmActionEmail,
             mailSubject: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailSubject: *const fn(
             self: *const IFsrmActionEmail,
             mailSubject: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MessageText: *const fn(
             self: *const IFsrmActionEmail,
             messageText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MessageText: *const fn(
             self: *const IFsrmActionEmail,
             messageText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmAction: IFsrmAction,
@@ -1060,12 +1060,12 @@ pub const IFsrmActionEmail2 = extern union {
         get_AttachmentFileListSize: *const fn(
             self: *const IFsrmActionEmail2,
             attachmentFileListSize: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttachmentFileListSize: *const fn(
             self: *const IFsrmActionEmail2,
             attachmentFileListSize: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmActionEmail: IFsrmActionEmail,
@@ -1090,22 +1090,22 @@ pub const IFsrmActionReport = extern union {
         get_ReportTypes: *const fn(
             self: *const IFsrmActionReport,
             reportTypes: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReportTypes: *const fn(
             self: *const IFsrmActionReport,
             reportTypes: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailTo: *const fn(
             self: *const IFsrmActionReport,
             mailTo: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailTo: *const fn(
             self: *const IFsrmActionReport,
             mailTo: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmAction: IFsrmAction,
@@ -1135,22 +1135,22 @@ pub const IFsrmActionEventLog = extern union {
         get_EventType: *const fn(
             self: *const IFsrmActionEventLog,
             eventType: ?*FsrmEventType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventType: *const fn(
             self: *const IFsrmActionEventLog,
             eventType: FsrmEventType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MessageText: *const fn(
             self: *const IFsrmActionEventLog,
             messageText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MessageText: *const fn(
             self: *const IFsrmActionEventLog,
             messageText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmAction: IFsrmAction,
@@ -1180,72 +1180,72 @@ pub const IFsrmActionCommand = extern union {
         get_ExecutablePath: *const fn(
             self: *const IFsrmActionCommand,
             executablePath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExecutablePath: *const fn(
             self: *const IFsrmActionCommand,
             executablePath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Arguments: *const fn(
             self: *const IFsrmActionCommand,
             arguments: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Arguments: *const fn(
             self: *const IFsrmActionCommand,
             arguments: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Account: *const fn(
             self: *const IFsrmActionCommand,
             account: ?*FsrmAccountType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Account: *const fn(
             self: *const IFsrmActionCommand,
             account: FsrmAccountType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WorkingDirectory: *const fn(
             self: *const IFsrmActionCommand,
             workingDirectory: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WorkingDirectory: *const fn(
             self: *const IFsrmActionCommand,
             workingDirectory: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MonitorCommand: *const fn(
             self: *const IFsrmActionCommand,
             monitorCommand: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MonitorCommand: *const fn(
             self: *const IFsrmActionCommand,
             monitorCommand: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KillTimeOut: *const fn(
             self: *const IFsrmActionCommand,
             minutes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_KillTimeOut: *const fn(
             self: *const IFsrmActionCommand,
             minutes: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogResult: *const fn(
             self: *const IFsrmActionCommand,
             logResults: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogResult: *const fn(
             self: *const IFsrmActionCommand,
             logResults: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmAction: IFsrmAction,
@@ -1305,66 +1305,66 @@ pub const IFsrmSetting = extern union {
         get_SmtpServer: *const fn(
             self: *const IFsrmSetting,
             smtpServer: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SmtpServer: *const fn(
             self: *const IFsrmSetting,
             smtpServer: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailFrom: *const fn(
             self: *const IFsrmSetting,
             mailFrom: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailFrom: *const fn(
             self: *const IFsrmSetting,
             mailFrom: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AdminEmail: *const fn(
             self: *const IFsrmSetting,
             adminEmail: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AdminEmail: *const fn(
             self: *const IFsrmSetting,
             adminEmail: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisableCommandLine: *const fn(
             self: *const IFsrmSetting,
             disableCommandLine: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisableCommandLine: *const fn(
             self: *const IFsrmSetting,
             disableCommandLine: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableScreeningAudit: *const fn(
             self: *const IFsrmSetting,
             enableScreeningAudit: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableScreeningAudit: *const fn(
             self: *const IFsrmSetting,
             enableScreeningAudit: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EmailTest: *const fn(
             self: *const IFsrmSetting,
             mailTo: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetActionRunLimitInterval: *const fn(
             self: *const IFsrmSetting,
             actionType: FsrmActionType,
             delayTimeMinutes: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActionRunLimitInterval: *const fn(
             self: *const IFsrmSetting,
             actionType: FsrmActionType,
             delayTimeMinutes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1420,7 +1420,7 @@ pub const IFsrmPathMapper = extern union {
             self: *const IFsrmPathMapper,
             localPath: ?BSTR,
             sharePaths: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1441,40 +1441,40 @@ pub const IFsrmExportImport = extern union {
             filePath: ?BSTR,
             fileGroupNamesSafeArray: ?*VARIANT,
             remoteHost: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportFileGroups: *const fn(
             self: *const IFsrmExportImport,
             filePath: ?BSTR,
             fileGroupNamesSafeArray: ?*VARIANT,
             remoteHost: ?BSTR,
             fileGroups: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExportFileScreenTemplates: *const fn(
             self: *const IFsrmExportImport,
             filePath: ?BSTR,
             templateNamesSafeArray: ?*VARIANT,
             remoteHost: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportFileScreenTemplates: *const fn(
             self: *const IFsrmExportImport,
             filePath: ?BSTR,
             templateNamesSafeArray: ?*VARIANT,
             remoteHost: ?BSTR,
             templates: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExportQuotaTemplates: *const fn(
             self: *const IFsrmExportImport,
             filePath: ?BSTR,
             templateNamesSafeArray: ?*VARIANT,
             remoteHost: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportQuotaTemplates: *const fn(
             self: *const IFsrmExportImport,
             filePath: ?BSTR,
             templateNamesSafeArray: ?*VARIANT,
             remoteHost: ?BSTR,
             templates: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1509,12 +1509,12 @@ pub const IFsrmDerivedObjectsResult = extern union {
         get_DerivedObjects: *const fn(
             self: *const IFsrmDerivedObjectsResult,
             derivedObjects: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Results: *const fn(
             self: *const IFsrmDerivedObjectsResult,
             results: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1542,7 +1542,7 @@ pub const IFsrmAccessDeniedRemediationClient = extern union {
             windowTitle: ?BSTR,
             windowMessage: ?BSTR,
             result: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1607,51 +1607,51 @@ pub const IFsrmQuotaBase = extern union {
         get_QuotaLimit: *const fn(
             self: *const IFsrmQuotaBase,
             quotaLimit: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuotaLimit: *const fn(
             self: *const IFsrmQuotaBase,
             quotaLimit: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuotaFlags: *const fn(
             self: *const IFsrmQuotaBase,
             quotaFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuotaFlags: *const fn(
             self: *const IFsrmQuotaBase,
             quotaFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Thresholds: *const fn(
             self: *const IFsrmQuotaBase,
             thresholds: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddThreshold: *const fn(
             self: *const IFsrmQuotaBase,
             threshold: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteThreshold: *const fn(
             self: *const IFsrmQuotaBase,
             threshold: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ModifyThreshold: *const fn(
             self: *const IFsrmQuotaBase,
             threshold: i32,
             newThreshold: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateThresholdAction: *const fn(
             self: *const IFsrmQuotaBase,
             threshold: i32,
             actionType: FsrmActionType,
             action: ?*?*IFsrmAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumThresholdActions: *const fn(
             self: *const IFsrmQuotaBase,
             threshold: i32,
             actions: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmObject: IFsrmObject,
@@ -1699,31 +1699,31 @@ pub const IFsrmQuotaObject = extern union {
         get_Path: *const fn(
             self: *const IFsrmQuotaObject,
             path: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserSid: *const fn(
             self: *const IFsrmQuotaObject,
             userSid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserAccount: *const fn(
             self: *const IFsrmQuotaObject,
             userAccount: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SourceTemplateName: *const fn(
             self: *const IFsrmQuotaObject,
             quotaTemplateName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MatchesSourceTemplate: *const fn(
             self: *const IFsrmQuotaObject,
             matches: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ApplyTemplate: *const fn(
             self: *const IFsrmQuotaObject,
             quotaTemplateName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmQuotaBase: IFsrmQuotaBase,
@@ -1760,23 +1760,23 @@ pub const IFsrmQuota = extern union {
         get_QuotaUsed: *const fn(
             self: *const IFsrmQuota,
             used: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuotaPeakUsage: *const fn(
             self: *const IFsrmQuota,
             peakUsage: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuotaPeakUsageTime: *const fn(
             self: *const IFsrmQuota,
             peakUsageDateTime: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetPeakUsage: *const fn(
             self: *const IFsrmQuota,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RefreshUsageProperties: *const fn(
             self: *const IFsrmQuota,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmQuotaObject: IFsrmQuotaObject,
@@ -1811,18 +1811,18 @@ pub const IFsrmAutoApplyQuota = extern union {
         get_ExcludeFolders: *const fn(
             self: *const IFsrmAutoApplyQuota,
             folders: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExcludeFolders: *const fn(
             self: *const IFsrmAutoApplyQuota,
             folders: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitAndUpdateDerived: *const fn(
             self: *const IFsrmAutoApplyQuota,
             commitOptions: FsrmCommitOptions,
             applyOptions: FsrmTemplateApplyOptions,
             derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmQuotaObject: IFsrmQuotaObject,
@@ -1851,64 +1851,64 @@ pub const IFsrmQuotaManager = extern union {
         get_ActionVariables: *const fn(
             self: *const IFsrmQuotaManager,
             variables: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActionVariableDescriptions: *const fn(
             self: *const IFsrmQuotaManager,
             descriptions: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateQuota: *const fn(
             self: *const IFsrmQuotaManager,
             path: ?BSTR,
             quota: ?*?*IFsrmQuota,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAutoApplyQuota: *const fn(
             self: *const IFsrmQuotaManager,
             quotaTemplateName: ?BSTR,
             path: ?BSTR,
             quota: ?*?*IFsrmAutoApplyQuota,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetQuota: *const fn(
             self: *const IFsrmQuotaManager,
             path: ?BSTR,
             quota: ?*?*IFsrmQuota,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAutoApplyQuota: *const fn(
             self: *const IFsrmQuotaManager,
             path: ?BSTR,
             quota: ?*?*IFsrmAutoApplyQuota,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRestrictiveQuota: *const fn(
             self: *const IFsrmQuotaManager,
             path: ?BSTR,
             quota: ?*?*IFsrmQuota,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumQuotas: *const fn(
             self: *const IFsrmQuotaManager,
             path: ?BSTR,
             options: FsrmEnumOptions,
             quotas: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumAutoApplyQuotas: *const fn(
             self: *const IFsrmQuotaManager,
             path: ?BSTR,
             options: FsrmEnumOptions,
             quotas: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumEffectiveQuotas: *const fn(
             self: *const IFsrmQuotaManager,
             path: ?BSTR,
             options: FsrmEnumOptions,
             quotas: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Scan: *const fn(
             self: *const IFsrmQuotaManager,
             strPath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateQuotaCollection: *const fn(
             self: *const IFsrmQuotaManager,
             collection: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1962,7 +1962,7 @@ pub const IFsrmQuotaManagerEx = extern union {
             path: ?BSTR,
             options: FsrmEnumOptions,
             affected: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmQuotaManager: IFsrmQuotaManager,
@@ -1983,22 +1983,22 @@ pub const IFsrmQuotaTemplate = extern union {
         get_Name: *const fn(
             self: *const IFsrmQuotaTemplate,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IFsrmQuotaTemplate,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyTemplate: *const fn(
             self: *const IFsrmQuotaTemplate,
             quotaTemplateName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitAndUpdateDerived: *const fn(
             self: *const IFsrmQuotaTemplate,
             commitOptions: FsrmCommitOptions,
             applyOptions: FsrmTemplateApplyOptions,
             derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmQuotaBase: IFsrmQuotaBase,
@@ -2029,12 +2029,12 @@ pub const IFsrmQuotaTemplateImported = extern union {
         get_OverwriteOnCommit: *const fn(
             self: *const IFsrmQuotaTemplateImported,
             overwrite: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OverwriteOnCommit: *const fn(
             self: *const IFsrmQuotaTemplateImported,
             overwrite: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmQuotaTemplate: IFsrmQuotaTemplate,
@@ -2059,28 +2059,28 @@ pub const IFsrmQuotaTemplateManager = extern union {
         CreateTemplate: *const fn(
             self: *const IFsrmQuotaTemplateManager,
             quotaTemplate: ?*?*IFsrmQuotaTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTemplate: *const fn(
             self: *const IFsrmQuotaTemplateManager,
             name: ?BSTR,
             quotaTemplate: ?*?*IFsrmQuotaTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumTemplates: *const fn(
             self: *const IFsrmQuotaTemplateManager,
             options: FsrmEnumOptions,
             quotaTemplates: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExportTemplates: *const fn(
             self: *const IFsrmQuotaTemplateManager,
             quotaTemplateNamesArray: ?*VARIANT,
             serializedQuotaTemplates: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportTemplates: *const fn(
             self: *const IFsrmQuotaTemplateManager,
             serializedQuotaTemplates: ?BSTR,
             quotaTemplateNamesArray: ?*VARIANT,
             quotaTemplates: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2112,32 +2112,32 @@ pub const IFsrmFileGroup = extern union {
         get_Name: *const fn(
             self: *const IFsrmFileGroup,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IFsrmFileGroup,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Members: *const fn(
             self: *const IFsrmFileGroup,
             members: ?*?*IFsrmMutableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Members: *const fn(
             self: *const IFsrmFileGroup,
             members: ?*IFsrmMutableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NonMembers: *const fn(
             self: *const IFsrmFileGroup,
             nonMembers: ?*?*IFsrmMutableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NonMembers: *const fn(
             self: *const IFsrmFileGroup,
             nonMembers: ?*IFsrmMutableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmObject: IFsrmObject,
@@ -2173,12 +2173,12 @@ pub const IFsrmFileGroupImported = extern union {
         get_OverwriteOnCommit: *const fn(
             self: *const IFsrmFileGroupImported,
             overwrite: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OverwriteOnCommit: *const fn(
             self: *const IFsrmFileGroupImported,
             overwrite: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmFileGroup: IFsrmFileGroup,
@@ -2202,28 +2202,28 @@ pub const IFsrmFileGroupManager = extern union {
         CreateFileGroup: *const fn(
             self: *const IFsrmFileGroupManager,
             fileGroup: ?*?*IFsrmFileGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileGroup: *const fn(
             self: *const IFsrmFileGroupManager,
             name: ?BSTR,
             fileGroup: ?*?*IFsrmFileGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumFileGroups: *const fn(
             self: *const IFsrmFileGroupManager,
             options: FsrmEnumOptions,
             fileGroups: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExportFileGroups: *const fn(
             self: *const IFsrmFileGroupManager,
             fileGroupNamesArray: ?*VARIANT,
             serializedFileGroups: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportFileGroups: *const fn(
             self: *const IFsrmFileGroupManager,
             serializedFileGroups: ?BSTR,
             fileGroupNamesArray: ?*VARIANT,
             fileGroups: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2255,31 +2255,31 @@ pub const IFsrmFileScreenBase = extern union {
         get_BlockedFileGroups: *const fn(
             self: *const IFsrmFileScreenBase,
             blockList: ?*?*IFsrmMutableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BlockedFileGroups: *const fn(
             self: *const IFsrmFileScreenBase,
             blockList: ?*IFsrmMutableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileScreenFlags: *const fn(
             self: *const IFsrmFileScreenBase,
             fileScreenFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FileScreenFlags: *const fn(
             self: *const IFsrmFileScreenBase,
             fileScreenFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAction: *const fn(
             self: *const IFsrmFileScreenBase,
             actionType: FsrmActionType,
             action: ?*?*IFsrmAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumActions: *const fn(
             self: *const IFsrmFileScreenBase,
             actions: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmObject: IFsrmObject,
@@ -2315,31 +2315,31 @@ pub const IFsrmFileScreen = extern union {
         get_Path: *const fn(
             self: *const IFsrmFileScreen,
             path: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SourceTemplateName: *const fn(
             self: *const IFsrmFileScreen,
             fileScreenTemplateName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MatchesSourceTemplate: *const fn(
             self: *const IFsrmFileScreen,
             matches: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserSid: *const fn(
             self: *const IFsrmFileScreen,
             userSid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserAccount: *const fn(
             self: *const IFsrmFileScreen,
             userAccount: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ApplyTemplate: *const fn(
             self: *const IFsrmFileScreen,
             fileScreenTemplateName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmFileScreenBase: IFsrmFileScreenBase,
@@ -2376,17 +2376,17 @@ pub const IFsrmFileScreenException = extern union {
         get_Path: *const fn(
             self: *const IFsrmFileScreenException,
             path: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowedFileGroups: *const fn(
             self: *const IFsrmFileScreenException,
             allowList: ?*?*IFsrmMutableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowedFileGroups: *const fn(
             self: *const IFsrmFileScreenException,
             allowList: ?*IFsrmMutableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmObject: IFsrmObject,
@@ -2413,48 +2413,48 @@ pub const IFsrmFileScreenManager = extern union {
         get_ActionVariables: *const fn(
             self: *const IFsrmFileScreenManager,
             variables: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActionVariableDescriptions: *const fn(
             self: *const IFsrmFileScreenManager,
             descriptions: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFileScreen: *const fn(
             self: *const IFsrmFileScreenManager,
             path: ?BSTR,
             fileScreen: ?*?*IFsrmFileScreen,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileScreen: *const fn(
             self: *const IFsrmFileScreenManager,
             path: ?BSTR,
             fileScreen: ?*?*IFsrmFileScreen,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumFileScreens: *const fn(
             self: *const IFsrmFileScreenManager,
             path: ?BSTR,
             options: FsrmEnumOptions,
             fileScreens: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFileScreenException: *const fn(
             self: *const IFsrmFileScreenManager,
             path: ?BSTR,
             fileScreenException: ?*?*IFsrmFileScreenException,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileScreenException: *const fn(
             self: *const IFsrmFileScreenManager,
             path: ?BSTR,
             fileScreenException: ?*?*IFsrmFileScreenException,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumFileScreenExceptions: *const fn(
             self: *const IFsrmFileScreenManager,
             path: ?BSTR,
             options: FsrmEnumOptions,
             fileScreenExceptions: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFileScreenCollection: *const fn(
             self: *const IFsrmFileScreenManager,
             collection: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2498,22 +2498,22 @@ pub const IFsrmFileScreenTemplate = extern union {
         get_Name: *const fn(
             self: *const IFsrmFileScreenTemplate,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IFsrmFileScreenTemplate,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyTemplate: *const fn(
             self: *const IFsrmFileScreenTemplate,
             fileScreenTemplateName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitAndUpdateDerived: *const fn(
             self: *const IFsrmFileScreenTemplate,
             commitOptions: FsrmCommitOptions,
             applyOptions: FsrmTemplateApplyOptions,
             derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmFileScreenBase: IFsrmFileScreenBase,
@@ -2544,12 +2544,12 @@ pub const IFsrmFileScreenTemplateImported = extern union {
         get_OverwriteOnCommit: *const fn(
             self: *const IFsrmFileScreenTemplateImported,
             overwrite: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OverwriteOnCommit: *const fn(
             self: *const IFsrmFileScreenTemplateImported,
             overwrite: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmFileScreenTemplate: IFsrmFileScreenTemplate,
@@ -2574,28 +2574,28 @@ pub const IFsrmFileScreenTemplateManager = extern union {
         CreateTemplate: *const fn(
             self: *const IFsrmFileScreenTemplateManager,
             fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTemplate: *const fn(
             self: *const IFsrmFileScreenTemplateManager,
             name: ?BSTR,
             fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumTemplates: *const fn(
             self: *const IFsrmFileScreenTemplateManager,
             options: FsrmEnumOptions,
             fileScreenTemplates: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExportTemplates: *const fn(
             self: *const IFsrmFileScreenTemplateManager,
             fileScreenTemplateNamesArray: ?*VARIANT,
             serializedFileScreenTemplates: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportTemplates: *const fn(
             self: *const IFsrmFileScreenTemplateManager,
             serializedFileScreenTemplates: ?BSTR,
             fileScreenTemplateNamesArray: ?*VARIANT,
             fileScreenTemplates: ?*?*IFsrmCommittableCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2627,54 +2627,54 @@ pub const IFsrmReportManager = extern union {
             self: *const IFsrmReportManager,
             options: FsrmEnumOptions,
             reportJobs: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateReportJob: *const fn(
             self: *const IFsrmReportManager,
             reportJob: ?*?*IFsrmReportJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReportJob: *const fn(
             self: *const IFsrmReportManager,
             taskName: ?BSTR,
             reportJob: ?*?*IFsrmReportJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputDirectory: *const fn(
             self: *const IFsrmReportManager,
             context: FsrmReportGenerationContext,
             path: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputDirectory: *const fn(
             self: *const IFsrmReportManager,
             context: FsrmReportGenerationContext,
             path: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsFilterValidForReportType: *const fn(
             self: *const IFsrmReportManager,
             reportType: FsrmReportType,
             filter: FsrmReportFilter,
             valid: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultFilter: *const fn(
             self: *const IFsrmReportManager,
             reportType: FsrmReportType,
             filter: FsrmReportFilter,
             filterValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultFilter: *const fn(
             self: *const IFsrmReportManager,
             reportType: FsrmReportType,
             filter: FsrmReportFilter,
             filterValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReportSizeLimit: *const fn(
             self: *const IFsrmReportManager,
             limit: FsrmReportLimit,
             limitValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetReportSizeLimit: *const fn(
             self: *const IFsrmReportManager,
             limit: FsrmReportLimit,
             limitValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2721,83 +2721,83 @@ pub const IFsrmReportJob = extern union {
         get_Task: *const fn(
             self: *const IFsrmReportJob,
             taskName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Task: *const fn(
             self: *const IFsrmReportJob,
             taskName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NamespaceRoots: *const fn(
             self: *const IFsrmReportJob,
             namespaceRoots: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NamespaceRoots: *const fn(
             self: *const IFsrmReportJob,
             namespaceRoots: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Formats: *const fn(
             self: *const IFsrmReportJob,
             formats: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Formats: *const fn(
             self: *const IFsrmReportJob,
             formats: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailTo: *const fn(
             self: *const IFsrmReportJob,
             mailTo: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailTo: *const fn(
             self: *const IFsrmReportJob,
             mailTo: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunningStatus: *const fn(
             self: *const IFsrmReportJob,
             runningStatus: ?*FsrmReportRunningStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastRun: *const fn(
             self: *const IFsrmReportJob,
             lastRun: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastError: *const fn(
             self: *const IFsrmReportJob,
             lastError: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastGeneratedInDirectory: *const fn(
             self: *const IFsrmReportJob,
             path: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumReports: *const fn(
             self: *const IFsrmReportJob,
             reports: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateReport: *const fn(
             self: *const IFsrmReportJob,
             reportType: FsrmReportType,
             report: ?*?*IFsrmReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Run: *const fn(
             self: *const IFsrmReportJob,
             context: FsrmReportGenerationContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForCompletion: *const fn(
             self: *const IFsrmReportJob,
             waitSeconds: i32,
             completed: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const IFsrmReportJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmObject: IFsrmObject,
@@ -2866,45 +2866,45 @@ pub const IFsrmReport = extern union {
         get_Type: *const fn(
             self: *const IFsrmReport,
             reportType: ?*FsrmReportType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IFsrmReport,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IFsrmReport,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IFsrmReport,
             description: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IFsrmReport,
             description: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastGeneratedFileNamePrefix: *const fn(
             self: *const IFsrmReport,
             prefix: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilter: *const fn(
             self: *const IFsrmReport,
             filter: FsrmReportFilter,
             filterValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFilter: *const fn(
             self: *const IFsrmReport,
             filter: FsrmReportFilter,
             filterValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IFsrmReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2947,23 +2947,23 @@ pub const IFsrmReportScheduler = extern union {
         VerifyNamespaces: *const fn(
             self: *const IFsrmReportScheduler,
             namespacesSafeArray: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateScheduleTask: *const fn(
             self: *const IFsrmReportScheduler,
             taskName: ?BSTR,
             namespacesSafeArray: ?*VARIANT,
             serializedTask: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ModifyScheduleTask: *const fn(
             self: *const IFsrmReportScheduler,
             taskName: ?BSTR,
             namespacesSafeArray: ?*VARIANT,
             serializedTask: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteScheduleTask: *const fn(
             self: *const IFsrmReportScheduler,
             taskName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2992,26 +2992,26 @@ pub const IFsrmFileManagementJobManager = extern union {
         get_ActionVariables: *const fn(
             self: *const IFsrmFileManagementJobManager,
             variables: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActionVariableDescriptions: *const fn(
             self: *const IFsrmFileManagementJobManager,
             descriptions: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumFileManagementJobs: *const fn(
             self: *const IFsrmFileManagementJobManager,
             options: FsrmEnumOptions,
             fileManagementJobs: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFileManagementJob: *const fn(
             self: *const IFsrmFileManagementJobManager,
             fileManagementJob: ?*?*IFsrmFileManagementJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileManagementJob: *const fn(
             self: *const IFsrmFileManagementJobManager,
             name: ?BSTR,
             fileManagementJob: ?*?*IFsrmFileManagementJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3043,242 +3043,242 @@ pub const IFsrmFileManagementJob = extern union {
         get_Name: *const fn(
             self: *const IFsrmFileManagementJob,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IFsrmFileManagementJob,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NamespaceRoots: *const fn(
             self: *const IFsrmFileManagementJob,
             namespaceRoots: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NamespaceRoots: *const fn(
             self: *const IFsrmFileManagementJob,
             namespaceRoots: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IFsrmFileManagementJob,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IFsrmFileManagementJob,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OperationType: *const fn(
             self: *const IFsrmFileManagementJob,
             operationType: ?*FsrmFileManagementType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OperationType: *const fn(
             self: *const IFsrmFileManagementJob,
             operationType: FsrmFileManagementType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExpirationDirectory: *const fn(
             self: *const IFsrmFileManagementJob,
             expirationDirectory: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExpirationDirectory: *const fn(
             self: *const IFsrmFileManagementJob,
             expirationDirectory: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CustomAction: *const fn(
             self: *const IFsrmFileManagementJob,
             action: ?*?*IFsrmActionCommand,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Notifications: *const fn(
             self: *const IFsrmFileManagementJob,
             notifications: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Logging: *const fn(
             self: *const IFsrmFileManagementJob,
             loggingFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Logging: *const fn(
             self: *const IFsrmFileManagementJob,
             loggingFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportEnabled: *const fn(
             self: *const IFsrmFileManagementJob,
             reportEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReportEnabled: *const fn(
             self: *const IFsrmFileManagementJob,
             reportEnabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Formats: *const fn(
             self: *const IFsrmFileManagementJob,
             formats: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Formats: *const fn(
             self: *const IFsrmFileManagementJob,
             formats: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailTo: *const fn(
             self: *const IFsrmFileManagementJob,
             mailTo: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailTo: *const fn(
             self: *const IFsrmFileManagementJob,
             mailTo: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DaysSinceFileCreated: *const fn(
             self: *const IFsrmFileManagementJob,
             daysSinceCreation: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DaysSinceFileCreated: *const fn(
             self: *const IFsrmFileManagementJob,
             daysSinceCreation: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DaysSinceFileLastAccessed: *const fn(
             self: *const IFsrmFileManagementJob,
             daysSinceAccess: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DaysSinceFileLastAccessed: *const fn(
             self: *const IFsrmFileManagementJob,
             daysSinceAccess: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DaysSinceFileLastModified: *const fn(
             self: *const IFsrmFileManagementJob,
             daysSinceModify: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DaysSinceFileLastModified: *const fn(
             self: *const IFsrmFileManagementJob,
             daysSinceModify: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyConditions: *const fn(
             self: *const IFsrmFileManagementJob,
             propertyConditions: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FromDate: *const fn(
             self: *const IFsrmFileManagementJob,
             fromDate: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FromDate: *const fn(
             self: *const IFsrmFileManagementJob,
             fromDate: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Task: *const fn(
             self: *const IFsrmFileManagementJob,
             taskName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Task: *const fn(
             self: *const IFsrmFileManagementJob,
             taskName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parameters: *const fn(
             self: *const IFsrmFileManagementJob,
             parameters: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Parameters: *const fn(
             self: *const IFsrmFileManagementJob,
             parameters: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunningStatus: *const fn(
             self: *const IFsrmFileManagementJob,
             runningStatus: ?*FsrmReportRunningStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastError: *const fn(
             self: *const IFsrmFileManagementJob,
             lastError: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastReportPathWithoutExtension: *const fn(
             self: *const IFsrmFileManagementJob,
             path: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastRun: *const fn(
             self: *const IFsrmFileManagementJob,
             lastRun: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileNamePattern: *const fn(
             self: *const IFsrmFileManagementJob,
             fileNamePattern: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FileNamePattern: *const fn(
             self: *const IFsrmFileManagementJob,
             fileNamePattern: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Run: *const fn(
             self: *const IFsrmFileManagementJob,
             context: FsrmReportGenerationContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForCompletion: *const fn(
             self: *const IFsrmFileManagementJob,
             waitSeconds: i32,
             completed: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const IFsrmFileManagementJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddNotification: *const fn(
             self: *const IFsrmFileManagementJob,
             days: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteNotification: *const fn(
             self: *const IFsrmFileManagementJob,
             days: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ModifyNotification: *const fn(
             self: *const IFsrmFileManagementJob,
             days: i32,
             newDays: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateNotificationAction: *const fn(
             self: *const IFsrmFileManagementJob,
             days: i32,
             actionType: FsrmActionType,
             action: ?*?*IFsrmAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumNotificationActions: *const fn(
             self: *const IFsrmFileManagementJob,
             days: i32,
             actions: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePropertyCondition: *const fn(
             self: *const IFsrmFileManagementJob,
             name: ?BSTR,
             propertyCondition: ?*?*IFsrmPropertyCondition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCustomAction: *const fn(
             self: *const IFsrmFileManagementJob,
             customAction: ?*?*IFsrmActionCommand,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmObject: IFsrmObject,
@@ -3443,35 +3443,35 @@ pub const IFsrmPropertyCondition = extern union {
         get_Name: *const fn(
             self: *const IFsrmPropertyCondition,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IFsrmPropertyCondition,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const IFsrmPropertyCondition,
             type: ?*FsrmPropertyConditionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Type: *const fn(
             self: *const IFsrmPropertyCondition,
             type: FsrmPropertyConditionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const IFsrmPropertyCondition,
             value: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const IFsrmPropertyCondition,
             value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IFsrmPropertyCondition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3508,10 +3508,10 @@ pub const IFsrmFileCondition = extern union {
         get_Type: *const fn(
             self: *const IFsrmFileCondition,
             pVal: ?*FsrmFileConditionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IFsrmFileCondition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3534,52 +3534,52 @@ pub const IFsrmFileConditionProperty = extern union {
         get_PropertyName: *const fn(
             self: *const IFsrmFileConditionProperty,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropertyName: *const fn(
             self: *const IFsrmFileConditionProperty,
             newVal: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyId: *const fn(
             self: *const IFsrmFileConditionProperty,
             pVal: ?*FsrmFileSystemPropertyId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropertyId: *const fn(
             self: *const IFsrmFileConditionProperty,
             newVal: FsrmFileSystemPropertyId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operator: *const fn(
             self: *const IFsrmFileConditionProperty,
             pVal: ?*FsrmPropertyConditionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Operator: *const fn(
             self: *const IFsrmFileConditionProperty,
             newVal: FsrmPropertyConditionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ValueType: *const fn(
             self: *const IFsrmFileConditionProperty,
             pVal: ?*FsrmPropertyValueType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ValueType: *const fn(
             self: *const IFsrmFileConditionProperty,
             newVal: FsrmPropertyValueType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const IFsrmFileConditionProperty,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const IFsrmFileConditionProperty,
             newVal: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmFileCondition: IFsrmFileCondition,
@@ -3627,52 +3627,52 @@ pub const IFsrmPropertyDefinition = extern union {
         get_Name: *const fn(
             self: *const IFsrmPropertyDefinition,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IFsrmPropertyDefinition,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const IFsrmPropertyDefinition,
             type: ?*FsrmPropertyDefinitionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Type: *const fn(
             self: *const IFsrmPropertyDefinition,
             type: FsrmPropertyDefinitionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PossibleValues: *const fn(
             self: *const IFsrmPropertyDefinition,
             possibleValues: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PossibleValues: *const fn(
             self: *const IFsrmPropertyDefinition,
             possibleValues: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ValueDescriptions: *const fn(
             self: *const IFsrmPropertyDefinition,
             valueDescriptions: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ValueDescriptions: *const fn(
             self: *const IFsrmPropertyDefinition,
             valueDescriptions: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parameters: *const fn(
             self: *const IFsrmPropertyDefinition,
             parameters: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Parameters: *const fn(
             self: *const IFsrmPropertyDefinition,
             parameters: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmObject: IFsrmObject,
@@ -3720,27 +3720,27 @@ pub const IFsrmPropertyDefinition2 = extern union {
         get_PropertyDefinitionFlags: *const fn(
             self: *const IFsrmPropertyDefinition2,
             propertyDefinitionFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: *const fn(
             self: *const IFsrmPropertyDefinition2,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayName: *const fn(
             self: *const IFsrmPropertyDefinition2,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppliesTo: *const fn(
             self: *const IFsrmPropertyDefinition2,
             appliesTo: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ValueDefinitions: *const fn(
             self: *const IFsrmPropertyDefinition2,
             valueDefinitions: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmPropertyDefinition: IFsrmPropertyDefinition,
@@ -3774,22 +3774,22 @@ pub const IFsrmPropertyDefinitionValue = extern union {
         get_Name: *const fn(
             self: *const IFsrmPropertyDefinitionValue,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: *const fn(
             self: *const IFsrmPropertyDefinitionValue,
             displayName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IFsrmPropertyDefinitionValue,
             description: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UniqueID: *const fn(
             self: *const IFsrmPropertyDefinitionValue,
             uniqueID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3818,22 +3818,22 @@ pub const IFsrmProperty = extern union {
         get_Name: *const fn(
             self: *const IFsrmProperty,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const IFsrmProperty,
             value: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Sources: *const fn(
             self: *const IFsrmProperty,
             sources: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyFlags: *const fn(
             self: *const IFsrmProperty,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3862,62 +3862,62 @@ pub const IFsrmRule = extern union {
         get_Name: *const fn(
             self: *const IFsrmRule,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IFsrmRule,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RuleType: *const fn(
             self: *const IFsrmRule,
             ruleType: ?*FsrmRuleType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleDefinitionName: *const fn(
             self: *const IFsrmRule,
             moduleDefinitionName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ModuleDefinitionName: *const fn(
             self: *const IFsrmRule,
             moduleDefinitionName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NamespaceRoots: *const fn(
             self: *const IFsrmRule,
             namespaceRoots: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NamespaceRoots: *const fn(
             self: *const IFsrmRule,
             namespaceRoots: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RuleFlags: *const fn(
             self: *const IFsrmRule,
             ruleFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RuleFlags: *const fn(
             self: *const IFsrmRule,
             ruleFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parameters: *const fn(
             self: *const IFsrmRule,
             parameters: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Parameters: *const fn(
             self: *const IFsrmRule,
             parameters: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastModified: *const fn(
             self: *const IFsrmRule,
             lastModified: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmObject: IFsrmObject,
@@ -3971,32 +3971,32 @@ pub const IFsrmClassificationRule = extern union {
         get_ExecutionOption: *const fn(
             self: *const IFsrmClassificationRule,
             executionOption: ?*FsrmExecutionOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExecutionOption: *const fn(
             self: *const IFsrmClassificationRule,
             executionOption: FsrmExecutionOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyAffected: *const fn(
             self: *const IFsrmClassificationRule,
             property: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropertyAffected: *const fn(
             self: *const IFsrmClassificationRule,
             property: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const IFsrmClassificationRule,
             value: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const IFsrmClassificationRule,
             value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmRule: IFsrmRule,
@@ -4033,97 +4033,97 @@ pub const IFsrmPipelineModuleDefinition = extern union {
         get_ModuleClsid: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             moduleClsid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ModuleClsid: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             moduleClsid: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Company: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             company: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Company: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             company: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             version: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Version: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             version: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleType: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             moduleType: ?*FsrmPipelineModuleType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NeedsFileContent: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             needsFileContent: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NeedsFileContent: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             needsFileContent: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Account: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             retrievalAccount: ?*FsrmAccountType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Account: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             retrievalAccount: FsrmAccountType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedExtensions: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             supportedExtensions: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SupportedExtensions: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             supportedExtensions: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parameters: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             parameters: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Parameters: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
             parameters: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmObject: IFsrmObject,
@@ -4198,32 +4198,32 @@ pub const IFsrmClassifierModuleDefinition = extern union {
         get_PropertiesAffected: *const fn(
             self: *const IFsrmClassifierModuleDefinition,
             propertiesAffected: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropertiesAffected: *const fn(
             self: *const IFsrmClassifierModuleDefinition,
             propertiesAffected: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertiesUsed: *const fn(
             self: *const IFsrmClassifierModuleDefinition,
             propertiesUsed: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropertiesUsed: *const fn(
             self: *const IFsrmClassifierModuleDefinition,
             propertiesUsed: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NeedsExplicitValue: *const fn(
             self: *const IFsrmClassifierModuleDefinition,
             needsExplicitValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NeedsExplicitValue: *const fn(
             self: *const IFsrmClassifierModuleDefinition,
             needsExplicitValue: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmPipelineModuleDefinition: IFsrmPipelineModuleDefinition,
@@ -4260,32 +4260,32 @@ pub const IFsrmStorageModuleDefinition = extern union {
         get_Capabilities: *const fn(
             self: *const IFsrmStorageModuleDefinition,
             capabilities: ?*FsrmStorageModuleCaps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Capabilities: *const fn(
             self: *const IFsrmStorageModuleDefinition,
             capabilities: FsrmStorageModuleCaps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StorageType: *const fn(
             self: *const IFsrmStorageModuleDefinition,
             storageType: ?*FsrmStorageModuleType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StorageType: *const fn(
             self: *const IFsrmStorageModuleDefinition,
             storageType: FsrmStorageModuleType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UpdatesFileContent: *const fn(
             self: *const IFsrmStorageModuleDefinition,
             updatesFileContent: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UpdatesFileContent: *const fn(
             self: *const IFsrmStorageModuleDefinition,
             updatesFileContent: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmPipelineModuleDefinition: IFsrmPipelineModuleDefinition,
@@ -4322,142 +4322,142 @@ pub const IFsrmClassificationManager = extern union {
         get_ClassificationReportFormats: *const fn(
             self: *const IFsrmClassificationManager,
             formats: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClassificationReportFormats: *const fn(
             self: *const IFsrmClassificationManager,
             formats: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Logging: *const fn(
             self: *const IFsrmClassificationManager,
             logging: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Logging: *const fn(
             self: *const IFsrmClassificationManager,
             logging: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationReportMailTo: *const fn(
             self: *const IFsrmClassificationManager,
             mailTo: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClassificationReportMailTo: *const fn(
             self: *const IFsrmClassificationManager,
             mailTo: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationReportEnabled: *const fn(
             self: *const IFsrmClassificationManager,
             reportEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClassificationReportEnabled: *const fn(
             self: *const IFsrmClassificationManager,
             reportEnabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationLastReportPathWithoutExtension: *const fn(
             self: *const IFsrmClassificationManager,
             lastReportPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationLastError: *const fn(
             self: *const IFsrmClassificationManager,
             lastError: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationRunningStatus: *const fn(
             self: *const IFsrmClassificationManager,
             runningStatus: ?*FsrmReportRunningStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumPropertyDefinitions: *const fn(
             self: *const IFsrmClassificationManager,
             options: FsrmEnumOptions,
             propertyDefinitions: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePropertyDefinition: *const fn(
             self: *const IFsrmClassificationManager,
             propertyDefinition: ?*?*IFsrmPropertyDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyDefinition: *const fn(
             self: *const IFsrmClassificationManager,
             propertyName: ?BSTR,
             propertyDefinition: ?*?*IFsrmPropertyDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumRules: *const fn(
             self: *const IFsrmClassificationManager,
             ruleType: FsrmRuleType,
             options: FsrmEnumOptions,
             Rules: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRule: *const fn(
             self: *const IFsrmClassificationManager,
             ruleType: FsrmRuleType,
             Rule: ?*?*IFsrmRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRule: *const fn(
             self: *const IFsrmClassificationManager,
             ruleName: ?BSTR,
             ruleType: FsrmRuleType,
             Rule: ?*?*IFsrmRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumModuleDefinitions: *const fn(
             self: *const IFsrmClassificationManager,
             moduleType: FsrmPipelineModuleType,
             options: FsrmEnumOptions,
             moduleDefinitions: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateModuleDefinition: *const fn(
             self: *const IFsrmClassificationManager,
             moduleType: FsrmPipelineModuleType,
             moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetModuleDefinition: *const fn(
             self: *const IFsrmClassificationManager,
             moduleName: ?BSTR,
             moduleType: FsrmPipelineModuleType,
             moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RunClassification: *const fn(
             self: *const IFsrmClassificationManager,
             context: FsrmReportGenerationContext,
             reserved: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForClassificationCompletion: *const fn(
             self: *const IFsrmClassificationManager,
             waitSeconds: i32,
             completed: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelClassification: *const fn(
             self: *const IFsrmClassificationManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumFileProperties: *const fn(
             self: *const IFsrmClassificationManager,
             filePath: ?BSTR,
             options: FsrmGetFilePropertyOptions,
             fileProperties: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileProperty: *const fn(
             self: *const IFsrmClassificationManager,
             filePath: ?BSTR,
             propertyName: ?BSTR,
             options: FsrmGetFilePropertyOptions,
             property: ?*?*IFsrmProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFileProperty: *const fn(
             self: *const IFsrmClassificationManager,
             filePath: ?BSTR,
             propertyName: ?BSTR,
             propertyValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearFileProperty: *const fn(
             self: *const IFsrmClassificationManager,
             filePath: ?BSTR,
             property: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4557,7 +4557,7 @@ pub const IFsrmClassificationManager2 = extern union {
             propertyNames: ?*SAFEARRAY,
             propertyValues: ?*SAFEARRAY,
             options: FsrmGetFilePropertyOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmClassificationManager: IFsrmClassificationManager,
@@ -4578,107 +4578,107 @@ pub const IFsrmPropertyBag = extern union {
         get_Name: *const fn(
             self: *const IFsrmPropertyBag,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RelativePath: *const fn(
             self: *const IFsrmPropertyBag,
             path: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VolumeName: *const fn(
             self: *const IFsrmPropertyBag,
             volumeName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RelativeNamespaceRoot: *const fn(
             self: *const IFsrmPropertyBag,
             relativeNamespaceRoot: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VolumeIndex: *const fn(
             self: *const IFsrmPropertyBag,
             volumeId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileId: *const fn(
             self: *const IFsrmPropertyBag,
             fileId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentDirectoryId: *const fn(
             self: *const IFsrmPropertyBag,
             parentDirectoryId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Size: *const fn(
             self: *const IFsrmPropertyBag,
             size: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SizeAllocated: *const fn(
             self: *const IFsrmPropertyBag,
             sizeAllocated: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CreationTime: *const fn(
             self: *const IFsrmPropertyBag,
             creationTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastAccessTime: *const fn(
             self: *const IFsrmPropertyBag,
             lastAccessTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastModificationTime: *const fn(
             self: *const IFsrmPropertyBag,
             lastModificationTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Attributes: *const fn(
             self: *const IFsrmPropertyBag,
             attributes: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OwnerSid: *const fn(
             self: *const IFsrmPropertyBag,
             ownerSid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FilePropertyNames: *const fn(
             self: *const IFsrmPropertyBag,
             filePropertyNames: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Messages: *const fn(
             self: *const IFsrmPropertyBag,
             messages: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyBagFlags: *const fn(
             self: *const IFsrmPropertyBag,
             flags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileProperty: *const fn(
             self: *const IFsrmPropertyBag,
             name: ?BSTR,
             fileProperty: ?*?*IFsrmProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFileProperty: *const fn(
             self: *const IFsrmPropertyBag,
             name: ?BSTR,
             value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMessage: *const fn(
             self: *const IFsrmPropertyBag,
             message: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileStreamInterface: *const fn(
             self: *const IFsrmPropertyBag,
             accessMode: FsrmFileStreamingMode,
             interfaceType: FsrmFileStreamingInterfaceType,
             pStreamInterface: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4758,11 +4758,11 @@ pub const IFsrmPropertyBag2 = extern union {
             self: *const IFsrmPropertyBag2,
             field: FsrmPropertyBagField,
             value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUntrustedInFileProperties: *const fn(
             self: *const IFsrmPropertyBag2,
             props: ?*?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmPropertyBag: IFsrmPropertyBag,
@@ -4786,10 +4786,10 @@ pub const IFsrmPipelineModuleImplementation = extern union {
             self: *const IFsrmPipelineModuleImplementation,
             moduleDefinition: ?*IFsrmPipelineModuleDefinition,
             moduleConnector: ?*?*IFsrmPipelineModuleConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnUnload: *const fn(
             self: *const IFsrmPipelineModuleImplementation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4812,17 +4812,17 @@ pub const IFsrmClassifierModuleImplementation = extern union {
         get_LastModified: *const fn(
             self: *const IFsrmClassifierModuleImplementation,
             lastModified: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UseRulesAndDefinitions: *const fn(
             self: *const IFsrmClassifierModuleImplementation,
             rules: ?*IFsrmCollection,
             propertyDefinitions: ?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnBeginFile: *const fn(
             self: *const IFsrmClassifierModuleImplementation,
             propertyBag: ?*IFsrmPropertyBag,
             arrayRuleIds: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoesPropertyValueApply: *const fn(
             self: *const IFsrmClassifierModuleImplementation,
             property: ?BSTR,
@@ -4830,17 +4830,17 @@ pub const IFsrmClassifierModuleImplementation = extern union {
             applyValue: ?*i16,
             idRule: Guid,
             idPropDef: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyValueToApply: *const fn(
             self: *const IFsrmClassifierModuleImplementation,
             property: ?BSTR,
             value: ?*?BSTR,
             idRule: Guid,
             idPropDef: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEndFile: *const fn(
             self: *const IFsrmClassifierModuleImplementation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmPipelineModuleImplementation: IFsrmPipelineModuleImplementation,
@@ -4875,15 +4875,15 @@ pub const IFsrmStorageModuleImplementation = extern union {
         UseDefinitions: *const fn(
             self: *const IFsrmStorageModuleImplementation,
             propertyDefinitions: ?*IFsrmCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadProperties: *const fn(
             self: *const IFsrmStorageModuleImplementation,
             propertyBag: ?*IFsrmPropertyBag,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveProperties: *const fn(
             self: *const IFsrmStorageModuleImplementation,
             propertyBag: ?*IFsrmPropertyBag,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmPipelineModuleImplementation: IFsrmPipelineModuleImplementation,
@@ -4910,27 +4910,27 @@ pub const IFsrmPipelineModuleConnector = extern union {
         get_ModuleImplementation: *const fn(
             self: *const IFsrmPipelineModuleConnector,
             pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleName: *const fn(
             self: *const IFsrmPipelineModuleConnector,
             userName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HostingUserAccount: *const fn(
             self: *const IFsrmPipelineModuleConnector,
             userAccount: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HostingProcessPid: *const fn(
             self: *const IFsrmPipelineModuleConnector,
             pid: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Bind: *const fn(
             self: *const IFsrmPipelineModuleConnector,
             moduleDefinition: ?*IFsrmPipelineModuleDefinition,
             moduleImplementation: ?*IFsrmPipelineModuleImplementation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,

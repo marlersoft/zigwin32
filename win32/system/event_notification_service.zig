@@ -53,30 +53,30 @@ pub const ISensNetwork = extern union {
             bstrConnection: ?BSTR,
             ulType: u32,
             lpQOCInfo: ?*SENS_QOCINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConnectionMadeNoQOCInfo: *const fn(
             self: *const ISensNetwork,
             bstrConnection: ?BSTR,
             ulType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConnectionLost: *const fn(
             self: *const ISensNetwork,
             bstrConnection: ?BSTR,
             ulType: SENS_CONNECTION_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestinationReachable: *const fn(
             self: *const ISensNetwork,
             bstrDestination: ?BSTR,
             bstrConnection: ?BSTR,
             ulType: u32,
             lpQOCInfo: ?*SENS_QOCINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestinationReachableNoQOCInfo: *const fn(
             self: *const ISensNetwork,
             bstrDestination: ?BSTR,
             bstrConnection: ?BSTR,
             ulType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -106,15 +106,15 @@ pub const ISensOnNow = extern union {
         base: IDispatch.VTable,
         OnACPower: *const fn(
             self: *const ISensOnNow,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnBatteryPower: *const fn(
             self: *const ISensOnNow,
             dwBatteryLifePercent: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BatteryLow: *const fn(
             self: *const ISensOnNow,
             dwBatteryLifePercent: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -139,31 +139,31 @@ pub const ISensLogon = extern union {
         Logon: *const fn(
             self: *const ISensLogon,
             bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Logoff: *const fn(
             self: *const ISensLogon,
             bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartShell: *const fn(
             self: *const ISensLogon,
             bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayLock: *const fn(
             self: *const ISensLogon,
             bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayUnlock: *const fn(
             self: *const ISensLogon,
             bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartScreenSaver: *const fn(
             self: *const ISensLogon,
             bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopScreenSaver: *const fn(
             self: *const ISensLogon,
             bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -201,27 +201,27 @@ pub const ISensLogon2 = extern union {
             self: *const ISensLogon2,
             bstrUserName: ?BSTR,
             dwSessionId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Logoff: *const fn(
             self: *const ISensLogon2,
             bstrUserName: ?BSTR,
             dwSessionId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionDisconnect: *const fn(
             self: *const ISensLogon2,
             bstrUserName: ?BSTR,
             dwSessionId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionReconnect: *const fn(
             self: *const ISensLogon2,
             bstrUserName: ?BSTR,
             dwSessionId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PostShell: *const fn(
             self: *const ISensLogon2,
             bstrUserName: ?BSTR,
             dwSessionId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -251,18 +251,18 @@ pub const ISensLogon2 = extern union {
 pub extern "sensapi" fn IsDestinationReachableA(
     lpszDestination: ?[*:0]const u8,
     lpQOCInfo: ?*QOCINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sensapi" fn IsDestinationReachableW(
     lpszDestination: ?[*:0]const u16,
     lpQOCInfo: ?*QOCINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sensapi" fn IsNetworkAlive(
     lpdwFlags: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

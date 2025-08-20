@@ -24,7 +24,7 @@ pub const IWsbApplicationBackupSupport = extern union {
             rgwszSourceVolumePath: [*]?PWSTR,
             rgwszSnapshotVolumePath: [*]?PWSTR,
             ppAsync: ?*?*IWsbApplicationAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -45,14 +45,14 @@ pub const IWsbApplicationRestoreSupport = extern union {
             wszComponentName: ?PWSTR,
             wszComponentLogicalPath: ?PWSTR,
             bNoRollForward: BOOLEAN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PostRestore: *const fn(
             self: *const IWsbApplicationRestoreSupport,
             wszWriterMetadata: ?PWSTR,
             wszComponentName: ?PWSTR,
             wszComponentLogicalPath: ?PWSTR,
             bNoRollForward: BOOLEAN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OrderComponents: *const fn(
             self: *const IWsbApplicationRestoreSupport,
             cComponents: u32,
@@ -60,11 +60,11 @@ pub const IWsbApplicationRestoreSupport = extern union {
             rgComponentLogicalPaths: [*]?PWSTR,
             prgComponentName: [*]?*?PWSTR,
             prgComponentLogicalPath: [*]?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsRollForwardSupported: *const fn(
             self: *const IWsbApplicationRestoreSupport,
             pbRollForwardSupported: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -91,10 +91,10 @@ pub const IWsbApplicationAsync = extern union {
         QueryStatus: *const fn(
             self: *const IWsbApplicationAsync,
             phrResult: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Abort: *const fn(
             self: *const IWsbApplicationAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

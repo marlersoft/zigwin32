@@ -122,11 +122,11 @@ pub const IDCompositionAnimation = extern union {
         base: IUnknown.VTable,
         Reset: *const fn(
             self: *const IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAbsoluteBeginTime: *const fn(
             self: *const IDCompositionAnimation,
             beginTime: LARGE_INTEGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddCubic: *const fn(
             self: *const IDCompositionAnimation,
             beginOffset: f64,
@@ -134,7 +134,7 @@ pub const IDCompositionAnimation = extern union {
             linearCoefficient: f32,
             quadraticCoefficient: f32,
             cubicCoefficient: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddSinusoidal: *const fn(
             self: *const IDCompositionAnimation,
             beginOffset: f64,
@@ -142,17 +142,17 @@ pub const IDCompositionAnimation = extern union {
             amplitude: f32,
             frequency: f32,
             phase: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRepeat: *const fn(
             self: *const IDCompositionAnimation,
             beginOffset: f64,
             durationToRepeat: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         End: *const fn(
             self: *const IDCompositionAnimation,
             endOffset: f64,
             endValue: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -184,24 +184,24 @@ pub const IDCompositionDevice = extern union {
         base: IUnknown.VTable,
         Commit: *const fn(
             self: *const IDCompositionDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForCommitCompletion: *const fn(
             self: *const IDCompositionDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrameStatistics: *const fn(
             self: *const IDCompositionDevice,
             statistics: ?*DCOMPOSITION_FRAME_STATISTICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTargetForHwnd: *const fn(
             self: *const IDCompositionDevice,
             hwnd: ?HWND,
             topmost: BOOL,
             target: ?*?*IDCompositionTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVisual: *const fn(
             self: *const IDCompositionDevice,
             visual: ?*?*IDCompositionVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSurface: *const fn(
             self: *const IDCompositionDevice,
             width: u32,
@@ -209,7 +209,7 @@ pub const IDCompositionDevice = extern union {
             pixelFormat: DXGI_FORMAT,
             alphaMode: DXGI_ALPHA_MODE,
             surface: ?*?*IDCompositionSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVirtualSurface: *const fn(
             self: *const IDCompositionDevice,
             initialWidth: u32,
@@ -217,81 +217,81 @@ pub const IDCompositionDevice = extern union {
             pixelFormat: DXGI_FORMAT,
             alphaMode: DXGI_ALPHA_MODE,
             virtualSurface: ?*?*IDCompositionVirtualSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSurfaceFromHandle: *const fn(
             self: *const IDCompositionDevice,
             handle: ?HANDLE,
             surface: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSurfaceFromHwnd: *const fn(
             self: *const IDCompositionDevice,
             hwnd: ?HWND,
             surface: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTranslateTransform: *const fn(
             self: *const IDCompositionDevice,
             translateTransform: ?*?*IDCompositionTranslateTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateScaleTransform: *const fn(
             self: *const IDCompositionDevice,
             scaleTransform: ?*?*IDCompositionScaleTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRotateTransform: *const fn(
             self: *const IDCompositionDevice,
             rotateTransform: ?*?*IDCompositionRotateTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSkewTransform: *const fn(
             self: *const IDCompositionDevice,
             skewTransform: ?*?*IDCompositionSkewTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMatrixTransform: *const fn(
             self: *const IDCompositionDevice,
             matrixTransform: ?*?*IDCompositionMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTransformGroup: *const fn(
             self: *const IDCompositionDevice,
             transforms: [*]?*IDCompositionTransform,
             elements: u32,
             transformGroup: ?*?*IDCompositionTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTranslateTransform3D: *const fn(
             self: *const IDCompositionDevice,
             translateTransform3D: ?*?*IDCompositionTranslateTransform3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateScaleTransform3D: *const fn(
             self: *const IDCompositionDevice,
             scaleTransform3D: ?*?*IDCompositionScaleTransform3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRotateTransform3D: *const fn(
             self: *const IDCompositionDevice,
             rotateTransform3D: ?*?*IDCompositionRotateTransform3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMatrixTransform3D: *const fn(
             self: *const IDCompositionDevice,
             matrixTransform3D: ?*?*IDCompositionMatrixTransform3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTransform3DGroup: *const fn(
             self: *const IDCompositionDevice,
             transforms3D: [*]?*IDCompositionTransform3D,
             elements: u32,
             transform3DGroup: ?*?*IDCompositionTransform3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEffectGroup: *const fn(
             self: *const IDCompositionDevice,
             effectGroup: ?*?*IDCompositionEffectGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRectangleClip: *const fn(
             self: *const IDCompositionDevice,
             clip: ?*?*IDCompositionRectangleClip,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAnimation: *const fn(
             self: *const IDCompositionDevice,
             animation: ?*?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckDeviceState: *const fn(
             self: *const IDCompositionDevice,
             pfValid: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -378,7 +378,7 @@ pub const IDCompositionTarget = extern union {
         SetRoot: *const fn(
             self: *const IDCompositionTarget,
             visual: ?*IDCompositionVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -396,72 +396,72 @@ pub const IDCompositionVisual = extern union {
         SetOffsetX_TODO_A: *const fn(
             self: *const IDCompositionVisual,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetX_TODO_B: *const fn(
             self: *const IDCompositionVisual,
             offsetX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetY_TODO_A: *const fn(
             self: *const IDCompositionVisual,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetY_TODO_B: *const fn(
             self: *const IDCompositionVisual,
             offsetY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransform_TODO_A: *const fn(
             self: *const IDCompositionVisual,
             transform: ?*IDCompositionTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransform_TODO_B: *const fn(
             self: *const IDCompositionVisual,
             matrix: ?*const D2D_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransformParent: *const fn(
             self: *const IDCompositionVisual,
             visual: ?*IDCompositionVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEffect: *const fn(
             self: *const IDCompositionVisual,
             effect: ?*IDCompositionEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBitmapInterpolationMode: *const fn(
             self: *const IDCompositionVisual,
             interpolationMode: DCOMPOSITION_BITMAP_INTERPOLATION_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBorderMode: *const fn(
             self: *const IDCompositionVisual,
             borderMode: DCOMPOSITION_BORDER_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClip_TODO_A: *const fn(
             self: *const IDCompositionVisual,
             clip: ?*IDCompositionClip,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClip_TODO_B: *const fn(
             self: *const IDCompositionVisual,
             rect: ?*const D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContent: *const fn(
             self: *const IDCompositionVisual,
             content: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddVisual: *const fn(
             self: *const IDCompositionVisual,
             visual: ?*IDCompositionVisual,
             insertAbove: BOOL,
             referenceVisual: ?*IDCompositionVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveVisual: *const fn(
             self: *const IDCompositionVisual,
             visual: ?*IDCompositionVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAllVisuals: *const fn(
             self: *const IDCompositionVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCompositeMode: *const fn(
             self: *const IDCompositionVisual,
             compositeMode: DCOMPOSITION_COMPOSITE_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -567,19 +567,19 @@ pub const IDCompositionTranslateTransform = extern union {
         SetOffsetX_TODO_A: *const fn(
             self: *const IDCompositionTranslateTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetX_TODO_B: *const fn(
             self: *const IDCompositionTranslateTransform,
             offsetX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetY_TODO_A: *const fn(
             self: *const IDCompositionTranslateTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetY_TODO_B: *const fn(
             self: *const IDCompositionTranslateTransform,
             offsetY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionTransform: IDCompositionTransform,
@@ -611,35 +611,35 @@ pub const IDCompositionScaleTransform = extern union {
         SetScaleX_TODO_A: *const fn(
             self: *const IDCompositionScaleTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetScaleX_TODO_B: *const fn(
             self: *const IDCompositionScaleTransform,
             scaleX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetScaleY_TODO_A: *const fn(
             self: *const IDCompositionScaleTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetScaleY_TODO_B: *const fn(
             self: *const IDCompositionScaleTransform,
             scaleY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterX_TODO_A: *const fn(
             self: *const IDCompositionScaleTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterX_TODO_B: *const fn(
             self: *const IDCompositionScaleTransform,
             centerX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterY_TODO_A: *const fn(
             self: *const IDCompositionScaleTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterY_TODO_B: *const fn(
             self: *const IDCompositionScaleTransform,
             centerY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionTransform: IDCompositionTransform,
@@ -685,27 +685,27 @@ pub const IDCompositionRotateTransform = extern union {
         SetAngle_TODO_A: *const fn(
             self: *const IDCompositionRotateTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAngle_TODO_B: *const fn(
             self: *const IDCompositionRotateTransform,
             angle: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterX_TODO_A: *const fn(
             self: *const IDCompositionRotateTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterX_TODO_B: *const fn(
             self: *const IDCompositionRotateTransform,
             centerX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterY_TODO_A: *const fn(
             self: *const IDCompositionRotateTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterY_TODO_B: *const fn(
             self: *const IDCompositionRotateTransform,
             centerY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionTransform: IDCompositionTransform,
@@ -744,35 +744,35 @@ pub const IDCompositionSkewTransform = extern union {
         SetAngleX_TODO_A: *const fn(
             self: *const IDCompositionSkewTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAngleX_TODO_B: *const fn(
             self: *const IDCompositionSkewTransform,
             angleX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAngleY_TODO_A: *const fn(
             self: *const IDCompositionSkewTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAngleY_TODO_B: *const fn(
             self: *const IDCompositionSkewTransform,
             angleY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterX_TODO_A: *const fn(
             self: *const IDCompositionSkewTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterX_TODO_B: *const fn(
             self: *const IDCompositionSkewTransform,
             centerX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterY_TODO_A: *const fn(
             self: *const IDCompositionSkewTransform,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterY_TODO_B: *const fn(
             self: *const IDCompositionSkewTransform,
             centerY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionTransform: IDCompositionTransform,
@@ -818,19 +818,19 @@ pub const IDCompositionMatrixTransform = extern union {
         SetMatrix: *const fn(
             self: *const IDCompositionMatrixTransform,
             matrix: ?*const D2D_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMatrixElement_TODO_A: *const fn(
             self: *const IDCompositionMatrixTransform,
             row: i32,
             column: i32,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMatrixElement_TODO_B: *const fn(
             self: *const IDCompositionMatrixTransform,
             row: i32,
             column: i32,
             value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionTransform: IDCompositionTransform,
@@ -858,15 +858,15 @@ pub const IDCompositionEffectGroup = extern union {
         SetOpacity_TODO_A: *const fn(
             self: *const IDCompositionEffectGroup,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOpacity_TODO_B: *const fn(
             self: *const IDCompositionEffectGroup,
             opacity: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransform3D: *const fn(
             self: *const IDCompositionEffectGroup,
             transform3D: ?*IDCompositionTransform3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionEffect: IDCompositionEffect,
@@ -892,27 +892,27 @@ pub const IDCompositionTranslateTransform3D = extern union {
         SetOffsetX_TODO_A: *const fn(
             self: *const IDCompositionTranslateTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetX_TODO_B: *const fn(
             self: *const IDCompositionTranslateTransform3D,
             offsetX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetY_TODO_A: *const fn(
             self: *const IDCompositionTranslateTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetY_TODO_B: *const fn(
             self: *const IDCompositionTranslateTransform3D,
             offsetY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetZ_TODO_A: *const fn(
             self: *const IDCompositionTranslateTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetZ_TODO_B: *const fn(
             self: *const IDCompositionTranslateTransform3D,
             offsetZ: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionTransform3D: IDCompositionTransform3D,
@@ -950,51 +950,51 @@ pub const IDCompositionScaleTransform3D = extern union {
         SetScaleX_TODO_A: *const fn(
             self: *const IDCompositionScaleTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetScaleX_TODO_B: *const fn(
             self: *const IDCompositionScaleTransform3D,
             scaleX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetScaleY_TODO_A: *const fn(
             self: *const IDCompositionScaleTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetScaleY_TODO_B: *const fn(
             self: *const IDCompositionScaleTransform3D,
             scaleY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetScaleZ_TODO_A: *const fn(
             self: *const IDCompositionScaleTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetScaleZ_TODO_B: *const fn(
             self: *const IDCompositionScaleTransform3D,
             scaleZ: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterX_TODO_A: *const fn(
             self: *const IDCompositionScaleTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterX_TODO_B: *const fn(
             self: *const IDCompositionScaleTransform3D,
             centerX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterY_TODO_A: *const fn(
             self: *const IDCompositionScaleTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterY_TODO_B: *const fn(
             self: *const IDCompositionScaleTransform3D,
             centerY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterZ_TODO_A: *const fn(
             self: *const IDCompositionScaleTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterZ_TODO_B: *const fn(
             self: *const IDCompositionScaleTransform3D,
             centerZ: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionTransform3D: IDCompositionTransform3D,
@@ -1053,59 +1053,59 @@ pub const IDCompositionRotateTransform3D = extern union {
         SetAngle_TODO_A: *const fn(
             self: *const IDCompositionRotateTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAngle_TODO_B: *const fn(
             self: *const IDCompositionRotateTransform3D,
             angle: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAxisX_TODO_A: *const fn(
             self: *const IDCompositionRotateTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAxisX_TODO_B: *const fn(
             self: *const IDCompositionRotateTransform3D,
             axisX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAxisY_TODO_A: *const fn(
             self: *const IDCompositionRotateTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAxisY_TODO_B: *const fn(
             self: *const IDCompositionRotateTransform3D,
             axisY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAxisZ_TODO_A: *const fn(
             self: *const IDCompositionRotateTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAxisZ_TODO_B: *const fn(
             self: *const IDCompositionRotateTransform3D,
             axisZ: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterX_TODO_A: *const fn(
             self: *const IDCompositionRotateTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterX_TODO_B: *const fn(
             self: *const IDCompositionRotateTransform3D,
             centerX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterY_TODO_A: *const fn(
             self: *const IDCompositionRotateTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterY_TODO_B: *const fn(
             self: *const IDCompositionRotateTransform3D,
             centerY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterZ_TODO_A: *const fn(
             self: *const IDCompositionRotateTransform3D,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenterZ_TODO_B: *const fn(
             self: *const IDCompositionRotateTransform3D,
             centerZ: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionTransform3D: IDCompositionTransform3D,
@@ -1171,19 +1171,19 @@ pub const IDCompositionMatrixTransform3D = extern union {
         SetMatrix: *const fn(
             self: *const IDCompositionMatrixTransform3D,
             matrix: ?*const D3DMATRIX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMatrixElement_TODO_A: *const fn(
             self: *const IDCompositionMatrixTransform3D,
             row: i32,
             column: i32,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMatrixElement_TODO_B: *const fn(
             self: *const IDCompositionMatrixTransform3D,
             row: i32,
             column: i32,
             value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionTransform3D: IDCompositionTransform3D,
@@ -1221,99 +1221,99 @@ pub const IDCompositionRectangleClip = extern union {
         SetLeft_TODO_A: *const fn(
             self: *const IDCompositionRectangleClip,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLeft_TODO_B: *const fn(
             self: *const IDCompositionRectangleClip,
             left: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTop_TODO_A: *const fn(
             self: *const IDCompositionRectangleClip,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTop_TODO_B: *const fn(
             self: *const IDCompositionRectangleClip,
             top: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRight_TODO_A: *const fn(
             self: *const IDCompositionRectangleClip,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRight_TODO_B: *const fn(
             self: *const IDCompositionRectangleClip,
             right: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBottom_TODO_A: *const fn(
             self: *const IDCompositionRectangleClip,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBottom_TODO_B: *const fn(
             self: *const IDCompositionRectangleClip,
             bottom: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTopLeftRadiusX_TODO_A: *const fn(
             self: *const IDCompositionRectangleClip,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTopLeftRadiusX_TODO_B: *const fn(
             self: *const IDCompositionRectangleClip,
             radius: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTopLeftRadiusY_TODO_A: *const fn(
             self: *const IDCompositionRectangleClip,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTopLeftRadiusY_TODO_B: *const fn(
             self: *const IDCompositionRectangleClip,
             radius: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTopRightRadiusX_TODO_A: *const fn(
             self: *const IDCompositionRectangleClip,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTopRightRadiusX_TODO_B: *const fn(
             self: *const IDCompositionRectangleClip,
             radius: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTopRightRadiusY_TODO_A: *const fn(
             self: *const IDCompositionRectangleClip,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTopRightRadiusY_TODO_B: *const fn(
             self: *const IDCompositionRectangleClip,
             radius: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBottomLeftRadiusX_TODO_A: *const fn(
             self: *const IDCompositionRectangleClip,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBottomLeftRadiusX_TODO_B: *const fn(
             self: *const IDCompositionRectangleClip,
             radius: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBottomLeftRadiusY_TODO_A: *const fn(
             self: *const IDCompositionRectangleClip,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBottomLeftRadiusY_TODO_B: *const fn(
             self: *const IDCompositionRectangleClip,
             radius: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBottomRightRadiusX_TODO_A: *const fn(
             self: *const IDCompositionRectangleClip,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBottomRightRadiusX_TODO_B: *const fn(
             self: *const IDCompositionRectangleClip,
             radius: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBottomRightRadiusY_TODO_A: *const fn(
             self: *const IDCompositionRectangleClip,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBottomRightRadiusY_TODO_B: *const fn(
             self: *const IDCompositionRectangleClip,
             radius: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionClip: IDCompositionClip,
@@ -1416,23 +1416,23 @@ pub const IDCompositionSurface = extern union {
             iid: ?*const Guid,
             updateObject: ?*?*anyopaque,
             updateOffset: ?*POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndDraw: *const fn(
             self: *const IDCompositionSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SuspendDraw: *const fn(
             self: *const IDCompositionSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResumeDraw: *const fn(
             self: *const IDCompositionSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Scroll: *const fn(
             self: *const IDCompositionSurface,
             scrollRect: ?*const RECT,
             clipRect: ?*const RECT,
             offsetX: i32,
             offsetY: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1463,12 +1463,12 @@ pub const IDCompositionVirtualSurface = extern union {
             self: *const IDCompositionVirtualSurface,
             width: u32,
             height: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Trim: *const fn(
             self: *const IDCompositionVirtualSurface,
             rectangles: ?[*]const RECT,
             count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionSurface: IDCompositionSurface,
@@ -1489,23 +1489,23 @@ pub const IDCompositionDevice2 = extern union {
         base: IUnknown.VTable,
         Commit: *const fn(
             self: *const IDCompositionDevice2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForCommitCompletion: *const fn(
             self: *const IDCompositionDevice2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrameStatistics: *const fn(
             self: *const IDCompositionDevice2,
             statistics: ?*DCOMPOSITION_FRAME_STATISTICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVisual: *const fn(
             self: *const IDCompositionDevice2,
             visual: ?*?*IDCompositionVisual2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSurfaceFactory: *const fn(
             self: *const IDCompositionDevice2,
             renderingDevice: ?*IUnknown,
             surfaceFactory: ?*?*IDCompositionSurfaceFactory,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSurface: *const fn(
             self: *const IDCompositionDevice2,
             width: u32,
@@ -1513,7 +1513,7 @@ pub const IDCompositionDevice2 = extern union {
             pixelFormat: DXGI_FORMAT,
             alphaMode: DXGI_ALPHA_MODE,
             surface: ?*?*IDCompositionSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVirtualSurface: *const fn(
             self: *const IDCompositionDevice2,
             initialWidth: u32,
@@ -1521,67 +1521,67 @@ pub const IDCompositionDevice2 = extern union {
             pixelFormat: DXGI_FORMAT,
             alphaMode: DXGI_ALPHA_MODE,
             virtualSurface: ?*?*IDCompositionVirtualSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTranslateTransform: *const fn(
             self: *const IDCompositionDevice2,
             translateTransform: ?*?*IDCompositionTranslateTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateScaleTransform: *const fn(
             self: *const IDCompositionDevice2,
             scaleTransform: ?*?*IDCompositionScaleTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRotateTransform: *const fn(
             self: *const IDCompositionDevice2,
             rotateTransform: ?*?*IDCompositionRotateTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSkewTransform: *const fn(
             self: *const IDCompositionDevice2,
             skewTransform: ?*?*IDCompositionSkewTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMatrixTransform: *const fn(
             self: *const IDCompositionDevice2,
             matrixTransform: ?*?*IDCompositionMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTransformGroup: *const fn(
             self: *const IDCompositionDevice2,
             transforms: [*]?*IDCompositionTransform,
             elements: u32,
             transformGroup: ?*?*IDCompositionTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTranslateTransform3D: *const fn(
             self: *const IDCompositionDevice2,
             translateTransform3D: ?*?*IDCompositionTranslateTransform3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateScaleTransform3D: *const fn(
             self: *const IDCompositionDevice2,
             scaleTransform3D: ?*?*IDCompositionScaleTransform3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRotateTransform3D: *const fn(
             self: *const IDCompositionDevice2,
             rotateTransform3D: ?*?*IDCompositionRotateTransform3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMatrixTransform3D: *const fn(
             self: *const IDCompositionDevice2,
             matrixTransform3D: ?*?*IDCompositionMatrixTransform3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTransform3DGroup: *const fn(
             self: *const IDCompositionDevice2,
             transforms3D: [*]?*IDCompositionTransform3D,
             elements: u32,
             transform3DGroup: ?*?*IDCompositionTransform3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEffectGroup: *const fn(
             self: *const IDCompositionDevice2,
             effectGroup: ?*?*IDCompositionEffectGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRectangleClip: *const fn(
             self: *const IDCompositionDevice2,
             clip: ?*?*IDCompositionRectangleClip,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAnimation: *const fn(
             self: *const IDCompositionDevice2,
             animation: ?*?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1661,17 +1661,17 @@ pub const IDCompositionDesktopDevice = extern union {
             hwnd: ?HWND,
             topmost: BOOL,
             target: ?*?*IDCompositionTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSurfaceFromHandle: *const fn(
             self: *const IDCompositionDesktopDevice,
             handle: ?HANDLE,
             surface: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSurfaceFromHwnd: *const fn(
             self: *const IDCompositionDesktopDevice,
             hwnd: ?HWND,
             surface: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionDevice2: IDCompositionDevice2,
@@ -1694,10 +1694,10 @@ pub const IDCompositionDeviceDebug = extern union {
         base: IUnknown.VTable,
         EnableDebugCounters: *const fn(
             self: *const IDCompositionDeviceDebug,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableDebugCounters: *const fn(
             self: *const IDCompositionDeviceDebug,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1722,7 +1722,7 @@ pub const IDCompositionSurfaceFactory = extern union {
             pixelFormat: DXGI_FORMAT,
             alphaMode: DXGI_ALPHA_MODE,
             surface: ?*?*IDCompositionSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVirtualSurface: *const fn(
             self: *const IDCompositionSurfaceFactory,
             initialWidth: u32,
@@ -1730,7 +1730,7 @@ pub const IDCompositionSurfaceFactory = extern union {
             pixelFormat: DXGI_FORMAT,
             alphaMode: DXGI_ALPHA_MODE,
             virtualSurface: ?*?*IDCompositionVirtualSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1751,11 +1751,11 @@ pub const IDCompositionVisual2 = extern union {
         SetOpacityMode: *const fn(
             self: *const IDCompositionVisual2,
             mode: DCOMPOSITION_OPACITY_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBackFaceVisibility: *const fn(
             self: *const IDCompositionVisual2,
             visibility: DCOMPOSITION_BACKFACE_VISIBILITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionVisual: IDCompositionVisual,
@@ -1777,16 +1777,16 @@ pub const IDCompositionVisualDebug = extern union {
         EnableHeatMap: *const fn(
             self: *const IDCompositionVisualDebug,
             color: ?*const D2D_COLOR_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableHeatMap: *const fn(
             self: *const IDCompositionVisualDebug,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableRedrawRegions: *const fn(
             self: *const IDCompositionVisualDebug,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableRedrawRegions: *const fn(
             self: *const IDCompositionVisualDebug,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionVisual2: IDCompositionVisual2,
@@ -1815,35 +1815,35 @@ pub const IDCompositionVisual3 = extern union {
         SetDepthMode: *const fn(
             self: *const IDCompositionVisual3,
             mode: DCOMPOSITION_DEPTH_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetZ_TODO_A: *const fn(
             self: *const IDCompositionVisual3,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffsetZ_TODO_B: *const fn(
             self: *const IDCompositionVisual3,
             offsetZ: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOpacity_TODO_A: *const fn(
             self: *const IDCompositionVisual3,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOpacity_TODO_B: *const fn(
             self: *const IDCompositionVisual3,
             opacity: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransform_TODO_A: *const fn(
             self: *const IDCompositionVisual3,
             transform: ?*IDCompositionTransform3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransform_TODO_B: *const fn(
             self: *const IDCompositionVisual3,
             matrix: ?*const D2D_MATRIX_4X4_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVisible: *const fn(
             self: *const IDCompositionVisual3,
             visible: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionVisualDebug: IDCompositionVisualDebug,
@@ -1888,55 +1888,55 @@ pub const IDCompositionDevice3 = extern union {
         CreateGaussianBlurEffect: *const fn(
             self: *const IDCompositionDevice3,
             gaussianBlurEffect: ?*?*IDCompositionGaussianBlurEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBrightnessEffect: *const fn(
             self: *const IDCompositionDevice3,
             brightnessEffect: ?*?*IDCompositionBrightnessEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateColorMatrixEffect: *const fn(
             self: *const IDCompositionDevice3,
             colorMatrixEffect: ?*?*IDCompositionColorMatrixEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateShadowEffect: *const fn(
             self: *const IDCompositionDevice3,
             shadowEffect: ?*?*IDCompositionShadowEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateHueRotationEffect: *const fn(
             self: *const IDCompositionDevice3,
             hueRotationEffect: ?*?*IDCompositionHueRotationEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSaturationEffect: *const fn(
             self: *const IDCompositionDevice3,
             saturationEffect: ?*?*IDCompositionSaturationEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTurbulenceEffect: *const fn(
             self: *const IDCompositionDevice3,
             turbulenceEffect: ?*?*IDCompositionTurbulenceEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateLinearTransferEffect: *const fn(
             self: *const IDCompositionDevice3,
             linearTransferEffect: ?*?*IDCompositionLinearTransferEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTableTransferEffect: *const fn(
             self: *const IDCompositionDevice3,
             tableTransferEffect: ?*?*IDCompositionTableTransferEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCompositeEffect: *const fn(
             self: *const IDCompositionDevice3,
             compositeEffect: ?*?*IDCompositionCompositeEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBlendEffect: *const fn(
             self: *const IDCompositionDevice3,
             blendEffect: ?*?*IDCompositionBlendEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateArithmeticCompositeEffect: *const fn(
             self: *const IDCompositionDevice3,
             arithmeticCompositeEffect: ?*?*IDCompositionArithmeticCompositeEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAffineTransform2DEffect: *const fn(
             self: *const IDCompositionDevice3,
             affineTransform2dEffect: ?*?*IDCompositionAffineTransform2DEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionDevice2: IDCompositionDevice2,
@@ -1993,7 +1993,7 @@ pub const IDCompositionFilterEffect = extern union {
             index: u32,
             input: ?*IUnknown,
             flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionEffect: IDCompositionEffect,
@@ -2011,15 +2011,15 @@ pub const IDCompositionGaussianBlurEffect = extern union {
         SetStandardDeviation_TODO_A: *const fn(
             self: *const IDCompositionGaussianBlurEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStandardDeviation_TODO_B: *const fn(
             self: *const IDCompositionGaussianBlurEffect,
             amount: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBorderMode: *const fn(
             self: *const IDCompositionGaussianBlurEffect,
             mode: D2D1_BORDER_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2045,43 +2045,43 @@ pub const IDCompositionBrightnessEffect = extern union {
         SetWhitePoint: *const fn(
             self: *const IDCompositionBrightnessEffect,
             whitePoint: ?*const D2D_VECTOR_2F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlackPoint: *const fn(
             self: *const IDCompositionBrightnessEffect,
             blackPoint: ?*const D2D_VECTOR_2F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWhitePointX_TODO_A: *const fn(
             self: *const IDCompositionBrightnessEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWhitePointX_TODO_B: *const fn(
             self: *const IDCompositionBrightnessEffect,
             whitePointX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWhitePointY_TODO_A: *const fn(
             self: *const IDCompositionBrightnessEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWhitePointY_TODO_B: *const fn(
             self: *const IDCompositionBrightnessEffect,
             whitePointY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlackPointX_TODO_A: *const fn(
             self: *const IDCompositionBrightnessEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlackPointX_TODO_B: *const fn(
             self: *const IDCompositionBrightnessEffect,
             blackPointX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlackPointY_TODO_A: *const fn(
             self: *const IDCompositionBrightnessEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlackPointY_TODO_B: *const fn(
             self: *const IDCompositionBrightnessEffect,
             blackPointY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2131,27 +2131,27 @@ pub const IDCompositionColorMatrixEffect = extern union {
         SetMatrix: *const fn(
             self: *const IDCompositionColorMatrixEffect,
             matrix: ?*const D2D_MATRIX_5X4_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMatrixElement_TODO_A: *const fn(
             self: *const IDCompositionColorMatrixEffect,
             row: i32,
             column: i32,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMatrixElement_TODO_B: *const fn(
             self: *const IDCompositionColorMatrixEffect,
             row: i32,
             column: i32,
             value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlphaMode: *const fn(
             self: *const IDCompositionColorMatrixEffect,
             mode: D2D1_COLORMATRIX_ALPHA_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClampOutput: *const fn(
             self: *const IDCompositionColorMatrixEffect,
             clamp: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2183,47 +2183,47 @@ pub const IDCompositionShadowEffect = extern union {
         SetStandardDeviation_TODO_A: *const fn(
             self: *const IDCompositionShadowEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStandardDeviation_TODO_B: *const fn(
             self: *const IDCompositionShadowEffect,
             amount: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColor: *const fn(
             self: *const IDCompositionShadowEffect,
             color: ?*const D2D_VECTOR_4F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRed_TODO_A: *const fn(
             self: *const IDCompositionShadowEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRed_TODO_B: *const fn(
             self: *const IDCompositionShadowEffect,
             amount: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGreen_TODO_A: *const fn(
             self: *const IDCompositionShadowEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGreen_TODO_B: *const fn(
             self: *const IDCompositionShadowEffect,
             amount: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlue_TODO_A: *const fn(
             self: *const IDCompositionShadowEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlue_TODO_B: *const fn(
             self: *const IDCompositionShadowEffect,
             amount: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlpha_TODO_A: *const fn(
             self: *const IDCompositionShadowEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlpha_TODO_B: *const fn(
             self: *const IDCompositionShadowEffect,
             amount: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2277,11 +2277,11 @@ pub const IDCompositionHueRotationEffect = extern union {
         SetAngle_TODO_A: *const fn(
             self: *const IDCompositionHueRotationEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAngle_TODO_B: *const fn(
             self: *const IDCompositionHueRotationEffect,
             amountDegrees: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2304,11 +2304,11 @@ pub const IDCompositionSaturationEffect = extern union {
         SetSaturation_TODO_A: *const fn(
             self: *const IDCompositionSaturationEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSaturation_TODO_B: *const fn(
             self: *const IDCompositionSaturationEffect,
             ratio: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2331,31 +2331,31 @@ pub const IDCompositionTurbulenceEffect = extern union {
         SetOffset: *const fn(
             self: *const IDCompositionTurbulenceEffect,
             offset: ?*const D2D_VECTOR_2F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBaseFrequency: *const fn(
             self: *const IDCompositionTurbulenceEffect,
             frequency: ?*const D2D_VECTOR_2F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSize: *const fn(
             self: *const IDCompositionTurbulenceEffect,
             size: ?*const D2D_VECTOR_2F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNumOctaves: *const fn(
             self: *const IDCompositionTurbulenceEffect,
             numOctaves: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSeed: *const fn(
             self: *const IDCompositionTurbulenceEffect,
             seed: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNoise: *const fn(
             self: *const IDCompositionTurbulenceEffect,
             noise: D2D1_TURBULENCE_NOISE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStitchable: *const fn(
             self: *const IDCompositionTurbulenceEffect,
             stitchable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2392,87 +2392,87 @@ pub const IDCompositionLinearTransferEffect = extern union {
         SetRedYIntercept_TODO_A: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRedYIntercept_TODO_B: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             redYIntercept: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRedSlope_TODO_A: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRedSlope_TODO_B: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             redSlope: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRedDisable: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             redDisable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGreenYIntercept_TODO_A: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGreenYIntercept_TODO_B: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             greenYIntercept: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGreenSlope_TODO_A: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGreenSlope_TODO_B: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             greenSlope: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGreenDisable: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             greenDisable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlueYIntercept_TODO_A: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlueYIntercept_TODO_B: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             blueYIntercept: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlueSlope_TODO_A: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlueSlope_TODO_B: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             blueSlope: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlueDisable: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             blueDisable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlphaYIntercept_TODO_A: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlphaYIntercept_TODO_B: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             alphaYIntercept: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlphaSlope_TODO_A: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlphaSlope_TODO_B: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             alphaSlope: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlphaDisable: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             alphaDisable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClampOutput: *const fn(
             self: *const IDCompositionLinearTransferEffect,
             clampOutput: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2560,82 +2560,82 @@ pub const IDCompositionTableTransferEffect = extern union {
             self: *const IDCompositionTableTransferEffect,
             tableValues: [*]const f32,
             count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGreenTable: *const fn(
             self: *const IDCompositionTableTransferEffect,
             tableValues: [*]const f32,
             count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlueTable: *const fn(
             self: *const IDCompositionTableTransferEffect,
             tableValues: [*]const f32,
             count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlphaTable: *const fn(
             self: *const IDCompositionTableTransferEffect,
             tableValues: [*]const f32,
             count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRedDisable: *const fn(
             self: *const IDCompositionTableTransferEffect,
             redDisable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGreenDisable: *const fn(
             self: *const IDCompositionTableTransferEffect,
             greenDisable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlueDisable: *const fn(
             self: *const IDCompositionTableTransferEffect,
             blueDisable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlphaDisable: *const fn(
             self: *const IDCompositionTableTransferEffect,
             alphaDisable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClampOutput: *const fn(
             self: *const IDCompositionTableTransferEffect,
             clampOutput: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRedTableValue_TODO_A: *const fn(
             self: *const IDCompositionTableTransferEffect,
             index: u32,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRedTableValue_TODO_B: *const fn(
             self: *const IDCompositionTableTransferEffect,
             index: u32,
             value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGreenTableValue_TODO_A: *const fn(
             self: *const IDCompositionTableTransferEffect,
             index: u32,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGreenTableValue_TODO_B: *const fn(
             self: *const IDCompositionTableTransferEffect,
             index: u32,
             value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlueTableValue_TODO_A: *const fn(
             self: *const IDCompositionTableTransferEffect,
             index: u32,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBlueTableValue_TODO_B: *const fn(
             self: *const IDCompositionTableTransferEffect,
             index: u32,
             value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlphaTableValue_TODO_A: *const fn(
             self: *const IDCompositionTableTransferEffect,
             index: u32,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlphaTableValue_TODO_B: *const fn(
             self: *const IDCompositionTableTransferEffect,
             index: u32,
             value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2706,7 +2706,7 @@ pub const IDCompositionCompositeEffect = extern union {
         SetMode: *const fn(
             self: *const IDCompositionCompositeEffect,
             mode: D2D1_COMPOSITE_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2725,7 +2725,7 @@ pub const IDCompositionBlendEffect = extern union {
         SetMode: *const fn(
             self: *const IDCompositionBlendEffect,
             mode: D2D1_BLEND_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2744,43 +2744,43 @@ pub const IDCompositionArithmeticCompositeEffect = extern union {
         SetCoefficients: *const fn(
             self: *const IDCompositionArithmeticCompositeEffect,
             coefficients: ?*const D2D_VECTOR_4F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClampOutput: *const fn(
             self: *const IDCompositionArithmeticCompositeEffect,
             clampoutput: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCoefficient1_TODO_A: *const fn(
             self: *const IDCompositionArithmeticCompositeEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCoefficient1_TODO_B: *const fn(
             self: *const IDCompositionArithmeticCompositeEffect,
             Coeffcient1: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCoefficient2_TODO_A: *const fn(
             self: *const IDCompositionArithmeticCompositeEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCoefficient2_TODO_B: *const fn(
             self: *const IDCompositionArithmeticCompositeEffect,
             Coefficient2: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCoefficient3_TODO_A: *const fn(
             self: *const IDCompositionArithmeticCompositeEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCoefficient3_TODO_B: *const fn(
             self: *const IDCompositionArithmeticCompositeEffect,
             Coefficient3: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCoefficient4_TODO_A: *const fn(
             self: *const IDCompositionArithmeticCompositeEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCoefficient4_TODO_B: *const fn(
             self: *const IDCompositionArithmeticCompositeEffect,
             Coefficient4: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2830,35 +2830,35 @@ pub const IDCompositionAffineTransform2DEffect = extern union {
         SetInterpolationMode: *const fn(
             self: *const IDCompositionAffineTransform2DEffect,
             interpolationMode: D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBorderMode: *const fn(
             self: *const IDCompositionAffineTransform2DEffect,
             borderMode: D2D1_BORDER_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransformMatrix: *const fn(
             self: *const IDCompositionAffineTransform2DEffect,
             transformMatrix: ?*const D2D_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransformMatrixElement_TODO_A: *const fn(
             self: *const IDCompositionAffineTransform2DEffect,
             row: i32,
             column: i32,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransformMatrixElement_TODO_B: *const fn(
             self: *const IDCompositionAffineTransform2DEffect,
             row: i32,
             column: i32,
             value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSharpness_TODO_A: *const fn(
             self: *const IDCompositionAffineTransform2DEffect,
             animation: ?*IDCompositionAnimation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSharpness_TODO_B: *const fn(
             self: *const IDCompositionAffineTransform2DEffect,
             sharpness: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDCompositionFilterEffect: IDCompositionFilterEffect,
@@ -2905,7 +2905,7 @@ pub const IDCompositionDelegatedInkTrail = extern union {
             inkPoints: [*]const DCompositionInkTrailPoint,
             inkPointsCount: u32,
             generationId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddTrailPointsWithPrediction: *const fn(
             self: *const IDCompositionDelegatedInkTrail,
             inkPoints: [*]const DCompositionInkTrailPoint,
@@ -2913,15 +2913,15 @@ pub const IDCompositionDelegatedInkTrail = extern union {
             predictedInkPoints: [*]const DCompositionInkTrailPoint,
             predictedInkPointsCount: u32,
             generationId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveTrailPoints: *const fn(
             self: *const IDCompositionDelegatedInkTrail,
             generationId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartNewTrail: *const fn(
             self: *const IDCompositionDelegatedInkTrail,
             color: ?*const D2D_COLOR_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2947,12 +2947,12 @@ pub const IDCompositionInkTrailDevice = extern union {
         CreateDelegatedInkTrail: *const fn(
             self: *const IDCompositionInkTrailDevice,
             inkTrail: ?*?*IDCompositionDelegatedInkTrail,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDelegatedInkTrailForSwapChain: *const fn(
             self: *const IDCompositionInkTrailDevice,
             swapChain: ?*IUnknown,
             inkTrail: ?*?*IDCompositionDelegatedInkTrail,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2973,44 +2973,44 @@ pub extern "dcomp" fn DCompositionCreateDevice(
     dxgiDevice: ?*IDXGIDevice,
     iid: ?*const Guid,
     dcompositionDevice: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "dcomp" fn DCompositionCreateDevice2(
     renderingDevice: ?*IUnknown,
     iid: ?*const Guid,
     dcompositionDevice: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dcomp" fn DCompositionCreateDevice3(
     renderingDevice: ?*IUnknown,
     iid: ?*const Guid,
     dcompositionDevice: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "dcomp" fn DCompositionCreateSurfaceHandle(
     desiredAccess: u32,
     securityAttributes: ?*SECURITY_ATTRIBUTES,
     surfaceHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dcomp" fn DCompositionAttachMouseWheelToHwnd(
     visual: ?*IDCompositionVisual,
     hwnd: ?HWND,
     enable: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dcomp" fn DCompositionAttachMouseDragToHwnd(
     visual: ?*IDCompositionVisual,
     hwnd: ?HWND,
     enable: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dcomp" fn DCompositionGetFrameId(
     frameIdType: COMPOSITION_FRAME_ID_TYPE,
     frameId: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dcomp" fn DCompositionGetStatistics(
     frameId: u64,
@@ -3018,23 +3018,23 @@ pub extern "dcomp" fn DCompositionGetStatistics(
     targetIdCount: u32,
     targetIds: ?*COMPOSITION_TARGET_ID,
     actualTargetIdCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dcomp" fn DCompositionGetTargetStatistics(
     frameId: u64,
     targetId: ?*const COMPOSITION_TARGET_ID,
     targetStats: ?*COMPOSITION_TARGET_STATS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dcomp" fn DCompositionBoostCompositorClock(
     enable: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dcomp" fn DCompositionWaitForCompositorClock(
     count: u32,
     handles: ?[*]const ?HANDLE,
     timeoutInMs: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

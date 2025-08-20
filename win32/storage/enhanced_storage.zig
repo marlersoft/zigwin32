@@ -1435,12 +1435,12 @@ pub const IEnumEnhancedStorageACT = extern union {
             self: *const IEnumEnhancedStorageACT,
             pppIEnhancedStorageACTs: [*]?*?*IEnhancedStorageACT,
             pcEnhancedStorageACTs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMatchingACT: *const fn(
             self: *const IEnumEnhancedStorageACT,
             szVolume: ?[*:0]const u16,
             ppIEnhancedStorageACT: ?*?*IEnhancedStorageACT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1462,27 +1462,27 @@ pub const IEnhancedStorageACT = extern union {
             self: *const IEnhancedStorageACT,
             hwndParent: u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unauthorize: *const fn(
             self: *const IEnhancedStorageACT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAuthorizationState: *const fn(
             self: *const IEnhancedStorageACT,
             pState: ?*ACT_AUTHORIZATION_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMatchingVolume: *const fn(
             self: *const IEnhancedStorageACT,
             ppwszVolume: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUniqueIdentity: *const fn(
             self: *const IEnhancedStorageACT,
             ppwszIdentity: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSilos: *const fn(
             self: *const IEnhancedStorageACT,
             pppIEnhancedStorageSilos: [*]?*?*IEnhancedStorageSilo,
             pcEnhancedStorageSilos: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1515,11 +1515,11 @@ pub const IEnhancedStorageACT2 = extern union {
         GetDeviceName: *const fn(
             self: *const IEnhancedStorageACT2,
             ppwszDeviceName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsDeviceRemovable: *const fn(
             self: *const IEnhancedStorageACT2,
             pIsDeviceRemovable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IEnhancedStorageACT: IEnhancedStorageACT,
@@ -1540,15 +1540,15 @@ pub const IEnhancedStorageACT3 = extern union {
         UnauthorizeEx: *const fn(
             self: *const IEnhancedStorageACT3,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsQueueFrozen: *const fn(
             self: *const IEnhancedStorageACT3,
             pIsQueueFrozen: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetShellExtSupport: *const fn(
             self: *const IEnhancedStorageACT3,
             pShellExtSupport: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IEnhancedStorageACT2: IEnhancedStorageACT2,
@@ -1574,12 +1574,12 @@ pub const IEnhancedStorageSilo = extern union {
         GetInfo: *const fn(
             self: *const IEnhancedStorageSilo,
             pSiloInfo: ?*SILO_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActions: *const fn(
             self: *const IEnhancedStorageSilo,
             pppIEnhancedStorageSiloActions: [*]?*?*IEnhancedStorageSiloAction,
             pcEnhancedStorageSiloActions: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendCommand: *const fn(
             self: *const IEnhancedStorageSilo,
             Command: u8,
@@ -1587,15 +1587,15 @@ pub const IEnhancedStorageSilo = extern union {
             cbCommandBuffer: u32,
             pbResponseBuffer: [*:0]u8,
             pcbResponseBuffer: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPortableDevice: *const fn(
             self: *const IEnhancedStorageSilo,
             ppIPortableDevice: ?*?*IPortableDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDevicePath: *const fn(
             self: *const IEnhancedStorageSilo,
             ppwszSiloDevicePath: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1625,14 +1625,14 @@ pub const IEnhancedStorageSiloAction = extern union {
         GetName: *const fn(
             self: *const IEnhancedStorageSiloAction,
             ppwszActionName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const IEnhancedStorageSiloAction,
             ppwszActionDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Invoke: *const fn(
             self: *const IEnhancedStorageSiloAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

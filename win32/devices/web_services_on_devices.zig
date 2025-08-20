@@ -100,11 +100,11 @@ pub const IWSDAddress = extern union {
             pszBuffer: [*:0]u16,
             cchLength: u32,
             fSafe: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Deserialize: *const fn(
             self: *const IWSDAddress,
             pszBuffer: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -125,24 +125,24 @@ pub const IWSDTransportAddress = extern union {
         GetPort: *const fn(
             self: *const IWSDTransportAddress,
             pwPort: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPort: *const fn(
             self: *const IWSDTransportAddress,
             wPort: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransportAddress: *const fn(
             self: *const IWSDTransportAddress,
             ppszAddress: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransportAddressEx: *const fn(
             self: *const IWSDTransportAddress,
             fSafe: BOOL,
             ppszAddress: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransportAddress: *const fn(
             self: *const IWSDTransportAddress,
             pszAddress: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSDAddress: IWSDAddress,
@@ -173,23 +173,23 @@ pub const IWSDMessageParameters = extern union {
         GetLocalAddress: *const fn(
             self: *const IWSDMessageParameters,
             ppAddress: ?*?*IWSDAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLocalAddress: *const fn(
             self: *const IWSDMessageParameters,
             pAddress: ?*IWSDAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRemoteAddress: *const fn(
             self: *const IWSDMessageParameters,
             ppAddress: ?*?*IWSDAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRemoteAddress: *const fn(
             self: *const IWSDMessageParameters,
             pAddress: ?*IWSDAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLowerParameters: *const fn(
             self: *const IWSDMessageParameters,
             ppTxParams: ?*?*IWSDMessageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -227,11 +227,11 @@ pub const IWSDUdpMessageParameters = extern union {
         SetRetransmitParams: *const fn(
             self: *const IWSDUdpMessageParameters,
             pParams: ?*const WSDUdpRetransmitParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRetransmitParams: *const fn(
             self: *const IWSDUdpMessageParameters,
             pParams: ?*WSDUdpRetransmitParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSDMessageParameters: IWSDMessageParameters,
@@ -260,42 +260,42 @@ pub const IWSDUdpAddress = extern union {
         SetSockaddr: *const fn(
             self: *const IWSDUdpAddress,
             pSockAddr: ?*const SOCKADDR_STORAGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSockaddr: *const fn(
             self: *const IWSDUdpAddress,
             pSockAddr: ?*SOCKADDR_STORAGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetExclusive: *const fn(
             self: *const IWSDUdpAddress,
             fExclusive: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExclusive: *const fn(
             self: *const IWSDUdpAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMessageType: *const fn(
             self: *const IWSDUdpAddress,
             messageType: WSDUdpMessageType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMessageType: *const fn(
             self: *const IWSDUdpAddress,
             pMessageType: ?*WSDUdpMessageType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTTL: *const fn(
             self: *const IWSDUdpAddress,
             dwTTL: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTTL: *const fn(
             self: *const IWSDUdpAddress,
             pdwTTL: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlias: *const fn(
             self: *const IWSDUdpAddress,
             pAlias: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAlias: *const fn(
             self: *const IWSDUdpAddress,
             pAlias: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSDTransportAddress: IWSDTransportAddress,
@@ -342,38 +342,38 @@ pub const IWSDHttpMessageParameters = extern union {
         SetInboundHttpHeaders: *const fn(
             self: *const IWSDHttpMessageParameters,
             pszHeaders: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInboundHttpHeaders: *const fn(
             self: *const IWSDHttpMessageParameters,
             ppszHeaders: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutboundHttpHeaders: *const fn(
             self: *const IWSDHttpMessageParameters,
             pszHeaders: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutboundHttpHeaders: *const fn(
             self: *const IWSDHttpMessageParameters,
             ppszHeaders: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetID: *const fn(
             self: *const IWSDHttpMessageParameters,
             pszId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetID: *const fn(
             self: *const IWSDHttpMessageParameters,
             ppszId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContext: *const fn(
             self: *const IWSDHttpMessageParameters,
             pContext: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContext: *const fn(
             self: *const IWSDHttpMessageParameters,
             ppContext: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IWSDHttpMessageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSDMessageParameters: IWSDMessageParameters,
@@ -415,19 +415,19 @@ pub const IWSDHttpAddress = extern union {
         base: IWSDTransportAddress.VTable,
         GetSecure: *const fn(
             self: *const IWSDHttpAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSecure: *const fn(
             self: *const IWSDHttpAddress,
             fSecure: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPath: *const fn(
             self: *const IWSDHttpAddress,
             ppszPath: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPath: *const fn(
             self: *const IWSDHttpAddress,
             pszPath: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSDTransportAddress: IWSDTransportAddress,
@@ -456,11 +456,11 @@ pub const IWSDSSLClientCertificate = extern union {
         GetClientCertificate: *const fn(
             self: *const IWSDSSLClientCertificate,
             ppCertContext: ?*?*CERT_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMappedAccessToken: *const fn(
             self: *const IWSDSSLClientCertificate,
             phToken: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -481,11 +481,11 @@ pub const IWSDHttpAuthParameters = extern union {
         GetClientAccessToken: *const fn(
             self: *const IWSDHttpAuthParameters,
             phToken: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAuthType: *const fn(
             self: *const IWSDHttpAuthParameters,
             pAuthType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -506,29 +506,29 @@ pub const IWSDSignatureProperty = extern union {
         IsMessageSigned: *const fn(
             self: *const IWSDSignatureProperty,
             pbSigned: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsMessageSignatureTrusted: *const fn(
             self: *const IWSDSignatureProperty,
             pbSignatureTrusted: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKeyInfo: *const fn(
             self: *const IWSDSignatureProperty,
             // TODO: what to do with BytesParamIndex 1?
             pbKeyInfo: ?*u8,
             pdwKeyInfoSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignature: *const fn(
             self: *const IWSDSignatureProperty,
             // TODO: what to do with BytesParamIndex 1?
             pbSignature: ?*u8,
             pdwSignatureSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignedInfoHash: *const fn(
             self: *const IWSDSignatureProperty,
             // TODO: what to do with BytesParamIndex 1?
             pbSignedInfoHash: ?*u8,
             pdwHashSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -571,13 +571,13 @@ pub const IWSDOutboundAttachment = extern union {
             pBuffer: [*:0]const u8,
             dwBytesToWrite: u32,
             pdwNumberOfBytesWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IWSDOutboundAttachment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Abort: *const fn(
             self: *const IWSDOutboundAttachment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSDAttachment: IWSDAttachment,
@@ -604,10 +604,10 @@ pub const IWSDInboundAttachment = extern union {
             pBuffer: [*:0]u8,
             dwBytesToRead: u32,
             pdwNumberOfBytesRead: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IWSDInboundAttachment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSDAttachment: IWSDAttachment,
@@ -754,25 +754,25 @@ pub const IWSDXMLContext = extern union {
             pszUri: ?[*:0]const u16,
             pszSuggestedPrefix: ?[*:0]const u16,
             ppNamespace: ?*?*WSDXML_NAMESPACE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddNameToNamespace: *const fn(
             self: *const IWSDXMLContext,
             pszUri: ?[*:0]const u16,
             pszName: ?[*:0]const u16,
             ppName: ?*?*WSDXML_NAME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNamespaces: *const fn(
             self: *const IWSDXMLContext,
             pNamespaces: [*]const ?*const WSDXML_NAMESPACE,
             wNamespacesCount: u16,
             bLayerNumber: u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTypes: *const fn(
             self: *const IWSDXMLContext,
             pTypes: [*]const ?*const WSDXML_TYPE,
             dwTypesCount: u32,
             bLayerNumber: u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -847,7 +847,7 @@ pub const WSDXML_ELEMENT_LIST = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const WSD_STUB_FUNCTION = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const WSD_STUB_FUNCTION = *const fn() callconv(.winapi) void;
 
 pub const DeviceDiscoveryMechanism = enum(i32) {
     MulticastDiscovery = 0,
@@ -878,7 +878,7 @@ pub const WSD_OPERATION = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PWSD_SOAP_MESSAGE_HANDLER = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PWSD_SOAP_MESSAGE_HANDLER = *const fn() callconv(.winapi) void;
 
 pub const WSD_HANDLER_CONTEXT = extern struct {
     Handler: ?PWSD_SOAP_MESSAGE_HANDLER,
@@ -1219,35 +1219,35 @@ pub const IWSDiscoveryProvider = extern union {
         SetAddressFamily: *const fn(
             self: *const IWSDiscoveryProvider,
             dwAddressFamily: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Attach: *const fn(
             self: *const IWSDiscoveryProvider,
             pSink: ?*IWSDiscoveryProviderNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Detach: *const fn(
             self: *const IWSDiscoveryProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SearchById: *const fn(
             self: *const IWSDiscoveryProvider,
             pszId: ?[*:0]const u16,
             pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SearchByAddress: *const fn(
             self: *const IWSDiscoveryProvider,
             pszAddress: ?[*:0]const u16,
             pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SearchByType: *const fn(
             self: *const IWSDiscoveryProvider,
             pTypesList: ?*const WSD_NAME_LIST,
             pScopesList: ?*const WSD_URI_LIST,
             pszMatchBy: ?[*:0]const u16,
             pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXMLContext: *const fn(
             self: *const IWSDiscoveryProvider,
             ppContext: ?*?*IWSDXMLContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1283,20 +1283,20 @@ pub const IWSDiscoveryProviderNotify = extern union {
         Add: *const fn(
             self: *const IWSDiscoveryProviderNotify,
             pService: ?*IWSDiscoveredService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IWSDiscoveryProviderNotify,
             pService: ?*IWSDiscoveredService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SearchFailed: *const fn(
             self: *const IWSDiscoveryProviderNotify,
             hr: HRESULT,
             pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SearchComplete: *const fn(
             self: *const IWSDiscoveryProviderNotify,
             pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1323,48 +1323,48 @@ pub const IWSDiscoveredService = extern union {
         GetEndpointReference: *const fn(
             self: *const IWSDiscoveredService,
             ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTypes: *const fn(
             self: *const IWSDiscoveredService,
             ppTypesList: ?*?*WSD_NAME_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScopes: *const fn(
             self: *const IWSDiscoveredService,
             ppScopesList: ?*?*WSD_URI_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXAddrs: *const fn(
             self: *const IWSDiscoveredService,
             ppXAddrsList: ?*?*WSD_URI_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMetadataVersion: *const fn(
             self: *const IWSDiscoveredService,
             pullMetadataVersion: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExtendedDiscoXML: *const fn(
             self: *const IWSDiscoveredService,
             ppHeaderAny: ?*?*WSDXML_ELEMENT,
             ppBodyAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProbeResolveTag: *const fn(
             self: *const IWSDiscoveredService,
             ppszTag: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRemoteTransportAddress: *const fn(
             self: *const IWSDiscoveredService,
             ppszRemoteTransportAddress: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocalTransportAddress: *const fn(
             self: *const IWSDiscoveredService,
             ppszLocalTransportAddress: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocalInterfaceGUID: *const fn(
             self: *const IWSDiscoveredService,
             pGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInstanceId: *const fn(
             self: *const IWSDiscoveredService,
             pullInstanceId: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1412,15 +1412,15 @@ pub const IWSDiscoveryPublisher = extern union {
         SetAddressFamily: *const fn(
             self: *const IWSDiscoveryPublisher,
             dwAddressFamily: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterNotificationSink: *const fn(
             self: *const IWSDiscoveryPublisher,
             pSink: ?*IWSDiscoveryPublisherNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnRegisterNotificationSink: *const fn(
             self: *const IWSDiscoveryPublisher,
             pSink: ?*IWSDiscoveryPublisherNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Publish: *const fn(
             self: *const IWSDiscoveryPublisher,
             pszId: ?[*:0]const u16,
@@ -1431,7 +1431,7 @@ pub const IWSDiscoveryPublisher = extern union {
             pTypesList: ?*const WSD_NAME_LIST,
             pScopesList: ?*const WSD_URI_LIST,
             pXAddrsList: ?*const WSD_URI_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnPublish: *const fn(
             self: *const IWSDiscoveryPublisher,
             pszId: ?[*:0]const u16,
@@ -1439,7 +1439,7 @@ pub const IWSDiscoveryPublisher = extern union {
             ullMessageNumber: u64,
             pszSessionId: ?[*:0]const u16,
             pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MatchProbe: *const fn(
             self: *const IWSDiscoveryPublisher,
             pProbeMessage: ?*const WSD_SOAP_MESSAGE,
@@ -1452,7 +1452,7 @@ pub const IWSDiscoveryPublisher = extern union {
             pTypesList: ?*const WSD_NAME_LIST,
             pScopesList: ?*const WSD_URI_LIST,
             pXAddrsList: ?*const WSD_URI_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MatchResolve: *const fn(
             self: *const IWSDiscoveryPublisher,
             pResolveMessage: ?*const WSD_SOAP_MESSAGE,
@@ -1465,7 +1465,7 @@ pub const IWSDiscoveryPublisher = extern union {
             pTypesList: ?*const WSD_NAME_LIST,
             pScopesList: ?*const WSD_URI_LIST,
             pXAddrsList: ?*const WSD_URI_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PublishEx: *const fn(
             self: *const IWSDiscoveryPublisher,
             pszId: ?[*:0]const u16,
@@ -1481,7 +1481,7 @@ pub const IWSDiscoveryPublisher = extern union {
             pPolicyAny: ?*const WSDXML_ELEMENT,
             pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
             pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MatchProbeEx: *const fn(
             self: *const IWSDiscoveryPublisher,
             pProbeMessage: ?*const WSD_SOAP_MESSAGE,
@@ -1499,7 +1499,7 @@ pub const IWSDiscoveryPublisher = extern union {
             pPolicyAny: ?*const WSDXML_ELEMENT,
             pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
             pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MatchResolveEx: *const fn(
             self: *const IWSDiscoveryPublisher,
             pResolveMessage: ?*const WSD_SOAP_MESSAGE,
@@ -1517,19 +1517,19 @@ pub const IWSDiscoveryPublisher = extern union {
             pPolicyAny: ?*const WSDXML_ELEMENT,
             pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
             pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterScopeMatchingRule: *const fn(
             self: *const IWSDiscoveryPublisher,
             pScopeMatchingRule: ?*IWSDScopeMatchingRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnRegisterScopeMatchingRule: *const fn(
             self: *const IWSDiscoveryPublisher,
             pScopeMatchingRule: ?*IWSDScopeMatchingRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXMLContext: *const fn(
             self: *const IWSDiscoveryPublisher,
             ppContext: ?*?*IWSDXMLContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1584,12 +1584,12 @@ pub const IWSDiscoveryPublisherNotify = extern union {
             self: *const IWSDiscoveryPublisherNotify,
             pSoap: ?*const WSD_SOAP_MESSAGE,
             pMessageParameters: ?*IWSDMessageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResolveHandler: *const fn(
             self: *const IWSDiscoveryPublisherNotify,
             pSoap: ?*const WSD_SOAP_MESSAGE,
             pMessageParameters: ?*IWSDMessageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1610,13 +1610,13 @@ pub const IWSDScopeMatchingRule = extern union {
         GetScopeRule: *const fn(
             self: *const IWSDScopeMatchingRule,
             ppszScopeMatchingRule: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MatchScopes: *const fn(
             self: *const IWSDScopeMatchingRule,
             pszScope1: ?[*:0]const u16,
             pszScope2: ?[*:0]const u16,
             pfMatch: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1638,13 +1638,13 @@ pub const IWSDEndpointProxy = extern union {
             self: *const IWSDEndpointProxy,
             pBody: ?*const anyopaque,
             pOperation: ?*const WSD_OPERATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendTwoWayRequest: *const fn(
             self: *const IWSDEndpointProxy,
             pBody: ?*const anyopaque,
             pOperation: ?*const WSD_OPERATION,
             pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendTwoWayRequestAsync: *const fn(
             self: *const IWSDEndpointProxy,
             pBody: ?*const anyopaque,
@@ -1652,23 +1652,23 @@ pub const IWSDEndpointProxy = extern union {
             pAsyncState: ?*IUnknown,
             pCallback: ?*IWSDAsyncCallback,
             pResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AbortAsyncOperation: *const fn(
             self: *const IWSDEndpointProxy,
             pAsyncResult: ?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessFault: *const fn(
             self: *const IWSDEndpointProxy,
             pFault: ?*const WSD_SOAP_FAULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorInfo: *const fn(
             self: *const IWSDEndpointProxy,
             ppszErrorInfo: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFaultInfo: *const fn(
             self: *const IWSDEndpointProxy,
             ppFault: ?*?*WSD_SOAP_FAULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1704,7 +1704,7 @@ pub const IWSDMetadataExchange = extern union {
         GetMetadata: *const fn(
             self: *const IWSDMetadataExchange,
             MetadataOut: ?*?*WSD_METADATA_SECTION_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1722,35 +1722,35 @@ pub const IWSDServiceProxy = extern union {
         BeginGetMetadata: *const fn(
             self: *const IWSDServiceProxy,
             ppResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndGetMetadata: *const fn(
             self: *const IWSDServiceProxy,
             pResult: ?*IWSDAsyncResult,
             ppMetadata: ?*?*WSD_METADATA_SECTION_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetServiceMetadata: *const fn(
             self: *const IWSDServiceProxy,
             ppServiceMetadata: ?*?*WSD_SERVICE_METADATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SubscribeToOperation: *const fn(
             self: *const IWSDServiceProxy,
             pOperation: ?*const WSD_OPERATION,
             pUnknown: ?*IUnknown,
             pAny: ?*const WSDXML_ELEMENT,
             ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnsubscribeToOperation: *const fn(
             self: *const IWSDServiceProxy,
             pOperation: ?*const WSD_OPERATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventingStatusCallback: *const fn(
             self: *const IWSDServiceProxy,
             pStatus: ?*IWSDEventingStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEndpointProxy: *const fn(
             self: *const IWSDServiceProxy,
             ppProxy: ?*?*IWSDEndpointProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSDMetadataExchange: IWSDMetadataExchange,
@@ -1793,7 +1793,7 @@ pub const IWSDServiceProxyEventing = extern union {
             pAny: ?*const WSDXML_ELEMENT,
             ppExpires: ?*?*WSD_EVENTING_EXPIRES,
             ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginSubscribeToMultipleOperations: *const fn(
             self: *const IWSDServiceProxyEventing,
             pOperations: [*]const WSD_OPERATION,
@@ -1804,7 +1804,7 @@ pub const IWSDServiceProxyEventing = extern union {
             pAsyncState: ?*IUnknown,
             pAsyncCallback: ?*IWSDAsyncCallback,
             ppResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndSubscribeToMultipleOperations: *const fn(
             self: *const IWSDServiceProxyEventing,
             pOperations: [*]const WSD_OPERATION,
@@ -1812,13 +1812,13 @@ pub const IWSDServiceProxyEventing = extern union {
             pResult: ?*IWSDAsyncResult,
             ppExpires: ?*?*WSD_EVENTING_EXPIRES,
             ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnsubscribeToMultipleOperations: *const fn(
             self: *const IWSDServiceProxyEventing,
             pOperations: [*]const WSD_OPERATION,
             dwOperationCount: u32,
             pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginUnsubscribeToMultipleOperations: *const fn(
             self: *const IWSDServiceProxyEventing,
             pOperations: [*]const WSD_OPERATION,
@@ -1827,13 +1827,13 @@ pub const IWSDServiceProxyEventing = extern union {
             pAsyncState: ?*IUnknown,
             pAsyncCallback: ?*IWSDAsyncCallback,
             ppResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndUnsubscribeToMultipleOperations: *const fn(
             self: *const IWSDServiceProxyEventing,
             pOperations: [*]const WSD_OPERATION,
             dwOperationCount: u32,
             pResult: ?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RenewMultipleOperations: *const fn(
             self: *const IWSDServiceProxyEventing,
             pOperations: [*]const WSD_OPERATION,
@@ -1842,7 +1842,7 @@ pub const IWSDServiceProxyEventing = extern union {
             pAny: ?*const WSDXML_ELEMENT,
             ppExpires: ?*?*WSD_EVENTING_EXPIRES,
             ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginRenewMultipleOperations: *const fn(
             self: *const IWSDServiceProxyEventing,
             pOperations: [*]const WSD_OPERATION,
@@ -1852,7 +1852,7 @@ pub const IWSDServiceProxyEventing = extern union {
             pAsyncState: ?*IUnknown,
             pAsyncCallback: ?*IWSDAsyncCallback,
             ppResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndRenewMultipleOperations: *const fn(
             self: *const IWSDServiceProxyEventing,
             pOperations: [*]const WSD_OPERATION,
@@ -1860,7 +1860,7 @@ pub const IWSDServiceProxyEventing = extern union {
             pResult: ?*IWSDAsyncResult,
             ppExpires: ?*?*WSD_EVENTING_EXPIRES,
             ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatusForMultipleOperations: *const fn(
             self: *const IWSDServiceProxyEventing,
             pOperations: [*]const WSD_OPERATION,
@@ -1868,7 +1868,7 @@ pub const IWSDServiceProxyEventing = extern union {
             pAny: ?*const WSDXML_ELEMENT,
             ppExpires: ?*?*WSD_EVENTING_EXPIRES,
             ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginGetStatusForMultipleOperations: *const fn(
             self: *const IWSDServiceProxyEventing,
             pOperations: [*]const WSD_OPERATION,
@@ -1877,7 +1877,7 @@ pub const IWSDServiceProxyEventing = extern union {
             pAsyncState: ?*IUnknown,
             pAsyncCallback: ?*IWSDAsyncCallback,
             ppResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndGetStatusForMultipleOperations: *const fn(
             self: *const IWSDServiceProxyEventing,
             pOperations: [*]const WSD_OPERATION,
@@ -1885,7 +1885,7 @@ pub const IWSDServiceProxyEventing = extern union {
             pResult: ?*IWSDAsyncResult,
             ppExpires: ?*?*WSD_EVENTING_EXPIRES,
             ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSDServiceProxy: IWSDServiceProxy,
@@ -1942,45 +1942,45 @@ pub const IWSDDeviceProxy = extern union {
             pszLocalId: ?[*:0]const u16,
             pContext: ?*IWSDXMLContext,
             pSponsor: ?*IWSDDeviceProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginGetMetadata: *const fn(
             self: *const IWSDDeviceProxy,
             ppResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndGetMetadata: *const fn(
             self: *const IWSDDeviceProxy,
             pResult: ?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHostMetadata: *const fn(
             self: *const IWSDDeviceProxy,
             ppHostMetadata: ?*?*WSD_HOST_METADATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetThisModelMetadata: *const fn(
             self: *const IWSDDeviceProxy,
             ppManufacturerMetadata: ?*?*WSD_THIS_MODEL_METADATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetThisDeviceMetadata: *const fn(
             self: *const IWSDDeviceProxy,
             ppThisDeviceMetadata: ?*?*WSD_THIS_DEVICE_METADATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllMetadata: *const fn(
             self: *const IWSDDeviceProxy,
             ppMetadata: ?*?*WSD_METADATA_SECTION_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetServiceProxyById: *const fn(
             self: *const IWSDDeviceProxy,
             pszServiceId: ?[*:0]const u16,
             ppServiceProxy: ?*?*IWSDServiceProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetServiceProxyByType: *const fn(
             self: *const IWSDDeviceProxy,
             pType: ?*const WSDXML_NAME,
             ppServiceProxy: ?*?*IWSDServiceProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEndpointProxy: *const fn(
             self: *const IWSDDeviceProxy,
             ppProxy: ?*?*IWSDEndpointProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2026,29 +2026,29 @@ pub const IWSDAsyncResult = extern union {
             self: *const IWSDAsyncResult,
             pCallback: ?*IWSDAsyncCallback,
             pAsyncState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWaitHandle: *const fn(
             self: *const IWSDAsyncResult,
             hWaitHandle: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasCompleted: *const fn(
             self: *const IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAsyncState: *const fn(
             self: *const IWSDAsyncResult,
             ppAsyncState: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Abort: *const fn(
             self: *const IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEvent: *const fn(
             self: *const IWSDAsyncResult,
             pEvent: ?*WSD_EVENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEndpointProxy: *const fn(
             self: *const IWSDAsyncResult,
             ppEndpoint: ?*?*IWSDEndpointProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2085,7 +2085,7 @@ pub const IWSDAsyncCallback = extern union {
             self: *const IWSDAsyncCallback,
             pAsyncResult: ?*IWSDAsyncResult,
             pAsyncState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2103,16 +2103,16 @@ pub const IWSDEventingStatus = extern union {
         SubscriptionRenewed: *const fn(
             self: *const IWSDEventingStatus,
             pszSubscriptionAction: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SubscriptionRenewalFailed: *const fn(
             self: *const IWSDEventingStatus,
             pszSubscriptionAction: ?[*:0]const u16,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SubscriptionEnded: *const fn(
             self: *const IWSDEventingStatus,
             pszSubscriptionAction: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2139,39 +2139,39 @@ pub const IWSDDeviceHost = extern union {
             pContext: ?*IWSDXMLContext,
             ppHostAddresses: ?[*]?*IWSDAddress,
             dwHostAddressCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Start: *const fn(
             self: *const IWSDDeviceHost,
             ullInstanceId: u64,
             pScopeList: ?*const WSD_URI_LIST,
             pNotificationSink: ?*IWSDDeviceHostNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IWSDDeviceHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Terminate: *const fn(
             self: *const IWSDDeviceHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterPortType: *const fn(
             self: *const IWSDDeviceHost,
             pPortType: ?*const WSD_PORT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMetadata: *const fn(
             self: *const IWSDDeviceHost,
             pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA,
             pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA,
             pHostMetadata: ?*const WSD_HOST_METADATA,
             pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterService: *const fn(
             self: *const IWSDDeviceHost,
             pszServiceId: ?[*:0]const u16,
             pService: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RetireService: *const fn(
             self: *const IWSDDeviceHost,
             pszServiceId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDynamicService: *const fn(
             self: *const IWSDDeviceHost,
             pszServiceId: ?[*:0]const u16,
@@ -2180,22 +2180,22 @@ pub const IWSDDeviceHost = extern union {
             pPortName: ?*const WSDXML_NAME,
             pAny: ?*const WSDXML_ELEMENT,
             pService: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveDynamicService: *const fn(
             self: *const IWSDDeviceHost,
             pszServiceId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetServiceDiscoverable: *const fn(
             self: *const IWSDDeviceHost,
             pszServiceId: ?[*:0]const u16,
             fDiscoverable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SignalEvent: *const fn(
             self: *const IWSDDeviceHost,
             pszServiceId: ?[*:0]const u16,
             pBody: ?*const anyopaque,
             pOperation: ?*const WSD_OPERATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2247,7 +2247,7 @@ pub const IWSDDeviceHostNotify = extern union {
             self: *const IWSDDeviceHostNotify,
             pszServiceId: ?[*:0]const u16,
             ppService: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2267,13 +2267,13 @@ pub const IWSDServiceMessaging = extern union {
             pBody: ?*anyopaque,
             pOperation: ?*WSD_OPERATION,
             pMessageParameters: ?*IWSDMessageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FaultRequest: *const fn(
             self: *const IWSDServiceMessaging,
             pRequestHeader: ?*WSD_SOAP_HEADER,
             pMessageParameters: ?*IWSDMessageParameters,
             pFault: ?*WSD_SOAP_FAULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2292,45 +2292,45 @@ pub const IWSDServiceMessaging = extern union {
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateUdpMessageParameters(
     ppTxParams: ?*?*IWSDUdpMessageParameters,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateUdpAddress(
     ppAddress: ?*?*IWSDUdpAddress,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateHttpMessageParameters(
     ppTxParams: ?*?*IWSDHttpMessageParameters,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateHttpAddress(
     ppAddress: ?*?*IWSDHttpAddress,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateOutboundAttachment(
     ppAttachment: ?*?*IWSDOutboundAttachment,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLGetNameFromBuiltinNamespace(
     pszNamespace: ?[*:0]const u16,
     pszName: ?[*:0]const u16,
     ppName: ?*?*WSDXML_NAME,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLCreateContext(
     ppContext: ?*?*IWSDXMLContext,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateDiscoveryProvider(
     pContext: ?*IWSDXMLContext,
     ppProvider: ?*?*IWSDiscoveryProvider,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsdapi" fn WSDCreateDiscoveryProvider2(
@@ -2338,13 +2338,13 @@ pub extern "wsdapi" fn WSDCreateDiscoveryProvider2(
     pConfigParams: ?[*]WSD_CONFIG_PARAM,
     dwConfigParamCount: u32,
     ppProvider: ?*?*IWSDiscoveryProvider,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateDiscoveryPublisher(
     pContext: ?*IWSDXMLContext,
     ppPublisher: ?*?*IWSDiscoveryPublisher,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsdapi" fn WSDCreateDiscoveryPublisher2(
@@ -2352,7 +2352,7 @@ pub extern "wsdapi" fn WSDCreateDiscoveryPublisher2(
     pConfigParams: ?[*]WSD_CONFIG_PARAM,
     dwConfigParamCount: u32,
     ppPublisher: ?*?*IWSDiscoveryPublisher,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateDeviceProxy(
@@ -2360,7 +2360,7 @@ pub extern "wsdapi" fn WSDCreateDeviceProxy(
     pszLocalId: ?[*:0]const u16,
     pContext: ?*IWSDXMLContext,
     ppDeviceProxy: ?*?*IWSDDeviceProxy,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateDeviceProxyAdvanced(
@@ -2369,7 +2369,7 @@ pub extern "wsdapi" fn WSDCreateDeviceProxyAdvanced(
     pszLocalId: ?[*:0]const u16,
     pContext: ?*IWSDXMLContext,
     ppDeviceProxy: ?*?*IWSDDeviceProxy,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsdapi" fn WSDCreateDeviceProxy2(
@@ -2379,14 +2379,14 @@ pub extern "wsdapi" fn WSDCreateDeviceProxy2(
     pConfigParams: ?[*]WSD_CONFIG_PARAM,
     dwConfigParamCount: u32,
     ppDeviceProxy: ?*?*IWSDDeviceProxy,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateDeviceHost(
     pszLocalId: ?[*:0]const u16,
     pContext: ?*IWSDXMLContext,
     ppDeviceHost: ?*?*IWSDDeviceHost,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateDeviceHostAdvanced(
@@ -2395,7 +2395,7 @@ pub extern "wsdapi" fn WSDCreateDeviceHostAdvanced(
     ppHostAddresses: ?[*]?*IWSDAddress,
     dwHostAddressCount: u32,
     ppDeviceHost: ?*?*IWSDDeviceHost,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsdapi" fn WSDCreateDeviceHost2(
@@ -2404,7 +2404,7 @@ pub extern "wsdapi" fn WSDCreateDeviceHost2(
     pConfigParams: ?[*]WSD_CONFIG_PARAM,
     dwConfigParamCount: u32,
     ppDeviceHost: ?*?*IWSDDeviceHost,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDSetConfigurationOption(
@@ -2412,7 +2412,7 @@ pub extern "wsdapi" fn WSDSetConfigurationOption(
     // TODO: what to do with BytesParamIndex 2?
     pVoid: ?*anyopaque,
     cbInBuffer: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDGetConfigurationOption(
@@ -2420,36 +2420,36 @@ pub extern "wsdapi" fn WSDGetConfigurationOption(
     // TODO: what to do with BytesParamIndex 2?
     pVoid: ?*anyopaque,
     cbOutBuffer: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDAllocateLinkedMemory(
     pParent: ?*anyopaque,
     cbSize: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDFreeLinkedMemory(
     pVoid: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDAttachLinkedMemory(
     pParent: ?*anyopaque,
     pChild: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDDetachLinkedMemory(
     pVoid: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLBuildAnyForSingleElement(
     pElementName: ?*WSDXML_NAME,
     pszText: ?[*:0]const u16,
     ppAny: ?*?*WSDXML_ELEMENT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLGetValueFromAny(
@@ -2457,24 +2457,24 @@ pub extern "wsdapi" fn WSDXMLGetValueFromAny(
     pszName: ?[*:0]const u16,
     pAny: ?*WSDXML_ELEMENT,
     ppszValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLAddSibling(
     pFirst: ?*WSDXML_ELEMENT,
     pSecond: ?*WSDXML_ELEMENT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLAddChild(
     pParent: ?*WSDXML_ELEMENT,
     pChild: ?*WSDXML_ELEMENT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLCleanupElement(
     pAny: ?*WSDXML_ELEMENT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDGenerateFault(
@@ -2484,7 +2484,7 @@ pub extern "wsdapi" fn WSDGenerateFault(
     pszDetail: ?[*:0]const u16,
     pContext: ?*IWSDXMLContext,
     ppFault: ?*?*WSD_SOAP_FAULT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDGenerateFaultEx(
@@ -2493,7 +2493,7 @@ pub extern "wsdapi" fn WSDGenerateFaultEx(
     pReasons: ?*WSD_LOCALIZED_STRING_LIST,
     pszDetail: ?[*:0]const u16,
     ppFault: ?*?*WSD_SOAP_FAULT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsdapi" fn WSDUriEncode(
@@ -2501,7 +2501,7 @@ pub extern "wsdapi" fn WSDUriEncode(
     cchSource: u32,
     destOut: [*]?PWSTR,
     cchDestOut: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsdapi" fn WSDUriDecode(
@@ -2509,7 +2509,7 @@ pub extern "wsdapi" fn WSDUriDecode(
     cchSource: u32,
     destOut: [*]?PWSTR,
     cchDestOut: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

@@ -1076,43 +1076,43 @@ pub const ISdoMachine = extern union {
         Attach: *const fn(
             self: *const ISdoMachine,
             bstrComputerName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDictionarySDO: *const fn(
             self: *const ISdoMachine,
             ppDictionarySDO: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetServiceSDO: *const fn(
             self: *const ISdoMachine,
             eDataStore: IASDATASTORE,
             bstrServiceName: ?BSTR,
             ppServiceSDO: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUserSDO: *const fn(
             self: *const ISdoMachine,
             eDataStore: IASDATASTORE,
             bstrUserName: ?BSTR,
             ppUserSDO: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOSType: *const fn(
             self: *const ISdoMachine,
             eOSType: ?*IASOSTYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDomainType: *const fn(
             self: *const ISdoMachine,
             eDomainType: ?*IASDOMAINTYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsDirectoryAvailable: *const fn(
             self: *const ISdoMachine,
             boolDirectoryAvailable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttachedComputer: *const fn(
             self: *const ISdoMachine,
             bstrComputerName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSDOSchema: *const fn(
             self: *const ISdoMachine,
             ppSDOSchema: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1155,25 +1155,25 @@ pub const ISdoMachine2 = extern union {
             self: *const ISdoMachine2,
             bstrServiceName: ?BSTR,
             ppTemplatesSDO: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableTemplates: *const fn(
             self: *const ISdoMachine2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SyncConfigAgainstTemplates: *const fn(
             self: *const ISdoMachine2,
             bstrServiceName: ?BSTR,
             ppConfigRoot: ?*?*IUnknown,
             ppTemplatesRoot: ?*?*IUnknown,
             bForcedSync: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportRemoteTemplates: *const fn(
             self: *const ISdoMachine2,
             pLocalTemplatesRoot: ?*IUnknown,
             bstrRemoteMachineName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reload: *const fn(
             self: *const ISdoMachine2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISdoMachine: ISdoMachine,
@@ -1204,17 +1204,17 @@ pub const ISdoServiceControl = extern union {
         base: IDispatch.VTable,
         StartService: *const fn(
             self: *const ISdoServiceControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopService: *const fn(
             self: *const ISdoServiceControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetServiceStatus: *const fn(
             self: *const ISdoServiceControl,
             status: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetService: *const fn(
             self: *const ISdoServiceControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1243,32 +1243,32 @@ pub const ISdo = extern union {
             self: *const ISdo,
             Id: i32,
             ppPropertyInfo: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const ISdo,
             Id: i32,
             pValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PutProperty: *const fn(
             self: *const ISdo,
             Id: i32,
             pValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetProperty: *const fn(
             self: *const ISdo,
             Id: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Apply: *const fn(
             self: *const ISdo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Restore: *const fn(
             self: *const ISdo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISdo,
             ppEnumVARIANT: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1306,37 +1306,37 @@ pub const ISdoCollection = extern union {
         get_Count: *const fn(
             self: *const ISdoCollection,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ISdoCollection,
             bstrName: ?BSTR,
             ppItem: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ISdoCollection,
             pItem: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAll: *const fn(
             self: *const ISdoCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reload: *const fn(
             self: *const ISdoCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsNameUnique: *const fn(
             self: *const ISdoCollection,
             bstrName: ?BSTR,
             pBool: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const ISdoCollection,
             Name: ?*VARIANT,
             pItem: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISdoCollection,
             ppEnumVARIANT: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1377,18 +1377,18 @@ pub const ITemplateSdo = extern union {
             bstrName: ?BSTR,
             pCollection: ?*IDispatch,
             ppItem: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddToSdo: *const fn(
             self: *const ITemplateSdo,
             bstrName: ?BSTR,
             pSdoTarget: ?*IDispatch,
             ppItem: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddToSdoAsProperty: *const fn(
             self: *const ITemplateSdo,
             pSdoTarget: ?*IDispatch,
             id: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISdo: ISdo,
@@ -1415,29 +1415,29 @@ pub const ISdoDictionaryOld = extern union {
             self: *const ISdoDictionaryOld,
             Id: ?*VARIANT,
             pValues: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeInfo: *const fn(
             self: *const ISdoDictionaryOld,
             Id: ATTRIBUTEID,
             pInfoIDs: ?*VARIANT,
             pInfoValues: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumAttributeValues: *const fn(
             self: *const ISdoDictionaryOld,
             Id: ATTRIBUTEID,
             pValueIds: ?*VARIANT,
             pValuesDesc: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAttribute: *const fn(
             self: *const ISdoDictionaryOld,
             Id: ATTRIBUTEID,
             ppAttributeObject: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeID: *const fn(
             self: *const ISdoDictionaryOld,
             bstrAttributeName: ?BSTR,
             pId: ?*ATTRIBUTEID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1711,25 +1711,25 @@ pub const raReject = RADIUS_ACTION.Reject;
 pub const raAccept = RADIUS_ACTION.Accept;
 
 pub const PRADIUS_EXTENSION_INIT = *const fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRADIUS_EXTENSION_TERM = *const fn(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PRADIUS_EXTENSION_PROCESS = *const fn(
     pAttrs: ?*const RADIUS_ATTRIBUTE,
     pfAction: ?*RADIUS_ACTION,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRADIUS_EXTENSION_PROCESS_EX = *const fn(
     pInAttrs: ?*const RADIUS_ATTRIBUTE,
     pOutAttrs: ?*?*RADIUS_ATTRIBUTE,
     pfAction: ?*RADIUS_ACTION,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRADIUS_EXTENSION_FREE_ATTRIBUTES = *const fn(
     pAttrs: ?*RADIUS_ATTRIBUTE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const RADIUS_EXTENSION_POINT = enum(i32) {
     entication = 0,
@@ -1761,7 +1761,7 @@ pub const RADIUS_EXTENSION_CONTROL_BLOCK = extern struct {
 
 pub const PRADIUS_EXTENSION_PROCESS_2 = *const fn(
     pECB: ?*RADIUS_EXTENSION_CONTROL_BLOCK,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

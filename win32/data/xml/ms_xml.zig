@@ -640,7 +640,7 @@ pub const IXMLDOMImplementation = extern union {
             feature: ?BSTR,
             version: ?BSTR,
             hasFeature: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -659,183 +659,183 @@ pub const IXMLDOMNode = extern union {
         get_nodeName: *const fn(
             self: *const IXMLDOMNode,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_nodeValue: *const fn(
             self: *const IXMLDOMNode,
             value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_nodeValue: *const fn(
             self: *const IXMLDOMNode,
             value: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_nodeType: *const fn(
             self: *const IXMLDOMNode,
             type: ?*DOMNodeType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_parentNode: *const fn(
             self: *const IXMLDOMNode,
             parent: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_childNodes: *const fn(
             self: *const IXMLDOMNode,
             childList: ?*?*IXMLDOMNodeList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_firstChild: *const fn(
             self: *const IXMLDOMNode,
             firstChild: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_lastChild: *const fn(
             self: *const IXMLDOMNode,
             lastChild: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_previousSibling: *const fn(
             self: *const IXMLDOMNode,
             previousSibling: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_nextSibling: *const fn(
             self: *const IXMLDOMNode,
             nextSibling: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_attributes: *const fn(
             self: *const IXMLDOMNode,
             attributeMap: ?*?*IXMLDOMNamedNodeMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         insertBefore: *const fn(
             self: *const IXMLDOMNode,
             newChild: ?*IXMLDOMNode,
             refChild: VARIANT,
             outNewChild: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         replaceChild: *const fn(
             self: *const IXMLDOMNode,
             newChild: ?*IXMLDOMNode,
             oldChild: ?*IXMLDOMNode,
             outOldChild: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeChild: *const fn(
             self: *const IXMLDOMNode,
             childNode: ?*IXMLDOMNode,
             oldChild: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         appendChild: *const fn(
             self: *const IXMLDOMNode,
             newChild: ?*IXMLDOMNode,
             outNewChild: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         hasChildNodes: *const fn(
             self: *const IXMLDOMNode,
             hasChild: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ownerDocument: *const fn(
             self: *const IXMLDOMNode,
             XMLDOMDocument: ?*?*IXMLDOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         cloneNode: *const fn(
             self: *const IXMLDOMNode,
             deep: i16,
             cloneRoot: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_nodeTypeString: *const fn(
             self: *const IXMLDOMNode,
             nodeType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_text: *const fn(
             self: *const IXMLDOMNode,
             text: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_text: *const fn(
             self: *const IXMLDOMNode,
             text: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_specified: *const fn(
             self: *const IXMLDOMNode,
             isSpecified: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_definition: *const fn(
             self: *const IXMLDOMNode,
             definitionNode: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_nodeTypedValue: *const fn(
             self: *const IXMLDOMNode,
             typedValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_nodeTypedValue: *const fn(
             self: *const IXMLDOMNode,
             typedValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_dataType: *const fn(
             self: *const IXMLDOMNode,
             dataTypeName: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_dataType: *const fn(
             self: *const IXMLDOMNode,
             dataTypeName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_xml: *const fn(
             self: *const IXMLDOMNode,
             xmlString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         transformNode: *const fn(
             self: *const IXMLDOMNode,
             stylesheet: ?*IXMLDOMNode,
             xmlString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         selectNodes: *const fn(
             self: *const IXMLDOMNode,
             queryString: ?BSTR,
             resultList: ?*?*IXMLDOMNodeList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         selectSingleNode: *const fn(
             self: *const IXMLDOMNode,
             queryString: ?BSTR,
             resultNode: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_parsed: *const fn(
             self: *const IXMLDOMNode,
             isParsed: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_namespaceURI: *const fn(
             self: *const IXMLDOMNode,
             namespaceURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_prefix: *const fn(
             self: *const IXMLDOMNode,
             prefixString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_baseName: *const fn(
             self: *const IXMLDOMNode,
             nameString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         transformNodeToObject: *const fn(
             self: *const IXMLDOMNode,
             stylesheet: ?*IXMLDOMNode,
             outputObject: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -971,165 +971,165 @@ pub const IXMLDOMDocument = extern union {
         get_doctype: *const fn(
             self: *const IXMLDOMDocument,
             documentType: ?*?*IXMLDOMDocumentType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_implementation: *const fn(
             self: *const IXMLDOMDocument,
             impl: ?*?*IXMLDOMImplementation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_documentElement: *const fn(
             self: *const IXMLDOMDocument,
             DOMElement: ?*?*IXMLDOMElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_documentElement: *const fn(
             self: *const IXMLDOMDocument,
             DOMElement: ?*IXMLDOMElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createElement: *const fn(
             self: *const IXMLDOMDocument,
             tagName: ?BSTR,
             element: ?*?*IXMLDOMElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createDocumentFragment: *const fn(
             self: *const IXMLDOMDocument,
             docFrag: ?*?*IXMLDOMDocumentFragment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createTextNode: *const fn(
             self: *const IXMLDOMDocument,
             data: ?BSTR,
             text: ?*?*IXMLDOMText,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createComment: *const fn(
             self: *const IXMLDOMDocument,
             data: ?BSTR,
             comment: ?*?*IXMLDOMComment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createCDATASection: *const fn(
             self: *const IXMLDOMDocument,
             data: ?BSTR,
             cdata: ?*?*IXMLDOMCDATASection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createProcessingInstruction: *const fn(
             self: *const IXMLDOMDocument,
             target: ?BSTR,
             data: ?BSTR,
             pi: ?*?*IXMLDOMProcessingInstruction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createAttribute: *const fn(
             self: *const IXMLDOMDocument,
             name: ?BSTR,
             attribute: ?*?*IXMLDOMAttribute,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createEntityReference: *const fn(
             self: *const IXMLDOMDocument,
             name: ?BSTR,
             entityRef: ?*?*IXMLDOMEntityReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getElementsByTagName: *const fn(
             self: *const IXMLDOMDocument,
             tagName: ?BSTR,
             resultList: ?*?*IXMLDOMNodeList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createNode: *const fn(
             self: *const IXMLDOMDocument,
             Type: VARIANT,
             name: ?BSTR,
             namespaceURI: ?BSTR,
             node: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         nodeFromID: *const fn(
             self: *const IXMLDOMDocument,
             idString: ?BSTR,
             node: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         load: *const fn(
             self: *const IXMLDOMDocument,
             xmlSource: VARIANT,
             isSuccessful: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readyState: *const fn(
             self: *const IXMLDOMDocument,
             value: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_parseError: *const fn(
             self: *const IXMLDOMDocument,
             errorObj: ?*?*IXMLDOMParseError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_url: *const fn(
             self: *const IXMLDOMDocument,
             urlString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_async: *const fn(
             self: *const IXMLDOMDocument,
             isAsync: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_async: *const fn(
             self: *const IXMLDOMDocument,
             isAsync: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         abort: *const fn(
             self: *const IXMLDOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         loadXML: *const fn(
             self: *const IXMLDOMDocument,
             bstrXML: ?BSTR,
             isSuccessful: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         save: *const fn(
             self: *const IXMLDOMDocument,
             destination: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_validateOnParse: *const fn(
             self: *const IXMLDOMDocument,
             isValidating: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_validateOnParse: *const fn(
             self: *const IXMLDOMDocument,
             isValidating: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_resolveExternals: *const fn(
             self: *const IXMLDOMDocument,
             isResolving: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_resolveExternals: *const fn(
             self: *const IXMLDOMDocument,
             isResolving: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_preserveWhiteSpace: *const fn(
             self: *const IXMLDOMDocument,
             isPreserving: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_preserveWhiteSpace: *const fn(
             self: *const IXMLDOMDocument,
             isPreserving: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onreadystatechange: *const fn(
             self: *const IXMLDOMDocument,
             readystatechangeSink: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ondataavailable: *const fn(
             self: *const IXMLDOMDocument,
             ondataavailableSink: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ontransformnode: *const fn(
             self: *const IXMLDOMDocument,
             ontransformnodeSink: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMNode: IXMLDOMNode,
@@ -1245,24 +1245,24 @@ pub const IXMLDOMNodeList = extern union {
             self: *const IXMLDOMNodeList,
             index: i32,
             listItem: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_length: *const fn(
             self: *const IXMLDOMNodeList,
             listLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         nextNode: *const fn(
             self: *const IXMLDOMNodeList,
             nextItem: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         reset: *const fn(
             self: *const IXMLDOMNodeList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__newEnum: *const fn(
             self: *const IXMLDOMNodeList,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1293,51 +1293,51 @@ pub const IXMLDOMNamedNodeMap = extern union {
             self: *const IXMLDOMNamedNodeMap,
             name: ?BSTR,
             namedItem: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setNamedItem: *const fn(
             self: *const IXMLDOMNamedNodeMap,
             newItem: ?*IXMLDOMNode,
             nameItem: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeNamedItem: *const fn(
             self: *const IXMLDOMNamedNodeMap,
             name: ?BSTR,
             namedItem: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_item: *const fn(
             self: *const IXMLDOMNamedNodeMap,
             index: i32,
             listItem: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_length: *const fn(
             self: *const IXMLDOMNamedNodeMap,
             listLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getQualifiedItem: *const fn(
             self: *const IXMLDOMNamedNodeMap,
             baseName: ?BSTR,
             namespaceURI: ?BSTR,
             qualifiedItem: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeQualifiedItem: *const fn(
             self: *const IXMLDOMNamedNodeMap,
             baseName: ?BSTR,
             namespaceURI: ?BSTR,
             qualifiedItem: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         nextNode: *const fn(
             self: *const IXMLDOMNamedNodeMap,
             nextItem: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         reset: *const fn(
             self: *const IXMLDOMNamedNodeMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__newEnum: *const fn(
             self: *const IXMLDOMNamedNodeMap,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1383,43 +1383,43 @@ pub const IXMLDOMCharacterData = extern union {
         get_data: *const fn(
             self: *const IXMLDOMCharacterData,
             data: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_data: *const fn(
             self: *const IXMLDOMCharacterData,
             data: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_length: *const fn(
             self: *const IXMLDOMCharacterData,
             dataLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         substringData: *const fn(
             self: *const IXMLDOMCharacterData,
             offset: i32,
             count: i32,
             data: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         appendData: *const fn(
             self: *const IXMLDOMCharacterData,
             data: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         insertData: *const fn(
             self: *const IXMLDOMCharacterData,
             offset: i32,
             data: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         deleteData: *const fn(
             self: *const IXMLDOMCharacterData,
             offset: i32,
             count: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         replaceData: *const fn(
             self: *const IXMLDOMCharacterData,
             offset: i32,
             count: i32,
             data: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMNode: IXMLDOMNode,
@@ -1460,17 +1460,17 @@ pub const IXMLDOMAttribute = extern union {
         get_name: *const fn(
             self: *const IXMLDOMAttribute,
             attributeName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_value: *const fn(
             self: *const IXMLDOMAttribute,
             attributeValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_value: *const fn(
             self: *const IXMLDOMAttribute,
             attributeValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMNode: IXMLDOMNode,
@@ -1496,44 +1496,44 @@ pub const IXMLDOMElement = extern union {
         get_tagName: *const fn(
             self: *const IXMLDOMElement,
             tagName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getAttribute: *const fn(
             self: *const IXMLDOMElement,
             name: ?BSTR,
             value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setAttribute: *const fn(
             self: *const IXMLDOMElement,
             name: ?BSTR,
             value: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeAttribute: *const fn(
             self: *const IXMLDOMElement,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getAttributeNode: *const fn(
             self: *const IXMLDOMElement,
             name: ?BSTR,
             attributeNode: ?*?*IXMLDOMAttribute,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setAttributeNode: *const fn(
             self: *const IXMLDOMElement,
             DOMAttribute: ?*IXMLDOMAttribute,
             attributeNode: ?*?*IXMLDOMAttribute,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeAttributeNode: *const fn(
             self: *const IXMLDOMElement,
             DOMAttribute: ?*IXMLDOMAttribute,
             attributeNode: ?*?*IXMLDOMAttribute,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getElementsByTagName: *const fn(
             self: *const IXMLDOMElement,
             tagName: ?BSTR,
             resultList: ?*?*IXMLDOMNodeList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         normalize: *const fn(
             self: *const IXMLDOMElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMNode: IXMLDOMNode,
@@ -1577,7 +1577,7 @@ pub const IXMLDOMText = extern union {
             self: *const IXMLDOMText,
             offset: i32,
             rightHandTextNode: ?*?*IXMLDOMText,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMCharacterData: IXMLDOMCharacterData,
@@ -1611,17 +1611,17 @@ pub const IXMLDOMProcessingInstruction = extern union {
         get_target: *const fn(
             self: *const IXMLDOMProcessingInstruction,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_data: *const fn(
             self: *const IXMLDOMProcessingInstruction,
             value: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_data: *const fn(
             self: *const IXMLDOMProcessingInstruction,
             value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMNode: IXMLDOMNode,
@@ -1661,17 +1661,17 @@ pub const IXMLDOMDocumentType = extern union {
         get_name: *const fn(
             self: *const IXMLDOMDocumentType,
             rootName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_entities: *const fn(
             self: *const IXMLDOMDocumentType,
             entityMap: ?*?*IXMLDOMNamedNodeMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_notations: *const fn(
             self: *const IXMLDOMDocumentType,
             notationMap: ?*?*IXMLDOMNamedNodeMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMNode: IXMLDOMNode,
@@ -1697,12 +1697,12 @@ pub const IXMLDOMNotation = extern union {
         get_publicId: *const fn(
             self: *const IXMLDOMNotation,
             publicID: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_systemId: *const fn(
             self: *const IXMLDOMNotation,
             systemID: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMNode: IXMLDOMNode,
@@ -1725,17 +1725,17 @@ pub const IXMLDOMEntity = extern union {
         get_publicId: *const fn(
             self: *const IXMLDOMEntity,
             publicID: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_systemId: *const fn(
             self: *const IXMLDOMEntity,
             systemID: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_notationName: *const fn(
             self: *const IXMLDOMEntity,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMNode: IXMLDOMNode,
@@ -1773,37 +1773,37 @@ pub const IXMLDOMParseError = extern union {
         get_errorCode: *const fn(
             self: *const IXMLDOMParseError,
             errorCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_url: *const fn(
             self: *const IXMLDOMParseError,
             urlString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_reason: *const fn(
             self: *const IXMLDOMParseError,
             reasonString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_srcText: *const fn(
             self: *const IXMLDOMParseError,
             sourceString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_line: *const fn(
             self: *const IXMLDOMParseError,
             lineNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_linepos: *const fn(
             self: *const IXMLDOMParseError,
             linePosition: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_filepos: *const fn(
             self: *const IXMLDOMParseError,
             filePosition: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1840,54 +1840,54 @@ pub const IXTLRuntime = extern union {
             self: *const IXTLRuntime,
             pNode: ?*IXMLDOMNode,
             pID: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         depth: *const fn(
             self: *const IXTLRuntime,
             pNode: ?*IXMLDOMNode,
             pDepth: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         childNumber: *const fn(
             self: *const IXTLRuntime,
             pNode: ?*IXMLDOMNode,
             pNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ancestorChildNumber: *const fn(
             self: *const IXTLRuntime,
             bstrNodeName: ?BSTR,
             pNode: ?*IXMLDOMNode,
             pNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         absoluteChildNumber: *const fn(
             self: *const IXTLRuntime,
             pNode: ?*IXMLDOMNode,
             pNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         formatIndex: *const fn(
             self: *const IXTLRuntime,
             lIndex: i32,
             bstrFormat: ?BSTR,
             pbstrFormattedString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         formatNumber: *const fn(
             self: *const IXTLRuntime,
             dblNumber: f64,
             bstrFormat: ?BSTR,
             pbstrFormattedString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         formatDate: *const fn(
             self: *const IXTLRuntime,
             varDate: VARIANT,
             bstrFormat: ?BSTR,
             varDestLocale: VARIANT,
             pbstrFormattedString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         formatTime: *const fn(
             self: *const IXTLRuntime,
             varTime: VARIANT,
             bstrFormat: ?BSTR,
             varDestLocale: VARIANT,
             pbstrFormattedString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMNode: IXMLDOMNode,
@@ -1945,68 +1945,68 @@ pub const IXMLHttpRequest = extern union {
             varAsync: VARIANT,
             bstrUser: VARIANT,
             bstrPassword: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setRequestHeader: *const fn(
             self: *const IXMLHttpRequest,
             bstrHeader: ?BSTR,
             bstrValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getResponseHeader: *const fn(
             self: *const IXMLHttpRequest,
             bstrHeader: ?BSTR,
             pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getAllResponseHeaders: *const fn(
             self: *const IXMLHttpRequest,
             pbstrHeaders: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         send: *const fn(
             self: *const IXMLHttpRequest,
             varBody: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         abort: *const fn(
             self: *const IXMLHttpRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_status: *const fn(
             self: *const IXMLHttpRequest,
             plStatus: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_statusText: *const fn(
             self: *const IXMLHttpRequest,
             pbstrStatus: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_responseXML: *const fn(
             self: *const IXMLHttpRequest,
             ppBody: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_responseText: *const fn(
             self: *const IXMLHttpRequest,
             pbstrBody: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_responseBody: *const fn(
             self: *const IXMLHttpRequest,
             pvarBody: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_responseStream: *const fn(
             self: *const IXMLHttpRequest,
             pvarBody: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readyState: *const fn(
             self: *const IXMLHttpRequest,
             plState: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onreadystatechange: *const fn(
             self: *const IXMLHttpRequest,
             pReadyStateSink: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2064,27 +2064,27 @@ pub const IXMLDSOControl = extern union {
         get_XMLDocument: *const fn(
             self: *const IXMLDSOControl,
             ppDoc: ?*?*IXMLDOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_XMLDocument: *const fn(
             self: *const IXMLDSOControl,
             ppDoc: ?*IXMLDOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JavaDSOCompatible: *const fn(
             self: *const IXMLDSOControl,
             fJavaDSOCompatible: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_JavaDSOCompatible: *const fn(
             self: *const IXMLDSOControl,
             fJavaDSOCompatible: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readyState: *const fn(
             self: *const IXMLDSOControl,
             state: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2115,23 +2115,23 @@ pub const IXMLElementCollection = extern union {
         put_length: *const fn(
             self: *const IXMLElementCollection,
             v: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_length: *const fn(
             self: *const IXMLElementCollection,
             p: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__newEnum: *const fn(
             self: *const IXMLElementCollection,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         item: *const fn(
             self: *const IXMLElementCollection,
             var1: VARIANT,
             var2: VARIANT,
             ppDisp: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2159,73 +2159,73 @@ pub const IXMLDocument = extern union {
         get_root: *const fn(
             self: *const IXMLDocument,
             p: ?*?*IXMLElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fileSize: *const fn(
             self: *const IXMLDocument,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fileModifiedDate: *const fn(
             self: *const IXMLDocument,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fileUpdatedDate: *const fn(
             self: *const IXMLDocument,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_URL: *const fn(
             self: *const IXMLDocument,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_URL: *const fn(
             self: *const IXMLDocument,
             p: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_mimeType: *const fn(
             self: *const IXMLDocument,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readyState: *const fn(
             self: *const IXMLDocument,
             pl: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_charset: *const fn(
             self: *const IXMLDocument,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_charset: *const fn(
             self: *const IXMLDocument,
             p: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_version: *const fn(
             self: *const IXMLDocument,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_doctype: *const fn(
             self: *const IXMLDocument,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_dtdURL: *const fn(
             self: *const IXMLDocument,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createElement: *const fn(
             self: *const IXMLDocument,
             vType: VARIANT,
             var1: VARIANT,
             ppElem: ?*?*IXMLElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2283,83 +2283,83 @@ pub const IXMLDocument2 = extern union {
         get_root: *const fn(
             self: *const IXMLDocument2,
             p: ?*?*IXMLElement2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fileSize: *const fn(
             self: *const IXMLDocument2,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fileModifiedDate: *const fn(
             self: *const IXMLDocument2,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fileUpdatedDate: *const fn(
             self: *const IXMLDocument2,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_URL: *const fn(
             self: *const IXMLDocument2,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_URL: *const fn(
             self: *const IXMLDocument2,
             p: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_mimeType: *const fn(
             self: *const IXMLDocument2,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readyState: *const fn(
             self: *const IXMLDocument2,
             pl: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_charset: *const fn(
             self: *const IXMLDocument2,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_charset: *const fn(
             self: *const IXMLDocument2,
             p: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_version: *const fn(
             self: *const IXMLDocument2,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_doctype: *const fn(
             self: *const IXMLDocument2,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_dtdURL: *const fn(
             self: *const IXMLDocument2,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createElement: *const fn(
             self: *const IXMLDocument2,
             vType: VARIANT,
             var1: VARIANT,
             ppElem: ?*?*IXMLElement2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_async: *const fn(
             self: *const IXMLDocument2,
             pf: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_async: *const fn(
             self: *const IXMLDocument2,
             f: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2423,61 +2423,61 @@ pub const IXMLElement = extern union {
         get_tagName: *const fn(
             self: *const IXMLElement,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_tagName: *const fn(
             self: *const IXMLElement,
             p: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_parent: *const fn(
             self: *const IXMLElement,
             ppParent: ?*?*IXMLElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setAttribute: *const fn(
             self: *const IXMLElement,
             strPropertyName: ?BSTR,
             PropertyValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getAttribute: *const fn(
             self: *const IXMLElement,
             strPropertyName: ?BSTR,
             PropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeAttribute: *const fn(
             self: *const IXMLElement,
             strPropertyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_children: *const fn(
             self: *const IXMLElement,
             pp: ?*?*IXMLElementCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_type: *const fn(
             self: *const IXMLElement,
             plType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_text: *const fn(
             self: *const IXMLElement,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_text: *const fn(
             self: *const IXMLElement,
             p: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addChild: *const fn(
             self: *const IXMLElement,
             pChildElem: ?*IXMLElement,
             lIndex: i32,
             lReserved: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeChild: *const fn(
             self: *const IXMLElement,
             pChildElem: ?*IXMLElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2529,66 +2529,66 @@ pub const IXMLElement2 = extern union {
         get_tagName: *const fn(
             self: *const IXMLElement2,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_tagName: *const fn(
             self: *const IXMLElement2,
             p: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_parent: *const fn(
             self: *const IXMLElement2,
             ppParent: ?*?*IXMLElement2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setAttribute: *const fn(
             self: *const IXMLElement2,
             strPropertyName: ?BSTR,
             PropertyValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getAttribute: *const fn(
             self: *const IXMLElement2,
             strPropertyName: ?BSTR,
             PropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeAttribute: *const fn(
             self: *const IXMLElement2,
             strPropertyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_children: *const fn(
             self: *const IXMLElement2,
             pp: ?*?*IXMLElementCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_type: *const fn(
             self: *const IXMLElement2,
             plType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_text: *const fn(
             self: *const IXMLElement2,
             p: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_text: *const fn(
             self: *const IXMLElement2,
             p: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addChild: *const fn(
             self: *const IXMLElement2,
             pChildElem: ?*IXMLElement2,
             lIndex: i32,
             lReserved: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeChild: *const fn(
             self: *const IXMLElement2,
             pChildElem: ?*IXMLElement2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_attributes: *const fn(
             self: *const IXMLElement2,
             pp: ?*?*IXMLElementCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2643,12 +2643,12 @@ pub const IXMLAttribute = extern union {
         get_name: *const fn(
             self: *const IXMLAttribute,
             n: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_value: *const fn(
             self: *const IXMLAttribute,
             v: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2669,7 +2669,7 @@ pub const IXMLError = extern union {
         GetErrorInfo: *const fn(
             self: *const IXMLError,
             pErrorReturn: ?*XML_ERROR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2723,30 +2723,30 @@ pub const IXMLDOMDocument2 = extern union {
         get_namespaces: *const fn(
             self: *const IXMLDOMDocument2,
             namespaceCollection: ?*?*IXMLDOMSchemaCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_schemas: *const fn(
             self: *const IXMLDOMDocument2,
             otherCollection: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_schemas: *const fn(
             self: *const IXMLDOMDocument2,
             otherCollection: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         validate: *const fn(
             self: *const IXMLDOMDocument2,
             errorObj: ?*?*IXMLDOMParseError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setProperty: *const fn(
             self: *const IXMLDOMDocument2,
             name: ?BSTR,
             value: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getProperty: *const fn(
             self: *const IXMLDOMDocument2,
             name: ?BSTR,
             value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMDocument: IXMLDOMDocument,
@@ -2782,13 +2782,13 @@ pub const IXMLDOMDocument3 = extern union {
             self: *const IXMLDOMDocument3,
             node: ?*IXMLDOMNode,
             errorObj: ?*?*IXMLDOMParseError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         importNode: *const fn(
             self: *const IXMLDOMDocument3,
             node: ?*IXMLDOMNode,
             deep: i16,
             clone: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMDocument2: IXMLDOMDocument2,
@@ -2813,35 +2813,35 @@ pub const IXMLDOMSchemaCollection = extern union {
             self: *const IXMLDOMSchemaCollection,
             namespaceURI: ?BSTR,
             @"var": VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get: *const fn(
             self: *const IXMLDOMSchemaCollection,
             namespaceURI: ?BSTR,
             schemaNode: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         remove: *const fn(
             self: *const IXMLDOMSchemaCollection,
             namespaceURI: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_length: *const fn(
             self: *const IXMLDOMSchemaCollection,
             length: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_namespaceURI: *const fn(
             self: *const IXMLDOMSchemaCollection,
             index: i32,
             length: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addCollection: *const fn(
             self: *const IXMLDOMSchemaCollection,
             otherCollection: ?*IXMLDOMSchemaCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__newEnum: *const fn(
             self: *const IXMLDOMSchemaCollection,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2878,51 +2878,51 @@ pub const IXMLDOMSelection = extern union {
         get_expr: *const fn(
             self: *const IXMLDOMSelection,
             expression: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_expr: *const fn(
             self: *const IXMLDOMSelection,
             expression: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_context: *const fn(
             self: *const IXMLDOMSelection,
             ppNode: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_context: *const fn(
             self: *const IXMLDOMSelection,
             pNode: ?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         peekNode: *const fn(
             self: *const IXMLDOMSelection,
             ppNode: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         matches: *const fn(
             self: *const IXMLDOMSelection,
             pNode: ?*IXMLDOMNode,
             ppNode: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeNext: *const fn(
             self: *const IXMLDOMSelection,
             ppNode: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeAll: *const fn(
             self: *const IXMLDOMSelection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         clone: *const fn(
             self: *const IXMLDOMSelection,
             ppNode: ?*?*IXMLDOMSelection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getProperty: *const fn(
             self: *const IXMLDOMSelection,
             name: ?BSTR,
             value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setProperty: *const fn(
             self: *const IXMLDOMSelection,
             name: ?BSTR,
             value: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMNodeList: IXMLDOMNodeList,
@@ -2972,22 +2972,22 @@ pub const IXMLDOMParseError2 = extern union {
         get_errorXPath: *const fn(
             self: *const IXMLDOMParseError2,
             xpathexpr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_allErrors: *const fn(
             self: *const IXMLDOMParseError2,
             allErrors: ?*?*IXMLDOMParseErrorCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         errorParameters: *const fn(
             self: *const IXMLDOMParseError2,
             index: i32,
             param1: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_errorParametersCount: *const fn(
             self: *const IXMLDOMParseError2,
             count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMParseError: IXMLDOMParseError,
@@ -3016,25 +3016,25 @@ pub const IXMLDOMParseErrorCollection = extern union {
             self: *const IXMLDOMParseErrorCollection,
             index: i32,
             @"error": ?*?*IXMLDOMParseError2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_length: *const fn(
             self: *const IXMLDOMParseErrorCollection,
             length: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_next: *const fn(
             self: *const IXMLDOMParseErrorCollection,
             @"error": ?*?*IXMLDOMParseError2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         reset: *const fn(
             self: *const IXMLDOMParseErrorCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__newEnum: *const fn(
             self: *const IXMLDOMParseErrorCollection,
             ppunk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3065,70 +3065,70 @@ pub const IXSLProcessor = extern union {
         put_input: *const fn(
             self: *const IXSLProcessor,
             @"var": VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_input: *const fn(
             self: *const IXSLProcessor,
             pVar: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ownerTemplate: *const fn(
             self: *const IXSLProcessor,
             ppTemplate: ?*?*IXSLTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setStartMode: *const fn(
             self: *const IXSLProcessor,
             mode: ?BSTR,
             namespaceURI: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_startMode: *const fn(
             self: *const IXSLProcessor,
             mode: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_startModeURI: *const fn(
             self: *const IXSLProcessor,
             namespaceURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_output: *const fn(
             self: *const IXSLProcessor,
             output: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_output: *const fn(
             self: *const IXSLProcessor,
             pOutput: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         transform: *const fn(
             self: *const IXSLProcessor,
             pDone: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         reset: *const fn(
             self: *const IXSLProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readyState: *const fn(
             self: *const IXSLProcessor,
             pReadyState: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addParameter: *const fn(
             self: *const IXSLProcessor,
             baseName: ?BSTR,
             parameter: VARIANT,
             namespaceURI: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addObject: *const fn(
             self: *const IXSLProcessor,
             obj: ?*IDispatch,
             namespaceURI: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_stylesheet: *const fn(
             self: *const IXSLProcessor,
             stylesheet: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3185,16 +3185,16 @@ pub const IXSLTemplate = extern union {
         putref_stylesheet: *const fn(
             self: *const IXSLTemplate,
             stylesheet: ?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_stylesheet: *const fn(
             self: *const IXSLTemplate,
             stylesheet: ?*?*IXMLDOMNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createProcessor: *const fn(
             self: *const IXSLTemplate,
             ppProcessor: ?*?*IXSLProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3222,68 +3222,68 @@ pub const IXMLHTTPRequest = extern union {
             varAsync: VARIANT,
             bstrUser: VARIANT,
             bstrPassword: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setRequestHeader: *const fn(
             self: *const IXMLHTTPRequest,
             bstrHeader: ?BSTR,
             bstrValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getResponseHeader: *const fn(
             self: *const IXMLHTTPRequest,
             bstrHeader: ?BSTR,
             pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getAllResponseHeaders: *const fn(
             self: *const IXMLHTTPRequest,
             pbstrHeaders: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         send: *const fn(
             self: *const IXMLHTTPRequest,
             varBody: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         abort: *const fn(
             self: *const IXMLHTTPRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_status: *const fn(
             self: *const IXMLHTTPRequest,
             plStatus: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_statusText: *const fn(
             self: *const IXMLHTTPRequest,
             pbstrStatus: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_responseXML: *const fn(
             self: *const IXMLHTTPRequest,
             ppBody: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_responseText: *const fn(
             self: *const IXMLHTTPRequest,
             pbstrBody: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_responseBody: *const fn(
             self: *const IXMLHTTPRequest,
             pvarBody: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_responseStream: *const fn(
             self: *const IXMLHTTPRequest,
             pvarBody: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readyState: *const fn(
             self: *const IXMLHTTPRequest,
             plState: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onreadystatechange: *const fn(
             self: *const IXMLHTTPRequest,
             pReadyStateSink: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3380,22 +3380,22 @@ pub const IServerXMLHTTPRequest = extern union {
             connectTimeout: i32,
             sendTimeout: i32,
             receiveTimeout: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         waitForResponse: *const fn(
             self: *const IServerXMLHTTPRequest,
             timeoutInSeconds: VARIANT,
             isSuccessful: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getOption: *const fn(
             self: *const IServerXMLHTTPRequest,
             option: SERVERXMLHTTP_OPTION,
             value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setOption: *const fn(
             self: *const IServerXMLHTTPRequest,
             option: SERVERXMLHTTP_OPTION,
             value: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLHTTPRequest: IXMLHTTPRequest,
@@ -3425,12 +3425,12 @@ pub const IServerXMLHTTPRequest2 = extern union {
             proxySetting: SXH_PROXY_SETTING,
             varProxyServer: VARIANT,
             varBypassList: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setProxyCredentials: *const fn(
             self: *const IServerXMLHTTPRequest2,
             bstrUserName: ?BSTR,
             bstrPassword: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IServerXMLHTTPRequest: IServerXMLHTTPRequest,
@@ -3454,78 +3454,78 @@ pub const ISAXXMLReader = extern union {
             self: *const ISAXXMLReader,
             pwchName: ?[*:0]const u16,
             pvfValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putFeature: *const fn(
             self: *const ISAXXMLReader,
             pwchName: ?[*:0]const u16,
             vfValue: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getProperty: *const fn(
             self: *const ISAXXMLReader,
             pwchName: ?[*:0]const u16,
             pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putProperty: *const fn(
             self: *const ISAXXMLReader,
             pwchName: ?[*:0]const u16,
             varValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getEntityResolver: *const fn(
             self: *const ISAXXMLReader,
             ppResolver: ?*?*ISAXEntityResolver,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putEntityResolver: *const fn(
             self: *const ISAXXMLReader,
             pResolver: ?*ISAXEntityResolver,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getContentHandler: *const fn(
             self: *const ISAXXMLReader,
             ppHandler: ?*?*ISAXContentHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putContentHandler: *const fn(
             self: *const ISAXXMLReader,
             pHandler: ?*ISAXContentHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getDTDHandler: *const fn(
             self: *const ISAXXMLReader,
             ppHandler: ?*?*ISAXDTDHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putDTDHandler: *const fn(
             self: *const ISAXXMLReader,
             pHandler: ?*ISAXDTDHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getErrorHandler: *const fn(
             self: *const ISAXXMLReader,
             ppHandler: ?*?*ISAXErrorHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putErrorHandler: *const fn(
             self: *const ISAXXMLReader,
             pHandler: ?*ISAXErrorHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getBaseURL: *const fn(
             self: *const ISAXXMLReader,
             ppwchBaseUrl: ?*const ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putBaseURL: *const fn(
             self: *const ISAXXMLReader,
             pwchBaseUrl: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getSecureBaseURL: *const fn(
             self: *const ISAXXMLReader,
             ppwchSecureBaseUrl: ?*const ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putSecureBaseURL: *const fn(
             self: *const ISAXXMLReader,
             pwchSecureBaseUrl: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         parse: *const fn(
             self: *const ISAXXMLReader,
             varInput: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         parseURL: *const fn(
             self: *const ISAXXMLReader,
             pwchUrl: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3593,11 +3593,11 @@ pub const ISAXXMLFilter = extern union {
         getParent: *const fn(
             self: *const ISAXXMLFilter,
             ppReader: ?*?*ISAXXMLReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putParent: *const fn(
             self: *const ISAXXMLFilter,
             pReader: ?*ISAXXMLReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISAXXMLReader: ISAXXMLReader,
@@ -3618,19 +3618,19 @@ pub const ISAXLocator = extern union {
         getColumnNumber: *const fn(
             self: *const ISAXLocator,
             pnColumn: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getLineNumber: *const fn(
             self: *const ISAXLocator,
             pnLine: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getPublicId: *const fn(
             self: *const ISAXLocator,
             ppwchPublicId: ?*const ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getSystemId: *const fn(
             self: *const ISAXLocator,
             ppwchSystemId: ?*const ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3658,7 +3658,7 @@ pub const ISAXEntityResolver = extern union {
             pwchPublicId: ?[*:0]const u16,
             pwchSystemId: ?[*:0]const u16,
             pvarInput: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3675,25 +3675,25 @@ pub const ISAXContentHandler = extern union {
         putDocumentLocator: *const fn(
             self: *const ISAXContentHandler,
             pLocator: ?*ISAXLocator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         startDocument: *const fn(
             self: *const ISAXContentHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         endDocument: *const fn(
             self: *const ISAXContentHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         startPrefixMapping: *const fn(
             self: *const ISAXContentHandler,
             pwchPrefix: ?[*:0]const u16,
             cchPrefix: i32,
             pwchUri: ?[*:0]const u16,
             cchUri: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         endPrefixMapping: *const fn(
             self: *const ISAXContentHandler,
             pwchPrefix: ?[*:0]const u16,
             cchPrefix: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         startElement: *const fn(
             self: *const ISAXContentHandler,
             pwchNamespaceUri: ?[*:0]const u16,
@@ -3703,7 +3703,7 @@ pub const ISAXContentHandler = extern union {
             pwchQName: ?[*:0]const u16,
             cchQName: i32,
             pAttributes: ?*ISAXAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         endElement: *const fn(
             self: *const ISAXContentHandler,
             pwchNamespaceUri: ?[*:0]const u16,
@@ -3712,29 +3712,29 @@ pub const ISAXContentHandler = extern union {
             cchLocalName: i32,
             pwchQName: ?[*:0]const u16,
             cchQName: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         characters: *const fn(
             self: *const ISAXContentHandler,
             pwchChars: ?[*:0]const u16,
             cchChars: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ignorableWhitespace: *const fn(
             self: *const ISAXContentHandler,
             pwchChars: ?[*:0]const u16,
             cchChars: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         processingInstruction: *const fn(
             self: *const ISAXContentHandler,
             pwchTarget: ?[*:0]const u16,
             cchTarget: i32,
             pwchData: ?[*:0]const u16,
             cchData: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         skippedEntity: *const fn(
             self: *const ISAXContentHandler,
             pwchName: ?[*:0]const u16,
             cchName: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3786,7 +3786,7 @@ pub const ISAXDTDHandler = extern union {
             cchPublicId: i32,
             pwchSystemId: ?[*:0]const u16,
             cchSystemId: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         unparsedEntityDecl: *const fn(
             self: *const ISAXDTDHandler,
             pwchName: ?[*:0]const u16,
@@ -3797,7 +3797,7 @@ pub const ISAXDTDHandler = extern union {
             cchSystemId: i32,
             pwchNotationName: ?[*:0]const u16,
             cchNotationName: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3819,19 +3819,19 @@ pub const ISAXErrorHandler = extern union {
             pLocator: ?*ISAXLocator,
             pwchErrorMessage: ?[*:0]const u16,
             hrErrorCode: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         fatalError: *const fn(
             self: *const ISAXErrorHandler,
             pLocator: ?*ISAXLocator,
             pwchErrorMessage: ?[*:0]const u16,
             hrErrorCode: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ignorableWarning: *const fn(
             self: *const ISAXErrorHandler,
             pLocator: ?*ISAXLocator,
             pwchErrorMessage: ?[*:0]const u16,
             hrErrorCode: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3859,31 +3859,31 @@ pub const ISAXLexicalHandler = extern union {
             cchPublicId: i32,
             pwchSystemId: ?[*:0]const u16,
             cchSystemId: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         endDTD: *const fn(
             self: *const ISAXLexicalHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         startEntity: *const fn(
             self: *const ISAXLexicalHandler,
             pwchName: ?[*:0]const u16,
             cchName: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         endEntity: *const fn(
             self: *const ISAXLexicalHandler,
             pwchName: ?[*:0]const u16,
             cchName: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         startCDATA: *const fn(
             self: *const ISAXLexicalHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         endCDATA: *const fn(
             self: *const ISAXLexicalHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         comment: *const fn(
             self: *const ISAXLexicalHandler,
             pwchChars: ?[*:0]const u16,
             cchChars: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3921,7 +3921,7 @@ pub const ISAXDeclHandler = extern union {
             cchName: i32,
             pwchModel: ?[*:0]const u16,
             cchModel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         attributeDecl: *const fn(
             self: *const ISAXDeclHandler,
             pwchElementName: ?[*:0]const u16,
@@ -3934,14 +3934,14 @@ pub const ISAXDeclHandler = extern union {
             cchValueDefault: i32,
             pwchValue: ?[*:0]const u16,
             cchValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         internalEntityDecl: *const fn(
             self: *const ISAXDeclHandler,
             pwchName: ?[*:0]const u16,
             cchName: i32,
             pwchValue: ?[*:0]const u16,
             cchValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         externalEntityDecl: *const fn(
             self: *const ISAXDeclHandler,
             pwchName: ?[*:0]const u16,
@@ -3950,7 +3950,7 @@ pub const ISAXDeclHandler = extern union {
             cchPublicId: i32,
             pwchSystemId: ?[*:0]const u16,
             cchSystemId: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3976,25 +3976,25 @@ pub const ISAXAttributes = extern union {
         getLength: *const fn(
             self: *const ISAXAttributes,
             pnLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getURI: *const fn(
             self: *const ISAXAttributes,
             nIndex: i32,
             ppwchUri: ?*const ?*u16,
             pcchUri: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getLocalName: *const fn(
             self: *const ISAXAttributes,
             nIndex: i32,
             ppwchLocalName: ?*const ?*u16,
             pcchLocalName: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getQName: *const fn(
             self: *const ISAXAttributes,
             nIndex: i32,
             ppwchQName: ?*const ?*u16,
             pcchQName: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getName: *const fn(
             self: *const ISAXAttributes,
             nIndex: i32,
@@ -4004,7 +4004,7 @@ pub const ISAXAttributes = extern union {
             pcchLocalName: ?*i32,
             ppwchQName: ?*const ?*u16,
             pcchQName: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getIndexFromName: *const fn(
             self: *const ISAXAttributes,
             pwchUri: ?[*:0]const u16,
@@ -4012,19 +4012,19 @@ pub const ISAXAttributes = extern union {
             pwchLocalName: ?[*:0]const u16,
             cchLocalName: i32,
             pnIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getIndexFromQName: *const fn(
             self: *const ISAXAttributes,
             pwchQName: ?[*:0]const u16,
             cchQName: i32,
             pnIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getType: *const fn(
             self: *const ISAXAttributes,
             nIndex: i32,
             ppwchType: ?*const ?*u16,
             pcchType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getTypeFromName: *const fn(
             self: *const ISAXAttributes,
             pwchUri: ?[*:0]const u16,
@@ -4033,20 +4033,20 @@ pub const ISAXAttributes = extern union {
             cchLocalName: i32,
             ppwchType: ?*const ?*u16,
             pcchType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getTypeFromQName: *const fn(
             self: *const ISAXAttributes,
             pwchQName: ?[*:0]const u16,
             cchQName: i32,
             ppwchType: ?*const ?*u16,
             pcchType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getValue: *const fn(
             self: *const ISAXAttributes,
             nIndex: i32,
             ppwchValue: ?*const ?*u16,
             pcchValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getValueFromName: *const fn(
             self: *const ISAXAttributes,
             pwchUri: ?[*:0]const u16,
@@ -4055,14 +4055,14 @@ pub const ISAXAttributes = extern union {
             cchLocalName: i32,
             ppwchValue: ?*const ?*u16,
             pcchValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getValueFromQName: *const fn(
             self: *const ISAXAttributes,
             pwchQName: ?[*:0]const u16,
             cchQName: i32,
             ppwchValue: ?*const ?*u16,
             pcchValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4116,86 +4116,86 @@ pub const IVBSAXXMLReader = extern union {
             self: *const IVBSAXXMLReader,
             strName: ?BSTR,
             fValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putFeature: *const fn(
             self: *const IVBSAXXMLReader,
             strName: ?BSTR,
             fValue: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getProperty: *const fn(
             self: *const IVBSAXXMLReader,
             strName: ?BSTR,
             varValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putProperty: *const fn(
             self: *const IVBSAXXMLReader,
             strName: ?BSTR,
             varValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_entityResolver: *const fn(
             self: *const IVBSAXXMLReader,
             oResolver: ?*?*IVBSAXEntityResolver,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_entityResolver: *const fn(
             self: *const IVBSAXXMLReader,
             oResolver: ?*IVBSAXEntityResolver,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_contentHandler: *const fn(
             self: *const IVBSAXXMLReader,
             oHandler: ?*?*IVBSAXContentHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_contentHandler: *const fn(
             self: *const IVBSAXXMLReader,
             oHandler: ?*IVBSAXContentHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_dtdHandler: *const fn(
             self: *const IVBSAXXMLReader,
             oHandler: ?*?*IVBSAXDTDHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_dtdHandler: *const fn(
             self: *const IVBSAXXMLReader,
             oHandler: ?*IVBSAXDTDHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_errorHandler: *const fn(
             self: *const IVBSAXXMLReader,
             oHandler: ?*?*IVBSAXErrorHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_errorHandler: *const fn(
             self: *const IVBSAXXMLReader,
             oHandler: ?*IVBSAXErrorHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_baseURL: *const fn(
             self: *const IVBSAXXMLReader,
             strBaseURL: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_baseURL: *const fn(
             self: *const IVBSAXXMLReader,
             strBaseURL: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_secureBaseURL: *const fn(
             self: *const IVBSAXXMLReader,
             strSecureBaseURL: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_secureBaseURL: *const fn(
             self: *const IVBSAXXMLReader,
             strSecureBaseURL: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         parse: *const fn(
             self: *const IVBSAXXMLReader,
             varInput: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         parseURL: *const fn(
             self: *const IVBSAXXMLReader,
             strURL: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4265,11 +4265,11 @@ pub const IVBSAXXMLFilter = extern union {
         get_parent: *const fn(
             self: *const IVBSAXXMLFilter,
             oReader: ?*?*IVBSAXXMLReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_parent: *const fn(
             self: *const IVBSAXXMLFilter,
             oReader: ?*IVBSAXXMLReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4291,22 +4291,22 @@ pub const IVBSAXLocator = extern union {
         get_columnNumber: *const fn(
             self: *const IVBSAXLocator,
             nColumn: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_lineNumber: *const fn(
             self: *const IVBSAXLocator,
             nLine: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_publicId: *const fn(
             self: *const IVBSAXLocator,
             strPublicId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_systemId: *const fn(
             self: *const IVBSAXLocator,
             strSystemId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4335,7 +4335,7 @@ pub const IVBSAXEntityResolver = extern union {
             strPublicId: ?*?BSTR,
             strSystemId: ?*?BSTR,
             varInput: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4353,52 +4353,52 @@ pub const IVBSAXContentHandler = extern union {
         putref_documentLocator: *const fn(
             self: *const IVBSAXContentHandler,
             oLocator: ?*IVBSAXLocator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         startDocument: *const fn(
             self: *const IVBSAXContentHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         endDocument: *const fn(
             self: *const IVBSAXContentHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         startPrefixMapping: *const fn(
             self: *const IVBSAXContentHandler,
             strPrefix: ?*?BSTR,
             strURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         endPrefixMapping: *const fn(
             self: *const IVBSAXContentHandler,
             strPrefix: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         startElement: *const fn(
             self: *const IVBSAXContentHandler,
             strNamespaceURI: ?*?BSTR,
             strLocalName: ?*?BSTR,
             strQName: ?*?BSTR,
             oAttributes: ?*IVBSAXAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         endElement: *const fn(
             self: *const IVBSAXContentHandler,
             strNamespaceURI: ?*?BSTR,
             strLocalName: ?*?BSTR,
             strQName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         characters: *const fn(
             self: *const IVBSAXContentHandler,
             strChars: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ignorableWhitespace: *const fn(
             self: *const IVBSAXContentHandler,
             strChars: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         processingInstruction: *const fn(
             self: *const IVBSAXContentHandler,
             strTarget: ?*?BSTR,
             strData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         skippedEntity: *const fn(
             self: *const IVBSAXContentHandler,
             strName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4448,14 +4448,14 @@ pub const IVBSAXDTDHandler = extern union {
             strName: ?*?BSTR,
             strPublicId: ?*?BSTR,
             strSystemId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         unparsedEntityDecl: *const fn(
             self: *const IVBSAXDTDHandler,
             strName: ?*?BSTR,
             strPublicId: ?*?BSTR,
             strSystemId: ?*?BSTR,
             strNotationName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4478,19 +4478,19 @@ pub const IVBSAXErrorHandler = extern union {
             oLocator: ?*IVBSAXLocator,
             strErrorMessage: ?*?BSTR,
             nErrorCode: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         fatalError: *const fn(
             self: *const IVBSAXErrorHandler,
             oLocator: ?*IVBSAXLocator,
             strErrorMessage: ?*?BSTR,
             nErrorCode: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ignorableWarning: *const fn(
             self: *const IVBSAXErrorHandler,
             oLocator: ?*IVBSAXLocator,
             strErrorMessage: ?*?BSTR,
             nErrorCode: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4516,28 +4516,28 @@ pub const IVBSAXLexicalHandler = extern union {
             strName: ?*?BSTR,
             strPublicId: ?*?BSTR,
             strSystemId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         endDTD: *const fn(
             self: *const IVBSAXLexicalHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         startEntity: *const fn(
             self: *const IVBSAXLexicalHandler,
             strName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         endEntity: *const fn(
             self: *const IVBSAXLexicalHandler,
             strName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         startCDATA: *const fn(
             self: *const IVBSAXLexicalHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         endCDATA: *const fn(
             self: *const IVBSAXLexicalHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         comment: *const fn(
             self: *const IVBSAXLexicalHandler,
             strChars: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4574,7 +4574,7 @@ pub const IVBSAXDeclHandler = extern union {
             self: *const IVBSAXDeclHandler,
             strName: ?*?BSTR,
             strModel: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         attributeDecl: *const fn(
             self: *const IVBSAXDeclHandler,
             strElementName: ?*?BSTR,
@@ -4582,18 +4582,18 @@ pub const IVBSAXDeclHandler = extern union {
             strType: ?*?BSTR,
             strValueDefault: ?*?BSTR,
             strValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         internalEntityDecl: *const fn(
             self: *const IVBSAXDeclHandler,
             strName: ?*?BSTR,
             strValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         externalEntityDecl: *const fn(
             self: *const IVBSAXDeclHandler,
             strName: ?*?BSTR,
             strPublicId: ?*?BSTR,
             strSystemId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4621,65 +4621,65 @@ pub const IVBSAXAttributes = extern union {
         get_length: *const fn(
             self: *const IVBSAXAttributes,
             nLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getURI: *const fn(
             self: *const IVBSAXAttributes,
             nIndex: i32,
             strURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getLocalName: *const fn(
             self: *const IVBSAXAttributes,
             nIndex: i32,
             strLocalName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getQName: *const fn(
             self: *const IVBSAXAttributes,
             nIndex: i32,
             strQName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getIndexFromName: *const fn(
             self: *const IVBSAXAttributes,
             strURI: ?BSTR,
             strLocalName: ?BSTR,
             nIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getIndexFromQName: *const fn(
             self: *const IVBSAXAttributes,
             strQName: ?BSTR,
             nIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getType: *const fn(
             self: *const IVBSAXAttributes,
             nIndex: i32,
             strType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getTypeFromName: *const fn(
             self: *const IVBSAXAttributes,
             strURI: ?BSTR,
             strLocalName: ?BSTR,
             strType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getTypeFromQName: *const fn(
             self: *const IVBSAXAttributes,
             strQName: ?BSTR,
             strType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getValue: *const fn(
             self: *const IVBSAXAttributes,
             nIndex: i32,
             strValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getValueFromName: *const fn(
             self: *const IVBSAXAttributes,
             strURI: ?BSTR,
             strLocalName: ?BSTR,
             strValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getValueFromQName: *const fn(
             self: *const IVBSAXAttributes,
             strQName: ?BSTR,
             strValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4731,85 +4731,85 @@ pub const IMXWriter = extern union {
         put_output: *const fn(
             self: *const IMXWriter,
             varDestination: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_output: *const fn(
             self: *const IMXWriter,
             varDestination: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_encoding: *const fn(
             self: *const IMXWriter,
             strEncoding: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_encoding: *const fn(
             self: *const IMXWriter,
             strEncoding: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_byteOrderMark: *const fn(
             self: *const IMXWriter,
             fWriteByteOrderMark: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_byteOrderMark: *const fn(
             self: *const IMXWriter,
             fWriteByteOrderMark: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_indent: *const fn(
             self: *const IMXWriter,
             fIndentMode: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_indent: *const fn(
             self: *const IMXWriter,
             fIndentMode: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_standalone: *const fn(
             self: *const IMXWriter,
             fValue: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_standalone: *const fn(
             self: *const IMXWriter,
             fValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_omitXMLDeclaration: *const fn(
             self: *const IMXWriter,
             fValue: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_omitXMLDeclaration: *const fn(
             self: *const IMXWriter,
             fValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_version: *const fn(
             self: *const IMXWriter,
             strVersion: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_version: *const fn(
             self: *const IMXWriter,
             strVersion: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disableOutputEscaping: *const fn(
             self: *const IMXWriter,
             fValue: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disableOutputEscaping: *const fn(
             self: *const IMXWriter,
             fValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         flush: *const fn(
             self: *const IMXWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4879,19 +4879,19 @@ pub const IMXAttributes = extern union {
             strQName: ?BSTR,
             strType: ?BSTR,
             strValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addAttributeFromIndex: *const fn(
             self: *const IMXAttributes,
             varAtts: VARIANT,
             nIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         clear: *const fn(
             self: *const IMXAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeAttribute: *const fn(
             self: *const IMXAttributes,
             nIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setAttribute: *const fn(
             self: *const IMXAttributes,
             nIndex: i32,
@@ -4900,36 +4900,36 @@ pub const IMXAttributes = extern union {
             strQName: ?BSTR,
             strType: ?BSTR,
             strValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setAttributes: *const fn(
             self: *const IMXAttributes,
             varAtts: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setLocalName: *const fn(
             self: *const IMXAttributes,
             nIndex: i32,
             strLocalName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setQName: *const fn(
             self: *const IMXAttributes,
             nIndex: i32,
             strQName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setType: *const fn(
             self: *const IMXAttributes,
             nIndex: i32,
             strType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setURI: *const fn(
             self: *const IMXAttributes,
             nIndex: i32,
             strURI: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setValue: *const fn(
             self: *const IMXAttributes,
             nIndex: i32,
             strValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4976,13 +4976,13 @@ pub const IMXReaderControl = extern union {
         base: IDispatch.VTable,
         abort: *const fn(
             self: *const IMXReaderControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         @"resume": *const fn(
             self: *const IMXReaderControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         @"suspend": *const fn(
             self: *const IMXReaderControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5006,7 +5006,7 @@ pub const IMXSchemaDeclHandler = extern union {
         schemaElementDecl: *const fn(
             self: *const IMXSchemaDeclHandler,
             oSchemaElement: ?*ISchemaElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5025,17 +5025,17 @@ pub const IMXNamespacePrefixes = extern union {
             self: *const IMXNamespacePrefixes,
             index: i32,
             prefix: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_length: *const fn(
             self: *const IMXNamespacePrefixes,
             length: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__newEnum: *const fn(
             self: *const IMXNamespacePrefixes,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5060,51 +5060,51 @@ pub const IVBMXNamespaceManager = extern union {
         put_allowOverride: *const fn(
             self: *const IVBMXNamespaceManager,
             fOverride: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_allowOverride: *const fn(
             self: *const IVBMXNamespaceManager,
             fOverride: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         reset: *const fn(
             self: *const IVBMXNamespaceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         pushContext: *const fn(
             self: *const IVBMXNamespaceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         pushNodeContext: *const fn(
             self: *const IVBMXNamespaceManager,
             contextNode: ?*IXMLDOMNode,
             fDeep: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         popContext: *const fn(
             self: *const IVBMXNamespaceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         declarePrefix: *const fn(
             self: *const IVBMXNamespaceManager,
             prefix: ?BSTR,
             namespaceURI: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getDeclaredPrefixes: *const fn(
             self: *const IVBMXNamespaceManager,
             prefixes: ?*?*IMXNamespacePrefixes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getPrefixes: *const fn(
             self: *const IVBMXNamespaceManager,
             namespaceURI: ?BSTR,
             prefixes: ?*?*IMXNamespacePrefixes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getURI: *const fn(
             self: *const IVBMXNamespaceManager,
             prefix: ?BSTR,
             uri: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getURIFromNode: *const fn(
             self: *const IVBMXNamespaceManager,
             strPrefix: ?BSTR,
             contextNode: ?*IXMLDOMNode,
             uri: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5152,50 +5152,50 @@ pub const IMXNamespaceManager = extern union {
         putAllowOverride: *const fn(
             self: *const IMXNamespaceManager,
             fOverride: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getAllowOverride: *const fn(
             self: *const IMXNamespaceManager,
             fOverride: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         reset: *const fn(
             self: *const IMXNamespaceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         pushContext: *const fn(
             self: *const IMXNamespaceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         pushNodeContext: *const fn(
             self: *const IMXNamespaceManager,
             contextNode: ?*IXMLDOMNode,
             fDeep: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         popContext: *const fn(
             self: *const IMXNamespaceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         declarePrefix: *const fn(
             self: *const IMXNamespaceManager,
             prefix: ?[*:0]const u16,
             namespaceURI: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getDeclaredPrefix: *const fn(
             self: *const IMXNamespaceManager,
             nIndex: i32,
             pwchPrefix: [*:0]u16,
             pcchPrefix: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getPrefix: *const fn(
             self: *const IMXNamespaceManager,
             pwszNamespaceURI: ?[*:0]const u16,
             nIndex: i32,
             pwchPrefix: [*:0]u16,
             pcchPrefix: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getURI: *const fn(
             self: *const IMXNamespaceManager,
             pwchPrefix: ?[*:0]const u16,
             pContextNode: ?*IXMLDOMNode,
             pwchUri: [*:0]u16,
             pcchUri: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5240,58 +5240,58 @@ pub const IMXXMLFilter = extern union {
             self: *const IMXXMLFilter,
             strName: ?BSTR,
             fValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putFeature: *const fn(
             self: *const IMXXMLFilter,
             strName: ?BSTR,
             fValue: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getProperty: *const fn(
             self: *const IMXXMLFilter,
             strName: ?BSTR,
             varValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putProperty: *const fn(
             self: *const IMXXMLFilter,
             strName: ?BSTR,
             varValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_entityResolver: *const fn(
             self: *const IMXXMLFilter,
             oResolver: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_entityResolver: *const fn(
             self: *const IMXXMLFilter,
             oResolver: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_contentHandler: *const fn(
             self: *const IMXXMLFilter,
             oHandler: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_contentHandler: *const fn(
             self: *const IMXXMLFilter,
             oHandler: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_dtdHandler: *const fn(
             self: *const IMXXMLFilter,
             oHandler: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_dtdHandler: *const fn(
             self: *const IMXXMLFilter,
             oHandler: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_errorHandler: *const fn(
             self: *const IMXXMLFilter,
             oHandler: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_errorHandler: *const fn(
             self: *const IMXXMLFilter,
             oHandler: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5562,27 +5562,27 @@ pub const IXMLDOMSchemaCollection2 = extern union {
         base: IXMLDOMSchemaCollection.VTable,
         validate: *const fn(
             self: *const IXMLDOMSchemaCollection2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_validateOnLoad: *const fn(
             self: *const IXMLDOMSchemaCollection2,
             validateOnLoad: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_validateOnLoad: *const fn(
             self: *const IXMLDOMSchemaCollection2,
             validateOnLoad: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getSchema: *const fn(
             self: *const IXMLDOMSchemaCollection2,
             namespaceURI: ?BSTR,
             schema: ?*?*ISchema,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getDeclaration: *const fn(
             self: *const IXMLDOMSchemaCollection2,
             node: ?*IXMLDOMNode,
             item: ?*?*ISchemaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLDOMSchemaCollection: IXMLDOMSchemaCollection,
@@ -5614,17 +5614,17 @@ pub const ISchemaStringCollection = extern union {
             self: *const ISchemaStringCollection,
             index: i32,
             bstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_length: *const fn(
             self: *const ISchemaStringCollection,
             length: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__newEnum: *const fn(
             self: *const ISchemaStringCollection,
             ppunk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5649,28 +5649,28 @@ pub const ISchemaItemCollection = extern union {
             self: *const ISchemaItemCollection,
             index: i32,
             item: ?*?*ISchemaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         itemByName: *const fn(
             self: *const ISchemaItemCollection,
             name: ?BSTR,
             item: ?*?*ISchemaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         itemByQName: *const fn(
             self: *const ISchemaItemCollection,
             name: ?BSTR,
             namespaceURI: ?BSTR,
             item: ?*?*ISchemaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_length: *const fn(
             self: *const ISchemaItemCollection,
             length: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__newEnum: *const fn(
             self: *const ISchemaItemCollection,
             ppunk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5701,37 +5701,37 @@ pub const ISchemaItem = extern union {
         get_name: *const fn(
             self: *const ISchemaItem,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_namespaceURI: *const fn(
             self: *const ISchemaItem,
             namespaceURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_schema: *const fn(
             self: *const ISchemaItem,
             schema: ?*?*ISchema,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_id: *const fn(
             self: *const ISchemaItem,
             id: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_itemType: *const fn(
             self: *const ISchemaItem,
             itemType: ?*SOMITEMTYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_unhandledAttributes: *const fn(
             self: *const ISchemaItem,
             attributes: ?*?*IVBSAXAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         writeAnnotation: *const fn(
             self: *const ISchemaItem,
             annotationSink: ?*IUnknown,
             isWritten: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5768,47 +5768,47 @@ pub const ISchema = extern union {
         get_targetNamespace: *const fn(
             self: *const ISchema,
             targetNamespace: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_version: *const fn(
             self: *const ISchema,
             version: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_types: *const fn(
             self: *const ISchema,
             types: ?*?*ISchemaItemCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_elements: *const fn(
             self: *const ISchema,
             elements: ?*?*ISchemaItemCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_attributes: *const fn(
             self: *const ISchema,
             attributes: ?*?*ISchemaItemCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_attributeGroups: *const fn(
             self: *const ISchema,
             attributeGroups: ?*?*ISchemaItemCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_modelGroups: *const fn(
             self: *const ISchema,
             modelGroups: ?*?*ISchemaItemCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_notations: *const fn(
             self: *const ISchema,
             notations: ?*?*ISchemaItemCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_schemaLocations: *const fn(
             self: *const ISchema,
             schemaLocations: ?*?*ISchemaStringCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISchemaItem: ISchemaItem,
@@ -5852,12 +5852,12 @@ pub const ISchemaParticle = extern union {
         get_minOccurs: *const fn(
             self: *const ISchemaParticle,
             minOccurs: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_maxOccurs: *const fn(
             self: *const ISchemaParticle,
             maxOccurs: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISchemaItem: ISchemaItem,
@@ -5880,32 +5880,32 @@ pub const ISchemaAttribute = extern union {
         get_type: *const fn(
             self: *const ISchemaAttribute,
             type: ?*?*ISchemaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_scope: *const fn(
             self: *const ISchemaAttribute,
             scope: ?*?*ISchemaComplexType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_defaultValue: *const fn(
             self: *const ISchemaAttribute,
             defaultValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fixedValue: *const fn(
             self: *const ISchemaAttribute,
             fixedValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_use: *const fn(
             self: *const ISchemaAttribute,
             use: ?*SCHEMAUSE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isReference: *const fn(
             self: *const ISchemaAttribute,
             reference: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISchemaItem: ISchemaItem,
@@ -5940,57 +5940,57 @@ pub const ISchemaElement = extern union {
         get_type: *const fn(
             self: *const ISchemaElement,
             type: ?*?*ISchemaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_scope: *const fn(
             self: *const ISchemaElement,
             scope: ?*?*ISchemaComplexType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_defaultValue: *const fn(
             self: *const ISchemaElement,
             defaultValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fixedValue: *const fn(
             self: *const ISchemaElement,
             fixedValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isNillable: *const fn(
             self: *const ISchemaElement,
             nillable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_identityConstraints: *const fn(
             self: *const ISchemaElement,
             constraints: ?*?*ISchemaItemCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_substitutionGroup: *const fn(
             self: *const ISchemaElement,
             element: ?*?*ISchemaElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_substitutionGroupExclusions: *const fn(
             self: *const ISchemaElement,
             exclusions: ?*SCHEMADERIVATIONMETHOD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disallowedSubstitutions: *const fn(
             self: *const ISchemaElement,
             disallowed: ?*SCHEMADERIVATIONMETHOD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isAbstract: *const fn(
             self: *const ISchemaElement,
             abstract: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isReference: *const fn(
             self: *const ISchemaElement,
             reference: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISchemaParticle: ISchemaParticle,
@@ -6041,87 +6041,87 @@ pub const ISchemaType = extern union {
         get_baseTypes: *const fn(
             self: *const ISchemaType,
             baseTypes: ?*?*ISchemaItemCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_final: *const fn(
             self: *const ISchemaType,
             final: ?*SCHEMADERIVATIONMETHOD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_variety: *const fn(
             self: *const ISchemaType,
             variety: ?*SCHEMATYPEVARIETY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_derivedBy: *const fn(
             self: *const ISchemaType,
             derivedBy: ?*SCHEMADERIVATIONMETHOD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         isValid: *const fn(
             self: *const ISchemaType,
             data: ?BSTR,
             valid: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_minExclusive: *const fn(
             self: *const ISchemaType,
             minExclusive: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_minInclusive: *const fn(
             self: *const ISchemaType,
             minInclusive: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_maxExclusive: *const fn(
             self: *const ISchemaType,
             maxExclusive: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_maxInclusive: *const fn(
             self: *const ISchemaType,
             maxInclusive: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_totalDigits: *const fn(
             self: *const ISchemaType,
             totalDigits: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fractionDigits: *const fn(
             self: *const ISchemaType,
             fractionDigits: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_length: *const fn(
             self: *const ISchemaType,
             length: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_minLength: *const fn(
             self: *const ISchemaType,
             minLength: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_maxLength: *const fn(
             self: *const ISchemaType,
             maxLength: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_enumeration: *const fn(
             self: *const ISchemaType,
             enumeration: ?*?*ISchemaStringCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_whitespace: *const fn(
             self: *const ISchemaType,
             whitespace: ?*SCHEMAWHITESPACE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_patterns: *const fn(
             self: *const ISchemaType,
             patterns: ?*?*ISchemaStringCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISchemaItem: ISchemaItem,
@@ -6189,32 +6189,32 @@ pub const ISchemaComplexType = extern union {
         get_isAbstract: *const fn(
             self: *const ISchemaComplexType,
             abstract: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_anyAttribute: *const fn(
             self: *const ISchemaComplexType,
             anyAttribute: ?*?*ISchemaAny,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_attributes: *const fn(
             self: *const ISchemaComplexType,
             attributes: ?*?*ISchemaItemCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_contentType: *const fn(
             self: *const ISchemaComplexType,
             contentType: ?*SCHEMACONTENTTYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_contentModel: *const fn(
             self: *const ISchemaComplexType,
             contentModel: ?*?*ISchemaModelGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_prohibitedSubstitutions: *const fn(
             self: *const ISchemaComplexType,
             prohibited: ?*SCHEMADERIVATIONMETHOD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISchemaType: ISchemaType,
@@ -6250,12 +6250,12 @@ pub const ISchemaAttributeGroup = extern union {
         get_anyAttribute: *const fn(
             self: *const ISchemaAttributeGroup,
             anyAttribute: ?*?*ISchemaAny,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_attributes: *const fn(
             self: *const ISchemaAttributeGroup,
             attributes: ?*?*ISchemaItemCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISchemaItem: ISchemaItem,
@@ -6278,7 +6278,7 @@ pub const ISchemaModelGroup = extern union {
         get_particles: *const fn(
             self: *const ISchemaModelGroup,
             particles: ?*?*ISchemaItemCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISchemaParticle: ISchemaParticle,
@@ -6299,12 +6299,12 @@ pub const ISchemaAny = extern union {
         get_namespaces: *const fn(
             self: *const ISchemaAny,
             namespaces: ?*?*ISchemaStringCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_processContents: *const fn(
             self: *const ISchemaAny,
             processContents: ?*SCHEMAPROCESSCONTENTS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISchemaParticle: ISchemaParticle,
@@ -6328,17 +6328,17 @@ pub const ISchemaIdentityConstraint = extern union {
         get_selector: *const fn(
             self: *const ISchemaIdentityConstraint,
             selector: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fields: *const fn(
             self: *const ISchemaIdentityConstraint,
             fields: ?*?*ISchemaStringCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_referencedKey: *const fn(
             self: *const ISchemaIdentityConstraint,
             key: ?*?*ISchemaIdentityConstraint,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISchemaItem: ISchemaItem,
@@ -6364,12 +6364,12 @@ pub const ISchemaNotation = extern union {
         get_systemIdentifier: *const fn(
             self: *const ISchemaNotation,
             uri: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_publicIdentifier: *const fn(
             self: *const ISchemaNotation,
             uri: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISchemaItem: ISchemaItem,
@@ -6540,28 +6540,28 @@ pub const IXMLHTTPRequest2Callback = extern union {
             self: *const IXMLHTTPRequest2Callback,
             pXHR: ?*IXMLHTTPRequest2,
             pwszRedirectUrl: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnHeadersAvailable: *const fn(
             self: *const IXMLHTTPRequest2Callback,
             pXHR: ?*IXMLHTTPRequest2,
             dwStatus: u32,
             pwszStatus: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDataAvailable: *const fn(
             self: *const IXMLHTTPRequest2Callback,
             pXHR: ?*IXMLHTTPRequest2,
             pResponseStream: ?*ISequentialStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnResponseReceived: *const fn(
             self: *const IXMLHTTPRequest2Callback,
             pXHR: ?*IXMLHTTPRequest2,
             pResponseStream: ?*ISequentialStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnError: *const fn(
             self: *const IXMLHTTPRequest2Callback,
             pXHR: ?*IXMLHTTPRequest2,
             hrError: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6597,38 +6597,38 @@ pub const IXMLHTTPRequest2 = extern union {
             pwszPassword: ?[*:0]const u16,
             pwszProxyUserName: ?[*:0]const u16,
             pwszProxyPassword: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Send: *const fn(
             self: *const IXMLHTTPRequest2,
             pBody: ?*ISequentialStream,
             cbBody: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Abort: *const fn(
             self: *const IXMLHTTPRequest2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCookie: *const fn(
             self: *const IXMLHTTPRequest2,
             pCookie: ?*const XHR_COOKIE,
             pdwCookieState: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCustomResponseStream: *const fn(
             self: *const IXMLHTTPRequest2,
             pSequentialStream: ?*ISequentialStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IXMLHTTPRequest2,
             eProperty: XHR_PROPERTY,
             ullValue: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRequestHeader: *const fn(
             self: *const IXMLHTTPRequest2,
             pwszHeader: ?[*:0]const u16,
             pwszValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllResponseHeaders: *const fn(
             self: *const IXMLHTTPRequest2,
             ppwszHeaders: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCookie: *const fn(
             self: *const IXMLHTTPRequest2,
             pwszUrl: ?[*:0]const u16,
@@ -6636,12 +6636,12 @@ pub const IXMLHTTPRequest2 = extern union {
             dwFlags: u32,
             pcCookies: ?*u32,
             ppCookies: [*]?*XHR_COOKIE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResponseHeader: *const fn(
             self: *const IXMLHTTPRequest2,
             pwszHeader: ?[*:0]const u16,
             ppwszValue: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6694,13 +6694,13 @@ pub const IXMLHTTPRequest3Callback = extern union {
             dwCertificateErrors: u32,
             cServerCertificateChain: u32,
             rgServerCertificateChain: [*]const XHR_CERT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnClientCertificateRequested: *const fn(
             self: *const IXMLHTTPRequest3Callback,
             pXHR: ?*IXMLHTTPRequest3,
             cIssuerList: u32,
             rgpwszIssuerList: [*]const ?*const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLHTTPRequest2Callback: IXMLHTTPRequest2Callback,
@@ -6724,7 +6724,7 @@ pub const IXMLHTTPRequest3 = extern union {
             cbClientCertificateHash: u32,
             pbClientCertificateHash: [*:0]const u8,
             pwszPin: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXMLHTTPRequest2: IXMLHTTPRequest2,

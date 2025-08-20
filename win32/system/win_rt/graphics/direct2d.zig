@@ -39,31 +39,31 @@ pub const IGraphicsEffectD2D1Interop = extern union {
         GetEffectId: *const fn(
             self: *const IGraphicsEffectD2D1Interop,
             id: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNamedPropertyMapping: *const fn(
             self: *const IGraphicsEffectD2D1Interop,
             name: ?[*:0]const u16,
             index: ?*u32,
             mapping: ?*GRAPHICS_EFFECT_PROPERTY_MAPPING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyCount: *const fn(
             self: *const IGraphicsEffectD2D1Interop,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IGraphicsEffectD2D1Interop,
             index: u32,
             value: ?**struct{comment: []const u8 = "MissingClrType IPropertyValue.Windows.Foundation"},
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSource: *const fn(
             self: *const IGraphicsEffectD2D1Interop,
             index: u32,
             source: ?**struct{comment: []const u8 = "MissingClrType IGraphicsEffectSource.Windows.Graphics.Effects"},
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceCount: *const fn(
             self: *const IGraphicsEffectD2D1Interop,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -95,12 +95,12 @@ pub const IGeometrySource2DInterop = extern union {
         GetGeometry: *const fn(
             self: *const IGeometrySource2DInterop,
             value: **ID2D1Geometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TryGetGeometryUsingFactory: *const fn(
             self: *const IGeometrySource2DInterop,
             factory: ?*ID2D1Factory,
             value: ?**ID2D1Geometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

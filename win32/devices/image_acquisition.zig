@@ -1357,12 +1357,12 @@ pub const IWiaDevMgr = extern union {
             self: *const IWiaDevMgr,
             lFlag: i32,
             ppIEnum: ?*?*IEnumWIA_DEV_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDevice: *const fn(
             self: *const IWiaDevMgr,
             bstrDeviceID: ?BSTR,
             ppWiaItemRoot: ?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SelectDeviceDlg: *const fn(
             self: *const IWiaDevMgr,
             hwndParent: ?HWND,
@@ -1370,14 +1370,14 @@ pub const IWiaDevMgr = extern union {
             lFlags: i32,
             pbstrDeviceID: ?*?BSTR,
             ppItemRoot: ?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SelectDeviceDlgID: *const fn(
             self: *const IWiaDevMgr,
             hwndParent: ?HWND,
             lDeviceType: i32,
             lFlags: i32,
             pbstrDeviceID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImageDlg: *const fn(
             self: *const IWiaDevMgr,
             hwndParent: ?HWND,
@@ -1387,7 +1387,7 @@ pub const IWiaDevMgr = extern union {
             pItemRoot: ?*IWiaItem,
             bstrFilename: ?BSTR,
             pguidFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterEventCallbackProgram: *const fn(
             self: *const IWiaDevMgr,
             lFlags: i32,
@@ -1397,7 +1397,7 @@ pub const IWiaDevMgr = extern union {
             bstrName: ?BSTR,
             bstrDescription: ?BSTR,
             bstrIcon: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterEventCallbackInterface: *const fn(
             self: *const IWiaDevMgr,
             lFlags: i32,
@@ -1405,7 +1405,7 @@ pub const IWiaDevMgr = extern union {
             pEventGUID: ?*const Guid,
             pIWiaEventCallback: ?*IWiaEventCallback,
             pEventObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterEventCallbackCLSID: *const fn(
             self: *const IWiaDevMgr,
             lFlags: i32,
@@ -1415,12 +1415,12 @@ pub const IWiaDevMgr = extern union {
             bstrName: ?BSTR,
             bstrDescription: ?BSTR,
             bstrIcon: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDeviceDlg: *const fn(
             self: *const IWiaDevMgr,
             hwndParent: ?HWND,
             lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1464,22 +1464,22 @@ pub const IEnumWIA_DEV_INFO = extern union {
             celt: u32,
             rgelt: ?*?*IWiaPropertyStorage,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumWIA_DEV_INFO,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumWIA_DEV_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumWIA_DEV_INFO,
             ppIEnum: ?*?*IEnumWIA_DEV_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumWIA_DEV_INFO,
             celt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1516,7 +1516,7 @@ pub const IWiaEventCallback = extern union {
             bstrFullItemName: ?BSTR,
             pulEventType: ?*u32,
             ulReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1548,7 +1548,7 @@ pub const IWiaDataCallback = extern union {
             lReserved: i32,
             lResLength: i32,
             pbBuffer: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1585,24 +1585,24 @@ pub const IWiaDataTransfer = extern union {
             self: *const IWiaDataTransfer,
             pMedium: ?*STGMEDIUM,
             pIWiaDataCallback: ?*IWiaDataCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         idtGetBandedData: *const fn(
             self: *const IWiaDataTransfer,
             pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO,
             pIWiaDataCallback: ?*IWiaDataCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         idtQueryGetData: *const fn(
             self: *const IWiaDataTransfer,
             pfe: ?*WIA_FORMAT_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         idtEnumWIA_FORMAT_INFO: *const fn(
             self: *const IWiaDataTransfer,
             ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         idtGetExtendedTransferInfo: *const fn(
             self: *const IWiaDataTransfer,
             pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1632,38 +1632,38 @@ pub const IWiaItem = extern union {
         GetItemType: *const fn(
             self: *const IWiaItem,
             pItemType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AnalyzeItem: *const fn(
             self: *const IWiaItem,
             lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumChildItems: *const fn(
             self: *const IWiaItem,
             ppIEnumWiaItem: ?*?*IEnumWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItem: *const fn(
             self: *const IWiaItem,
             lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateChildItem: *const fn(
             self: *const IWiaItem,
             lFlags: i32,
             bstrItemName: ?BSTR,
             bstrFullItemName: ?BSTR,
             ppIWiaItem: ?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumRegisterEventInfo: *const fn(
             self: *const IWiaItem,
             lFlags: i32,
             pEventGUID: ?*const Guid,
             ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindItemByName: *const fn(
             self: *const IWiaItem,
             lFlags: i32,
             bstrFullItemName: ?BSTR,
             ppIWiaItem: ?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceDlg: *const fn(
             self: *const IWiaItem,
             hwndParent: ?HWND,
@@ -1671,39 +1671,39 @@ pub const IWiaItem = extern union {
             lIntent: i32,
             plItemCount: ?*i32,
             ppIWiaItem: ?*?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceCommand: *const fn(
             self: *const IWiaItem,
             lFlags: i32,
             pCmdGUID: ?*const Guid,
             pIWiaItem: ?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRootItem: *const fn(
             self: *const IWiaItem,
             ppIWiaItem: ?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDeviceCapabilities: *const fn(
             self: *const IWiaItem,
             lFlags: i32,
             ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DumpItemData: *const fn(
             self: *const IWiaItem,
             bstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DumpDrvItemData: *const fn(
             self: *const IWiaItem,
             bstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DumpTreeItemData: *const fn(
             self: *const IWiaItem,
             bstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Diagnostic: *const fn(
             self: *const IWiaItem,
             ulSize: u32,
             pBuffer: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1765,82 +1765,82 @@ pub const IWiaPropertyStorage = extern union {
             cpspec: u32,
             rgpspec: [*]const PROPSPEC,
             rgpropvar: [*]PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteMultiple: *const fn(
             self: *const IWiaPropertyStorage,
             cpspec: u32,
             rgpspec: ?*const PROPSPEC,
             rgpropvar: ?*const PROPVARIANT,
             propidNameFirst: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteMultiple: *const fn(
             self: *const IWiaPropertyStorage,
             cpspec: u32,
             rgpspec: [*]const PROPSPEC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReadPropertyNames: *const fn(
             self: *const IWiaPropertyStorage,
             cpropid: u32,
             rgpropid: [*]const u32,
             rglpwstrName: [*]?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WritePropertyNames: *const fn(
             self: *const IWiaPropertyStorage,
             cpropid: u32,
             rgpropid: [*]const u32,
             rglpwstrName: [*]const ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyNames: *const fn(
             self: *const IWiaPropertyStorage,
             cpropid: u32,
             rgpropid: [*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const IWiaPropertyStorage,
             grfCommitFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Revert: *const fn(
             self: *const IWiaPropertyStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enum: *const fn(
             self: *const IWiaPropertyStorage,
             ppenum: ?*?*IEnumSTATPROPSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTimes: *const fn(
             self: *const IWiaPropertyStorage,
             pctime: ?*const FILETIME,
             patime: ?*const FILETIME,
             pmtime: ?*const FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClass: *const fn(
             self: *const IWiaPropertyStorage,
             clsid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stat: *const fn(
             self: *const IWiaPropertyStorage,
             pstatpsstg: ?*STATPROPSETSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyAttributes: *const fn(
             self: *const IWiaPropertyStorage,
             cpspec: u32,
             rgpspec: [*]PROPSPEC,
             rgflags: [*]u32,
             rgpropvar: [*]PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IWiaPropertyStorage,
             pulNumProps: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyStream: *const fn(
             self: *const IWiaPropertyStorage,
             pCompatibilityId: ?*Guid,
             ppIStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPropertyStream: *const fn(
             self: *const IWiaPropertyStorage,
             pCompatibilityId: ?*Guid,
             pIStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1905,22 +1905,22 @@ pub const IEnumWiaItem = extern union {
             celt: u32,
             ppIWiaItem: ?*?*IWiaItem,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumWiaItem,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumWiaItem,
             ppIEnum: ?*?*IEnumWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumWiaItem,
             celt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1961,22 +1961,22 @@ pub const IEnumWIA_DEV_CAPS = extern union {
             celt: u32,
             rgelt: ?*WIA_DEV_CAP,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumWIA_DEV_CAPS,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumWIA_DEV_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumWIA_DEV_CAPS,
             ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumWIA_DEV_CAPS,
             pcelt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2008,22 +2008,22 @@ pub const IEnumWIA_FORMAT_INFO = extern union {
             celt: u32,
             rgelt: ?*WIA_FORMAT_INFO,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumWIA_FORMAT_INFO,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumWIA_FORMAT_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumWIA_FORMAT_INFO,
             ppIEnum: ?*?*IEnumWIA_FORMAT_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumWIA_FORMAT_INFO,
             pcelt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2053,18 +2053,18 @@ pub const IWiaLog = extern union {
         InitializeLog: *const fn(
             self: *const IWiaLog,
             hInstance: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         hResult: *const fn(
             self: *const IWiaLog,
             hResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Log: *const fn(
             self: *const IWiaLog,
             lFlags: i32,
             lResID: i32,
             lDetail: i32,
             bstrText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2088,23 +2088,23 @@ pub const IWiaLogEx = extern union {
         InitializeLogEx: *const fn(
             self: *const IWiaLogEx,
             hInstance: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         hResult: *const fn(
             self: *const IWiaLogEx,
             hResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Log: *const fn(
             self: *const IWiaLogEx,
             lFlags: i32,
             lResID: i32,
             lDetail: i32,
             bstrText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         hResultEx: *const fn(
             self: *const IWiaLogEx,
             lMethodId: i32,
             hResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LogEx: *const fn(
             self: *const IWiaLogEx,
             lMethodId: i32,
@@ -2112,7 +2112,7 @@ pub const IWiaLogEx = extern union {
             lResID: i32,
             lDetail: i32,
             bstrText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2141,7 +2141,7 @@ pub const IWiaNotifyDevMgr = extern union {
         base: IUnknown.VTable,
         NewDeviceArrival: *const fn(
             self: *const IWiaNotifyDevMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2159,7 +2159,7 @@ pub const IWiaItemExtras = extern union {
         GetExtendedErrorInfo: *const fn(
             self: *const IWiaItemExtras,
             bstrErrorText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Escape: *const fn(
             self: *const IWiaItemExtras,
             dwEscapeCode: u32,
@@ -2168,10 +2168,10 @@ pub const IWiaItemExtras = extern union {
             pOutData: ?*u8,
             dwOutDataSize: u32,
             pdwActualDataSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelPendingIO: *const fn(
             self: *const IWiaItemExtras,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2194,14 +2194,14 @@ pub const IWiaAppErrorHandler = extern union {
         GetWindow: *const fn(
             self: *const IWiaAppErrorHandler,
             phwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReportStatus: *const fn(
             self: *const IWiaAppErrorHandler,
             lFlags: i32,
             pWiaItem2: ?*IWiaItem2,
             hrStatus: HRESULT,
             lPercentComplete: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2225,14 +2225,14 @@ pub const IWiaErrorHandler = extern union {
             pWiaItem2: ?*IWiaItem2,
             hrStatus: HRESULT,
             lPercentComplete: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatusDescription: *const fn(
             self: *const IWiaErrorHandler,
             lFlags: i32,
             pWiaItem2: ?*IWiaItem2,
             hrStatus: HRESULT,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2253,20 +2253,20 @@ pub const IWiaTransfer = extern union {
             self: *const IWiaTransfer,
             lFlags: i32,
             pIWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Upload: *const fn(
             self: *const IWiaTransfer,
             lFlags: i32,
             pSource: ?*IStream,
             pIWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const IWiaTransfer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumWIA_FORMAT_INFO: *const fn(
             self: *const IWiaTransfer,
             ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2300,14 +2300,14 @@ pub const IWiaTransferCallback = extern union {
             self: *const IWiaTransferCallback,
             lFlags: i32,
             pWiaTransferParams: ?*WiaTransferParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextStream: *const fn(
             self: *const IWiaTransferCallback,
             lFlags: i32,
             bstrItemName: ?BSTR,
             bstrFullItemName: ?BSTR,
             ppDestination: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2329,7 +2329,7 @@ pub const IWiaSegmentationFilter = extern union {
             lFlags: i32,
             pInputStream: ?*IStream,
             pWiaItem2: ?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2347,22 +2347,22 @@ pub const IWiaImageFilter = extern union {
             self: *const IWiaImageFilter,
             pWiaItem2: ?*IWiaItem2,
             pWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNewCallback: *const fn(
             self: *const IWiaImageFilter,
             pWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FilterPreviewImage: *const fn(
             self: *const IWiaImageFilter,
             lFlags: i32,
             pWiaChildItem2: ?*IWiaItem2,
             InputImageExtents: RECT,
             pInputStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ApplyProperties: *const fn(
             self: *const IWiaImageFilter,
             pWiaPropertyStorage: ?*IWiaPropertyStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2390,20 +2390,20 @@ pub const IWiaPreview = extern union {
             lFlags: i32,
             pWiaItem2: ?*IWiaItem2,
             pWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdatePreview: *const fn(
             self: *const IWiaPreview,
             lFlags: i32,
             pChildWiaItem2: ?*IWiaItem2,
             pWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DetectRegions: *const fn(
             self: *const IWiaPreview,
             lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IWiaPreview,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2431,22 +2431,22 @@ pub const IEnumWiaItem2 = extern union {
             cElt: u32,
             ppIWiaItem2: ?*?*IWiaItem2,
             pcEltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumWiaItem2,
             cElt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumWiaItem2,
             ppIEnum: ?*?*IEnumWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumWiaItem2,
             cElt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2478,30 +2478,30 @@ pub const IWiaItem2 = extern union {
             lCreationFlags: i32,
             bstrItemName: ?BSTR,
             ppIWiaItem2: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItem: *const fn(
             self: *const IWiaItem2,
             lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumChildItems: *const fn(
             self: *const IWiaItem2,
             pCategoryGUID: ?*const Guid,
             ppIEnumWiaItem2: ?*?*IEnumWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindItemByName: *const fn(
             self: *const IWiaItem2,
             lFlags: i32,
             bstrFullItemName: ?BSTR,
             ppIWiaItem2: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemCategory: *const fn(
             self: *const IWiaItem2,
             pItemCategoryGUID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemType: *const fn(
             self: *const IWiaItem2,
             pItemType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceDlg: *const fn(
             self: *const IWiaItem2,
             lFlags: i32,
@@ -2511,56 +2511,56 @@ pub const IWiaItem2 = extern union {
             plNumFiles: ?*i32,
             ppbstrFilePaths: ?*?*?BSTR,
             ppItem: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceCommand: *const fn(
             self: *const IWiaItem2,
             lFlags: i32,
             pCmdGUID: ?*const Guid,
             ppIWiaItem2: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDeviceCapabilities: *const fn(
             self: *const IWiaItem2,
             lFlags: i32,
             ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckExtension: *const fn(
             self: *const IWiaItem2,
             lFlags: i32,
             bstrName: ?BSTR,
             riidExtensionInterface: ?*const Guid,
             pbExtensionExists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExtension: *const fn(
             self: *const IWiaItem2,
             lFlags: i32,
             bstrName: ?BSTR,
             riidExtensionInterface: ?*const Guid,
             ppOut: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParentItem: *const fn(
             self: *const IWiaItem2,
             ppIWiaItem2: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRootItem: *const fn(
             self: *const IWiaItem2,
             ppIWiaItem2: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreviewComponent: *const fn(
             self: *const IWiaItem2,
             lFlags: i32,
             ppWiaPreview: ?*?*IWiaPreview,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumRegisterEventInfo: *const fn(
             self: *const IWiaItem2,
             lFlags: i32,
             pEventGUID: ?*const Guid,
             ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Diagnostic: *const fn(
             self: *const IWiaItem2,
             ulSize: u32,
             pBuffer: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2623,13 +2623,13 @@ pub const IWiaDevMgr2 = extern union {
             self: *const IWiaDevMgr2,
             lFlags: i32,
             ppIEnum: ?*?*IEnumWIA_DEV_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDevice: *const fn(
             self: *const IWiaDevMgr2,
             lFlags: i32,
             bstrDeviceID: ?BSTR,
             ppWiaItem2Root: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SelectDeviceDlg: *const fn(
             self: *const IWiaDevMgr2,
             hwndParent: ?HWND,
@@ -2637,14 +2637,14 @@ pub const IWiaDevMgr2 = extern union {
             lFlags: i32,
             pbstrDeviceID: ?*?BSTR,
             ppItemRoot: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SelectDeviceDlgID: *const fn(
             self: *const IWiaDevMgr2,
             hwndParent: ?HWND,
             lDeviceType: i32,
             lFlags: i32,
             pbstrDeviceID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterEventCallbackInterface: *const fn(
             self: *const IWiaDevMgr2,
             lFlags: i32,
@@ -2652,7 +2652,7 @@ pub const IWiaDevMgr2 = extern union {
             pEventGUID: ?*const Guid,
             pIWiaEventCallback: ?*IWiaEventCallback,
             pEventObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterEventCallbackProgram: *const fn(
             self: *const IWiaDevMgr2,
             lFlags: i32,
@@ -2663,7 +2663,7 @@ pub const IWiaDevMgr2 = extern union {
             bstrName: ?BSTR,
             bstrDescription: ?BSTR,
             bstrIcon: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterEventCallbackCLSID: *const fn(
             self: *const IWiaDevMgr2,
             lFlags: i32,
@@ -2673,7 +2673,7 @@ pub const IWiaDevMgr2 = extern union {
             bstrName: ?BSTR,
             bstrDescription: ?BSTR,
             bstrIcon: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImageDlg: *const fn(
             self: *const IWiaDevMgr2,
             lFlags: i32,
@@ -2684,7 +2684,7 @@ pub const IWiaDevMgr2 = extern union {
             plNumFiles: ?*i32,
             ppbstrFilePaths: ?*?*?BSTR,
             ppItem: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2768,20 +2768,20 @@ pub const IWiaMiniDrv = extern union {
             __MIDL__IWiaMiniDrv0006: ?*?*IWiaDrvItem,
             __MIDL__IWiaMiniDrv0007: ?*?*IUnknown,
             __MIDL__IWiaMiniDrv0008: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvAcquireItemData: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0009: ?*u8,
             __MIDL__IWiaMiniDrv0010: i32,
             __MIDL__IWiaMiniDrv0011: ?*MINIDRV_TRANSFER_CONTEXT,
             __MIDL__IWiaMiniDrv0012: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvInitItemProperties: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0013: ?*u8,
             __MIDL__IWiaMiniDrv0014: i32,
             __MIDL__IWiaMiniDrv0015: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvValidateItemProperties: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0016: ?*u8,
@@ -2789,14 +2789,14 @@ pub const IWiaMiniDrv = extern union {
             __MIDL__IWiaMiniDrv0018: u32,
             __MIDL__IWiaMiniDrv0019: ?*const PROPSPEC,
             __MIDL__IWiaMiniDrv0020: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvWriteItemProperties: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0021: ?*u8,
             __MIDL__IWiaMiniDrv0022: i32,
             __MIDL__IWiaMiniDrv0023: ?*MINIDRV_TRANSFER_CONTEXT,
             __MIDL__IWiaMiniDrv0024: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvReadItemProperties: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0025: ?*u8,
@@ -2804,32 +2804,32 @@ pub const IWiaMiniDrv = extern union {
             __MIDL__IWiaMiniDrv0027: u32,
             __MIDL__IWiaMiniDrv0028: ?*const PROPSPEC,
             __MIDL__IWiaMiniDrv0029: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvLockWiaDevice: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0030: ?*u8,
             __MIDL__IWiaMiniDrv0031: i32,
             __MIDL__IWiaMiniDrv0032: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvUnLockWiaDevice: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0033: ?*u8,
             __MIDL__IWiaMiniDrv0034: i32,
             __MIDL__IWiaMiniDrv0035: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvAnalyzeItem: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0036: ?*u8,
             __MIDL__IWiaMiniDrv0037: i32,
             __MIDL__IWiaMiniDrv0038: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvGetDeviceErrorStr: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0039: i32,
             __MIDL__IWiaMiniDrv0040: i32,
             __MIDL__IWiaMiniDrv0041: ?*?PWSTR,
             __MIDL__IWiaMiniDrv0042: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvDeviceCommand: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0043: ?*u8,
@@ -2837,7 +2837,7 @@ pub const IWiaMiniDrv = extern union {
             __MIDL__IWiaMiniDrv0045: ?*const Guid,
             __MIDL__IWiaMiniDrv0046: ?*?*IWiaDrvItem,
             __MIDL__IWiaMiniDrv0047: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvGetCapabilities: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0048: ?*u8,
@@ -2845,19 +2845,19 @@ pub const IWiaMiniDrv = extern union {
             __MIDL__IWiaMiniDrv0050: ?*i32,
             __MIDL__IWiaMiniDrv0051: ?*?*WIA_DEV_CAP_DRV,
             __MIDL__IWiaMiniDrv0052: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvDeleteItem: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0053: ?*u8,
             __MIDL__IWiaMiniDrv0054: i32,
             __MIDL__IWiaMiniDrv0055: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvFreeDrvItemContext: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0056: i32,
             __MIDL__IWiaMiniDrv0057: ?*u8,
             __MIDL__IWiaMiniDrv0058: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvGetWiaFormatInfo: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0059: ?*u8,
@@ -2865,17 +2865,17 @@ pub const IWiaMiniDrv = extern union {
             __MIDL__IWiaMiniDrv0061: ?*i32,
             __MIDL__IWiaMiniDrv0062: ?*?*WIA_FORMAT_INFO,
             __MIDL__IWiaMiniDrv0063: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvNotifyPnpEvent: *const fn(
             self: *const IWiaMiniDrv,
             pEventGUID: ?*const Guid,
             bstrDeviceID: ?BSTR,
             ulReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         drvUnInitializeWia: *const fn(
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0064: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2946,7 +2946,7 @@ pub const IWiaMiniDrvCallBack = extern union {
             lLength: i32,
             pTranCtx: ?*MINIDRV_TRANSFER_CONTEXT,
             lReserved: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2966,12 +2966,12 @@ pub const IWiaMiniDrvTransferCallback = extern union {
             bstrItemName: ?BSTR,
             bstrFullItemName: ?BSTR,
             ppIStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendMessage: *const fn(
             self: *const IWiaMiniDrvTransferCallback,
             lFlags: i32,
             pWiaTransferParams: ?*WiaTransferParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2991,58 +2991,58 @@ pub const IWiaDrvItem = extern union {
         GetItemFlags: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0000: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceSpecContext: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0001: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFullItemName: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0002: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemName: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0003: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddItemToFolder: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlinkItemTree: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0005: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveItemFromFolder: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0006: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindItemByName: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0007: i32,
             __MIDL__IWiaDrvItem0008: ?BSTR,
             __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindChildItemByName: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0010: ?BSTR,
             __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParentItem: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFirstChildItem: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextSiblingItem: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DumpItemData: *const fn(
             self: *const IWiaDrvItem,
             __MIDL__IWiaDrvItem0015: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3210,64 +3210,64 @@ pub const IWiaVideo = extern union {
         get_PreviewVisible: *const fn(
             self: *const IWiaVideo,
             pbPreviewVisible: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PreviewVisible: *const fn(
             self: *const IWiaVideo,
             bPreviewVisible: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImagesDirectory: *const fn(
             self: *const IWiaVideo,
             pbstrImageDirectory: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ImagesDirectory: *const fn(
             self: *const IWiaVideo,
             bstrImageDirectory: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoByWiaDevID: *const fn(
             self: *const IWiaVideo,
             bstrWiaDeviceID: ?BSTR,
             hwndParent: ?HWND,
             bStretchToFitParent: BOOL,
             bAutoBeginPlayback: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoByDevNum: *const fn(
             self: *const IWiaVideo,
             uiDeviceNumber: u32,
             hwndParent: ?HWND,
             bStretchToFitParent: BOOL,
             bAutoBeginPlayback: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoByName: *const fn(
             self: *const IWiaVideo,
             bstrFriendlyName: ?BSTR,
             hwndParent: ?HWND,
             bStretchToFitParent: BOOL,
             bAutoBeginPlayback: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestroyVideo: *const fn(
             self: *const IWiaVideo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Play: *const fn(
             self: *const IWiaVideo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const IWiaVideo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TakePicture: *const fn(
             self: *const IWiaVideo,
             pbstrNewImageFilename: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResizeVideo: *const fn(
             self: *const IWiaVideo,
             bStretchToFitParent: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentState: *const fn(
             self: *const IWiaVideo,
             pState: ?*WIAVIDEO_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3332,13 +3332,13 @@ pub const IWiaUIExtension2 = extern union {
         DeviceDialog: *const fn(
             self: *const IWiaUIExtension2,
             pDeviceDialogData: ?*DEVICEDIALOGDATA2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceIcon: *const fn(
             self: *const IWiaUIExtension2,
             bstrDeviceId: ?BSTR,
             phIcon: ?*?HICON,
             nSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3368,20 +3368,20 @@ pub const IWiaUIExtension = extern union {
         DeviceDialog: *const fn(
             self: *const IWiaUIExtension,
             pDeviceDialogData: ?*DEVICEDIALOGDATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceIcon: *const fn(
             self: *const IWiaUIExtension,
             bstrDeviceId: ?BSTR,
             phIcon: ?*?HICON,
             nSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceBitmapLogo: *const fn(
             self: *const IWiaUIExtension,
             bstrDeviceId: ?BSTR,
             phBitmap: ?*?HBITMAP,
             nMaxWidth: u32,
             nMaxHeight: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3398,7 +3398,7 @@ pub const IWiaUIExtension = extern union {
 
 pub const DeviceDialogFunction = *const fn(
     param0: ?*DEVICEDIALOGDATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const RANGEVALUE = extern struct {
     lMin: i32,

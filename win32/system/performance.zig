@@ -497,7 +497,7 @@ pub const plaDeleteReport = FolderActionSteps.DeleteReport;
 pub const PLA_CABEXTRACT_CALLBACK = *const fn(
     FileName: ?[*:0]const u16,
     Context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDataCollectorSet_Value = Guid.initString("03837520-098b-11d8-9414-505054503030");
@@ -509,300 +509,300 @@ pub const IDataCollectorSet = extern union {
         get_DataCollectors: *const fn(
             self: *const IDataCollectorSet,
             collectors: ?*?*IDataCollectorCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Duration: *const fn(
             self: *const IDataCollectorSet,
             seconds: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Duration: *const fn(
             self: *const IDataCollectorSet,
             seconds: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IDataCollectorSet,
             description: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IDataCollectorSet,
             description: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DescriptionUnresolved: *const fn(
             self: *const IDataCollectorSet,
             Descr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: *const fn(
             self: *const IDataCollectorSet,
             DisplayName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayName: *const fn(
             self: *const IDataCollectorSet,
             DisplayName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayNameUnresolved: *const fn(
             self: *const IDataCollectorSet,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Keywords: *const fn(
             self: *const IDataCollectorSet,
             keywords: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Keywords: *const fn(
             self: *const IDataCollectorSet,
             keywords: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LatestOutputLocation: *const fn(
             self: *const IDataCollectorSet,
             path: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LatestOutputLocation: *const fn(
             self: *const IDataCollectorSet,
             path: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IDataCollectorSet,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OutputLocation: *const fn(
             self: *const IDataCollectorSet,
             path: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootPath: *const fn(
             self: *const IDataCollectorSet,
             folder: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RootPath: *const fn(
             self: *const IDataCollectorSet,
             folder: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Segment: *const fn(
             self: *const IDataCollectorSet,
             segment: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Segment: *const fn(
             self: *const IDataCollectorSet,
             segment: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SegmentMaxDuration: *const fn(
             self: *const IDataCollectorSet,
             seconds: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SegmentMaxDuration: *const fn(
             self: *const IDataCollectorSet,
             seconds: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SegmentMaxSize: *const fn(
             self: *const IDataCollectorSet,
             size: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SegmentMaxSize: *const fn(
             self: *const IDataCollectorSet,
             size: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SerialNumber: *const fn(
             self: *const IDataCollectorSet,
             index: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SerialNumber: *const fn(
             self: *const IDataCollectorSet,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Server: *const fn(
             self: *const IDataCollectorSet,
             server: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: *const fn(
             self: *const IDataCollectorSet,
             status: ?*DataCollectorSetStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Subdirectory: *const fn(
             self: *const IDataCollectorSet,
             folder: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Subdirectory: *const fn(
             self: *const IDataCollectorSet,
             folder: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SubdirectoryFormat: *const fn(
             self: *const IDataCollectorSet,
             format: ?*AutoPathFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SubdirectoryFormat: *const fn(
             self: *const IDataCollectorSet,
             format: AutoPathFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SubdirectoryFormatPattern: *const fn(
             self: *const IDataCollectorSet,
             pattern: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SubdirectoryFormatPattern: *const fn(
             self: *const IDataCollectorSet,
             pattern: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Task: *const fn(
             self: *const IDataCollectorSet,
             task: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Task: *const fn(
             self: *const IDataCollectorSet,
             task: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TaskRunAsSelf: *const fn(
             self: *const IDataCollectorSet,
             RunAsSelf: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TaskRunAsSelf: *const fn(
             self: *const IDataCollectorSet,
             RunAsSelf: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TaskArguments: *const fn(
             self: *const IDataCollectorSet,
             task: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TaskArguments: *const fn(
             self: *const IDataCollectorSet,
             task: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TaskUserTextArguments: *const fn(
             self: *const IDataCollectorSet,
             UserText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TaskUserTextArguments: *const fn(
             self: *const IDataCollectorSet,
             UserText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Schedules: *const fn(
             self: *const IDataCollectorSet,
             ppSchedules: ?*?*IScheduleCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SchedulesEnabled: *const fn(
             self: *const IDataCollectorSet,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SchedulesEnabled: *const fn(
             self: *const IDataCollectorSet,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserAccount: *const fn(
             self: *const IDataCollectorSet,
             user: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Xml: *const fn(
             self: *const IDataCollectorSet,
             xml: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Security: *const fn(
             self: *const IDataCollectorSet,
             pbstrSecurity: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Security: *const fn(
             self: *const IDataCollectorSet,
             bstrSecurity: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StopOnCompletion: *const fn(
             self: *const IDataCollectorSet,
             Stop: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StopOnCompletion: *const fn(
             self: *const IDataCollectorSet,
             Stop: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataManager: *const fn(
             self: *const IDataCollectorSet,
             DataManager: ?*?*IDataManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCredentials: *const fn(
             self: *const IDataCollectorSet,
             user: ?BSTR,
             password: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Query: *const fn(
             self: *const IDataCollectorSet,
             name: ?BSTR,
             server: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const IDataCollectorSet,
             name: ?BSTR,
             server: ?BSTR,
             mode: CommitMode,
             validation: ?*?*IValueMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IDataCollectorSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Start: *const fn(
             self: *const IDataCollectorSet,
             Synchronous: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IDataCollectorSet,
             Synchronous: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetXml: *const fn(
             self: *const IDataCollectorSet,
             xml: ?BSTR,
             validation: ?*?*IValueMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValue: *const fn(
             self: *const IDataCollectorSet,
             key: ?BSTR,
             value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const IDataCollectorSet,
             key: ?BSTR,
             value: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -999,128 +999,128 @@ pub const IDataManager = extern union {
         get_Enabled: *const fn(
             self: *const IDataManager,
             pfEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IDataManager,
             fEnabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CheckBeforeRunning: *const fn(
             self: *const IDataManager,
             pfCheck: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CheckBeforeRunning: *const fn(
             self: *const IDataManager,
             fCheck: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinFreeDisk: *const fn(
             self: *const IDataManager,
             MinFreeDisk: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MinFreeDisk: *const fn(
             self: *const IDataManager,
             MinFreeDisk: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxSize: *const fn(
             self: *const IDataManager,
             pulMaxSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxSize: *const fn(
             self: *const IDataManager,
             ulMaxSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxFolderCount: *const fn(
             self: *const IDataManager,
             pulMaxFolderCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxFolderCount: *const fn(
             self: *const IDataManager,
             ulMaxFolderCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResourcePolicy: *const fn(
             self: *const IDataManager,
             pPolicy: ?*ResourcePolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ResourcePolicy: *const fn(
             self: *const IDataManager,
             Policy: ResourcePolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FolderActions: *const fn(
             self: *const IDataManager,
             Actions: ?*?*IFolderActionCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportSchema: *const fn(
             self: *const IDataManager,
             ReportSchema: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReportSchema: *const fn(
             self: *const IDataManager,
             ReportSchema: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportFileName: *const fn(
             self: *const IDataManager,
             pbstrFilename: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReportFileName: *const fn(
             self: *const IDataManager,
             pbstrFilename: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RuleTargetFileName: *const fn(
             self: *const IDataManager,
             Filename: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RuleTargetFileName: *const fn(
             self: *const IDataManager,
             Filename: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventsFileName: *const fn(
             self: *const IDataManager,
             pbstrFilename: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventsFileName: *const fn(
             self: *const IDataManager,
             pbstrFilename: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rules: *const fn(
             self: *const IDataManager,
             pbstrXml: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Rules: *const fn(
             self: *const IDataManager,
             bstrXml: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Run: *const fn(
             self: *const IDataManager,
             Steps: DataManagerSteps,
             bstrFolder: ?BSTR,
             Errors: ?*?*IValueMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Extract: *const fn(
             self: *const IDataManager,
             CabFilename: ?BSTR,
             DestinationPath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1212,42 +1212,42 @@ pub const IFolderAction = extern union {
         get_Age: *const fn(
             self: *const IFolderAction,
             pulAge: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Age: *const fn(
             self: *const IFolderAction,
             ulAge: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Size: *const fn(
             self: *const IFolderAction,
             pulAge: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Size: *const fn(
             self: *const IFolderAction,
             ulAge: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Actions: *const fn(
             self: *const IFolderAction,
             Steps: ?*FolderActionSteps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Actions: *const fn(
             self: *const IFolderAction,
             Steps: FolderActionSteps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SendCabTo: *const fn(
             self: *const IFolderAction,
             pbstrDestination: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SendCabTo: *const fn(
             self: *const IFolderAction,
             bstrDestination: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1288,36 +1288,36 @@ pub const IFolderActionCollection = extern union {
         get_Count: *const fn(
             self: *const IFolderActionCollection,
             Count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IFolderActionCollection,
             Index: VARIANT,
             Action: ?*?*IFolderAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IFolderActionCollection,
             Enum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IFolderActionCollection,
             Action: ?*IFolderAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IFolderActionCollection,
             Index: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IFolderActionCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRange: *const fn(
             self: *const IFolderActionCollection,
             Actions: ?*IFolderActionCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFolderAction: *const fn(
             self: *const IFolderActionCollection,
             FolderAction: ?*?*IFolderAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1358,127 +1358,127 @@ pub const IDataCollector = extern union {
         get_DataCollectorSet: *const fn(
             self: *const IDataCollector,
             group: ?*?*IDataCollectorSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DataCollectorSet: *const fn(
             self: *const IDataCollector,
             group: ?*IDataCollectorSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataCollectorType: *const fn(
             self: *const IDataCollector,
             type: ?*DataCollectorType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileName: *const fn(
             self: *const IDataCollector,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FileName: *const fn(
             self: *const IDataCollector,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileNameFormat: *const fn(
             self: *const IDataCollector,
             format: ?*AutoPathFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FileNameFormat: *const fn(
             self: *const IDataCollector,
             format: AutoPathFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileNameFormatPattern: *const fn(
             self: *const IDataCollector,
             pattern: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FileNameFormatPattern: *const fn(
             self: *const IDataCollector,
             pattern: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LatestOutputLocation: *const fn(
             self: *const IDataCollector,
             path: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LatestOutputLocation: *const fn(
             self: *const IDataCollector,
             path: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogAppend: *const fn(
             self: *const IDataCollector,
             append: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogAppend: *const fn(
             self: *const IDataCollector,
             append: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogCircular: *const fn(
             self: *const IDataCollector,
             circular: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogCircular: *const fn(
             self: *const IDataCollector,
             circular: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogOverwrite: *const fn(
             self: *const IDataCollector,
             overwrite: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogOverwrite: *const fn(
             self: *const IDataCollector,
             overwrite: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IDataCollector,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IDataCollector,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OutputLocation: *const fn(
             self: *const IDataCollector,
             path: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Index: *const fn(
             self: *const IDataCollector,
             index: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Index: *const fn(
             self: *const IDataCollector,
             index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Xml: *const fn(
             self: *const IDataCollector,
             Xml: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetXml: *const fn(
             self: *const IDataCollector,
             Xml: ?BSTR,
             Validation: ?*?*IValueMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateOutputLocation: *const fn(
             self: *const IDataCollector,
             Latest: i16,
             Location: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1570,52 +1570,52 @@ pub const IPerformanceCounterDataCollector = extern union {
         get_DataSourceName: *const fn(
             self: *const IPerformanceCounterDataCollector,
             dsn: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DataSourceName: *const fn(
             self: *const IPerformanceCounterDataCollector,
             dsn: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PerformanceCounters: *const fn(
             self: *const IPerformanceCounterDataCollector,
             counters: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PerformanceCounters: *const fn(
             self: *const IPerformanceCounterDataCollector,
             counters: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogFileFormat: *const fn(
             self: *const IPerformanceCounterDataCollector,
             format: ?*FileFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogFileFormat: *const fn(
             self: *const IPerformanceCounterDataCollector,
             format: FileFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SampleInterval: *const fn(
             self: *const IPerformanceCounterDataCollector,
             interval: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SampleInterval: *const fn(
             self: *const IPerformanceCounterDataCollector,
             interval: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SegmentMaxRecords: *const fn(
             self: *const IPerformanceCounterDataCollector,
             records: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SegmentMaxRecords: *const fn(
             self: *const IPerformanceCounterDataCollector,
             records: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDataCollector: IDataCollector,
@@ -1663,202 +1663,202 @@ pub const ITraceDataCollector = extern union {
         get_BufferSize: *const fn(
             self: *const ITraceDataCollector,
             size: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BufferSize: *const fn(
             self: *const ITraceDataCollector,
             size: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BuffersLost: *const fn(
             self: *const ITraceDataCollector,
             buffers: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BuffersLost: *const fn(
             self: *const ITraceDataCollector,
             buffers: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BuffersWritten: *const fn(
             self: *const ITraceDataCollector,
             buffers: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BuffersWritten: *const fn(
             self: *const ITraceDataCollector,
             buffers: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClockType: *const fn(
             self: *const ITraceDataCollector,
             clock: ?*ClockType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClockType: *const fn(
             self: *const ITraceDataCollector,
             clock: ClockType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventsLost: *const fn(
             self: *const ITraceDataCollector,
             events: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventsLost: *const fn(
             self: *const ITraceDataCollector,
             events: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtendedModes: *const fn(
             self: *const ITraceDataCollector,
             mode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExtendedModes: *const fn(
             self: *const ITraceDataCollector,
             mode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FlushTimer: *const fn(
             self: *const ITraceDataCollector,
             seconds: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FlushTimer: *const fn(
             self: *const ITraceDataCollector,
             seconds: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FreeBuffers: *const fn(
             self: *const ITraceDataCollector,
             buffers: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FreeBuffers: *const fn(
             self: *const ITraceDataCollector,
             buffers: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Guid: *const fn(
             self: *const ITraceDataCollector,
             guid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Guid: *const fn(
             self: *const ITraceDataCollector,
             guid: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsKernelTrace: *const fn(
             self: *const ITraceDataCollector,
             kernel: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaximumBuffers: *const fn(
             self: *const ITraceDataCollector,
             buffers: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaximumBuffers: *const fn(
             self: *const ITraceDataCollector,
             buffers: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinimumBuffers: *const fn(
             self: *const ITraceDataCollector,
             buffers: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MinimumBuffers: *const fn(
             self: *const ITraceDataCollector,
             buffers: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfBuffers: *const fn(
             self: *const ITraceDataCollector,
             buffers: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NumberOfBuffers: *const fn(
             self: *const ITraceDataCollector,
             buffers: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PreallocateFile: *const fn(
             self: *const ITraceDataCollector,
             allocate: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PreallocateFile: *const fn(
             self: *const ITraceDataCollector,
             allocate: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProcessMode: *const fn(
             self: *const ITraceDataCollector,
             process: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProcessMode: *const fn(
             self: *const ITraceDataCollector,
             process: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RealTimeBuffersLost: *const fn(
             self: *const ITraceDataCollector,
             buffers: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RealTimeBuffersLost: *const fn(
             self: *const ITraceDataCollector,
             buffers: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SessionId: *const fn(
             self: *const ITraceDataCollector,
             id: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SessionId: *const fn(
             self: *const ITraceDataCollector,
             id: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SessionName: *const fn(
             self: *const ITraceDataCollector,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SessionName: *const fn(
             self: *const ITraceDataCollector,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SessionThreadId: *const fn(
             self: *const ITraceDataCollector,
             tid: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SessionThreadId: *const fn(
             self: *const ITraceDataCollector,
             tid: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StreamMode: *const fn(
             self: *const ITraceDataCollector,
             mode: ?*StreamMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StreamMode: *const fn(
             self: *const ITraceDataCollector,
             mode: StreamMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TraceDataProviders: *const fn(
             self: *const ITraceDataCollector,
             providers: ?*?*ITraceDataProviderCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDataCollector: IDataCollector,
@@ -1996,92 +1996,92 @@ pub const IConfigurationDataCollector = extern union {
         get_FileMaxCount: *const fn(
             self: *const IConfigurationDataCollector,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FileMaxCount: *const fn(
             self: *const IConfigurationDataCollector,
             count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileMaxRecursiveDepth: *const fn(
             self: *const IConfigurationDataCollector,
             depth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FileMaxRecursiveDepth: *const fn(
             self: *const IConfigurationDataCollector,
             depth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileMaxTotalSize: *const fn(
             self: *const IConfigurationDataCollector,
             size: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FileMaxTotalSize: *const fn(
             self: *const IConfigurationDataCollector,
             size: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Files: *const fn(
             self: *const IConfigurationDataCollector,
             Files: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Files: *const fn(
             self: *const IConfigurationDataCollector,
             Files: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ManagementQueries: *const fn(
             self: *const IConfigurationDataCollector,
             Queries: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ManagementQueries: *const fn(
             self: *const IConfigurationDataCollector,
             Queries: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryNetworkAdapters: *const fn(
             self: *const IConfigurationDataCollector,
             network: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryNetworkAdapters: *const fn(
             self: *const IConfigurationDataCollector,
             network: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RegistryKeys: *const fn(
             self: *const IConfigurationDataCollector,
             query: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RegistryKeys: *const fn(
             self: *const IConfigurationDataCollector,
             query: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RegistryMaxRecursiveDepth: *const fn(
             self: *const IConfigurationDataCollector,
             depth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RegistryMaxRecursiveDepth: *const fn(
             self: *const IConfigurationDataCollector,
             depth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SystemStateFile: *const fn(
             self: *const IConfigurationDataCollector,
             FileName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SystemStateFile: *const fn(
             self: *const IConfigurationDataCollector,
             FileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDataCollector: IDataCollector,
@@ -2153,82 +2153,82 @@ pub const IAlertDataCollector = extern union {
         get_AlertThresholds: *const fn(
             self: *const IAlertDataCollector,
             alerts: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AlertThresholds: *const fn(
             self: *const IAlertDataCollector,
             alerts: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventLog: *const fn(
             self: *const IAlertDataCollector,
             log: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventLog: *const fn(
             self: *const IAlertDataCollector,
             log: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SampleInterval: *const fn(
             self: *const IAlertDataCollector,
             interval: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SampleInterval: *const fn(
             self: *const IAlertDataCollector,
             interval: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Task: *const fn(
             self: *const IAlertDataCollector,
             task: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Task: *const fn(
             self: *const IAlertDataCollector,
             task: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TaskRunAsSelf: *const fn(
             self: *const IAlertDataCollector,
             RunAsSelf: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TaskRunAsSelf: *const fn(
             self: *const IAlertDataCollector,
             RunAsSelf: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TaskArguments: *const fn(
             self: *const IAlertDataCollector,
             task: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TaskArguments: *const fn(
             self: *const IAlertDataCollector,
             task: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TaskUserTextArguments: *const fn(
             self: *const IAlertDataCollector,
             task: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TaskUserTextArguments: *const fn(
             self: *const IAlertDataCollector,
             task: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TriggerDataCollectorSet: *const fn(
             self: *const IAlertDataCollector,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TriggerDataCollectorSet: *const fn(
             self: *const IAlertDataCollector,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDataCollector: IDataCollector,
@@ -2294,72 +2294,72 @@ pub const IApiTracingDataCollector = extern union {
         get_LogApiNamesOnly: *const fn(
             self: *const IApiTracingDataCollector,
             logapinames: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogApiNamesOnly: *const fn(
             self: *const IApiTracingDataCollector,
             logapinames: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogApisRecursively: *const fn(
             self: *const IApiTracingDataCollector,
             logrecursively: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogApisRecursively: *const fn(
             self: *const IApiTracingDataCollector,
             logrecursively: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExePath: *const fn(
             self: *const IApiTracingDataCollector,
             exepath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExePath: *const fn(
             self: *const IApiTracingDataCollector,
             exepath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogFilePath: *const fn(
             self: *const IApiTracingDataCollector,
             logfilepath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogFilePath: *const fn(
             self: *const IApiTracingDataCollector,
             logfilepath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IncludeModules: *const fn(
             self: *const IApiTracingDataCollector,
             includemodules: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IncludeModules: *const fn(
             self: *const IApiTracingDataCollector,
             includemodules: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IncludeApis: *const fn(
             self: *const IApiTracingDataCollector,
             includeapis: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IncludeApis: *const fn(
             self: *const IApiTracingDataCollector,
             includeapis: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExcludeApis: *const fn(
             self: *const IApiTracingDataCollector,
             excludeapis: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExcludeApis: *const fn(
             self: *const IApiTracingDataCollector,
             excludeapis: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDataCollector: IDataCollector,
@@ -2419,43 +2419,43 @@ pub const IDataCollectorCollection = extern union {
         get_Count: *const fn(
             self: *const IDataCollectorCollection,
             retVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IDataCollectorCollection,
             index: VARIANT,
             collector: ?*?*IDataCollector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IDataCollectorCollection,
             retVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IDataCollectorCollection,
             collector: ?*IDataCollector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IDataCollectorCollection,
             collector: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IDataCollectorCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRange: *const fn(
             self: *const IDataCollectorCollection,
             collectors: ?*IDataCollectorCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDataCollectorFromXml: *const fn(
             self: *const IDataCollectorCollection,
             bstrXml: ?BSTR,
             pValidation: ?*?*IValueMap,
             pCollector: ?*?*IDataCollector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDataCollector: *const fn(
             self: *const IDataCollectorCollection,
             Type: DataCollectorType,
             Collector: ?*?*IDataCollector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2499,37 +2499,37 @@ pub const IDataCollectorSetCollection = extern union {
         get_Count: *const fn(
             self: *const IDataCollectorSetCollection,
             retVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IDataCollectorSetCollection,
             index: VARIANT,
             set: ?*?*IDataCollectorSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IDataCollectorSetCollection,
             retVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IDataCollectorSetCollection,
             set: ?*IDataCollectorSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IDataCollectorSetCollection,
             set: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IDataCollectorSetCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRange: *const fn(
             self: *const IDataCollectorSetCollection,
             sets: ?*IDataCollectorSetCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataCollectorSets: *const fn(
             self: *const IDataCollectorSetCollection,
             server: ?BSTR,
             filter: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2570,94 +2570,94 @@ pub const ITraceDataProvider = extern union {
         get_DisplayName: *const fn(
             self: *const ITraceDataProvider,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayName: *const fn(
             self: *const ITraceDataProvider,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Guid: *const fn(
             self: *const ITraceDataProvider,
             guid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Guid: *const fn(
             self: *const ITraceDataProvider,
             guid: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Level: *const fn(
             self: *const ITraceDataProvider,
             ppLevel: ?*?*IValueMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeywordsAny: *const fn(
             self: *const ITraceDataProvider,
             ppKeywords: ?*?*IValueMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeywordsAll: *const fn(
             self: *const ITraceDataProvider,
             ppKeywords: ?*?*IValueMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const ITraceDataProvider,
             ppProperties: ?*?*IValueMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FilterEnabled: *const fn(
             self: *const ITraceDataProvider,
             FilterEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FilterEnabled: *const fn(
             self: *const ITraceDataProvider,
             FilterEnabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FilterType: *const fn(
             self: *const ITraceDataProvider,
             pulType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FilterType: *const fn(
             self: *const ITraceDataProvider,
             ulType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FilterData: *const fn(
             self: *const ITraceDataProvider,
             ppData: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FilterData: *const fn(
             self: *const ITraceDataProvider,
             pData: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Query: *const fn(
             self: *const ITraceDataProvider,
             bstrName: ?BSTR,
             bstrServer: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resolve: *const fn(
             self: *const ITraceDataProvider,
             pFrom: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSecurity: *const fn(
             self: *const ITraceDataProvider,
             Sddl: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSecurity: *const fn(
             self: *const ITraceDataProvider,
             SecurityInfo: u32,
             Sddl: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegisteredProcesses: *const fn(
             self: *const ITraceDataProvider,
             Processes: ?*?*IValueMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2731,45 +2731,45 @@ pub const ITraceDataProviderCollection = extern union {
         get_Count: *const fn(
             self: *const ITraceDataProviderCollection,
             retVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ITraceDataProviderCollection,
             index: VARIANT,
             ppProvider: ?*?*ITraceDataProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ITraceDataProviderCollection,
             retVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ITraceDataProviderCollection,
             pProvider: ?*ITraceDataProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ITraceDataProviderCollection,
             vProvider: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ITraceDataProviderCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRange: *const fn(
             self: *const ITraceDataProviderCollection,
             providers: ?*ITraceDataProviderCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTraceDataProvider: *const fn(
             self: *const ITraceDataProviderCollection,
             Provider: ?*?*ITraceDataProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTraceDataProviders: *const fn(
             self: *const ITraceDataProviderCollection,
             server: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTraceDataProvidersByProcess: *const fn(
             self: *const ITraceDataProviderCollection,
             Server: ?BSTR,
             Pid: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2816,42 +2816,42 @@ pub const ISchedule = extern union {
         get_StartDate: *const fn(
             self: *const ISchedule,
             start: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StartDate: *const fn(
             self: *const ISchedule,
             start: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EndDate: *const fn(
             self: *const ISchedule,
             end: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EndDate: *const fn(
             self: *const ISchedule,
             end: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartTime: *const fn(
             self: *const ISchedule,
             start: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StartTime: *const fn(
             self: *const ISchedule,
             start: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Days: *const fn(
             self: *const ISchedule,
             days: ?*WeekDays,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Days: *const fn(
             self: *const ISchedule,
             days: WeekDays,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2892,36 +2892,36 @@ pub const IScheduleCollection = extern union {
         get_Count: *const fn(
             self: *const IScheduleCollection,
             retVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IScheduleCollection,
             index: VARIANT,
             ppSchedule: ?*?*ISchedule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IScheduleCollection,
             ienum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IScheduleCollection,
             pSchedule: ?*ISchedule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IScheduleCollection,
             vSchedule: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IScheduleCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRange: *const fn(
             self: *const IScheduleCollection,
             pSchedules: ?*IScheduleCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSchedule: *const fn(
             self: *const IScheduleCollection,
             Schedule: ?*?*ISchedule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2962,52 +2962,52 @@ pub const IValueMapItem = extern union {
         get_Description: *const fn(
             self: *const IValueMapItem,
             description: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IValueMapItem,
             description: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IValueMapItem,
             enabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IValueMapItem,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Key: *const fn(
             self: *const IValueMapItem,
             key: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Key: *const fn(
             self: *const IValueMapItem,
             key: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const IValueMapItem,
             Value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const IValueMapItem,
             Value: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ValueMapType: *const fn(
             self: *const IValueMapItem,
             type: ?*ValueMapType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ValueMapType: *const fn(
             self: *const IValueMapItem,
             type: ValueMapType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3054,66 +3054,66 @@ pub const IValueMap = extern union {
         get_Count: *const fn(
             self: *const IValueMap,
             retVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IValueMap,
             index: VARIANT,
             value: ?*?*IValueMapItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IValueMap,
             retVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IValueMap,
             description: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IValueMap,
             description: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const IValueMap,
             Value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const IValueMap,
             Value: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ValueMapType: *const fn(
             self: *const IValueMap,
             type: ?*ValueMapType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ValueMapType: *const fn(
             self: *const IValueMap,
             type: ValueMapType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IValueMap,
             value: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IValueMap,
             value: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IValueMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRange: *const fn(
             self: *const IValueMap,
             map: ?*IValueMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateValueMapItem: *const fn(
             self: *const IValueMap,
             Item: ?*?*IValueMapItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3201,17 +3201,17 @@ pub const PERFLIBREQUEST = *const fn(
     RequestCode: u32,
     Buffer: ?*anyopaque,
     BufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PERF_MEM_ALLOC = *const fn(
     AllocSize: usize,
     pContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 pub const PERF_MEM_FREE = *const fn(
     pBuffer: ?*anyopaque,
     pContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PERF_PROVIDER_CONTEXT = extern struct {
     ContextSize: u32,
@@ -3370,17 +3370,17 @@ pub const PERF_COUNTER_BLOCK = extern struct {
 
 pub const PM_OPEN_PROC = *const fn(
     pContext: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PM_COLLECT_PROC = *const fn(
     pValueName: ?PWSTR,
     ppData: ?*?*anyopaque,
     pcbTotalBytes: ?*u32,
     pNumObjectTypes: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PM_CLOSE_PROC = *const fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDH_RAW_COUNTER = extern struct {
     CStatus: u32,
@@ -3598,7 +3598,7 @@ pub const PDH_LOG_SERVICE_QUERY_INFO_W = extern struct {
 
 pub const CounterPathCallBack = *const fn(
     param0: usize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PDH_BROWSE_DLG_CONFIG_HW = extern struct {
     _bitfield: u32,
@@ -3775,64 +3775,64 @@ pub const ICounterItem = extern union {
         get_Value: *const fn(
             self: *const ICounterItem,
             pdblValue: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Color: *const fn(
             self: *const ICounterItem,
             Color: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Color: *const fn(
             self: *const ICounterItem,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Width: *const fn(
             self: *const ICounterItem,
             iWidth: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Width: *const fn(
             self: *const ICounterItem,
             piValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LineStyle: *const fn(
             self: *const ICounterItem,
             iLineStyle: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LineStyle: *const fn(
             self: *const ICounterItem,
             piValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ScaleFactor: *const fn(
             self: *const ICounterItem,
             iScale: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ScaleFactor: *const fn(
             self: *const ICounterItem,
             piValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: *const fn(
             self: *const ICounterItem,
             pstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const ICounterItem,
             Value: ?*f64,
             Status: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatistics: *const fn(
             self: *const ICounterItem,
             Max: ?*f64,
             Min: ?*f64,
             Avg: ?*f64,
             Status: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3883,28 +3883,28 @@ pub const ICounterItem2 = extern union {
         put_Selected: *const fn(
             self: *const ICounterItem2,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Selected: *const fn(
             self: *const ICounterItem2,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Visible: *const fn(
             self: *const ICounterItem2,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Visible: *const fn(
             self: *const ICounterItem2,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataAt: *const fn(
             self: *const ICounterItem2,
             iIndex: i32,
             iWhich: SysmonDataType,
             pVariant: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICounterItem: ICounterItem,
@@ -3935,90 +3935,90 @@ pub const _ICounterItemUnion = extern union {
         get_Value: *const fn(
             self: *const _ICounterItemUnion,
             pdblValue: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Color: *const fn(
             self: *const _ICounterItemUnion,
             Color: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Color: *const fn(
             self: *const _ICounterItemUnion,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Width: *const fn(
             self: *const _ICounterItemUnion,
             iWidth: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Width: *const fn(
             self: *const _ICounterItemUnion,
             piValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LineStyle: *const fn(
             self: *const _ICounterItemUnion,
             iLineStyle: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LineStyle: *const fn(
             self: *const _ICounterItemUnion,
             piValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ScaleFactor: *const fn(
             self: *const _ICounterItemUnion,
             iScale: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ScaleFactor: *const fn(
             self: *const _ICounterItemUnion,
             piValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: *const fn(
             self: *const _ICounterItemUnion,
             pstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const _ICounterItemUnion,
             Value: ?*f64,
             Status: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatistics: *const fn(
             self: *const _ICounterItemUnion,
             Max: ?*f64,
             Min: ?*f64,
             Avg: ?*f64,
             Status: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Selected: *const fn(
             self: *const _ICounterItemUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Selected: *const fn(
             self: *const _ICounterItemUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Visible: *const fn(
             self: *const _ICounterItemUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Visible: *const fn(
             self: *const _ICounterItemUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataAt: *const fn(
             self: *const _ICounterItemUnion,
             iIndex: i32,
             iWhich: SysmonDataType,
             pVariant: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4095,26 +4095,26 @@ pub const ICounters = extern union {
         get_Count: *const fn(
             self: *const ICounters,
             pLong: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ICounters,
             ppIunk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ICounters,
             index: VARIANT,
             ppI: ?*?*DICounterItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ICounters,
             pathname: ?BSTR,
             ppI: ?*?*DICounterItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ICounters,
             index: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4145,7 +4145,7 @@ pub const ILogFileItem = extern union {
         get_Path: *const fn(
             self: *const ILogFileItem,
             pstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4174,26 +4174,26 @@ pub const ILogFiles = extern union {
         get_Count: *const fn(
             self: *const ILogFiles,
             pLong: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ILogFiles,
             ppIunk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ILogFiles,
             index: VARIANT,
             ppI: ?*?*DILogFileItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ILogFiles,
             pathname: ?BSTR,
             ppI: ?*?*DILogFileItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ILogFiles,
             index: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4224,366 +4224,366 @@ pub const ISystemMonitor = extern union {
         get_Appearance: *const fn(
             self: *const ISystemMonitor,
             iAppearance: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Appearance: *const fn(
             self: *const ISystemMonitor,
             iAppearance: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackColor: *const fn(
             self: *const ISystemMonitor,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BackColor: *const fn(
             self: *const ISystemMonitor,
             Color: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BorderStyle: *const fn(
             self: *const ISystemMonitor,
             iBorderStyle: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BorderStyle: *const fn(
             self: *const ISystemMonitor,
             iBorderStyle: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ForeColor: *const fn(
             self: *const ISystemMonitor,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ForeColor: *const fn(
             self: *const ISystemMonitor,
             Color: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Font: *const fn(
             self: *const ISystemMonitor,
             ppFont: ?*?*IFontDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Font: *const fn(
             self: *const ISystemMonitor,
             pFont: ?*IFontDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Counters: *const fn(
             self: *const ISystemMonitor,
             ppICounters: ?*?*ICounters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowVerticalGrid: *const fn(
             self: *const ISystemMonitor,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowVerticalGrid: *const fn(
             self: *const ISystemMonitor,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowHorizontalGrid: *const fn(
             self: *const ISystemMonitor,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowHorizontalGrid: *const fn(
             self: *const ISystemMonitor,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowLegend: *const fn(
             self: *const ISystemMonitor,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowLegend: *const fn(
             self: *const ISystemMonitor,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowScaleLabels: *const fn(
             self: *const ISystemMonitor,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowScaleLabels: *const fn(
             self: *const ISystemMonitor,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowValueBar: *const fn(
             self: *const ISystemMonitor,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowValueBar: *const fn(
             self: *const ISystemMonitor,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaximumScale: *const fn(
             self: *const ISystemMonitor,
             iValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaximumScale: *const fn(
             self: *const ISystemMonitor,
             piValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MinimumScale: *const fn(
             self: *const ISystemMonitor,
             iValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinimumScale: *const fn(
             self: *const ISystemMonitor,
             piValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UpdateInterval: *const fn(
             self: *const ISystemMonitor,
             fValue: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UpdateInterval: *const fn(
             self: *const ISystemMonitor,
             pfValue: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayType: *const fn(
             self: *const ISystemMonitor,
             eDisplayType: DisplayTypeConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayType: *const fn(
             self: *const ISystemMonitor,
             peDisplayType: ?*DisplayTypeConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ManualUpdate: *const fn(
             self: *const ISystemMonitor,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ManualUpdate: *const fn(
             self: *const ISystemMonitor,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GraphTitle: *const fn(
             self: *const ISystemMonitor,
             bsTitle: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GraphTitle: *const fn(
             self: *const ISystemMonitor,
             pbsTitle: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_YAxisLabel: *const fn(
             self: *const ISystemMonitor,
             bsTitle: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_YAxisLabel: *const fn(
             self: *const ISystemMonitor,
             pbsTitle: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CollectSample: *const fn(
             self: *const ISystemMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateGraph: *const fn(
             self: *const ISystemMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BrowseCounters: *const fn(
             self: *const ISystemMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayProperties: *const fn(
             self: *const ISystemMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Counter: *const fn(
             self: *const ISystemMonitor,
             iIndex: i32,
             ppICounter: ?*?*ICounterItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddCounter: *const fn(
             self: *const ISystemMonitor,
             bsPath: ?BSTR,
             ppICounter: ?*?*ICounterItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteCounter: *const fn(
             self: *const ISystemMonitor,
             pCtr: ?*ICounterItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackColorCtl: *const fn(
             self: *const ISystemMonitor,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BackColorCtl: *const fn(
             self: *const ISystemMonitor,
             Color: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogFileName: *const fn(
             self: *const ISystemMonitor,
             bsFileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogFileName: *const fn(
             self: *const ISystemMonitor,
             bsFileName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogViewStart: *const fn(
             self: *const ISystemMonitor,
             StartTime: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogViewStart: *const fn(
             self: *const ISystemMonitor,
             StartTime: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogViewStop: *const fn(
             self: *const ISystemMonitor,
             StopTime: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogViewStop: *const fn(
             self: *const ISystemMonitor,
             StopTime: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GridColor: *const fn(
             self: *const ISystemMonitor,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GridColor: *const fn(
             self: *const ISystemMonitor,
             Color: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TimeBarColor: *const fn(
             self: *const ISystemMonitor,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TimeBarColor: *const fn(
             self: *const ISystemMonitor,
             Color: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Highlight: *const fn(
             self: *const ISystemMonitor,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Highlight: *const fn(
             self: *const ISystemMonitor,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowToolbar: *const fn(
             self: *const ISystemMonitor,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowToolbar: *const fn(
             self: *const ISystemMonitor,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Paste: *const fn(
             self: *const ISystemMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Copy: *const fn(
             self: *const ISystemMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ISystemMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReadOnly: *const fn(
             self: *const ISystemMonitor,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReadOnly: *const fn(
             self: *const ISystemMonitor,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReportValueType: *const fn(
             self: *const ISystemMonitor,
             eReportValueType: ReportValueTypeConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportValueType: *const fn(
             self: *const ISystemMonitor,
             peReportValueType: ?*ReportValueTypeConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MonitorDuplicateInstances: *const fn(
             self: *const ISystemMonitor,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MonitorDuplicateInstances: *const fn(
             self: *const ISystemMonitor,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayFilter: *const fn(
             self: *const ISystemMonitor,
             iValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayFilter: *const fn(
             self: *const ISystemMonitor,
             piValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogFiles: *const fn(
             self: *const ISystemMonitor,
             ppILogFiles: ?*?*ILogFiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DataSourceType: *const fn(
             self: *const ISystemMonitor,
             eDataSourceType: DataSourceTypeConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataSourceType: *const fn(
             self: *const ISystemMonitor,
             peDataSourceType: ?*DataSourceTypeConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SqlDsnName: *const fn(
             self: *const ISystemMonitor,
             bsSqlDsnName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SqlDsnName: *const fn(
             self: *const ISystemMonitor,
             bsSqlDsnName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SqlLogSetName: *const fn(
             self: *const ISystemMonitor,
             bsSqlLogSetName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SqlLogSetName: *const fn(
             self: *const ISystemMonitor,
             bsSqlLogSetName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4826,99 +4826,99 @@ pub const ISystemMonitor2 = extern union {
         put_EnableDigitGrouping: *const fn(
             self: *const ISystemMonitor2,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableDigitGrouping: *const fn(
             self: *const ISystemMonitor2,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableToolTips: *const fn(
             self: *const ISystemMonitor2,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableToolTips: *const fn(
             self: *const ISystemMonitor2,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowTimeAxisLabels: *const fn(
             self: *const ISystemMonitor2,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowTimeAxisLabels: *const fn(
             self: *const ISystemMonitor2,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ChartScroll: *const fn(
             self: *const ISystemMonitor2,
             bScroll: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ChartScroll: *const fn(
             self: *const ISystemMonitor2,
             pbScroll: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DataPointCount: *const fn(
             self: *const ISystemMonitor2,
             iNewCount: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataPointCount: *const fn(
             self: *const ISystemMonitor2,
             piDataPointCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScaleToFit: *const fn(
             self: *const ISystemMonitor2,
             bSelectedCountersOnly: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveAs: *const fn(
             self: *const ISystemMonitor2,
             bstrFileName: ?BSTR,
             eSysmonFileType: SysmonFileType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Relog: *const fn(
             self: *const ISystemMonitor2,
             bstrFileName: ?BSTR,
             eSysmonFileType: SysmonFileType,
             iFilter: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearData: *const fn(
             self: *const ISystemMonitor2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogSourceStartTime: *const fn(
             self: *const ISystemMonitor2,
             pDate: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogSourceStopTime: *const fn(
             self: *const ISystemMonitor2,
             pDate: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLogViewRange: *const fn(
             self: *const ISystemMonitor2,
             StartTime: f64,
             StopTime: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLogViewRange: *const fn(
             self: *const ISystemMonitor2,
             StartTime: ?*f64,
             StopTime: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BatchingLock: *const fn(
             self: *const ISystemMonitor2,
             fLock: i16,
             eBatchReason: SysmonBatchReason,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadSettings: *const fn(
             self: *const ISystemMonitor2,
             bstrSettingFileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISystemMonitor: ISystemMonitor,
@@ -4994,463 +4994,463 @@ pub const _ISystemMonitorUnion = extern union {
         get_Appearance: *const fn(
             self: *const _ISystemMonitorUnion,
             iAppearance: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Appearance: *const fn(
             self: *const _ISystemMonitorUnion,
             iAppearance: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackColor: *const fn(
             self: *const _ISystemMonitorUnion,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BackColor: *const fn(
             self: *const _ISystemMonitorUnion,
             Color: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BorderStyle: *const fn(
             self: *const _ISystemMonitorUnion,
             iBorderStyle: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BorderStyle: *const fn(
             self: *const _ISystemMonitorUnion,
             iBorderStyle: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ForeColor: *const fn(
             self: *const _ISystemMonitorUnion,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ForeColor: *const fn(
             self: *const _ISystemMonitorUnion,
             Color: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Font: *const fn(
             self: *const _ISystemMonitorUnion,
             ppFont: ?*?*IFontDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Font: *const fn(
             self: *const _ISystemMonitorUnion,
             pFont: ?*IFontDisp,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Counters: *const fn(
             self: *const _ISystemMonitorUnion,
             ppICounters: ?*?*ICounters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowVerticalGrid: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowVerticalGrid: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowHorizontalGrid: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowHorizontalGrid: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowLegend: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowLegend: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowScaleLabels: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowScaleLabels: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowValueBar: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowValueBar: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaximumScale: *const fn(
             self: *const _ISystemMonitorUnion,
             iValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaximumScale: *const fn(
             self: *const _ISystemMonitorUnion,
             piValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MinimumScale: *const fn(
             self: *const _ISystemMonitorUnion,
             iValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinimumScale: *const fn(
             self: *const _ISystemMonitorUnion,
             piValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UpdateInterval: *const fn(
             self: *const _ISystemMonitorUnion,
             fValue: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UpdateInterval: *const fn(
             self: *const _ISystemMonitorUnion,
             pfValue: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayType: *const fn(
             self: *const _ISystemMonitorUnion,
             eDisplayType: DisplayTypeConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayType: *const fn(
             self: *const _ISystemMonitorUnion,
             peDisplayType: ?*DisplayTypeConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ManualUpdate: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ManualUpdate: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GraphTitle: *const fn(
             self: *const _ISystemMonitorUnion,
             bsTitle: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GraphTitle: *const fn(
             self: *const _ISystemMonitorUnion,
             pbsTitle: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_YAxisLabel: *const fn(
             self: *const _ISystemMonitorUnion,
             bsTitle: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_YAxisLabel: *const fn(
             self: *const _ISystemMonitorUnion,
             pbsTitle: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CollectSample: *const fn(
             self: *const _ISystemMonitorUnion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateGraph: *const fn(
             self: *const _ISystemMonitorUnion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BrowseCounters: *const fn(
             self: *const _ISystemMonitorUnion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayProperties: *const fn(
             self: *const _ISystemMonitorUnion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Counter: *const fn(
             self: *const _ISystemMonitorUnion,
             iIndex: i32,
             ppICounter: ?*?*ICounterItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddCounter: *const fn(
             self: *const _ISystemMonitorUnion,
             bsPath: ?BSTR,
             ppICounter: ?*?*ICounterItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteCounter: *const fn(
             self: *const _ISystemMonitorUnion,
             pCtr: ?*ICounterItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackColorCtl: *const fn(
             self: *const _ISystemMonitorUnion,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BackColorCtl: *const fn(
             self: *const _ISystemMonitorUnion,
             Color: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogFileName: *const fn(
             self: *const _ISystemMonitorUnion,
             bsFileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogFileName: *const fn(
             self: *const _ISystemMonitorUnion,
             bsFileName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogViewStart: *const fn(
             self: *const _ISystemMonitorUnion,
             StartTime: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogViewStart: *const fn(
             self: *const _ISystemMonitorUnion,
             StartTime: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogViewStop: *const fn(
             self: *const _ISystemMonitorUnion,
             StopTime: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogViewStop: *const fn(
             self: *const _ISystemMonitorUnion,
             StopTime: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GridColor: *const fn(
             self: *const _ISystemMonitorUnion,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GridColor: *const fn(
             self: *const _ISystemMonitorUnion,
             Color: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TimeBarColor: *const fn(
             self: *const _ISystemMonitorUnion,
             pColor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TimeBarColor: *const fn(
             self: *const _ISystemMonitorUnion,
             Color: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Highlight: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Highlight: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowToolbar: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowToolbar: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Paste: *const fn(
             self: *const _ISystemMonitorUnion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Copy: *const fn(
             self: *const _ISystemMonitorUnion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const _ISystemMonitorUnion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReadOnly: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReadOnly: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReportValueType: *const fn(
             self: *const _ISystemMonitorUnion,
             eReportValueType: ReportValueTypeConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportValueType: *const fn(
             self: *const _ISystemMonitorUnion,
             peReportValueType: ?*ReportValueTypeConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MonitorDuplicateInstances: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MonitorDuplicateInstances: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayFilter: *const fn(
             self: *const _ISystemMonitorUnion,
             iValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayFilter: *const fn(
             self: *const _ISystemMonitorUnion,
             piValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogFiles: *const fn(
             self: *const _ISystemMonitorUnion,
             ppILogFiles: ?*?*ILogFiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DataSourceType: *const fn(
             self: *const _ISystemMonitorUnion,
             eDataSourceType: DataSourceTypeConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataSourceType: *const fn(
             self: *const _ISystemMonitorUnion,
             peDataSourceType: ?*DataSourceTypeConstants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SqlDsnName: *const fn(
             self: *const _ISystemMonitorUnion,
             bsSqlDsnName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SqlDsnName: *const fn(
             self: *const _ISystemMonitorUnion,
             bsSqlDsnName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SqlLogSetName: *const fn(
             self: *const _ISystemMonitorUnion,
             bsSqlLogSetName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SqlLogSetName: *const fn(
             self: *const _ISystemMonitorUnion,
             bsSqlLogSetName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableDigitGrouping: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableDigitGrouping: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableToolTips: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableToolTips: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowTimeAxisLabels: *const fn(
             self: *const _ISystemMonitorUnion,
             bState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowTimeAxisLabels: *const fn(
             self: *const _ISystemMonitorUnion,
             pbState: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ChartScroll: *const fn(
             self: *const _ISystemMonitorUnion,
             bScroll: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ChartScroll: *const fn(
             self: *const _ISystemMonitorUnion,
             pbScroll: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DataPointCount: *const fn(
             self: *const _ISystemMonitorUnion,
             iNewCount: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataPointCount: *const fn(
             self: *const _ISystemMonitorUnion,
             piDataPointCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScaleToFit: *const fn(
             self: *const _ISystemMonitorUnion,
             bSelectedCountersOnly: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveAs: *const fn(
             self: *const _ISystemMonitorUnion,
             bstrFileName: ?BSTR,
             eSysmonFileType: SysmonFileType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Relog: *const fn(
             self: *const _ISystemMonitorUnion,
             bstrFileName: ?BSTR,
             eSysmonFileType: SysmonFileType,
             iFilter: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearData: *const fn(
             self: *const _ISystemMonitorUnion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogSourceStartTime: *const fn(
             self: *const _ISystemMonitorUnion,
             pDate: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogSourceStopTime: *const fn(
             self: *const _ISystemMonitorUnion,
             pDate: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLogViewRange: *const fn(
             self: *const _ISystemMonitorUnion,
             StartTime: f64,
             StopTime: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLogViewRange: *const fn(
             self: *const _ISystemMonitorUnion,
             StartTime: ?*f64,
             StopTime: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BatchingLock: *const fn(
             self: *const _ISystemMonitorUnion,
             fLock: i16,
             eBatchReason: SysmonBatchReason,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadSettings: *const fn(
             self: *const _ISystemMonitorUnion,
             bstrSettingFileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5774,22 +5774,22 @@ pub const ISystemMonitorEvents = extern union {
         OnCounterSelected: *const fn(
             self: *const ISystemMonitorEvents,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnCounterAdded: *const fn(
             self: *const ISystemMonitorEvents,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnCounterDeleted: *const fn(
             self: *const ISystemMonitorEvents,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnSampleCollected: *const fn(
             self: *const ISystemMonitorEvents,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OnDblClick: *const fn(
             self: *const ISystemMonitorEvents,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5890,101 +5890,101 @@ pub const PERF_COUNTER_DEFINITION = switch(@import("../zig.zig").arch) {
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn QueryPerformanceCounter(
     lpPerformanceCount: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn QueryPerformanceFrequency(
     lpFrequency: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "loadperf" fn InstallPerfDllW(
     szComputerName: ?[*:0]const u16,
     lpIniFile: ?[*:0]const u16,
     dwFlags: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "loadperf" fn InstallPerfDllA(
     szComputerName: ?[*:0]const u8,
     lpIniFile: ?[*:0]const u8,
     dwFlags: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "loadperf" fn LoadPerfCounterTextStringsA(
     lpCommandLine: ?PSTR,
     bQuietModeArg: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "loadperf" fn LoadPerfCounterTextStringsW(
     lpCommandLine: ?PWSTR,
     bQuietModeArg: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "loadperf" fn UnloadPerfCounterTextStringsW(
     lpCommandLine: ?PWSTR,
     bQuietModeArg: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "loadperf" fn UnloadPerfCounterTextStringsA(
     lpCommandLine: ?PSTR,
     bQuietModeArg: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "loadperf" fn UpdatePerfNameFilesA(
     szNewCtrFilePath: ?[*:0]const u8,
     szNewHlpFilePath: ?[*:0]const u8,
     szLanguageID: ?PSTR,
     dwFlags: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "loadperf" fn UpdatePerfNameFilesW(
     szNewCtrFilePath: ?[*:0]const u16,
     szNewHlpFilePath: ?[*:0]const u16,
     szLanguageID: ?PWSTR,
     dwFlags: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "loadperf" fn SetServiceAsTrustedA(
     szReserved: ?[*:0]const u8,
     szServiceName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "loadperf" fn SetServiceAsTrustedW(
     szReserved: ?[*:0]const u16,
     szServiceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "loadperf" fn BackupPerfRegistryToFileW(
     szFileName: ?[*:0]const u16,
     szCommentString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "loadperf" fn RestorePerfRegistryFromFileW(
     szFileName: ?[*:0]const u16,
     szLangId: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfStartProvider(
     ProviderGuid: ?*Guid,
     ControlCallback: ?PERFLIBREQUEST,
     phProvider: ?*PerfProviderHandle,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfStartProviderEx(
     ProviderGuid: ?*Guid,
     ProviderContext: ?*PERF_PROVIDER_CONTEXT,
     Provider: ?*PerfProviderHandle,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfStopProvider(
     ProviderHandle: PerfProviderHandle,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfSetCounterSetInfo(
@@ -5992,7 +5992,7 @@ pub extern "advapi32" fn PerfSetCounterSetInfo(
     // TODO: what to do with BytesParamIndex 2?
     Template: ?*PERF_COUNTERSET_INFO,
     TemplateSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfCreateInstance(
@@ -6000,13 +6000,13 @@ pub extern "advapi32" fn PerfCreateInstance(
     CounterSetGuid: ?*const Guid,
     Name: ?[*:0]const u16,
     Id: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*PERF_COUNTERSET_INSTANCE;
+) callconv(.winapi) ?*PERF_COUNTERSET_INSTANCE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfDeleteInstance(
     Provider: PerfProviderHandle,
     InstanceBlock: ?*PERF_COUNTERSET_INSTANCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfQueryInstance(
@@ -6014,7 +6014,7 @@ pub extern "advapi32" fn PerfQueryInstance(
     CounterSetGuid: ?*const Guid,
     Name: ?[*:0]const u16,
     Id: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*PERF_COUNTERSET_INSTANCE;
+) callconv(.winapi) ?*PERF_COUNTERSET_INSTANCE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfSetCounterRefValue(
@@ -6022,7 +6022,7 @@ pub extern "advapi32" fn PerfSetCounterRefValue(
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
     Address: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfSetULongCounterValue(
@@ -6030,7 +6030,7 @@ pub extern "advapi32" fn PerfSetULongCounterValue(
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
     Value: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfSetULongLongCounterValue(
@@ -6038,7 +6038,7 @@ pub extern "advapi32" fn PerfSetULongLongCounterValue(
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
     Value: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfIncrementULongCounterValue(
@@ -6046,7 +6046,7 @@ pub extern "advapi32" fn PerfIncrementULongCounterValue(
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
     Value: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfIncrementULongLongCounterValue(
@@ -6054,7 +6054,7 @@ pub extern "advapi32" fn PerfIncrementULongLongCounterValue(
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
     Value: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfDecrementULongCounterValue(
@@ -6062,7 +6062,7 @@ pub extern "advapi32" fn PerfDecrementULongCounterValue(
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
     Value: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfDecrementULongLongCounterValue(
@@ -6070,7 +6070,7 @@ pub extern "advapi32" fn PerfDecrementULongLongCounterValue(
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
     Value: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfEnumerateCounterSet(
@@ -6078,7 +6078,7 @@ pub extern "advapi32" fn PerfEnumerateCounterSet(
     pCounterSetIds: ?[*]Guid,
     cCounterSetIds: u32,
     pcCounterSetIdsActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfEnumerateCounterSetInstances(
@@ -6088,7 +6088,7 @@ pub extern "advapi32" fn PerfEnumerateCounterSetInstances(
     pInstances: ?*PERF_INSTANCE_HEADER,
     cbInstances: u32,
     pcbInstancesActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfQueryCounterSetRegistrationInfo(
@@ -6100,18 +6100,18 @@ pub extern "advapi32" fn PerfQueryCounterSetRegistrationInfo(
     pbRegInfo: ?*u8,
     cbRegInfo: u32,
     pcbRegInfoActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfOpenQueryHandle(
     szMachine: ?[*:0]const u16,
     phQuery: ?*PerfQueryHandle,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfCloseQueryHandle(
     hQuery: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfQueryCounterInfo(
@@ -6120,7 +6120,7 @@ pub extern "advapi32" fn PerfQueryCounterInfo(
     pCounters: ?*PERF_COUNTER_IDENTIFIER,
     cbCounters: u32,
     pcbCountersActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfQueryCounterData(
@@ -6129,7 +6129,7 @@ pub extern "advapi32" fn PerfQueryCounterData(
     pCounterBlock: ?*PERF_DATA_HEADER,
     cbCounterBlock: u32,
     pcbCounterBlockActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfAddCounters(
@@ -6137,7 +6137,7 @@ pub extern "advapi32" fn PerfAddCounters(
     // TODO: what to do with BytesParamIndex 2?
     pCounters: ?*PERF_COUNTER_IDENTIFIER,
     cbCounters: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfDeleteCounters(
@@ -6145,26 +6145,26 @@ pub extern "advapi32" fn PerfDeleteCounters(
     // TODO: what to do with BytesParamIndex 2?
     pCounters: ?*PERF_COUNTER_IDENTIFIER,
     cbCounters: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDllVersion(
     lpdwVersion: ?*PDH_DLL_VERSION,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhOpenQueryW(
     szDataSource: ?[*:0]const u16,
     dwUserData: usize,
     phQuery: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhOpenQueryA(
     szDataSource: ?[*:0]const u8,
     dwUserData: usize,
     phQuery: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhAddCounterW(
@@ -6172,7 +6172,7 @@ pub extern "pdh" fn PdhAddCounterW(
     szFullCounterPath: ?[*:0]const u16,
     dwUserData: usize,
     phCounter: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhAddCounterA(
@@ -6180,7 +6180,7 @@ pub extern "pdh" fn PdhAddCounterA(
     szFullCounterPath: ?[*:0]const u8,
     dwUserData: usize,
     phCounter: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "pdh" fn PdhAddEnglishCounterW(
@@ -6188,7 +6188,7 @@ pub extern "pdh" fn PdhAddEnglishCounterW(
     szFullCounterPath: ?[*:0]const u16,
     dwUserData: usize,
     phCounter: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "pdh" fn PdhAddEnglishCounterA(
@@ -6196,40 +6196,40 @@ pub extern "pdh" fn PdhAddEnglishCounterA(
     szFullCounterPath: ?[*:0]const u8,
     dwUserData: usize,
     phCounter: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "pdh" fn PdhCollectQueryDataWithTime(
     hQuery: isize,
     pllTimeStamp: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "pdh" fn PdhValidatePathExW(
     hDataSource: isize,
     szFullPathBuffer: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "pdh" fn PdhValidatePathExA(
     hDataSource: isize,
     szFullPathBuffer: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhRemoveCounter(
     hCounter: isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhCollectQueryData(
     hQuery: isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhCloseQuery(
     hQuery: isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetFormattedCounterValue(
@@ -6237,7 +6237,7 @@ pub extern "pdh" fn PdhGetFormattedCounterValue(
     dwFormat: PDH_FMT,
     lpdwType: ?*u32,
     pValue: ?*PDH_FMT_COUNTERVALUE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetFormattedCounterArrayA(
@@ -6246,7 +6246,7 @@ pub extern "pdh" fn PdhGetFormattedCounterArrayA(
     lpdwBufferSize: ?*u32,
     lpdwItemCount: ?*u32,
     ItemBuffer: ?*PDH_FMT_COUNTERVALUE_ITEM_A,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetFormattedCounterArrayW(
@@ -6255,14 +6255,14 @@ pub extern "pdh" fn PdhGetFormattedCounterArrayW(
     lpdwBufferSize: ?*u32,
     lpdwItemCount: ?*u32,
     ItemBuffer: ?*PDH_FMT_COUNTERVALUE_ITEM_W,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetRawCounterValue(
     hCounter: isize,
     lpdwType: ?*u32,
     pValue: ?*PDH_RAW_COUNTER,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetRawCounterArrayA(
@@ -6270,7 +6270,7 @@ pub extern "pdh" fn PdhGetRawCounterArrayA(
     lpdwBufferSize: ?*u32,
     lpdwItemCount: ?*u32,
     ItemBuffer: ?*PDH_RAW_COUNTER_ITEM_A,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetRawCounterArrayW(
@@ -6278,7 +6278,7 @@ pub extern "pdh" fn PdhGetRawCounterArrayW(
     lpdwBufferSize: ?*u32,
     lpdwItemCount: ?*u32,
     ItemBuffer: ?*PDH_RAW_COUNTER_ITEM_W,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhCalculateCounterFromRawValue(
@@ -6287,7 +6287,7 @@ pub extern "pdh" fn PdhCalculateCounterFromRawValue(
     rawValue1: ?*PDH_RAW_COUNTER,
     rawValue2: ?*PDH_RAW_COUNTER,
     fmtValue: ?*PDH_FMT_COUNTERVALUE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhComputeCounterStatistics(
@@ -6297,7 +6297,7 @@ pub extern "pdh" fn PdhComputeCounterStatistics(
     dwNumEntries: u32,
     lpRawValueArray: ?*PDH_RAW_COUNTER,
     data: ?*PDH_STATISTICS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetCounterInfoW(
@@ -6305,7 +6305,7 @@ pub extern "pdh" fn PdhGetCounterInfoW(
     bRetrieveExplainText: BOOLEAN,
     pdwBufferSize: ?*u32,
     lpBuffer: ?*PDH_COUNTER_INFO_W,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetCounterInfoA(
@@ -6313,37 +6313,37 @@ pub extern "pdh" fn PdhGetCounterInfoA(
     bRetrieveExplainText: BOOLEAN,
     pdwBufferSize: ?*u32,
     lpBuffer: ?*PDH_COUNTER_INFO_A,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhSetCounterScaleFactor(
     hCounter: isize,
     lFactor: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhConnectMachineW(
     szMachineName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhConnectMachineA(
     szMachineName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumMachinesW(
     szDataSource: ?[*:0]const u16,
     mszMachineList: ?[*]u16,
     pcchBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumMachinesA(
     szDataSource: ?[*:0]const u8,
     mszMachineList: ?[*]u8,
     pcchBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumObjectsW(
@@ -6353,7 +6353,7 @@ pub extern "pdh" fn PdhEnumObjectsW(
     pcchBufferSize: ?*u32,
     dwDetailLevel: PERF_DETAIL,
     bRefresh: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumObjectsA(
@@ -6363,7 +6363,7 @@ pub extern "pdh" fn PdhEnumObjectsA(
     pcchBufferSize: ?*u32,
     dwDetailLevel: PERF_DETAIL,
     bRefresh: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumObjectItemsW(
@@ -6376,7 +6376,7 @@ pub extern "pdh" fn PdhEnumObjectItemsW(
     pcchInstanceListLength: ?*u32,
     dwDetailLevel: PERF_DETAIL,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumObjectItemsA(
@@ -6389,7 +6389,7 @@ pub extern "pdh" fn PdhEnumObjectItemsA(
     pcchInstanceListLength: ?*u32,
     dwDetailLevel: PERF_DETAIL,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhMakeCounterPathW(
@@ -6397,7 +6397,7 @@ pub extern "pdh" fn PdhMakeCounterPathW(
     szFullPathBuffer: ?PWSTR,
     pcchBufferSize: ?*u32,
     dwFlags: PDH_PATH_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhMakeCounterPathA(
@@ -6405,7 +6405,7 @@ pub extern "pdh" fn PdhMakeCounterPathA(
     szFullPathBuffer: ?PSTR,
     pcchBufferSize: ?*u32,
     dwFlags: PDH_PATH_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhParseCounterPathW(
@@ -6413,7 +6413,7 @@ pub extern "pdh" fn PdhParseCounterPathW(
     pCounterPathElements: ?*PDH_COUNTER_PATH_ELEMENTS_W,
     pdwBufferSize: ?*u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhParseCounterPathA(
@@ -6421,7 +6421,7 @@ pub extern "pdh" fn PdhParseCounterPathA(
     pCounterPathElements: ?*PDH_COUNTER_PATH_ELEMENTS_A,
     pdwBufferSize: ?*u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhParseInstanceNameW(
@@ -6431,7 +6431,7 @@ pub extern "pdh" fn PdhParseInstanceNameW(
     szParentName: ?PWSTR,
     pcchParentNameLength: ?*u32,
     lpIndex: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhParseInstanceNameA(
@@ -6441,17 +6441,17 @@ pub extern "pdh" fn PdhParseInstanceNameA(
     szParentName: ?PSTR,
     pcchParentNameLength: ?*u32,
     lpIndex: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhValidatePathW(
     szFullPathBuffer: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhValidatePathA(
     szFullPathBuffer: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDefaultPerfObjectW(
@@ -6459,7 +6459,7 @@ pub extern "pdh" fn PdhGetDefaultPerfObjectW(
     szMachineName: ?[*:0]const u16,
     szDefaultObjectName: ?PWSTR,
     pcchBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDefaultPerfObjectA(
@@ -6467,7 +6467,7 @@ pub extern "pdh" fn PdhGetDefaultPerfObjectA(
     szMachineName: ?[*:0]const u8,
     szDefaultObjectName: ?PSTR,
     pcchBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDefaultPerfCounterW(
@@ -6476,7 +6476,7 @@ pub extern "pdh" fn PdhGetDefaultPerfCounterW(
     szObjectName: ?[*:0]const u16,
     szDefaultCounterName: ?PWSTR,
     pcchBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDefaultPerfCounterA(
@@ -6485,31 +6485,31 @@ pub extern "pdh" fn PdhGetDefaultPerfCounterA(
     szObjectName: ?[*:0]const u8,
     szDefaultCounterName: ?PSTR,
     pcchBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhBrowseCountersW(
     pBrowseDlgData: ?*PDH_BROWSE_DLG_CONFIG_W,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhBrowseCountersA(
     pBrowseDlgData: ?*PDH_BROWSE_DLG_CONFIG_A,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhExpandCounterPathW(
     szWildCardPath: ?[*:0]const u16,
     mszExpandedPathList: ?[*]u16,
     pcchPathListLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhExpandCounterPathA(
     szWildCardPath: ?[*:0]const u8,
     mszExpandedPathList: ?[*]u8,
     pcchPathListLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhLookupPerfNameByIndexW(
@@ -6517,7 +6517,7 @@ pub extern "pdh" fn PdhLookupPerfNameByIndexW(
     dwNameIndex: u32,
     szNameBuffer: ?PWSTR,
     pcchNameBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhLookupPerfNameByIndexA(
@@ -6525,21 +6525,21 @@ pub extern "pdh" fn PdhLookupPerfNameByIndexA(
     dwNameIndex: u32,
     szNameBuffer: ?PSTR,
     pcchNameBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhLookupPerfIndexByNameW(
     szMachineName: ?[*:0]const u16,
     szNameBuffer: ?[*:0]const u16,
     pdwIndex: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhLookupPerfIndexByNameA(
     szMachineName: ?[*:0]const u8,
     szNameBuffer: ?[*:0]const u8,
     pdwIndex: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhExpandWildCardPathA(
@@ -6548,7 +6548,7 @@ pub extern "pdh" fn PdhExpandWildCardPathA(
     mszExpandedPathList: ?[*]u8,
     pcchPathListLength: ?*u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhExpandWildCardPathW(
@@ -6557,7 +6557,7 @@ pub extern "pdh" fn PdhExpandWildCardPathW(
     mszExpandedPathList: ?[*]u16,
     pcchPathListLength: ?*u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhOpenLogW(
@@ -6568,7 +6568,7 @@ pub extern "pdh" fn PdhOpenLogW(
     dwMaxSize: u32,
     szUserCaption: ?[*:0]const u16,
     phLog: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhOpenLogA(
@@ -6579,36 +6579,36 @@ pub extern "pdh" fn PdhOpenLogA(
     dwMaxSize: u32,
     szUserCaption: ?[*:0]const u8,
     phLog: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhUpdateLogW(
     hLog: isize,
     szUserString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhUpdateLogA(
     hLog: isize,
     szUserString: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhUpdateLogFileCatalog(
     hLog: isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetLogFileSize(
     hLog: isize,
     llSize: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhCloseLog(
     hLog: isize,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhSelectDataSourceW(
@@ -6616,7 +6616,7 @@ pub extern "pdh" fn PdhSelectDataSourceW(
     dwFlags: PDH_SELECT_DATA_SOURCE_FLAGS,
     szDataSource: ?PWSTR,
     pcchBufferLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhSelectDataSourceA(
@@ -6624,18 +6624,18 @@ pub extern "pdh" fn PdhSelectDataSourceA(
     dwFlags: PDH_SELECT_DATA_SOURCE_FLAGS,
     szDataSource: ?PSTR,
     pcchBufferLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhIsRealTimeQuery(
     hQuery: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhSetQueryTimeRange(
     hQuery: isize,
     pInfo: ?*PDH_TIME_INFO,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDataSourceTimeRangeW(
@@ -6643,7 +6643,7 @@ pub extern "pdh" fn PdhGetDataSourceTimeRangeW(
     pdwNumEntries: ?*u32,
     pInfo: ?*PDH_TIME_INFO,
     pdwBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDataSourceTimeRangeA(
@@ -6651,14 +6651,14 @@ pub extern "pdh" fn PdhGetDataSourceTimeRangeA(
     pdwNumEntries: ?*u32,
     pInfo: ?*PDH_TIME_INFO,
     pdwBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhCollectQueryDataEx(
     hQuery: isize,
     dwIntervalTime: u32,
     hNewDataEvent: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhFormatFromRawValue(
@@ -6668,13 +6668,13 @@ pub extern "pdh" fn PdhFormatFromRawValue(
     pRawValue1: ?*PDH_RAW_COUNTER,
     pRawValue2: ?*PDH_RAW_COUNTER,
     pFmtValue: ?*PDH_FMT_COUNTERVALUE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetCounterTimeBase(
     hCounter: isize,
     pTimeBase: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhReadRawLogRecord(
@@ -6682,45 +6682,45 @@ pub extern "pdh" fn PdhReadRawLogRecord(
     ftRecord: FILETIME,
     pRawLogRecord: ?*PDH_RAW_LOG_RECORD,
     pdwBufferLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhSetDefaultRealTimeDataSource(
     dwDataSourceId: REAL_TIME_DATA_SOURCE_ID_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhBindInputDataSourceW(
     phDataSource: ?*isize,
     LogFileNameList: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhBindInputDataSourceA(
     phDataSource: ?*isize,
     LogFileNameList: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhOpenQueryH(
     hDataSource: isize,
     dwUserData: usize,
     phQuery: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumMachinesHW(
     hDataSource: isize,
     mszMachineList: ?[*]u16,
     pcchBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumMachinesHA(
     hDataSource: isize,
     mszMachineList: ?[*]u8,
     pcchBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumObjectsHW(
@@ -6730,7 +6730,7 @@ pub extern "pdh" fn PdhEnumObjectsHW(
     pcchBufferSize: ?*u32,
     dwDetailLevel: PERF_DETAIL,
     bRefresh: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumObjectsHA(
@@ -6740,7 +6740,7 @@ pub extern "pdh" fn PdhEnumObjectsHA(
     pcchBufferSize: ?*u32,
     dwDetailLevel: PERF_DETAIL,
     bRefresh: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumObjectItemsHW(
@@ -6753,7 +6753,7 @@ pub extern "pdh" fn PdhEnumObjectItemsHW(
     pcchInstanceListLength: ?*u32,
     dwDetailLevel: PERF_DETAIL,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumObjectItemsHA(
@@ -6766,7 +6766,7 @@ pub extern "pdh" fn PdhEnumObjectItemsHA(
     pcchInstanceListLength: ?*u32,
     dwDetailLevel: PERF_DETAIL,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhExpandWildCardPathHW(
@@ -6775,7 +6775,7 @@ pub extern "pdh" fn PdhExpandWildCardPathHW(
     mszExpandedPathList: ?[*]u16,
     pcchPathListLength: ?*u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhExpandWildCardPathHA(
@@ -6784,7 +6784,7 @@ pub extern "pdh" fn PdhExpandWildCardPathHA(
     mszExpandedPathList: ?[*]u8,
     pcchPathListLength: ?*u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDataSourceTimeRangeH(
@@ -6792,7 +6792,7 @@ pub extern "pdh" fn PdhGetDataSourceTimeRangeH(
     pdwNumEntries: ?*u32,
     pInfo: ?*PDH_TIME_INFO,
     pdwBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDefaultPerfObjectHW(
@@ -6800,7 +6800,7 @@ pub extern "pdh" fn PdhGetDefaultPerfObjectHW(
     szMachineName: ?[*:0]const u16,
     szDefaultObjectName: ?PWSTR,
     pcchBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDefaultPerfObjectHA(
@@ -6808,7 +6808,7 @@ pub extern "pdh" fn PdhGetDefaultPerfObjectHA(
     szMachineName: ?[*:0]const u8,
     szDefaultObjectName: ?PSTR,
     pcchBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDefaultPerfCounterHW(
@@ -6817,7 +6817,7 @@ pub extern "pdh" fn PdhGetDefaultPerfCounterHW(
     szObjectName: ?[*:0]const u16,
     szDefaultCounterName: ?PWSTR,
     pcchBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDefaultPerfCounterHA(
@@ -6826,58 +6826,58 @@ pub extern "pdh" fn PdhGetDefaultPerfCounterHA(
     szObjectName: ?[*:0]const u8,
     szDefaultCounterName: ?PSTR,
     pcchBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhBrowseCountersHW(
     pBrowseDlgData: ?*PDH_BROWSE_DLG_CONFIG_HW,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhBrowseCountersHA(
     pBrowseDlgData: ?*PDH_BROWSE_DLG_CONFIG_HA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "pdh" fn PdhVerifySQLDBW(
     szDataSource: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "pdh" fn PdhVerifySQLDBA(
     szDataSource: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "pdh" fn PdhCreateSQLTablesW(
     szDataSource: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "pdh" fn PdhCreateSQLTablesA(
     szDataSource: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumLogSetNamesW(
     szDataSource: ?[*:0]const u16,
     mszDataSetNameList: ?[*]u16,
     pcchBufferLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumLogSetNamesA(
     szDataSource: ?[*:0]const u8,
     mszDataSetNameList: ?[*]u8,
     pcchBufferLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "pdh" fn PdhGetLogSetGUID(
     hLog: isize,
     pGuid: ?*Guid,
     pRunId: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "pdh" fn PdhSetLogSetRunID(
     hLog: isize,
     RunId: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 
 //--------------------------------------------------------------------------------

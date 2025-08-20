@@ -18,13 +18,13 @@ pub const IDisplayDeviceInterop = extern union {
             Access: u32,
             Name: ?HSTRING,
             pHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenSharedHandle: *const fn(
             self: *const IDisplayDeviceInterop,
             NTHandle: ?HANDLE,
             riid: Guid,
             ppvObj: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -44,11 +44,11 @@ pub const IDisplayPathInterop = extern union {
         CreateSourcePresentationHandle: *const fn(
             self: *const IDisplayPathInterop,
             pValue: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceId: *const fn(
             self: *const IDisplayPathInterop,
             pSourceId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

@@ -123,7 +123,7 @@ pub const IUISimplePropertySet = extern union {
             self: *const IUISimplePropertySet,
             key: ?*const PROPERTYKEY,
             value: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -141,15 +141,15 @@ pub const IUIRibbon = extern union {
         GetHeight: *const fn(
             self: *const IUIRibbon,
             cy: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadSettingsFromStream: *const fn(
             self: *const IUIRibbon,
             pStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveSettingsToStream: *const fn(
             self: *const IUIRibbon,
             pStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -185,46 +185,46 @@ pub const IUIFramework = extern union {
             self: *const IUIFramework,
             frameWnd: ?HWND,
             application: ?*IUIApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Destroy: *const fn(
             self: *const IUIFramework,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadUI: *const fn(
             self: *const IUIFramework,
             instance: ?HINSTANCE,
             resourceName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetView: *const fn(
             self: *const IUIFramework,
             viewId: u32,
             riid: ?*const Guid,
             ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUICommandProperty: *const fn(
             self: *const IUIFramework,
             commandId: u32,
             key: ?*const PROPERTYKEY,
             value: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUICommandProperty: *const fn(
             self: *const IUIFramework,
             commandId: u32,
             key: ?*const PROPERTYKEY,
             value: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InvalidateUICommand: *const fn(
             self: *const IUIFramework,
             commandId: u32,
             flags: UI_INVALIDATIONS,
             key: ?*const PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FlushPendingInvalidations: *const fn(
             self: *const IUIFramework,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetModes: *const fn(
             self: *const IUIFramework,
             iModes: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -283,7 +283,7 @@ pub const IUIEventLogger = extern union {
         OnUIEvent: *const fn(
             self: *const IUIEventLogger,
             pEventParams: ?*UI_EVENTPARAMS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -301,7 +301,7 @@ pub const IUIEventingManager = extern union {
         SetEventLogger: *const fn(
             self: *const IUIEventingManager,
             eventLogger: ?*IUIEventLogger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -320,7 +320,7 @@ pub const IUIContextualUI = extern union {
             self: *const IUIContextualUI,
             x: i32,
             y: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -338,33 +338,33 @@ pub const IUICollection = extern union {
         GetCount: *const fn(
             self: *const IUICollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItem: *const fn(
             self: *const IUICollection,
             index: u32,
             item: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IUICollection,
             item: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Insert: *const fn(
             self: *const IUICollection,
             index: u32,
             item: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IUICollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Replace: *const fn(
             self: *const IUICollection,
             indexReplaced: u32,
             itemReplaceWith: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IUICollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -415,7 +415,7 @@ pub const IUICollectionChangedEvent = extern union {
             oldItem: ?*IUnknown,
             newIndex: u32,
             newItem: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -446,14 +446,14 @@ pub const IUICommandHandler = extern union {
             key: ?*const PROPERTYKEY,
             currentValue: ?*const PROPVARIANT,
             commandExecutionProperties: ?*IUISimplePropertySet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateProperty: *const fn(
             self: *const IUICommandHandler,
             commandId: u32,
             key: ?*const PROPERTYKEY,
             currentValue: ?*const PROPVARIANT,
             newValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -523,19 +523,19 @@ pub const IUIApplication = extern union {
             view: ?*IUnknown,
             verb: UI_VIEWVERB,
             uReasonCode: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCreateUICommand: *const fn(
             self: *const IUIApplication,
             commandId: u32,
             typeID: UI_COMMANDTYPE,
             commandHandler: ?*?*IUICommandHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDestroyUICommand: *const fn(
             self: *const IUIApplication,
             commandId: u32,
             typeID: UI_COMMANDTYPE,
             commandHandler: ?*IUICommandHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -559,7 +559,7 @@ pub const IUIImage = extern union {
         GetBitmap: *const fn(
             self: *const IUIImage,
             bitmap: ?*?HBITMAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -586,7 +586,7 @@ pub const IUIImageFromBitmap = extern union {
             bitmap: ?HBITMAP,
             options: UI_OWNERSHIP,
             image: ?*?*IUIImage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

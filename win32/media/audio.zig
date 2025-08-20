@@ -482,7 +482,7 @@ pub const LPWAVECALLBACK = *const fn(
     dwUser: usize,
     dw1: usize,
     dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const LPMIDICALLBACK = *const fn(
     hdrvr: ?HDRVR,
@@ -490,7 +490,7 @@ pub const LPMIDICALLBACK = *const fn(
     dwUser: usize,
     dw1: usize,
     dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const MIDI_WAVE_OPEN_TYPE = packed struct(u32) {
     WAVE_FORMAT_QUERY: u1 = 0,
@@ -713,19 +713,19 @@ pub const IMessageFilter = extern union {
             htaskCaller: ?HTASK,
             dwTickCount: u32,
             lpInterfaceInfo: ?*INTERFACEINFO,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         RetryRejectedCall: *const fn(
             self: *const IMessageFilter,
             htaskCallee: ?HTASK,
             dwTickCount: u32,
             dwRejectType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         MessagePending: *const fn(
             self: *const IMessageFilter,
             htaskCallee: ?HTASK,
             dwTickCount: u32,
             dwPendingType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1388,52 +1388,52 @@ pub const IAudioClient = extern union {
             hnsPeriodicity: i64,
             pFormat: ?*const WAVEFORMATEX,
             AudioSessionGuid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferSize: *const fn(
             self: *const IAudioClient,
             pNumBufferFrames: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStreamLatency: *const fn(
             self: *const IAudioClient,
             phnsLatency: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentPadding: *const fn(
             self: *const IAudioClient,
             pNumPaddingFrames: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsFormatSupported: *const fn(
             self: *const IAudioClient,
             ShareMode: AUDCLNT_SHAREMODE,
             pFormat: ?*const WAVEFORMATEX,
             ppClosestMatch: ?*?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMixFormat: *const fn(
             self: *const IAudioClient,
             ppDeviceFormat: ?*?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDevicePeriod: *const fn(
             self: *const IAudioClient,
             phnsDefaultDevicePeriod: ?*i64,
             phnsMinimumDevicePeriod: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Start: *const fn(
             self: *const IAudioClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IAudioClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IAudioClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventHandle: *const fn(
             self: *const IAudioClient,
             eventHandle: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetService: *const fn(
             self: *const IAudioClient,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1485,18 +1485,18 @@ pub const IAudioClient2 = extern union {
             self: *const IAudioClient2,
             Category: AUDIO_STREAM_CATEGORY,
             pbOffloadCapable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClientProperties: *const fn(
             self: *const IAudioClient2,
             pProperties: ?*const AudioClientProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferSizeLimits: *const fn(
             self: *const IAudioClient2,
             pFormat: ?*const WAVEFORMATEX,
             bEventDriven: BOOL,
             phnsMinBufferDuration: ?*i64,
             phnsMaxBufferDuration: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAudioClient: IAudioClient,
@@ -1529,19 +1529,19 @@ pub const IAudioClient3 = extern union {
             pFundamentalPeriodInFrames: ?*u32,
             pMinPeriodInFrames: ?*u32,
             pMaxPeriodInFrames: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentSharedModeEnginePeriod: *const fn(
             self: *const IAudioClient3,
             ppFormat: ?*?*WAVEFORMATEX,
             pCurrentPeriodInFrames: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeSharedAudioStream: *const fn(
             self: *const IAudioClient3,
             StreamFlags: u32,
             PeriodInFrames: u32,
             pFormat: ?*const WAVEFORMATEX,
             AudioSessionGuid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAudioClient2: IAudioClient2,
@@ -1568,12 +1568,12 @@ pub const IAudioRenderClient = extern union {
             self: *const IAudioRenderClient,
             NumFramesRequested: u32,
             ppData: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseBuffer: *const fn(
             self: *const IAudioRenderClient,
             NumFramesWritten: u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1598,15 +1598,15 @@ pub const IAudioCaptureClient = extern union {
             pdwFlags: ?*u32,
             pu64DevicePosition: ?*u64,
             pu64QPCPosition: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseBuffer: *const fn(
             self: *const IAudioCaptureClient,
             NumFramesRead: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextPacketSize: *const fn(
             self: *const IAudioCaptureClient,
             pNumFramesInNextPacket: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1630,16 +1630,16 @@ pub const IAudioClock = extern union {
         GetFrequency: *const fn(
             self: *const IAudioClock,
             pu64Frequency: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPosition: *const fn(
             self: *const IAudioClock,
             pu64Position: ?*u64,
             pu64QPCPosition: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCharacteristics: *const fn(
             self: *const IAudioClock,
             pdwCharacteristics: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1664,7 +1664,7 @@ pub const IAudioClock2 = extern union {
             self: *const IAudioClock2,
             DevicePosition: ?*u64,
             QPCPosition: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1682,7 +1682,7 @@ pub const IAudioClockAdjustment = extern union {
         SetSampleRate: *const fn(
             self: *const IAudioClockAdjustment,
             flSampleRate: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1701,20 +1701,20 @@ pub const ISimpleAudioVolume = extern union {
             self: *const ISimpleAudioVolume,
             fLevel: f32,
             EventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMasterVolume: *const fn(
             self: *const ISimpleAudioVolume,
             pfLevel: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMute: *const fn(
             self: *const ISimpleAudioVolume,
             bMute: BOOL,
             EventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMute: *const fn(
             self: *const ISimpleAudioVolume,
             pbMute: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1777,7 +1777,7 @@ pub const IAudioClientDuckingControl = extern union {
         SetDuckingOptionsForCurrentStream: *const fn(
             self: *const IAudioClientDuckingControl,
             options: AUDIO_DUCKING_OPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1806,7 +1806,7 @@ pub const IAudioEffectsChangedNotificationClient = extern union {
         base: IUnknown.VTable,
         OnAudioEffectsChanged: *const fn(
             self: *const IAudioEffectsChangedNotificationClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1823,21 +1823,21 @@ pub const IAudioEffectsManager = extern union {
         RegisterAudioEffectsChangedNotificationCallback: *const fn(
             self: *const IAudioEffectsManager,
             client: ?*IAudioEffectsChangedNotificationClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterAudioEffectsChangedNotificationCallback: *const fn(
             self: *const IAudioEffectsManager,
             client: ?*IAudioEffectsChangedNotificationClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAudioEffects: *const fn(
             self: *const IAudioEffectsManager,
             effects: ?*?*AUDIO_EFFECT,
             numEffects: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAudioEffectState: *const fn(
             self: *const IAudioEffectsManager,
             effectId: Guid,
             state: AUDIO_EFFECT_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1864,27 +1864,27 @@ pub const IAudioStreamVolume = extern union {
         GetChannelCount: *const fn(
             self: *const IAudioStreamVolume,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetChannelVolume: *const fn(
             self: *const IAudioStreamVolume,
             dwIndex: u32,
             fLevel: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelVolume: *const fn(
             self: *const IAudioStreamVolume,
             dwIndex: u32,
             pfLevel: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllVolumes: *const fn(
             self: *const IAudioStreamVolume,
             dwCount: u32,
             pfVolumes: [*]const f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllVolumes: *const fn(
             self: *const IAudioStreamVolume,
             dwCount: u32,
             pfVolumes: [*]f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1942,22 +1942,22 @@ pub const IAudioAmbisonicsControl = extern union {
             self: *const IAudioAmbisonicsControl,
             pAmbisonicsParams: [*]const AMBISONICS_PARAMS,
             cbAmbisonicsParams: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetHeadTracking: *const fn(
             self: *const IAudioAmbisonicsControl,
             bEnableHeadTracking: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHeadTracking: *const fn(
             self: *const IAudioAmbisonicsControl,
             pbEnableHeadTracking: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRotation: *const fn(
             self: *const IAudioAmbisonicsControl,
             X: f32,
             Y: f32,
             Z: f32,
             W: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1984,29 +1984,29 @@ pub const IChannelAudioVolume = extern union {
         GetChannelCount: *const fn(
             self: *const IChannelAudioVolume,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetChannelVolume: *const fn(
             self: *const IChannelAudioVolume,
             dwIndex: u32,
             fLevel: f32,
             EventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelVolume: *const fn(
             self: *const IChannelAudioVolume,
             dwIndex: u32,
             pfLevel: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllVolumes: *const fn(
             self: *const IChannelAudioVolume,
             dwCount: u32,
             pfVolumes: [*]const f32,
             EventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllVolumes: *const fn(
             self: *const IChannelAudioVolume,
             dwCount: u32,
             pfVolumes: [*]f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2147,12 +2147,12 @@ pub const IAudioFormatEnumerator = extern union {
         GetCount: *const fn(
             self: *const IAudioFormatEnumerator,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const IAudioFormatEnumerator,
             index: u32,
             format: ?*?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2174,19 +2174,19 @@ pub const ISpatialAudioObjectBase = extern union {
             self: *const ISpatialAudioObjectBase,
             buffer: ?*?*u8,
             bufferLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEndOfStream: *const fn(
             self: *const ISpatialAudioObjectBase,
             frameCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsActive: *const fn(
             self: *const ISpatialAudioObjectBase,
             isActive: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAudioObjectType: *const fn(
             self: *const ISpatialAudioObjectBase,
             audioObjectType: ?*AudioObjectType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2215,11 +2215,11 @@ pub const ISpatialAudioObject = extern union {
             x: f32,
             y: f32,
             z: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVolume: *const fn(
             self: *const ISpatialAudioObject,
             volume: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpatialAudioObjectBase: ISpatialAudioObjectBase,
@@ -2241,29 +2241,29 @@ pub const ISpatialAudioObjectRenderStreamBase = extern union {
         GetAvailableDynamicObjectCount: *const fn(
             self: *const ISpatialAudioObjectRenderStreamBase,
             value: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetService: *const fn(
             self: *const ISpatialAudioObjectRenderStreamBase,
             riid: ?*const Guid,
             service: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Start: *const fn(
             self: *const ISpatialAudioObjectRenderStreamBase,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const ISpatialAudioObjectRenderStreamBase,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ISpatialAudioObjectRenderStreamBase,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginUpdatingAudioObjects: *const fn(
             self: *const ISpatialAudioObjectRenderStreamBase,
             availableDynamicObjectCount: ?*u32,
             frameCountPerBuffer: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndUpdatingAudioObjects: *const fn(
             self: *const ISpatialAudioObjectRenderStreamBase,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2300,7 +2300,7 @@ pub const ISpatialAudioObjectRenderStream = extern union {
             self: *const ISpatialAudioObjectRenderStream,
             type: AudioObjectType,
             audioObject: **ISpatialAudioObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
@@ -2321,7 +2321,7 @@ pub const ISpatialAudioObjectRenderStreamNotify = extern union {
             sender: ?*ISpatialAudioObjectRenderStreamBase,
             hnsComplianceDeadlineTime: i64,
             availableDynamicObjectCountChange: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2342,39 +2342,39 @@ pub const ISpatialAudioClient = extern union {
             x: ?*f32,
             y: ?*f32,
             z: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNativeStaticObjectTypeMask: *const fn(
             self: *const ISpatialAudioClient,
             mask: ?*AudioObjectType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxDynamicObjectCount: *const fn(
             self: *const ISpatialAudioClient,
             value: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSupportedAudioObjectFormatEnumerator: *const fn(
             self: *const ISpatialAudioClient,
             enumerator: **IAudioFormatEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxFrameCount: *const fn(
             self: *const ISpatialAudioClient,
             objectFormat: ?*const WAVEFORMATEX,
             frameCountPerBuffer: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsAudioObjectFormatSupported: *const fn(
             self: *const ISpatialAudioClient,
             objectFormat: ?*const WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSpatialAudioStreamAvailable: *const fn(
             self: *const ISpatialAudioClient,
             streamUuid: ?*const Guid,
             auxiliaryInfo: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ActivateSpatialAudioStream: *const fn(
             self: *const ISpatialAudioClient,
             activationParams: ?*const PROPVARIANT,
             riid: ?*const Guid,
             stream: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2413,14 +2413,14 @@ pub const ISpatialAudioClient2 = extern union {
             self: *const ISpatialAudioClient2,
             category: AUDIO_STREAM_CATEGORY,
             isOffloadCapable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxFrameCountForCategory: *const fn(
             self: *const ISpatialAudioClient2,
             category: AUDIO_STREAM_CATEGORY,
             offloadEnabled: BOOL,
             objectFormat: ?*const WAVEFORMATEX,
             frameCountPerBuffer: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpatialAudioClient: ISpatialAudioClient,
@@ -2541,27 +2541,27 @@ pub const ISpatialAudioObjectForHrtf = extern union {
             x: f32,
             y: f32,
             z: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGain: *const fn(
             self: *const ISpatialAudioObjectForHrtf,
             gain: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOrientation: *const fn(
             self: *const ISpatialAudioObjectForHrtf,
             orientation: ?*const ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnvironment: *const fn(
             self: *const ISpatialAudioObjectForHrtf,
             environment: SpatialAudioHrtfEnvironmentType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDistanceDecay: *const fn(
             self: *const ISpatialAudioObjectForHrtf,
             distanceDecay: ?*SpatialAudioHrtfDistanceDecay,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDirectivity: *const fn(
             self: *const ISpatialAudioObjectForHrtf,
             directivity: ?*SpatialAudioHrtfDirectivityUnion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpatialAudioObjectBase: ISpatialAudioObjectBase,
@@ -2596,7 +2596,7 @@ pub const ISpatialAudioObjectRenderStreamForHrtf = extern union {
             self: *const ISpatialAudioObjectRenderStreamForHrtf,
             type: AudioObjectType,
             audioObject: **ISpatialAudioObjectForHrtf,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
@@ -2674,26 +2674,26 @@ pub const IMMNotificationClient = extern union {
             self: *const IMMNotificationClient,
             pwstrDeviceId: ?[*:0]const u16,
             dwNewState: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDeviceAdded: *const fn(
             self: *const IMMNotificationClient,
             pwstrDeviceId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDeviceRemoved: *const fn(
             self: *const IMMNotificationClient,
             pwstrDeviceId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDefaultDeviceChanged: *const fn(
             self: *const IMMNotificationClient,
             flow: EDataFlow,
             role: ERole,
             pwstrDefaultDeviceId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnPropertyValueChanged: *const fn(
             self: *const IMMNotificationClient,
             pwstrDeviceId: ?[*:0]const u16,
             key: PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2726,20 +2726,20 @@ pub const IMMDevice = extern union {
             dwClsCtx: CLSCTX,
             pActivationParams: ?*PROPVARIANT,
             ppInterface: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenPropertyStore: *const fn(
             self: *const IMMDevice,
             stgmAccess: STGM,
             ppProperties: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetId: *const fn(
             self: *const IMMDevice,
             ppstrId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetState: *const fn(
             self: *const IMMDevice,
             pdwState: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2766,12 +2766,12 @@ pub const IMMDeviceCollection = extern union {
         GetCount: *const fn(
             self: *const IMMDeviceCollection,
             pcDevices: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IMMDeviceCollection,
             nDevice: u32,
             ppDevice: ?*?*IMMDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2792,7 +2792,7 @@ pub const IMMEndpoint = extern union {
         GetDataFlow: *const fn(
             self: *const IMMEndpoint,
             pDataFlow: ?*EDataFlow,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2812,26 +2812,26 @@ pub const IMMDeviceEnumerator = extern union {
             dataFlow: EDataFlow,
             dwStateMask: u32,
             ppDevices: ?*?*IMMDeviceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultAudioEndpoint: *const fn(
             self: *const IMMDeviceEnumerator,
             dataFlow: EDataFlow,
             role: ERole,
             ppEndpoint: ?*?*IMMDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDevice: *const fn(
             self: *const IMMDeviceEnumerator,
             pwstrId: ?[*:0]const u16,
             ppDevice: ?*?*IMMDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterEndpointNotificationCallback: *const fn(
             self: *const IMMDeviceEnumerator,
             pClient: ?*IMMNotificationClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterEndpointNotificationCallback: *const fn(
             self: *const IMMDeviceEnumerator,
             pClient: ?*IMMNotificationClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2863,7 +2863,7 @@ pub const IMMDeviceActivator = extern union {
             pDevice: ?*IMMDevice,
             pActivationParams: ?*PROPVARIANT,
             ppInterface: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2881,7 +2881,7 @@ pub const IActivateAudioInterfaceCompletionHandler = extern union {
         ActivateCompleted: *const fn(
             self: *const IActivateAudioInterfaceCompletionHandler,
             activateOperation: ?*IActivateAudioInterfaceAsyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2900,7 +2900,7 @@ pub const IActivateAudioInterfaceAsyncOperation = extern union {
             self: *const IActivateAudioInterfaceAsyncOperation,
             activateResult: ?*HRESULT,
             activatedInterface: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2936,7 +2936,7 @@ pub const IAudioSystemEffectsPropertyChangeNotificationClient = extern union {
             self: *const IAudioSystemEffectsPropertyChangeNotificationClient,
             type: AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE,
             key: PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2954,31 +2954,31 @@ pub const IAudioSystemEffectsPropertyStore = extern union {
             self: *const IAudioSystemEffectsPropertyStore,
             stgmAccess: u32,
             propStore: **IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenUserPropertyStore: *const fn(
             self: *const IAudioSystemEffectsPropertyStore,
             stgmAccess: u32,
             propStore: **IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenVolatilePropertyStore: *const fn(
             self: *const IAudioSystemEffectsPropertyStore,
             stgmAccess: u32,
             propStore: **IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetUserPropertyStore: *const fn(
             self: *const IAudioSystemEffectsPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetVolatilePropertyStore: *const fn(
             self: *const IAudioSystemEffectsPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterPropertyChangeNotification: *const fn(
             self: *const IAudioSystemEffectsPropertyStore,
             callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterPropertyChangeNotification: *const fn(
             self: *const IAudioSystemEffectsPropertyStore,
             callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3041,36 +3041,36 @@ pub const IPerChannelDbLevel = extern union {
         GetChannelCount: *const fn(
             self: *const IPerChannelDbLevel,
             pcChannels: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLevelRange: *const fn(
             self: *const IPerChannelDbLevel,
             nChannel: u32,
             pfMinLevelDB: ?*f32,
             pfMaxLevelDB: ?*f32,
             pfStepping: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLevel: *const fn(
             self: *const IPerChannelDbLevel,
             nChannel: u32,
             pfLevelDB: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLevel: *const fn(
             self: *const IPerChannelDbLevel,
             nChannel: u32,
             fLevelDB: f32,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLevelUniform: *const fn(
             self: *const IPerChannelDbLevel,
             fLevelDB: f32,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLevelAllChannels: *const fn(
             self: *const IPerChannelDbLevel,
             aLevelsDB: [*]f32,
             cChannels: u32,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3116,11 +3116,11 @@ pub const IAudioChannelConfig = extern union {
             self: *const IAudioChannelConfig,
             dwConfig: u32,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelConfig: *const fn(
             self: *const IAudioChannelConfig,
             pdwConfig: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3141,12 +3141,12 @@ pub const IAudioLoudness = extern union {
         GetEnabled: *const fn(
             self: *const IAudioLoudness,
             pbEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnabled: *const fn(
             self: *const IAudioLoudness,
             bEnable: BOOL,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3167,12 +3167,12 @@ pub const IAudioInputSelector = extern union {
         GetSelection: *const fn(
             self: *const IAudioInputSelector,
             pnIdSelected: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSelection: *const fn(
             self: *const IAudioInputSelector,
             nIdSelect: u32,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3193,12 +3193,12 @@ pub const IAudioOutputSelector = extern union {
         GetSelection: *const fn(
             self: *const IAudioOutputSelector,
             pnIdSelected: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSelection: *const fn(
             self: *const IAudioOutputSelector,
             nIdSelect: u32,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3220,11 +3220,11 @@ pub const IAudioMute = extern union {
             self: *const IAudioMute,
             bMuted: BOOL,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMute: *const fn(
             self: *const IAudioMute,
             pbMuted: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3281,12 +3281,12 @@ pub const IAudioAutoGainControl = extern union {
         GetEnabled: *const fn(
             self: *const IAudioAutoGainControl,
             pbEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnabled: *const fn(
             self: *const IAudioAutoGainControl,
             bEnable: BOOL,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3307,12 +3307,12 @@ pub const IAudioPeakMeter = extern union {
         GetChannelCount: *const fn(
             self: *const IAudioPeakMeter,
             pcChannels: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLevel: *const fn(
             self: *const IAudioPeakMeter,
             nChannel: u32,
             pfLevel: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3333,24 +3333,24 @@ pub const IDeviceSpecificProperty = extern union {
         GetType: *const fn(
             self: *const IDeviceSpecificProperty,
             pVType: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const IDeviceSpecificProperty,
             pvValue: ?*anyopaque,
             pcbValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValue: *const fn(
             self: *const IDeviceSpecificProperty,
             pvValue: ?*anyopaque,
             cbValue: u32,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Get4BRange: *const fn(
             self: *const IDeviceSpecificProperty,
             plMin: ?*i32,
             plMax: ?*i32,
             plStepping: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3377,12 +3377,12 @@ pub const IPartsList = extern union {
         GetCount: *const fn(
             self: *const IPartsList,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPart: *const fn(
             self: *const IPartsList,
             nIndex: u32,
             ppPart: ?*?*IPart,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3403,59 +3403,59 @@ pub const IPart = extern union {
         GetName: *const fn(
             self: *const IPart,
             ppwstrName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocalId: *const fn(
             self: *const IPart,
             pnId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlobalId: *const fn(
             self: *const IPart,
             ppwstrGlobalId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPartType: *const fn(
             self: *const IPart,
             pPartType: ?*PartType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubType: *const fn(
             self: *const IPart,
             pSubType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetControlInterfaceCount: *const fn(
             self: *const IPart,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetControlInterface: *const fn(
             self: *const IPart,
             nIndex: u32,
             ppInterfaceDesc: ?*?*IControlInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumPartsIncoming: *const fn(
             self: *const IPart,
             ppParts: ?*?*IPartsList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumPartsOutgoing: *const fn(
             self: *const IPart,
             ppParts: ?*?*IPartsList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTopologyObject: *const fn(
             self: *const IPart,
             ppTopology: ?*?*IDeviceTopology,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Activate: *const fn(
             self: *const IPart,
             dwClsContext: u32,
             refiid: ?*const Guid,
             ppvObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterControlChangeCallback: *const fn(
             self: *const IPart,
             riid: ?*const Guid,
             pNotify: ?*IControlChangeNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterControlChangeCallback: *const fn(
             self: *const IPart,
             pNotify: ?*IControlChangeNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3509,34 +3509,34 @@ pub const IConnector = extern union {
         GetType: *const fn(
             self: *const IConnector,
             pType: ?*ConnectorType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataFlow: *const fn(
             self: *const IConnector,
             pFlow: ?*DataFlow,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConnectTo: *const fn(
             self: *const IConnector,
             pConnectTo: ?*IConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const IConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsConnected: *const fn(
             self: *const IConnector,
             pbConnected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConnectedTo: *const fn(
             self: *const IConnector,
             ppConTo: ?*?*IConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConnectorIdConnectedTo: *const fn(
             self: *const IConnector,
             ppwstrConnectorId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceIdConnectedTo: *const fn(
             self: *const IConnector,
             ppwstrDeviceId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3586,11 +3586,11 @@ pub const IControlInterface = extern union {
         GetName: *const fn(
             self: *const IControlInterface,
             ppwstrName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIID: *const fn(
             self: *const IControlInterface,
             pIID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3612,7 +3612,7 @@ pub const IControlChangeNotify = extern union {
             self: *const IControlChangeNotify,
             dwSenderProcessId: u32,
             pguidEventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3630,37 +3630,37 @@ pub const IDeviceTopology = extern union {
         GetConnectorCount: *const fn(
             self: *const IDeviceTopology,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConnector: *const fn(
             self: *const IDeviceTopology,
             nIndex: u32,
             ppConnector: ?*?*IConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubunitCount: *const fn(
             self: *const IDeviceTopology,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubunit: *const fn(
             self: *const IDeviceTopology,
             nIndex: u32,
             ppSubunit: ?*?*ISubunit,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPartById: *const fn(
             self: *const IDeviceTopology,
             nId: u32,
             ppPart: ?*?*IPart,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceId: *const fn(
             self: *const IDeviceTopology,
             ppwstrDeviceId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignalPath: *const fn(
             self: *const IDeviceTopology,
             pIPartFrom: ?*IPart,
             pIPartTo: ?*IPart,
             bRejectMixedPaths: BOOL,
             ppParts: ?*?*IPartsList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3712,38 +3712,38 @@ pub const IAudioSessionEvents = extern union {
             self: *const IAudioSessionEvents,
             NewDisplayName: ?[*:0]const u16,
             EventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnIconPathChanged: *const fn(
             self: *const IAudioSessionEvents,
             NewIconPath: ?[*:0]const u16,
             EventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSimpleVolumeChanged: *const fn(
             self: *const IAudioSessionEvents,
             NewVolume: f32,
             NewMute: BOOL,
             EventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnChannelVolumeChanged: *const fn(
             self: *const IAudioSessionEvents,
             ChannelCount: u32,
             NewChannelVolumeArray: [*]f32,
             ChangedChannel: u32,
             EventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnGroupingParamChanged: *const fn(
             self: *const IAudioSessionEvents,
             NewGroupingParam: ?*const Guid,
             EventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnStateChanged: *const fn(
             self: *const IAudioSessionEvents,
             NewState: AudioSessionState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSessionDisconnected: *const fn(
             self: *const IAudioSessionEvents,
             DisconnectReason: AudioSessionDisconnectReason,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3779,42 +3779,42 @@ pub const IAudioSessionControl = extern union {
         GetState: *const fn(
             self: *const IAudioSessionControl,
             pRetVal: ?*AudioSessionState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayName: *const fn(
             self: *const IAudioSessionControl,
             pRetVal: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDisplayName: *const fn(
             self: *const IAudioSessionControl,
             Value: ?[*:0]const u16,
             EventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIconPath: *const fn(
             self: *const IAudioSessionControl,
             pRetVal: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIconPath: *const fn(
             self: *const IAudioSessionControl,
             Value: ?[*:0]const u16,
             EventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGroupingParam: *const fn(
             self: *const IAudioSessionControl,
             pRetVal: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGroupingParam: *const fn(
             self: *const IAudioSessionControl,
             Override: ?*const Guid,
             EventContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterAudioSessionNotification: *const fn(
             self: *const IAudioSessionControl,
             NewNotifications: ?*IAudioSessionEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterAudioSessionNotification: *const fn(
             self: *const IAudioSessionControl,
             NewNotifications: ?*IAudioSessionEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3856,22 +3856,22 @@ pub const IAudioSessionControl2 = extern union {
         GetSessionIdentifier: *const fn(
             self: *const IAudioSessionControl2,
             pRetVal: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSessionInstanceIdentifier: *const fn(
             self: *const IAudioSessionControl2,
             pRetVal: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProcessId: *const fn(
             self: *const IAudioSessionControl2,
             pRetVal: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSystemSoundsSession: *const fn(
             self: *const IAudioSessionControl2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDuckingPreference: *const fn(
             self: *const IAudioSessionControl2,
             optOut: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAudioSessionControl: IAudioSessionControl,
@@ -3904,13 +3904,13 @@ pub const IAudioSessionManager = extern union {
             AudioSessionGuid: ?*const Guid,
             StreamFlags: u32,
             SessionControl: ?*?*IAudioSessionControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSimpleAudioVolume: *const fn(
             self: *const IAudioSessionManager,
             AudioSessionGuid: ?*const Guid,
             StreamFlags: u32,
             AudioVolume: ?*?*ISimpleAudioVolume,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3932,11 +3932,11 @@ pub const IAudioVolumeDuckNotification = extern union {
             self: *const IAudioVolumeDuckNotification,
             sessionID: ?[*:0]const u16,
             countCommunicationSessions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnVolumeUnduckNotification: *const fn(
             self: *const IAudioVolumeDuckNotification,
             sessionID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3957,7 +3957,7 @@ pub const IAudioSessionNotification = extern union {
         OnSessionCreated: *const fn(
             self: *const IAudioSessionNotification,
             NewSession: ?*IAudioSessionControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3975,12 +3975,12 @@ pub const IAudioSessionEnumerator = extern union {
         GetCount: *const fn(
             self: *const IAudioSessionEnumerator,
             SessionCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSession: *const fn(
             self: *const IAudioSessionEnumerator,
             SessionCount: i32,
             Session: ?*?*IAudioSessionControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4001,24 +4001,24 @@ pub const IAudioSessionManager2 = extern union {
         GetSessionEnumerator: *const fn(
             self: *const IAudioSessionManager2,
             SessionEnum: ?*?*IAudioSessionEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterSessionNotification: *const fn(
             self: *const IAudioSessionManager2,
             SessionNotification: ?*IAudioSessionNotification,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterSessionNotification: *const fn(
             self: *const IAudioSessionManager2,
             SessionNotification: ?*IAudioSessionNotification,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterDuckNotification: *const fn(
             self: *const IAudioSessionManager2,
             sessionID: ?[*:0]const u16,
             duckNotification: ?*IAudioVolumeDuckNotification,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterDuckNotification: *const fn(
             self: *const IAudioSessionManager2,
             duckNotification: ?*IAudioVolumeDuckNotification,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAudioSessionManager: IAudioSessionManager,
@@ -4103,23 +4103,23 @@ pub const ISpatialAudioMetadataItems = extern union {
         GetFrameCount: *const fn(
             self: *const ISpatialAudioMetadataItems,
             frameCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemCount: *const fn(
             self: *const ISpatialAudioMetadataItems,
             itemCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxItemCount: *const fn(
             self: *const ISpatialAudioMetadataItems,
             maxItemCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxValueBufferLength: *const fn(
             self: *const ISpatialAudioMetadataItems,
             maxValueBufferLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInfo: *const fn(
             self: *const ISpatialAudioMetadataItems,
             info: ?*SpatialAudioMetadataItemsInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4149,21 +4149,21 @@ pub const ISpatialAudioMetadataWriter = extern union {
         Open: *const fn(
             self: *const ISpatialAudioMetadataWriter,
             metadataItems: ?*ISpatialAudioMetadataItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteNextItem: *const fn(
             self: *const ISpatialAudioMetadataWriter,
             frameOffset: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteNextItemCommand: *const fn(
             self: *const ISpatialAudioMetadataWriter,
             commandID: u8,
             // TODO: what to do with BytesParamIndex 2?
             valueBuffer: ?*const anyopaque,
             valueBufferLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const ISpatialAudioMetadataWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4190,12 +4190,12 @@ pub const ISpatialAudioMetadataReader = extern union {
         Open: *const fn(
             self: *const ISpatialAudioMetadataReader,
             metadataItems: ?*ISpatialAudioMetadataItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReadNextItem: *const fn(
             self: *const ISpatialAudioMetadataReader,
             commandCount: ?*u8,
             frameOffset: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReadNextItemCommand: *const fn(
             self: *const ISpatialAudioMetadataReader,
             commandID: ?*u8,
@@ -4203,10 +4203,10 @@ pub const ISpatialAudioMetadataReader = extern union {
             valueBuffer: ?*anyopaque,
             maxValueBufferLength: u32,
             valueBufferLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const ISpatialAudioMetadataReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4233,17 +4233,17 @@ pub const ISpatialAudioMetadataCopier = extern union {
         Open: *const fn(
             self: *const ISpatialAudioMetadataCopier,
             metadataItems: ?*ISpatialAudioMetadataItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyMetadataForFrames: *const fn(
             self: *const ISpatialAudioMetadataCopier,
             copyFrameCount: u16,
             copyMode: SpatialAudioMetadataCopyMode,
             dstMetadataItems: ?*ISpatialAudioMetadataItems,
             itemsCopied: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const ISpatialAudioMetadataCopier,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4269,16 +4269,16 @@ pub const ISpatialAudioMetadataItemsBuffer = extern union {
             // TODO: what to do with BytesParamIndex 1?
             buffer: ?*u8,
             bufferLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AttachToPopulatedBuffer: *const fn(
             self: *const ISpatialAudioMetadataItemsBuffer,
             // TODO: what to do with BytesParamIndex 1?
             buffer: ?*u8,
             bufferLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DetachBuffer: *const fn(
             self: *const ISpatialAudioMetadataItemsBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4305,25 +4305,25 @@ pub const ISpatialAudioMetadataClient = extern union {
             frameCount: u16,
             metadataItemsBuffer: ?*?*ISpatialAudioMetadataItemsBuffer,
             metadataItems: ?*?*ISpatialAudioMetadataItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpatialAudioMetadataItemsBufferLength: *const fn(
             self: *const ISpatialAudioMetadataClient,
             maxItemCount: u16,
             bufferLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ActivateSpatialAudioMetadataWriter: *const fn(
             self: *const ISpatialAudioMetadataClient,
             overflowMode: SpatialAudioMetadataWriterOverflowMode,
             metadataWriter: ?*?*ISpatialAudioMetadataWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ActivateSpatialAudioMetadataCopier: *const fn(
             self: *const ISpatialAudioMetadataClient,
             metadataCopier: ?*?*ISpatialAudioMetadataCopier,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ActivateSpatialAudioMetadataReader: *const fn(
             self: *const ISpatialAudioMetadataClient,
             metadataReader: ?*?*ISpatialAudioMetadataReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4356,7 +4356,7 @@ pub const ISpatialAudioObjectForMetadataCommands = extern union {
             // TODO: what to do with BytesParamIndex 2?
             valueBuffer: ?*anyopaque,
             valueBufferLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpatialAudioObjectBase: ISpatialAudioObjectBase,
@@ -4375,7 +4375,7 @@ pub const ISpatialAudioObjectForMetadataItems = extern union {
         GetSpatialAudioMetadataItems: *const fn(
             self: *const ISpatialAudioObjectForMetadataItems,
             metadataItems: ?*?*ISpatialAudioMetadataItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpatialAudioObjectBase: ISpatialAudioObjectBase,
@@ -4395,12 +4395,12 @@ pub const ISpatialAudioObjectRenderStreamForMetadata = extern union {
             self: *const ISpatialAudioObjectRenderStreamForMetadata,
             type: AudioObjectType,
             audioObject: **ISpatialAudioObjectForMetadataCommands,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ActivateSpatialAudioObjectForMetadataItems: *const fn(
             self: *const ISpatialAudioObjectRenderStreamForMetadata,
             type: AudioObjectType,
             audioObject: **ISpatialAudioObjectForMetadataItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
@@ -4440,7 +4440,7 @@ pub const AUDIOCLIENT_ACTIVATION_PARAMS = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PAudioStateMonitorCallback = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PAudioStateMonitorCallback = *const fn() callconv(.winapi) void;
 
 pub const AudioStateMonitorSoundLevel = enum(i32) {
     Muted = 0,
@@ -4461,14 +4461,14 @@ pub const IAudioStateMonitor = extern union {
             callback: ?PAudioStateMonitorCallback,
             context: ?*anyopaque,
             registration: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterCallback: *const fn(
             self: *const IAudioStateMonitor,
             registration: i64,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetSoundLevel: *const fn(
             self: *const IAudioStateMonitor,
-        ) callconv(@import("std").os.windows.WINAPI) AudioStateMonitorSoundLevel,
+        ) callconv(.winapi) AudioStateMonitorSoundLevel,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4487,7 +4487,7 @@ pub const ACMDRIVERENUMCB = *const fn(
     hadid: ?HACMDRIVERID,
     dwInstance: usize,
     fdwSupport: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPACMDRIVERPROC = *const fn(
     param0: usize,
@@ -4495,7 +4495,7 @@ pub const LPACMDRIVERPROC = *const fn(
     param2: u32,
     param3: LPARAM,
     param4: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 pub const ACMDRIVERDETAILSA = extern struct {
     cbStruct: u32 align(1),
@@ -4560,14 +4560,14 @@ pub const ACMFORMATTAGENUMCBA = *const fn(
     paftd: ?*ACMFORMATTAGDETAILSA,
     dwInstance: usize,
     fdwSupport: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const ACMFORMATTAGENUMCBW = *const fn(
     hadid: ?HACMDRIVERID,
     paftd: ?*ACMFORMATTAGDETAILSW,
     dwInstance: usize,
     fdwSupport: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const ACMFORMATDETAILSA = extern struct {
     cbStruct: u32 align(1),
@@ -4594,28 +4594,28 @@ pub const ACMFORMATENUMCBA = *const fn(
     pafd: ?*ACMFORMATDETAILSA,
     dwInstance: usize,
     fdwSupport: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const ACMFORMATENUMCBW = *const fn(
     hadid: ?HACMDRIVERID,
     pafd: ?*tACMFORMATDETAILSW,
     dwInstance: usize,
     fdwSupport: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const ACMFORMATCHOOSEHOOKPROCA = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const ACMFORMATCHOOSEHOOKPROCW = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const ACMFORMATCHOOSEA = extern struct {
     cbStruct: u32 align(1),
@@ -4680,14 +4680,14 @@ pub const ACMFILTERTAGENUMCBA = *const fn(
     paftd: ?*ACMFILTERTAGDETAILSA,
     dwInstance: usize,
     fdwSupport: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const ACMFILTERTAGENUMCBW = *const fn(
     hadid: ?HACMDRIVERID,
     paftd: ?*ACMFILTERTAGDETAILSW,
     dwInstance: usize,
     fdwSupport: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const ACMFILTERDETAILSA = extern struct {
     cbStruct: u32 align(1),
@@ -4714,28 +4714,28 @@ pub const ACMFILTERENUMCBA = *const fn(
     pafd: ?*ACMFILTERDETAILSA,
     dwInstance: usize,
     fdwSupport: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const ACMFILTERENUMCBW = *const fn(
     hadid: ?HACMDRIVERID,
     pafd: ?*ACMFILTERDETAILSW,
     dwInstance: usize,
     fdwSupport: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const ACMFILTERCHOOSEHOOKPROCA = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const ACMFILTERCHOOSEHOOKPROCW = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const ACMFILTERCHOOSEA = extern struct {
     cbStruct: u32 align(1),
@@ -4892,69 +4892,69 @@ pub const ACMSTREAMHEADER = switch(@import("../zig.zig").arch) {
 pub extern "ole32" fn CoRegisterMessageFilter(
     lpMessageFilter: ?*IMessageFilter,
     lplpMessageFilter: ?*?*IMessageFilter,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winmm" fn sndPlaySoundA(
     pszSound: ?[*:0]const u8,
     fuSound: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winmm" fn sndPlaySoundW(
     pszSound: ?[*:0]const u16,
     fuSound: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winmm" fn PlaySoundA(
     pszSound: ?[*:0]const u8,
     hmod: ?HINSTANCE,
     fdwSound: SND_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winmm" fn PlaySoundW(
     pszSound: ?[*:0]const u16,
     hmod: ?HINSTANCE,
     fdwSound: SND_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winmm" fn waveOutGetDevCapsA(
     uDeviceID: usize,
     pwoc: ?*WAVEOUTCAPSA,
     cbwoc: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winmm" fn waveOutGetDevCapsW(
     uDeviceID: usize,
     pwoc: ?*WAVEOUTCAPSW,
     cbwoc: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutGetVolume(
     hwo: ?HWAVEOUT,
     pdwVolume: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutSetVolume(
     hwo: ?HWAVEOUT,
     dwVolume: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winmm" fn waveOutGetErrorTextA(
     mmrError: u32,
     pszText: [*:0]u8,
     cchText: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winmm" fn waveOutGetErrorTextW(
     mmrError: u32,
     pszText: [*:0]u16,
     cchText: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutOpen(
@@ -4964,12 +4964,12 @@ pub extern "winmm" fn waveOutOpen(
     dwCallback: usize,
     dwInstance: usize,
     fdwOpen: MIDI_WAVE_OPEN_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutClose(
     hwo: ?HWAVEOUT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutPrepareHeader(
@@ -4977,7 +4977,7 @@ pub extern "winmm" fn waveOutPrepareHeader(
     // TODO: what to do with BytesParamIndex 2?
     pwh: ?*WAVEHDR,
     cbwh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutUnprepareHeader(
@@ -4985,7 +4985,7 @@ pub extern "winmm" fn waveOutUnprepareHeader(
     // TODO: what to do with BytesParamIndex 2?
     pwh: ?*WAVEHDR,
     cbwh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutWrite(
@@ -4993,27 +4993,27 @@ pub extern "winmm" fn waveOutWrite(
     // TODO: what to do with BytesParamIndex 2?
     pwh: ?*WAVEHDR,
     cbwh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutPause(
     hwo: ?HWAVEOUT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutRestart(
     hwo: ?HWAVEOUT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutReset(
     hwo: ?HWAVEOUT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutBreakLoop(
     hwo: ?HWAVEOUT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutGetPosition(
@@ -5021,37 +5021,37 @@ pub extern "winmm" fn waveOutGetPosition(
     // TODO: what to do with BytesParamIndex 2?
     pmmt: ?*MMTIME,
     cbmmt: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutGetPitch(
     hwo: ?HWAVEOUT,
     pdwPitch: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutSetPitch(
     hwo: ?HWAVEOUT,
     dwPitch: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutGetPlaybackRate(
     hwo: ?HWAVEOUT,
     pdwRate: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutSetPlaybackRate(
     hwo: ?HWAVEOUT,
     dwRate: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutGetID(
     hwo: ?HWAVEOUT,
     puDeviceID: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutMessage(
@@ -5059,37 +5059,37 @@ pub extern "winmm" fn waveOutMessage(
     uMsg: u32,
     dw1: usize,
     dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winmm" fn waveInGetDevCapsA(
     uDeviceID: usize,
     // TODO: what to do with BytesParamIndex 2?
     pwic: ?*WAVEINCAPSA,
     cbwic: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winmm" fn waveInGetDevCapsW(
     uDeviceID: usize,
     // TODO: what to do with BytesParamIndex 2?
     pwic: ?*WAVEINCAPSW,
     cbwic: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winmm" fn waveInGetErrorTextA(
     mmrError: u32,
     pszText: [*:0]u8,
     cchText: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winmm" fn waveInGetErrorTextW(
     mmrError: u32,
     pszText: [*:0]u16,
     cchText: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInOpen(
@@ -5099,12 +5099,12 @@ pub extern "winmm" fn waveInOpen(
     dwCallback: usize,
     dwInstance: usize,
     fdwOpen: MIDI_WAVE_OPEN_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInClose(
     hwi: ?HWAVEIN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInPrepareHeader(
@@ -5112,7 +5112,7 @@ pub extern "winmm" fn waveInPrepareHeader(
     // TODO: what to do with BytesParamIndex 2?
     pwh: ?*WAVEHDR,
     cbwh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInUnprepareHeader(
@@ -5120,7 +5120,7 @@ pub extern "winmm" fn waveInUnprepareHeader(
     // TODO: what to do with BytesParamIndex 2?
     pwh: ?*WAVEHDR,
     cbwh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInAddBuffer(
@@ -5128,22 +5128,22 @@ pub extern "winmm" fn waveInAddBuffer(
     // TODO: what to do with BytesParamIndex 2?
     pwh: ?*WAVEHDR,
     cbwh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInStart(
     hwi: ?HWAVEIN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInStop(
     hwi: ?HWAVEIN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInReset(
     hwi: ?HWAVEIN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInGetPosition(
@@ -5151,13 +5151,13 @@ pub extern "winmm" fn waveInGetPosition(
     // TODO: what to do with BytesParamIndex 2?
     pmmt: ?*MMTIME,
     cbmmt: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInGetID(
     hwi: ?HWAVEIN,
     puDeviceID: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInMessage(
@@ -5165,11 +5165,11 @@ pub extern "winmm" fn waveInMessage(
     uMsg: u32,
     dw1: usize,
     dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiStreamOpen(
@@ -5179,19 +5179,19 @@ pub extern "winmm" fn midiStreamOpen(
     dwCallback: usize,
     dwInstance: usize,
     fdwOpen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiStreamClose(
     hms: ?HMIDISTRM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiStreamProperty(
     hms: ?HMIDISTRM,
     lppropdata: ?*u8,
     dwProperty: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiStreamPosition(
@@ -5199,7 +5199,7 @@ pub extern "winmm" fn midiStreamPosition(
     // TODO: what to do with BytesParamIndex 2?
     lpmmt: ?*MMTIME,
     cbmmt: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiStreamOut(
@@ -5207,36 +5207,36 @@ pub extern "winmm" fn midiStreamOut(
     // TODO: what to do with BytesParamIndex 2?
     pmh: ?*MIDIHDR,
     cbmh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiStreamPause(
     hms: ?HMIDISTRM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiStreamRestart(
     hms: ?HMIDISTRM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiStreamStop(
     hms: ?HMIDISTRM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiConnect(
     hmi: ?HMIDI,
     hmo: ?HMIDIOUT,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiDisconnect(
     hmi: ?HMIDI,
     hmo: ?HMIDIOUT,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutGetDevCapsA(
@@ -5244,7 +5244,7 @@ pub extern "winmm" fn midiOutGetDevCapsA(
     // TODO: what to do with BytesParamIndex 2?
     pmoc: ?*MIDIOUTCAPSA,
     cbmoc: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutGetDevCapsW(
@@ -5252,33 +5252,33 @@ pub extern "winmm" fn midiOutGetDevCapsW(
     // TODO: what to do with BytesParamIndex 2?
     pmoc: ?*MIDIOUTCAPSW,
     cbmoc: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutGetVolume(
     hmo: ?HMIDIOUT,
     pdwVolume: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutSetVolume(
     hmo: ?HMIDIOUT,
     dwVolume: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutGetErrorTextA(
     mmrError: u32,
     pszText: [*:0]u8,
     cchText: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutGetErrorTextW(
     mmrError: u32,
     pszText: [*:0]u16,
     cchText: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutOpen(
@@ -5287,12 +5287,12 @@ pub extern "winmm" fn midiOutOpen(
     dwCallback: usize,
     dwInstance: usize,
     fdwOpen: MIDI_WAVE_OPEN_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutClose(
     hmo: ?HMIDIOUT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutPrepareHeader(
@@ -5300,7 +5300,7 @@ pub extern "winmm" fn midiOutPrepareHeader(
     // TODO: what to do with BytesParamIndex 2?
     pmh: ?*MIDIHDR,
     cbmh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutUnprepareHeader(
@@ -5308,13 +5308,13 @@ pub extern "winmm" fn midiOutUnprepareHeader(
     // TODO: what to do with BytesParamIndex 2?
     pmh: ?*MIDIHDR,
     cbmh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutShortMsg(
     hmo: ?HMIDIOUT,
     dwMsg: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutLongMsg(
@@ -5322,12 +5322,12 @@ pub extern "winmm" fn midiOutLongMsg(
     // TODO: what to do with BytesParamIndex 2?
     pmh: ?*MIDIHDR,
     cbmh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutReset(
     hmo: ?HMIDIOUT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutCachePatches(
@@ -5335,7 +5335,7 @@ pub extern "winmm" fn midiOutCachePatches(
     uBank: u32,
     pwpa: *[128]u16,
     fuCache: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutCacheDrumPatches(
@@ -5343,13 +5343,13 @@ pub extern "winmm" fn midiOutCacheDrumPatches(
     uPatch: u32,
     pwkya: *[128]u16,
     fuCache: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutGetID(
     hmo: ?HMIDIOUT,
     puDeviceID: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutMessage(
@@ -5357,11 +5357,11 @@ pub extern "winmm" fn midiOutMessage(
     uMsg: u32,
     dw1: usize,
     dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInGetDevCapsA(
@@ -5369,7 +5369,7 @@ pub extern "winmm" fn midiInGetDevCapsA(
     // TODO: what to do with BytesParamIndex 2?
     pmic: ?*MIDIINCAPSA,
     cbmic: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInGetDevCapsW(
@@ -5377,21 +5377,21 @@ pub extern "winmm" fn midiInGetDevCapsW(
     // TODO: what to do with BytesParamIndex 2?
     pmic: ?*MIDIINCAPSW,
     cbmic: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInGetErrorTextA(
     mmrError: u32,
     pszText: [*:0]u8,
     cchText: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInGetErrorTextW(
     mmrError: u32,
     pszText: [*:0]u16,
     cchText: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInOpen(
@@ -5400,12 +5400,12 @@ pub extern "winmm" fn midiInOpen(
     dwCallback: usize,
     dwInstance: usize,
     fdwOpen: MIDI_WAVE_OPEN_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInClose(
     hmi: ?HMIDIIN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInPrepareHeader(
@@ -5413,7 +5413,7 @@ pub extern "winmm" fn midiInPrepareHeader(
     // TODO: what to do with BytesParamIndex 2?
     pmh: ?*MIDIHDR,
     cbmh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInUnprepareHeader(
@@ -5421,7 +5421,7 @@ pub extern "winmm" fn midiInUnprepareHeader(
     // TODO: what to do with BytesParamIndex 2?
     pmh: ?*MIDIHDR,
     cbmh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInAddBuffer(
@@ -5429,28 +5429,28 @@ pub extern "winmm" fn midiInAddBuffer(
     // TODO: what to do with BytesParamIndex 2?
     pmh: ?*MIDIHDR,
     cbmh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInStart(
     hmi: ?HMIDIIN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInStop(
     hmi: ?HMIDIIN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInReset(
     hmi: ?HMIDIIN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInGetID(
     hmi: ?HMIDIIN,
     puDeviceID: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInMessage(
@@ -5458,11 +5458,11 @@ pub extern "winmm" fn midiInMessage(
     uMsg: u32,
     dw1: usize,
     dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn auxGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn auxGetDevCapsA(
@@ -5470,7 +5470,7 @@ pub extern "winmm" fn auxGetDevCapsA(
     // TODO: what to do with BytesParamIndex 2?
     pac: ?*AUXCAPSA,
     cbac: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn auxGetDevCapsW(
@@ -5478,19 +5478,19 @@ pub extern "winmm" fn auxGetDevCapsW(
     // TODO: what to do with BytesParamIndex 2?
     pac: ?*AUXCAPSW,
     cbac: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn auxSetVolume(
     uDeviceID: u32,
     dwVolume: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn auxGetVolume(
     uDeviceID: u32,
     pdwVolume: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn auxOutMessage(
@@ -5498,11 +5498,11 @@ pub extern "winmm" fn auxOutMessage(
     uMsg: u32,
     dw1: usize,
     dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetDevCapsA(
@@ -5510,7 +5510,7 @@ pub extern "winmm" fn mixerGetDevCapsA(
     // TODO: what to do with BytesParamIndex 2?
     pmxcaps: ?*MIXERCAPSA,
     cbmxcaps: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetDevCapsW(
@@ -5518,7 +5518,7 @@ pub extern "winmm" fn mixerGetDevCapsW(
     // TODO: what to do with BytesParamIndex 2?
     pmxcaps: ?*MIXERCAPSW,
     cbmxcaps: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerOpen(
@@ -5527,12 +5527,12 @@ pub extern "winmm" fn mixerOpen(
     dwCallback: usize,
     dwInstance: usize,
     fdwOpen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerClose(
     hmx: ?HMIXER,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerMessage(
@@ -5540,63 +5540,63 @@ pub extern "winmm" fn mixerMessage(
     uMsg: u32,
     dwParam1: usize,
     dwParam2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetLineInfoA(
     hmxobj: ?HMIXEROBJ,
     pmxl: ?*MIXERLINEA,
     fdwInfo: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetLineInfoW(
     hmxobj: ?HMIXEROBJ,
     pmxl: ?*MIXERLINEW,
     fdwInfo: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetID(
     hmxobj: ?HMIXEROBJ,
     puMxId: ?*u32,
     fdwId: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetLineControlsA(
     hmxobj: ?HMIXEROBJ,
     pmxlc: ?*MIXERLINECONTROLSA,
     fdwControls: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetLineControlsW(
     hmxobj: ?HMIXEROBJ,
     pmxlc: ?*MIXERLINECONTROLSW,
     fdwControls: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetControlDetailsA(
     hmxobj: ?HMIXEROBJ,
     pmxcd: ?*MIXERCONTROLDETAILS,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetControlDetailsW(
     hmxobj: ?HMIXEROBJ,
     pmxcd: ?*MIXERCONTROLDETAILS,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerSetControlDetails(
     hmxobj: ?HMIXEROBJ,
     pmxcd: ?*MIXERCONTROLDETAILS,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mmdevapi" fn ActivateAudioInterfaceAsync(
@@ -5605,74 +5605,74 @@ pub extern "mmdevapi" fn ActivateAudioInterfaceAsync(
     activationParams: ?*PROPVARIANT,
     completionHandler: ?*IActivateAudioInterfaceCompletionHandler,
     activationOperation: **IActivateAudioInterfaceAsyncOperation,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitor(
     audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitorForCategory(
     category: AUDIO_STREAM_CATEGORY,
     audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitorForCategoryAndDeviceRole(
     category: AUDIO_STREAM_CATEGORY,
     role: ERole,
     audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitorForCategoryAndDeviceId(
     category: AUDIO_STREAM_CATEGORY,
     deviceId: ?[*:0]const u16,
     audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitor(
     audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCategory(
     category: AUDIO_STREAM_CATEGORY,
     audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCategoryAndDeviceRole(
     category: AUDIO_STREAM_CATEGORY,
     role: ERole,
     audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCategoryAndDeviceId(
     category: AUDIO_STREAM_CATEGORY,
     deviceId: ?[*:0]const u16,
     audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmGetVersion(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmMetrics(
     hao: ?HACMOBJ,
     uMetric: u32,
     pMetric: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverEnum(
     fnCallback: ?ACMDRIVERENUMCB,
     dwInstance: usize,
     fdwEnum: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverID(
     hao: ?HACMOBJ,
     phadid: ?*isize,
     fdwDriverID: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverAddA(
@@ -5681,7 +5681,7 @@ pub extern "msacm32" fn acmDriverAddA(
     lParam: LPARAM,
     dwPriority: u32,
     fdwAdd: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverAddW(
@@ -5690,26 +5690,26 @@ pub extern "msacm32" fn acmDriverAddW(
     lParam: LPARAM,
     dwPriority: u32,
     fdwAdd: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverRemove(
     hadid: ?HACMDRIVERID,
     fdwRemove: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverOpen(
     phad: ?*isize,
     hadid: ?HACMDRIVERID,
     fdwOpen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverClose(
     had: ?HACMDRIVER,
     fdwClose: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverMessage(
@@ -5717,42 +5717,42 @@ pub extern "msacm32" fn acmDriverMessage(
     uMsg: u32,
     lParam1: LPARAM,
     lParam2: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverPriority(
     hadid: ?HACMDRIVERID,
     dwPriority: u32,
     fdwPriority: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverDetailsA(
     hadid: ?HACMDRIVERID,
     padd: ?*ACMDRIVERDETAILSA,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverDetailsW(
     hadid: ?HACMDRIVERID,
     padd: ?*ACMDRIVERDETAILSW,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFormatTagDetailsA(
     had: ?HACMDRIVER,
     paftd: ?*ACMFORMATTAGDETAILSA,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFormatTagDetailsW(
     had: ?HACMDRIVER,
     paftd: ?*ACMFORMATTAGDETAILSW,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFormatTagEnumA(
@@ -5761,7 +5761,7 @@ pub extern "msacm32" fn acmFormatTagEnumA(
     fnCallback: ?ACMFORMATTAGENUMCBA,
     dwInstance: usize,
     fdwEnum: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFormatTagEnumW(
@@ -5770,21 +5770,21 @@ pub extern "msacm32" fn acmFormatTagEnumW(
     fnCallback: ?ACMFORMATTAGENUMCBW,
     dwInstance: usize,
     fdwEnum: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFormatDetailsA(
     had: ?HACMDRIVER,
     pafd: ?*ACMFORMATDETAILSA,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFormatDetailsW(
     had: ?HACMDRIVER,
     pafd: ?*tACMFORMATDETAILSW,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFormatEnumA(
@@ -5793,7 +5793,7 @@ pub extern "msacm32" fn acmFormatEnumA(
     fnCallback: ?ACMFORMATENUMCBA,
     dwInstance: usize,
     fdwEnum: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFormatEnumW(
@@ -5802,7 +5802,7 @@ pub extern "msacm32" fn acmFormatEnumW(
     fnCallback: ?ACMFORMATENUMCBW,
     dwInstance: usize,
     fdwEnum: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFormatSuggest(
@@ -5811,31 +5811,31 @@ pub extern "msacm32" fn acmFormatSuggest(
     pwfxDst: ?*WAVEFORMATEX,
     cbwfxDst: u32,
     fdwSuggest: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFormatChooseA(
     pafmtc: ?*ACMFORMATCHOOSEA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFormatChooseW(
     pafmtc: ?*ACMFORMATCHOOSEW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFilterTagDetailsA(
     had: ?HACMDRIVER,
     paftd: ?*ACMFILTERTAGDETAILSA,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFilterTagDetailsW(
     had: ?HACMDRIVER,
     paftd: ?*ACMFILTERTAGDETAILSW,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFilterTagEnumA(
@@ -5844,7 +5844,7 @@ pub extern "msacm32" fn acmFilterTagEnumA(
     fnCallback: ?ACMFILTERTAGENUMCBA,
     dwInstance: usize,
     fdwEnum: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFilterTagEnumW(
@@ -5853,21 +5853,21 @@ pub extern "msacm32" fn acmFilterTagEnumW(
     fnCallback: ?ACMFILTERTAGENUMCBW,
     dwInstance: usize,
     fdwEnum: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFilterDetailsA(
     had: ?HACMDRIVER,
     pafd: ?*ACMFILTERDETAILSA,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFilterDetailsW(
     had: ?HACMDRIVER,
     pafd: ?*ACMFILTERDETAILSW,
     fdwDetails: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFilterEnumA(
@@ -5876,7 +5876,7 @@ pub extern "msacm32" fn acmFilterEnumA(
     fnCallback: ?ACMFILTERENUMCBA,
     dwInstance: usize,
     fdwEnum: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFilterEnumW(
@@ -5885,17 +5885,17 @@ pub extern "msacm32" fn acmFilterEnumW(
     fnCallback: ?ACMFILTERENUMCBW,
     dwInstance: usize,
     fdwEnum: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFilterChooseA(
     pafltrc: ?*ACMFILTERCHOOSEA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmFilterChooseW(
     pafltrc: ?*ACMFILTERCHOOSEW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmStreamOpen(
@@ -5907,13 +5907,13 @@ pub extern "msacm32" fn acmStreamOpen(
     dwCallback: usize,
     dwInstance: usize,
     fdwOpen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmStreamClose(
     has: ?HACMSTREAM,
     fdwClose: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmStreamSize(
@@ -5921,13 +5921,13 @@ pub extern "msacm32" fn acmStreamSize(
     cbInput: u32,
     pdwOutputBytes: ?*u32,
     fdwSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmStreamReset(
     has: ?HACMSTREAM,
     fdwReset: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmStreamMessage(
@@ -5935,28 +5935,28 @@ pub extern "msacm32" fn acmStreamMessage(
     uMsg: u32,
     lParam1: LPARAM,
     lParam2: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmStreamConvert(
     has: ?HACMSTREAM,
     pash: ?*ACMSTREAMHEADER,
     fdwConvert: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmStreamPrepareHeader(
     has: ?HACMSTREAM,
     pash: ?*ACMSTREAMHEADER,
     fdwPrepare: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmStreamUnprepareHeader(
     has: ?HACMSTREAM,
     pash: ?*ACMSTREAMHEADER,
     fdwUnprepare: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

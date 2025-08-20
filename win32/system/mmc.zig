@@ -124,16 +124,16 @@ pub const ISnapinProperties = extern union {
         Initialize: *const fn(
             self: *const ISnapinProperties,
             pProperties: ?*Properties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryPropertyNames: *const fn(
             self: *const ISnapinProperties,
             pCallback: ?*ISnapinPropertiesCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PropertiesChanged: *const fn(
             self: *const ISnapinProperties,
             cProperties: i32,
             pProperties: [*]MMC_SNAPIN_PROPERTY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -158,7 +158,7 @@ pub const ISnapinPropertiesCallback = extern union {
             self: *const ISnapinPropertiesCallback,
             pszPropName: ?[*:0]const u16,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -222,55 +222,55 @@ pub const _Application = extern union {
         base: IDispatch.VTable,
         Help: *const fn(
             self: *const _Application,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Quit: *const fn(
             self: *const _Application,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Document: *const fn(
             self: *const _Application,
             Document: ?*?*Document,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Load: *const fn(
             self: *const _Application,
             Filename: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Frame: *const fn(
             self: *const _Application,
             Frame: ?*?*Frame,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Visible: *const fn(
             self: *const _Application,
             Visible: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Show: *const fn(
             self: *const _Application,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Hide: *const fn(
             self: *const _Application,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserControl: *const fn(
             self: *const _Application,
             UserControl: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UserControl: *const fn(
             self: *const _Application,
             UserControl: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VersionMajor: *const fn(
             self: *const _Application,
             VersionMajor: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VersionMinor: *const fn(
             self: *const _Application,
             VersionMinor: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -321,55 +321,55 @@ pub const _AppEvents = extern union {
         OnQuit: *const fn(
             self: *const _AppEvents,
             Application: ?*_Application,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDocumentOpen: *const fn(
             self: *const _AppEvents,
             Document: ?*Document,
             New: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDocumentClose: *const fn(
             self: *const _AppEvents,
             Document: ?*Document,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSnapInAdded: *const fn(
             self: *const _AppEvents,
             Document: ?*Document,
             SnapIn: ?*SnapIn,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSnapInRemoved: *const fn(
             self: *const _AppEvents,
             Document: ?*Document,
             SnapIn: ?*SnapIn,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnNewView: *const fn(
             self: *const _AppEvents,
             View: ?*View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnViewClose: *const fn(
             self: *const _AppEvents,
             View: ?*View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnViewChange: *const fn(
             self: *const _AppEvents,
             View: ?*View,
             NewOwnerNode: ?*Node,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSelectionChange: *const fn(
             self: *const _AppEvents,
             View: ?*View,
             NewNodes: ?*Nodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnContextMenuExecuted: *const fn(
             self: *const _AppEvents,
             MenuItem: ?*MenuItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnToolbarButtonClicked: *const fn(
             self: *const _AppEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnListUpdated: *const fn(
             self: *const _AppEvents,
             View: ?*View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -431,10 +431,10 @@ pub const _EventConnector = extern union {
         ConnectTo: *const fn(
             self: *const _EventConnector,
             Application: ?*_Application,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const _EventConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -454,53 +454,53 @@ pub const Frame = extern union {
         base: IDispatch.VTable,
         Maximize: *const fn(
             self: *const Frame,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Minimize: *const fn(
             self: *const Frame,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Restore: *const fn(
             self: *const Frame,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Top: *const fn(
             self: *const Frame,
             Top: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Top: *const fn(
             self: *const Frame,
             top: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Bottom: *const fn(
             self: *const Frame,
             Bottom: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Bottom: *const fn(
             self: *const Frame,
             bottom: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Left: *const fn(
             self: *const Frame,
             Left: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Left: *const fn(
             self: *const Frame,
             left: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Right: *const fn(
             self: *const Frame,
             Right: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Right: *const fn(
             self: *const Frame,
             right: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -549,26 +549,26 @@ pub const Node = extern union {
         get_Name: *const fn(
             self: *const Node,
             Name: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Property: *const fn(
             self: *const Node,
             PropertyName: ?BSTR,
             PropertyValue: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Bookmark: *const fn(
             self: *const Node,
             Bookmark: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsScopeNode: *const fn(
             self: *const Node,
             IsScopeNode: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Nodetype: *const fn(
             self: *const Node,
             Nodetype: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -599,25 +599,25 @@ pub const ScopeNamespace = extern union {
             self: *const ScopeNamespace,
             Node: ?*Node,
             Parent: ?*?*Node,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChild: *const fn(
             self: *const ScopeNamespace,
             Node: ?*Node,
             Child: ?*?*Node,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNext: *const fn(
             self: *const ScopeNamespace,
             Node: ?*Node,
             Next: ?*?*Node,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRoot: *const fn(
             self: *const ScopeNamespace,
             Root: ?*?*Node,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Expand: *const fn(
             self: *const ScopeNamespace,
             Node: ?*Node,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -646,79 +646,79 @@ pub const Document = extern union {
         base: IDispatch.VTable,
         Save: *const fn(
             self: *const Document,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveAs: *const fn(
             self: *const Document,
             Filename: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const Document,
             SaveChanges: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Views: *const fn(
             self: *const Document,
             Views: ?*?*Views,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SnapIns: *const fn(
             self: *const Document,
             SnapIns: ?*?*SnapIns,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActiveView: *const fn(
             self: *const Document,
             View: ?*?*View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const Document,
             Name: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const Document,
             Name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Location: *const fn(
             self: *const Document,
             Location: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSaved: *const fn(
             self: *const Document,
             IsSaved: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Mode: *const fn(
             self: *const Document,
             Mode: ?*_DocumentMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Mode: *const fn(
             self: *const Document,
             Mode: _DocumentMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootNode: *const fn(
             self: *const Document,
             Node: ?*?*Node,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ScopeNamespace: *const fn(
             self: *const Document,
             ScopeNamespace: ?*?*ScopeNamespace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateProperties: *const fn(
             self: *const Document,
             Properties: ?*?*Properties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Application: *const fn(
             self: *const Document,
             Application: ?*?*_Application,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -782,36 +782,36 @@ pub const SnapIn = extern union {
         get_Name: *const fn(
             self: *const SnapIn,
             Name: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Vendor: *const fn(
             self: *const SnapIn,
             Vendor: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
             self: *const SnapIn,
             Version: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Extensions: *const fn(
             self: *const SnapIn,
             Extensions: ?*?*Extensions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SnapinCLSID: *const fn(
             self: *const SnapIn,
             SnapinCLSID: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const SnapIn,
             Properties: ?*?*Properties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableAllExtensions: *const fn(
             self: *const SnapIn,
             Enable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -848,28 +848,28 @@ pub const SnapIns = extern union {
         get__NewEnum: *const fn(
             self: *const SnapIns,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const SnapIns,
             Index: i32,
             SnapIn: ?*?*SnapIn,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const SnapIns,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const SnapIns,
             SnapinNameOrCLSID: ?BSTR,
             ParentSnapin: VARIANT,
             Properties: VARIANT,
             SnapIn: ?*?*SnapIn,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const SnapIns,
             SnapIn: ?*SnapIn,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -900,35 +900,35 @@ pub const Extension = extern union {
         get_Name: *const fn(
             self: *const Extension,
             Name: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Vendor: *const fn(
             self: *const Extension,
             Vendor: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
             self: *const Extension,
             Version: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Extensions: *const fn(
             self: *const Extension,
             Extensions: ?*?*Extensions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SnapinCLSID: *const fn(
             self: *const Extension,
             SnapinCLSID: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableAllExtensions: *const fn(
             self: *const Extension,
             Enable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enable: *const fn(
             self: *const Extension,
             Enable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -965,17 +965,17 @@ pub const Extensions = extern union {
         get__NewEnum: *const fn(
             self: *const Extensions,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const Extensions,
             Index: i32,
             Extension: ?*?*Extension,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const Extensions,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1000,17 +1000,17 @@ pub const Columns = extern union {
             self: *const Columns,
             Index: i32,
             Column: ?*?*Column,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const Columns,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const Columns,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1041,45 +1041,45 @@ pub const Column = extern union {
         Name: *const fn(
             self: *const Column,
             Name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Width: *const fn(
             self: *const Column,
             Width: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Width: *const fn(
             self: *const Column,
             Width: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayPosition: *const fn(
             self: *const Column,
             DisplayPosition: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayPosition: *const fn(
             self: *const Column,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Hidden: *const fn(
             self: *const Column,
             Hidden: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Hidden: *const fn(
             self: *const Column,
             Hidden: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAsSortColumn: *const fn(
             self: *const Column,
             SortOrder: _ColumnSortOrder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSortColumn: *const fn(
             self: *const Column,
             IsSortColumn: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1122,22 +1122,22 @@ pub const Views = extern union {
             self: *const Views,
             Index: i32,
             View: ?*?*View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const Views,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const Views,
             Node: ?*Node,
             viewOptions: _ViewOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const Views,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1165,189 +1165,189 @@ pub const View = extern union {
         get_ActiveScopeNode: *const fn(
             self: *const View,
             Node: ?*?*Node,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ActiveScopeNode: *const fn(
             self: *const View,
             Node: ?*Node,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Selection: *const fn(
             self: *const View,
             Nodes: ?*?*Nodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ListItems: *const fn(
             self: *const View,
             Nodes: ?*?*Nodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SnapinScopeObject: *const fn(
             self: *const View,
             ScopeNode: VARIANT,
             ScopeNodeObject: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SnapinSelectionObject: *const fn(
             self: *const View,
             SelectionObject: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Is: *const fn(
             self: *const View,
             View: ?*View,
             TheSame: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Document: *const fn(
             self: *const View,
             Document: ?*?*Document,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SelectAll: *const fn(
             self: *const View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Select: *const fn(
             self: *const View,
             Node: ?*Node,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Deselect: *const fn(
             self: *const View,
             Node: ?*Node,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSelected: *const fn(
             self: *const View,
             Node: ?*Node,
             IsSelected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayScopeNodePropertySheet: *const fn(
             self: *const View,
             ScopeNode: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplaySelectionPropertySheet: *const fn(
             self: *const View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyScopeNode: *const fn(
             self: *const View,
             ScopeNode: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopySelection: *const fn(
             self: *const View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteScopeNode: *const fn(
             self: *const View,
             ScopeNode: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteSelection: *const fn(
             self: *const View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RenameScopeNode: *const fn(
             self: *const View,
             NewName: ?BSTR,
             ScopeNode: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RenameSelectedItem: *const fn(
             self: *const View,
             NewName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ScopeNodeContextMenu: *const fn(
             self: *const View,
             ScopeNode: VARIANT,
             ContextMenu: ?*?*ContextMenu,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelectionContextMenu: *const fn(
             self: *const View,
             ContextMenu: ?*?*ContextMenu,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RefreshScopeNode: *const fn(
             self: *const View,
             ScopeNode: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RefreshSelection: *const fn(
             self: *const View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExecuteSelectionMenuItem: *const fn(
             self: *const View,
             MenuItemPath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExecuteScopeNodeMenuItem: *const fn(
             self: *const View,
             MenuItemPath: ?BSTR,
             ScopeNode: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExecuteShellCommand: *const fn(
             self: *const View,
             Command: ?BSTR,
             Directory: ?BSTR,
             Parameters: ?BSTR,
             WindowState: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Frame: *const fn(
             self: *const View,
             Frame: ?*?*Frame,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ScopeTreeVisible: *const fn(
             self: *const View,
             Visible: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ScopeTreeVisible: *const fn(
             self: *const View,
             Visible: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Back: *const fn(
             self: *const View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Forward: *const fn(
             self: *const View,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StatusBarText: *const fn(
             self: *const View,
             StatusBarText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Memento: *const fn(
             self: *const View,
             Memento: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ViewMemento: *const fn(
             self: *const View,
             Memento: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Columns: *const fn(
             self: *const View,
             Columns: ?*?*Columns,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_CellContents: *const fn(
             self: *const View,
             Node: ?*Node,
             Column: i32,
             CellContents: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExportList: *const fn(
             self: *const View,
             File: ?BSTR,
             exportoptions: _ExportListOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ListViewMode: *const fn(
             self: *const View,
             Mode: ?*_ListViewMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ListViewMode: *const fn(
             self: *const View,
             mode: _ListViewMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ControlObject: *const fn(
             self: *const View,
             Control: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1489,17 +1489,17 @@ pub const Nodes = extern union {
         get__NewEnum: *const fn(
             self: *const Nodes,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const Nodes,
             Index: i32,
             Node: ?*?*Node,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const Nodes,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1524,17 +1524,17 @@ pub const ContextMenu = extern union {
         get__NewEnum: *const fn(
             self: *const ContextMenu,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ContextMenu,
             IndexOrPath: VARIANT,
             MenuItem: ?*?*MenuItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ContextMenu,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1559,30 +1559,30 @@ pub const MenuItem = extern union {
         get_DisplayName: *const fn(
             self: *const MenuItem,
             DisplayName: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LanguageIndependentName: *const fn(
             self: *const MenuItem,
             LanguageIndependentName: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: *const fn(
             self: *const MenuItem,
             Path: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LanguageIndependentPath: *const fn(
             self: *const MenuItem,
             LanguageIndependentPath: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Execute: *const fn(
             self: *const MenuItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const MenuItem,
             Enabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1616,21 +1616,21 @@ pub const Properties = extern union {
         get__NewEnum: *const fn(
             self: *const Properties,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const Properties,
             Name: ?BSTR,
             Property: ?*?*Property,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const Properties,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const Properties,
             Name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1658,17 +1658,17 @@ pub const Property = extern union {
         get_Value: *const fn(
             self: *const Property,
             Value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const Property,
             Value: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const Property,
             Name: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1983,36 +1983,36 @@ pub const IComponentData = extern union {
         Initialize: *const fn(
             self: *const IComponentData,
             pUnknown: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateComponent: *const fn(
             self: *const IComponentData,
             ppComponent: ?*?*IComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Notify: *const fn(
             self: *const IComponentData,
             lpDataObject: ?*IDataObject,
             event: MMC_NOTIFY_TYPE,
             arg: LPARAM,
             param3: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Destroy: *const fn(
             self: *const IComponentData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryDataObject: *const fn(
             self: *const IComponentData,
             cookie: isize,
             type: DATA_OBJECT_TYPES,
             ppDataObject: ?*?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayInfo: *const fn(
             self: *const IComponentData,
             pScopeDataItem: ?*SCOPEDATAITEM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CompareObjects: *const fn(
             self: *const IComponentData,
             lpDataObjectA: ?*IDataObject,
             lpDataObjectB: ?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2048,39 +2048,39 @@ pub const IComponent = extern union {
         Initialize: *const fn(
             self: *const IComponent,
             lpConsole: ?*IConsole,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Notify: *const fn(
             self: *const IComponent,
             lpDataObject: ?*IDataObject,
             event: MMC_NOTIFY_TYPE,
             arg: LPARAM,
             param3: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Destroy: *const fn(
             self: *const IComponent,
             cookie: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryDataObject: *const fn(
             self: *const IComponent,
             cookie: isize,
             type: DATA_OBJECT_TYPES,
             ppDataObject: ?*?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResultViewType: *const fn(
             self: *const IComponent,
             cookie: isize,
             ppViewType: ?*?PWSTR,
             pViewOptions: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayInfo: *const fn(
             self: *const IComponent,
             pResultDataItem: ?*RESULTDATAITEM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CompareObjects: *const fn(
             self: *const IComponent,
             lpDataObjectA: ?*IDataObject,
             lpDataObjectB: ?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2119,7 +2119,7 @@ pub const IResultDataCompare = extern union {
             cookieA: isize,
             cookieB: isize,
             pnResult: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2138,18 +2138,18 @@ pub const IResultOwnerData = extern union {
             self: *const IResultOwnerData,
             pFindInfo: ?*RESULTFINDINFO,
             pnFoundIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CacheHint: *const fn(
             self: *const IResultOwnerData,
             nStartIndex: i32,
             nEndIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SortItems: *const fn(
             self: *const IResultOwnerData,
             nColumn: i32,
             dwSortOptions: u32,
             lUserParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2173,53 +2173,53 @@ pub const IConsole = extern union {
         SetHeader: *const fn(
             self: *const IConsole,
             pHeader: ?*IHeaderCtrl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetToolbar: *const fn(
             self: *const IConsole,
             pToolbar: ?*IToolbar,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryResultView: *const fn(
             self: *const IConsole,
             pUnknown: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryScopeImageList: *const fn(
             self: *const IConsole,
             ppImageList: ?*?*IImageList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryResultImageList: *const fn(
             self: *const IConsole,
             ppImageList: ?*?*IImageList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateAllViews: *const fn(
             self: *const IConsole,
             lpDataObject: ?*IDataObject,
             data: LPARAM,
             hint: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MessageBox: *const fn(
             self: *const IConsole,
             lpszText: ?[*:0]const u16,
             lpszTitle: ?[*:0]const u16,
             fuStyle: u32,
             piRetval: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryConsoleVerb: *const fn(
             self: *const IConsole,
             ppConsoleVerb: ?*?*IConsoleVerb,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SelectScopeItem: *const fn(
             self: *const IConsole,
             hScopeItem: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMainWindow: *const fn(
             self: *const IConsole,
             phwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NewWindow: *const fn(
             self: *const IConsole,
             hScopeItem: isize,
             lOptions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2270,31 +2270,31 @@ pub const IHeaderCtrl = extern union {
             title: ?[*:0]const u16,
             nFormat: i32,
             nWidth: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteColumn: *const fn(
             self: *const IHeaderCtrl,
             nCol: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColumnText: *const fn(
             self: *const IHeaderCtrl,
             nCol: i32,
             title: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColumnText: *const fn(
             self: *const IHeaderCtrl,
             nCol: i32,
             pText: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColumnWidth: *const fn(
             self: *const IHeaderCtrl,
             nCol: i32,
             nWidth: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColumnWidth: *const fn(
             self: *const IHeaderCtrl,
             nCol: i32,
             pWidth: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2389,7 +2389,7 @@ pub const IContextMenuCallback = extern union {
         AddItem: *const fn(
             self: *const IContextMenuCallback,
             pItem: ?*CONTEXTMENUITEM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2406,23 +2406,23 @@ pub const IContextMenuProvider = extern union {
         base: IContextMenuCallback.VTable,
         EmptyMenuList: *const fn(
             self: *const IContextMenuProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPrimaryExtensionItems: *const fn(
             self: *const IContextMenuProvider,
             piExtension: ?*IUnknown,
             piDataObject: ?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddThirdPartyExtensionItems: *const fn(
             self: *const IContextMenuProvider,
             piDataObject: ?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowContextMenu: *const fn(
             self: *const IContextMenuProvider,
             hwndParent: ?HWND,
             xPos: i32,
             yPos: i32,
             plSelected: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IContextMenuCallback: IContextMenuCallback,
@@ -2452,12 +2452,12 @@ pub const IExtendContextMenu = extern union {
             piDataObject: ?*IDataObject,
             piCallback: ?*IContextMenuCallback,
             pInsertionAllowed: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Command: *const fn(
             self: *const IExtendContextMenu,
             lCommandID: i32,
             piDataObject: ?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2479,14 +2479,14 @@ pub const IImageList = extern union {
             self: *const IImageList,
             pIcon: ?*isize,
             nLoc: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImageListSetStrip: *const fn(
             self: *const IImageList,
             pBMapSm: ?*isize,
             pBMapLg: ?*isize,
             nStartLoc: i32,
             cMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2507,71 +2507,71 @@ pub const IResultData = extern union {
         InsertItem: *const fn(
             self: *const IResultData,
             item: ?*RESULTDATAITEM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItem: *const fn(
             self: *const IResultData,
             itemID: isize,
             nCol: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindItemByLParam: *const fn(
             self: *const IResultData,
             lParam: LPARAM,
             pItemID: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAllRsltItems: *const fn(
             self: *const IResultData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetItem: *const fn(
             self: *const IResultData,
             item: ?*RESULTDATAITEM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItem: *const fn(
             self: *const IResultData,
             item: ?*RESULTDATAITEM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextItem: *const fn(
             self: *const IResultData,
             item: ?*RESULTDATAITEM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ModifyItemState: *const fn(
             self: *const IResultData,
             nIndex: i32,
             itemID: isize,
             uAdd: u32,
             uRemove: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ModifyViewStyle: *const fn(
             self: *const IResultData,
             add: MMC_RESULT_VIEW_STYLE,
             remove: MMC_RESULT_VIEW_STYLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetViewMode: *const fn(
             self: *const IResultData,
             lViewMode: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetViewMode: *const fn(
             self: *const IResultData,
             lViewMode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateItem: *const fn(
             self: *const IResultData,
             itemID: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Sort: *const fn(
             self: *const IResultData,
             nColumn: i32,
             dwSortOptions: u32,
             lUserParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDescBarText: *const fn(
             self: *const IResultData,
             DescText: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetItemCount: *const fn(
             self: *const IResultData,
             nItemCount: i32,
             dwOptions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2631,38 +2631,38 @@ pub const IConsoleNameSpace = extern union {
         InsertItem: *const fn(
             self: *const IConsoleNameSpace,
             item: ?*SCOPEDATAITEM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItem: *const fn(
             self: *const IConsoleNameSpace,
             hItem: isize,
             fDeleteThis: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetItem: *const fn(
             self: *const IConsoleNameSpace,
             item: ?*SCOPEDATAITEM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItem: *const fn(
             self: *const IConsoleNameSpace,
             item: ?*SCOPEDATAITEM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChildItem: *const fn(
             self: *const IConsoleNameSpace,
             item: isize,
             pItemChild: ?*isize,
             pCookie: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextItem: *const fn(
             self: *const IConsoleNameSpace,
             item: isize,
             pItemNext: ?*isize,
             pCookie: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParentItem: *const fn(
             self: *const IConsoleNameSpace,
             item: isize,
             pItemParent: ?*isize,
             pCookie: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2698,12 +2698,12 @@ pub const IConsoleNameSpace2 = extern union {
         Expand: *const fn(
             self: *const IConsoleNameSpace2,
             hItem: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddExtension: *const fn(
             self: *const IConsoleNameSpace2,
             hItem: isize,
             lpClsid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IConsoleNameSpace: IConsoleNameSpace,
@@ -2725,11 +2725,11 @@ pub const IPropertySheetCallback = extern union {
         AddPage: *const fn(
             self: *const IPropertySheetCallback,
             hPage: ?HPROPSHEETPAGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemovePage: *const fn(
             self: *const IPropertySheetCallback,
             hPage: ?HPROPSHEETPAGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2754,28 +2754,28 @@ pub const IPropertySheetProvider = extern union {
             cookie: isize,
             pIDataObjectm: ?*IDataObject,
             dwOptions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindPropertySheet: *const fn(
             self: *const IPropertySheetProvider,
             hItem: isize,
             lpComponent: ?*IComponent,
             lpDataObject: ?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPrimaryPages: *const fn(
             self: *const IPropertySheetProvider,
             lpUnknown: ?*IUnknown,
             bCreateHandle: BOOL,
             hNotifyWindow: ?HWND,
             bScopePane: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddExtensionPages: *const fn(
             self: *const IPropertySheetProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Show: *const fn(
             self: *const IPropertySheetProvider,
             window: isize,
             page: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2807,11 +2807,11 @@ pub const IExtendPropertySheet = extern union {
             lpProvider: ?*IPropertySheetCallback,
             handle: isize,
             lpIDataObject: ?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryPagesFor: *const fn(
             self: *const IExtendPropertySheet,
             lpDataObject: ?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2834,16 +2834,16 @@ pub const IControlbar = extern union {
             nType: MMC_CONTROL_TYPE,
             pExtendControlbar: ?*IExtendControlbar,
             ppUnknown: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Attach: *const fn(
             self: *const IControlbar,
             nType: MMC_CONTROL_TYPE,
             lpUnknown: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Detach: *const fn(
             self: *const IControlbar,
             lpUnknown: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2867,13 +2867,13 @@ pub const IExtendControlbar = extern union {
         SetControlbar: *const fn(
             self: *const IExtendControlbar,
             pControlbar: ?*IControlbar,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ControlbarNotify: *const fn(
             self: *const IExtendControlbar,
             event: MMC_NOTIFY_TYPE,
             arg: LPARAM,
             param2: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2898,33 +2898,33 @@ pub const IToolbar = extern union {
             cxSize: i32,
             cySize: i32,
             crMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddButtons: *const fn(
             self: *const IToolbar,
             nButtons: i32,
             lpButtons: ?*MMCBUTTON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertButton: *const fn(
             self: *const IToolbar,
             nIndex: i32,
             lpButton: ?*MMCBUTTON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteButton: *const fn(
             self: *const IToolbar,
             nIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetButtonState: *const fn(
             self: *const IToolbar,
             idCommand: i32,
             nState: MMC_BUTTON_STATE,
             pState: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetButtonState: *const fn(
             self: *const IToolbar,
             idCommand: i32,
             nState: MMC_BUTTON_STATE,
             bState: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2959,21 +2959,21 @@ pub const IConsoleVerb = extern union {
             eCmdID: MMC_CONSOLE_VERB,
             nState: MMC_BUTTON_STATE,
             pState: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVerbState: *const fn(
             self: *const IConsoleVerb,
             eCmdID: MMC_CONSOLE_VERB,
             nState: MMC_BUTTON_STATE,
             bState: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultVerb: *const fn(
             self: *const IConsoleVerb,
             eCmdID: MMC_CONSOLE_VERB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultVerb: *const fn(
             self: *const IConsoleVerb,
             peCmdID: ?*MMC_CONSOLE_VERB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3000,26 +3000,26 @@ pub const ISnapinAbout = extern union {
         GetSnapinDescription: *const fn(
             self: *const ISnapinAbout,
             lpDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProvider: *const fn(
             self: *const ISnapinAbout,
             lpName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSnapinVersion: *const fn(
             self: *const ISnapinAbout,
             lpVersion: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSnapinImage: *const fn(
             self: *const ISnapinAbout,
             hAppIcon: ?*?HICON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStaticFolderImage: *const fn(
             self: *const ISnapinAbout,
             hSmallImage: ?*?HBITMAP,
             hSmallImageOpen: ?*?HBITMAP,
             hLargeImage: ?*?HBITMAP,
             cMask: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3051,19 +3051,19 @@ pub const IMenuButton = extern union {
             idCommand: i32,
             lpButtonText: ?PWSTR,
             lpTooltipText: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetButton: *const fn(
             self: *const IMenuButton,
             idCommand: i32,
             lpButtonText: ?PWSTR,
             lpTooltipText: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetButtonState: *const fn(
             self: *const IMenuButton,
             idCommand: i32,
             nState: MMC_BUTTON_STATE,
             bState: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3087,7 +3087,7 @@ pub const ISnapinHelp = extern union {
         GetHelpTopic: *const fn(
             self: *const ISnapinHelp,
             lpCompiledHelpFile: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3109,7 +3109,7 @@ pub const IExtendPropertySheet2 = extern union {
             lphHeader: ?*?HBITMAP,
             lphPalette: ?*?HPALETTE,
             bStretch: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IExtendPropertySheet: IExtendPropertySheet,
@@ -3128,19 +3128,19 @@ pub const IHeaderCtrl2 = extern union {
         SetChangeTimeOut: *const fn(
             self: *const IHeaderCtrl2,
             uTimeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColumnFilter: *const fn(
             self: *const IHeaderCtrl2,
             nColumn: u32,
             dwType: u32,
             pFilterData: ?*MMC_FILTERDATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColumnFilter: *const fn(
             self: *const IHeaderCtrl2,
             nColumn: u32,
             pdwType: ?*u32,
             pFilterData: ?*MMC_FILTERDATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IHeaderCtrl: IHeaderCtrl,
@@ -3165,7 +3165,7 @@ pub const ISnapinHelp2 = extern union {
         GetLinkedTopics: *const fn(
             self: *const ISnapinHelp2,
             lpCompiledHelpFiles: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISnapinHelp: ISnapinHelp,
@@ -3247,18 +3247,18 @@ pub const IEnumTASK = extern union {
             celt: u32,
             rgelt: [*]MMC_TASK,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumTASK,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumTASK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumTASK,
             ppenum: ?*?*IEnumTASK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3287,33 +3287,33 @@ pub const IExtendTaskPad = extern union {
             pdo: ?*IDataObject,
             arg: ?*VARIANT,
             param2: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumTasks: *const fn(
             self: *const IExtendTaskPad,
             pdo: ?*IDataObject,
             szTaskGroup: ?PWSTR,
             ppEnumTASK: ?*?*IEnumTASK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTitle: *const fn(
             self: *const IExtendTaskPad,
             pszGroup: ?PWSTR,
             pszTitle: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescriptiveText: *const fn(
             self: *const IExtendTaskPad,
             pszGroup: ?PWSTR,
             pszDescriptiveText: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBackground: *const fn(
             self: *const IExtendTaskPad,
             pszGroup: ?PWSTR,
             pTDO: ?*MMC_TASK_DISPLAY_OBJECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetListPadInfo: *const fn(
             self: *const IExtendTaskPad,
             pszGroup: ?PWSTR,
             lpListPadInfo: ?*MMC_LISTPAD_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3347,14 +3347,14 @@ pub const IConsole2 = extern union {
             self: *const IConsole2,
             hItem: isize,
             bExpand: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsTaskpadViewPreferred: *const fn(
             self: *const IConsole2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStatusText: *const fn(
             self: *const IConsole2,
             pszStatusText: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IConsole: IConsole,
@@ -3379,7 +3379,7 @@ pub const IDisplayHelp = extern union {
         ShowTopic: *const fn(
             self: *const IDisplayHelp,
             pszHelpTopic: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3396,15 +3396,15 @@ pub const IRequiredExtensions = extern union {
         base: IUnknown.VTable,
         EnableAllExtensions: *const fn(
             self: *const IRequiredExtensions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFirstExtension: *const fn(
             self: *const IRequiredExtensions,
             pExtCLSID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextExtension: *const fn(
             self: *const IRequiredExtensions,
             pExtCLSID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3429,35 +3429,35 @@ pub const IStringTable = extern union {
             self: *const IStringTable,
             pszAdd: ?[*:0]const u16,
             pStringID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetString: *const fn(
             self: *const IStringTable,
             StringID: u32,
             cchBuffer: u32,
             lpBuffer: [*:0]u16,
             pcchOut: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringLength: *const fn(
             self: *const IStringTable,
             StringID: u32,
             pcchString: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteString: *const fn(
             self: *const IStringTable,
             StringID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAllStrings: *const fn(
             self: *const IStringTable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindString: *const fn(
             self: *const IStringTable,
             pszFind: ?[*:0]const u16,
             pStringID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enumerate: *const fn(
             self: *const IStringTable,
             ppEnum: ?*?*IEnumString,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3519,22 +3519,22 @@ pub const IColumnData = extern union {
             self: *const IColumnData,
             pColID: ?*SColumnSetID,
             pColSetData: ?*MMC_COLUMN_SET_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColumnConfigData: *const fn(
             self: *const IColumnData,
             pColID: ?*SColumnSetID,
             ppColSetData: ?*?*MMC_COLUMN_SET_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColumnSortData: *const fn(
             self: *const IColumnData,
             pColID: ?*SColumnSetID,
             pColSortData: ?*MMC_SORT_SET_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColumnSortData: *const fn(
             self: *const IColumnData,
             pColID: ?*SColumnSetID,
             ppColSortData: ?*?*MMC_SORT_SET_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3578,18 +3578,18 @@ pub const IMessageView = extern union {
         SetTitleText: *const fn(
             self: *const IMessageView,
             pszTitleText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBodyText: *const fn(
             self: *const IMessageView,
             pszBodyText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIcon: *const fn(
             self: *const IMessageView,
             id: IconIdentifier,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IMessageView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3632,7 +3632,7 @@ pub const IResultDataCompareEx = extern union {
             self: *const IResultDataCompareEx,
             prdc: ?*RDCOMPARE,
             pnResult: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3696,7 +3696,7 @@ pub const IComponentData2 = extern union {
             cookie: isize,
             type: DATA_OBJECT_TYPES,
             ppDispatch: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IComponentData: IComponentData,
@@ -3717,17 +3717,17 @@ pub const IComponent2 = extern union {
             cookie: isize,
             type: DATA_OBJECT_TYPES,
             ppDispatch: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResultViewType2: *const fn(
             self: *const IComponent2,
             cookie: isize,
             pResultViewType: ?*RESULT_VIEW_TYPE_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestoreResultView: *const fn(
             self: *const IComponent2,
             cookie: isize,
             pResultViewType: ?*RESULT_VIEW_TYPE_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IComponent: IComponent,
@@ -3752,7 +3752,7 @@ pub const IContextMenuCallback2 = extern union {
         AddItem: *const fn(
             self: *const IContextMenuCallback2,
             pItem: ?*CONTEXTMENUITEM2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3771,7 +3771,7 @@ pub const IMMCVersionInfo = extern union {
             self: *const IMMCVersionInfo,
             pVersionMajor: ?*i32,
             pVersionMinor: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3790,7 +3790,7 @@ pub const IExtendView = extern union {
             self: *const IExtendView,
             pDataObject: ?*IDataObject,
             pViewExtensionCallback: ?*IViewExtensionCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3808,7 +3808,7 @@ pub const IViewExtensionCallback = extern union {
         AddView: *const fn(
             self: *const IViewExtensionCallback,
             pExtViewData: ?*MMC_EXT_VIEW_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3827,11 +3827,11 @@ pub const IConsolePower = extern union {
             self: *const IConsolePower,
             dwAdd: u32,
             dwRemove: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetIdleTimer: *const fn(
             self: *const IConsolePower,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3854,7 +3854,7 @@ pub const IConsolePowerSink = extern union {
             nEvent: u32,
             lParam: LPARAM,
             plReturn: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3874,7 +3874,7 @@ pub const INodeProperties = extern union {
             pDataObject: ?*IDataObject,
             szPropertyName: ?BSTR,
             pbstrProperty: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3892,7 +3892,7 @@ pub const IConsole3 = extern union {
         RenameScopeItem: *const fn(
             self: *const IConsole3,
             hScopeItem: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IConsole2: IConsole2,
@@ -3912,7 +3912,7 @@ pub const IResultData2 = extern union {
         RenameResultItem: *const fn(
             self: *const IResultData2,
             itemID: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IResultData: IResultData,

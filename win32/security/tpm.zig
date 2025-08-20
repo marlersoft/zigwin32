@@ -103,11 +103,11 @@ pub const ITpmVirtualSmartCardManagerStatusCallback = extern union {
         ReportProgress: *const fn(
             self: *const ITpmVirtualSmartCardManagerStatusCallback,
             Status: TPMVSCMGR_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReportError: *const fn(
             self: *const ITpmVirtualSmartCardManagerStatusCallback,
             Error: TPMVSCMGR_ERROR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -141,13 +141,13 @@ pub const ITpmVirtualSmartCardManager = extern union {
             pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
             ppszInstanceId: ?*?PWSTR,
             pfNeedReboot: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestroyVirtualSmartCard: *const fn(
             self: *const ITpmVirtualSmartCardManager,
             pszInstanceId: ?[*:0]const u16,
             pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
             pfNeedReboot: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -182,7 +182,7 @@ pub const ITpmVirtualSmartCardManager2 = extern union {
             pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
             ppszInstanceId: ?*?PWSTR,
             pfNeedReboot: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITpmVirtualSmartCardManager: ITpmVirtualSmartCardManager,
@@ -215,7 +215,7 @@ pub const ITpmVirtualSmartCardManager3 = extern union {
             fGenerate: BOOL,
             pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
             ppszInstanceId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITpmVirtualSmartCardManager2: ITpmVirtualSmartCardManager2,

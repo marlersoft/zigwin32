@@ -31,7 +31,7 @@ pub const IDDEInitializer = extern union {
             targetFile: ?[*:0]const u16,
             arguments: ?[*:0]const u16,
             verb: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

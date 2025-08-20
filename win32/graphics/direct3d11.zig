@@ -840,26 +840,26 @@ pub const ID3D11DeviceChild = extern union {
         GetDevice: *const fn(
             self: *const ID3D11DeviceChild,
             ppDevice: ?*?*ID3D11Device,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetPrivateData: *const fn(
             self: *const ID3D11DeviceChild,
             guid: ?*const Guid,
             pDataSize: ?*u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const ID3D11DeviceChild,
             guid: ?*const Guid,
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
             self: *const ID3D11DeviceChild,
             guid: ?*const Guid,
             pData: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -950,7 +950,7 @@ pub const ID3D11DepthStencilState = extern union {
         GetDesc: *const fn(
             self: *const ID3D11DepthStencilState,
             pDesc: ?*D3D11_DEPTH_STENCIL_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -1050,7 +1050,7 @@ pub const ID3D11BlendState = extern union {
         GetDesc: *const fn(
             self: *const ID3D11BlendState,
             pDesc: ?*D3D11_BLEND_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -1083,7 +1083,7 @@ pub const ID3D11RasterizerState = extern union {
         GetDesc: *const fn(
             self: *const ID3D11RasterizerState,
             pDesc: ?*D3D11_RASTERIZER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -1115,14 +1115,14 @@ pub const ID3D11Resource = extern union {
         GetType: *const fn(
             self: *const ID3D11Resource,
             pResourceDimension: ?*D3D11_RESOURCE_DIMENSION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetEvictionPriority: *const fn(
             self: *const ID3D11Resource,
             EvictionPriority: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetEvictionPriority: *const fn(
             self: *const ID3D11Resource,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -1157,7 +1157,7 @@ pub const ID3D11Buffer = extern union {
         GetDesc: *const fn(
             self: *const ID3D11Buffer,
             pDesc: ?*D3D11_BUFFER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11Resource: ID3D11Resource,
@@ -1189,7 +1189,7 @@ pub const ID3D11Texture1D = extern union {
         GetDesc: *const fn(
             self: *const ID3D11Texture1D,
             pDesc: ?*D3D11_TEXTURE1D_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11Resource: ID3D11Resource,
@@ -1223,7 +1223,7 @@ pub const ID3D11Texture2D = extern union {
         GetDesc: *const fn(
             self: *const ID3D11Texture2D,
             pDesc: ?*D3D11_TEXTURE2D_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11Resource: ID3D11Resource,
@@ -1256,7 +1256,7 @@ pub const ID3D11Texture3D = extern union {
         GetDesc: *const fn(
             self: *const ID3D11Texture3D,
             pDesc: ?*D3D11_TEXTURE3D_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11Resource: ID3D11Resource,
@@ -1292,7 +1292,7 @@ pub const ID3D11View = extern union {
         GetResource: *const fn(
             self: *const ID3D11View,
             ppResource: ?*?*ID3D11Resource,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -1402,7 +1402,7 @@ pub const ID3D11ShaderResourceView = extern union {
         GetDesc: *const fn(
             self: *const ID3D11ShaderResourceView,
             pDesc: ?*D3D11_SHADER_RESOURCE_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11View: ID3D11View,
@@ -1484,7 +1484,7 @@ pub const ID3D11RenderTargetView = extern union {
         GetDesc: *const fn(
             self: *const ID3D11RenderTargetView,
             pDesc: ?*D3D11_RENDER_TARGET_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11View: ID3D11View,
@@ -1555,7 +1555,7 @@ pub const ID3D11DepthStencilView = extern union {
         GetDesc: *const fn(
             self: *const ID3D11DepthStencilView,
             pDesc: ?*D3D11_DEPTH_STENCIL_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11View: ID3D11View,
@@ -1630,7 +1630,7 @@ pub const ID3D11UnorderedAccessView = extern union {
         GetDesc: *const fn(
             self: *const ID3D11UnorderedAccessView,
             pDesc: ?*D3D11_UNORDERED_ACCESS_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11View: ID3D11View,
@@ -1861,7 +1861,7 @@ pub const ID3D11SamplerState = extern union {
         GetDesc: *const fn(
             self: *const ID3D11SamplerState,
             pDesc: ?*D3D11_SAMPLER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -1972,7 +1972,7 @@ pub const ID3D11Asynchronous = extern union {
         base: ID3D11DeviceChild.VTable,
         GetDataSize: *const fn(
             self: *const ID3D11Asynchronous,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -2042,7 +2042,7 @@ pub const ID3D11Query = extern union {
         GetDesc: *const fn(
             self: *const ID3D11Query,
             pDesc: ?*D3D11_QUERY_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11Asynchronous: ID3D11Asynchronous,
@@ -2129,7 +2129,7 @@ pub const ID3D11Counter = extern union {
         GetDesc: *const fn(
             self: *const ID3D11Counter,
             pDesc: ?*D3D11_COUNTER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11Asynchronous: ID3D11Asynchronous,
@@ -2175,21 +2175,21 @@ pub const ID3D11ClassInstance = extern union {
         GetClassLinkage: *const fn(
             self: *const ID3D11ClassInstance,
             ppLinkage: ?*?*ID3D11ClassLinkage,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetDesc: *const fn(
             self: *const ID3D11ClassInstance,
             pDesc: ?*D3D11_CLASS_INSTANCE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetInstanceName: *const fn(
             self: *const ID3D11ClassInstance,
             pInstanceName: ?[*:0]u8,
             pBufferLength: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetTypeName: *const fn(
             self: *const ID3D11ClassInstance,
             pTypeName: ?[*:0]u8,
             pBufferLength: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -2220,7 +2220,7 @@ pub const ID3D11ClassLinkage = extern union {
             pClassInstanceName: ?[*:0]const u8,
             InstanceIndex: u32,
             ppInstance: **ID3D11ClassInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateClassInstance: *const fn(
             self: *const ID3D11ClassLinkage,
             pClassTypeName: ?[*:0]const u8,
@@ -2229,7 +2229,7 @@ pub const ID3D11ClassLinkage = extern union {
             TextureOffset: u32,
             SamplerOffset: u32,
             ppInstance: **ID3D11ClassInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -2251,7 +2251,7 @@ pub const ID3D11CommandList = extern union {
         base: ID3D11DeviceChild.VTable,
         GetContextFlags: *const fn(
             self: *const ID3D11CommandList,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -2479,42 +2479,42 @@ pub const ID3D11DeviceContext = extern union {
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSSetShaderResources: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSSetShader: *const fn(
             self: *const ID3D11DeviceContext,
             pPixelShader: ?*ID3D11PixelShader,
             ppClassInstances: ?[*]?*ID3D11ClassInstance,
             NumClassInstances: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSSetSamplers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSSetShader: *const fn(
             self: *const ID3D11DeviceContext,
             pVertexShader: ?*ID3D11VertexShader,
             ppClassInstances: ?[*]?*ID3D11ClassInstance,
             NumClassInstances: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawIndexed: *const fn(
             self: *const ID3D11DeviceContext,
             IndexCount: u32,
             StartIndexLocation: u32,
             BaseVertexLocation: i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Draw: *const fn(
             self: *const ID3D11DeviceContext,
             VertexCount: u32,
             StartVertexLocation: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Map: *const fn(
             self: *const ID3D11DeviceContext,
             pResource: ?*ID3D11Resource,
@@ -2522,22 +2522,22 @@ pub const ID3D11DeviceContext = extern union {
             MapType: D3D11_MAP,
             MapFlags: u32,
             pMappedResource: ?*D3D11_MAPPED_SUBRESOURCE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unmap: *const fn(
             self: *const ID3D11DeviceContext,
             pResource: ?*ID3D11Resource,
             Subresource: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSSetConstantBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IASetInputLayout: *const fn(
             self: *const ID3D11DeviceContext,
             pInputLayout: ?*ID3D11InputLayout,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IASetVertexBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
@@ -2545,13 +2545,13 @@ pub const ID3D11DeviceContext = extern union {
             ppVertexBuffers: ?[*]?*ID3D11Buffer,
             pStrides: ?[*]const u32,
             pOffsets: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IASetIndexBuffer: *const fn(
             self: *const ID3D11DeviceContext,
             pIndexBuffer: ?*ID3D11Buffer,
             Format: DXGI_FORMAT,
             Offset: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawIndexedInstanced: *const fn(
             self: *const ID3D11DeviceContext,
             IndexCountPerInstance: u32,
@@ -2559,50 +2559,50 @@ pub const ID3D11DeviceContext = extern union {
             StartIndexLocation: u32,
             BaseVertexLocation: i32,
             StartInstanceLocation: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawInstanced: *const fn(
             self: *const ID3D11DeviceContext,
             VertexCountPerInstance: u32,
             InstanceCount: u32,
             StartVertexLocation: u32,
             StartInstanceLocation: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSSetConstantBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSSetShader: *const fn(
             self: *const ID3D11DeviceContext,
             pShader: ?*ID3D11GeometryShader,
             ppClassInstances: ?[*]?*ID3D11ClassInstance,
             NumClassInstances: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IASetPrimitiveTopology: *const fn(
             self: *const ID3D11DeviceContext,
             Topology: D3D_PRIMITIVE_TOPOLOGY,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSSetShaderResources: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSSetSamplers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Begin: *const fn(
             self: *const ID3D11DeviceContext,
             pAsync: ?*ID3D11Asynchronous,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         End: *const fn(
             self: *const ID3D11DeviceContext,
             pAsync: ?*ID3D11Asynchronous,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetData: *const fn(
             self: *const ID3D11DeviceContext,
             pAsync: ?*ID3D11Asynchronous,
@@ -2610,30 +2610,30 @@ pub const ID3D11DeviceContext = extern union {
             pData: ?*anyopaque,
             DataSize: u32,
             GetDataFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPredication: *const fn(
             self: *const ID3D11DeviceContext,
             pPredicate: ?*ID3D11Predicate,
             PredicateValue: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSSetShaderResources: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSSetSamplers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMSetRenderTargets: *const fn(
             self: *const ID3D11DeviceContext,
             NumViews: u32,
             ppRenderTargetViews: ?[*]?*ID3D11RenderTargetView,
             pDepthStencilView: ?*ID3D11DepthStencilView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMSetRenderTargetsAndUnorderedAccessViews: *const fn(
             self: *const ID3D11DeviceContext,
             NumRTVs: u32,
@@ -2643,62 +2643,62 @@ pub const ID3D11DeviceContext = extern union {
             NumUAVs: u32,
             ppUnorderedAccessViews: ?[*]?*ID3D11UnorderedAccessView,
             pUAVInitialCounts: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMSetBlendState: *const fn(
             self: *const ID3D11DeviceContext,
             pBlendState: ?*ID3D11BlendState,
             BlendFactor: ?*const f32,
             SampleMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMSetDepthStencilState: *const fn(
             self: *const ID3D11DeviceContext,
             pDepthStencilState: ?*ID3D11DepthStencilState,
             StencilRef: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SOSetTargets: *const fn(
             self: *const ID3D11DeviceContext,
             NumBuffers: u32,
             ppSOTargets: ?[*]?*ID3D11Buffer,
             pOffsets: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawAuto: *const fn(
             self: *const ID3D11DeviceContext,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawIndexedInstancedIndirect: *const fn(
             self: *const ID3D11DeviceContext,
             pBufferForArgs: ?*ID3D11Buffer,
             AlignedByteOffsetForArgs: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawInstancedIndirect: *const fn(
             self: *const ID3D11DeviceContext,
             pBufferForArgs: ?*ID3D11Buffer,
             AlignedByteOffsetForArgs: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Dispatch: *const fn(
             self: *const ID3D11DeviceContext,
             ThreadGroupCountX: u32,
             ThreadGroupCountY: u32,
             ThreadGroupCountZ: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DispatchIndirect: *const fn(
             self: *const ID3D11DeviceContext,
             pBufferForArgs: ?*ID3D11Buffer,
             AlignedByteOffsetForArgs: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RSSetState: *const fn(
             self: *const ID3D11DeviceContext,
             pRasterizerState: ?*ID3D11RasterizerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RSSetViewports: *const fn(
             self: *const ID3D11DeviceContext,
             NumViewports: u32,
             pViewports: ?[*]const D3D11_VIEWPORT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RSSetScissorRects: *const fn(
             self: *const ID3D11DeviceContext,
             NumRects: u32,
             pRects: ?[*]const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CopySubresourceRegion: *const fn(
             self: *const ID3D11DeviceContext,
             pDstResource: ?*ID3D11Resource,
@@ -2709,12 +2709,12 @@ pub const ID3D11DeviceContext = extern union {
             pSrcResource: ?*ID3D11Resource,
             SrcSubresource: u32,
             pSrcBox: ?*const D3D11_BOX,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CopyResource: *const fn(
             self: *const ID3D11DeviceContext,
             pDstResource: ?*ID3D11Resource,
             pSrcResource: ?*ID3D11Resource,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         UpdateSubresource: *const fn(
             self: *const ID3D11DeviceContext,
             pDstResource: ?*ID3D11Resource,
@@ -2723,48 +2723,48 @@ pub const ID3D11DeviceContext = extern union {
             pSrcData: ?*const anyopaque,
             SrcRowPitch: u32,
             SrcDepthPitch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CopyStructureCount: *const fn(
             self: *const ID3D11DeviceContext,
             pDstBuffer: ?*ID3D11Buffer,
             DstAlignedByteOffset: u32,
             pSrcView: ?*ID3D11UnorderedAccessView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ClearRenderTargetView: *const fn(
             self: *const ID3D11DeviceContext,
             pRenderTargetView: ?*ID3D11RenderTargetView,
             ColorRGBA: ?*const f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ClearUnorderedAccessViewUint: *const fn(
             self: *const ID3D11DeviceContext,
             pUnorderedAccessView: ?*ID3D11UnorderedAccessView,
             Values: ?*const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ClearUnorderedAccessViewFloat: *const fn(
             self: *const ID3D11DeviceContext,
             pUnorderedAccessView: ?*ID3D11UnorderedAccessView,
             Values: ?*const f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ClearDepthStencilView: *const fn(
             self: *const ID3D11DeviceContext,
             pDepthStencilView: ?*ID3D11DepthStencilView,
             ClearFlags: u32,
             Depth: f32,
             Stencil: u8,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GenerateMips: *const fn(
             self: *const ID3D11DeviceContext,
             pShaderResourceView: ?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetResourceMinLOD: *const fn(
             self: *const ID3D11DeviceContext,
             pResource: ?*ID3D11Resource,
             MinLOD: f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetResourceMinLOD: *const fn(
             self: *const ID3D11DeviceContext,
             pResource: ?*ID3D11Resource,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         ResolveSubresource: *const fn(
             self: *const ID3D11DeviceContext,
             pDstResource: ?*ID3D11Resource,
@@ -2772,131 +2772,131 @@ pub const ID3D11DeviceContext = extern union {
             pSrcResource: ?*ID3D11Resource,
             SrcSubresource: u32,
             Format: DXGI_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ExecuteCommandList: *const fn(
             self: *const ID3D11DeviceContext,
             pCommandList: ?*ID3D11CommandList,
             RestoreContextState: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         HSSetShaderResources: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         HSSetShader: *const fn(
             self: *const ID3D11DeviceContext,
             pHullShader: ?*ID3D11HullShader,
             ppClassInstances: ?[*]?*ID3D11ClassInstance,
             NumClassInstances: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         HSSetSamplers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         HSSetConstantBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DSSetShaderResources: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DSSetShader: *const fn(
             self: *const ID3D11DeviceContext,
             pDomainShader: ?*ID3D11DomainShader,
             ppClassInstances: ?[*]?*ID3D11ClassInstance,
             NumClassInstances: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DSSetSamplers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DSSetConstantBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CSSetShaderResources: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CSSetUnorderedAccessViews: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumUAVs: u32,
             ppUnorderedAccessViews: ?[*]?*ID3D11UnorderedAccessView,
             pUAVInitialCounts: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CSSetShader: *const fn(
             self: *const ID3D11DeviceContext,
             pComputeShader: ?*ID3D11ComputeShader,
             ppClassInstances: ?[*]?*ID3D11ClassInstance,
             NumClassInstances: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CSSetSamplers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CSSetConstantBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSGetConstantBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSGetShaderResources: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSGetShader: *const fn(
             self: *const ID3D11DeviceContext,
             ppPixelShader: ?*?*ID3D11PixelShader,
             ppClassInstances: ?[*]?*ID3D11ClassInstance,
             pNumClassInstances: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSGetSamplers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSGetShader: *const fn(
             self: *const ID3D11DeviceContext,
             ppVertexShader: ?*?*ID3D11VertexShader,
             ppClassInstances: ?[*]?*ID3D11ClassInstance,
             pNumClassInstances: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSGetConstantBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IAGetInputLayout: *const fn(
             self: *const ID3D11DeviceContext,
             ppInputLayout: ?*?*ID3D11InputLayout,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IAGetVertexBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
@@ -2904,64 +2904,64 @@ pub const ID3D11DeviceContext = extern union {
             ppVertexBuffers: ?[*]?*ID3D11Buffer,
             pStrides: ?[*]u32,
             pOffsets: ?[*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IAGetIndexBuffer: *const fn(
             self: *const ID3D11DeviceContext,
             pIndexBuffer: ?*?*ID3D11Buffer,
             Format: ?*DXGI_FORMAT,
             Offset: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSGetConstantBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSGetShader: *const fn(
             self: *const ID3D11DeviceContext,
             ppGeometryShader: ?*?*ID3D11GeometryShader,
             ppClassInstances: ?[*]?*ID3D11ClassInstance,
             pNumClassInstances: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IAGetPrimitiveTopology: *const fn(
             self: *const ID3D11DeviceContext,
             pTopology: ?*D3D_PRIMITIVE_TOPOLOGY,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSGetShaderResources: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSGetSamplers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetPredication: *const fn(
             self: *const ID3D11DeviceContext,
             ppPredicate: ?*?*ID3D11Predicate,
             pPredicateValue: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSGetShaderResources: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSGetSamplers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMGetRenderTargets: *const fn(
             self: *const ID3D11DeviceContext,
             NumViews: u32,
             ppRenderTargetViews: ?[*]?*ID3D11RenderTargetView,
             ppDepthStencilView: ?*?*ID3D11DepthStencilView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMGetRenderTargetsAndUnorderedAccessViews: *const fn(
             self: *const ID3D11DeviceContext,
             NumRTVs: u32,
@@ -2970,132 +2970,132 @@ pub const ID3D11DeviceContext = extern union {
             UAVStartSlot: u32,
             NumUAVs: u32,
             ppUnorderedAccessViews: ?[*]?*ID3D11UnorderedAccessView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMGetBlendState: *const fn(
             self: *const ID3D11DeviceContext,
             ppBlendState: ?*?*ID3D11BlendState,
             BlendFactor: ?*f32,
             pSampleMask: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMGetDepthStencilState: *const fn(
             self: *const ID3D11DeviceContext,
             ppDepthStencilState: ?*?*ID3D11DepthStencilState,
             pStencilRef: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SOGetTargets: *const fn(
             self: *const ID3D11DeviceContext,
             NumBuffers: u32,
             ppSOTargets: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RSGetState: *const fn(
             self: *const ID3D11DeviceContext,
             ppRasterizerState: ?*?*ID3D11RasterizerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RSGetViewports: *const fn(
             self: *const ID3D11DeviceContext,
             pNumViewports: ?*u32,
             pViewports: ?[*]D3D11_VIEWPORT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RSGetScissorRects: *const fn(
             self: *const ID3D11DeviceContext,
             pNumRects: ?*u32,
             pRects: ?[*]RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         HSGetShaderResources: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         HSGetShader: *const fn(
             self: *const ID3D11DeviceContext,
             ppHullShader: ?*?*ID3D11HullShader,
             ppClassInstances: ?[*]?*ID3D11ClassInstance,
             pNumClassInstances: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         HSGetSamplers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         HSGetConstantBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DSGetShaderResources: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DSGetShader: *const fn(
             self: *const ID3D11DeviceContext,
             ppDomainShader: ?*?*ID3D11DomainShader,
             ppClassInstances: ?[*]?*ID3D11ClassInstance,
             pNumClassInstances: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DSGetSamplers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DSGetConstantBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CSGetShaderResources: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CSGetUnorderedAccessViews: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumUAVs: u32,
             ppUnorderedAccessViews: ?[*]?*ID3D11UnorderedAccessView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CSGetShader: *const fn(
             self: *const ID3D11DeviceContext,
             ppComputeShader: ?*?*ID3D11ComputeShader,
             ppClassInstances: ?[*]?*ID3D11ClassInstance,
             pNumClassInstances: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CSGetSamplers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CSGetConstantBuffers: *const fn(
             self: *const ID3D11DeviceContext,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ClearState: *const fn(
             self: *const ID3D11DeviceContext,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Flush: *const fn(
             self: *const ID3D11DeviceContext,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetType: *const fn(
             self: *const ID3D11DeviceContext,
-        ) callconv(@import("std").os.windows.WINAPI) D3D11_DEVICE_CONTEXT_TYPE,
+        ) callconv(.winapi) D3D11_DEVICE_CONTEXT_TYPE,
         GetContextFlags: *const fn(
             self: *const ID3D11DeviceContext,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         FinishCommandList: *const fn(
             self: *const ID3D11DeviceContext,
             RestoreDeferredContextState: BOOL,
             ppCommandList: ?**ID3D11CommandList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -3527,11 +3527,11 @@ pub const ID3D11VideoDecoder = extern union {
             self: *const ID3D11VideoDecoder,
             pVideoDesc: ?*D3D11_VIDEO_DECODER_DESC,
             pConfig: ?*D3D11_VIDEO_DECODER_CONFIG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDriverHandle: *const fn(
             self: *const ID3D11VideoDecoder,
             pDriverHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -3825,32 +3825,32 @@ pub const ID3D11VideoProcessorEnumerator = extern union {
         GetVideoProcessorContentDesc: *const fn(
             self: *const ID3D11VideoProcessorEnumerator,
             pContentDesc: ?*D3D11_VIDEO_PROCESSOR_CONTENT_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckVideoProcessorFormat: *const fn(
             self: *const ID3D11VideoProcessorEnumerator,
             Format: DXGI_FORMAT,
             pFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorCaps: *const fn(
             self: *const ID3D11VideoProcessorEnumerator,
             pCaps: ?*D3D11_VIDEO_PROCESSOR_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorRateConversionCaps: *const fn(
             self: *const ID3D11VideoProcessorEnumerator,
             TypeIndex: u32,
             pCaps: ?*D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorCustomRate: *const fn(
             self: *const ID3D11VideoProcessorEnumerator,
             TypeIndex: u32,
             CustomRateIndex: u32,
             pRate: ?*D3D11_VIDEO_PROCESSOR_CUSTOM_RATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoProcessorFilterRange: *const fn(
             self: *const ID3D11VideoProcessorEnumerator,
             Filter: D3D11_VIDEO_PROCESSOR_FILTER,
             pRange: ?*D3D11_VIDEO_PROCESSOR_FILTER_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -3992,11 +3992,11 @@ pub const ID3D11VideoProcessor = extern union {
         GetContentDesc: *const fn(
             self: *const ID3D11VideoProcessor,
             pDesc: ?*D3D11_VIDEO_PROCESSOR_CONTENT_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetRateConversionCaps: *const fn(
             self: *const ID3D11VideoProcessor,
             pCaps: ?*D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -4032,17 +4032,17 @@ pub const ID3D11AuthenticatedChannel = extern union {
         GetCertificateSize: *const fn(
             self: *const ID3D11AuthenticatedChannel,
             pCertificateSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificate: *const fn(
             self: *const ID3D11AuthenticatedChannel,
             CertificateSize: u32,
             // TODO: what to do with BytesParamIndex 0?
             pCertificate: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelHandle: *const fn(
             self: *const ID3D11AuthenticatedChannel,
             pChannelHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -4273,25 +4273,25 @@ pub const ID3D11CryptoSession = extern union {
         GetCryptoType: *const fn(
             self: *const ID3D11CryptoSession,
             pCryptoType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetDecoderProfile: *const fn(
             self: *const ID3D11CryptoSession,
             pDecoderProfile: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetCertificateSize: *const fn(
             self: *const ID3D11CryptoSession,
             pCertificateSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificate: *const fn(
             self: *const ID3D11CryptoSession,
             CertificateSize: u32,
             // TODO: what to do with BytesParamIndex 0?
             pCertificate: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCryptoSessionHandle: *const fn(
             self: *const ID3D11CryptoSession,
             pCryptoSessionHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -4342,7 +4342,7 @@ pub const ID3D11VideoDecoderOutputView = extern union {
         GetDesc: *const fn(
             self: *const ID3D11VideoDecoderOutputView,
             pDesc: ?*D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11View: ID3D11View,
@@ -4383,7 +4383,7 @@ pub const ID3D11VideoProcessorInputView = extern union {
         GetDesc: *const fn(
             self: *const ID3D11VideoProcessorInputView,
             pDesc: ?*D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11View: ID3D11View,
@@ -4431,7 +4431,7 @@ pub const ID3D11VideoProcessorOutputView = extern union {
         GetDesc: *const fn(
             self: *const ID3D11VideoProcessorOutputView,
             pDesc: ?*D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11View: ID3D11View,
@@ -4455,12 +4455,12 @@ pub const ID3D11VideoContext = extern union {
             Type: D3D11_VIDEO_DECODER_BUFFER_TYPE,
             pBufferSize: ?*u32,
             ppBuffer: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseDecoderBuffer: *const fn(
             self: *const ID3D11VideoContext,
             pDecoder: ?*ID3D11VideoDecoder,
             Type: D3D11_VIDEO_DECODER_BUFFER_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DecoderBeginFrame: *const fn(
             self: *const ID3D11VideoContext,
             pDecoder: ?*ID3D11VideoDecoder,
@@ -4468,97 +4468,97 @@ pub const ID3D11VideoContext = extern union {
             ContentKeySize: u32,
             // TODO: what to do with BytesParamIndex 2?
             pContentKey: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DecoderEndFrame: *const fn(
             self: *const ID3D11VideoContext,
             pDecoder: ?*ID3D11VideoDecoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SubmitDecoderBuffers: *const fn(
             self: *const ID3D11VideoContext,
             pDecoder: ?*ID3D11VideoDecoder,
             NumBuffers: u32,
             pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DecoderExtension: *const fn(
             self: *const ID3D11VideoContext,
             pDecoder: ?*ID3D11VideoDecoder,
             pExtensionData: ?*const D3D11_VIDEO_DECODER_EXTENSION,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         VideoProcessorSetOutputTargetRect: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             Enable: BOOL,
             pRect: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetOutputBackgroundColor: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             YCbCr: BOOL,
             pColor: ?*const D3D11_VIDEO_COLOR,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetOutputColorSpace: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             pColorSpace: ?*const D3D11_VIDEO_PROCESSOR_COLOR_SPACE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetOutputAlphaFillMode: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             AlphaFillMode: D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE,
             StreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetOutputConstriction: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             Enable: BOOL,
             Size: SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetOutputStereoMode: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             Enable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetOutputExtension: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             pExtensionGuid: ?*const Guid,
             DataSize: u32,
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         VideoProcessorGetOutputTargetRect: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             Enabled: ?*BOOL,
             pRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetOutputBackgroundColor: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             pYCbCr: ?*BOOL,
             pColor: ?*D3D11_VIDEO_COLOR,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetOutputColorSpace: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             pColorSpace: ?*D3D11_VIDEO_PROCESSOR_COLOR_SPACE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetOutputAlphaFillMode: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             pAlphaFillMode: ?*D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE,
             pStreamIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetOutputConstriction: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             pEnabled: ?*BOOL,
             pSize: ?*SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetOutputStereoMode: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             pEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetOutputExtension: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4566,19 +4566,19 @@ pub const ID3D11VideoContext = extern union {
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 2?
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         VideoProcessorSetStreamFrameFormat: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             FrameFormat: D3D11_VIDEO_FRAME_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamColorSpace: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             pColorSpace: ?*const D3D11_VIDEO_PROCESSOR_COLOR_SPACE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamOutputRate: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4586,35 +4586,35 @@ pub const ID3D11VideoContext = extern union {
             OutputRate: D3D11_VIDEO_PROCESSOR_OUTPUT_RATE,
             RepeatFrame: BOOL,
             pCustomRate: ?*const DXGI_RATIONAL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamSourceRect: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             Enable: BOOL,
             pRect: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamDestRect: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             Enable: BOOL,
             pRect: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamAlpha: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             Enable: BOOL,
             Alpha: f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamPalette: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             Count: u32,
             pEntries: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamPixelAspectRatio: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4622,7 +4622,7 @@ pub const ID3D11VideoContext = extern union {
             Enable: BOOL,
             pSourceAspectRatio: ?*const DXGI_RATIONAL,
             pDestinationAspectRatio: ?*const DXGI_RATIONAL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamLumaKey: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4630,7 +4630,7 @@ pub const ID3D11VideoContext = extern union {
             Enable: BOOL,
             Lower: f32,
             Upper: f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamStereoFormat: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4641,13 +4641,13 @@ pub const ID3D11VideoContext = extern union {
             BaseViewFrame0: BOOL,
             FlipMode: D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE,
             MonoOffset: i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamAutoProcessingMode: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             Enable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamFilter: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4655,7 +4655,7 @@ pub const ID3D11VideoContext = extern union {
             Filter: D3D11_VIDEO_PROCESSOR_FILTER,
             Enable: BOOL,
             Level: i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamExtension: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4663,19 +4663,19 @@ pub const ID3D11VideoContext = extern union {
             pExtensionGuid: ?*const Guid,
             DataSize: u32,
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         VideoProcessorGetStreamFrameFormat: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             pFrameFormat: ?*D3D11_VIDEO_FRAME_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamColorSpace: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             pColorSpace: ?*D3D11_VIDEO_PROCESSOR_COLOR_SPACE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamOutputRate: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4683,35 +4683,35 @@ pub const ID3D11VideoContext = extern union {
             pOutputRate: ?*D3D11_VIDEO_PROCESSOR_OUTPUT_RATE,
             pRepeatFrame: ?*BOOL,
             pCustomRate: ?*DXGI_RATIONAL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamSourceRect: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             pEnabled: ?*BOOL,
             pRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamDestRect: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             pEnabled: ?*BOOL,
             pRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamAlpha: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             pEnabled: ?*BOOL,
             pAlpha: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamPalette: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             Count: u32,
             pEntries: [*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamPixelAspectRatio: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4719,7 +4719,7 @@ pub const ID3D11VideoContext = extern union {
             pEnabled: ?*BOOL,
             pSourceAspectRatio: ?*DXGI_RATIONAL,
             pDestinationAspectRatio: ?*DXGI_RATIONAL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamLumaKey: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4727,7 +4727,7 @@ pub const ID3D11VideoContext = extern union {
             pEnabled: ?*BOOL,
             pLower: ?*f32,
             pUpper: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamStereoFormat: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4738,13 +4738,13 @@ pub const ID3D11VideoContext = extern union {
             pBaseViewFrame0: ?*BOOL,
             pFlipMode: ?*D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE,
             MonoOffset: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamAutoProcessingMode: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             pEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamFilter: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4752,7 +4752,7 @@ pub const ID3D11VideoContext = extern union {
             Filter: D3D11_VIDEO_PROCESSOR_FILTER,
             pEnabled: ?*BOOL,
             pLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamExtension: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4761,7 +4761,7 @@ pub const ID3D11VideoContext = extern union {
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 3?
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         VideoProcessorBlt: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -4769,14 +4769,14 @@ pub const ID3D11VideoContext = extern union {
             OutputFrame: u32,
             StreamCount: u32,
             pStreams: [*]const D3D11_VIDEO_PROCESSOR_STREAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NegotiateCryptoSessionKeyExchange: *const fn(
             self: *const ID3D11VideoContext,
             pCryptoSession: ?*ID3D11CryptoSession,
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EncryptionBlt: *const fn(
             self: *const ID3D11VideoContext,
             pCryptoSession: ?*ID3D11CryptoSession,
@@ -4785,7 +4785,7 @@ pub const ID3D11VideoContext = extern union {
             IVSize: u32,
             // TODO: what to do with BytesParamIndex 3?
             pIV: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DecryptionBlt: *const fn(
             self: *const ID3D11VideoContext,
             pCryptoSession: ?*ID3D11CryptoSession,
@@ -4798,32 +4798,32 @@ pub const ID3D11VideoContext = extern union {
             IVSize: u32,
             // TODO: what to do with BytesParamIndex 6?
             pIV: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         StartSessionKeyRefresh: *const fn(
             self: *const ID3D11VideoContext,
             pCryptoSession: ?*ID3D11CryptoSession,
             RandomNumberSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pRandomNumber: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         FinishSessionKeyRefresh: *const fn(
             self: *const ID3D11VideoContext,
             pCryptoSession: ?*ID3D11CryptoSession,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetEncryptionBltKey: *const fn(
             self: *const ID3D11VideoContext,
             pCryptoSession: ?*ID3D11CryptoSession,
             KeySize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pReadbackKey: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NegotiateAuthenticatedChannelKeyExchange: *const fn(
             self: *const ID3D11VideoContext,
             pChannel: ?*ID3D11AuthenticatedChannel,
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryAuthenticatedChannel: *const fn(
             self: *const ID3D11VideoContext,
             pChannel: ?*ID3D11AuthenticatedChannel,
@@ -4833,7 +4833,7 @@ pub const ID3D11VideoContext = extern union {
             OutputSize: u32,
             // TODO: what to do with BytesParamIndex 3?
             pOutput: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConfigureAuthenticatedChannel: *const fn(
             self: *const ID3D11VideoContext,
             pChannel: ?*ID3D11AuthenticatedChannel,
@@ -4841,21 +4841,21 @@ pub const ID3D11VideoContext = extern union {
             // TODO: what to do with BytesParamIndex 1?
             pInput: ?*const anyopaque,
             pOutput: ?*D3D11_AUTHENTICATED_CONFIGURE_OUTPUT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         VideoProcessorSetStreamRotation: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             Enable: BOOL,
             Rotation: D3D11_VIDEO_PROCESSOR_ROTATION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamRotation: *const fn(
             self: *const ID3D11VideoContext,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             pEnable: ?*BOOL,
             pRotation: ?*D3D11_VIDEO_PROCESSOR_ROTATION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -5048,100 +5048,100 @@ pub const ID3D11VideoDevice = extern union {
             pVideoDesc: ?*const D3D11_VIDEO_DECODER_DESC,
             pConfig: ?*const D3D11_VIDEO_DECODER_CONFIG,
             ppDecoder: **ID3D11VideoDecoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoProcessor: *const fn(
             self: *const ID3D11VideoDevice,
             pEnum: ?*ID3D11VideoProcessorEnumerator,
             RateConversionIndex: u32,
             ppVideoProcessor: **ID3D11VideoProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAuthenticatedChannel: *const fn(
             self: *const ID3D11VideoDevice,
             ChannelType: D3D11_AUTHENTICATED_CHANNEL_TYPE,
             ppAuthenticatedChannel: **ID3D11AuthenticatedChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCryptoSession: *const fn(
             self: *const ID3D11VideoDevice,
             pCryptoType: ?*const Guid,
             pDecoderProfile: ?*const Guid,
             pKeyExchangeType: ?*const Guid,
             ppCryptoSession: **ID3D11CryptoSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoDecoderOutputView: *const fn(
             self: *const ID3D11VideoDevice,
             pResource: ?*ID3D11Resource,
             pDesc: ?*const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC,
             ppVDOVView: ?**ID3D11VideoDecoderOutputView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoProcessorInputView: *const fn(
             self: *const ID3D11VideoDevice,
             pResource: ?*ID3D11Resource,
             pEnum: ?*ID3D11VideoProcessorEnumerator,
             pDesc: ?*const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC,
             ppVPIView: ?**ID3D11VideoProcessorInputView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoProcessorOutputView: *const fn(
             self: *const ID3D11VideoDevice,
             pResource: ?*ID3D11Resource,
             pEnum: ?*ID3D11VideoProcessorEnumerator,
             pDesc: ?*const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC,
             ppVPOView: ?**ID3D11VideoProcessorOutputView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVideoProcessorEnumerator: *const fn(
             self: *const ID3D11VideoDevice,
             pDesc: ?*const D3D11_VIDEO_PROCESSOR_CONTENT_DESC,
             ppEnum: **ID3D11VideoProcessorEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoDecoderProfileCount: *const fn(
             self: *const ID3D11VideoDevice,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetVideoDecoderProfile: *const fn(
             self: *const ID3D11VideoDevice,
             Index: u32,
             pDecoderProfile: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckVideoDecoderFormat: *const fn(
             self: *const ID3D11VideoDevice,
             pDecoderProfile: ?*const Guid,
             Format: DXGI_FORMAT,
             pSupported: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoDecoderConfigCount: *const fn(
             self: *const ID3D11VideoDevice,
             pDesc: ?*const D3D11_VIDEO_DECODER_DESC,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoDecoderConfig: *const fn(
             self: *const ID3D11VideoDevice,
             pDesc: ?*const D3D11_VIDEO_DECODER_DESC,
             Index: u32,
             pConfig: ?*D3D11_VIDEO_DECODER_CONFIG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContentProtectionCaps: *const fn(
             self: *const ID3D11VideoDevice,
             pCryptoType: ?*const Guid,
             pDecoderProfile: ?*const Guid,
             pCaps: ?*D3D11_VIDEO_CONTENT_PROTECTION_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckCryptoKeyExchange: *const fn(
             self: *const ID3D11VideoDevice,
             pCryptoType: ?*const Guid,
             pDecoderProfile: ?*const Guid,
             Index: u32,
             pKeyExchangeType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const ID3D11VideoDevice,
             guid: ?*const Guid,
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
             self: *const ID3D11VideoDevice,
             guid: ?*const Guid,
             pData: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5210,49 +5210,49 @@ pub const ID3D11Device = extern union {
             pDesc: ?*const D3D11_BUFFER_DESC,
             pInitialData: ?*const D3D11_SUBRESOURCE_DATA,
             ppBuffer: ?**ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTexture1D: *const fn(
             self: *const ID3D11Device,
             pDesc: ?*const D3D11_TEXTURE1D_DESC,
             pInitialData: ?*const D3D11_SUBRESOURCE_DATA,
             ppTexture1D: ?**ID3D11Texture1D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTexture2D: *const fn(
             self: *const ID3D11Device,
             pDesc: ?*const D3D11_TEXTURE2D_DESC,
             pInitialData: ?*const D3D11_SUBRESOURCE_DATA,
             ppTexture2D: ?**ID3D11Texture2D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTexture3D: *const fn(
             self: *const ID3D11Device,
             pDesc: ?*const D3D11_TEXTURE3D_DESC,
             pInitialData: ?*const D3D11_SUBRESOURCE_DATA,
             ppTexture3D: ?**ID3D11Texture3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateShaderResourceView: *const fn(
             self: *const ID3D11Device,
             pResource: ?*ID3D11Resource,
             pDesc: ?*const D3D11_SHADER_RESOURCE_VIEW_DESC,
             ppSRView: ?**ID3D11ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateUnorderedAccessView: *const fn(
             self: *const ID3D11Device,
             pResource: ?*ID3D11Resource,
             pDesc: ?*const D3D11_UNORDERED_ACCESS_VIEW_DESC,
             ppUAView: ?**ID3D11UnorderedAccessView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRenderTargetView: *const fn(
             self: *const ID3D11Device,
             pResource: ?*ID3D11Resource,
             pDesc: ?*const D3D11_RENDER_TARGET_VIEW_DESC,
             ppRTView: ?**ID3D11RenderTargetView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDepthStencilView: *const fn(
             self: *const ID3D11Device,
             pResource: ?*ID3D11Resource,
             pDesc: ?*const D3D11_DEPTH_STENCIL_VIEW_DESC,
             ppDepthStencilView: ?**ID3D11DepthStencilView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInputLayout: *const fn(
             self: *const ID3D11Device,
             pInputElementDescs: [*]const D3D11_INPUT_ELEMENT_DESC,
@@ -5260,21 +5260,21 @@ pub const ID3D11Device = extern union {
             pShaderBytecodeWithInputSignature: [*]const u8,
             BytecodeLength: usize,
             ppInputLayout: ?**ID3D11InputLayout,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVertexShader: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             pClassLinkage: ?*ID3D11ClassLinkage,
             ppVertexShader: ?**ID3D11VertexShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGeometryShader: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             pClassLinkage: ?*ID3D11ClassLinkage,
             ppGeometryShader: ?**ID3D11GeometryShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGeometryShaderWithStreamOutput: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
@@ -5286,100 +5286,100 @@ pub const ID3D11Device = extern union {
             RasterizedStream: u32,
             pClassLinkage: ?*ID3D11ClassLinkage,
             ppGeometryShader: ?**ID3D11GeometryShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePixelShader: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             pClassLinkage: ?*ID3D11ClassLinkage,
             ppPixelShader: ?**ID3D11PixelShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateHullShader: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             pClassLinkage: ?*ID3D11ClassLinkage,
             ppHullShader: ?**ID3D11HullShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDomainShader: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             pClassLinkage: ?*ID3D11ClassLinkage,
             ppDomainShader: ?**ID3D11DomainShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateComputeShader: *const fn(
             self: *const ID3D11Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             pClassLinkage: ?*ID3D11ClassLinkage,
             ppComputeShader: ?**ID3D11ComputeShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateClassLinkage: *const fn(
             self: *const ID3D11Device,
             ppLinkage: **ID3D11ClassLinkage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBlendState: *const fn(
             self: *const ID3D11Device,
             pBlendStateDesc: ?*const D3D11_BLEND_DESC,
             ppBlendState: ?**ID3D11BlendState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDepthStencilState: *const fn(
             self: *const ID3D11Device,
             pDepthStencilDesc: ?*const D3D11_DEPTH_STENCIL_DESC,
             ppDepthStencilState: ?**ID3D11DepthStencilState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRasterizerState: *const fn(
             self: *const ID3D11Device,
             pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC,
             ppRasterizerState: ?**ID3D11RasterizerState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSamplerState: *const fn(
             self: *const ID3D11Device,
             pSamplerDesc: ?*const D3D11_SAMPLER_DESC,
             ppSamplerState: ?**ID3D11SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateQuery: *const fn(
             self: *const ID3D11Device,
             pQueryDesc: ?*const D3D11_QUERY_DESC,
             ppQuery: ?**ID3D11Query,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePredicate: *const fn(
             self: *const ID3D11Device,
             pPredicateDesc: ?*const D3D11_QUERY_DESC,
             ppPredicate: ?**ID3D11Predicate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCounter: *const fn(
             self: *const ID3D11Device,
             pCounterDesc: ?*const D3D11_COUNTER_DESC,
             ppCounter: ?**ID3D11Counter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDeferredContext: *const fn(
             self: *const ID3D11Device,
             ContextFlags: u32,
             ppDeferredContext: ?**ID3D11DeviceContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenSharedResource: *const fn(
             self: *const ID3D11Device,
             hResource: ?HANDLE,
             ReturnedInterface: ?*const Guid,
             ppResource: ?**anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckFormatSupport: *const fn(
             self: *const ID3D11Device,
             Format: DXGI_FORMAT,
             pFormatSupport: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckMultisampleQualityLevels: *const fn(
             self: *const ID3D11Device,
             Format: DXGI_FORMAT,
             SampleCount: u32,
             pNumQualityLevels: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckCounterInfo: *const fn(
             self: *const ID3D11Device,
             pCounterInfo: ?*D3D11_COUNTER_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CheckCounter: *const fn(
             self: *const ID3D11Device,
             pDesc: ?*const D3D11_COUNTER_DESC,
@@ -5391,53 +5391,53 @@ pub const ID3D11Device = extern union {
             pUnitsLength: ?*u32,
             szDescription: ?[*:0]u8,
             pDescriptionLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckFeatureSupport: *const fn(
             self: *const ID3D11Device,
             Feature: D3D11_FEATURE,
             // TODO: what to do with BytesParamIndex 2?
             pFeatureSupportData: ?*anyopaque,
             FeatureSupportDataSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrivateData: *const fn(
             self: *const ID3D11Device,
             guid: ?*const Guid,
             pDataSize: ?*u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const ID3D11Device,
             guid: ?*const Guid,
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
             self: *const ID3D11Device,
             guid: ?*const Guid,
             pData: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFeatureLevel: *const fn(
             self: *const ID3D11Device,
-        ) callconv(@import("std").os.windows.WINAPI) D3D_FEATURE_LEVEL,
+        ) callconv(.winapi) D3D_FEATURE_LEVEL,
         GetCreationFlags: *const fn(
             self: *const ID3D11Device,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetDeviceRemovedReason: *const fn(
             self: *const ID3D11Device,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImmediateContext: *const fn(
             self: *const ID3D11Device,
             ppImmediateContext: ?*?*ID3D11DeviceContext,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetExceptionMode: *const fn(
             self: *const ID3D11Device,
             RaiseFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExceptionMode: *const fn(
             self: *const ID3D11Device,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5626,37 +5626,37 @@ pub const ID3D11Debug = extern union {
         SetFeatureMask: *const fn(
             self: *const ID3D11Debug,
             Mask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFeatureMask: *const fn(
             self: *const ID3D11Debug,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         SetPresentPerRenderOpDelay: *const fn(
             self: *const ID3D11Debug,
             Milliseconds: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPresentPerRenderOpDelay: *const fn(
             self: *const ID3D11Debug,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         SetSwapChain: *const fn(
             self: *const ID3D11Debug,
             pSwapChain: ?*IDXGISwapChain,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSwapChain: *const fn(
             self: *const ID3D11Debug,
             ppSwapChain: ?*?*IDXGISwapChain,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ValidateContext: *const fn(
             self: *const ID3D11Debug,
             pContext: ?*ID3D11DeviceContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReportLiveDeviceObjects: *const fn(
             self: *const ID3D11Debug,
             Flags: D3D11_RLDO_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ValidateContextForDispatch: *const fn(
             self: *const ID3D11Debug,
             pContext: ?*ID3D11DeviceContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5699,10 +5699,10 @@ pub const ID3D11SwitchToRef = extern union {
         SetUseRef: *const fn(
             self: *const ID3D11SwitchToRef,
             UseRef: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetUseRef: *const fn(
             self: *const ID3D11SwitchToRef,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5777,12 +5777,12 @@ pub const ID3D11TracingDevice = extern union {
             self: *const ID3D11TracingDevice,
             ResourceTypeFlags: u32,
             Options: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetShaderTrackingOptions: *const fn(
             self: *const ID3D11TracingDevice,
             pShader: ?*IUnknown,
             Options: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5804,7 +5804,7 @@ pub const ID3D11RefTrackingOptions = extern union {
         SetTrackingOptions: *const fn(
             self: *const ID3D11RefTrackingOptions,
             uOptions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5824,7 +5824,7 @@ pub const ID3D11RefDefaultTrackingOptions = extern union {
             self: *const ID3D11RefDefaultTrackingOptions,
             ResourceTypeFlags: u32,
             Options: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8578,139 +8578,139 @@ pub const ID3D11InfoQueue = extern union {
         SetMessageCountLimit: *const fn(
             self: *const ID3D11InfoQueue,
             MessageCountLimit: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearStoredMessages: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetMessage: *const fn(
             self: *const ID3D11InfoQueue,
             MessageIndex: u64,
             // TODO: what to do with BytesParamIndex 2?
             pMessage: ?*D3D11_MESSAGE,
             pMessageByteLength: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumMessagesAllowedByStorageFilter: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetNumMessagesDeniedByStorageFilter: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetNumStoredMessages: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetNumStoredMessagesAllowedByRetrievalFilter: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetNumMessagesDiscardedByMessageCountLimit: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetMessageCountLimit: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         AddStorageFilterEntries: *const fn(
             self: *const ID3D11InfoQueue,
             pFilter: ?*D3D11_INFO_QUEUE_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStorageFilter: *const fn(
             self: *const ID3D11InfoQueue,
             // TODO: what to do with BytesParamIndex 1?
             pFilter: ?*D3D11_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearStorageFilter: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PushEmptyStorageFilter: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushCopyOfStorageFilter: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushStorageFilter: *const fn(
             self: *const ID3D11InfoQueue,
             pFilter: ?*D3D11_INFO_QUEUE_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PopStorageFilter: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetStorageFilterStackSize: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         AddRetrievalFilterEntries: *const fn(
             self: *const ID3D11InfoQueue,
             pFilter: ?*D3D11_INFO_QUEUE_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRetrievalFilter: *const fn(
             self: *const ID3D11InfoQueue,
             // TODO: what to do with BytesParamIndex 1?
             pFilter: ?*D3D11_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearRetrievalFilter: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PushEmptyRetrievalFilter: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushCopyOfRetrievalFilter: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushRetrievalFilter: *const fn(
             self: *const ID3D11InfoQueue,
             pFilter: ?*D3D11_INFO_QUEUE_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PopRetrievalFilter: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetRetrievalFilterStackSize: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         AddMessage: *const fn(
             self: *const ID3D11InfoQueue,
             Category: D3D11_MESSAGE_CATEGORY,
             Severity: D3D11_MESSAGE_SEVERITY,
             ID: D3D11_MESSAGE_ID,
             pDescription: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddApplicationMessage: *const fn(
             self: *const ID3D11InfoQueue,
             Severity: D3D11_MESSAGE_SEVERITY,
             pDescription: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBreakOnCategory: *const fn(
             self: *const ID3D11InfoQueue,
             Category: D3D11_MESSAGE_CATEGORY,
             bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBreakOnSeverity: *const fn(
             self: *const ID3D11InfoQueue,
             Severity: D3D11_MESSAGE_SEVERITY,
             bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBreakOnID: *const fn(
             self: *const ID3D11InfoQueue,
             ID: D3D11_MESSAGE_ID,
             bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBreakOnCategory: *const fn(
             self: *const ID3D11InfoQueue,
             Category: D3D11_MESSAGE_CATEGORY,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetBreakOnSeverity: *const fn(
             self: *const ID3D11InfoQueue,
             Severity: D3D11_MESSAGE_SEVERITY,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetBreakOnID: *const fn(
             self: *const ID3D11InfoQueue,
             ID: D3D11_MESSAGE_ID,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         SetMuteDebugOutput: *const fn(
             self: *const ID3D11InfoQueue,
             bMute: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetMuteDebugOutput: *const fn(
             self: *const ID3D11InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8832,7 +8832,7 @@ pub const PFN_D3D11_CREATE_DEVICE = *const fn(
     param7: ?**ID3D11Device,
     param8: ?*D3D_FEATURE_LEVEL,
     param9: ?**ID3D11DeviceContext,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN = *const fn(
     param0: ?*IDXGIAdapter,
@@ -8847,7 +8847,7 @@ pub const PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN = *const fn(
     param9: ?**ID3D11Device,
     param10: ?*D3D_FEATURE_LEVEL,
     param11: ?**ID3D11DeviceContext,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const D3D11_COPY_FLAGS = enum(i32) {
     NO_OVERWRITE = 1,
@@ -8920,7 +8920,7 @@ pub const ID3D11BlendState1 = extern union {
         GetDesc1: *const fn(
             self: *const ID3D11BlendState1,
             pDesc: ?*D3D11_BLEND_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11BlendState: ID3D11BlendState,
@@ -8955,7 +8955,7 @@ pub const ID3D11RasterizerState1 = extern union {
         GetDesc1: *const fn(
             self: *const ID3D11RasterizerState1,
             pDesc: ?*D3D11_RASTERIZER_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11RasterizerState: ID3D11RasterizerState,
@@ -9002,7 +9002,7 @@ pub const ID3D11DeviceContext1 = extern union {
             SrcSubresource: u32,
             pSrcBox: ?*const D3D11_BOX,
             CopyFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         UpdateSubresource1: *const fn(
             self: *const ID3D11DeviceContext1,
             pDstResource: ?*ID3D11Resource,
@@ -9012,15 +9012,15 @@ pub const ID3D11DeviceContext1 = extern union {
             SrcRowPitch: u32,
             SrcDepthPitch: u32,
             CopyFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DiscardResource: *const fn(
             self: *const ID3D11DeviceContext1,
             pResource: ?*ID3D11Resource,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DiscardView: *const fn(
             self: *const ID3D11DeviceContext1,
             pResourceView: ?*ID3D11View,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSSetConstantBuffers1: *const fn(
             self: *const ID3D11DeviceContext1,
             StartSlot: u32,
@@ -9028,7 +9028,7 @@ pub const ID3D11DeviceContext1 = extern union {
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
             pFirstConstant: ?[*]const u32,
             pNumConstants: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         HSSetConstantBuffers1: *const fn(
             self: *const ID3D11DeviceContext1,
             StartSlot: u32,
@@ -9036,7 +9036,7 @@ pub const ID3D11DeviceContext1 = extern union {
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
             pFirstConstant: ?[*]const u32,
             pNumConstants: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DSSetConstantBuffers1: *const fn(
             self: *const ID3D11DeviceContext1,
             StartSlot: u32,
@@ -9044,7 +9044,7 @@ pub const ID3D11DeviceContext1 = extern union {
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
             pFirstConstant: ?[*]const u32,
             pNumConstants: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSSetConstantBuffers1: *const fn(
             self: *const ID3D11DeviceContext1,
             StartSlot: u32,
@@ -9052,7 +9052,7 @@ pub const ID3D11DeviceContext1 = extern union {
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
             pFirstConstant: ?[*]const u32,
             pNumConstants: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSSetConstantBuffers1: *const fn(
             self: *const ID3D11DeviceContext1,
             StartSlot: u32,
@@ -9060,7 +9060,7 @@ pub const ID3D11DeviceContext1 = extern union {
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
             pFirstConstant: ?[*]const u32,
             pNumConstants: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CSSetConstantBuffers1: *const fn(
             self: *const ID3D11DeviceContext1,
             StartSlot: u32,
@@ -9068,7 +9068,7 @@ pub const ID3D11DeviceContext1 = extern union {
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
             pFirstConstant: ?[*]const u32,
             pNumConstants: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSGetConstantBuffers1: *const fn(
             self: *const ID3D11DeviceContext1,
             StartSlot: u32,
@@ -9076,7 +9076,7 @@ pub const ID3D11DeviceContext1 = extern union {
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
             pFirstConstant: ?[*]u32,
             pNumConstants: ?[*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         HSGetConstantBuffers1: *const fn(
             self: *const ID3D11DeviceContext1,
             StartSlot: u32,
@@ -9084,7 +9084,7 @@ pub const ID3D11DeviceContext1 = extern union {
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
             pFirstConstant: ?[*]u32,
             pNumConstants: ?[*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DSGetConstantBuffers1: *const fn(
             self: *const ID3D11DeviceContext1,
             StartSlot: u32,
@@ -9092,7 +9092,7 @@ pub const ID3D11DeviceContext1 = extern union {
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
             pFirstConstant: ?[*]u32,
             pNumConstants: ?[*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSGetConstantBuffers1: *const fn(
             self: *const ID3D11DeviceContext1,
             StartSlot: u32,
@@ -9100,7 +9100,7 @@ pub const ID3D11DeviceContext1 = extern union {
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
             pFirstConstant: ?[*]u32,
             pNumConstants: ?[*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSGetConstantBuffers1: *const fn(
             self: *const ID3D11DeviceContext1,
             StartSlot: u32,
@@ -9108,7 +9108,7 @@ pub const ID3D11DeviceContext1 = extern union {
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
             pFirstConstant: ?[*]u32,
             pNumConstants: ?[*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CSGetConstantBuffers1: *const fn(
             self: *const ID3D11DeviceContext1,
             StartSlot: u32,
@@ -9116,25 +9116,25 @@ pub const ID3D11DeviceContext1 = extern union {
             ppConstantBuffers: ?[*]?*ID3D11Buffer,
             pFirstConstant: ?[*]u32,
             pNumConstants: ?[*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SwapDeviceContextState: *const fn(
             self: *const ID3D11DeviceContext1,
             pState: ?*ID3DDeviceContextState,
             ppPreviousState: ?*?*ID3DDeviceContextState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ClearView: *const fn(
             self: *const ID3D11DeviceContext1,
             pView: ?*ID3D11View,
             Color: ?*const f32,
             pRect: ?[*]const RECT,
             NumRects: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DiscardView1: *const fn(
             self: *const ID3D11DeviceContext1,
             pResourceView: ?*ID3D11View,
             pRects: ?[*]const RECT,
             NumRects: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceContext: ID3D11DeviceContext,
@@ -9304,57 +9304,57 @@ pub const ID3D11VideoContext1 = extern union {
             pDecoder: ?*ID3D11VideoDecoder,
             NumBuffers: u32,
             pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataForNewHardwareKey: *const fn(
             self: *const ID3D11VideoContext1,
             pCryptoSession: ?*ID3D11CryptoSession,
             PrivateInputSize: u32,
             pPrivatInputData: [*]const u8,
             pPrivateOutputData: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckCryptoSessionStatus: *const fn(
             self: *const ID3D11VideoContext1,
             pCryptoSession: ?*ID3D11CryptoSession,
             pStatus: ?*D3D11_CRYPTO_SESSION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DecoderEnableDownsampling: *const fn(
             self: *const ID3D11VideoContext1,
             pDecoder: ?*ID3D11VideoDecoder,
             InputColorSpace: DXGI_COLOR_SPACE_TYPE,
             pOutputDesc: ?*const D3D11_VIDEO_SAMPLE_DESC,
             ReferenceFrameCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DecoderUpdateDownsampling: *const fn(
             self: *const ID3D11VideoContext1,
             pDecoder: ?*ID3D11VideoDecoder,
             pOutputDesc: ?*const D3D11_VIDEO_SAMPLE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         VideoProcessorSetOutputColorSpace1: *const fn(
             self: *const ID3D11VideoContext1,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             ColorSpace: DXGI_COLOR_SPACE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetOutputShaderUsage: *const fn(
             self: *const ID3D11VideoContext1,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             ShaderUsage: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetOutputColorSpace1: *const fn(
             self: *const ID3D11VideoContext1,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             pColorSpace: ?*DXGI_COLOR_SPACE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetOutputShaderUsage: *const fn(
             self: *const ID3D11VideoContext1,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             pShaderUsage: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamColorSpace1: *const fn(
             self: *const ID3D11VideoContext1,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             ColorSpace: DXGI_COLOR_SPACE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamMirror: *const fn(
             self: *const ID3D11VideoContext1,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -9362,13 +9362,13 @@ pub const ID3D11VideoContext1 = extern union {
             Enable: BOOL,
             FlipHorizontal: BOOL,
             FlipVertical: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamColorSpace1: *const fn(
             self: *const ID3D11VideoContext1,
             pVideoProcessor: ?*ID3D11VideoProcessor,
             StreamIndex: u32,
             pColorSpace: ?*DXGI_COLOR_SPACE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamMirror: *const fn(
             self: *const ID3D11VideoContext1,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -9376,7 +9376,7 @@ pub const ID3D11VideoContext1 = extern union {
             pEnable: ?*BOOL,
             pFlipHorizontal: ?*BOOL,
             pFlipVertical: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetBehaviorHints: *const fn(
             self: *const ID3D11VideoContext1,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -9386,7 +9386,7 @@ pub const ID3D11VideoContext1 = extern union {
             StreamCount: u32,
             pStreams: [*]const D3D11_VIDEO_PROCESSOR_STREAM_BEHAVIOR_HINT,
             pBehaviorHints: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11VideoContext: ID3D11VideoContext,
@@ -9450,7 +9450,7 @@ pub const ID3D11VideoDevice1 = extern union {
             pKeyExchangeType: ?*const Guid,
             pPrivateInputSize: ?*u32,
             pPrivateOutputSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoDecoderCaps: *const fn(
             self: *const ID3D11VideoDevice1,
             pDecoderProfile: ?*const Guid,
@@ -9460,7 +9460,7 @@ pub const ID3D11VideoDevice1 = extern union {
             BitRate: u32,
             pCryptoType: ?*const Guid,
             pDecoderCaps: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckVideoDecoderDownsampling: *const fn(
             self: *const ID3D11VideoDevice1,
             pInputDesc: ?*const D3D11_VIDEO_DECODER_DESC,
@@ -9470,7 +9470,7 @@ pub const ID3D11VideoDevice1 = extern union {
             pOutputDesc: ?*const D3D11_VIDEO_SAMPLE_DESC,
             pSupported: ?*BOOL,
             pRealTimeHint: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RecommendVideoDecoderDownsampleParameters: *const fn(
             self: *const ID3D11VideoDevice1,
             pInputDesc: ?*const D3D11_VIDEO_DECODER_DESC,
@@ -9478,7 +9478,7 @@ pub const ID3D11VideoDevice1 = extern union {
             pInputConfig: ?*const D3D11_VIDEO_DECODER_CONFIG,
             pFrameRate: ?*const DXGI_RATIONAL,
             pRecommendedOutputDesc: ?*D3D11_VIDEO_SAMPLE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11VideoDevice: ID3D11VideoDevice,
@@ -9511,7 +9511,7 @@ pub const ID3D11VideoProcessorEnumerator1 = extern union {
             OutputFormat: DXGI_FORMAT,
             OutputColorSpace: DXGI_COLOR_SPACE_TYPE,
             pSupported: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11VideoProcessorEnumerator: ID3D11VideoProcessorEnumerator,
@@ -9532,22 +9532,22 @@ pub const ID3D11Device1 = extern union {
         GetImmediateContext1: *const fn(
             self: *const ID3D11Device1,
             ppImmediateContext: ?*?*ID3D11DeviceContext1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CreateDeferredContext1: *const fn(
             self: *const ID3D11Device1,
             ContextFlags: u32,
             ppDeferredContext: ?**ID3D11DeviceContext1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBlendState1: *const fn(
             self: *const ID3D11Device1,
             pBlendStateDesc: ?*const D3D11_BLEND_DESC1,
             ppBlendState: ?**ID3D11BlendState1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRasterizerState1: *const fn(
             self: *const ID3D11Device1,
             pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC1,
             ppRasterizerState: ?**ID3D11RasterizerState1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDeviceContextState: *const fn(
             self: *const ID3D11Device1,
             Flags: u32,
@@ -9557,20 +9557,20 @@ pub const ID3D11Device1 = extern union {
             EmulatedInterface: ?*const Guid,
             pChosenFeatureLevel: ?*D3D_FEATURE_LEVEL,
             ppContextState: ?*?*ID3DDeviceContextState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenSharedResource1: *const fn(
             self: *const ID3D11Device1,
             hResource: ?HANDLE,
             returnedInterface: ?*const Guid,
             ppResource: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenSharedResourceByName: *const fn(
             self: *const ID3D11Device1,
             lpName: ?[*:0]const u16,
             dwDesiredAccess: u32,
             returnedInterface: ?*const Guid,
             ppResource: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11Device: ID3D11Device,
@@ -9608,17 +9608,17 @@ pub const ID3DUserDefinedAnnotation = extern union {
         BeginEvent: *const fn(
             self: *const ID3DUserDefinedAnnotation,
             Name: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         EndEvent: *const fn(
             self: *const ID3DUserDefinedAnnotation,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         SetMarker: *const fn(
             self: *const ID3DUserDefinedAnnotation,
             Name: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetStatus: *const fn(
             self: *const ID3DUserDefinedAnnotation,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9718,7 +9718,7 @@ pub const ID3D11DeviceContext2 = extern union {
             pTilePoolStartOffsets: ?[*]const u32,
             pRangeTileCounts: ?[*]const u32,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyTileMappings: *const fn(
             self: *const ID3D11DeviceContext2,
             pDestTiledResource: ?*ID3D11Resource,
@@ -9727,7 +9727,7 @@ pub const ID3D11DeviceContext2 = extern union {
             pSourceRegionStartCoordinate: ?*const D3D11_TILED_RESOURCE_COORDINATE,
             pTileRegionSize: ?*const D3D11_TILE_REGION_SIZE,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyTiles: *const fn(
             self: *const ID3D11DeviceContext2,
             pTiledResource: ?*ID3D11Resource,
@@ -9736,7 +9736,7 @@ pub const ID3D11DeviceContext2 = extern union {
             pBuffer: ?*ID3D11Buffer,
             BufferStartOffsetInBytes: u64,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         UpdateTiles: *const fn(
             self: *const ID3D11DeviceContext2,
             pDestTiledResource: ?*ID3D11Resource,
@@ -9744,33 +9744,33 @@ pub const ID3D11DeviceContext2 = extern union {
             pDestTileRegionSize: ?*const D3D11_TILE_REGION_SIZE,
             pSourceTileData: ?*const anyopaque,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ResizeTilePool: *const fn(
             self: *const ID3D11DeviceContext2,
             pTilePool: ?*ID3D11Buffer,
             NewSizeInBytes: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TiledResourceBarrier: *const fn(
             self: *const ID3D11DeviceContext2,
             pTiledResourceOrViewAccessBeforeBarrier: ?*ID3D11DeviceChild,
             pTiledResourceOrViewAccessAfterBarrier: ?*ID3D11DeviceChild,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IsAnnotationEnabled: *const fn(
             self: *const ID3D11DeviceContext2,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         SetMarkerInt: *const fn(
             self: *const ID3D11DeviceContext2,
             pLabel: ?[*:0]const u16,
             Data: i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         BeginEventInt: *const fn(
             self: *const ID3D11DeviceContext2,
             pLabel: ?[*:0]const u16,
             Data: i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         EndEvent: *const fn(
             self: *const ID3D11DeviceContext2,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceContext1: ID3D11DeviceContext1,
@@ -9819,12 +9819,12 @@ pub const ID3D11Device2 = extern union {
         GetImmediateContext2: *const fn(
             self: *const ID3D11Device2,
             ppImmediateContext: ?*?*ID3D11DeviceContext2,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CreateDeferredContext2: *const fn(
             self: *const ID3D11Device2,
             ContextFlags: u32,
             ppDeferredContext: ?**ID3D11DeviceContext2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResourceTiling: *const fn(
             self: *const ID3D11Device2,
             pTiledResource: ?*ID3D11Resource,
@@ -9834,14 +9834,14 @@ pub const ID3D11Device2 = extern union {
             pNumSubresourceTilings: ?*u32,
             FirstSubresourceTilingToGet: u32,
             pSubresourceTilingsForNonPackedMips: [*]D3D11_SUBRESOURCE_TILING,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CheckMultisampleQualityLevels1: *const fn(
             self: *const ID3D11Device2,
             Format: DXGI_FORMAT,
             SampleCount: u32,
             Flags: u32,
             pNumQualityLevels: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11Device1: ID3D11Device1,
@@ -9907,7 +9907,7 @@ pub const ID3D11Texture2D1 = extern union {
         GetDesc1: *const fn(
             self: *const ID3D11Texture2D1,
             pDesc: ?*D3D11_TEXTURE2D_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11Texture2D: ID3D11Texture2D,
@@ -9942,7 +9942,7 @@ pub const ID3D11Texture3D1 = extern union {
         GetDesc1: *const fn(
             self: *const ID3D11Texture3D1,
             pDesc: ?*D3D11_TEXTURE3D_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11Texture3D: ID3D11Texture3D,
@@ -9986,7 +9986,7 @@ pub const ID3D11RasterizerState2 = extern union {
         GetDesc2: *const fn(
             self: *const ID3D11RasterizerState2,
             pDesc: ?*D3D11_RASTERIZER_DESC2,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11RasterizerState1: ID3D11RasterizerState1,
@@ -10040,7 +10040,7 @@ pub const ID3D11ShaderResourceView1 = extern union {
         GetDesc1: *const fn(
             self: *const ID3D11ShaderResourceView1,
             pDesc1: ?*D3D11_SHADER_RESOURCE_VIEW_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11ShaderResourceView: ID3D11ShaderResourceView,
@@ -10089,7 +10089,7 @@ pub const ID3D11RenderTargetView1 = extern union {
         GetDesc1: *const fn(
             self: *const ID3D11RenderTargetView1,
             pDesc1: ?*D3D11_RENDER_TARGET_VIEW_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11RenderTargetView: ID3D11RenderTargetView,
@@ -10136,7 +10136,7 @@ pub const ID3D11UnorderedAccessView1 = extern union {
         GetDesc1: *const fn(
             self: *const ID3D11UnorderedAccessView1,
             pDesc1: ?*D3D11_UNORDERED_ACCESS_VIEW_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11UnorderedAccessView: ID3D11UnorderedAccessView,
@@ -10164,7 +10164,7 @@ pub const ID3D11Query1 = extern union {
         GetDesc1: *const fn(
             self: *const ID3D11Query1,
             pDesc1: ?*D3D11_QUERY_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11Query: ID3D11Query,
@@ -10225,15 +10225,15 @@ pub const ID3D11DeviceContext3 = extern union {
             self: *const ID3D11DeviceContext3,
             ContextType: D3D11_CONTEXT_TYPE,
             hEvent: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetHardwareProtectionState: *const fn(
             self: *const ID3D11DeviceContext3,
             HwProtectionEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetHardwareProtectionState: *const fn(
             self: *const ID3D11DeviceContext3,
             pHwProtectionEnable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11DeviceContext2: ID3D11DeviceContext2,
@@ -10264,15 +10264,15 @@ pub const ID3D11Fence = extern union {
             dwAccess: u32,
             lpName: ?[*:0]const u16,
             pHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompletedValue: *const fn(
             self: *const ID3D11Fence,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         SetEventOnCompletion: *const fn(
             self: *const ID3D11Fence,
             Value: u64,
             hEvent: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11DeviceChild: ID3D11DeviceChild,
@@ -10298,12 +10298,12 @@ pub const ID3D11DeviceContext4 = extern union {
             self: *const ID3D11DeviceContext4,
             pFence: ?*ID3D11Fence,
             Value: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Wait: *const fn(
             self: *const ID3D11DeviceContext4,
             pFence: ?*ID3D11Fence,
             Value: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11DeviceContext3: ID3D11DeviceContext3,
@@ -10332,50 +10332,50 @@ pub const ID3D11Device3 = extern union {
             pDesc1: ?*const D3D11_TEXTURE2D_DESC1,
             pInitialData: ?*const D3D11_SUBRESOURCE_DATA,
             ppTexture2D: ?**ID3D11Texture2D1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTexture3D1: *const fn(
             self: *const ID3D11Device3,
             pDesc1: ?*const D3D11_TEXTURE3D_DESC1,
             pInitialData: ?*const D3D11_SUBRESOURCE_DATA,
             ppTexture3D: ?**ID3D11Texture3D1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRasterizerState2: *const fn(
             self: *const ID3D11Device3,
             pRasterizerDesc: ?*const D3D11_RASTERIZER_DESC2,
             ppRasterizerState: ?**ID3D11RasterizerState2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateShaderResourceView1: *const fn(
             self: *const ID3D11Device3,
             pResource: ?*ID3D11Resource,
             pDesc1: ?*const D3D11_SHADER_RESOURCE_VIEW_DESC1,
             ppSRView1: ?**ID3D11ShaderResourceView1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateUnorderedAccessView1: *const fn(
             self: *const ID3D11Device3,
             pResource: ?*ID3D11Resource,
             pDesc1: ?*const D3D11_UNORDERED_ACCESS_VIEW_DESC1,
             ppUAView1: ?**ID3D11UnorderedAccessView1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRenderTargetView1: *const fn(
             self: *const ID3D11Device3,
             pResource: ?*ID3D11Resource,
             pDesc1: ?*const D3D11_RENDER_TARGET_VIEW_DESC1,
             ppRTView1: ?**ID3D11RenderTargetView1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateQuery1: *const fn(
             self: *const ID3D11Device3,
             pQueryDesc1: ?*const D3D11_QUERY_DESC1,
             ppQuery1: ?**ID3D11Query1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImmediateContext3: *const fn(
             self: *const ID3D11Device3,
             ppImmediateContext: ?*?*ID3D11DeviceContext3,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CreateDeferredContext3: *const fn(
             self: *const ID3D11Device3,
             ContextFlags: u32,
             ppDeferredContext: ?**ID3D11DeviceContext3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteToSubresource: *const fn(
             self: *const ID3D11Device3,
             pDstResource: ?*ID3D11Resource,
@@ -10384,7 +10384,7 @@ pub const ID3D11Device3 = extern union {
             pSrcData: ?*const anyopaque,
             SrcRowPitch: u32,
             SrcDepthPitch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ReadFromSubresource: *const fn(
             self: *const ID3D11Device3,
             pDstData: ?*anyopaque,
@@ -10393,7 +10393,7 @@ pub const ID3D11Device3 = extern union {
             pSrcResource: ?*ID3D11Resource,
             SrcSubresource: u32,
             pSrcBox: ?*const D3D11_BOX,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11Device2: ID3D11Device2,
@@ -10445,11 +10445,11 @@ pub const ID3D11Device4 = extern union {
             self: *const ID3D11Device4,
             hEvent: ?HANDLE,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterDeviceRemoved: *const fn(
             self: *const ID3D11Device4,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11Device3: ID3D11Device3,
@@ -10476,14 +10476,14 @@ pub const ID3D11Device5 = extern union {
             hFence: ?HANDLE,
             ReturnedInterface: ?*const Guid,
             ppFence: ?**anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFence: *const fn(
             self: *const ID3D11Device5,
             InitialValue: u64,
             Flags: D3D11_FENCE_FLAG,
             ReturnedInterface: ?*const Guid,
             ppFence: ?**anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11Device4: ID3D11Device4,
@@ -10508,17 +10508,17 @@ pub const ID3D11Multithread = extern union {
         base: IUnknown.VTable,
         Enter: *const fn(
             self: *const ID3D11Multithread,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Leave: *const fn(
             self: *const ID3D11Multithread,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetMultithreadProtected: *const fn(
             self: *const ID3D11Multithread,
             bMTProtect: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetMultithreadProtected: *const fn(
             self: *const ID3D11Multithread,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10550,7 +10550,7 @@ pub const ID3D11VideoContext2 = extern union {
             Size: u32,
             // TODO: what to do with BytesParamIndex 2?
             pHDRMetaData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetOutputHDRMetaData: *const fn(
             self: *const ID3D11VideoContext2,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -10558,7 +10558,7 @@ pub const ID3D11VideoContext2 = extern union {
             Size: u32,
             // TODO: what to do with BytesParamIndex 2?
             pMetaData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorSetStreamHDRMetaData: *const fn(
             self: *const ID3D11VideoContext2,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -10567,7 +10567,7 @@ pub const ID3D11VideoContext2 = extern union {
             Size: u32,
             // TODO: what to do with BytesParamIndex 3?
             pHDRMetaData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VideoProcessorGetStreamHDRMetaData: *const fn(
             self: *const ID3D11VideoContext2,
             pVideoProcessor: ?*ID3D11VideoProcessor,
@@ -10576,7 +10576,7 @@ pub const ID3D11VideoContext2 = extern union {
             Size: u32,
             // TODO: what to do with BytesParamIndex 3?
             pMetaData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D11VideoContext1: ID3D11VideoContext1,
@@ -10720,7 +10720,7 @@ pub const ID3D11VideoDevice2 = extern union {
             // TODO: what to do with BytesParamIndex 2?
             pFeatureSupportData: ?*anyopaque,
             FeatureSupportDataSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NegotiateCryptoSessionKeyExchangeMT: *const fn(
             self: *const ID3D11VideoDevice2,
             pCryptoSession: ?*ID3D11CryptoSession,
@@ -10728,7 +10728,7 @@ pub const ID3D11VideoDevice2 = extern union {
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 2?
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11VideoDevice1: ID3D11VideoDevice1,
@@ -10770,13 +10770,13 @@ pub const ID3D11VideoContext3 = extern union {
             NumComponentHistograms: u32,
             pHistogramOffsets: ?[*]const u32,
             ppHistogramBuffers: ?[*]?*ID3D11Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SubmitDecoderBuffers2: *const fn(
             self: *const ID3D11VideoContext3,
             pDecoder: ?*ID3D11VideoDecoder,
             NumBuffers: u32,
             pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11VideoContext2: ID3D11VideoContext2,
@@ -10973,44 +10973,44 @@ pub const ID3D11ShaderReflectionType = extern union {
         GetDesc: *const fn(
             self: *const ID3D11ShaderReflectionType,
             pDesc: ?*D3D11_SHADER_TYPE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMemberTypeByIndex: *const fn(
             self: *const ID3D11ShaderReflectionType,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionType,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionType,
         GetMemberTypeByName: *const fn(
             self: *const ID3D11ShaderReflectionType,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionType,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionType,
         GetMemberTypeName: *const fn(
             self: *const ID3D11ShaderReflectionType,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
+        ) callconv(.winapi) ?PSTR,
         IsEqual: *const fn(
             self: *const ID3D11ShaderReflectionType,
             pType: ?*ID3D11ShaderReflectionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubType: *const fn(
             self: *const ID3D11ShaderReflectionType,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionType,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionType,
         GetBaseClass: *const fn(
             self: *const ID3D11ShaderReflectionType,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionType,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionType,
         GetNumInterfaces: *const fn(
             self: *const ID3D11ShaderReflectionType,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetInterfaceByIndex: *const fn(
             self: *const ID3D11ShaderReflectionType,
             uIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionType,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionType,
         IsOfType: *const fn(
             self: *const ID3D11ShaderReflectionType,
             pType: ?*ID3D11ShaderReflectionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImplementsInterface: *const fn(
             self: *const ID3D11ShaderReflectionType,
             pBase: ?*ID3D11ShaderReflectionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     pub fn GetDesc(self: *const ID3D11ShaderReflectionType, pDesc: ?*D3D11_SHADER_TYPE_DESC) callconv(.Inline) HRESULT {
@@ -11056,17 +11056,17 @@ pub const ID3D11ShaderReflectionVariable = extern union {
         GetDesc: *const fn(
             self: *const ID3D11ShaderReflectionVariable,
             pDesc: ?*D3D11_SHADER_VARIABLE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const ID3D11ShaderReflectionVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionType,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionType,
         GetBuffer: *const fn(
             self: *const ID3D11ShaderReflectionVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionConstantBuffer,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionConstantBuffer,
         GetInterfaceSlot: *const fn(
             self: *const ID3D11ShaderReflectionVariable,
             uArrayIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     pub fn GetDesc(self: *const ID3D11ShaderReflectionVariable, pDesc: ?*D3D11_SHADER_VARIABLE_DESC) callconv(.Inline) HRESULT {
@@ -11091,15 +11091,15 @@ pub const ID3D11ShaderReflectionConstantBuffer = extern union {
         GetDesc: *const fn(
             self: *const ID3D11ShaderReflectionConstantBuffer,
             pDesc: ?*D3D11_SHADER_BUFFER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVariableByIndex: *const fn(
             self: *const ID3D11ShaderReflectionConstantBuffer,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionVariable,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionVariable,
         GetVariableByName: *const fn(
             self: *const ID3D11ShaderReflectionConstantBuffer,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionVariable,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionVariable,
     };
     vtable: *const VTable,
     pub fn GetDesc(self: *const ID3D11ShaderReflectionConstantBuffer, pDesc: ?*D3D11_SHADER_BUFFER_DESC) callconv(.Inline) HRESULT {
@@ -11123,78 +11123,78 @@ pub const ID3D11ShaderReflection = extern union {
         GetDesc: *const fn(
             self: *const ID3D11ShaderReflection,
             pDesc: ?*D3D11_SHADER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConstantBufferByIndex: *const fn(
             self: *const ID3D11ShaderReflection,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionConstantBuffer,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionConstantBuffer,
         GetConstantBufferByName: *const fn(
             self: *const ID3D11ShaderReflection,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionConstantBuffer,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionConstantBuffer,
         GetResourceBindingDesc: *const fn(
             self: *const ID3D11ShaderReflection,
             ResourceIndex: u32,
             pDesc: ?*D3D11_SHADER_INPUT_BIND_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputParameterDesc: *const fn(
             self: *const ID3D11ShaderReflection,
             ParameterIndex: u32,
             pDesc: ?*D3D11_SIGNATURE_PARAMETER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputParameterDesc: *const fn(
             self: *const ID3D11ShaderReflection,
             ParameterIndex: u32,
             pDesc: ?*D3D11_SIGNATURE_PARAMETER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPatchConstantParameterDesc: *const fn(
             self: *const ID3D11ShaderReflection,
             ParameterIndex: u32,
             pDesc: ?*D3D11_SIGNATURE_PARAMETER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVariableByName: *const fn(
             self: *const ID3D11ShaderReflection,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionVariable,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionVariable,
         GetResourceBindingDescByName: *const fn(
             self: *const ID3D11ShaderReflection,
             Name: ?[*:0]const u8,
             pDesc: ?*D3D11_SHADER_INPUT_BIND_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMovInstructionCount: *const fn(
             self: *const ID3D11ShaderReflection,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetMovcInstructionCount: *const fn(
             self: *const ID3D11ShaderReflection,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetConversionInstructionCount: *const fn(
             self: *const ID3D11ShaderReflection,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetBitwiseInstructionCount: *const fn(
             self: *const ID3D11ShaderReflection,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetGSInputPrimitive: *const fn(
             self: *const ID3D11ShaderReflection,
-        ) callconv(@import("std").os.windows.WINAPI) D3D_PRIMITIVE,
+        ) callconv(.winapi) D3D_PRIMITIVE,
         IsSampleFrequencyShader: *const fn(
             self: *const ID3D11ShaderReflection,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetNumInterfaceSlots: *const fn(
             self: *const ID3D11ShaderReflection,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetMinFeatureLevel: *const fn(
             self: *const ID3D11ShaderReflection,
             pLevel: ?*D3D_FEATURE_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetThreadGroupSize: *const fn(
             self: *const ID3D11ShaderReflection,
             pSizeX: ?*u32,
             pSizeY: ?*u32,
             pSizeZ: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetRequiresFlags: *const fn(
             self: *const ID3D11ShaderReflection,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11266,11 +11266,11 @@ pub const ID3D11LibraryReflection = extern union {
         GetDesc: *const fn(
             self: *const ID3D11LibraryReflection,
             pDesc: ?*D3D11_LIBRARY_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFunctionByIndex: *const fn(
             self: *const ID3D11LibraryReflection,
             FunctionIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11FunctionReflection,
+        ) callconv(.winapi) ?*ID3D11FunctionReflection,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11290,33 +11290,33 @@ pub const ID3D11FunctionReflection = extern union {
         GetDesc: *const fn(
             self: *const ID3D11FunctionReflection,
             pDesc: ?*D3D11_FUNCTION_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConstantBufferByIndex: *const fn(
             self: *const ID3D11FunctionReflection,
             BufferIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionConstantBuffer,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionConstantBuffer,
         GetConstantBufferByName: *const fn(
             self: *const ID3D11FunctionReflection,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionConstantBuffer,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionConstantBuffer,
         GetResourceBindingDesc: *const fn(
             self: *const ID3D11FunctionReflection,
             ResourceIndex: u32,
             pDesc: ?*D3D11_SHADER_INPUT_BIND_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVariableByName: *const fn(
             self: *const ID3D11FunctionReflection,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11ShaderReflectionVariable,
+        ) callconv(.winapi) ?*ID3D11ShaderReflectionVariable,
         GetResourceBindingDescByName: *const fn(
             self: *const ID3D11FunctionReflection,
             Name: ?[*:0]const u8,
             pDesc: ?*D3D11_SHADER_INPUT_BIND_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFunctionParameter: *const fn(
             self: *const ID3D11FunctionReflection,
             ParameterIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D11FunctionParameterReflection,
+        ) callconv(.winapi) ?*ID3D11FunctionParameterReflection,
     };
     vtable: *const VTable,
     pub fn GetDesc(self: *const ID3D11FunctionReflection, pDesc: ?*D3D11_FUNCTION_DESC) callconv(.Inline) HRESULT {
@@ -11350,7 +11350,7 @@ pub const ID3D11FunctionParameterReflection = extern union {
         GetDesc: *const fn(
             self: *const ID3D11FunctionParameterReflection,
             pDesc: ?*D3D11_PARAMETER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     pub fn GetDesc(self: *const ID3D11FunctionParameterReflection, pDesc: ?*D3D11_PARAMETER_DESC) callconv(.Inline) HRESULT {
@@ -11369,61 +11369,61 @@ pub const ID3D11ModuleInstance = extern union {
             uSrcSlot: u32,
             uDstSlot: u32,
             cbDstOffset: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindConstantBufferByName: *const fn(
             self: *const ID3D11ModuleInstance,
             pName: ?[*:0]const u8,
             uDstSlot: u32,
             cbDstOffset: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindResource: *const fn(
             self: *const ID3D11ModuleInstance,
             uSrcSlot: u32,
             uDstSlot: u32,
             uCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindResourceByName: *const fn(
             self: *const ID3D11ModuleInstance,
             pName: ?[*:0]const u8,
             uDstSlot: u32,
             uCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindSampler: *const fn(
             self: *const ID3D11ModuleInstance,
             uSrcSlot: u32,
             uDstSlot: u32,
             uCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindSamplerByName: *const fn(
             self: *const ID3D11ModuleInstance,
             pName: ?[*:0]const u8,
             uDstSlot: u32,
             uCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindUnorderedAccessView: *const fn(
             self: *const ID3D11ModuleInstance,
             uSrcSlot: u32,
             uDstSlot: u32,
             uCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindUnorderedAccessViewByName: *const fn(
             self: *const ID3D11ModuleInstance,
             pName: ?[*:0]const u8,
             uDstSlot: u32,
             uCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindResourceAsUnorderedAccessView: *const fn(
             self: *const ID3D11ModuleInstance,
             uSrcSrvSlot: u32,
             uDstUavSlot: u32,
             uCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindResourceAsUnorderedAccessViewByName: *const fn(
             self: *const ID3D11ModuleInstance,
             pSrvName: ?[*:0]const u8,
             uDstUavSlot: u32,
             uCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11469,7 +11469,7 @@ pub const ID3D11Module = extern union {
             self: *const ID3D11Module,
             pNamespace: ?[*:0]const u8,
             ppModuleInstance: **ID3D11ModuleInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11492,16 +11492,16 @@ pub const ID3D11Linker = extern union {
             uFlags: u32,
             ppShaderBlob: **ID3DBlob,
             ppErrorBuffer: ?*?*ID3DBlob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UseLibrary: *const fn(
             self: *const ID3D11Linker,
             pLibraryMI: ?*ID3D11ModuleInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddClipPlaneFromCBuffer: *const fn(
             self: *const ID3D11Linker,
             uCBufferSlot: u32,
             uCBufferEntry: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11537,33 +11537,33 @@ pub const ID3D11FunctionLinkingGraph = extern union {
             self: *const ID3D11FunctionLinkingGraph,
             ppModuleInstance: **ID3D11ModuleInstance,
             ppErrorBuffer: ?*?*ID3DBlob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInputSignature: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
             pInputParameters: [*]const D3D11_PARAMETER_DESC,
             cInputParameters: u32,
             ppInputNode: **ID3D11LinkingNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputSignature: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
             pOutputParameters: [*]const D3D11_PARAMETER_DESC,
             cOutputParameters: u32,
             ppOutputNode: **ID3D11LinkingNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CallFunction: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
             pModuleInstanceNamespace: ?[*:0]const u8,
             pModuleWithFunctionPrototype: ?*ID3D11Module,
             pFunctionName: ?[*:0]const u8,
             ppCallNode: **ID3D11LinkingNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PassValue: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
             pSrcNode: ?*ID3D11LinkingNode,
             SrcParameterIndex: i32,
             pDstNode: ?*ID3D11LinkingNode,
             DstParameterIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PassValueWithSwizzle: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
             pSrcNode: ?*ID3D11LinkingNode,
@@ -11572,16 +11572,16 @@ pub const ID3D11FunctionLinkingGraph = extern union {
             pDstNode: ?*ID3D11LinkingNode,
             DstParameterIndex: i32,
             pDstSwizzle: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastError: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
             ppErrorBuffer: ?*?*ID3DBlob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateHlsl: *const fn(
             self: *const ID3D11FunctionLinkingGraph,
             uFlags: u32,
             ppBuffer: **ID3DBlob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11819,42 +11819,42 @@ pub const ID3D11ShaderTrace = extern union {
         TraceReady: *const fn(
             self: *const ID3D11ShaderTrace,
             pTestCount: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetTrace: *const fn(
             self: *const ID3D11ShaderTrace,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetTraceStats: *const fn(
             self: *const ID3D11ShaderTrace,
             pTraceStats: ?*D3D11_TRACE_STATS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PSSelectStamp: *const fn(
             self: *const ID3D11ShaderTrace,
             stampIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInitialRegisterContents: *const fn(
             self: *const ID3D11ShaderTrace,
             pRegister: ?*D3D11_TRACE_REGISTER,
             pValue: ?*D3D11_TRACE_VALUE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStep: *const fn(
             self: *const ID3D11ShaderTrace,
             stepIndex: u32,
             pTraceStep: ?*D3D11_TRACE_STEP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWrittenRegister: *const fn(
             self: *const ID3D11ShaderTrace,
             stepIndex: u32,
             writtenRegisterIndex: u32,
             pRegister: ?*D3D11_TRACE_REGISTER,
             pValue: ?*D3D11_TRACE_VALUE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReadRegister: *const fn(
             self: *const ID3D11ShaderTrace,
             stepIndex: u32,
             readRegisterIndex: u32,
             pRegister: ?*D3D11_TRACE_REGISTER,
             pValue: ?*D3D11_TRACE_VALUE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11896,7 +11896,7 @@ pub const ID3D11ShaderTraceFactory = extern union {
             pShader: ?*IUnknown,
             pTraceDesc: ?*D3D11_SHADER_TRACE_DESC,
             ppShaderTrace: **ID3D11ShaderTrace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11947,7 +11947,7 @@ pub const ID3DX11Scan = extern union {
         SetScanDirection: *const fn(
             self: *const ID3DX11Scan,
             Direction: D3DX11_SCAN_DIRECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Scan: *const fn(
             self: *const ID3DX11Scan,
             ElementType: D3DX11_SCAN_DATA_TYPE,
@@ -11955,7 +11955,7 @@ pub const ID3DX11Scan = extern union {
             ElementScanSize: u32,
             pSrc: ?*ID3D11UnorderedAccessView,
             pDst: ?*ID3D11UnorderedAccessView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Multiscan: *const fn(
             self: *const ID3DX11Scan,
             ElementType: D3DX11_SCAN_DATA_TYPE,
@@ -11965,7 +11965,7 @@ pub const ID3DX11Scan = extern union {
             ScanCount: u32,
             pSrc: ?*ID3D11UnorderedAccessView,
             pDst: ?*ID3D11UnorderedAccessView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11989,7 +11989,7 @@ pub const ID3DX11SegmentedScan = extern union {
         SetScanDirection: *const fn(
             self: *const ID3DX11SegmentedScan,
             Direction: D3DX11_SCAN_DIRECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SegScan: *const fn(
             self: *const ID3DX11SegmentedScan,
             ElementType: D3DX11_SCAN_DATA_TYPE,
@@ -11998,7 +11998,7 @@ pub const ID3DX11SegmentedScan = extern union {
             pSrc: ?*ID3D11UnorderedAccessView,
             pSrcElementFlags: ?*ID3D11UnorderedAccessView,
             pDst: ?*ID3D11UnorderedAccessView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12019,34 +12019,34 @@ pub const ID3DX11FFT = extern union {
         SetForwardScale: *const fn(
             self: *const ID3DX11FFT,
             ForwardScale: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetForwardScale: *const fn(
             self: *const ID3DX11FFT,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         SetInverseScale: *const fn(
             self: *const ID3DX11FFT,
             InverseScale: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInverseScale: *const fn(
             self: *const ID3DX11FFT,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         AttachBuffersAndPrecompute: *const fn(
             self: *const ID3DX11FFT,
             NumTempBuffers: u32,
             ppTempBuffers: [*]?*ID3D11UnorderedAccessView,
             NumPrecomputeBuffers: u32,
             ppPrecomputeBufferSizes: [*]?*ID3D11UnorderedAccessView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ForwardTransform: *const fn(
             self: *const ID3DX11FFT,
             pInputBuffer: ?*ID3D11UnorderedAccessView,
             ppOutputBuffer: ?*?*ID3D11UnorderedAccessView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InverseTransform: *const fn(
             self: *const ID3DX11FFT,
             pInputBuffer: ?*ID3D11UnorderedAccessView,
             ppOutputBuffer: ?*?*ID3D11UnorderedAccessView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12123,7 +12123,7 @@ pub extern "d3d11" fn D3D11CreateDevice(
     ppDevice: ?**ID3D11Device,
     pFeatureLevel: ?*D3D_FEATURE_LEVEL,
     ppImmediateContext: ?**ID3D11DeviceContext,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d11" fn D3D11CreateDeviceAndSwapChain(
     pAdapter: ?*IDXGIAdapter,
@@ -12138,7 +12138,7 @@ pub extern "d3d11" fn D3D11CreateDeviceAndSwapChain(
     ppDevice: ?**ID3D11Device,
     pFeatureLevel: ?*D3D_FEATURE_LEVEL,
     ppImmediateContext: ?**ID3D11DeviceContext,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "d3dcompiler_47" fn D3DDisassemble11Trace(
@@ -12150,20 +12150,20 @@ pub extern "d3dcompiler_47" fn D3DDisassemble11Trace(
     NumSteps: u32,
     Flags: u32,
     ppDisassembly: **ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcsx" fn D3DX11CreateScan(
     pDeviceContext: ?*ID3D11DeviceContext,
     MaxElementScanSize: u32,
     MaxScanCount: u32,
     ppScan: ?*?*ID3DX11Scan,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcsx" fn D3DX11CreateSegmentedScan(
     pDeviceContext: ?*ID3D11DeviceContext,
     MaxElementScanSize: u32,
     ppScan: ?*?*ID3DX11SegmentedScan,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcsx" fn D3DX11CreateFFT(
     pDeviceContext: ?*ID3D11DeviceContext,
@@ -12171,7 +12171,7 @@ pub extern "d3dcsx" fn D3DX11CreateFFT(
     Flags: u32,
     pBufferInfo: ?*D3DX11_FFT_BUFFER_INFO,
     ppFFT: ?*?*ID3DX11FFT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcsx" fn D3DX11CreateFFT1DReal(
     pDeviceContext: ?*ID3D11DeviceContext,
@@ -12179,7 +12179,7 @@ pub extern "d3dcsx" fn D3DX11CreateFFT1DReal(
     Flags: u32,
     pBufferInfo: ?*D3DX11_FFT_BUFFER_INFO,
     ppFFT: ?*?*ID3DX11FFT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcsx" fn D3DX11CreateFFT1DComplex(
     pDeviceContext: ?*ID3D11DeviceContext,
@@ -12187,7 +12187,7 @@ pub extern "d3dcsx" fn D3DX11CreateFFT1DComplex(
     Flags: u32,
     pBufferInfo: ?*D3DX11_FFT_BUFFER_INFO,
     ppFFT: ?*?*ID3DX11FFT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcsx" fn D3DX11CreateFFT2DReal(
     pDeviceContext: ?*ID3D11DeviceContext,
@@ -12196,7 +12196,7 @@ pub extern "d3dcsx" fn D3DX11CreateFFT2DReal(
     Flags: u32,
     pBufferInfo: ?*D3DX11_FFT_BUFFER_INFO,
     ppFFT: ?*?*ID3DX11FFT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcsx" fn D3DX11CreateFFT2DComplex(
     pDeviceContext: ?*ID3D11DeviceContext,
@@ -12205,7 +12205,7 @@ pub extern "d3dcsx" fn D3DX11CreateFFT2DComplex(
     Flags: u32,
     pBufferInfo: ?*D3DX11_FFT_BUFFER_INFO,
     ppFFT: ?*?*ID3DX11FFT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcsx" fn D3DX11CreateFFT3DReal(
     pDeviceContext: ?*ID3D11DeviceContext,
@@ -12215,7 +12215,7 @@ pub extern "d3dcsx" fn D3DX11CreateFFT3DReal(
     Flags: u32,
     pBufferInfo: ?*D3DX11_FFT_BUFFER_INFO,
     ppFFT: ?*?*ID3DX11FFT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcsx" fn D3DX11CreateFFT3DComplex(
     pDeviceContext: ?*ID3D11DeviceContext,
@@ -12225,7 +12225,7 @@ pub extern "d3dcsx" fn D3DX11CreateFFT3DComplex(
     Flags: u32,
     pBufferInfo: ?*D3DX11_FFT_BUFFER_INFO,
     ppFFT: ?*?*ID3DX11FFT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

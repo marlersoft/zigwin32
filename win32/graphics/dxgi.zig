@@ -211,24 +211,24 @@ pub const IDXGIObject = extern union {
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
             self: *const IDXGIObject,
             Name: ?*const Guid,
             pUnknown: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrivateData: *const fn(
             self: *const IDXGIObject,
             Name: ?*const Guid,
             pDataSize: ?*u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParent: *const fn(
             self: *const IDXGIObject,
             riid: ?*const Guid,
             ppParent: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -255,7 +255,7 @@ pub const IDXGIDeviceSubObject = extern union {
             self: *const IDXGIDeviceSubObject,
             riid: ?*const Guid,
             ppDevice: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIObject: IDXGIObject,
@@ -273,19 +273,19 @@ pub const IDXGIResource = extern union {
         GetSharedHandle: *const fn(
             self: *const IDXGIResource,
             pSharedHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUsage: *const fn(
             self: *const IDXGIResource,
             pUsage: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEvictionPriority: *const fn(
             self: *const IDXGIResource,
             EvictionPriority: DXGI_RESOURCE_PRIORITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEvictionPriority: *const fn(
             self: *const IDXGIResource,
             pEvictionPriority: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIDeviceSubObject: IDXGIDeviceSubObject,
@@ -314,11 +314,11 @@ pub const IDXGIKeyedMutex = extern union {
             self: *const IDXGIKeyedMutex,
             Key: u64,
             dwMilliseconds: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseSync: *const fn(
             self: *const IDXGIKeyedMutex,
             Key: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIDeviceSubObject: IDXGIDeviceSubObject,
@@ -340,15 +340,15 @@ pub const IDXGISurface = extern union {
         GetDesc: *const fn(
             self: *const IDXGISurface,
             pDesc: ?*DXGI_SURFACE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Map: *const fn(
             self: *const IDXGISurface,
             pLockedRect: ?*DXGI_MAPPED_RECT,
             MapFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unmap: *const fn(
             self: *const IDXGISurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIDeviceSubObject: IDXGIDeviceSubObject,
@@ -375,11 +375,11 @@ pub const IDXGISurface1 = extern union {
             self: *const IDXGISurface1,
             Discard: BOOL,
             phdc: ?*?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseDC: *const fn(
             self: *const IDXGISurface1,
             pDirtyRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGISurface: IDXGISurface,
@@ -403,16 +403,16 @@ pub const IDXGIAdapter = extern union {
             self: *const IDXGIAdapter,
             Output: u32,
             ppOutput: **IDXGIOutput,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDesc: *const fn(
             self: *const IDXGIAdapter,
             pDesc: ?*DXGI_ADAPTER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckInterfaceSupport: *const fn(
             self: *const IDXGIAdapter,
             InterfaceName: ?*const Guid,
             pUMDVersion: ?*LARGE_INTEGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIObject: IDXGIObject,
@@ -436,55 +436,55 @@ pub const IDXGIOutput = extern union {
         GetDesc: *const fn(
             self: *const IDXGIOutput,
             pDesc: ?*DXGI_OUTPUT_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayModeList: *const fn(
             self: *const IDXGIOutput,
             EnumFormat: DXGI_FORMAT,
             Flags: u32,
             pNumModes: ?*u32,
             pDesc: ?[*]DXGI_MODE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindClosestMatchingMode: *const fn(
             self: *const IDXGIOutput,
             pModeToMatch: ?*const DXGI_MODE_DESC,
             pClosestMatch: ?*DXGI_MODE_DESC,
             pConcernedDevice: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForVBlank: *const fn(
             self: *const IDXGIOutput,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TakeOwnership: *const fn(
             self: *const IDXGIOutput,
             pDevice: ?*IUnknown,
             Exclusive: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseOwnership: *const fn(
             self: *const IDXGIOutput,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetGammaControlCapabilities: *const fn(
             self: *const IDXGIOutput,
             pGammaCaps: ?*DXGI_GAMMA_CONTROL_CAPABILITIES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGammaControl: *const fn(
             self: *const IDXGIOutput,
             pArray: ?*const DXGI_GAMMA_CONTROL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGammaControl: *const fn(
             self: *const IDXGIOutput,
             pArray: ?*DXGI_GAMMA_CONTROL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDisplaySurface: *const fn(
             self: *const IDXGIOutput,
             pScanoutSurface: ?*IDXGISurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplaySurfaceData: *const fn(
             self: *const IDXGIOutput,
             pDestination: ?*IDXGISurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrameStatistics: *const fn(
             self: *const IDXGIOutput,
             pStats: ?*DXGI_FRAME_STATISTICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIObject: IDXGIObject,
@@ -536,27 +536,27 @@ pub const IDXGISwapChain = extern union {
             self: *const IDXGISwapChain,
             SyncInterval: u32,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBuffer: *const fn(
             self: *const IDXGISwapChain,
             Buffer: u32,
             riid: ?*const Guid,
             ppSurface: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFullscreenState: *const fn(
             self: *const IDXGISwapChain,
             Fullscreen: BOOL,
             pTarget: ?*IDXGIOutput,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFullscreenState: *const fn(
             self: *const IDXGISwapChain,
             pFullscreen: ?*BOOL,
             ppTarget: ?**IDXGIOutput,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDesc: *const fn(
             self: *const IDXGISwapChain,
             pDesc: ?*DXGI_SWAP_CHAIN_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResizeBuffers: *const fn(
             self: *const IDXGISwapChain,
             BufferCount: u32,
@@ -564,23 +564,23 @@ pub const IDXGISwapChain = extern union {
             Height: u32,
             NewFormat: DXGI_FORMAT,
             SwapChainFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResizeTarget: *const fn(
             self: *const IDXGISwapChain,
             pNewTargetParameters: ?*const DXGI_MODE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContainingOutput: *const fn(
             self: *const IDXGISwapChain,
             ppOutput: **IDXGIOutput,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrameStatistics: *const fn(
             self: *const IDXGISwapChain,
             pStats: ?*DXGI_FRAME_STATISTICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastPresentCount: *const fn(
             self: *const IDXGISwapChain,
             pLastPresentCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIDeviceSubObject: IDXGIDeviceSubObject,
@@ -627,27 +627,27 @@ pub const IDXGIFactory = extern union {
             self: *const IDXGIFactory,
             Adapter: u32,
             ppAdapter: **IDXGIAdapter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MakeWindowAssociation: *const fn(
             self: *const IDXGIFactory,
             WindowHandle: ?HWND,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWindowAssociation: *const fn(
             self: *const IDXGIFactory,
             pWindowHandle: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSwapChain: *const fn(
             self: *const IDXGIFactory,
             pDevice: ?*IUnknown,
             pDesc: ?*DXGI_SWAP_CHAIN_DESC,
             ppSwapChain: **IDXGISwapChain,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSoftwareAdapter: *const fn(
             self: *const IDXGIFactory,
             Module: ?HINSTANCE,
             ppAdapter: **IDXGIAdapter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIObject: IDXGIObject,
@@ -677,7 +677,7 @@ pub const IDXGIDevice = extern union {
         GetAdapter: *const fn(
             self: *const IDXGIDevice,
             pAdapter: **IDXGIAdapter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSurface: *const fn(
             self: *const IDXGIDevice,
             pDesc: ?*const DXGI_SURFACE_DESC,
@@ -685,21 +685,21 @@ pub const IDXGIDevice = extern union {
             Usage: u32,
             pSharedResource: ?*const DXGI_SHARED_RESOURCE,
             ppSurface: [*]?*IDXGISurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryResourceResidency: *const fn(
             self: *const IDXGIDevice,
             ppResources: [*]?*IUnknown,
             pResidencyStatus: [*]DXGI_RESIDENCY,
             NumResources: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGPUThreadPriority: *const fn(
             self: *const IDXGIDevice,
             Priority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGPUThreadPriority: *const fn(
             self: *const IDXGIDevice,
             pPriority: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIObject: IDXGIObject,
@@ -787,10 +787,10 @@ pub const IDXGIFactory1 = extern union {
             self: *const IDXGIFactory1,
             Adapter: u32,
             ppAdapter: **IDXGIAdapter1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsCurrent: *const fn(
             self: *const IDXGIFactory1,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IDXGIFactory: IDXGIFactory,
@@ -813,7 +813,7 @@ pub const IDXGIAdapter1 = extern union {
         GetDesc1: *const fn(
             self: *const IDXGIAdapter1,
             pDesc: ?*DXGI_ADAPTER_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIAdapter: IDXGIAdapter,
@@ -833,11 +833,11 @@ pub const IDXGIDevice1 = extern union {
         SetMaximumFrameLatency: *const fn(
             self: *const IDXGIDevice1,
             MaxLatency: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaximumFrameLatency: *const fn(
             self: *const IDXGIDevice1,
             pMaxLatency: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIDevice: IDXGIDevice,
@@ -859,11 +859,11 @@ pub const IDXGIDisplayControl = extern union {
         base: IUnknown.VTable,
         IsStereoEnabled: *const fn(
             self: *const IDXGIDisplayControl,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         SetStereoEnabled: *const fn(
             self: *const IDXGIDisplayControl,
             enabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -928,27 +928,27 @@ pub const IDXGIOutputDuplication = extern union {
         GetDesc: *const fn(
             self: *const IDXGIOutputDuplication,
             pDesc: ?*DXGI_OUTDUPL_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         AcquireNextFrame: *const fn(
             self: *const IDXGIOutputDuplication,
             TimeoutInMilliseconds: u32,
             pFrameInfo: ?*DXGI_OUTDUPL_FRAME_INFO,
             ppDesktopResource: **IDXGIResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrameDirtyRects: *const fn(
             self: *const IDXGIOutputDuplication,
             DirtyRectsBufferSize: u32,
             // TODO: what to do with BytesParamIndex 0?
             pDirtyRectsBuffer: ?*RECT,
             pDirtyRectsBufferSizeRequired: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrameMoveRects: *const fn(
             self: *const IDXGIOutputDuplication,
             MoveRectsBufferSize: u32,
             // TODO: what to do with BytesParamIndex 0?
             pMoveRectBuffer: ?*DXGI_OUTDUPL_MOVE_RECT,
             pMoveRectsBufferSizeRequired: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFramePointerShape: *const fn(
             self: *const IDXGIOutputDuplication,
             PointerShapeBufferSize: u32,
@@ -956,17 +956,17 @@ pub const IDXGIOutputDuplication = extern union {
             pPointerShapeBuffer: ?*anyopaque,
             pPointerShapeBufferSizeRequired: ?*u32,
             pPointerShapeInfo: ?*DXGI_OUTDUPL_POINTER_SHAPE_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MapDesktopSurface: *const fn(
             self: *const IDXGIOutputDuplication,
             pLockedRect: ?*DXGI_MAPPED_RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnMapDesktopSurface: *const fn(
             self: *const IDXGIOutputDuplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseFrame: *const fn(
             self: *const IDXGIOutputDuplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIObject: IDXGIObject,
@@ -1008,7 +1008,7 @@ pub const IDXGISurface2 = extern union {
             riid: ?*const Guid,
             ppParentResource: **anyopaque,
             pSubresourceIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGISurface1: IDXGISurface1,
@@ -1031,14 +1031,14 @@ pub const IDXGIResource1 = extern union {
             self: *const IDXGIResource1,
             index: u32,
             ppSurface: **IDXGISurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSharedHandle: *const fn(
             self: *const IDXGIResource1,
             pAttributes: ?*const SECURITY_ATTRIBUTES,
             dwAccess: u32,
             lpName: ?[*:0]const u16,
             pHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIResource: IDXGIResource,
@@ -1073,17 +1073,17 @@ pub const IDXGIDevice2 = extern union {
             NumResources: u32,
             ppResources: [*]?*IDXGIResource,
             Priority: DXGI_OFFER_RESOURCE_PRIORITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReclaimResources: *const fn(
             self: *const IDXGIDevice2,
             NumResources: u32,
             ppResources: [*]?*IDXGIResource,
             pDiscarded: ?[*]BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnqueueSetEvent: *const fn(
             self: *const IDXGIDevice2,
             hEvent: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIDevice1: IDXGIDevice1,
@@ -1157,49 +1157,49 @@ pub const IDXGISwapChain1 = extern union {
         GetDesc1: *const fn(
             self: *const IDXGISwapChain1,
             pDesc: ?*DXGI_SWAP_CHAIN_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFullscreenDesc: *const fn(
             self: *const IDXGISwapChain1,
             pDesc: ?*DXGI_SWAP_CHAIN_FULLSCREEN_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHwnd: *const fn(
             self: *const IDXGISwapChain1,
             pHwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCoreWindow: *const fn(
             self: *const IDXGISwapChain1,
             refiid: ?*const Guid,
             ppUnk: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Present1: *const fn(
             self: *const IDXGISwapChain1,
             SyncInterval: u32,
             PresentFlags: u32,
             pPresentParameters: ?*const DXGI_PRESENT_PARAMETERS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsTemporaryMonoSupported: *const fn(
             self: *const IDXGISwapChain1,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetRestrictToOutput: *const fn(
             self: *const IDXGISwapChain1,
             ppRestrictToOutput: ?*?*IDXGIOutput,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBackgroundColor: *const fn(
             self: *const IDXGISwapChain1,
             pColor: ?*const DXGI_RGBA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBackgroundColor: *const fn(
             self: *const IDXGISwapChain1,
             pColor: ?*DXGI_RGBA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRotation: *const fn(
             self: *const IDXGISwapChain1,
             Rotation: DXGI_MODE_ROTATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRotation: *const fn(
             self: *const IDXGISwapChain1,
             pRotation: ?*DXGI_MODE_ROTATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGISwapChain: IDXGISwapChain,
@@ -1249,7 +1249,7 @@ pub const IDXGIFactory2 = extern union {
         base: IDXGIFactory1.VTable,
         IsWindowedStereoEnabled: *const fn(
             self: *const IDXGIFactory2,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         CreateSwapChainForHwnd: *const fn(
             self: *const IDXGIFactory2,
             pDevice: ?*IUnknown,
@@ -1258,7 +1258,7 @@ pub const IDXGIFactory2 = extern union {
             pFullscreenDesc: ?*const DXGI_SWAP_CHAIN_FULLSCREEN_DESC,
             pRestrictToOutput: ?*IDXGIOutput,
             ppSwapChain: **IDXGISwapChain1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSwapChainForCoreWindow: *const fn(
             self: *const IDXGIFactory2,
             pDevice: ?*IUnknown,
@@ -1266,49 +1266,49 @@ pub const IDXGIFactory2 = extern union {
             pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
             pRestrictToOutput: ?*IDXGIOutput,
             ppSwapChain: **IDXGISwapChain1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSharedResourceAdapterLuid: *const fn(
             self: *const IDXGIFactory2,
             hResource: ?HANDLE,
             pLuid: ?*LUID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterStereoStatusWindow: *const fn(
             self: *const IDXGIFactory2,
             WindowHandle: ?HWND,
             wMsg: u32,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterStereoStatusEvent: *const fn(
             self: *const IDXGIFactory2,
             hEvent: ?HANDLE,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterStereoStatus: *const fn(
             self: *const IDXGIFactory2,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RegisterOcclusionStatusWindow: *const fn(
             self: *const IDXGIFactory2,
             WindowHandle: ?HWND,
             wMsg: u32,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterOcclusionStatusEvent: *const fn(
             self: *const IDXGIFactory2,
             hEvent: ?HANDLE,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterOcclusionStatus: *const fn(
             self: *const IDXGIFactory2,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CreateSwapChainForComposition: *const fn(
             self: *const IDXGIFactory2,
             pDevice: ?*IUnknown,
             pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
             pRestrictToOutput: ?*IDXGIOutput,
             ppSwapChain: **IDXGISwapChain1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIFactory1: IDXGIFactory1,
@@ -1400,7 +1400,7 @@ pub const IDXGIAdapter2 = extern union {
         GetDesc2: *const fn(
             self: *const IDXGIAdapter2,
             pDesc: ?*DXGI_ADAPTER_DESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIAdapter1: IDXGIAdapter1,
@@ -1424,22 +1424,22 @@ pub const IDXGIOutput1 = extern union {
             Flags: u32,
             pNumModes: ?*u32,
             pDesc: ?[*]DXGI_MODE_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindClosestMatchingMode1: *const fn(
             self: *const IDXGIOutput1,
             pModeToMatch: ?*const DXGI_MODE_DESC1,
             pClosestMatch: ?*DXGI_MODE_DESC1,
             pConcernedDevice: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplaySurfaceData1: *const fn(
             self: *const IDXGIOutput1,
             pDestination: ?*IDXGIResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DuplicateOutput: *const fn(
             self: *const IDXGIOutput1,
             pDevice: ?*IUnknown,
             ppOutputDuplication: **IDXGIOutputDuplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIOutput: IDXGIOutput,
@@ -1467,7 +1467,7 @@ pub const IDXGIDevice3 = extern union {
         base: IDXGIDevice2.VTable,
         Trim: *const fn(
             self: *const IDXGIDevice3,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IDXGIDevice2: IDXGIDevice2,
@@ -1499,31 +1499,31 @@ pub const IDXGISwapChain2 = extern union {
             self: *const IDXGISwapChain2,
             Width: u32,
             Height: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceSize: *const fn(
             self: *const IDXGISwapChain2,
             pWidth: ?*u32,
             pHeight: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaximumFrameLatency: *const fn(
             self: *const IDXGISwapChain2,
             MaxLatency: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaximumFrameLatency: *const fn(
             self: *const IDXGISwapChain2,
             pMaxLatency: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrameLatencyWaitableObject: *const fn(
             self: *const IDXGISwapChain2,
-        ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
+        ) callconv(.winapi) ?HANDLE,
         SetMatrixTransform: *const fn(
             self: *const IDXGISwapChain2,
             pMatrix: ?*const DXGI_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMatrixTransform: *const fn(
             self: *const IDXGISwapChain2,
             pMatrix: ?*DXGI_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGISwapChain1: IDXGISwapChain1,
@@ -1562,7 +1562,7 @@ pub const IDXGIOutput2 = extern union {
         base: IDXGIOutput1.VTable,
         SupportsOverlays: *const fn(
             self: *const IDXGIOutput2,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IDXGIOutput1: IDXGIOutput1,
@@ -1582,7 +1582,7 @@ pub const IDXGIFactory3 = extern union {
         base: IDXGIFactory2.VTable,
         GetCreationFlags: *const fn(
             self: *const IDXGIFactory3,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     IDXGIFactory2: IDXGIFactory2,
@@ -1619,40 +1619,40 @@ pub const IDXGIDecodeSwapChain = extern union {
             BufferToPresent: u32,
             SyncInterval: u32,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSourceRect: *const fn(
             self: *const IDXGIDecodeSwapChain,
             pRect: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTargetRect: *const fn(
             self: *const IDXGIDecodeSwapChain,
             pRect: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDestSize: *const fn(
             self: *const IDXGIDecodeSwapChain,
             Width: u32,
             Height: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceRect: *const fn(
             self: *const IDXGIDecodeSwapChain,
             pRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTargetRect: *const fn(
             self: *const IDXGIDecodeSwapChain,
             pRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDestSize: *const fn(
             self: *const IDXGIDecodeSwapChain,
             pWidth: ?*u32,
             pHeight: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorSpace: *const fn(
             self: *const IDXGIDecodeSwapChain,
             ColorSpace: DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorSpace: *const fn(
             self: *const IDXGIDecodeSwapChain,
-        ) callconv(@import("std").os.windows.WINAPI) DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS,
+        ) callconv(.winapi) DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1698,7 +1698,7 @@ pub const IDXGIFactoryMedia = extern union {
             pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
             pRestrictToOutput: ?*IDXGIOutput,
             ppSwapChain: **IDXGISwapChain1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDecodeSwapChainForCompositionSurfaceHandle: *const fn(
             self: *const IDXGIFactoryMedia,
             pDevice: ?*IUnknown,
@@ -1707,7 +1707,7 @@ pub const IDXGIFactoryMedia = extern union {
             pYuvDecodeBuffers: ?*IDXGIResource,
             pRestrictToOutput: ?*IDXGIOutput,
             ppSwapChain: **IDXGIDecodeSwapChain,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1749,17 +1749,17 @@ pub const IDXGISwapChainMedia = extern union {
         GetFrameStatisticsMedia: *const fn(
             self: *const IDXGISwapChainMedia,
             pStats: ?*DXGI_FRAME_STATISTICS_MEDIA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPresentDuration: *const fn(
             self: *const IDXGISwapChainMedia,
             Duration: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckPresentDurationSupport: *const fn(
             self: *const IDXGISwapChainMedia,
             DesiredPresentDuration: u32,
             pClosestSmallerPresentDuration: ?*u32,
             pClosestLargerPresentDuration: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1792,7 +1792,7 @@ pub const IDXGIOutput3 = extern union {
             EnumFormat: DXGI_FORMAT,
             pConcernedDevice: ?*IUnknown,
             pFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIOutput2: IDXGIOutput2,
@@ -1820,16 +1820,16 @@ pub const IDXGISwapChain3 = extern union {
         base: IDXGISwapChain2.VTable,
         GetCurrentBackBufferIndex: *const fn(
             self: *const IDXGISwapChain3,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         CheckColorSpaceSupport: *const fn(
             self: *const IDXGISwapChain3,
             ColorSpace: DXGI_COLOR_SPACE_TYPE,
             pColorSpaceSupport: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorSpace1: *const fn(
             self: *const IDXGISwapChain3,
             ColorSpace: DXGI_COLOR_SPACE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResizeBuffers1: *const fn(
             self: *const IDXGISwapChain3,
             BufferCount: u32,
@@ -1839,7 +1839,7 @@ pub const IDXGISwapChain3 = extern union {
             SwapChainFlags: u32,
             pCreationNodeMask: [*]const u32,
             ppPresentQueue: [*]?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGISwapChain2: IDXGISwapChain2,
@@ -1879,7 +1879,7 @@ pub const IDXGIOutput4 = extern union {
             ColorSpace: DXGI_COLOR_SPACE_TYPE,
             pConcernedDevice: ?*IUnknown,
             pFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIOutput3: IDXGIOutput3,
@@ -1903,12 +1903,12 @@ pub const IDXGIFactory4 = extern union {
             AdapterLuid: LUID,
             riid: ?*const Guid,
             ppvAdapter: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumWarpAdapter: *const fn(
             self: *const IDXGIFactory4,
             riid: ?*const Guid,
             ppvAdapter: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIFactory3: IDXGIFactory3,
@@ -1948,32 +1948,32 @@ pub const IDXGIAdapter3 = extern union {
             self: *const IDXGIAdapter3,
             hEvent: ?HANDLE,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterHardwareContentProtectionTeardownStatus: *const fn(
             self: *const IDXGIAdapter3,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         QueryVideoMemoryInfo: *const fn(
             self: *const IDXGIAdapter3,
             NodeIndex: u32,
             MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP,
             pVideoMemoryInfo: ?*DXGI_QUERY_VIDEO_MEMORY_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVideoMemoryReservation: *const fn(
             self: *const IDXGIAdapter3,
             NodeIndex: u32,
             MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP,
             Reservation: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterVideoMemoryBudgetChangeNotificationEvent: *const fn(
             self: *const IDXGIAdapter3,
             hEvent: ?HANDLE,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterVideoMemoryBudgetChangeNotification: *const fn(
             self: *const IDXGIAdapter3,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IDXGIAdapter2: IDXGIAdapter2,
@@ -2019,7 +2019,7 @@ pub const IDXGIOutput5 = extern union {
             SupportedFormatsCount: u32,
             pSupportedFormats: [*]const DXGI_FORMAT,
             ppOutputDuplication: **IDXGIOutputDuplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIOutput4: IDXGIOutput4,
@@ -2068,7 +2068,7 @@ pub const IDXGISwapChain4 = extern union {
             Type: DXGI_HDR_METADATA_TYPE,
             Size: u32,
             pMetaData: ?[*]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGISwapChain3: IDXGISwapChain3,
@@ -2108,13 +2108,13 @@ pub const IDXGIDevice4 = extern union {
             ppResources: [*]?*IDXGIResource,
             Priority: DXGI_OFFER_RESOURCE_PRIORITY,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReclaimResources1: *const fn(
             self: *const IDXGIDevice4,
             NumResources: u32,
             ppResources: [*]?*IDXGIResource,
             pResults: [*]DXGI_RECLAIM_RESOURCE_RESULTS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIDevice3: IDXGIDevice3,
@@ -2147,7 +2147,7 @@ pub const IDXGIFactory5 = extern union {
             // TODO: what to do with BytesParamIndex 2?
             pFeatureSupportData: ?*anyopaque,
             FeatureSupportDataSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIFactory4: IDXGIFactory4,
@@ -2261,7 +2261,7 @@ pub const IDXGIAdapter4 = extern union {
         GetDesc3: *const fn(
             self: *const IDXGIAdapter4,
             pDesc: ?*DXGI_ADAPTER_DESC3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIAdapter3: IDXGIAdapter3,
@@ -2339,11 +2339,11 @@ pub const IDXGIOutput6 = extern union {
         GetDesc1: *const fn(
             self: *const IDXGIOutput6,
             pDesc: ?*DXGI_OUTPUT_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckHardwareCompositionSupport: *const fn(
             self: *const IDXGIOutput6,
             pFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIOutput5: IDXGIOutput5,
@@ -2383,7 +2383,7 @@ pub const IDXGIFactory6 = extern union {
             GpuPreference: DXGI_GPU_PREFERENCE,
             riid: ?*const Guid,
             ppvAdapter: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIFactory5: IDXGIFactory5,
@@ -2409,11 +2409,11 @@ pub const IDXGIFactory7 = extern union {
             self: *const IDXGIFactory7,
             hEvent: ?HANDLE,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterAdaptersChangedEvent: *const fn(
             self: *const IDXGIFactory7,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDXGIFactory6: IDXGIFactory6,
@@ -2547,11 +2547,11 @@ pub const IDXGIInfoQueue = extern union {
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             MessageCountLimit: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearStoredMessages: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetMessage: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
@@ -2559,113 +2559,113 @@ pub const IDXGIInfoQueue = extern union {
             // TODO: what to do with BytesParamIndex 3?
             pMessage: ?*DXGI_INFO_QUEUE_MESSAGE,
             pMessageByteLength: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumStoredMessagesAllowedByRetrievalFilters: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetNumStoredMessages: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetNumMessagesDiscardedByMessageCountLimit: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetMessageCountLimit: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetNumMessagesAllowedByStorageFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetNumMessagesDeniedByStorageFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         AddStorageFilterEntries: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStorageFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             // TODO: what to do with BytesParamIndex 2?
             pFilter: ?*DXGI_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearStorageFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PushEmptyStorageFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushDenyAllStorageFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushCopyOfStorageFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushStorageFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PopStorageFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetStorageFilterStackSize: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         AddRetrievalFilterEntries: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRetrievalFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             // TODO: what to do with BytesParamIndex 2?
             pFilter: ?*DXGI_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearRetrievalFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PushEmptyRetrievalFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushDenyAllRetrievalFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushCopyOfRetrievalFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushRetrievalFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PopRetrievalFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetRetrievalFilterStackSize: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         AddMessage: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
@@ -2673,54 +2673,54 @@ pub const IDXGIInfoQueue = extern union {
             Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
             ID: i32,
             pDescription: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddApplicationMessage: *const fn(
             self: *const IDXGIInfoQueue,
             Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
             pDescription: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBreakOnCategory: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY,
             bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBreakOnSeverity: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
             bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBreakOnID: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             ID: i32,
             bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBreakOnCategory: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetBreakOnSeverity: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetBreakOnID: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             ID: i32,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         SetMuteDebugOutput: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             bMute: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetMuteDebugOutput: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2847,7 +2847,7 @@ pub const IDXGIDebug = extern union {
             self: *const IDXGIDebug,
             apiid: Guid,
             flags: DXGI_DEBUG_RLO_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2864,13 +2864,13 @@ pub const IDXGIDebug1 = extern union {
         base: IDXGIDebug.VTable,
         EnableLeakTrackingForThread: *const fn(
             self: *const IDXGIDebug1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DisableLeakTrackingForThread: *const fn(
             self: *const IDXGIDebug1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IsLeakTrackingEnabledForThread: *const fn(
             self: *const IDXGIDebug1,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IDXGIDebug: IDXGIDebug,
@@ -3558,10 +3558,10 @@ pub const IDXGraphicsAnalysis = extern union {
         base: IUnknown.VTable,
         BeginCapture: *const fn(
             self: *const IDXGraphicsAnalysis,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         EndCapture: *const fn(
             self: *const IDXGraphicsAnalysis,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3580,31 +3580,31 @@ pub const IDXGraphicsAnalysis = extern union {
 pub extern "dxgi" fn CreateDXGIFactory(
     riid: ?*const Guid,
     ppFactory: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "dxgi" fn CreateDXGIFactory1(
     riid: ?*const Guid,
     ppFactory: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "dxgi" fn CreateDXGIFactory2(
     Flags: u32,
     riid: ?*const Guid,
     ppFactory: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "dxgi" fn DXGIGetDebugInterface1(
     Flags: u32,
     riid: ?*const Guid,
     pDebug: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "dxgi" fn DXGIDeclareAdapterRemovalSupport(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

@@ -86,12 +86,12 @@ pub const IFhTarget = extern union {
             self: *const IFhTarget,
             PropertyType: FH_TARGET_PROPERTY_TYPE,
             PropertyValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumericalProperty: *const fn(
             self: *const IFhTarget,
             PropertyType: FH_TARGET_PROPERTY_TYPE,
             PropertyValue: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -111,11 +111,11 @@ pub const IFhScopeIterator = extern union {
         base: IUnknown.VTable,
         MoveToNextItem: *const fn(
             self: *const IFhScopeIterator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItem: *const fn(
             self: *const IFhScopeIterator,
             Item: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -198,67 +198,67 @@ pub const IFhConfigMgr = extern union {
         base: IUnknown.VTable,
         LoadConfiguration: *const fn(
             self: *const IFhConfigMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDefaultConfiguration: *const fn(
             self: *const IFhConfigMgr,
             OverwriteIfExists: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveConfiguration: *const fn(
             self: *const IFhConfigMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRemoveExcludeRule: *const fn(
             self: *const IFhConfigMgr,
             Add: BOOL,
             Category: FH_PROTECTED_ITEM_CATEGORY,
             Item: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIncludeExcludeRules: *const fn(
             self: *const IFhConfigMgr,
             Include: BOOL,
             Category: FH_PROTECTED_ITEM_CATEGORY,
             Iterator: ?*?*IFhScopeIterator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocalPolicy: *const fn(
             self: *const IFhConfigMgr,
             LocalPolicyType: FH_LOCAL_POLICY_TYPE,
             PolicyValue: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLocalPolicy: *const fn(
             self: *const IFhConfigMgr,
             LocalPolicyType: FH_LOCAL_POLICY_TYPE,
             PolicyValue: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBackupStatus: *const fn(
             self: *const IFhConfigMgr,
             BackupStatus: ?*FH_BACKUP_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBackupStatus: *const fn(
             self: *const IFhConfigMgr,
             BackupStatus: FH_BACKUP_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultTarget: *const fn(
             self: *const IFhConfigMgr,
             DefaultTarget: ?*?*IFhTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ValidateTarget: *const fn(
             self: *const IFhConfigMgr,
             TargetUrl: ?BSTR,
             ValidationResult: ?*FH_DEVICE_VALIDATION_RESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProvisionAndSetNewTarget: *const fn(
             self: *const IFhConfigMgr,
             TargetUrl: ?BSTR,
             TargetName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ChangeDefaultTargetRecommendation: *const fn(
             self: *const IFhConfigMgr,
             Recommend: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryProtectionStatus: *const fn(
             self: *const IFhConfigMgr,
             ProtectionState: ?*u32,
             ProtectedUntilTime: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -316,26 +316,26 @@ pub const IFhReassociation = extern union {
             self: *const IFhReassociation,
             TargetUrl: ?BSTR,
             ValidationResult: ?*FH_DEVICE_VALIDATION_RESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScanTargetForConfigurations: *const fn(
             self: *const IFhReassociation,
             TargetUrl: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConfigurationDetails: *const fn(
             self: *const IFhReassociation,
             Index: u32,
             UserName: ?*?BSTR,
             PcName: ?*?BSTR,
             BackupTime: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SelectConfiguration: *const fn(
             self: *const IFhReassociation,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PerformReassociation: *const fn(
             self: *const IFhReassociation,
             OverwriteIfExists: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -377,39 +377,39 @@ pub const BackupCancelled = FhBackupStopReason.Cancelled;
 pub extern "fhsvcctl" fn FhServiceOpenPipe(
     StartServiceIfStopped: BOOL,
     Pipe: ?*FH_SERVICE_PIPE_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fhsvcctl" fn FhServiceClosePipe(
     Pipe: FH_SERVICE_PIPE_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fhsvcctl" fn FhServiceStartBackup(
     Pipe: FH_SERVICE_PIPE_HANDLE,
     LowPriorityIo: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fhsvcctl" fn FhServiceStopBackup(
     Pipe: FH_SERVICE_PIPE_HANDLE,
     StopTracking: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fhsvcctl" fn FhServiceReloadConfiguration(
     Pipe: FH_SERVICE_PIPE_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fhsvcctl" fn FhServiceBlockBackup(
     Pipe: FH_SERVICE_PIPE_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fhsvcctl" fn FhServiceUnblockBackup(
     Pipe: FH_SERVICE_PIPE_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

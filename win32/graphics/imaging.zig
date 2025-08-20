@@ -936,48 +936,48 @@ pub const IWICPalette = extern union {
             self: *const IWICPalette,
             ePaletteType: WICBitmapPaletteType,
             fAddTransparentColor: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeCustom: *const fn(
             self: *const IWICPalette,
             pColors: [*]u32,
             cCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromBitmap: *const fn(
             self: *const IWICPalette,
             pISurface: ?*IWICBitmapSource,
             cCount: u32,
             fAddTransparentColor: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromPalette: *const fn(
             self: *const IWICPalette,
             pIPalette: ?*IWICPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const IWICPalette,
             pePaletteType: ?*WICBitmapPaletteType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorCount: *const fn(
             self: *const IWICPalette,
             pcCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColors: *const fn(
             self: *const IWICPalette,
             cCount: u32,
             pColors: [*]u32,
             pcActualColors: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsBlackWhite: *const fn(
             self: *const IWICPalette,
             pfIsBlackWhite: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsGrayscale: *const fn(
             self: *const IWICPalette,
             pfIsGrayscale: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasAlpha: *const fn(
             self: *const IWICPalette,
             pfHasAlpha: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1023,27 +1023,27 @@ pub const IWICBitmapSource = extern union {
             self: *const IWICBitmapSource,
             puiWidth: ?*u32,
             puiHeight: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelFormat: *const fn(
             self: *const IWICBitmapSource,
             pPixelFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResolution: *const fn(
             self: *const IWICBitmapSource,
             pDpiX: ?*f64,
             pDpiY: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyPalette: *const fn(
             self: *const IWICBitmapSource,
             pIPalette: ?*IWICPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyPixels: *const fn(
             self: *const IWICBitmapSource,
             prc: ?*const WICRect,
             cbStride: u32,
             cbBufferSize: u32,
             pbBuffer: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1078,13 +1078,13 @@ pub const IWICFormatConverter = extern union {
             pIPalette: ?*IWICPalette,
             alphaThresholdPercent: f64,
             paletteTranslate: WICBitmapPaletteType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CanConvert: *const fn(
             self: *const IWICFormatConverter,
             srcPixelFormat: ?*Guid,
             dstPixelFormat: ?*Guid,
             pfCanConvert: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
@@ -1112,14 +1112,14 @@ pub const IWICPlanarFormatConverter = extern union {
             pIPalette: ?*IWICPalette,
             alphaThresholdPercent: f64,
             paletteTranslate: WICBitmapPaletteType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CanConvert: *const fn(
             self: *const IWICPlanarFormatConverter,
             pSrcPixelFormats: [*]const Guid,
             cSrcPlanes: u32,
             dstPixelFormat: ?*Guid,
             pfCanConvert: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
@@ -1144,7 +1144,7 @@ pub const IWICBitmapScaler = extern union {
             uiWidth: u32,
             uiHeight: u32,
             mode: WICBitmapInterpolationMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
@@ -1164,7 +1164,7 @@ pub const IWICBitmapClipper = extern union {
             self: *const IWICBitmapClipper,
             pISource: ?*IWICBitmapSource,
             prc: ?*const WICRect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
@@ -1184,7 +1184,7 @@ pub const IWICBitmapFlipRotator = extern union {
             self: *const IWICBitmapFlipRotator,
             pISource: ?*IWICBitmapSource,
             options: WICBitmapTransformOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
@@ -1204,20 +1204,20 @@ pub const IWICBitmapLock = extern union {
             self: *const IWICBitmapLock,
             puiWidth: ?*u32,
             puiHeight: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStride: *const fn(
             self: *const IWICBitmapLock,
             pcbStride: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataPointer: *const fn(
             self: *const IWICBitmapLock,
             pcbBufferSize: ?*u32,
             ppbData: [*]?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelFormat: *const fn(
             self: *const IWICBitmapLock,
             pPixelFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1246,16 +1246,16 @@ pub const IWICBitmap = extern union {
             prcLock: ?*const WICRect,
             flags: u32,
             ppILock: ?*?*IWICBitmapLock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPalette: *const fn(
             self: *const IWICBitmap,
             pIPalette: ?*IWICPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetResolution: *const fn(
             self: *const IWICBitmap,
             dpiX: f64,
             dpiY: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
@@ -1280,30 +1280,30 @@ pub const IWICColorContext = extern union {
         InitializeFromFilename: *const fn(
             self: *const IWICColorContext,
             wzFilename: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromMemory: *const fn(
             self: *const IWICColorContext,
             pbBuffer: [*:0]const u8,
             cbBufferSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromExifColorSpace: *const fn(
             self: *const IWICColorContext,
             value: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const IWICColorContext,
             pType: ?*WICColorContextType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProfileBytes: *const fn(
             self: *const IWICColorContext,
             cbBuffer: u32,
             pbBuffer: [*:0]u8,
             pcbActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExifColorSpace: *const fn(
             self: *const IWICColorContext,
             pValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1339,7 +1339,7 @@ pub const IWICColorTransform = extern union {
             pIContextSource: ?*IWICColorContext,
             pIContextDest: ?*IWICColorContext,
             pixelFmtDest: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
@@ -1357,11 +1357,11 @@ pub const IWICFastMetadataEncoder = extern union {
         base: IUnknown.VTable,
         Commit: *const fn(
             self: *const IWICFastMetadataEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMetadataQueryWriter: *const fn(
             self: *const IWICFastMetadataEncoder,
             ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1382,23 +1382,23 @@ pub const IWICStream = extern union {
         InitializeFromIStream: *const fn(
             self: *const IWICStream,
             pIStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromFilename: *const fn(
             self: *const IWICStream,
             wzFileName: ?[*:0]const u16,
             dwDesiredAccess: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromMemory: *const fn(
             self: *const IWICStream,
             pbBuffer: [*:0]u8,
             cbBufferSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromIStreamRegion: *const fn(
             self: *const IWICStream,
             pIStream: ?*IStream,
             ulOffset: ULARGE_INTEGER,
             ulMaxSize: ULARGE_INTEGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IStream: IStream,
@@ -1431,18 +1431,18 @@ pub const IWICEnumMetadataItem = extern union {
             rgeltId: [*]PROPVARIANT,
             rgeltValue: [*]PROPVARIANT,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IWICEnumMetadataItem,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IWICEnumMetadataItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IWICEnumMetadataItem,
             ppIEnumMetadataItem: ?*?*IWICEnumMetadataItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1469,22 +1469,22 @@ pub const IWICMetadataQueryReader = extern union {
         GetContainerFormat: *const fn(
             self: *const IWICMetadataQueryReader,
             pguidContainerFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocation: *const fn(
             self: *const IWICMetadataQueryReader,
             cchMaxLength: u32,
             wzNamespace: [*:0]u16,
             pcchActualLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMetadataByName: *const fn(
             self: *const IWICMetadataQueryReader,
             wzName: ?[*:0]const u16,
             pvarValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumerator: *const fn(
             self: *const IWICMetadataQueryReader,
             ppIEnumString: ?*?*IEnumString,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1512,11 +1512,11 @@ pub const IWICMetadataQueryWriter = extern union {
             self: *const IWICMetadataQueryWriter,
             wzName: ?[*:0]const u16,
             pvarValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveMetadataByName: *const fn(
             self: *const IWICMetadataQueryWriter,
             wzName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICMetadataQueryReader: IWICMetadataQueryReader,
@@ -1538,44 +1538,44 @@ pub const IWICBitmapEncoder = extern union {
             self: *const IWICBitmapEncoder,
             pIStream: ?*IStream,
             cacheOption: WICBitmapEncoderCacheOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContainerFormat: *const fn(
             self: *const IWICBitmapEncoder,
             pguidContainerFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEncoderInfo: *const fn(
             self: *const IWICBitmapEncoder,
             ppIEncoderInfo: ?*?*IWICBitmapEncoderInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorContexts: *const fn(
             self: *const IWICBitmapEncoder,
             cCount: u32,
             ppIColorContext: [*]?*IWICColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPalette: *const fn(
             self: *const IWICBitmapEncoder,
             pIPalette: ?*IWICPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetThumbnail: *const fn(
             self: *const IWICBitmapEncoder,
             pIThumbnail: ?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPreview: *const fn(
             self: *const IWICBitmapEncoder,
             pIPreview: ?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateNewFrame: *const fn(
             self: *const IWICBitmapEncoder,
             ppIFrameEncode: ?*?*IWICBitmapFrameEncode,
             ppIEncoderOptions: ?*?*IPropertyBag2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const IWICBitmapEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMetadataQueryWriter: *const fn(
             self: *const IWICBitmapEncoder,
             ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1620,53 +1620,53 @@ pub const IWICBitmapFrameEncode = extern union {
         Initialize: *const fn(
             self: *const IWICBitmapFrameEncode,
             pIEncoderOptions: ?*IPropertyBag2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSize: *const fn(
             self: *const IWICBitmapFrameEncode,
             uiWidth: u32,
             uiHeight: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetResolution: *const fn(
             self: *const IWICBitmapFrameEncode,
             dpiX: f64,
             dpiY: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPixelFormat: *const fn(
             self: *const IWICBitmapFrameEncode,
             pPixelFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorContexts: *const fn(
             self: *const IWICBitmapFrameEncode,
             cCount: u32,
             ppIColorContext: [*]?*IWICColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPalette: *const fn(
             self: *const IWICBitmapFrameEncode,
             pIPalette: ?*IWICPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetThumbnail: *const fn(
             self: *const IWICBitmapFrameEncode,
             pIThumbnail: ?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WritePixels: *const fn(
             self: *const IWICBitmapFrameEncode,
             lineCount: u32,
             cbStride: u32,
             cbBufferSize: u32,
             pbPixels: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteSource: *const fn(
             self: *const IWICBitmapFrameEncode,
             pIBitmapSource: ?*IWICBitmapSource,
             prc: ?*WICRect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const IWICBitmapFrameEncode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMetadataQueryWriter: *const fn(
             self: *const IWICBitmapFrameEncode,
             ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1716,13 +1716,13 @@ pub const IWICPlanarBitmapFrameEncode = extern union {
             lineCount: u32,
             pPlanes: [*]WICBitmapPlane,
             cPlanes: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteSource: *const fn(
             self: *const IWICPlanarBitmapFrameEncode,
             ppPlanes: [*]?*IWICBitmapSource,
             cPlanes: u32,
             prcSource: ?*WICRect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1744,51 +1744,51 @@ pub const IWICBitmapDecoder = extern union {
             self: *const IWICBitmapDecoder,
             pIStream: ?*IStream,
             pdwCapability: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IWICBitmapDecoder,
             pIStream: ?*IStream,
             cacheOptions: WICDecodeOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContainerFormat: *const fn(
             self: *const IWICBitmapDecoder,
             pguidContainerFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDecoderInfo: *const fn(
             self: *const IWICBitmapDecoder,
             ppIDecoderInfo: ?*?*IWICBitmapDecoderInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyPalette: *const fn(
             self: *const IWICBitmapDecoder,
             pIPalette: ?*IWICPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMetadataQueryReader: *const fn(
             self: *const IWICBitmapDecoder,
             ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreview: *const fn(
             self: *const IWICBitmapDecoder,
             ppIBitmapSource: ?*?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorContexts: *const fn(
             self: *const IWICBitmapDecoder,
             cCount: u32,
             ppIColorContexts: [*]?*IWICColorContext,
             pcActualCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetThumbnail: *const fn(
             self: *const IWICBitmapDecoder,
             ppIThumbnail: ?*?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrameCount: *const fn(
             self: *const IWICBitmapDecoder,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrame: *const fn(
             self: *const IWICBitmapDecoder,
             index: u32,
             ppIBitmapFrame: ?*?*IWICBitmapFrameDecode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1843,21 +1843,21 @@ pub const IWICBitmapSourceTransform = extern union {
             nStride: u32,
             cbBufferSize: u32,
             pbBuffer: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClosestSize: *const fn(
             self: *const IWICBitmapSourceTransform,
             puiWidth: ?*u32,
             puiHeight: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClosestPixelFormat: *const fn(
             self: *const IWICBitmapSourceTransform,
             pguidDstFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoesSupportTransform: *const fn(
             self: *const IWICBitmapSourceTransform,
             dstTransform: WICBitmapTransformOptions,
             pfIsSupported: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1891,7 +1891,7 @@ pub const IWICPlanarBitmapSourceTransform = extern union {
             pPlaneDescriptions: [*]WICBitmapPlaneDescription,
             cPlanes: u32,
             pfIsSupported: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyPixels: *const fn(
             self: *const IWICPlanarBitmapSourceTransform,
             prcSource: ?*const WICRect,
@@ -1901,7 +1901,7 @@ pub const IWICPlanarBitmapSourceTransform = extern union {
             dstPlanarOptions: WICPlanarOptions,
             pDstPlanes: [*]const WICBitmapPlane,
             cPlanes: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1922,17 +1922,17 @@ pub const IWICBitmapFrameDecode = extern union {
         GetMetadataQueryReader: *const fn(
             self: *const IWICBitmapFrameDecode,
             ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorContexts: *const fn(
             self: *const IWICBitmapFrameDecode,
             cCount: u32,
             ppIColorContexts: [*]?*IWICColorContext,
             pcActualCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetThumbnail: *const fn(
             self: *const IWICBitmapFrameDecode,
             ppIThumbnail: ?*?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
@@ -1957,15 +1957,15 @@ pub const IWICProgressiveLevelControl = extern union {
         GetLevelCount: *const fn(
             self: *const IWICProgressiveLevelControl,
             pcLevels: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentLevel: *const fn(
             self: *const IWICProgressiveLevelControl,
             pnLevel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCurrentLevel: *const fn(
             self: *const IWICProgressiveLevelControl,
             nLevel: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1991,7 +1991,7 @@ pub const IWICProgressCallback = extern union {
             uFrameNum: u32,
             operation: WICProgressOperation,
             dblProgress: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2005,7 +2005,7 @@ pub const PFNProgressNotification = *const fn(
     uFrameNum: u32,
     operation: WICProgressOperation,
     dblProgress: f64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapCodecProgressNotification_Value = Guid.initString("64c1024e-c3cf-4462-8078-88c2b11c46d9");
@@ -2018,7 +2018,7 @@ pub const IWICBitmapCodecProgressNotification = extern union {
             pfnProgressNotification: ?PFNProgressNotification,
             pvData: ?*anyopaque,
             dwProgressFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2036,43 +2036,43 @@ pub const IWICComponentInfo = extern union {
         GetComponentType: *const fn(
             self: *const IWICComponentInfo,
             pType: ?*WICComponentType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCLSID: *const fn(
             self: *const IWICComponentInfo,
             pclsid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSigningStatus: *const fn(
             self: *const IWICComponentInfo,
             pStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAuthor: *const fn(
             self: *const IWICComponentInfo,
             cchAuthor: u32,
             wzAuthor: [*:0]u16,
             pcchActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVendorGUID: *const fn(
             self: *const IWICComponentInfo,
             pguidVendor: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVersion: *const fn(
             self: *const IWICComponentInfo,
             cchVersion: u32,
             wzVersion: [*:0]u16,
             pcchActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpecVersion: *const fn(
             self: *const IWICComponentInfo,
             cchSpecVersion: u32,
             wzSpecVersion: [*:0]u16,
             pcchActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFriendlyName: *const fn(
             self: *const IWICComponentInfo,
             cchFriendlyName: u32,
             wzFriendlyName: [*:0]u16,
             pcchActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2113,11 +2113,11 @@ pub const IWICFormatConverterInfo = extern union {
             cFormats: u32,
             pPixelFormatGUIDs: [*]Guid,
             pcActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInstance: *const fn(
             self: *const IWICFormatConverterInfo,
             ppIConverter: ?*?*IWICFormatConverter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICComponentInfo: IWICComponentInfo,
@@ -2139,64 +2139,64 @@ pub const IWICBitmapCodecInfo = extern union {
         GetContainerFormat: *const fn(
             self: *const IWICBitmapCodecInfo,
             pguidContainerFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelFormats: *const fn(
             self: *const IWICBitmapCodecInfo,
             cFormats: u32,
             pguidPixelFormats: [*]Guid,
             pcActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorManagementVersion: *const fn(
             self: *const IWICBitmapCodecInfo,
             cchColorManagementVersion: u32,
             wzColorManagementVersion: [*:0]u16,
             pcchActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceManufacturer: *const fn(
             self: *const IWICBitmapCodecInfo,
             cchDeviceManufacturer: u32,
             wzDeviceManufacturer: [*:0]u16,
             pcchActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceModels: *const fn(
             self: *const IWICBitmapCodecInfo,
             cchDeviceModels: u32,
             wzDeviceModels: [*:0]u16,
             pcchActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMimeTypes: *const fn(
             self: *const IWICBitmapCodecInfo,
             cchMimeTypes: u32,
             wzMimeTypes: [*:0]u16,
             pcchActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileExtensions: *const fn(
             self: *const IWICBitmapCodecInfo,
             cchFileExtensions: u32,
             wzFileExtensions: [*:0]u16,
             pcchActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoesSupportAnimation: *const fn(
             self: *const IWICBitmapCodecInfo,
             pfSupportAnimation: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoesSupportChromakey: *const fn(
             self: *const IWICBitmapCodecInfo,
             pfSupportChromakey: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoesSupportLossless: *const fn(
             self: *const IWICBitmapCodecInfo,
             pfSupportLossless: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoesSupportMultiframe: *const fn(
             self: *const IWICBitmapCodecInfo,
             pfSupportMultiframe: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MatchesMimeType: *const fn(
             self: *const IWICBitmapCodecInfo,
             wzMimeType: ?[*:0]const u16,
             pfMatches: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICComponentInfo: IWICComponentInfo,
@@ -2248,7 +2248,7 @@ pub const IWICBitmapEncoderInfo = extern union {
         CreateInstance: *const fn(
             self: *const IWICBitmapEncoderInfo,
             ppIBitmapEncoder: **IWICBitmapEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapCodecInfo: IWICBitmapCodecInfo,
@@ -2272,16 +2272,16 @@ pub const IWICBitmapDecoderInfo = extern union {
             pPatterns: ?*WICBitmapPattern,
             pcPatterns: ?*u32,
             pcbPatternsActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MatchesPattern: *const fn(
             self: *const IWICBitmapDecoderInfo,
             pIStream: ?*IStream,
             pfMatches: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInstance: *const fn(
             self: *const IWICBitmapDecoderInfo,
             ppIBitmapDecoder: **IWICBitmapDecoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapCodecInfo: IWICBitmapCodecInfo,
@@ -2307,26 +2307,26 @@ pub const IWICPixelFormatInfo = extern union {
         GetFormatGUID: *const fn(
             self: *const IWICPixelFormatInfo,
             pFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorContext: *const fn(
             self: *const IWICPixelFormatInfo,
             ppIColorContext: ?*?*IWICColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBitsPerPixel: *const fn(
             self: *const IWICPixelFormatInfo,
             puiBitsPerPixel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelCount: *const fn(
             self: *const IWICPixelFormatInfo,
             puiChannelCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelMask: *const fn(
             self: *const IWICPixelFormatInfo,
             uiChannelIndex: u32,
             cbMaskBuffer: u32,
             pbMaskBuffer: [*:0]u8,
             pcbActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICComponentInfo: IWICComponentInfo,
@@ -2357,11 +2357,11 @@ pub const IWICPixelFormatInfo2 = extern union {
         SupportsTransparency: *const fn(
             self: *const IWICPixelFormatInfo2,
             pfSupportsTransparency: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumericRepresentation: *const fn(
             self: *const IWICPixelFormatInfo2,
             pNumericRepresentation: ?*WICPixelFormatNumericRepresentation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICPixelFormatInfo: IWICPixelFormatInfo,
@@ -2388,70 +2388,70 @@ pub const IWICImagingFactory = extern union {
             dwDesiredAccess: u32,
             metadataOptions: WICDecodeOptions,
             ppIDecoder: ?*?*IWICBitmapDecoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDecoderFromStream: *const fn(
             self: *const IWICImagingFactory,
             pIStream: ?*IStream,
             pguidVendor: ?*const Guid,
             metadataOptions: WICDecodeOptions,
             ppIDecoder: ?*?*IWICBitmapDecoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDecoderFromFileHandle: *const fn(
             self: *const IWICImagingFactory,
             hFile: usize,
             pguidVendor: ?*const Guid,
             metadataOptions: WICDecodeOptions,
             ppIDecoder: ?*?*IWICBitmapDecoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateComponentInfo: *const fn(
             self: *const IWICImagingFactory,
             clsidComponent: ?*const Guid,
             ppIInfo: ?*?*IWICComponentInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDecoder: *const fn(
             self: *const IWICImagingFactory,
             guidContainerFormat: ?*const Guid,
             pguidVendor: ?*const Guid,
             ppIDecoder: ?*?*IWICBitmapDecoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEncoder: *const fn(
             self: *const IWICImagingFactory,
             guidContainerFormat: ?*const Guid,
             pguidVendor: ?*const Guid,
             ppIEncoder: ?*?*IWICBitmapEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePalette: *const fn(
             self: *const IWICImagingFactory,
             ppIPalette: ?*?*IWICPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFormatConverter: *const fn(
             self: *const IWICImagingFactory,
             ppIFormatConverter: ?*?*IWICFormatConverter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapScaler: *const fn(
             self: *const IWICImagingFactory,
             ppIBitmapScaler: ?*?*IWICBitmapScaler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapClipper: *const fn(
             self: *const IWICImagingFactory,
             ppIBitmapClipper: ?*?*IWICBitmapClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapFlipRotator: *const fn(
             self: *const IWICImagingFactory,
             ppIBitmapFlipRotator: ?*?*IWICBitmapFlipRotator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStream: *const fn(
             self: *const IWICImagingFactory,
             ppIWICStream: ?*?*IWICStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateColorContext: *const fn(
             self: *const IWICImagingFactory,
             ppIWICColorContext: ?*?*IWICColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateColorTransformer: *const fn(
             self: *const IWICImagingFactory,
             ppIWICColorTransform: ?*?*IWICColorTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmap: *const fn(
             self: *const IWICImagingFactory,
             uiWidth: u32,
@@ -2459,13 +2459,13 @@ pub const IWICImagingFactory = extern union {
             pixelFormat: ?*Guid,
             option: WICBitmapCreateCacheOption,
             ppIBitmap: ?*?*IWICBitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapFromSource: *const fn(
             self: *const IWICImagingFactory,
             pIBitmapSource: ?*IWICBitmapSource,
             option: WICBitmapCreateCacheOption,
             ppIBitmap: ?*?*IWICBitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapFromSourceRect: *const fn(
             self: *const IWICImagingFactory,
             pIBitmapSource: ?*IWICBitmapSource,
@@ -2474,7 +2474,7 @@ pub const IWICImagingFactory = extern union {
             width: u32,
             height: u32,
             ppIBitmap: ?*?*IWICBitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapFromMemory: *const fn(
             self: *const IWICImagingFactory,
             uiWidth: u32,
@@ -2484,47 +2484,47 @@ pub const IWICImagingFactory = extern union {
             cbBufferSize: u32,
             pbBuffer: [*:0]u8,
             ppIBitmap: ?*?*IWICBitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapFromHBITMAP: *const fn(
             self: *const IWICImagingFactory,
             hBitmap: ?HBITMAP,
             hPalette: ?HPALETTE,
             options: WICBitmapAlphaChannelOption,
             ppIBitmap: ?*?*IWICBitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapFromHICON: *const fn(
             self: *const IWICImagingFactory,
             hIcon: ?HICON,
             ppIBitmap: ?*?*IWICBitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateComponentEnumerator: *const fn(
             self: *const IWICImagingFactory,
             componentTypes: u32,
             options: u32,
             ppIEnumUnknown: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFastMetadataEncoderFromDecoder: *const fn(
             self: *const IWICImagingFactory,
             pIDecoder: ?*IWICBitmapDecoder,
             ppIFastEncoder: ?*?*IWICFastMetadataEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFastMetadataEncoderFromFrameDecode: *const fn(
             self: *const IWICImagingFactory,
             pIFrameDecoder: ?*IWICBitmapFrameDecode,
             ppIFastEncoder: ?*?*IWICFastMetadataEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateQueryWriter: *const fn(
             self: *const IWICImagingFactory,
             guidMetadataFormat: ?*const Guid,
             pguidVendor: ?*const Guid,
             ppIQueryWriter: ?*?*IWICMetadataQueryWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateQueryWriterFromReader: *const fn(
             self: *const IWICImagingFactory,
             pIQueryReader: ?*IWICMetadataQueryReader,
             pguidVendor: ?*const Guid,
             ppIQueryWriter: ?*?*IWICMetadataQueryWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2773,7 +2773,7 @@ pub const IWICDevelopRawNotificationCallback = extern union {
         Notify: *const fn(
             self: *const IWICDevelopRawNotificationCallback,
             NotificationMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2791,142 +2791,142 @@ pub const IWICDevelopRaw = extern union {
         QueryRawCapabilitiesInfo: *const fn(
             self: *const IWICDevelopRaw,
             pInfo: ?*WICRawCapabilitiesInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadParameterSet: *const fn(
             self: *const IWICDevelopRaw,
             ParameterSet: WICRawParameterSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentParameterSet: *const fn(
             self: *const IWICDevelopRaw,
             ppCurrentParameterSet: ?*?*IPropertyBag2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetExposureCompensation: *const fn(
             self: *const IWICDevelopRaw,
             ev: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExposureCompensation: *const fn(
             self: *const IWICDevelopRaw,
             pEV: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWhitePointRGB: *const fn(
             self: *const IWICDevelopRaw,
             Red: u32,
             Green: u32,
             Blue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWhitePointRGB: *const fn(
             self: *const IWICDevelopRaw,
             pRed: ?*u32,
             pGreen: ?*u32,
             pBlue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNamedWhitePoint: *const fn(
             self: *const IWICDevelopRaw,
             WhitePoint: WICNamedWhitePoint,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNamedWhitePoint: *const fn(
             self: *const IWICDevelopRaw,
             pWhitePoint: ?*WICNamedWhitePoint,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWhitePointKelvin: *const fn(
             self: *const IWICDevelopRaw,
             WhitePointKelvin: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWhitePointKelvin: *const fn(
             self: *const IWICDevelopRaw,
             pWhitePointKelvin: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKelvinRangeInfo: *const fn(
             self: *const IWICDevelopRaw,
             pMinKelvinTemp: ?*u32,
             pMaxKelvinTemp: ?*u32,
             pKelvinTempStepValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContrast: *const fn(
             self: *const IWICDevelopRaw,
             Contrast: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContrast: *const fn(
             self: *const IWICDevelopRaw,
             pContrast: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGamma: *const fn(
             self: *const IWICDevelopRaw,
             Gamma: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGamma: *const fn(
             self: *const IWICDevelopRaw,
             pGamma: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSharpness: *const fn(
             self: *const IWICDevelopRaw,
             Sharpness: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSharpness: *const fn(
             self: *const IWICDevelopRaw,
             pSharpness: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSaturation: *const fn(
             self: *const IWICDevelopRaw,
             Saturation: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSaturation: *const fn(
             self: *const IWICDevelopRaw,
             pSaturation: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTint: *const fn(
             self: *const IWICDevelopRaw,
             Tint: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTint: *const fn(
             self: *const IWICDevelopRaw,
             pTint: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNoiseReduction: *const fn(
             self: *const IWICDevelopRaw,
             NoiseReduction: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNoiseReduction: *const fn(
             self: *const IWICDevelopRaw,
             pNoiseReduction: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDestinationColorContext: *const fn(
             self: *const IWICDevelopRaw,
             pColorContext: ?*IWICColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetToneCurve: *const fn(
             self: *const IWICDevelopRaw,
             cbToneCurveSize: u32,
             // TODO: what to do with BytesParamIndex 0?
             pToneCurve: ?*const WICRawToneCurve,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetToneCurve: *const fn(
             self: *const IWICDevelopRaw,
             cbToneCurveBufferSize: u32,
             // TODO: what to do with BytesParamIndex 0?
             pToneCurve: ?*WICRawToneCurve,
             pcbActualToneCurveBufferSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRotation: *const fn(
             self: *const IWICDevelopRaw,
             Rotation: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRotation: *const fn(
             self: *const IWICDevelopRaw,
             pRotation: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRenderMode: *const fn(
             self: *const IWICDevelopRaw,
             RenderMode: WICRawRenderMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRenderMode: *const fn(
             self: *const IWICDevelopRaw,
             pRenderMode: ?*WICRawRenderMode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNotificationCallback: *const fn(
             self: *const IWICDevelopRaw,
             pCallback: ?*IWICDevelopRawNotificationCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapFrameDecode: IWICBitmapFrameDecode,
@@ -3078,14 +3078,14 @@ pub const IWICDdsDecoder = extern union {
         GetParameters: *const fn(
             self: *const IWICDdsDecoder,
             pParameters: ?*WICDdsParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrame: *const fn(
             self: *const IWICDdsDecoder,
             arrayIndex: u32,
             mipLevel: u32,
             sliceIndex: u32,
             ppIBitmapFrame: ?*?*IWICBitmapFrameDecode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3106,18 +3106,18 @@ pub const IWICDdsEncoder = extern union {
         SetParameters: *const fn(
             self: *const IWICDdsEncoder,
             pParameters: ?*WICDdsParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParameters: *const fn(
             self: *const IWICDdsEncoder,
             pParameters: ?*WICDdsParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateNewFrame: *const fn(
             self: *const IWICDdsEncoder,
             ppIFrameEncode: ?*?*IWICBitmapFrameEncode,
             pArrayIndex: ?*u32,
             pMipLevel: ?*u32,
             pSliceIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3149,18 +3149,18 @@ pub const IWICDdsFrameDecode = extern union {
             self: *const IWICDdsFrameDecode,
             pWidthInBlocks: ?*u32,
             pHeightInBlocks: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormatInfo: *const fn(
             self: *const IWICDdsFrameDecode,
             pFormatInfo: ?*WICDdsFormatInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyBlocks: *const fn(
             self: *const IWICDdsFrameDecode,
             prcBoundsInBlocks: ?*const WICRect,
             cbStride: u32,
             cbBufferSize: u32,
             pbBuffer: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3184,42 +3184,42 @@ pub const IWICJpegFrameDecode = extern union {
         DoesSupportIndexing: *const fn(
             self: *const IWICJpegFrameDecode,
             pfIndexingSupported: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIndexing: *const fn(
             self: *const IWICJpegFrameDecode,
             options: WICJpegIndexingOptions,
             horizontalIntervalSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearIndexing: *const fn(
             self: *const IWICJpegFrameDecode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAcHuffmanTable: *const fn(
             self: *const IWICJpegFrameDecode,
             scanIndex: u32,
             tableIndex: u32,
             pAcHuffmanTable: ?*DXGI_JPEG_AC_HUFFMAN_TABLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDcHuffmanTable: *const fn(
             self: *const IWICJpegFrameDecode,
             scanIndex: u32,
             tableIndex: u32,
             pDcHuffmanTable: ?*DXGI_JPEG_DC_HUFFMAN_TABLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetQuantizationTable: *const fn(
             self: *const IWICJpegFrameDecode,
             scanIndex: u32,
             tableIndex: u32,
             pQuantizationTable: ?*DXGI_JPEG_QUANTIZATION_TABLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrameHeader: *const fn(
             self: *const IWICJpegFrameDecode,
             pFrameHeader: ?*WICJpegFrameHeader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScanHeader: *const fn(
             self: *const IWICJpegFrameDecode,
             scanIndex: u32,
             pScanHeader: ?*WICJpegScanHeader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyScan: *const fn(
             self: *const IWICJpegFrameDecode,
             scanIndex: u32,
@@ -3227,14 +3227,14 @@ pub const IWICJpegFrameDecode = extern union {
             cbScanData: u32,
             pbScanData: [*:0]u8,
             pcbScanDataActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyMinimalStream: *const fn(
             self: *const IWICJpegFrameDecode,
             streamOffset: u32,
             cbStreamData: u32,
             pbStreamData: [*:0]u8,
             pcbStreamDataActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3281,24 +3281,24 @@ pub const IWICJpegFrameEncode = extern union {
             scanIndex: u32,
             tableIndex: u32,
             pAcHuffmanTable: ?*DXGI_JPEG_AC_HUFFMAN_TABLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDcHuffmanTable: *const fn(
             self: *const IWICJpegFrameEncode,
             scanIndex: u32,
             tableIndex: u32,
             pDcHuffmanTable: ?*DXGI_JPEG_DC_HUFFMAN_TABLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetQuantizationTable: *const fn(
             self: *const IWICJpegFrameEncode,
             scanIndex: u32,
             tableIndex: u32,
             pQuantizationTable: ?*DXGI_JPEG_QUANTIZATION_TABLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteScan: *const fn(
             self: *const IWICJpegFrameEncode,
             cbScanData: u32,
             pbScanData: [*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3353,20 +3353,20 @@ pub const IWICMetadataBlockReader = extern union {
         GetContainerFormat: *const fn(
             self: *const IWICMetadataBlockReader,
             pguidContainerFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IWICMetadataBlockReader,
             pcCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReaderByIndex: *const fn(
             self: *const IWICMetadataBlockReader,
             nIndex: u32,
             ppIMetadataReader: ?*?*IWICMetadataReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumerator: *const fn(
             self: *const IWICMetadataBlockReader,
             ppIEnumMetadata: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3393,25 +3393,25 @@ pub const IWICMetadataBlockWriter = extern union {
         InitializeFromBlockReader: *const fn(
             self: *const IWICMetadataBlockWriter,
             pIMDBlockReader: ?*IWICMetadataBlockReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWriterByIndex: *const fn(
             self: *const IWICMetadataBlockWriter,
             nIndex: u32,
             ppIMetadataWriter: ?*?*IWICMetadataWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddWriter: *const fn(
             self: *const IWICMetadataBlockWriter,
             pIMetadataWriter: ?*IWICMetadataWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWriterByIndex: *const fn(
             self: *const IWICMetadataBlockWriter,
             nIndex: u32,
             pIMetadataWriter: ?*IWICMetadataWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveWriterByIndex: *const fn(
             self: *const IWICMetadataBlockWriter,
             nIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICMetadataBlockReader: IWICMetadataBlockReader,
@@ -3442,32 +3442,32 @@ pub const IWICMetadataReader = extern union {
         GetMetadataFormat: *const fn(
             self: *const IWICMetadataReader,
             pguidMetadataFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMetadataHandlerInfo: *const fn(
             self: *const IWICMetadataReader,
             ppIHandler: ?*?*IWICMetadataHandlerInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IWICMetadataReader,
             pcCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValueByIndex: *const fn(
             self: *const IWICMetadataReader,
             nIndex: u32,
             pvarSchema: ?*PROPVARIANT,
             pvarId: ?*PROPVARIANT,
             pvarValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const IWICMetadataReader,
             pvarSchema: ?*const PROPVARIANT,
             pvarId: ?*const PROPVARIANT,
             pvarValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumerator: *const fn(
             self: *const IWICMetadataReader,
             ppIEnumMetadata: ?*?*IWICEnumMetadataItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3502,23 +3502,23 @@ pub const IWICMetadataWriter = extern union {
             pvarSchema: ?*const PROPVARIANT,
             pvarId: ?*const PROPVARIANT,
             pvarValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValueByIndex: *const fn(
             self: *const IWICMetadataWriter,
             nIndex: u32,
             pvarSchema: ?*const PROPVARIANT,
             pvarId: ?*const PROPVARIANT,
             pvarValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveValue: *const fn(
             self: *const IWICMetadataWriter,
             pvarSchema: ?*const PROPVARIANT,
             pvarId: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveValueByIndex: *const fn(
             self: *const IWICMetadataWriter,
             nIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICMetadataReader: IWICMetadataReader,
@@ -3546,18 +3546,18 @@ pub const IWICStreamProvider = extern union {
         GetStream: *const fn(
             self: *const IWICStreamProvider,
             ppIStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPersistOptions: *const fn(
             self: *const IWICStreamProvider,
             pdwPersistOptions: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreferredVendorGUID: *const fn(
             self: *const IWICStreamProvider,
             pguidPreferredVendor: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RefreshStream: *const fn(
             self: *const IWICStreamProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3586,13 +3586,13 @@ pub const IWICPersistStream = extern union {
             pIStream: ?*IStream,
             pguidPreferredVendor: ?*const Guid,
             dwPersistOptions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveEx: *const fn(
             self: *const IWICPersistStream,
             pIStream: ?*IStream,
             dwPersistOptions: u32,
             fClearDirty: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPersistStream: IPersistStream,
@@ -3615,37 +3615,37 @@ pub const IWICMetadataHandlerInfo = extern union {
         GetMetadataFormat: *const fn(
             self: *const IWICMetadataHandlerInfo,
             pguidMetadataFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContainerFormats: *const fn(
             self: *const IWICMetadataHandlerInfo,
             cContainerFormats: u32,
             pguidContainerFormats: [*]Guid,
             pcchActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceManufacturer: *const fn(
             self: *const IWICMetadataHandlerInfo,
             cchDeviceManufacturer: u32,
             wzDeviceManufacturer: [*:0]u16,
             pcchActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceModels: *const fn(
             self: *const IWICMetadataHandlerInfo,
             cchDeviceModels: u32,
             wzDeviceModels: [*:0]u16,
             pcchActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoesRequireFullStream: *const fn(
             self: *const IWICMetadataHandlerInfo,
             pfRequiresFullStream: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoesSupportPadding: *const fn(
             self: *const IWICMetadataHandlerInfo,
             pfSupportsPadding: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoesRequireFixedSize: *const fn(
             self: *const IWICMetadataHandlerInfo,
             pfFixedSize: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICComponentInfo: IWICComponentInfo,
@@ -3695,17 +3695,17 @@ pub const IWICMetadataReaderInfo = extern union {
             pPattern: ?*WICMetadataPattern,
             pcCount: ?*u32,
             pcbActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MatchesPattern: *const fn(
             self: *const IWICMetadataReaderInfo,
             guidContainerFormat: ?*const Guid,
             pIStream: ?*IStream,
             pfMatches: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInstance: *const fn(
             self: *const IWICMetadataReaderInfo,
             ppIReader: **IWICMetadataReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICMetadataHandlerInfo: IWICMetadataHandlerInfo,
@@ -3742,11 +3742,11 @@ pub const IWICMetadataWriterInfo = extern union {
             // TODO: what to do with BytesParamIndex 1?
             pHeader: ?*WICMetadataHeader,
             pcbActual: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInstance: *const fn(
             self: *const IWICMetadataWriterInfo,
             ppIWriter: ?*?*IWICMetadataWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICMetadataHandlerInfo: IWICMetadataHandlerInfo,
@@ -3773,7 +3773,7 @@ pub const IWICComponentFactory = extern union {
             dwOptions: u32,
             pIStream: ?*IStream,
             ppIReader: ?*?*IWICMetadataReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMetadataReaderFromContainer: *const fn(
             self: *const IWICComponentFactory,
             guidContainerFormat: ?*const Guid,
@@ -3781,36 +3781,36 @@ pub const IWICComponentFactory = extern union {
             dwOptions: u32,
             pIStream: ?*IStream,
             ppIReader: ?*?*IWICMetadataReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMetadataWriter: *const fn(
             self: *const IWICComponentFactory,
             guidMetadataFormat: ?*const Guid,
             pguidVendor: ?*const Guid,
             dwMetadataOptions: u32,
             ppIWriter: ?*?*IWICMetadataWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMetadataWriterFromReader: *const fn(
             self: *const IWICComponentFactory,
             pIReader: ?*IWICMetadataReader,
             pguidVendor: ?*const Guid,
             ppIWriter: ?*?*IWICMetadataWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateQueryReaderFromBlockReader: *const fn(
             self: *const IWICComponentFactory,
             pIBlockReader: ?*IWICMetadataBlockReader,
             ppIQueryReader: ?*?*IWICMetadataQueryReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateQueryWriterFromBlockWriter: *const fn(
             self: *const IWICComponentFactory,
             pIBlockWriter: ?*IWICMetadataBlockWriter,
             ppIQueryWriter: ?*?*IWICMetadataQueryWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEncoderPropertyBag: *const fn(
             self: *const IWICComponentFactory,
             ppropOptions: [*]PROPBAG2,
             cCount: u32,
             ppIPropertyBag: ?*?*IPropertyBag2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICImagingFactory: IWICImagingFactory,
@@ -3847,7 +3847,7 @@ pub extern "windowscodecs" fn WICConvertBitmapSource(
     dstFormat: ?*Guid,
     pISrc: ?*IWICBitmapSource,
     ppIDst: ?*?*IWICBitmapSource,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "windowscodecs" fn WICCreateBitmapFromSection(
@@ -3858,7 +3858,7 @@ pub extern "windowscodecs" fn WICCreateBitmapFromSection(
     stride: u32,
     offset: u32,
     ppIBitmap: ?*?*IWICBitmap,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "windowscodecs" fn WICCreateBitmapFromSectionEx(
@@ -3870,7 +3870,7 @@ pub extern "windowscodecs" fn WICCreateBitmapFromSectionEx(
     offset: u32,
     desiredAccessLevel: WICSectionAccessLevel,
     ppIBitmap: ?*?*IWICBitmap,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "windowscodecs" fn WICMapGuidToShortName(
@@ -3878,13 +3878,13 @@ pub extern "windowscodecs" fn WICMapGuidToShortName(
     cchName: u32,
     wzName: ?[*:0]u16,
     pcchActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "windowscodecs" fn WICMapShortNameToGuid(
     wzName: ?[*:0]const u16,
     pguid: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "windowscodecs" fn WICMapSchemaToName(
@@ -3893,7 +3893,7 @@ pub extern "windowscodecs" fn WICMapSchemaToName(
     cchName: u32,
     wzName: ?[*:0]u16,
     pcchActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "windowscodecs" fn WICMatchMetadataContent(
@@ -3901,7 +3901,7 @@ pub extern "windowscodecs" fn WICMatchMetadataContent(
     pguidVendor: ?*const Guid,
     pIStream: ?*IStream,
     pguidMetadataFormat: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "windowscodecs" fn WICSerializeMetadataContent(
@@ -3909,14 +3909,14 @@ pub extern "windowscodecs" fn WICSerializeMetadataContent(
     pIWriter: ?*IWICMetadataWriter,
     dwPersistOptions: u32,
     pIStream: ?*IStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "windowscodecs" fn WICGetMetadataContentSize(
     guidContainerFormat: ?*const Guid,
     pIWriter: ?*IWICMetadataWriter,
     pcbSize: ?*ULARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

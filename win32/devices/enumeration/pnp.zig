@@ -95,7 +95,7 @@ pub const SW_DEVICE_CREATE_CALLBACK = *const fn(
     CreateResult: HRESULT,
     pContext: ?*anyopaque,
     pszDeviceInstanceId: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 const CLSID_UPnPDeviceFinder_Value = Guid.initString("e2085f28-feb7-404a-b8e7-e659bdeaaa02");
 pub const CLSID_UPnPDeviceFinder = &CLSID_UPnPDeviceFinder_Value;
@@ -132,27 +132,27 @@ pub const IUPnPDeviceFinder = extern union {
             bstrTypeURI: ?BSTR,
             dwFlags: u32,
             pDevices: ?*?*IUPnPDevices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAsyncFind: *const fn(
             self: *const IUPnPDeviceFinder,
             bstrTypeURI: ?BSTR,
             dwFlags: u32,
             punkDeviceFinderCallback: ?*IUnknown,
             plFindData: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartAsyncFind: *const fn(
             self: *const IUPnPDeviceFinder,
             lFindData: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelAsyncFind: *const fn(
             self: *const IUPnPDeviceFinder,
             lFindData: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindByUDN: *const fn(
             self: *const IUPnPDeviceFinder,
             bstrUDN: ?BSTR,
             pDevice: ?*?*IUPnPDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -183,11 +183,11 @@ pub const IUPnPAddressFamilyControl = extern union {
         SetAddressFamily: *const fn(
             self: *const IUPnPAddressFamilyControl,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAddressFamily: *const fn(
             self: *const IUPnPAddressFamilyControl,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -208,7 +208,7 @@ pub const IUPnPHttpHeaderControl = extern union {
         AddRequestHeaders: *const fn(
             self: *const IUPnPHttpHeaderControl,
             bstrHttpHeaders: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -227,16 +227,16 @@ pub const IUPnPDeviceFinderCallback = extern union {
             self: *const IUPnPDeviceFinderCallback,
             lFindData: i32,
             pDevice: ?*IUPnPDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceRemoved: *const fn(
             self: *const IUPnPDeviceFinderCallback,
             lFindData: i32,
             bstrUDN: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SearchComplete: *const fn(
             self: *const IUPnPDeviceFinderCallback,
             lFindData: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -261,17 +261,17 @@ pub const IUPnPServices = extern union {
         get_Count: *const fn(
             self: *const IUPnPServices,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IUPnPServices,
             ppunk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IUPnPServices,
             bstrServiceId: ?BSTR,
             ppService: ?*?*IUPnPService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -297,33 +297,33 @@ pub const IUPnPService = extern union {
             self: *const IUPnPService,
             bstrVariableName: ?BSTR,
             pValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InvokeAction: *const fn(
             self: *const IUPnPService,
             bstrActionName: ?BSTR,
             vInActionArgs: VARIANT,
             pvOutActionArgs: ?*VARIANT,
             pvRetVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceTypeIdentifier: *const fn(
             self: *const IUPnPService,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddCallback: *const fn(
             self: *const IUPnPService,
             pUnkCallback: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IUPnPService,
             pbstrId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastTransportStatus: *const fn(
             self: *const IUPnPService,
             plValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -357,7 +357,7 @@ pub const IUPnPAsyncResult = extern union {
         AsyncOperationComplete: *const fn(
             self: *const IUPnPAsyncResult,
             ullRequestID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -378,48 +378,48 @@ pub const IUPnPServiceAsync = extern union {
             vInActionArgs: VARIANT,
             pAsyncResult: ?*IUPnPAsyncResult,
             pullRequestID: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndInvokeAction: *const fn(
             self: *const IUPnPServiceAsync,
             ullRequestID: u64,
             pvOutActionArgs: ?*VARIANT,
             pvRetVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginQueryStateVariable: *const fn(
             self: *const IUPnPServiceAsync,
             bstrVariableName: ?BSTR,
             pAsyncResult: ?*IUPnPAsyncResult,
             pullRequestID: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndQueryStateVariable: *const fn(
             self: *const IUPnPServiceAsync,
             ullRequestID: u64,
             pValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginSubscribeToEvents: *const fn(
             self: *const IUPnPServiceAsync,
             pUnkCallback: ?*IUnknown,
             pAsyncResult: ?*IUPnPAsyncResult,
             pullRequestID: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndSubscribeToEvents: *const fn(
             self: *const IUPnPServiceAsync,
             ullRequestID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginSCPDDownload: *const fn(
             self: *const IUPnPServiceAsync,
             pAsyncResult: ?*IUPnPAsyncResult,
             pullRequestID: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndSCPDDownload: *const fn(
             self: *const IUPnPServiceAsync,
             ullRequestID: u64,
             pbstrSCPDDoc: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelAsyncOperation: *const fn(
             self: *const IUPnPServiceAsync,
             ullRequestID: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -463,11 +463,11 @@ pub const IUPnPServiceCallback = extern union {
             pus: ?*IUPnPService,
             pcwszStateVarName: ?[*:0]const u16,
             vaValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ServiceInstanceDied: *const fn(
             self: *const IUPnPServiceCallback,
             pus: ?*IUPnPService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -488,7 +488,7 @@ pub const IUPnPServiceEnumProperty = extern union {
         SetServiceEnumProperty: *const fn(
             self: *const IUPnPServiceEnumProperty,
             dwMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -506,11 +506,11 @@ pub const IUPnPServiceDocumentAccess = extern union {
         GetDocumentURL: *const fn(
             self: *const IUPnPServiceDocumentAccess,
             pbstrDocUrl: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDocument: *const fn(
             self: *const IUPnPServiceDocumentAccess,
             pbstrDoc: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -532,17 +532,17 @@ pub const IUPnPDevices = extern union {
         get_Count: *const fn(
             self: *const IUPnPDevices,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IUPnPDevices,
             ppunk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IUPnPDevices,
             bstrUDN: ?BSTR,
             ppDevice: ?*?*IUPnPDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -568,87 +568,87 @@ pub const IUPnPDevice = extern union {
         get_IsRootDevice: *const fn(
             self: *const IUPnPDevice,
             pvarb: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootDevice: *const fn(
             self: *const IUPnPDevice,
             ppudRootDevice: ?*?*IUPnPDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentDevice: *const fn(
             self: *const IUPnPDevice,
             ppudDeviceParent: ?*?*IUPnPDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HasChildren: *const fn(
             self: *const IUPnPDevice,
             pvarb: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Children: *const fn(
             self: *const IUPnPDevice,
             ppudChildren: ?*?*IUPnPDevices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UniqueDeviceName: *const fn(
             self: *const IUPnPDevice,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FriendlyName: *const fn(
             self: *const IUPnPDevice,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const IUPnPDevice,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PresentationURL: *const fn(
             self: *const IUPnPDevice,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ManufacturerName: *const fn(
             self: *const IUPnPDevice,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ManufacturerURL: *const fn(
             self: *const IUPnPDevice,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModelName: *const fn(
             self: *const IUPnPDevice,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModelNumber: *const fn(
             self: *const IUPnPDevice,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IUPnPDevice,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModelURL: *const fn(
             self: *const IUPnPDevice,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UPC: *const fn(
             self: *const IUPnPDevice,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SerialNumber: *const fn(
             self: *const IUPnPDevice,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IconURL: *const fn(
             self: *const IUPnPDevice,
             bstrEncodingFormat: ?BSTR,
@@ -656,12 +656,12 @@ pub const IUPnPDevice = extern union {
             lSizeY: i32,
             lBitDepth: i32,
             pbstrIconURL: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Services: *const fn(
             self: *const IUPnPDevice,
             ppusServices: ?*?*IUPnPServices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -734,7 +734,7 @@ pub const IUPnPDeviceDocumentAccess = extern union {
         GetDocumentURL: *const fn(
             self: *const IUPnPDeviceDocumentAccess,
             pbstrDocument: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -752,7 +752,7 @@ pub const IUPnPDeviceDocumentAccessEx = extern union {
         GetDocument: *const fn(
             self: *const IUPnPDeviceDocumentAccessEx,
             pbstrDocument: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -771,33 +771,33 @@ pub const IUPnPDescriptionDocument = extern union {
         get_ReadyState: *const fn(
             self: *const IUPnPDescriptionDocument,
             plReadyState: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Load: *const fn(
             self: *const IUPnPDescriptionDocument,
             bstrUrl: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadAsync: *const fn(
             self: *const IUPnPDescriptionDocument,
             bstrUrl: ?BSTR,
             punkCallback: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LoadResult: *const fn(
             self: *const IUPnPDescriptionDocument,
             phrError: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Abort: *const fn(
             self: *const IUPnPDescriptionDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RootDevice: *const fn(
             self: *const IUPnPDescriptionDocument,
             ppudRootDevice: ?*?*IUPnPDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceByUDN: *const fn(
             self: *const IUPnPDescriptionDocument,
             bstrUDN: ?BSTR,
             ppudDevice: ?*?*IUPnPDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -836,7 +836,7 @@ pub const IUPnPDeviceFinderAddCallbackWithInterface = extern union {
             lFindData: i32,
             pDevice: ?*IUPnPDevice,
             pguidInterface: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -854,7 +854,7 @@ pub const IUPnPDescriptionDocumentCallback = extern union {
         LoadComplete: *const fn(
             self: *const IUPnPDescriptionDocumentCallback,
             hrLoadResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -879,11 +879,11 @@ pub const IUPnPEventSink = extern union {
             self: *const IUPnPEventSink,
             cChanges: u32,
             rgdispidChanges: [*]i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnStateChangedSafe: *const fn(
             self: *const IUPnPEventSink,
             varsadispidChanges: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -904,11 +904,11 @@ pub const IUPnPEventSource = extern union {
         Advise: *const fn(
             self: *const IUPnPEventSource,
             pesSubscriber: ?*IUPnPEventSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unadvise: *const fn(
             self: *const IUPnPEventSource,
             pesSubscriber: ?*IUPnPEventSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -935,7 +935,7 @@ pub const IUPnPRegistrar = extern union {
             bstrResourcePath: ?BSTR,
             nLifeTime: i32,
             pbstrDeviceIdentifier: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterRunningDevice: *const fn(
             self: *const IUPnPRegistrar,
             bstrXMLDesc: ?BSTR,
@@ -944,29 +944,29 @@ pub const IUPnPRegistrar = extern union {
             bstrResourcePath: ?BSTR,
             nLifeTime: i32,
             pbstrDeviceIdentifier: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterDeviceProvider: *const fn(
             self: *const IUPnPRegistrar,
             bstrProviderName: ?BSTR,
             bstrProgIDProviderClass: ?BSTR,
             bstrInitString: ?BSTR,
             bstrContainerId: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUniqueDeviceName: *const fn(
             self: *const IUPnPRegistrar,
             bstrDeviceIdentifier: ?BSTR,
             bstrTemplateUDN: ?BSTR,
             pbstrUDN: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterDevice: *const fn(
             self: *const IUPnPRegistrar,
             bstrDeviceIdentifier: ?BSTR,
             fPermanent: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterDeviceProvider: *const fn(
             self: *const IUPnPRegistrar,
             bstrProviderName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1005,7 +1005,7 @@ pub const IUPnPReregistrar = extern union {
             bstrContainerId: ?BSTR,
             bstrResourcePath: ?BSTR,
             nLifeTime: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReregisterRunningDevice: *const fn(
             self: *const IUPnPReregistrar,
             bstrDeviceIdentifier: ?BSTR,
@@ -1014,7 +1014,7 @@ pub const IUPnPReregistrar = extern union {
             bstrInitString: ?BSTR,
             bstrResourcePath: ?BSTR,
             nLifeTime: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1037,13 +1037,13 @@ pub const IUPnPDeviceControl = extern union {
             bstrXMLDesc: ?BSTR,
             bstrDeviceIdentifier: ?BSTR,
             bstrInitString: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetServiceObject: *const fn(
             self: *const IUPnPDeviceControl,
             bstrUDN: ?BSTR,
             bstrServiceId: ?BSTR,
             ppdispService: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1063,7 +1063,7 @@ pub const IUPnPDeviceControlHttpHeaders = extern union {
         GetAdditionalResponseHeaders: *const fn(
             self: *const IUPnPDeviceControlHttpHeaders,
             bstrHttpResponseHeaders: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1081,10 +1081,10 @@ pub const IUPnPDeviceProvider = extern union {
         Start: *const fn(
             self: *const IUPnPDeviceProvider,
             bstrInitString: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IUPnPDeviceProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1106,17 +1106,17 @@ pub const IUPnPRemoteEndpointInfo = extern union {
             self: *const IUPnPRemoteEndpointInfo,
             bstrValueName: ?BSTR,
             pdwValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringValue: *const fn(
             self: *const IUPnPRemoteEndpointInfo,
             bstrValueName: ?BSTR,
             pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGuidValue: *const fn(
             self: *const IUPnPRemoteEndpointInfo,
             bstrValueName: ?BSTR,
             pguidValue: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1145,31 +1145,31 @@ pub extern "cfgmgr32" fn SwDeviceCreate(
     pCallback: ?SW_DEVICE_CREATE_CALLBACK,
     pContext: ?*anyopaque,
     phSwDevice: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cfgmgr32" fn SwDeviceClose(
     hSwDevice: ?HSWDEVICE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "cfgmgr32" fn SwDeviceSetLifetime(
     hSwDevice: ?HSWDEVICE,
     Lifetime: SW_DEVICE_LIFETIME,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "cfgmgr32" fn SwDeviceGetLifetime(
     hSwDevice: ?HSWDEVICE,
     pLifetime: ?*SW_DEVICE_LIFETIME,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cfgmgr32" fn SwDevicePropertySet(
     hSwDevice: ?HSWDEVICE,
     cPropertyCount: u32,
     pProperties: [*]const DEVPROPERTY,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cfgmgr32" fn SwDeviceInterfaceRegister(
@@ -1180,19 +1180,19 @@ pub extern "cfgmgr32" fn SwDeviceInterfaceRegister(
     pProperties: ?[*]const DEVPROPERTY,
     fEnabled: BOOL,
     ppszDeviceInterfaceId: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cfgmgr32" fn SwMemFree(
     pMem: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cfgmgr32" fn SwDeviceInterfaceSetState(
     hSwDevice: ?HSWDEVICE,
     pszDeviceInterfaceId: ?[*:0]const u16,
     fEnabled: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cfgmgr32" fn SwDeviceInterfacePropertySet(
@@ -1200,7 +1200,7 @@ pub extern "cfgmgr32" fn SwDeviceInterfacePropertySet(
     pszDeviceInterfaceId: ?[*:0]const u16,
     cPropertyCount: u32,
     pProperties: [*]const DEVPROPERTY,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

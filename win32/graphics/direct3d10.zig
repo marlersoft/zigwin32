@@ -504,26 +504,26 @@ pub const ID3D10DeviceChild = extern union {
         GetDevice: *const fn(
             self: *const ID3D10DeviceChild,
             ppDevice: ?*?*ID3D10Device,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetPrivateData: *const fn(
             self: *const ID3D10DeviceChild,
             guid: ?*const Guid,
             pDataSize: ?*u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const ID3D10DeviceChild,
             guid: ?*const Guid,
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
             self: *const ID3D10DeviceChild,
             guid: ?*const Guid,
             pData: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -613,7 +613,7 @@ pub const ID3D10DepthStencilState = extern union {
         GetDesc: *const fn(
             self: *const ID3D10DepthStencilState,
             pDesc: ?*D3D10_DEPTH_STENCIL_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
@@ -707,7 +707,7 @@ pub const ID3D10BlendState = extern union {
         GetDesc: *const fn(
             self: *const ID3D10BlendState,
             pDesc: ?*D3D10_BLEND_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
@@ -739,7 +739,7 @@ pub const ID3D10RasterizerState = extern union {
         GetDesc: *const fn(
             self: *const ID3D10RasterizerState,
             pDesc: ?*D3D10_RASTERIZER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
@@ -764,14 +764,14 @@ pub const ID3D10Resource = extern union {
         GetType: *const fn(
             self: *const ID3D10Resource,
             rType: ?*D3D10_RESOURCE_DIMENSION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetEvictionPriority: *const fn(
             self: *const ID3D10Resource,
             EvictionPriority: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetEvictionPriority: *const fn(
             self: *const ID3D10Resource,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
@@ -806,14 +806,14 @@ pub const ID3D10Buffer = extern union {
             MapType: D3D10_MAP,
             MapFlags: u32,
             ppData: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unmap: *const fn(
             self: *const ID3D10Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetDesc: *const fn(
             self: *const ID3D10Buffer,
             pDesc: ?*D3D10_BUFFER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10Resource: ID3D10Resource,
@@ -853,15 +853,15 @@ pub const ID3D10Texture1D = extern union {
             MapType: D3D10_MAP,
             MapFlags: u32,
             ppData: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unmap: *const fn(
             self: *const ID3D10Texture1D,
             Subresource: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetDesc: *const fn(
             self: *const ID3D10Texture1D,
             pDesc: ?*D3D10_TEXTURE1D_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10Resource: ID3D10Resource,
@@ -908,15 +908,15 @@ pub const ID3D10Texture2D = extern union {
             MapType: D3D10_MAP,
             MapFlags: u32,
             pMappedTex2D: ?*D3D10_MAPPED_TEXTURE2D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unmap: *const fn(
             self: *const ID3D10Texture2D,
             Subresource: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetDesc: *const fn(
             self: *const ID3D10Texture2D,
             pDesc: ?*D3D10_TEXTURE2D_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10Resource: ID3D10Resource,
@@ -963,15 +963,15 @@ pub const ID3D10Texture3D = extern union {
             MapType: D3D10_MAP,
             MapFlags: u32,
             pMappedTex3D: ?*D3D10_MAPPED_TEXTURE3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unmap: *const fn(
             self: *const ID3D10Texture3D,
             Subresource: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetDesc: *const fn(
             self: *const ID3D10Texture3D,
             pDesc: ?*D3D10_TEXTURE3D_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10Resource: ID3D10Resource,
@@ -1012,7 +1012,7 @@ pub const ID3D10View = extern union {
         GetResource: *const fn(
             self: *const ID3D10View,
             ppResource: ?*?*ID3D10Resource,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
@@ -1101,7 +1101,7 @@ pub const ID3D10ShaderResourceView = extern union {
         GetDesc: *const fn(
             self: *const ID3D10ShaderResourceView,
             pDesc: ?*D3D10_SHADER_RESOURCE_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10View: ID3D10View,
@@ -1182,7 +1182,7 @@ pub const ID3D10RenderTargetView = extern union {
         GetDesc: *const fn(
             self: *const ID3D10RenderTargetView,
             pDesc: ?*D3D10_RENDER_TARGET_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10View: ID3D10View,
@@ -1244,7 +1244,7 @@ pub const ID3D10DepthStencilView = extern union {
         GetDesc: *const fn(
             self: *const ID3D10DepthStencilView,
             pDesc: ?*D3D10_DEPTH_STENCIL_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10View: ID3D10View,
@@ -1386,7 +1386,7 @@ pub const ID3D10SamplerState = extern union {
         GetDesc: *const fn(
             self: *const ID3D10SamplerState,
             pDesc: ?*D3D10_SAMPLER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
@@ -1457,20 +1457,20 @@ pub const ID3D10Asynchronous = extern union {
         base: ID3D10DeviceChild.VTable,
         Begin: *const fn(
             self: *const ID3D10Asynchronous,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         End: *const fn(
             self: *const ID3D10Asynchronous,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetData: *const fn(
             self: *const ID3D10Asynchronous,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*anyopaque,
             DataSize: u32,
             GetDataFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataSize: *const fn(
             self: *const ID3D10Asynchronous,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
@@ -1532,7 +1532,7 @@ pub const ID3D10Query = extern union {
         GetDesc: *const fn(
             self: *const ID3D10Query,
             pDesc: ?*D3D10_QUERY_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10Asynchronous: ID3D10Asynchronous,
@@ -1650,7 +1650,7 @@ pub const ID3D10Counter = extern union {
         GetDesc: *const fn(
             self: *const ID3D10Counter,
             pDesc: ?*D3D10_COUNTER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10Asynchronous: ID3D10Asynchronous,
@@ -1672,48 +1672,48 @@ pub const ID3D10Device = extern union {
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D10Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSSetShaderResources: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSSetShader: *const fn(
             self: *const ID3D10Device,
             pPixelShader: ?*ID3D10PixelShader,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSSetSamplers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D10SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSSetShader: *const fn(
             self: *const ID3D10Device,
             pVertexShader: ?*ID3D10VertexShader,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawIndexed: *const fn(
             self: *const ID3D10Device,
             IndexCount: u32,
             StartIndexLocation: u32,
             BaseVertexLocation: i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Draw: *const fn(
             self: *const ID3D10Device,
             VertexCount: u32,
             StartVertexLocation: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSSetConstantBuffers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D10Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IASetInputLayout: *const fn(
             self: *const ID3D10Device,
             pInputLayout: ?*ID3D10InputLayout,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IASetVertexBuffers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
@@ -1721,13 +1721,13 @@ pub const ID3D10Device = extern union {
             ppVertexBuffers: ?[*]?*ID3D10Buffer,
             pStrides: ?[*]const u32,
             pOffsets: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IASetIndexBuffer: *const fn(
             self: *const ID3D10Device,
             pIndexBuffer: ?*ID3D10Buffer,
             Format: DXGI_FORMAT,
             Offset: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawIndexedInstanced: *const fn(
             self: *const ID3D10Device,
             IndexCountPerInstance: u32,
@@ -1735,97 +1735,97 @@ pub const ID3D10Device = extern union {
             StartIndexLocation: u32,
             BaseVertexLocation: i32,
             StartInstanceLocation: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawInstanced: *const fn(
             self: *const ID3D10Device,
             VertexCountPerInstance: u32,
             InstanceCount: u32,
             StartVertexLocation: u32,
             StartInstanceLocation: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSSetConstantBuffers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D10Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSSetShader: *const fn(
             self: *const ID3D10Device,
             pShader: ?*ID3D10GeometryShader,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IASetPrimitiveTopology: *const fn(
             self: *const ID3D10Device,
             Topology: D3D_PRIMITIVE_TOPOLOGY,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSSetShaderResources: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSSetSamplers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D10SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetPredication: *const fn(
             self: *const ID3D10Device,
             pPredicate: ?*ID3D10Predicate,
             PredicateValue: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSSetShaderResources: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSSetSamplers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D10SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMSetRenderTargets: *const fn(
             self: *const ID3D10Device,
             NumViews: u32,
             ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView,
             pDepthStencilView: ?*ID3D10DepthStencilView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMSetBlendState: *const fn(
             self: *const ID3D10Device,
             pBlendState: ?*ID3D10BlendState,
             BlendFactor: ?*const f32,
             SampleMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMSetDepthStencilState: *const fn(
             self: *const ID3D10Device,
             pDepthStencilState: ?*ID3D10DepthStencilState,
             StencilRef: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SOSetTargets: *const fn(
             self: *const ID3D10Device,
             NumBuffers: u32,
             ppSOTargets: ?[*]?*ID3D10Buffer,
             pOffsets: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawAuto: *const fn(
             self: *const ID3D10Device,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RSSetState: *const fn(
             self: *const ID3D10Device,
             pRasterizerState: ?*ID3D10RasterizerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RSSetViewports: *const fn(
             self: *const ID3D10Device,
             NumViewports: u32,
             pViewports: ?[*]const D3D10_VIEWPORT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RSSetScissorRects: *const fn(
             self: *const ID3D10Device,
             NumRects: u32,
             pRects: ?[*]const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CopySubresourceRegion: *const fn(
             self: *const ID3D10Device,
             pDstResource: ?*ID3D10Resource,
@@ -1836,12 +1836,12 @@ pub const ID3D10Device = extern union {
             pSrcResource: ?*ID3D10Resource,
             SrcSubresource: u32,
             pSrcBox: ?*const D3D10_BOX,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CopyResource: *const fn(
             self: *const ID3D10Device,
             pDstResource: ?*ID3D10Resource,
             pSrcResource: ?*ID3D10Resource,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         UpdateSubresource: *const fn(
             self: *const ID3D10Device,
             pDstResource: ?*ID3D10Resource,
@@ -1850,23 +1850,23 @@ pub const ID3D10Device = extern union {
             pSrcData: ?*const anyopaque,
             SrcRowPitch: u32,
             SrcDepthPitch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ClearRenderTargetView: *const fn(
             self: *const ID3D10Device,
             pRenderTargetView: ?*ID3D10RenderTargetView,
             ColorRGBA: ?*const f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ClearDepthStencilView: *const fn(
             self: *const ID3D10Device,
             pDepthStencilView: ?*ID3D10DepthStencilView,
             ClearFlags: u32,
             Depth: f32,
             Stencil: u8,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GenerateMips: *const fn(
             self: *const ID3D10Device,
             pShaderResourceView: ?*ID3D10ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         ResolveSubresource: *const fn(
             self: *const ID3D10Device,
             pDstResource: ?*ID3D10Resource,
@@ -1874,43 +1874,43 @@ pub const ID3D10Device = extern union {
             pSrcResource: ?*ID3D10Resource,
             SrcSubresource: u32,
             Format: DXGI_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSGetConstantBuffers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D10Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSGetShaderResources: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSGetShader: *const fn(
             self: *const ID3D10Device,
             ppPixelShader: ?*?*ID3D10PixelShader,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSGetSamplers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D10SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSGetShader: *const fn(
             self: *const ID3D10Device,
             ppVertexShader: ?*?*ID3D10VertexShader,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PSGetConstantBuffers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D10Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IAGetInputLayout: *const fn(
             self: *const ID3D10Device,
             ppInputLayout: ?*?*ID3D10InputLayout,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IAGetVertexBuffers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
@@ -1918,170 +1918,170 @@ pub const ID3D10Device = extern union {
             ppVertexBuffers: ?[*]?*ID3D10Buffer,
             pStrides: ?[*]u32,
             pOffsets: ?[*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IAGetIndexBuffer: *const fn(
             self: *const ID3D10Device,
             pIndexBuffer: ?*?*ID3D10Buffer,
             Format: ?*DXGI_FORMAT,
             Offset: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSGetConstantBuffers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
             ppConstantBuffers: ?[*]?*ID3D10Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSGetShader: *const fn(
             self: *const ID3D10Device,
             ppGeometryShader: ?*?*ID3D10GeometryShader,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         IAGetPrimitiveTopology: *const fn(
             self: *const ID3D10Device,
             pTopology: ?*D3D_PRIMITIVE_TOPOLOGY,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSGetShaderResources: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         VSGetSamplers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D10SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetPredication: *const fn(
             self: *const ID3D10Device,
             ppPredicate: ?*?*ID3D10Predicate,
             pPredicateValue: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSGetShaderResources: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumViews: u32,
             ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GSGetSamplers: *const fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumSamplers: u32,
             ppSamplers: ?[*]?*ID3D10SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMGetRenderTargets: *const fn(
             self: *const ID3D10Device,
             NumViews: u32,
             ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView,
             ppDepthStencilView: ?*?*ID3D10DepthStencilView,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMGetBlendState: *const fn(
             self: *const ID3D10Device,
             ppBlendState: ?*?*ID3D10BlendState,
             BlendFactor: ?*f32,
             pSampleMask: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         OMGetDepthStencilState: *const fn(
             self: *const ID3D10Device,
             ppDepthStencilState: ?*?*ID3D10DepthStencilState,
             pStencilRef: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SOGetTargets: *const fn(
             self: *const ID3D10Device,
             NumBuffers: u32,
             ppSOTargets: ?[*]?*ID3D10Buffer,
             pOffsets: ?[*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RSGetState: *const fn(
             self: *const ID3D10Device,
             ppRasterizerState: ?*?*ID3D10RasterizerState,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RSGetViewports: *const fn(
             self: *const ID3D10Device,
             NumViewports: ?*u32,
             pViewports: ?[*]D3D10_VIEWPORT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RSGetScissorRects: *const fn(
             self: *const ID3D10Device,
             NumRects: ?*u32,
             pRects: ?[*]RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetDeviceRemovedReason: *const fn(
             self: *const ID3D10Device,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetExceptionMode: *const fn(
             self: *const ID3D10Device,
             RaiseFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExceptionMode: *const fn(
             self: *const ID3D10Device,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetPrivateData: *const fn(
             self: *const ID3D10Device,
             guid: ?*const Guid,
             pDataSize: ?*u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const ID3D10Device,
             guid: ?*const Guid,
             DataSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             pData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
             self: *const ID3D10Device,
             guid: ?*const Guid,
             pData: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearState: *const fn(
             self: *const ID3D10Device,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Flush: *const fn(
             self: *const ID3D10Device,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CreateBuffer: *const fn(
             self: *const ID3D10Device,
             pDesc: ?*const D3D10_BUFFER_DESC,
             pInitialData: ?*const D3D10_SUBRESOURCE_DATA,
             ppBuffer: ?*?*ID3D10Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTexture1D: *const fn(
             self: *const ID3D10Device,
             pDesc: ?*const D3D10_TEXTURE1D_DESC,
             pInitialData: ?*const D3D10_SUBRESOURCE_DATA,
             ppTexture1D: ?*?*ID3D10Texture1D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTexture2D: *const fn(
             self: *const ID3D10Device,
             pDesc: ?*const D3D10_TEXTURE2D_DESC,
             pInitialData: ?*const D3D10_SUBRESOURCE_DATA,
             ppTexture2D: ?*?*ID3D10Texture2D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTexture3D: *const fn(
             self: *const ID3D10Device,
             pDesc: ?*const D3D10_TEXTURE3D_DESC,
             pInitialData: ?*const D3D10_SUBRESOURCE_DATA,
             ppTexture3D: ?*?*ID3D10Texture3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateShaderResourceView: *const fn(
             self: *const ID3D10Device,
             pResource: ?*ID3D10Resource,
             pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC,
             ppSRView: ?*?*ID3D10ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRenderTargetView: *const fn(
             self: *const ID3D10Device,
             pResource: ?*ID3D10Resource,
             pDesc: ?*const D3D10_RENDER_TARGET_VIEW_DESC,
             ppRTView: ?*?*ID3D10RenderTargetView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDepthStencilView: *const fn(
             self: *const ID3D10Device,
             pResource: ?*ID3D10Resource,
             pDesc: ?*const D3D10_DEPTH_STENCIL_VIEW_DESC,
             ppDepthStencilView: ?*?*ID3D10DepthStencilView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInputLayout: *const fn(
             self: *const ID3D10Device,
             pInputElementDescs: [*]const D3D10_INPUT_ELEMENT_DESC,
@@ -2089,19 +2089,19 @@ pub const ID3D10Device = extern union {
             pShaderBytecodeWithInputSignature: [*]const u8,
             BytecodeLength: usize,
             ppInputLayout: ?*?*ID3D10InputLayout,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVertexShader: *const fn(
             self: *const ID3D10Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             ppVertexShader: ?*?*ID3D10VertexShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGeometryShader: *const fn(
             self: *const ID3D10Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             ppGeometryShader: ?*?*ID3D10GeometryShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGeometryShaderWithStreamOutput: *const fn(
             self: *const ID3D10Device,
             pShaderBytecode: [*]const u8,
@@ -2110,63 +2110,63 @@ pub const ID3D10Device = extern union {
             NumEntries: u32,
             OutputStreamStride: u32,
             ppGeometryShader: ?*?*ID3D10GeometryShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePixelShader: *const fn(
             self: *const ID3D10Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
             ppPixelShader: ?*?*ID3D10PixelShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBlendState: *const fn(
             self: *const ID3D10Device,
             pBlendStateDesc: ?*const D3D10_BLEND_DESC,
             ppBlendState: ?*?*ID3D10BlendState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDepthStencilState: *const fn(
             self: *const ID3D10Device,
             pDepthStencilDesc: ?*const D3D10_DEPTH_STENCIL_DESC,
             ppDepthStencilState: ?*?*ID3D10DepthStencilState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRasterizerState: *const fn(
             self: *const ID3D10Device,
             pRasterizerDesc: ?*const D3D10_RASTERIZER_DESC,
             ppRasterizerState: ?*?*ID3D10RasterizerState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSamplerState: *const fn(
             self: *const ID3D10Device,
             pSamplerDesc: ?*const D3D10_SAMPLER_DESC,
             ppSamplerState: ?*?*ID3D10SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateQuery: *const fn(
             self: *const ID3D10Device,
             pQueryDesc: ?*const D3D10_QUERY_DESC,
             ppQuery: ?*?*ID3D10Query,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePredicate: *const fn(
             self: *const ID3D10Device,
             pPredicateDesc: ?*const D3D10_QUERY_DESC,
             ppPredicate: ?*?*ID3D10Predicate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCounter: *const fn(
             self: *const ID3D10Device,
             pCounterDesc: ?*const D3D10_COUNTER_DESC,
             ppCounter: ?*?*ID3D10Counter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckFormatSupport: *const fn(
             self: *const ID3D10Device,
             Format: DXGI_FORMAT,
             pFormatSupport: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckMultisampleQualityLevels: *const fn(
             self: *const ID3D10Device,
             Format: DXGI_FORMAT,
             SampleCount: u32,
             pNumQualityLevels: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckCounterInfo: *const fn(
             self: *const ID3D10Device,
             pCounterInfo: ?*D3D10_COUNTER_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CheckCounter: *const fn(
             self: *const ID3D10Device,
             pDesc: ?*const D3D10_COUNTER_DESC,
@@ -2178,26 +2178,26 @@ pub const ID3D10Device = extern union {
             pUnitsLength: ?*u32,
             szDescription: ?[*:0]u8,
             pDescriptionLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCreationFlags: *const fn(
             self: *const ID3D10Device,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         OpenSharedResource: *const fn(
             self: *const ID3D10Device,
             hResource: ?HANDLE,
             ReturnedInterface: ?*const Guid,
             ppResource: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTextFilterSize: *const fn(
             self: *const ID3D10Device,
             Width: u32,
             Height: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetTextFilterSize: *const fn(
             self: *const ID3D10Device,
             pWidth: ?*u32,
             pHeight: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2496,17 +2496,17 @@ pub const ID3D10Multithread = extern union {
         base: IUnknown.VTable,
         Enter: *const fn(
             self: *const ID3D10Multithread,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Leave: *const fn(
             self: *const ID3D10Multithread,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetMultithreadProtected: *const fn(
             self: *const ID3D10Multithread,
             bMTProtect: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetMultithreadProtected: *const fn(
             self: *const ID3D10Multithread,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2554,28 +2554,28 @@ pub const ID3D10Debug = extern union {
         SetFeatureMask: *const fn(
             self: *const ID3D10Debug,
             Mask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFeatureMask: *const fn(
             self: *const ID3D10Debug,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         SetPresentPerRenderOpDelay: *const fn(
             self: *const ID3D10Debug,
             Milliseconds: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPresentPerRenderOpDelay: *const fn(
             self: *const ID3D10Debug,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         SetSwapChain: *const fn(
             self: *const ID3D10Debug,
             pSwapChain: ?*IDXGISwapChain,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSwapChain: *const fn(
             self: *const ID3D10Debug,
             ppSwapChain: ?*?*IDXGISwapChain,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Validate: *const fn(
             self: *const ID3D10Debug,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2611,10 +2611,10 @@ pub const ID3D10SwitchToRef = extern union {
         SetUseRef: *const fn(
             self: *const ID3D10SwitchToRef,
             UseRef: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetUseRef: *const fn(
             self: *const ID3D10SwitchToRef,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3712,139 +3712,139 @@ pub const ID3D10InfoQueue = extern union {
         SetMessageCountLimit: *const fn(
             self: *const ID3D10InfoQueue,
             MessageCountLimit: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearStoredMessages: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetMessage: *const fn(
             self: *const ID3D10InfoQueue,
             MessageIndex: u64,
             // TODO: what to do with BytesParamIndex 2?
             pMessage: ?*D3D10_MESSAGE,
             pMessageByteLength: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumMessagesAllowedByStorageFilter: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetNumMessagesDeniedByStorageFilter: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetNumStoredMessages: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetNumStoredMessagesAllowedByRetrievalFilter: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetNumMessagesDiscardedByMessageCountLimit: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         GetMessageCountLimit: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         AddStorageFilterEntries: *const fn(
             self: *const ID3D10InfoQueue,
             pFilter: ?*D3D10_INFO_QUEUE_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStorageFilter: *const fn(
             self: *const ID3D10InfoQueue,
             // TODO: what to do with BytesParamIndex 1?
             pFilter: ?*D3D10_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearStorageFilter: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PushEmptyStorageFilter: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushCopyOfStorageFilter: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushStorageFilter: *const fn(
             self: *const ID3D10InfoQueue,
             pFilter: ?*D3D10_INFO_QUEUE_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PopStorageFilter: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetStorageFilterStackSize: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         AddRetrievalFilterEntries: *const fn(
             self: *const ID3D10InfoQueue,
             pFilter: ?*D3D10_INFO_QUEUE_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRetrievalFilter: *const fn(
             self: *const ID3D10InfoQueue,
             // TODO: what to do with BytesParamIndex 1?
             pFilter: ?*D3D10_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearRetrievalFilter: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PushEmptyRetrievalFilter: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushCopyOfRetrievalFilter: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushRetrievalFilter: *const fn(
             self: *const ID3D10InfoQueue,
             pFilter: ?*D3D10_INFO_QUEUE_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PopRetrievalFilter: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetRetrievalFilterStackSize: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         AddMessage: *const fn(
             self: *const ID3D10InfoQueue,
             Category: D3D10_MESSAGE_CATEGORY,
             Severity: D3D10_MESSAGE_SEVERITY,
             ID: D3D10_MESSAGE_ID,
             pDescription: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddApplicationMessage: *const fn(
             self: *const ID3D10InfoQueue,
             Severity: D3D10_MESSAGE_SEVERITY,
             pDescription: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBreakOnCategory: *const fn(
             self: *const ID3D10InfoQueue,
             Category: D3D10_MESSAGE_CATEGORY,
             bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBreakOnSeverity: *const fn(
             self: *const ID3D10InfoQueue,
             Severity: D3D10_MESSAGE_SEVERITY,
             bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBreakOnID: *const fn(
             self: *const ID3D10InfoQueue,
             ID: D3D10_MESSAGE_ID,
             bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBreakOnCategory: *const fn(
             self: *const ID3D10InfoQueue,
             Category: D3D10_MESSAGE_CATEGORY,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetBreakOnSeverity: *const fn(
             self: *const ID3D10InfoQueue,
             Severity: D3D10_MESSAGE_SEVERITY,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetBreakOnID: *const fn(
             self: *const ID3D10InfoQueue,
             ID: D3D10_MESSAGE_ID,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         SetMuteDebugOutput: *const fn(
             self: *const ID3D10InfoQueue,
             bMute: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetMuteDebugOutput: *const fn(
             self: *const ID3D10InfoQueue,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4054,19 +4054,19 @@ pub const ID3D10ShaderReflectionType = extern union {
         GetDesc: *const fn(
             self: *const ID3D10ShaderReflectionType,
             pDesc: ?*D3D10_SHADER_TYPE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMemberTypeByIndex: *const fn(
             self: *const ID3D10ShaderReflectionType,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10ShaderReflectionType,
+        ) callconv(.winapi) ?*ID3D10ShaderReflectionType,
         GetMemberTypeByName: *const fn(
             self: *const ID3D10ShaderReflectionType,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10ShaderReflectionType,
+        ) callconv(.winapi) ?*ID3D10ShaderReflectionType,
         GetMemberTypeName: *const fn(
             self: *const ID3D10ShaderReflectionType,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
+        ) callconv(.winapi) ?PSTR,
     };
     vtable: *const VTable,
     pub fn GetDesc(self: *const ID3D10ShaderReflectionType, pDesc: ?*D3D10_SHADER_TYPE_DESC) callconv(.Inline) HRESULT {
@@ -4091,10 +4091,10 @@ pub const ID3D10ShaderReflectionVariable = extern union {
         GetDesc: *const fn(
             self: *const ID3D10ShaderReflectionVariable,
             pDesc: ?*D3D10_SHADER_VARIABLE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const ID3D10ShaderReflectionVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10ShaderReflectionType,
+        ) callconv(.winapi) ?*ID3D10ShaderReflectionType,
     };
     vtable: *const VTable,
     pub fn GetDesc(self: *const ID3D10ShaderReflectionVariable, pDesc: ?*D3D10_SHADER_VARIABLE_DESC) callconv(.Inline) HRESULT {
@@ -4113,15 +4113,15 @@ pub const ID3D10ShaderReflectionConstantBuffer = extern union {
         GetDesc: *const fn(
             self: *const ID3D10ShaderReflectionConstantBuffer,
             pDesc: ?*D3D10_SHADER_BUFFER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVariableByIndex: *const fn(
             self: *const ID3D10ShaderReflectionConstantBuffer,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10ShaderReflectionVariable,
+        ) callconv(.winapi) ?*ID3D10ShaderReflectionVariable,
         GetVariableByName: *const fn(
             self: *const ID3D10ShaderReflectionConstantBuffer,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10ShaderReflectionVariable,
+        ) callconv(.winapi) ?*ID3D10ShaderReflectionVariable,
     };
     vtable: *const VTable,
     pub fn GetDesc(self: *const ID3D10ShaderReflectionConstantBuffer, pDesc: ?*D3D10_SHADER_BUFFER_DESC) callconv(.Inline) HRESULT {
@@ -4144,30 +4144,30 @@ pub const ID3D10ShaderReflection = extern union {
         GetDesc: *const fn(
             self: *const ID3D10ShaderReflection,
             pDesc: ?*D3D10_SHADER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConstantBufferByIndex: *const fn(
             self: *const ID3D10ShaderReflection,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10ShaderReflectionConstantBuffer,
+        ) callconv(.winapi) ?*ID3D10ShaderReflectionConstantBuffer,
         GetConstantBufferByName: *const fn(
             self: *const ID3D10ShaderReflection,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10ShaderReflectionConstantBuffer,
+        ) callconv(.winapi) ?*ID3D10ShaderReflectionConstantBuffer,
         GetResourceBindingDesc: *const fn(
             self: *const ID3D10ShaderReflection,
             ResourceIndex: u32,
             pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputParameterDesc: *const fn(
             self: *const ID3D10ShaderReflection,
             ParameterIndex: u32,
             pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputParameterDesc: *const fn(
             self: *const ID3D10ShaderReflection,
             ParameterIndex: u32,
             pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4277,17 +4277,17 @@ pub const ID3D10StateBlock = extern union {
         base: IUnknown.VTable,
         Capture: *const fn(
             self: *const ID3D10StateBlock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Apply: *const fn(
             self: *const ID3D10StateBlock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseAllDeviceObjects: *const fn(
             self: *const ID3D10StateBlock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDevice: *const fn(
             self: *const ID3D10StateBlock,
             ppDevice: ?*?*ID3D10Device,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4325,31 +4325,31 @@ pub const ID3D10EffectType = extern union {
     pub const VTable = extern struct {
         IsValid: *const fn(
             self: *const ID3D10EffectType,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetDesc: *const fn(
             self: *const ID3D10EffectType,
             pDesc: ?*D3D10_EFFECT_TYPE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMemberTypeByIndex: *const fn(
             self: *const ID3D10EffectType,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectType,
+        ) callconv(.winapi) ?*ID3D10EffectType,
         GetMemberTypeByName: *const fn(
             self: *const ID3D10EffectType,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectType,
+        ) callconv(.winapi) ?*ID3D10EffectType,
         GetMemberTypeBySemantic: *const fn(
             self: *const ID3D10EffectType,
             Semantic: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectType,
+        ) callconv(.winapi) ?*ID3D10EffectType,
         GetMemberName: *const fn(
             self: *const ID3D10EffectType,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
+        ) callconv(.winapi) ?PSTR,
         GetMemberSemantic: *const fn(
             self: *const ID3D10EffectType,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
+        ) callconv(.winapi) ?PSTR,
     };
     vtable: *const VTable,
     pub fn IsValid(self: *const ID3D10EffectType) callconv(.Inline) BOOL {
@@ -4391,94 +4391,94 @@ pub const ID3D10EffectVariable = extern union {
     pub const VTable = extern struct {
         IsValid: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetType: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectType,
+        ) callconv(.winapi) ?*ID3D10EffectType,
         GetDesc: *const fn(
             self: *const ID3D10EffectVariable,
             pDesc: ?*D3D10_EFFECT_VARIABLE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAnnotationByIndex: *const fn(
             self: *const ID3D10EffectVariable,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         GetAnnotationByName: *const fn(
             self: *const ID3D10EffectVariable,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         GetMemberByIndex: *const fn(
             self: *const ID3D10EffectVariable,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         GetMemberByName: *const fn(
             self: *const ID3D10EffectVariable,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         GetMemberBySemantic: *const fn(
             self: *const ID3D10EffectVariable,
             Semantic: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         GetElement: *const fn(
             self: *const ID3D10EffectVariable,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         GetParentConstantBuffer: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectConstantBuffer,
+        ) callconv(.winapi) ?*ID3D10EffectConstantBuffer,
         AsScalar: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectScalarVariable,
+        ) callconv(.winapi) ?*ID3D10EffectScalarVariable,
         AsVector: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVectorVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVectorVariable,
         AsMatrix: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectMatrixVariable,
+        ) callconv(.winapi) ?*ID3D10EffectMatrixVariable,
         AsString: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectStringVariable,
+        ) callconv(.winapi) ?*ID3D10EffectStringVariable,
         AsShaderResource: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectShaderResourceVariable,
+        ) callconv(.winapi) ?*ID3D10EffectShaderResourceVariable,
         AsRenderTargetView: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectRenderTargetViewVariable,
+        ) callconv(.winapi) ?*ID3D10EffectRenderTargetViewVariable,
         AsDepthStencilView: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectDepthStencilViewVariable,
+        ) callconv(.winapi) ?*ID3D10EffectDepthStencilViewVariable,
         AsConstantBuffer: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectConstantBuffer,
+        ) callconv(.winapi) ?*ID3D10EffectConstantBuffer,
         AsShader: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectShaderVariable,
+        ) callconv(.winapi) ?*ID3D10EffectShaderVariable,
         AsBlend: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectBlendVariable,
+        ) callconv(.winapi) ?*ID3D10EffectBlendVariable,
         AsDepthStencil: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectDepthStencilVariable,
+        ) callconv(.winapi) ?*ID3D10EffectDepthStencilVariable,
         AsRasterizer: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectRasterizerVariable,
+        ) callconv(.winapi) ?*ID3D10EffectRasterizerVariable,
         AsSampler: *const fn(
             self: *const ID3D10EffectVariable,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectSamplerVariable,
+        ) callconv(.winapi) ?*ID3D10EffectSamplerVariable,
         SetRawValue: *const fn(
             self: *const ID3D10EffectVariable,
             // TODO: what to do with BytesParamIndex 2?
             pData: ?*anyopaque,
             Offset: u32,
             ByteCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRawValue: *const fn(
             self: *const ID3D10EffectVariable,
             // TODO: what to do with BytesParamIndex 2?
             pData: ?*anyopaque,
             Offset: u32,
             ByteCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     pub fn IsValid(self: *const ID3D10EffectVariable) callconv(.Inline) BOOL {
@@ -4567,63 +4567,63 @@ pub const ID3D10EffectScalarVariable = extern union {
         SetFloat: *const fn(
             self: *const ID3D10EffectScalarVariable,
             Value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFloat: *const fn(
             self: *const ID3D10EffectScalarVariable,
             pValue: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFloatArray: *const fn(
             self: *const ID3D10EffectScalarVariable,
             pData: [*]f32,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFloatArray: *const fn(
             self: *const ID3D10EffectScalarVariable,
             pData: [*]f32,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInt: *const fn(
             self: *const ID3D10EffectScalarVariable,
             Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInt: *const fn(
             self: *const ID3D10EffectScalarVariable,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIntArray: *const fn(
             self: *const ID3D10EffectScalarVariable,
             pData: [*]i32,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIntArray: *const fn(
             self: *const ID3D10EffectScalarVariable,
             pData: [*]i32,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBool: *const fn(
             self: *const ID3D10EffectScalarVariable,
             Value: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBool: *const fn(
             self: *const ID3D10EffectScalarVariable,
             pValue: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBoolArray: *const fn(
             self: *const ID3D10EffectScalarVariable,
             pData: [*]BOOL,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBoolArray: *const fn(
             self: *const ID3D10EffectScalarVariable,
             pData: [*]BOOL,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -4674,63 +4674,63 @@ pub const ID3D10EffectVectorVariable = extern union {
         SetBoolVector: *const fn(
             self: *const ID3D10EffectVectorVariable,
             pData: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIntVector: *const fn(
             self: *const ID3D10EffectVectorVariable,
             pData: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFloatVector: *const fn(
             self: *const ID3D10EffectVectorVariable,
             pData: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBoolVector: *const fn(
             self: *const ID3D10EffectVectorVariable,
             pData: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIntVector: *const fn(
             self: *const ID3D10EffectVectorVariable,
             pData: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFloatVector: *const fn(
             self: *const ID3D10EffectVectorVariable,
             pData: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBoolVectorArray: *const fn(
             self: *const ID3D10EffectVectorVariable,
             pData: ?*BOOL,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIntVectorArray: *const fn(
             self: *const ID3D10EffectVectorVariable,
             pData: ?*i32,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFloatVectorArray: *const fn(
             self: *const ID3D10EffectVectorVariable,
             pData: ?*f32,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBoolVectorArray: *const fn(
             self: *const ID3D10EffectVectorVariable,
             pData: ?*BOOL,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIntVectorArray: *const fn(
             self: *const ID3D10EffectVectorVariable,
             pData: ?*i32,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFloatVectorArray: *const fn(
             self: *const ID3D10EffectVectorVariable,
             pData: ?*f32,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -4781,43 +4781,43 @@ pub const ID3D10EffectMatrixVariable = extern union {
         SetMatrix: *const fn(
             self: *const ID3D10EffectMatrixVariable,
             pData: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMatrix: *const fn(
             self: *const ID3D10EffectMatrixVariable,
             pData: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMatrixArray: *const fn(
             self: *const ID3D10EffectMatrixVariable,
             pData: ?*f32,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMatrixArray: *const fn(
             self: *const ID3D10EffectMatrixVariable,
             pData: ?*f32,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMatrixTranspose: *const fn(
             self: *const ID3D10EffectMatrixVariable,
             pData: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMatrixTranspose: *const fn(
             self: *const ID3D10EffectMatrixVariable,
             pData: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMatrixTransposeArray: *const fn(
             self: *const ID3D10EffectMatrixVariable,
             pData: ?*f32,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMatrixTransposeArray: *const fn(
             self: *const ID3D10EffectMatrixVariable,
             pData: ?*f32,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -4856,13 +4856,13 @@ pub const ID3D10EffectStringVariable = extern union {
         GetString: *const fn(
             self: *const ID3D10EffectStringVariable,
             ppString: ?*?PSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringArray: *const fn(
             self: *const ID3D10EffectStringVariable,
             ppStrings: [*]?PSTR,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -4883,23 +4883,23 @@ pub const ID3D10EffectShaderResourceVariable = extern union {
         SetResource: *const fn(
             self: *const ID3D10EffectShaderResourceVariable,
             pResource: ?*ID3D10ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResource: *const fn(
             self: *const ID3D10EffectShaderResourceVariable,
             ppResource: ?*?*ID3D10ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetResourceArray: *const fn(
             self: *const ID3D10EffectShaderResourceVariable,
             ppResources: [*]?*ID3D10ShaderResourceView,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResourceArray: *const fn(
             self: *const ID3D10EffectShaderResourceVariable,
             ppResources: [*]?*ID3D10ShaderResourceView,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -4926,23 +4926,23 @@ pub const ID3D10EffectRenderTargetViewVariable = extern union {
         SetRenderTarget: *const fn(
             self: *const ID3D10EffectRenderTargetViewVariable,
             pResource: ?*ID3D10RenderTargetView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRenderTarget: *const fn(
             self: *const ID3D10EffectRenderTargetViewVariable,
             ppResource: ?*?*ID3D10RenderTargetView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRenderTargetArray: *const fn(
             self: *const ID3D10EffectRenderTargetViewVariable,
             ppResources: [*]?*ID3D10RenderTargetView,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRenderTargetArray: *const fn(
             self: *const ID3D10EffectRenderTargetViewVariable,
             ppResources: [*]?*ID3D10RenderTargetView,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -4969,23 +4969,23 @@ pub const ID3D10EffectDepthStencilViewVariable = extern union {
         SetDepthStencil: *const fn(
             self: *const ID3D10EffectDepthStencilViewVariable,
             pResource: ?*ID3D10DepthStencilView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDepthStencil: *const fn(
             self: *const ID3D10EffectDepthStencilViewVariable,
             ppResource: ?*?*ID3D10DepthStencilView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDepthStencilArray: *const fn(
             self: *const ID3D10EffectDepthStencilViewVariable,
             ppResources: [*]?*ID3D10DepthStencilView,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDepthStencilArray: *const fn(
             self: *const ID3D10EffectDepthStencilViewVariable,
             ppResources: [*]?*ID3D10DepthStencilView,
             Offset: u32,
             Count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -5012,19 +5012,19 @@ pub const ID3D10EffectConstantBuffer = extern union {
         SetConstantBuffer: *const fn(
             self: *const ID3D10EffectConstantBuffer,
             pConstantBuffer: ?*ID3D10Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConstantBuffer: *const fn(
             self: *const ID3D10EffectConstantBuffer,
             ppConstantBuffer: ?*?*ID3D10Buffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTextureBuffer: *const fn(
             self: *const ID3D10EffectConstantBuffer,
             pTextureBuffer: ?*ID3D10ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextureBuffer: *const fn(
             self: *const ID3D10EffectConstantBuffer,
             ppTextureBuffer: ?*?*ID3D10ShaderResourceView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -5062,34 +5062,34 @@ pub const ID3D10EffectShaderVariable = extern union {
             self: *const ID3D10EffectShaderVariable,
             ShaderIndex: u32,
             pDesc: ?*D3D10_EFFECT_SHADER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVertexShader: *const fn(
             self: *const ID3D10EffectShaderVariable,
             ShaderIndex: u32,
             ppVS: ?*?*ID3D10VertexShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGeometryShader: *const fn(
             self: *const ID3D10EffectShaderVariable,
             ShaderIndex: u32,
             ppGS: ?*?*ID3D10GeometryShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelShader: *const fn(
             self: *const ID3D10EffectShaderVariable,
             ShaderIndex: u32,
             ppPS: ?*?*ID3D10PixelShader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputSignatureElementDesc: *const fn(
             self: *const ID3D10EffectShaderVariable,
             ShaderIndex: u32,
             Element: u32,
             pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputSignatureElementDesc: *const fn(
             self: *const ID3D10EffectShaderVariable,
             ShaderIndex: u32,
             Element: u32,
             pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -5123,12 +5123,12 @@ pub const ID3D10EffectBlendVariable = extern union {
             self: *const ID3D10EffectBlendVariable,
             Index: u32,
             ppBlendState: ?*?*ID3D10BlendState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBackingStore: *const fn(
             self: *const ID3D10EffectBlendVariable,
             Index: u32,
             pBlendDesc: ?*D3D10_BLEND_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -5150,12 +5150,12 @@ pub const ID3D10EffectDepthStencilVariable = extern union {
             self: *const ID3D10EffectDepthStencilVariable,
             Index: u32,
             ppDepthStencilState: ?*?*ID3D10DepthStencilState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBackingStore: *const fn(
             self: *const ID3D10EffectDepthStencilVariable,
             Index: u32,
             pDepthStencilDesc: ?*D3D10_DEPTH_STENCIL_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -5177,12 +5177,12 @@ pub const ID3D10EffectRasterizerVariable = extern union {
             self: *const ID3D10EffectRasterizerVariable,
             Index: u32,
             ppRasterizerState: ?*?*ID3D10RasterizerState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBackingStore: *const fn(
             self: *const ID3D10EffectRasterizerVariable,
             Index: u32,
             pRasterizerDesc: ?*D3D10_RASTERIZER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -5204,12 +5204,12 @@ pub const ID3D10EffectSamplerVariable = extern union {
             self: *const ID3D10EffectSamplerVariable,
             Index: u32,
             ppSampler: ?*?*ID3D10SamplerState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBackingStore: *const fn(
             self: *const ID3D10EffectSamplerVariable,
             Index: u32,
             pSamplerDesc: ?*D3D10_SAMPLER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
@@ -5243,39 +5243,39 @@ pub const ID3D10EffectPass = extern union {
     pub const VTable = extern struct {
         IsValid: *const fn(
             self: *const ID3D10EffectPass,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetDesc: *const fn(
             self: *const ID3D10EffectPass,
             pDesc: ?*D3D10_PASS_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVertexShaderDesc: *const fn(
             self: *const ID3D10EffectPass,
             pDesc: ?*D3D10_PASS_SHADER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGeometryShaderDesc: *const fn(
             self: *const ID3D10EffectPass,
             pDesc: ?*D3D10_PASS_SHADER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelShaderDesc: *const fn(
             self: *const ID3D10EffectPass,
             pDesc: ?*D3D10_PASS_SHADER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAnnotationByIndex: *const fn(
             self: *const ID3D10EffectPass,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         GetAnnotationByName: *const fn(
             self: *const ID3D10EffectPass,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         Apply: *const fn(
             self: *const ID3D10EffectPass,
             Flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ComputeStateBlockMask: *const fn(
             self: *const ID3D10EffectPass,
             pStateBlockMask: ?*D3D10_STATE_BLOCK_MASK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     pub fn IsValid(self: *const ID3D10EffectPass) callconv(.Inline) BOOL {
@@ -5320,31 +5320,31 @@ pub const ID3D10EffectTechnique = extern union {
     pub const VTable = extern struct {
         IsValid: *const fn(
             self: *const ID3D10EffectTechnique,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetDesc: *const fn(
             self: *const ID3D10EffectTechnique,
             pDesc: ?*D3D10_TECHNIQUE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAnnotationByIndex: *const fn(
             self: *const ID3D10EffectTechnique,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         GetAnnotationByName: *const fn(
             self: *const ID3D10EffectTechnique,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         GetPassByIndex: *const fn(
             self: *const ID3D10EffectTechnique,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectPass,
+        ) callconv(.winapi) ?*ID3D10EffectPass,
         GetPassByName: *const fn(
             self: *const ID3D10EffectTechnique,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectPass,
+        ) callconv(.winapi) ?*ID3D10EffectPass,
         ComputeStateBlockMask: *const fn(
             self: *const ID3D10EffectTechnique,
             pStateBlockMask: ?*D3D10_STATE_BLOCK_MASK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     pub fn IsValid(self: *const ID3D10EffectTechnique) callconv(.Inline) BOOL {
@@ -5387,52 +5387,52 @@ pub const ID3D10Effect = extern union {
         base: IUnknown.VTable,
         IsValid: *const fn(
             self: *const ID3D10Effect,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         IsPool: *const fn(
             self: *const ID3D10Effect,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetDevice: *const fn(
             self: *const ID3D10Effect,
             ppDevice: ?*?*ID3D10Device,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDesc: *const fn(
             self: *const ID3D10Effect,
             pDesc: ?*D3D10_EFFECT_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConstantBufferByIndex: *const fn(
             self: *const ID3D10Effect,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectConstantBuffer,
+        ) callconv(.winapi) ?*ID3D10EffectConstantBuffer,
         GetConstantBufferByName: *const fn(
             self: *const ID3D10Effect,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectConstantBuffer,
+        ) callconv(.winapi) ?*ID3D10EffectConstantBuffer,
         GetVariableByIndex: *const fn(
             self: *const ID3D10Effect,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         GetVariableByName: *const fn(
             self: *const ID3D10Effect,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         GetVariableBySemantic: *const fn(
             self: *const ID3D10Effect,
             Semantic: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectVariable,
+        ) callconv(.winapi) ?*ID3D10EffectVariable,
         GetTechniqueByIndex: *const fn(
             self: *const ID3D10Effect,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectTechnique,
+        ) callconv(.winapi) ?*ID3D10EffectTechnique,
         GetTechniqueByName: *const fn(
             self: *const ID3D10Effect,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10EffectTechnique,
+        ) callconv(.winapi) ?*ID3D10EffectTechnique,
         Optimize: *const fn(
             self: *const ID3D10Effect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsOptimized: *const fn(
             self: *const ID3D10Effect,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5485,7 +5485,7 @@ pub const ID3D10EffectPool = extern union {
         base: IUnknown.VTable,
         AsEffect: *const fn(
             self: *const ID3D10EffectPool,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10Effect,
+        ) callconv(.winapi) ?*ID3D10Effect,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5533,7 +5533,7 @@ pub const ID3D10BlendState1 = extern union {
         GetDesc1: *const fn(
             self: *const ID3D10BlendState1,
             pDesc: ?*D3D10_BLEND_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10BlendState: ID3D10BlendState,
@@ -5577,7 +5577,7 @@ pub const ID3D10ShaderResourceView1 = extern union {
         GetDesc1: *const fn(
             self: *const ID3D10ShaderResourceView1,
             pDesc: ?*D3D10_SHADER_RESOURCE_VIEW_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID3D10ShaderResourceView: ID3D10ShaderResourceView,
@@ -5607,15 +5607,15 @@ pub const ID3D10Device1 = extern union {
             pResource: ?*ID3D10Resource,
             pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC1,
             ppSRView: ?*?*ID3D10ShaderResourceView1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBlendState1: *const fn(
             self: *const ID3D10Device1,
             pBlendStateDesc: ?*const D3D10_BLEND_DESC1,
             ppBlendState: ?*?*ID3D10BlendState1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFeatureLevel: *const fn(
             self: *const ID3D10Device1,
-        ) callconv(@import("std").os.windows.WINAPI) D3D10_FEATURE_LEVEL1,
+        ) callconv(.winapi) D3D10_FEATURE_LEVEL1,
     };
     vtable: *const VTable,
     ID3D10Device: ID3D10Device,
@@ -5815,67 +5815,67 @@ pub const ID3D10ShaderReflection1 = extern union {
         GetDesc: *const fn(
             self: *const ID3D10ShaderReflection1,
             pDesc: ?*D3D10_SHADER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConstantBufferByIndex: *const fn(
             self: *const ID3D10ShaderReflection1,
             Index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10ShaderReflectionConstantBuffer,
+        ) callconv(.winapi) ?*ID3D10ShaderReflectionConstantBuffer,
         GetConstantBufferByName: *const fn(
             self: *const ID3D10ShaderReflection1,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10ShaderReflectionConstantBuffer,
+        ) callconv(.winapi) ?*ID3D10ShaderReflectionConstantBuffer,
         GetResourceBindingDesc: *const fn(
             self: *const ID3D10ShaderReflection1,
             ResourceIndex: u32,
             pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputParameterDesc: *const fn(
             self: *const ID3D10ShaderReflection1,
             ParameterIndex: u32,
             pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputParameterDesc: *const fn(
             self: *const ID3D10ShaderReflection1,
             ParameterIndex: u32,
             pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVariableByName: *const fn(
             self: *const ID3D10ShaderReflection1,
             Name: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D10ShaderReflectionVariable,
+        ) callconv(.winapi) ?*ID3D10ShaderReflectionVariable,
         GetResourceBindingDescByName: *const fn(
             self: *const ID3D10ShaderReflection1,
             Name: ?[*:0]const u8,
             pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMovInstructionCount: *const fn(
             self: *const ID3D10ShaderReflection1,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMovcInstructionCount: *const fn(
             self: *const ID3D10ShaderReflection1,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConversionInstructionCount: *const fn(
             self: *const ID3D10ShaderReflection1,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBitwiseInstructionCount: *const fn(
             self: *const ID3D10ShaderReflection1,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGSInputPrimitive: *const fn(
             self: *const ID3D10ShaderReflection1,
             pPrim: ?*D3D_PRIMITIVE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsLevel9Shader: *const fn(
             self: *const ID3D10ShaderReflection1,
             pbLevel9Shader: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSampleFrequencyShader: *const fn(
             self: *const ID3D10ShaderReflection1,
             pbSampleFrequency: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5934,7 +5934,7 @@ pub const PFN_D3D10_CREATE_DEVICE1 = *const fn(
     param4: D3D10_FEATURE_LEVEL1,
     param5: u32,
     param6: ?*?*ID3D10Device1,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PFN_D3D10_CREATE_DEVICE_AND_SWAP_CHAIN1 = *const fn(
     param0: ?*IDXGIAdapter,
@@ -5946,7 +5946,7 @@ pub const PFN_D3D10_CREATE_DEVICE_AND_SWAP_CHAIN1 = *const fn(
     param6: ?*DXGI_SWAP_CHAIN_DESC,
     param7: ?*?*IDXGISwapChain,
     param8: ?*?*ID3D10Device1,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------
@@ -5959,7 +5959,7 @@ pub extern "d3d10" fn D3D10CreateDevice(
     Flags: u32,
     SDKVersion: u32,
     ppDevice: ?*?*ID3D10Device,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10CreateDeviceAndSwapChain(
     pAdapter: ?*IDXGIAdapter,
@@ -5970,12 +5970,12 @@ pub extern "d3d10" fn D3D10CreateDeviceAndSwapChain(
     pSwapChainDesc: ?*DXGI_SWAP_CHAIN_DESC,
     ppSwapChain: ?*?*IDXGISwapChain,
     ppDevice: ?*?*ID3D10Device,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10CreateBlob(
     NumBytes: usize,
     ppBuffer: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10CompileShader(
     // TODO: what to do with BytesParamIndex 1?
@@ -5989,7 +5989,7 @@ pub extern "d3d10" fn D3D10CompileShader(
     Flags: u32,
     ppShader: ?*?*ID3DBlob,
     ppErrorMsgs: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10DisassembleShader(
     // TODO: what to do with BytesParamIndex 1?
@@ -5998,26 +5998,26 @@ pub extern "d3d10" fn D3D10DisassembleShader(
     EnableColorCode: BOOL,
     pComments: ?[*:0]const u8,
     ppDisassembly: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10GetPixelShaderProfile(
     pDevice: ?*ID3D10Device,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 pub extern "d3d10" fn D3D10GetVertexShaderProfile(
     pDevice: ?*ID3D10Device,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 pub extern "d3d10" fn D3D10GetGeometryShaderProfile(
     pDevice: ?*ID3D10Device,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 pub extern "d3d10" fn D3D10ReflectShader(
     // TODO: what to do with BytesParamIndex 1?
     pShaderBytecode: ?*const anyopaque,
     BytecodeLength: usize,
     ppReflector: ?*?*ID3D10ShaderReflection,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10PreprocessShader(
     // TODO: what to do with BytesParamIndex 1?
@@ -6028,87 +6028,87 @@ pub extern "d3d10" fn D3D10PreprocessShader(
     pInclude: ?*ID3DInclude,
     ppShaderText: ?*?*ID3DBlob,
     ppErrorMsgs: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10GetInputSignatureBlob(
     // TODO: what to do with BytesParamIndex 1?
     pShaderBytecode: ?*const anyopaque,
     BytecodeLength: usize,
     ppSignatureBlob: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10GetOutputSignatureBlob(
     // TODO: what to do with BytesParamIndex 1?
     pShaderBytecode: ?*const anyopaque,
     BytecodeLength: usize,
     ppSignatureBlob: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10GetInputAndOutputSignatureBlob(
     // TODO: what to do with BytesParamIndex 1?
     pShaderBytecode: ?*const anyopaque,
     BytecodeLength: usize,
     ppSignatureBlob: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10GetShaderDebugInfo(
     // TODO: what to do with BytesParamIndex 1?
     pShaderBytecode: ?*const anyopaque,
     BytecodeLength: usize,
     ppDebugInfo: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10StateBlockMaskUnion(
     pA: ?*D3D10_STATE_BLOCK_MASK,
     pB: ?*D3D10_STATE_BLOCK_MASK,
     pResult: ?*D3D10_STATE_BLOCK_MASK,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10StateBlockMaskIntersect(
     pA: ?*D3D10_STATE_BLOCK_MASK,
     pB: ?*D3D10_STATE_BLOCK_MASK,
     pResult: ?*D3D10_STATE_BLOCK_MASK,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10StateBlockMaskDifference(
     pA: ?*D3D10_STATE_BLOCK_MASK,
     pB: ?*D3D10_STATE_BLOCK_MASK,
     pResult: ?*D3D10_STATE_BLOCK_MASK,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10StateBlockMaskEnableCapture(
     pMask: ?*D3D10_STATE_BLOCK_MASK,
     StateType: D3D10_DEVICE_STATE_TYPES,
     RangeStart: u32,
     RangeLength: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10StateBlockMaskDisableCapture(
     pMask: ?*D3D10_STATE_BLOCK_MASK,
     StateType: D3D10_DEVICE_STATE_TYPES,
     RangeStart: u32,
     RangeLength: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10StateBlockMaskEnableAll(
     pMask: ?*D3D10_STATE_BLOCK_MASK,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10StateBlockMaskDisableAll(
     pMask: ?*D3D10_STATE_BLOCK_MASK,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10StateBlockMaskGetSetting(
     pMask: ?*D3D10_STATE_BLOCK_MASK,
     StateType: D3D10_DEVICE_STATE_TYPES,
     Entry: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "d3d10" fn D3D10CreateStateBlock(
     pDevice: ?*ID3D10Device,
     pStateBlockMask: ?*D3D10_STATE_BLOCK_MASK,
     ppStateBlock: ?*?*ID3D10StateBlock,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10CompileEffectFromMemory(
     // TODO: what to do with BytesParamIndex 1?
@@ -6121,7 +6121,7 @@ pub extern "d3d10" fn D3D10CompileEffectFromMemory(
     FXFlags: u32,
     ppCompiledEffect: ?*?*ID3DBlob,
     ppErrors: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10CreateEffectFromMemory(
     // TODO: what to do with BytesParamIndex 1?
@@ -6131,7 +6131,7 @@ pub extern "d3d10" fn D3D10CreateEffectFromMemory(
     pDevice: ?*ID3D10Device,
     pEffectPool: ?*ID3D10EffectPool,
     ppEffect: ?*?*ID3D10Effect,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10CreateEffectPoolFromMemory(
     // TODO: what to do with BytesParamIndex 1?
@@ -6140,13 +6140,13 @@ pub extern "d3d10" fn D3D10CreateEffectPoolFromMemory(
     FXFlags: u32,
     pDevice: ?*ID3D10Device,
     ppEffectPool: ?*?*ID3D10EffectPool,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10DisassembleEffect(
     pEffect: ?*ID3D10Effect,
     EnableColorCode: BOOL,
     ppDisassembly: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10_1" fn D3D10CreateDevice1(
     pAdapter: ?*IDXGIAdapter,
@@ -6156,7 +6156,7 @@ pub extern "d3d10_1" fn D3D10CreateDevice1(
     HardwareLevel: D3D10_FEATURE_LEVEL1,
     SDKVersion: u32,
     ppDevice: ?*?*ID3D10Device1,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d10_1" fn D3D10CreateDeviceAndSwapChain1(
     pAdapter: ?*IDXGIAdapter,
@@ -6168,7 +6168,7 @@ pub extern "d3d10_1" fn D3D10CreateDeviceAndSwapChain1(
     pSwapChainDesc: ?*DXGI_SWAP_CHAIN_DESC,
     ppSwapChain: ?*?*IDXGISwapChain,
     ppDevice: ?*?*ID3D10Device1,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

@@ -15,7 +15,7 @@ pub const IIsolatedEnvironmentInterop = extern union {
             self: *const IIsolatedEnvironmentInterop,
             containerHwnd: ?HWND,
             hostHwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

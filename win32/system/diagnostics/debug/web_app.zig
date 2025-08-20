@@ -15,14 +15,14 @@ pub const IWebApplicationScriptEvents = extern union {
         BeforeScriptExecute: *const fn(
             self: *const IWebApplicationScriptEvents,
             htmlWindow: ?*IHTMLWindow2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScriptError: *const fn(
             self: *const IWebApplicationScriptEvents,
             htmlWindow: ?*IHTMLWindow2,
             scriptError: ?*IActiveScriptError,
             url: ?[*:0]const u16,
             errorHandled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -46,30 +46,30 @@ pub const IWebApplicationNavigationEvents = extern union {
             url: ?[*:0]const u16,
             navigationFlags: u32,
             targetFrameName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NavigateComplete: *const fn(
             self: *const IWebApplicationNavigationEvents,
             htmlWindow: ?*IHTMLWindow2,
             url: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NavigateError: *const fn(
             self: *const IWebApplicationNavigationEvents,
             htmlWindow: ?*IHTMLWindow2,
             url: ?[*:0]const u16,
             targetFrameName: ?[*:0]const u16,
             statusCode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DocumentComplete: *const fn(
             self: *const IWebApplicationNavigationEvents,
             htmlWindow: ?*IHTMLWindow2,
             url: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DownloadBegin: *const fn(
             self: *const IWebApplicationNavigationEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DownloadComplete: *const fn(
             self: *const IWebApplicationNavigationEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -103,7 +103,7 @@ pub const IWebApplicationUIEvents = extern union {
             self: *const IWebApplicationUIEvents,
             securityProblem: u32,
             result: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -120,10 +120,10 @@ pub const IWebApplicationUpdateEvents = extern union {
         base: IUnknown.VTable,
         OnPaint: *const fn(
             self: *const IWebApplicationUpdateEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCssChanged: *const fn(
             self: *const IWebApplicationUpdateEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -145,25 +145,25 @@ pub const IWebApplicationHost = extern union {
         get_HWND: *const fn(
             self: *const IWebApplicationHost,
             hwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Document: *const fn(
             self: *const IWebApplicationHost,
             htmlDocument: ?*?*IHTMLDocument2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IWebApplicationHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Advise: *const fn(
             self: *const IWebApplicationHost,
             interfaceId: ?*const Guid,
             callback: ?*IUnknown,
             cookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unadvise: *const fn(
             self: *const IWebApplicationHost,
             cookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -192,7 +192,7 @@ pub const IWebApplicationActivation = extern union {
         base: IUnknown.VTable,
         CancelPendingActivation: *const fn(
             self: *const IWebApplicationActivation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -211,7 +211,7 @@ pub const IWebApplicationAuthoringMode = extern union {
         get_AuthoringClientBinary: *const fn(
             self: *const IWebApplicationAuthoringMode,
             designModeDllPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IServiceProvider: IServiceProvider,
@@ -224,11 +224,11 @@ pub const IWebApplicationAuthoringMode = extern union {
 pub const RegisterAuthoringClientFunctionType = *const fn(
     authoringModeObject: ?*IWebApplicationAuthoringMode,
     host: ?*IWebApplicationHost,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const UnregisterAuthoringClientFunctionType = *const fn(
     host: ?*IWebApplicationHost,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

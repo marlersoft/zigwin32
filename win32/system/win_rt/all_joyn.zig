@@ -15,7 +15,7 @@ pub const IWindowsDevicesAllJoynBusAttachmentInterop = extern union {
         get_Win32Handle: *const fn(
             self: *const IWindowsDevicesAllJoynBusAttachmentInterop,
             value: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -36,7 +36,7 @@ pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern union {
             enableAboutData: u8,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -56,18 +56,18 @@ pub const IWindowsDevicesAllJoynBusObjectInterop = extern union {
             context: ?*anyopaque,
             interfaceName: ?HSTRING,
             callback: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertySetHandler: *const fn(
             self: *const IWindowsDevicesAllJoynBusObjectInterop,
             context: ?*anyopaque,
             interfaceName: ?HSTRING,
             callback: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Win32Handle: *const fn(
             self: *const IWindowsDevicesAllJoynBusObjectInterop,
             value: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -93,7 +93,7 @@ pub const IWindowsDevicesAllJoynBusObjectFactoryInterop = extern union {
             win32handle: u64,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,

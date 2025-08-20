@@ -15,7 +15,7 @@ pub const IRandomAccessStreamFileAccessMode = extern union {
         GetMode: *const fn(
             self: *const IRandomAccessStreamFileAccessMode,
             fileAccessMode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -32,7 +32,7 @@ pub const IUnbufferedFileHandleOplockCallback = extern union {
         base: IUnknown.VTable,
         OnBrokenCallback: *const fn(
             self: *const IUnbufferedFileHandleOplockCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -51,10 +51,10 @@ pub const IUnbufferedFileHandleProvider = extern union {
             self: *const IUnbufferedFileHandleProvider,
             oplockBreakCallback: ?*IUnbufferedFileHandleOplockCallback,
             fileHandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseUnbufferedFileHandle: *const fn(
             self: *const IUnbufferedFileHandleProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -222,7 +222,7 @@ pub const IOplockBreakingHandler = extern union {
         base: IUnknown.VTable,
         OplockBreaking: *const fn(
             self: *const IOplockBreakingHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -244,7 +244,7 @@ pub const IStorageItemHandleAccess = extern union {
             options: HANDLE_OPTIONS,
             oplockBreakingHandler: ?*IOplockBreakingHandler,
             interopHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -268,7 +268,7 @@ pub const IStorageFolderHandleAccess = extern union {
             options: HANDLE_OPTIONS,
             oplockBreakingHandler: ?*IOplockBreakingHandler,
             interopHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

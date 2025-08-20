@@ -60,7 +60,7 @@ pub const IDeviceRequestCompletionCallback = extern union {
             self: *const IDeviceRequestCompletionCallback,
             requestResult: HRESULT,
             bytesReturned: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -82,7 +82,7 @@ pub const IDeviceIoControl = extern union {
             outputBuffer: ?[*:0]u8,
             outputBufferSize: u32,
             bytesReturned: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceIoControlAsync: *const fn(
             self: *const IDeviceIoControl,
             ioControlCode: u32,
@@ -92,11 +92,11 @@ pub const IDeviceIoControl = extern union {
             outputBufferSize: u32,
             requestCompletionCallback: ?*IDeviceRequestCompletionCallback,
             cancelContext: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelOperation: *const fn(
             self: *const IDeviceIoControl,
             cancelContext: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -118,19 +118,19 @@ pub const ICreateDeviceAccessAsync = extern union {
         base: IUnknown.VTable,
         Cancel: *const fn(
             self: *const ICreateDeviceAccessAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Wait: *const fn(
             self: *const ICreateDeviceAccessAsync,
             timeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const ICreateDeviceAccessAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResult: *const fn(
             self: *const ICreateDeviceAccessAsync,
             riid: ?*const Guid,
             deviceAccess: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -156,7 +156,7 @@ pub extern "deviceaccess" fn CreateDeviceAccessInstance(
     deviceInterfacePath: ?[*:0]const u16,
     desiredAccess: u32,
     createAsync: **ICreateDeviceAccessAsync,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

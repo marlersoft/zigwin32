@@ -3414,24 +3414,24 @@ pub const IWordSink = extern union {
             pwcInBuf: ?[*:0]const u16,
             cwcSrcLen: u32,
             cwcSrcPos: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PutAltWord: *const fn(
             self: *const IWordSink,
             cwc: u32,
             pwcInBuf: ?[*:0]const u16,
             cwcSrcLen: u32,
             cwcSrcPos: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartAltPhrase: *const fn(
             self: *const IWordSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndAltPhrase: *const fn(
             self: *const IWordSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PutBreak: *const fn(
             self: *const IWordSink,
             breakType: WORDREP_BREAK_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3453,7 +3453,7 @@ pub const IWordSink = extern union {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFNFILLTEXTBUFFER = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFNFILLTEXTBUFFER = *const fn() callconv(.winapi) void;
 
 pub const TEXT_SOURCE = extern struct {
     pfnFillTextBuffer: ?PFNFILLTEXTBUFFER,
@@ -3473,13 +3473,13 @@ pub const IWordBreaker = extern union {
             fQuery: BOOL,
             ulMaxTokenSize: u32,
             pfLicense: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BreakText: *const fn(
             self: *const IWordBreaker,
             pTextSource: ?*TEXT_SOURCE,
             pWordSink: ?*IWordSink,
             pPhraseSink: ?*IPhraseSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ComposePhrase: *const fn(
             self: *const IWordBreaker,
             pwcNoun: ?[*:0]const u16,
@@ -3489,11 +3489,11 @@ pub const IWordBreaker = extern union {
             ulAttachmentType: u32,
             pwcPhrase: ?PWSTR,
             pcwcPhrase: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLicenseToUse: *const fn(
             self: *const IWordBreaker,
             ppwcsLicense: ?*const ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3521,12 +3521,12 @@ pub const IWordFormSink = extern union {
             self: *const IWordFormSink,
             pwcInBuf: ?[*:0]const u16,
             cwc: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PutWord: *const fn(
             self: *const IWordFormSink,
             pwcInBuf: ?[*:0]const u16,
             cwc: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3548,17 +3548,17 @@ pub const IStemmer = extern union {
             self: *const IStemmer,
             ulMaxTokenSize: u32,
             pfLicense: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateWordForms: *const fn(
             self: *const IStemmer,
             pwcInBuf: ?[*:0]const u16,
             cwc: u32,
             pStemSink: ?*IWordFormSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLicenseToUse: *const fn(
             self: *const IStemmer,
             ppwcsLicense: ?*const ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3582,18 +3582,18 @@ pub const ISimpleCommandCreator = extern union {
             self: *const ISimpleCommandCreator,
             ppIUnknown: ?*?*IUnknown,
             pOuterUnk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         VerifyCatalog: *const fn(
             self: *const ISimpleCommandCreator,
             pwszMachine: ?[*:0]const u16,
             pwszCatalogName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultCatalog: *const fn(
             self: *const ISimpleCommandCreator,
             pwszCatalogName: ?PWSTR,
             cwcIn: u32,
             pcwcOut: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3619,14 +3619,14 @@ pub const IColumnMapper = extern union {
             ppPropId: ?*?*DBID,
             pPropType: ?*u16,
             puiWidth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropInfoFromId: *const fn(
             self: *const IColumnMapper,
             pPropId: ?*const DBID,
             pwcsName: ?*?*u16,
             pPropType: ?*u16,
             puiWidth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumPropInfo: *const fn(
             self: *const IColumnMapper,
             iEntry: u32,
@@ -3634,10 +3634,10 @@ pub const IColumnMapper = extern union {
             ppPropId: ?*?*DBID,
             pPropType: ?*u16,
             puiWidth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsMapUpToDate: *const fn(
             self: *const IColumnMapper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3665,7 +3665,7 @@ pub const IColumnMapperCreator = extern union {
             wcsMachineName: ?[*:0]const u16,
             wcsCatalogName: ?[*:0]const u16,
             ppColumnMapper: ?*?*IColumnMapper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3709,7 +3709,7 @@ pub const ILoadFilter = extern union {
             SearchDecSize: ?*i32,
             pwcsSearchDesc: ?*?*u16,
             ppIFilt: ?*?*IFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadIFilterFromStorage: *const fn(
             self: *const ILoadFilter,
             pStg: ?*IStorage,
@@ -3720,7 +3720,7 @@ pub const ILoadFilter = extern union {
             SearchDecSize: ?*i32,
             pwcsSearchDesc: ?*?*u16,
             ppIFilt: ?*?*IFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadIFilterFromStream: *const fn(
             self: *const ILoadFilter,
             pStm: ?*IStream,
@@ -3731,7 +3731,7 @@ pub const ILoadFilter = extern union {
             SearchDecSize: ?*i32,
             pwcsSearchDesc: ?*?*u16,
             ppIFilt: ?*?*IFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3758,7 +3758,7 @@ pub const ILoadFilterWithPrivateComActivation = extern union {
             filterClsid: ?*Guid,
             isFilterPrivateComActivated: ?*BOOL,
             filterObj: ?*?*IFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ILoadFilter: ILoadFilter,
@@ -3780,7 +3780,7 @@ pub const IRichChunk = extern union {
             pLength: ?*u32,
             ppsz: ?*?PWSTR,
             pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3798,36 +3798,36 @@ pub const ICondition = extern union {
         GetConditionType: *const fn(
             self: *const ICondition,
             pNodeType: ?*CONDITION_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubConditions: *const fn(
             self: *const ICondition,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetComparisonInfo: *const fn(
             self: *const ICondition,
             ppszPropertyName: ?*?PWSTR,
             pcop: ?*CONDITION_OPERATION,
             ppropvar: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValueType: *const fn(
             self: *const ICondition,
             ppszValueTypeName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValueNormalization: *const fn(
             self: *const ICondition,
             ppszNormalization: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputTerms: *const fn(
             self: *const ICondition,
             ppPropertyTerm: ?*?*IRichChunk,
             ppOperationTerm: ?*?*IRichChunk,
             ppValueTerm: ?*?*IRichChunk,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const ICondition,
             ppc: ?*?*ICondition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPersistStream: IPersistStream,
@@ -3865,13 +3865,13 @@ pub const ICondition2 = extern union {
         GetLocale: *const fn(
             self: *const ICondition2,
             ppszLocaleName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLeafConditionInfo: *const fn(
             self: *const ICondition2,
             ppropkey: ?*PROPERTYKEY,
             pcop: ?*CONDITION_OPERATION,
             ppropvar: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICondition: ICondition,
@@ -5144,7 +5144,7 @@ pub const IAccessor = extern union {
             self: *const IAccessor,
             hAccessor: usize,
             pcRefCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAccessor: *const fn(
             self: *const IAccessor,
             dwAccessorFlags: u32,
@@ -5153,19 +5153,19 @@ pub const IAccessor = extern union {
             cbRowSize: usize,
             phAccessor: ?*usize,
             rgStatus: ?[*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBindings: *const fn(
             self: *const IAccessor,
             hAccessor: usize,
             pdwAccessorFlags: ?*u32,
             pcBindings: ?*usize,
             prgBindings: ?*?*DBBINDING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseAccessor: *const fn(
             self: *const IAccessor,
             hAccessor: usize,
             pcRefCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5194,13 +5194,13 @@ pub const IRowset = extern union {
             rghRows: ?*const usize,
             rgRefCounts: ?*u32,
             rgRowStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetData: *const fn(
             self: *const IRowset,
             hRow: usize,
             hAccessor: usize,
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextRows: *const fn(
             self: *const IRowset,
             hReserved: usize,
@@ -5208,7 +5208,7 @@ pub const IRowset = extern union {
             cRows: isize,
             pcRowsObtained: ?*usize,
             prghRows: ?*?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseRows: *const fn(
             self: *const IRowset,
             cRows: usize,
@@ -5216,11 +5216,11 @@ pub const IRowset = extern union {
             rgRowOptions: ?*u32,
             rgRefCounts: ?*u32,
             rgRowStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestartPosition: *const fn(
             self: *const IRowset,
             hReserved: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5252,18 +5252,18 @@ pub const IRowsetInfo = extern union {
             rgPropertyIDSets: ?[*]const DBPROPIDSET,
             pcPropertySets: ?*u32,
             prgPropertySets: ?*?*DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReferencedRowset: *const fn(
             self: *const IRowsetInfo,
             iOrdinal: usize,
             riid: ?*const Guid,
             ppReferencedRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpecification: *const fn(
             self: *const IRowsetInfo,
             riid: ?*const Guid,
             ppSpecification: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5304,7 +5304,7 @@ pub const IRowsetLocate = extern union {
             cbBookmark2: usize,
             pBookmark2: ?*const u8,
             pComparison: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRowsAt: *const fn(
             self: *const IRowsetLocate,
             hReserved1: usize,
@@ -5315,7 +5315,7 @@ pub const IRowsetLocate = extern union {
             cRows: isize,
             pcRowsObtained: ?*usize,
             prghRows: ?*?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRowsByBookmark: *const fn(
             self: *const IRowsetLocate,
             hReserved: usize,
@@ -5324,7 +5324,7 @@ pub const IRowsetLocate = extern union {
             rgpBookmarks: ?*const ?*u8,
             rghRows: ?*usize,
             rgRowStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Hash: *const fn(
             self: *const IRowsetLocate,
             hReserved: usize,
@@ -5333,7 +5333,7 @@ pub const IRowsetLocate = extern union {
             rgpBookmarks: ?*const ?*u8,
             rgHashedValues: ?*usize,
             rgBookmarkStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IRowset: IRowset,
@@ -5362,7 +5362,7 @@ pub const IRowsetResynch = extern union {
             hRow: usize,
             hAccessor: usize,
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResynchRows: *const fn(
             self: *const IRowsetResynch,
             cRows: usize,
@@ -5370,7 +5370,7 @@ pub const IRowsetResynch = extern union {
             pcRowsResynched: ?*usize,
             prghRowsResynched: ?*?*usize,
             prgRowStatus: ?*?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5394,7 +5394,7 @@ pub const IRowsetScroll = extern union {
             pBookmark: ?*const u8,
             pulPosition: ?*usize,
             pcRows: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRowsAtRatio: *const fn(
             self: *const IRowsetScroll,
             hReserved1: usize,
@@ -5404,7 +5404,7 @@ pub const IRowsetScroll = extern union {
             cRows: isize,
             pcRowsObtained: ?*usize,
             prghRows: ?*?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IRowsetLocate: IRowsetLocate,
@@ -5427,12 +5427,12 @@ pub const IChapteredRowset = extern union {
             self: *const IChapteredRowset,
             hChapter: usize,
             pcRefCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseChapter: *const fn(
             self: *const IChapteredRowset,
             hChapter: usize,
             pcRefCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5461,7 +5461,7 @@ pub const IRowsetFind = extern union {
             cRows: isize,
             pcRowsObtained: ?*usize,
             prghRows: ?*?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5488,28 +5488,28 @@ pub const IRowPosition = extern union {
         base: IUnknown.VTable,
         ClearRowPosition: *const fn(
             self: *const IRowPosition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRowPosition: *const fn(
             self: *const IRowPosition,
             phChapter: ?*usize,
             phRow: ?*usize,
             pdwPositionFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRowset: *const fn(
             self: *const IRowPosition,
             riid: ?*const Guid,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IRowPosition,
             pRowset: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRowPosition: *const fn(
             self: *const IRowPosition,
             hChapter: usize,
             hRow: usize,
             dwPositionFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5540,7 +5540,7 @@ pub const IRowPositionChange = extern union {
             eReason: u32,
             ePhase: u32,
             fCantDeny: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5558,13 +5558,13 @@ pub const IViewRowset = extern union {
             self: *const IViewRowset,
             riid: ?*const Guid,
             ppObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenViewRowset: *const fn(
             self: *const IViewRowset,
             pUnkOuter: ?*IUnknown,
             riid: ?*const Guid,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5585,12 +5585,12 @@ pub const IViewChapter = extern union {
             self: *const IViewChapter,
             riid: ?*const Guid,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenViewChapter: *const fn(
             self: *const IViewChapter,
             hSource: usize,
             phViewChapter: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5612,13 +5612,13 @@ pub const IViewSort = extern union {
             pcValues: ?*usize,
             prgColumns: ?*?*usize,
             prgOrders: ?*?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSortOrder: *const fn(
             self: *const IViewSort,
             cValues: usize,
             rgColumns: [*]const usize,
             rgOrders: [*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5641,19 +5641,19 @@ pub const IViewFilter = extern union {
             pcRows: ?*usize,
             pCompareOps: [*]?*u32,
             pCriteriaData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilterBindings: *const fn(
             self: *const IViewFilter,
             pcBindings: ?*usize,
             prgBindings: ?*?*DBBINDING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFilter: *const fn(
             self: *const IViewFilter,
             hAccessor: usize,
             cRows: usize,
             CompareOps: [*]u32,
             pCriteriaData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5678,14 +5678,14 @@ pub const IRowsetView = extern union {
             pUnkOuter: ?*IUnknown,
             riid: ?*const Guid,
             ppView: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetView: *const fn(
             self: *const IRowsetView,
             hChapter: usize,
             riid: ?*const Guid,
             phChapterSource: ?*usize,
             ppView: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5708,20 +5708,20 @@ pub const IRowsetChange = extern union {
             cRows: usize,
             rghRows: ?*const usize,
             rgRowStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetData: *const fn(
             self: *const IRowsetChange,
             hRow: usize,
             hAccessor: usize,
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertRow: *const fn(
             self: *const IRowsetChange,
             hReserved: usize,
             hAccessor: usize,
             pData: ?*anyopaque,
             phRow: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5759,7 +5759,7 @@ pub const IRowsetUpdate = extern union {
             hRow: usize,
             hAccessor: usize,
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPendingRows: *const fn(
             self: *const IRowsetUpdate,
             hReserved: usize,
@@ -5767,14 +5767,14 @@ pub const IRowsetUpdate = extern union {
             pcPendingRows: ?*usize,
             prgPendingRows: ?*?*usize,
             prgPendingStatus: ?*?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRowStatus: *const fn(
             self: *const IRowsetUpdate,
             hReserved: usize,
             cRows: usize,
             rghRows: ?*const usize,
             rgPendingStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Undo: *const fn(
             self: *const IRowsetUpdate,
             hReserved: usize,
@@ -5783,7 +5783,7 @@ pub const IRowsetUpdate = extern union {
             pcRowsUndone: ?*usize,
             prgRowsUndone: ?*?*usize,
             prgRowStatus: ?*?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Update: *const fn(
             self: *const IRowsetUpdate,
             hReserved: usize,
@@ -5792,7 +5792,7 @@ pub const IRowsetUpdate = extern union {
             pcRows: ?*usize,
             prgRows: ?*?*usize,
             prgRowStatus: ?*?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IRowsetChange: IRowsetChange,
@@ -5823,7 +5823,7 @@ pub const IRowsetIdentity = extern union {
             self: *const IRowsetIdentity,
             hThisRow: usize,
             hThatRow: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5846,7 +5846,7 @@ pub const IRowsetNotify = extern union {
             eReason: u32,
             ePhase: u32,
             fCantDeny: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnRowChange: *const fn(
             self: *const IRowsetNotify,
             pRowset: ?*IRowset,
@@ -5855,14 +5855,14 @@ pub const IRowsetNotify = extern union {
             eReason: u32,
             ePhase: u32,
             fCantDeny: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnRowsetChange: *const fn(
             self: *const IRowsetNotify,
             pRowset: ?*IRowset,
             eReason: u32,
             ePhase: u32,
             fCantDeny: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5929,14 +5929,14 @@ pub const IRowsetIndex = extern union {
             prgIndexColumnDesc: ?*?*DBINDEXCOLUMNDESC,
             pcIndexPropertySets: ?*u32,
             prgIndexPropertySets: ?*?*DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Seek: *const fn(
             self: *const IRowsetIndex,
             hAccessor: usize,
             cKeyValues: usize,
             pData: ?*anyopaque,
             dwSeekOptions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRange: *const fn(
             self: *const IRowsetIndex,
             hAccessor: usize,
@@ -5945,7 +5945,7 @@ pub const IRowsetIndex = extern union {
             cEndKeyColumns: usize,
             pEndData: ?*anyopaque,
             dwRangeOptions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5967,7 +5967,7 @@ pub const ICommand = extern union {
         base: IUnknown.VTable,
         Cancel: *const fn(
             self: *const ICommand,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Execute: *const fn(
             self: *const ICommand,
             pUnkOuter: ?*IUnknown,
@@ -5975,12 +5975,12 @@ pub const ICommand = extern union {
             pParams: ?*DBPARAMS,
             pcRowsAffected: ?*isize,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDBSession: *const fn(
             self: *const ICommand,
             riid: ?*const Guid,
             ppSession: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6016,7 +6016,7 @@ pub const IMultipleResults = extern union {
             riid: ?*const Guid,
             pcRowsAffected: ?*isize,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6051,7 +6051,7 @@ pub const IConvertType = extern union {
             wFromType: u16,
             wToType: u16,
             dwConvertFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6068,10 +6068,10 @@ pub const ICommandPrepare = extern union {
         Prepare: *const fn(
             self: *const ICommandPrepare,
             cExpectedRuns: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unprepare: *const fn(
             self: *const ICommandPrepare,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6094,12 +6094,12 @@ pub const ICommandProperties = extern union {
             rgPropertyIDSets: ?[*]const DBPROPIDSET,
             pcPropertySets: ?*u32,
             prgPropertySets: ?*?*DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperties: *const fn(
             self: *const ICommandProperties,
             cPropertySets: u32,
             rgPropertySets: [*]DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6120,12 +6120,12 @@ pub const ICommandText = extern union {
             self: *const ICommandText,
             pguidDialect: ?*Guid,
             ppwszCommand: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCommandText: *const fn(
             self: *const ICommandText,
             rguidDialect: ?*const Guid,
             pwszCommand: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICommand: ICommand,
@@ -6149,19 +6149,19 @@ pub const ICommandWithParameters = extern union {
             pcParams: ?*usize,
             prgParamInfo: ?*?*DBPARAMINFO,
             ppNamesBuffer: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MapParameterNames: *const fn(
             self: *const ICommandWithParameters,
             cParamNames: usize,
             rgParamNames: [*]?PWSTR,
             rgParamOrdinals: [*]isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetParameterInfo: *const fn(
             self: *const ICommandWithParameters,
             cParams: usize,
             rgParamOrdinals: ?[*]const usize,
             rgParamBindInfo: ?[*]const DBPARAMBINDINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6185,7 +6185,7 @@ pub const IColumnsRowset = extern union {
             self: *const IColumnsRowset,
             pcOptColumns: ?*usize,
             prgOptColumns: ?*?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColumnsRowset: *const fn(
             self: *const IColumnsRowset,
             pUnkOuter: ?*IUnknown,
@@ -6195,7 +6195,7 @@ pub const IColumnsRowset = extern union {
             cPropertySets: u32,
             rgPropertySets: ?[*]DBPROPSET,
             ppColRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6217,13 +6217,13 @@ pub const IColumnsInfo = extern union {
             pcColumns: ?*usize,
             prgInfo: ?*?*DBCOLUMNINFO,
             ppStringsBuffer: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MapColumnIDs: *const fn(
             self: *const IColumnsInfo,
             cColumnIDs: usize,
             rgColumnIDs: ?[*]const DBID,
             rgColumns: ?[*]usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6245,7 +6245,7 @@ pub const IDBCreateCommand = extern union {
             pUnkOuter: ?*IUnknown,
             riid: ?*const Guid,
             ppCommand: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6264,7 +6264,7 @@ pub const IDBCreateSession = extern union {
             pUnkOuter: ?*IUnknown,
             riid: ?*const Guid,
             ppDBSession: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6304,7 +6304,7 @@ pub const ISourcesRowset = extern union {
             cPropertySets: u32,
             rgProperties: ?[*]DBPROPSET,
             ppSourcesRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6324,7 +6324,7 @@ pub const IDBProperties = extern union {
             rgPropertyIDSets: ?[*]const DBPROPIDSET,
             pcPropertySets: ?*u32,
             prgPropertySets: ?*?*DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyInfo: *const fn(
             self: *const IDBProperties,
             cPropertyIDSets: u32,
@@ -6332,12 +6332,12 @@ pub const IDBProperties = extern union {
             pcPropertyInfoSets: ?*u32,
             prgPropertyInfoSets: ?*?*DBPROPINFOSET,
             ppDescBuffer: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperties: *const fn(
             self: *const IDBProperties,
             cPropertySets: u32,
             rgPropertySets: ?[*]DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6359,10 +6359,10 @@ pub const IDBInitialize = extern union {
         base: IUnknown.VTable,
         Initialize: *const fn(
             self: *const IDBInitialize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Uninitialize: *const fn(
             self: *const IDBInitialize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6454,7 +6454,7 @@ pub const IDBInfo = extern union {
         GetKeywords: *const fn(
             self: *const IDBInfo,
             ppwszKeywords: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLiteralInfo: *const fn(
             self: *const IDBInfo,
             cLiterals: u32,
@@ -6462,7 +6462,7 @@ pub const IDBInfo = extern union {
             pcLiteralInfo: ?*u32,
             prgLiteralInfo: ?*?*DBLITERALINFO,
             ppCharBuffer: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6486,10 +6486,10 @@ pub const IDBDataSourceAdmin = extern union {
             pUnkOuter: ?*IUnknown,
             riid: ?*const Guid,
             ppDBSession: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DestroyDataSource: *const fn(
             self: *const IDBDataSourceAdmin,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCreationProperties: *const fn(
             self: *const IDBDataSourceAdmin,
             cPropertyIDSets: u32,
@@ -6497,12 +6497,12 @@ pub const IDBDataSourceAdmin = extern union {
             pcPropertyInfoSets: ?*u32,
             prgPropertyInfoSets: ?*?*DBPROPINFOSET,
             ppDescBuffer: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ModifyDataSource: *const fn(
             self: *const IDBDataSourceAdmin,
             cPropertySets: u32,
             rgPropertySets: ?[*]DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6528,7 +6528,7 @@ pub const IDBAsynchNotify = extern union {
         OnLowResource: *const fn(
             self: *const IDBAsynchNotify,
             dwReserved: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnProgress: *const fn(
             self: *const IDBAsynchNotify,
             hChapter: usize,
@@ -6537,14 +6537,14 @@ pub const IDBAsynchNotify = extern union {
             ulProgressMax: usize,
             eAsynchPhase: u32,
             pwszStatusText: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnStop: *const fn(
             self: *const IDBAsynchNotify,
             hChapter: usize,
             eOperation: u32,
             hrStatus: HRESULT,
             pwszStatusText: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6568,7 +6568,7 @@ pub const IDBAsynchStatus = extern union {
             self: *const IDBAsynchStatus,
             hChapter: usize,
             eOperation: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IDBAsynchStatus,
             hChapter: usize,
@@ -6577,7 +6577,7 @@ pub const IDBAsynchStatus = extern union {
             pulProgressMax: ?*usize,
             peAsynchPhase: ?*u32,
             ppwszStatusText: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6600,12 +6600,12 @@ pub const ISessionProperties = extern union {
             rgPropertyIDSets: ?[*]const DBPROPIDSET,
             pcPropertySets: ?*u32,
             prgPropertySets: ?*?*DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperties: *const fn(
             self: *const ISessionProperties,
             cPropertySets: u32,
             rgPropertySets: ?[*]DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6631,12 +6631,12 @@ pub const IIndexDefinition = extern union {
             cPropertySets: u32,
             rgPropertySets: [*]DBPROPSET,
             ppIndexID: ?*?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DropIndex: *const fn(
             self: *const IIndexDefinition,
             pTableID: ?*DBID,
             pIndexID: ?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6664,22 +6664,22 @@ pub const ITableDefinition = extern union {
             rgPropertySets: ?[*]DBPROPSET,
             ppTableID: ?*?*DBID,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DropTable: *const fn(
             self: *const ITableDefinition,
             pTableID: ?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddColumn: *const fn(
             self: *const ITableDefinition,
             pTableID: ?*DBID,
             pColumnDesc: ?*DBCOLUMNDESC,
             ppColumnID: ?*?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DropColumn: *const fn(
             self: *const ITableDefinition,
             pTableID: ?*DBID,
             pColumnID: ?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6711,7 +6711,7 @@ pub const IOpenRowset = extern union {
             cPropertySets: u32,
             rgPropertySets: ?[*]DBPROPSET,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6735,13 +6735,13 @@ pub const IDBSchemaRowset = extern union {
             cPropertySets: u32,
             rgPropertySets: ?[*]DBPROPSET,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSchemas: *const fn(
             self: *const IDBSchemaRowset,
             pcSchemas: ?*u32,
             prgSchemas: ?*?*Guid,
             prgRestrictionSupport: ?*?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6762,12 +6762,12 @@ pub const IMDDataset = extern union {
             self: *const IMDDataset,
             cAxes: usize,
             rgAxisInfo: ?*MDAXISINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAxisInfo: *const fn(
             self: *const IMDDataset,
             pcAxes: ?*usize,
             prgAxisInfo: ?*?*MDAXISINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAxisRowset: *const fn(
             self: *const IMDDataset,
             pUnkOuter: ?*IUnknown,
@@ -6776,19 +6776,19 @@ pub const IMDDataset = extern union {
             cPropertySets: u32,
             rgPropertySets: ?*DBPROPSET,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCellData: *const fn(
             self: *const IMDDataset,
             hAccessor: usize,
             ulStartCell: usize,
             ulEndCell: usize,
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpecification: *const fn(
             self: *const IMDDataset,
             riid: ?*const Guid,
             ppSpecification: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6820,7 +6820,7 @@ pub const IMDFind = extern union {
             cMembers: usize,
             rgpwszMember: ?*?PWSTR,
             pulCellOrdinal: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindTuple: *const fn(
             self: *const IMDFind,
             ulAxisIdentifier: u32,
@@ -6828,7 +6828,7 @@ pub const IMDFind = extern union {
             cMembers: usize,
             rgpwszMember: ?*?PWSTR,
             pulTupleOrdinal: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6854,7 +6854,7 @@ pub const IMDRangeRowset = extern union {
             cPropertySets: u32,
             rgPropertySets: ?*DBPROPSET,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6874,14 +6874,14 @@ pub const IAlterTable = extern union {
             pColumnId: ?*DBID,
             dwColumnDescFlags: u32,
             pColumnDesc: ?*DBCOLUMNDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AlterTable: *const fn(
             self: *const IAlterTable,
             pTableId: ?*DBID,
             pNewTableId: ?*DBID,
             cPropertySets: u32,
             rgPropertySets: ?*DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6905,7 +6905,7 @@ pub const IAlterIndex = extern union {
             pNewIndexId: ?*DBID,
             cPropertySets: u32,
             rgPropertySets: ?*DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6923,7 +6923,7 @@ pub const IRowsetChapterMember = extern union {
             self: *const IRowsetChapterMember,
             hChapter: usize,
             hRow: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6940,21 +6940,21 @@ pub const ICommandPersist = extern union {
         DeleteCommand: *const fn(
             self: *const ICommandPersist,
             pCommandID: ?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentCommand: *const fn(
             self: *const ICommandPersist,
             ppCommandID: ?*?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadCommand: *const fn(
             self: *const ICommandPersist,
             pCommandID: ?*DBID,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveCommand: *const fn(
             self: *const ICommandPersist,
             pCommandID: ?*DBID,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6986,13 +6986,13 @@ pub const IRowsetRefresh = extern union {
             pcRowsRefreshed: ?*usize,
             prghRowsRefreshed: ?*?*usize,
             prgRowStatus: ?*?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastVisibleData: *const fn(
             self: *const IRowsetRefresh,
             hRow: usize,
             hAccessor: usize,
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7015,7 +7015,7 @@ pub const IParentRowset = extern union {
             iOrdinal: usize,
             riid: ?*const Guid,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7037,33 +7037,33 @@ pub const IErrorRecords = extern union {
             pdispparams: ?*DISPPARAMS,
             punkCustomError: ?*IUnknown,
             dwDynamicErrorID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBasicErrorInfo: *const fn(
             self: *const IErrorRecords,
             ulRecordNum: u32,
             pErrorInfo: ?*ERRORINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCustomErrorObject: *const fn(
             self: *const IErrorRecords,
             ulRecordNum: u32,
             riid: ?*const Guid,
             ppObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorInfo: *const fn(
             self: *const IErrorRecords,
             ulRecordNum: u32,
             lcid: u32,
             ppErrorInfo: ?*?*IErrorInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorParameters: *const fn(
             self: *const IErrorRecords,
             ulRecordNum: u32,
             pdispparams: ?*DISPPARAMS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecordCount: *const fn(
             self: *const IErrorRecords,
             pcRecords: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7100,7 +7100,7 @@ pub const IErrorLookup = extern union {
             lcid: u32,
             pbstrSource: ?*?BSTR,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHelpInfo: *const fn(
             self: *const IErrorLookup,
             hrError: HRESULT,
@@ -7108,11 +7108,11 @@ pub const IErrorLookup = extern union {
             lcid: u32,
             pbstrHelpFile: ?*?BSTR,
             pdwHelpContext: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseErrors: *const fn(
             self: *const IErrorLookup,
             dwDynamicErrorID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7136,7 +7136,7 @@ pub const ISQLErrorInfo = extern union {
             self: *const ISQLErrorInfo,
             pbstrSQLState: ?*?BSTR,
             plNativeError: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7154,7 +7154,7 @@ pub const IGetDataSource = extern union {
             self: *const IGetDataSource,
             riid: ?*const Guid,
             ppDataSource: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7171,14 +7171,14 @@ pub const ITransactionLocal = extern union {
         GetOptionsObject: *const fn(
             self: *const ITransactionLocal,
             ppOptions: ?*?*ITransactionOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartTransaction: *const fn(
             self: *const ITransactionLocal,
             isoLevel: i32,
             isoFlags: u32,
             pOtherOptions: ?*ITransactionOptions,
             pulTransactionLevel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITransaction: ITransaction,
@@ -7199,14 +7199,14 @@ pub const ITransactionJoin = extern union {
         GetOptionsObject: *const fn(
             self: *const ITransactionJoin,
             ppOptions: ?*?*ITransactionOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         JoinTransaction: *const fn(
             self: *const ITransactionJoin,
             punkTransactionCoord: ?*IUnknown,
             isoLevel: i32,
             isoFlags: u32,
             pOtherOptions: ?*ITransactionOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7227,7 +7227,7 @@ pub const ITransactionObject = extern union {
             self: *const ITransactionObject,
             ulTransactionLevel: u32,
             ppTransactionObject: ?*?*ITransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7245,23 +7245,23 @@ pub const ITrusteeAdmin = extern union {
             self: *const ITrusteeAdmin,
             pTrustee1: ?*TRUSTEE_W,
             pTrustee2: ?*TRUSTEE_W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTrustee: *const fn(
             self: *const ITrusteeAdmin,
             pTrustee: ?*TRUSTEE_W,
             cPropertySets: u32,
             rgPropertySets: ?*DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTrustee: *const fn(
             self: *const ITrusteeAdmin,
             pTrustee: ?*TRUSTEE_W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTrusteeProperties: *const fn(
             self: *const ITrusteeAdmin,
             pTrustee: ?*TRUSTEE_W,
             cPropertySets: u32,
             rgPropertySets: ?*DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTrusteeProperties: *const fn(
             self: *const ITrusteeAdmin,
             pTrustee: ?*TRUSTEE_W,
@@ -7269,7 +7269,7 @@ pub const ITrusteeAdmin = extern union {
             rgPropertyIDSets: ?*const DBPROPIDSET,
             pcPropertySets: ?*u32,
             prgPropertySets: ?*?*DBPROPSET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7299,30 +7299,30 @@ pub const ITrusteeGroupAdmin = extern union {
             self: *const ITrusteeGroupAdmin,
             pMembershipTrustee: ?*TRUSTEE_W,
             pMemberTrustee: ?*TRUSTEE_W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteMember: *const fn(
             self: *const ITrusteeGroupAdmin,
             pMembershipTrustee: ?*TRUSTEE_W,
             pMemberTrustee: ?*TRUSTEE_W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsMember: *const fn(
             self: *const ITrusteeGroupAdmin,
             pMembershipTrustee: ?*TRUSTEE_W,
             pMemberTrustee: ?*TRUSTEE_W,
             pfStatus: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMembers: *const fn(
             self: *const ITrusteeGroupAdmin,
             pMembershipTrustee: ?*TRUSTEE_W,
             pcMembers: ?*u32,
             prgMembers: ?*?*TRUSTEE_W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMemberships: *const fn(
             self: *const ITrusteeGroupAdmin,
             pTrustee: ?*TRUSTEE_W,
             pcMemberships: ?*u32,
             prgMemberships: ?*?*TRUSTEE_W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7353,29 +7353,29 @@ pub const IObjectAccessControl = extern union {
             pObject: ?*SEC_OBJECT,
             pcAccessEntries: ?*u32,
             prgAccessEntries: ?*?*EXPLICIT_ACCESS_W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectOwner: *const fn(
             self: *const IObjectAccessControl,
             pObject: ?*SEC_OBJECT,
             ppOwner: ?*?*TRUSTEE_W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsObjectAccessAllowed: *const fn(
             self: *const IObjectAccessControl,
             pObject: ?*SEC_OBJECT,
             pAccessEntry: ?*EXPLICIT_ACCESS_W,
             pfResult: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetObjectAccessRights: *const fn(
             self: *const IObjectAccessControl,
             pObject: ?*SEC_OBJECT,
             cAccessEntries: u32,
             prgAccessEntries: ?*EXPLICIT_ACCESS_W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetObjectOwner: *const fn(
             self: *const IObjectAccessControl,
             pObject: ?*SEC_OBJECT,
             pOwner: ?*TRUSTEE_W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7441,17 +7441,17 @@ pub const ISecurityInfo = extern union {
         GetCurrentTrustee: *const fn(
             self: *const ISecurityInfo,
             ppTrustee: ?*?*TRUSTEE_W,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectTypes: *const fn(
             self: *const ISecurityInfo,
             cObjectTypes: ?*u32,
             rgObjectTypes: ?*?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPermissions: *const fn(
             self: *const ISecurityInfo,
             ObjectType: Guid,
             pPermissions: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7481,7 +7481,7 @@ pub const ITableCreation = extern union {
             pcConstraintDescs: ?*u32,
             prgConstraintDescs: ?[*]?*DBCONSTRAINTDESC,
             ppwszStringBuffer: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITableDefinition: ITableDefinition,
@@ -7500,7 +7500,7 @@ pub const ITableDefinitionWithConstraints = extern union {
             self: *const ITableDefinitionWithConstraints,
             pTableID: ?*DBID,
             pConstraintDesc: ?*DBCONSTRAINTDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTableWithConstraints: *const fn(
             self: *const ITableDefinitionWithConstraints,
             pUnkOuter: ?*IUnknown,
@@ -7514,12 +7514,12 @@ pub const ITableDefinitionWithConstraints = extern union {
             rgPropertySets: ?*DBPROPSET,
             ppTableID: ?*?*DBID,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DropConstraint: *const fn(
             self: *const ITableDefinitionWithConstraints,
             pTableID: ?*DBID,
             pConstraintID: ?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITableCreation: ITableCreation,
@@ -7545,13 +7545,13 @@ pub const IRow = extern union {
             self: *const IRow,
             cColumns: usize,
             rgColumns: [*]DBCOLUMNACCESS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceRowset: *const fn(
             self: *const IRow,
             riid: ?*const Guid,
             ppRowset: ?*?*IUnknown,
             phRow: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Open: *const fn(
             self: *const IRow,
             pUnkOuter: ?*IUnknown,
@@ -7560,7 +7560,7 @@ pub const IRow = extern union {
             dwBindFlags: u32,
             riid: ?*const Guid,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7584,7 +7584,7 @@ pub const IRowChange = extern union {
             self: *const IRowChange,
             cColumns: usize,
             rgColumns: [*]DBCOLUMNACCESS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7603,13 +7603,13 @@ pub const IRowSchemaChange = extern union {
             cColumns: usize,
             rgColumnIDs: ?*const DBID,
             rgdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddColumns: *const fn(
             self: *const IRowSchemaChange,
             cColumns: usize,
             rgNewColumnInfo: ?*const DBCOLUMNINFO,
             rgColumns: ?*DBCOLUMNACCESS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IRowChange: IRowChange,
@@ -7633,12 +7633,12 @@ pub const IGetRow = extern union {
             hRow: usize,
             riid: ?*const Guid,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetURLFromHROW: *const fn(
             self: *const IGetRow,
             hRow: usize,
             ppwszURL: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7666,7 +7666,7 @@ pub const IBindResource = extern union {
             pImplSession: ?*DBIMPLICITSESSION,
             pdwBindStatus: ?*u32,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7723,7 +7723,7 @@ pub const IScopedOperations = extern union {
             rgdwStatus: [*]u32,
             rgpwszNewURLs: ?[*]?PWSTR,
             ppStringsBuffer: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Move: *const fn(
             self: *const IScopedOperations,
             cRows: usize,
@@ -7734,14 +7734,14 @@ pub const IScopedOperations = extern union {
             rgdwStatus: [*]u32,
             rgpwszNewURLs: ?[*]?PWSTR,
             ppStringsBuffer: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IScopedOperations,
             cRows: usize,
             rgpwszURLs: [*]?PWSTR,
             dwDeleteFlags: u32,
             rgdwStatus: [*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRowset: *const fn(
             self: *const IScopedOperations,
             pUnkOuter: ?*IUnknown,
@@ -7751,7 +7751,7 @@ pub const IScopedOperations = extern union {
             cPropertySets: u32,
             rgPropertySets: [*]DBPROPSET,
             ppRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBindResource: IBindResource,
@@ -7787,7 +7787,7 @@ pub const ICreateRow = extern union {
             pdwBindStatus: ?*u32,
             ppwszNewURL: ?*?PWSTR,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7803,7 +7803,7 @@ pub const IDBBinderProperties = extern union {
         base: IDBProperties.VTable,
         Reset: *const fn(
             self: *const IDBBinderProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDBProperties: IDBProperties,
@@ -7827,7 +7827,7 @@ pub const IColumnsInfo2 = extern union {
             prgColumnIDs: ?*?*DBID,
             prgColumnInfo: ?*?*DBCOLUMNINFO,
             ppStringsBuffer: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IColumnsInfo: IColumnsInfo,
@@ -7847,19 +7847,19 @@ pub const IRegisterProvider = extern union {
             pwszURL: ?[*:0]const u16,
             dwReserved: usize,
             pclsidProvider: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetURLMapping: *const fn(
             self: *const IRegisterProvider,
             pwszURL: ?[*:0]const u16,
             dwReserved: usize,
             rclsidProvider: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterProvider: *const fn(
             self: *const IRegisterProvider,
             pwszURL: ?[*:0]const u16,
             dwReserved: usize,
             rclsidProvider: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7883,7 +7883,7 @@ pub const IGetSession = extern union {
             self: *const IGetSession,
             riid: ?*const Guid,
             ppSession: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7901,7 +7901,7 @@ pub const IGetSourceRow = extern union {
             self: *const IGetSourceRow,
             riid: ?*const Guid,
             ppRow: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7918,11 +7918,11 @@ pub const IRowsetCurrentIndex = extern union {
         GetIndex: *const fn(
             self: *const IRowsetCurrentIndex,
             ppIndexID: ?*?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIndex: *const fn(
             self: *const IRowsetCurrentIndex,
             pIndexID: ?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IRowsetIndex: IRowsetIndex,
@@ -7945,13 +7945,13 @@ pub const ICommandStream = extern union {
             piid: ?*Guid,
             pguidDialect: ?*Guid,
             ppCommandStream: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCommandStream: *const fn(
             self: *const ICommandStream,
             riid: ?*const Guid,
             rguidDialect: ?*const Guid,
             pCommandStream: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -7974,7 +7974,7 @@ pub const IRowsetBookmark = extern union {
             cbBookmark: usize,
             // TODO: what to do with BytesParamIndex 1?
             pBookmark: ?*const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8156,46 +8156,46 @@ pub const IQueryParser = extern union {
             pszInputString: ?[*:0]const u16,
             pCustomProperties: ?*IEnumUnknown,
             ppSolution: ?*?*IQuerySolution,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOption: *const fn(
             self: *const IQueryParser,
             option: STRUCTURED_QUERY_SINGLE_OPTION,
             pOptionValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOption: *const fn(
             self: *const IQueryParser,
             option: STRUCTURED_QUERY_SINGLE_OPTION,
             pOptionValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMultiOption: *const fn(
             self: *const IQueryParser,
             option: STRUCTURED_QUERY_MULTIOPTION,
             pszOptionKey: ?[*:0]const u16,
             pOptionValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSchemaProvider: *const fn(
             self: *const IQueryParser,
             ppSchemaProvider: ?*?*ISchemaProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestateToString: *const fn(
             self: *const IQueryParser,
             pCondition: ?*ICondition,
             fUseEnglish: BOOL,
             ppszQueryString: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ParsePropertyValue: *const fn(
             self: *const IQueryParser,
             pszPropertyName: ?[*:0]const u16,
             pszInputString: ?[*:0]const u16,
             ppSolution: ?*?*IQuerySolution,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestatePropertyValueToString: *const fn(
             self: *const IQueryParser,
             pCondition: ?*ICondition,
             fUseEnglish: BOOL,
             ppszPropertyName: ?*?PWSTR,
             ppszQueryString: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8236,14 +8236,14 @@ pub const IConditionFactory = extern union {
             pcSub: ?*ICondition,
             fSimplify: BOOL,
             ppcResult: ?*?*ICondition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MakeAndOr: *const fn(
             self: *const IConditionFactory,
             ct: CONDITION_TYPE,
             peuSubs: ?*IEnumUnknown,
             fSimplify: BOOL,
             ppcResult: ?*?*ICondition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MakeLeaf: *const fn(
             self: *const IConditionFactory,
             pszPropertyName: ?[*:0]const u16,
@@ -8255,14 +8255,14 @@ pub const IConditionFactory = extern union {
             pValueTerm: ?*IRichChunk,
             fExpand: BOOL,
             ppcResult: ?*?*ICondition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resolve: *const fn(
             self: *const IConditionFactory,
             pc: ?*ICondition,
             sqro: STRUCTURED_QUERY_RESOLVE_OPTION,
             pstReferenceTime: ?*const SYSTEMTIME,
             ppcResolved: ?*?*ICondition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8290,19 +8290,19 @@ pub const IQuerySolution = extern union {
             self: *const IQuerySolution,
             ppQueryNode: ?*?*ICondition,
             ppMainType: ?*?*IEntity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrors: *const fn(
             self: *const IQuerySolution,
             riid: ?*const Guid,
             ppParseErrors: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLexicalData: *const fn(
             self: *const IQuerySolution,
             ppszInputString: ?*?PWSTR,
             ppTokens: ?*?*ITokenCollection,
             plcid: ?*u32,
             ppWordBreaker: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IConditionFactory: IConditionFactory,
@@ -8372,14 +8372,14 @@ pub const IConditionFactory2 = extern union {
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateNegation: *const fn(
             self: *const IConditionFactory2,
             pcSub: ?*ICondition,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCompoundFromObjectArray: *const fn(
             self: *const IConditionFactory2,
             ct: CONDITION_TYPE,
@@ -8387,7 +8387,7 @@ pub const IConditionFactory2 = extern union {
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCompoundFromArray: *const fn(
             self: *const IConditionFactory2,
             ct: CONDITION_TYPE,
@@ -8396,7 +8396,7 @@ pub const IConditionFactory2 = extern union {
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStringLeaf: *const fn(
             self: *const IConditionFactory2,
             propkey: ?*const PROPERTYKEY,
@@ -8406,7 +8406,7 @@ pub const IConditionFactory2 = extern union {
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateIntegerLeaf: *const fn(
             self: *const IConditionFactory2,
             propkey: ?*const PROPERTYKEY,
@@ -8415,7 +8415,7 @@ pub const IConditionFactory2 = extern union {
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBooleanLeaf: *const fn(
             self: *const IConditionFactory2,
             propkey: ?*const PROPERTYKEY,
@@ -8424,7 +8424,7 @@ pub const IConditionFactory2 = extern union {
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateLeaf: *const fn(
             self: *const IConditionFactory2,
             propkey: ?*const PROPERTYKEY,
@@ -8438,7 +8438,7 @@ pub const IConditionFactory2 = extern union {
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResolveCondition: *const fn(
             self: *const IConditionFactory2,
             pc: ?*ICondition,
@@ -8446,7 +8446,7 @@ pub const IConditionFactory2 = extern union {
             pstReferenceTime: ?*const SYSTEMTIME,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IConditionFactory: IConditionFactory,
@@ -8489,14 +8489,14 @@ pub const IConditionGenerator = extern union {
         Initialize: *const fn(
             self: *const IConditionGenerator,
             pSchemaProvider: ?*ISchemaProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RecognizeNamedEntities: *const fn(
             self: *const IConditionGenerator,
             pszInputString: ?[*:0]const u16,
             lcidUserLocale: u32,
             pTokenCollection: ?*ITokenCollection,
             pNamedEntities: ?*INamedEntityCollector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateForLeaf: *const fn(
             self: *const IConditionGenerator,
             pConditionFactory: ?*IConditionFactory,
@@ -8511,14 +8511,14 @@ pub const IConditionGenerator = extern union {
             automaticWildcard: BOOL,
             pNoStringQuery: ?*BOOL,
             ppQueryExpression: ?*?*ICondition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DefaultPhrase: *const fn(
             self: *const IConditionGenerator,
             pszValueType: ?[*:0]const u16,
             ppropvar: ?*const PROPVARIANT,
             fUseEnglish: BOOL,
             ppszPhrase: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8548,7 +8548,7 @@ pub const IInterval = extern union {
             ppropvarLower: ?*PROPVARIANT,
             pilkUpper: ?*INTERVAL_LIMIT_KIND,
             ppropvarUpper: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8567,7 +8567,7 @@ pub const IMetaData = extern union {
             self: *const IMetaData,
             ppszKey: ?*?PWSTR,
             ppszValue: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8585,40 +8585,40 @@ pub const IEntity = extern union {
         Name: *const fn(
             self: *const IEntity,
             ppszName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Base: *const fn(
             self: *const IEntity,
             pBaseEntity: ?*?*IEntity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Relationships: *const fn(
             self: *const IEntity,
             riid: ?*const Guid,
             pRelationships: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRelationship: *const fn(
             self: *const IEntity,
             pszRelationName: ?[*:0]const u16,
             pRelationship: ?*?*IRelationship,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MetaData: *const fn(
             self: *const IEntity,
             riid: ?*const Guid,
             pMetaData: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NamedEntities: *const fn(
             self: *const IEntity,
             riid: ?*const Guid,
             pNamedEntities: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNamedEntity: *const fn(
             self: *const IEntity,
             pszValue: ?[*:0]const u16,
             ppNamedEntity: ?*?*INamedEntity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DefaultPhrase: *const fn(
             self: *const IEntity,
             ppszPhrase: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8657,24 +8657,24 @@ pub const IRelationship = extern union {
         Name: *const fn(
             self: *const IRelationship,
             ppszName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsReal: *const fn(
             self: *const IRelationship,
             pIsReal: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Destination: *const fn(
             self: *const IRelationship,
             pDestinationEntity: ?*?*IEntity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MetaData: *const fn(
             self: *const IRelationship,
             riid: ?*const Guid,
             pMetaData: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DefaultPhrase: *const fn(
             self: *const IRelationship,
             ppszPhrase: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8704,11 +8704,11 @@ pub const INamedEntity = extern union {
         GetValue: *const fn(
             self: *const INamedEntity,
             ppszValue: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DefaultPhrase: *const fn(
             self: *const INamedEntity,
             ppszPhrase: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8730,30 +8730,30 @@ pub const ISchemaProvider = extern union {
             self: *const ISchemaProvider,
             riid: ?*const Guid,
             pEntities: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RootEntity: *const fn(
             self: *const ISchemaProvider,
             pRootEntity: ?*?*IEntity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEntity: *const fn(
             self: *const ISchemaProvider,
             pszEntityName: ?[*:0]const u16,
             pEntity: ?*?*IEntity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MetaData: *const fn(
             self: *const ISchemaProvider,
             riid: ?*const Guid,
             pMetaData: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Localize: *const fn(
             self: *const ISchemaProvider,
             lcid: u32,
             pSchemaLocalizerSupport: ?*ISchemaLocalizerSupport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveBinary: *const fn(
             self: *const ISchemaProvider,
             pszSchemaBinaryPath: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LookupAuthoredNamedEntity: *const fn(
             self: *const ISchemaProvider,
             pEntity: ?*IEntity,
@@ -8762,7 +8762,7 @@ pub const ISchemaProvider = extern union {
             cTokensBegin: u32,
             pcTokensLength: ?*u32,
             ppszValue: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8798,14 +8798,14 @@ pub const ITokenCollection = extern union {
         NumberOfTokens: *const fn(
             self: *const ITokenCollection,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetToken: *const fn(
             self: *const ITokenCollection,
             i: u32,
             pBegin: ?*u32,
             pLength: ?*u32,
             ppsz: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8841,7 +8841,7 @@ pub const INamedEntityCollector = extern union {
             pType: ?*IEntity,
             pszValue: ?[*:0]const u16,
             certainty: NAMED_ENTITY_CERTAINTY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8860,7 +8860,7 @@ pub const ISchemaLocalizerSupport = extern union {
             self: *const ISchemaLocalizerSupport,
             pszGlobalString: ?[*:0]const u16,
             ppszLocalString: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8881,18 +8881,18 @@ pub const IQueryParserManager = extern union {
             langidForKeywords: u16,
             riid: ?*const Guid,
             ppQueryParser: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeOptions: *const fn(
             self: *const IQueryParserManager,
             fUnderstandNQS: BOOL,
             fAutoWildCard: BOOL,
             pQueryParser: ?*IQueryParser,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOption: *const fn(
             self: *const IQueryParserManager,
             option: QUERY_PARSER_MANAGER_OPTION,
             pOptionValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8922,64 +8922,64 @@ pub const IUrlAccessor = extern union {
             self: *const IUrlAccessor,
             pSpec: ?*PROPSPEC,
             pVar: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDocFormat: *const fn(
             self: *const IUrlAccessor,
             wszDocFormat: [*:0]u16,
             dwSize: u32,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCLSID: *const fn(
             self: *const IUrlAccessor,
             pClsid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHost: *const fn(
             self: *const IUrlAccessor,
             wszHost: [*:0]u16,
             dwSize: u32,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsDirectory: *const fn(
             self: *const IUrlAccessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSize: *const fn(
             self: *const IUrlAccessor,
             pllSize: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastModified: *const fn(
             self: *const IUrlAccessor,
             pftLastModified: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileName: *const fn(
             self: *const IUrlAccessor,
             wszFileName: [*:0]u16,
             dwSize: u32,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSecurityDescriptor: *const fn(
             self: *const IUrlAccessor,
             pSD: [*:0]u8,
             dwSize: u32,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRedirectedURL: *const fn(
             self: *const IUrlAccessor,
             wszRedirectedURL: [*:0]u16,
             dwSize: u32,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSecurityProvider: *const fn(
             self: *const IUrlAccessor,
             pSPClsid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindToStream: *const fn(
             self: *const IUrlAccessor,
             ppStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindToFilter: *const fn(
             self: *const IUrlAccessor,
             ppFilter: ?*?*IFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9035,16 +9035,16 @@ pub const IUrlAccessor2 = extern union {
             wszDocUrl: [*:0]u16,
             dwSize: u32,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsDocument: *const fn(
             self: *const IUrlAccessor2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCodePage: *const fn(
             self: *const IUrlAccessor2,
             wszCodePage: [*:0]u16,
             dwSize: u32,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUrlAccessor: IUrlAccessor,
@@ -9071,7 +9071,7 @@ pub const IUrlAccessor3 = extern union {
             pcwszURL: ?[*:0]const u16,
             pcSidCount: ?*u32,
             ppSidBlobs: ?*?*BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUrlAccessor2: IUrlAccessor2,
@@ -9091,12 +9091,12 @@ pub const IUrlAccessor4 = extern union {
         ShouldIndexItemContent: *const fn(
             self: *const IUrlAccessor4,
             pfIndexContent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShouldIndexProperty: *const fn(
             self: *const IUrlAccessor4,
             key: ?*const PROPERTYKEY,
             pfIndexProperty: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUrlAccessor3: IUrlAccessor3,
@@ -9120,15 +9120,15 @@ pub const IOpLockStatus = extern union {
         IsOplockValid: *const fn(
             self: *const IOpLockStatus,
             pfIsOplockValid: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsOplockBroken: *const fn(
             self: *const IOpLockStatus,
             pfIsOplockBroken: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOplockEventHandle: *const fn(
             self: *const IOpLockStatus,
             phOplockEv: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9151,14 +9151,14 @@ pub const ISearchProtocolThreadContext = extern union {
         base: IUnknown.VTable,
         ThreadInit: *const fn(
             self: *const ISearchProtocolThreadContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ThreadShutdown: *const fn(
             self: *const ISearchProtocolThreadContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ThreadIdle: *const fn(
             self: *const ISearchProtocolThreadContext,
             dwTimeElaspedSinceLastCallInMS: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9238,7 +9238,7 @@ pub const ISearchProtocol = extern union {
             pTimeoutInfo: ?*TIMEOUT_INFO,
             pProtocolHandlerSite: ?*IProtocolHandlerSite,
             pProxyInfo: ?*PROXY_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAccessor: *const fn(
             self: *const ISearchProtocol,
             pcwszURL: ?[*:0]const u16,
@@ -9246,14 +9246,14 @@ pub const ISearchProtocol = extern union {
             pIncrementalAccessInfo: ?*INCREMENTAL_ACCESS_INFO,
             pItemInfo: ?*ITEM_INFO,
             ppAccessor: ?*?*IUrlAccessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseAccessor: *const fn(
             self: *const ISearchProtocol,
             pAccessor: ?*IUrlAccessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShutDown: *const fn(
             self: *const ISearchProtocol,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9285,7 +9285,7 @@ pub const ISearchProtocol2 = extern union {
             pItemInfo: ?*ITEM_INFO,
             pUserData: ?*const BLOB,
             ppAccessor: ?*?*IUrlAccessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISearchProtocol: ISearchProtocol,
@@ -9307,7 +9307,7 @@ pub const IProtocolHandlerSite = extern union {
             pcwszContentType: ?[*:0]const u16,
             pcwszExtension: ?[*:0]const u16,
             ppFilter: ?*?*IFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9326,112 +9326,112 @@ pub const ISearchRoot = extern union {
         put_Schedule: *const fn(
             self: *const ISearchRoot,
             pszTaskArg: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Schedule: *const fn(
             self: *const ISearchRoot,
             ppszTaskArg: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RootURL: *const fn(
             self: *const ISearchRoot,
             pszURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootURL: *const fn(
             self: *const ISearchRoot,
             ppszURL: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsHierarchical: *const fn(
             self: *const ISearchRoot,
             fIsHierarchical: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsHierarchical: *const fn(
             self: *const ISearchRoot,
             pfIsHierarchical: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProvidesNotifications: *const fn(
             self: *const ISearchRoot,
             fProvidesNotifications: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProvidesNotifications: *const fn(
             self: *const ISearchRoot,
             pfProvidesNotifications: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseNotificationsOnly: *const fn(
             self: *const ISearchRoot,
             fUseNotificationsOnly: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseNotificationsOnly: *const fn(
             self: *const ISearchRoot,
             pfUseNotificationsOnly: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnumerationDepth: *const fn(
             self: *const ISearchRoot,
             dwDepth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnumerationDepth: *const fn(
             self: *const ISearchRoot,
             pdwDepth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HostDepth: *const fn(
             self: *const ISearchRoot,
             dwDepth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HostDepth: *const fn(
             self: *const ISearchRoot,
             pdwDepth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FollowDirectories: *const fn(
             self: *const ISearchRoot,
             fFollowDirectories: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FollowDirectories: *const fn(
             self: *const ISearchRoot,
             pfFollowDirectories: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthenticationType: *const fn(
             self: *const ISearchRoot,
             authType: AUTH_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthenticationType: *const fn(
             self: *const ISearchRoot,
             pAuthType: ?*AUTH_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_User: *const fn(
             self: *const ISearchRoot,
             pszUser: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_User: *const fn(
             self: *const ISearchRoot,
             ppszUser: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Password: *const fn(
             self: *const ISearchRoot,
             pszPassword: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Password: *const fn(
             self: *const ISearchRoot,
             ppszPassword: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9514,18 +9514,18 @@ pub const IEnumSearchRoots = extern union {
             celt: u32,
             rgelt: [*]?*ISearchRoot,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSearchRoots,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSearchRoots,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumSearchRoots,
             ppenum: ?*?*IEnumSearchRoots,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9560,22 +9560,22 @@ pub const ISearchScopeRule = extern union {
         get_PatternOrURL: *const fn(
             self: *const ISearchScopeRule,
             ppszPatternOrURL: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsIncluded: *const fn(
             self: *const ISearchScopeRule,
             pfIsIncluded: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsDefault: *const fn(
             self: *const ISearchScopeRule,
             pfIsDefault: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FollowFlags: *const fn(
             self: *const ISearchScopeRule,
             pFollowFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9604,18 +9604,18 @@ pub const IEnumSearchScopeRules = extern union {
             celt: u32,
             pprgelt: [*]?*ISearchScopeRule,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSearchScopeRules,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSearchScopeRules,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumSearchScopeRules,
             ppenum: ?*?*IEnumSearchScopeRules,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9655,77 +9655,77 @@ pub const ISearchCrawlScopeManager = extern union {
             pszURL: ?[*:0]const u16,
             fInclude: BOOL,
             fFollowFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRoot: *const fn(
             self: *const ISearchCrawlScopeManager,
             pSearchRoot: ?*ISearchRoot,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveRoot: *const fn(
             self: *const ISearchCrawlScopeManager,
             pszURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateRoots: *const fn(
             self: *const ISearchCrawlScopeManager,
             ppSearchRoots: ?*?*IEnumSearchRoots,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddHierarchicalScope: *const fn(
             self: *const ISearchCrawlScopeManager,
             pszURL: ?[*:0]const u16,
             fInclude: BOOL,
             fDefault: BOOL,
             fOverrideChildren: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddUserScopeRule: *const fn(
             self: *const ISearchCrawlScopeManager,
             pszURL: ?[*:0]const u16,
             fInclude: BOOL,
             fOverrideChildren: BOOL,
             fFollowFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveScopeRule: *const fn(
             self: *const ISearchCrawlScopeManager,
             pszRule: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateScopeRules: *const fn(
             self: *const ISearchCrawlScopeManager,
             ppSearchScopeRules: ?*?*IEnumSearchScopeRules,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasParentScopeRule: *const fn(
             self: *const ISearchCrawlScopeManager,
             pszURL: ?[*:0]const u16,
             pfHasParentRule: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasChildScopeRule: *const fn(
             self: *const ISearchCrawlScopeManager,
             pszURL: ?[*:0]const u16,
             pfHasChildRule: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IncludedInCrawlScope: *const fn(
             self: *const ISearchCrawlScopeManager,
             pszURL: ?[*:0]const u16,
             pfIsIncluded: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IncludedInCrawlScopeEx: *const fn(
             self: *const ISearchCrawlScopeManager,
             pszURL: ?[*:0]const u16,
             pfIsIncluded: ?*BOOL,
             pReason: ?*CLUSION_REASON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RevertToDefaultScopes: *const fn(
             self: *const ISearchCrawlScopeManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveAll: *const fn(
             self: *const ISearchCrawlScopeManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParentScopeVersionId: *const fn(
             self: *const ISearchCrawlScopeManager,
             pszURL: ?[*:0]const u16,
             plScopeId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveDefaultScopeRule: *const fn(
             self: *const ISearchCrawlScopeManager,
             pszURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9789,7 +9789,7 @@ pub const ISearchCrawlScopeManager2 = extern union {
             self: *const ISearchCrawlScopeManager2,
             plVersion: ?*?*i32,
             phFileMapping: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISearchCrawlScopeManager: ISearchCrawlScopeManager,
@@ -9840,18 +9840,18 @@ pub const ISearchItemsChangedSink = extern union {
         StartedMonitoringScope: *const fn(
             self: *const ISearchItemsChangedSink,
             pszURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StoppedMonitoringScope: *const fn(
             self: *const ISearchItemsChangedSink,
             pszURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnItemsChanged: *const fn(
             self: *const ISearchItemsChangedSink,
             dwNumberOfChanges: u32,
             rgDataChangeEntries: [*]SEARCH_ITEM_CHANGE,
             rgdwDocIds: [*]u32,
             rghrCompletionCodes: [*]HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9882,17 +9882,17 @@ pub const ISearchPersistentItemsChangedSink = extern union {
         StartedMonitoringScope: *const fn(
             self: *const ISearchPersistentItemsChangedSink,
             pszURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StoppedMonitoringScope: *const fn(
             self: *const ISearchPersistentItemsChangedSink,
             pszURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnItemsChanged: *const fn(
             self: *const ISearchPersistentItemsChangedSink,
             dwNumberOfChanges: u32,
             DataChangeEntries: [*]SEARCH_ITEM_PERSISTENT_CHANGE,
             hrCompletionCodes: [*]HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9918,7 +9918,7 @@ pub const ISearchViewChangedSink = extern union {
             pdwDocID: ?*i32,
             pChange: ?*SEARCH_ITEM_CHANGE,
             pfInView: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -9952,13 +9952,13 @@ pub const ISearchNotifyInlineSite = extern union {
             sipStatus: SEARCH_INDEXING_PHASE,
             dwNumEntries: u32,
             rgItemStatusEntries: [*]SEARCH_ITEM_INDEXING_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCatalogStatusChange: *const fn(
             self: *const ISearchNotifyInlineSite,
             guidCatalogResetSignature: ?*const Guid,
             guidCheckPointSignature: ?*const Guid,
             dwLastCheckPointNumber: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10022,85 +10022,85 @@ pub const ISearchCatalogManager = extern union {
         get_Name: *const fn(
             self: *const ISearchCatalogManager,
             pszName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParameter: *const fn(
             self: *const ISearchCatalogManager,
             pszName: ?[*:0]const u16,
             ppValue: ?*?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetParameter: *const fn(
             self: *const ISearchCatalogManager,
             pszName: ?[*:0]const u16,
             pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCatalogStatus: *const fn(
             self: *const ISearchCatalogManager,
             pStatus: ?*CatalogStatus,
             pPausedReason: ?*CatalogPausedReason,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ISearchCatalogManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reindex: *const fn(
             self: *const ISearchCatalogManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReindexMatchingURLs: *const fn(
             self: *const ISearchCatalogManager,
             pszPattern: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReindexSearchRoot: *const fn(
             self: *const ISearchCatalogManager,
             pszRootURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ConnectTimeout: *const fn(
             self: *const ISearchCatalogManager,
             dwConnectTimeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectTimeout: *const fn(
             self: *const ISearchCatalogManager,
             pdwConnectTimeout: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DataTimeout: *const fn(
             self: *const ISearchCatalogManager,
             dwDataTimeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataTimeout: *const fn(
             self: *const ISearchCatalogManager,
             pdwDataTimeout: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NumberOfItems: *const fn(
             self: *const ISearchCatalogManager,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NumberOfItemsToIndex: *const fn(
             self: *const ISearchCatalogManager,
             plIncrementalCount: ?*i32,
             plNotificationQueue: ?*i32,
             plHighPriorityQueue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         URLBeingIndexed: *const fn(
             self: *const ISearchCatalogManager,
             pszUrl: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetURLIndexingState: *const fn(
             self: *const ISearchCatalogManager,
             pszURL: ?[*:0]const u16,
             pdwState: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPersistentItemsChangedSink: *const fn(
             self: *const ISearchCatalogManager,
             ppISearchPersistentItemsChangedSink: ?*?*ISearchPersistentItemsChangedSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterViewForNotification: *const fn(
             self: *const ISearchCatalogManager,
             pszView: ?[*:0]const u16,
             pViewChangedSink: ?*ISearchViewChangedSink,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemsChangedSink: *const fn(
             self: *const ISearchCatalogManager,
             pISearchNotifyInlineSite: ?*ISearchNotifyInlineSite,
@@ -10109,38 +10109,38 @@ pub const ISearchCatalogManager = extern union {
             pGUIDCatalogResetSignature: ?*Guid,
             pGUIDCheckPointSignature: ?*Guid,
             pdwLastCheckPointNumber: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterViewForNotification: *const fn(
             self: *const ISearchCatalogManager,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetExtensionClusion: *const fn(
             self: *const ISearchCatalogManager,
             pszExtension: ?[*:0]const u16,
             fExclude: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateExcludedExtensions: *const fn(
             self: *const ISearchCatalogManager,
             ppExtensions: ?*?*IEnumString,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetQueryHelper: *const fn(
             self: *const ISearchCatalogManager,
             ppSearchQueryHelper: ?*?*ISearchQueryHelper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DiacriticSensitivity: *const fn(
             self: *const ISearchCatalogManager,
             fDiacriticSensitive: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DiacriticSensitivity: *const fn(
             self: *const ISearchCatalogManager,
             pfDiacriticSensitive: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCrawlScopeManager: *const fn(
             self: *const ISearchCatalogManager,
             ppCrawlScopeManager: ?*?*ISearchCrawlScopeManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10241,7 +10241,7 @@ pub const ISearchCatalogManager2 = extern union {
             self: *const ISearchCatalogManager2,
             pszPattern: ?[*:0]const u16,
             dwPrioritizeFlags: PRIORITIZE_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISearchCatalogManager: ISearchCatalogManager,
@@ -10284,92 +10284,92 @@ pub const ISearchQueryHelper = extern union {
         get_ConnectionString: *const fn(
             self: *const ISearchQueryHelper,
             pszConnectionString: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryContentLocale: *const fn(
             self: *const ISearchQueryHelper,
             lcid: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryContentLocale: *const fn(
             self: *const ISearchQueryHelper,
             plcid: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryKeywordLocale: *const fn(
             self: *const ISearchQueryHelper,
             lcid: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryKeywordLocale: *const fn(
             self: *const ISearchQueryHelper,
             plcid: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryTermExpansion: *const fn(
             self: *const ISearchQueryHelper,
             expandTerms: SEARCH_TERM_EXPANSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryTermExpansion: *const fn(
             self: *const ISearchQueryHelper,
             pExpandTerms: ?*SEARCH_TERM_EXPANSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuerySyntax: *const fn(
             self: *const ISearchQueryHelper,
             querySyntax: SEARCH_QUERY_SYNTAX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuerySyntax: *const fn(
             self: *const ISearchQueryHelper,
             pQuerySyntax: ?*SEARCH_QUERY_SYNTAX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryContentProperties: *const fn(
             self: *const ISearchQueryHelper,
             pszContentProperties: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryContentProperties: *const fn(
             self: *const ISearchQueryHelper,
             ppszContentProperties: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuerySelectColumns: *const fn(
             self: *const ISearchQueryHelper,
             pszSelectColumns: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuerySelectColumns: *const fn(
             self: *const ISearchQueryHelper,
             ppszSelectColumns: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryWhereRestrictions: *const fn(
             self: *const ISearchQueryHelper,
             pszRestrictions: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryWhereRestrictions: *const fn(
             self: *const ISearchQueryHelper,
             ppszRestrictions: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuerySorting: *const fn(
             self: *const ISearchQueryHelper,
             pszSorting: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuerySorting: *const fn(
             self: *const ISearchQueryHelper,
             ppszSorting: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateSQLFromUserQuery: *const fn(
             self: *const ISearchQueryHelper,
             pszQuery: ?[*:0]const u16,
             ppszSQL: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteProperties: *const fn(
             self: *const ISearchQueryHelper,
             itemID: i32,
@@ -10377,17 +10377,17 @@ pub const ISearchQueryHelper = extern union {
             pColumns: [*]PROPERTYKEY,
             pValues: [*]SEARCH_COLUMN_PROPERTIES,
             pftGatherModifiedTime: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryMaxResults: *const fn(
             self: *const ISearchQueryHelper,
             cMaxResults: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryMaxResults: *const fn(
             self: *const ISearchQueryHelper,
             pcMaxResults: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10477,18 +10477,18 @@ pub const IRowsetPrioritization = extern union {
             self: *const IRowsetPrioritization,
             priority: PRIORITY_LEVEL,
             scopeStatisticsEventFrequency: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScopePriority: *const fn(
             self: *const IRowsetPrioritization,
             priority: ?*PRIORITY_LEVEL,
             scopeStatisticsEventFrequency: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScopeStatistics: *const fn(
             self: *const IRowsetPrioritization,
             indexedDocumentCount: ?*u32,
             oustandingAddCount: ?*u32,
             oustandingModifyCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10531,23 +10531,23 @@ pub const IRowsetEvents = extern union {
             self: *const IRowsetEvents,
             itemID: ?*const PROPVARIANT,
             newItemState: ROWSETEVENT_ITEMSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnChangedItem: *const fn(
             self: *const IRowsetEvents,
             itemID: ?*const PROPVARIANT,
             rowsetItemState: ROWSETEVENT_ITEMSTATE,
             changedItemState: ROWSETEVENT_ITEMSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDeletedItem: *const fn(
             self: *const IRowsetEvents,
             itemID: ?*const PROPVARIANT,
             deletedItemState: ROWSETEVENT_ITEMSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnRowsetEvent: *const fn(
             self: *const IRowsetEvents,
             eventType: ROWSETEVENT_TYPE,
             eventData: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10574,32 +10574,32 @@ pub const ISearchManager = extern union {
         GetIndexerVersionStr: *const fn(
             self: *const ISearchManager,
             ppszVersionString: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIndexerVersion: *const fn(
             self: *const ISearchManager,
             pdwMajor: ?*u32,
             pdwMinor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParameter: *const fn(
             self: *const ISearchManager,
             pszName: ?[*:0]const u16,
             ppValue: ?*?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetParameter: *const fn(
             self: *const ISearchManager,
             pszName: ?[*:0]const u16,
             pValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProxyName: *const fn(
             self: *const ISearchManager,
             ppszProxyName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BypassList: *const fn(
             self: *const ISearchManager,
             ppszBypassList: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProxy: *const fn(
             self: *const ISearchManager,
             sUseProxy: PROXY_ACCESS,
@@ -10607,37 +10607,37 @@ pub const ISearchManager = extern union {
             dwPortNumber: u32,
             pszProxyName: ?[*:0]const u16,
             pszByPassList: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCatalog: *const fn(
             self: *const ISearchManager,
             pszCatalog: ?[*:0]const u16,
             ppCatalogManager: ?*?*ISearchCatalogManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserAgent: *const fn(
             self: *const ISearchManager,
             ppszUserAgent: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UserAgent: *const fn(
             self: *const ISearchManager,
             pszUserAgent: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseProxy: *const fn(
             self: *const ISearchManager,
             pUseProxy: ?*PROXY_ACCESS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalBypass: *const fn(
             self: *const ISearchManager,
             pfLocalBypass: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PortNumber: *const fn(
             self: *const ISearchManager,
             pdwPortNumber: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10692,11 +10692,11 @@ pub const ISearchManager2 = extern union {
             self: *const ISearchManager2,
             pszCatalog: ?[*:0]const u16,
             ppCatalogManager: ?*?*ISearchCatalogManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteCatalog: *const fn(
             self: *const ISearchManager2,
             pszCatalog: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISearchManager: ISearchManager,
@@ -10721,25 +10721,25 @@ pub const ISearchLanguageSupport = extern union {
         SetDiacriticSensitivity: *const fn(
             self: *const ISearchLanguageSupport,
             fDiacriticSensitive: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDiacriticSensitivity: *const fn(
             self: *const ISearchLanguageSupport,
             pfDiacriticSensitive: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadWordBreaker: *const fn(
             self: *const ISearchLanguageSupport,
             lcid: u32,
             riid: ?*const Guid,
             ppWordBreaker: ?*?*anyopaque,
             pLcidUsed: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadStemmer: *const fn(
             self: *const ISearchLanguageSupport,
             lcid: u32,
             riid: ?*const Guid,
             ppStemmer: ?*?*anyopaque,
             pLcidUsed: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPrefixNormalized: *const fn(
             self: *const ISearchLanguageSupport,
             pwcsQueryToken: [*:0]const u16,
@@ -10747,7 +10747,7 @@ pub const ISearchLanguageSupport = extern union {
             pwcsDocumentToken: [*:0]const u16,
             cwcDocumentToken: u32,
             pulPrefixLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10786,22 +10786,22 @@ pub const IEnumItemProperties = extern union {
             celt: u32,
             rgelt: [*]ITEMPROP,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumItemProperties,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumItemProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumItemProperties,
             ppenum: ?*?*IEnumItemProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumItemProperties,
             pnCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10838,34 +10838,34 @@ pub const ISubscriptionItem = extern union {
         GetCookie: *const fn(
             self: *const ISubscriptionItem,
             pCookie: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubscriptionItemInfo: *const fn(
             self: *const ISubscriptionItem,
             pSubscriptionItemInfo: ?*SUBSCRIPTIONITEMINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSubscriptionItemInfo: *const fn(
             self: *const ISubscriptionItem,
             pSubscriptionItemInfo: ?*const SUBSCRIPTIONITEMINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReadProperties: *const fn(
             self: *const ISubscriptionItem,
             nCount: u32,
             rgwszName: [*]const ?[*:0]const u16,
             rgValue: [*]VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteProperties: *const fn(
             self: *const ISubscriptionItem,
             nCount: u32,
             rgwszName: [*]const ?[*:0]const u16,
             rgValue: [*]const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumProperties: *const fn(
             self: *const ISubscriptionItem,
             ppEnumItemProperties: ?*?*IEnumItemProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyChanged: *const fn(
             self: *const ISubscriptionItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -10902,22 +10902,22 @@ pub const IEnumSubscription = extern union {
             celt: u32,
             rgelt: [*]Guid,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSubscription,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSubscription,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumSubscription,
             ppenum: ?*?*IEnumSubscription,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumSubscription,
             pnCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11039,34 +11039,34 @@ pub const ISubscriptionMgr = extern union {
             self: *const ISubscriptionMgr,
             pwszURL: ?[*:0]const u16,
             hwnd: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateSubscription: *const fn(
             self: *const ISubscriptionMgr,
             pwszURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateAll: *const fn(
             self: *const ISubscriptionMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSubscribed: *const fn(
             self: *const ISubscriptionMgr,
             pwszURL: ?[*:0]const u16,
             pfSubscribed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubscriptionInfo: *const fn(
             self: *const ISubscriptionMgr,
             pwszURL: ?[*:0]const u16,
             pInfo: ?*SUBSCRIPTIONINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultInfo: *const fn(
             self: *const ISubscriptionMgr,
             subType: SUBSCRIPTIONTYPE,
             pInfo: ?*SUBSCRIPTIONINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowSubscriptionProperties: *const fn(
             self: *const ISubscriptionMgr,
             pwszURL: ?[*:0]const u16,
             hwnd: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSubscription: *const fn(
             self: *const ISubscriptionMgr,
             hwnd: ?HWND,
@@ -11075,7 +11075,7 @@ pub const ISubscriptionMgr = extern union {
             dwFlags: u32,
             subsType: SUBSCRIPTIONTYPE,
             pInfo: ?*SUBSCRIPTIONINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11114,37 +11114,37 @@ pub const ISubscriptionMgr2 = extern union {
             self: *const ISubscriptionMgr2,
             pwszURL: ?[*:0]const u16,
             ppSubscriptionItem: ?*?*ISubscriptionItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemFromCookie: *const fn(
             self: *const ISubscriptionMgr2,
             pSubscriptionCookie: ?*const Guid,
             ppSubscriptionItem: ?*?*ISubscriptionItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubscriptionRunState: *const fn(
             self: *const ISubscriptionMgr2,
             dwNumCookies: u32,
             pCookies: [*]const Guid,
             pdwRunState: [*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumSubscriptions: *const fn(
             self: *const ISubscriptionMgr2,
             dwFlags: u32,
             ppEnumSubscriptions: ?*?*IEnumSubscription,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateItems: *const fn(
             self: *const ISubscriptionMgr2,
             dwFlags: u32,
             dwNumCookies: u32,
             pCookies: [*]const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AbortItems: *const fn(
             self: *const ISubscriptionMgr2,
             dwNumCookies: u32,
             pCookies: [*]const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AbortAll: *const fn(
             self: *const ISubscriptionMgr2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISubscriptionMgr: ISubscriptionMgr,
@@ -11244,12 +11244,12 @@ pub const IDataConvert = extern union {
             bPrecision: u8,
             bScale: u8,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CanConvert: *const fn(
             self: *const IDataConvert,
             wSrcType: u16,
             wDstType: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConversionSize: *const fn(
             self: *const IDataConvert,
             wSrcType: u16,
@@ -11258,7 +11258,7 @@ pub const IDataConvert = extern union {
             pcbDstLength: ?*usize,
             // TODO: what to do with BytesParamIndex 2?
             pSrc: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11293,12 +11293,12 @@ pub const IDCInfo = extern union {
             cInfo: u32,
             rgeInfoType: [*]u32,
             prgInfo: [*]?*DCINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInfo: *const fn(
             self: *const IDCInfo,
             cInfo: u32,
             rgInfo: [*]DCINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11330,15 +11330,15 @@ pub const DataSourceListener = extern union {
         dataMemberChanged: *const fn(
             self: *const DataSourceListener,
             bstrDM: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         dataMemberAdded: *const fn(
             self: *const DataSourceListener,
             bstrDM: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         dataMemberRemoved: *const fn(
             self: *const DataSourceListener,
             bstrDM: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11363,24 +11363,24 @@ pub const DataSource = extern union {
             bstrDM: ?*u16,
             riid: ?*const Guid,
             ppunk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getDataMemberName: *const fn(
             self: *const DataSource,
             lIndex: i32,
             pbstrDM: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getDataMemberCount: *const fn(
             self: *const DataSource,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addDataSourceListener: *const fn(
             self: *const DataSource,
             pDSL: ?*DataSourceListener,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeDataSourceListener: *const fn(
             self: *const DataSource,
             pDSL: ?*DataSourceListener,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11469,41 +11469,41 @@ pub const OLEDBSimpleProviderListener = extern union {
             self: *const OLEDBSimpleProviderListener,
             iRow: isize,
             iColumn: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         cellChanged: *const fn(
             self: *const OLEDBSimpleProviderListener,
             iRow: isize,
             iColumn: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         aboutToDeleteRows: *const fn(
             self: *const OLEDBSimpleProviderListener,
             iRow: isize,
             cRows: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         deletedRows: *const fn(
             self: *const OLEDBSimpleProviderListener,
             iRow: isize,
             cRows: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         aboutToInsertRows: *const fn(
             self: *const OLEDBSimpleProviderListener,
             iRow: isize,
             cRows: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         insertedRows: *const fn(
             self: *const OLEDBSimpleProviderListener,
             iRow: isize,
             cRows: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         rowsAvailable: *const fn(
             self: *const OLEDBSimpleProviderListener,
             iRow: isize,
             cRows: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         transferComplete: *const fn(
             self: *const OLEDBSimpleProviderListener,
             xfer: OSPXFER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11541,47 +11541,47 @@ pub const OLEDBSimpleProvider = extern union {
         getRowCount: *const fn(
             self: *const OLEDBSimpleProvider,
             pcRows: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getColumnCount: *const fn(
             self: *const OLEDBSimpleProvider,
             pcColumns: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getRWStatus: *const fn(
             self: *const OLEDBSimpleProvider,
             iRow: isize,
             iColumn: isize,
             prwStatus: ?*OSPRW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getVariant: *const fn(
             self: *const OLEDBSimpleProvider,
             iRow: isize,
             iColumn: isize,
             format: OSPFORMAT,
             pVar: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setVariant: *const fn(
             self: *const OLEDBSimpleProvider,
             iRow: isize,
             iColumn: isize,
             format: OSPFORMAT,
             Var: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getLocale: *const fn(
             self: *const OLEDBSimpleProvider,
             pbstrLocale: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         deleteRows: *const fn(
             self: *const OLEDBSimpleProvider,
             iRow: isize,
             cRows: isize,
             pcRowsDeleted: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         insertRows: *const fn(
             self: *const OLEDBSimpleProvider,
             iRow: isize,
             cRows: isize,
             pcRowsInserted: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         find: *const fn(
             self: *const OLEDBSimpleProvider,
             iRowStart: isize,
@@ -11590,26 +11590,26 @@ pub const OLEDBSimpleProvider = extern union {
             findFlags: OSPFIND,
             compType: OSPCOMP,
             piRowFound: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addOLEDBSimpleProviderListener: *const fn(
             self: *const OLEDBSimpleProvider,
             pospIListener: ?*OLEDBSimpleProviderListener,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removeOLEDBSimpleProviderListener: *const fn(
             self: *const OLEDBSimpleProvider,
             pospIListener: ?*OLEDBSimpleProviderListener,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         isAsync: *const fn(
             self: *const OLEDBSimpleProvider,
             pbAsynch: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getEstimatedRows: *const fn(
             self: *const OLEDBSimpleProvider,
             piRows: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         stopTransfer: *const fn(
             self: *const OLEDBSimpleProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11693,7 +11693,7 @@ pub const IService = extern union {
         InvokeService: *const fn(
             self: *const IService,
             pUnkInner: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11732,7 +11732,7 @@ pub const IDBPromptInitialize = extern union {
             pwszszzProviderFilter: ?[*:0]const u16,
             riid: ?*const Guid,
             ppDataSource: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PromptFileName: *const fn(
             self: *const IDBPromptInitialize,
             hWndParent: ?HWND,
@@ -11740,7 +11740,7 @@ pub const IDBPromptInitialize = extern union {
             pwszInitialDirectory: ?[*:0]const u16,
             pwszInitialFile: ?[*:0]const u16,
             ppwszSelectedFile: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11764,13 +11764,13 @@ pub const IDataInitialize = extern union {
             pwszInitializationString: ?[*:0]const u16,
             riid: ?*const Guid,
             ppDataSource: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInitializationString: *const fn(
             self: *const IDataInitialize,
             pDataSource: ?*IUnknown,
             fIncludePassword: u8,
             ppwszInitString: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDBInstance: *const fn(
             self: *const IDataInitialize,
             clsidProvider: ?*const Guid,
@@ -11779,7 +11779,7 @@ pub const IDataInitialize = extern union {
             pwszReserved: ?PWSTR,
             riid: ?*const Guid,
             ppDataSource: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDBInstanceEx: *const fn(
             self: *const IDataInitialize,
             clsidProvider: ?*const Guid,
@@ -11789,18 +11789,18 @@ pub const IDataInitialize = extern union {
             pServerInfo: ?*COSERVERINFO,
             cmq: u32,
             rgmqResults: [*]MULTI_QI,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadStringFromStorage: *const fn(
             self: *const IDataInitialize,
             pwszFileName: ?[*:0]const u16,
             ppwszInitializationString: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteStringToStorage: *const fn(
             self: *const IDataInitialize,
             pwszFileName: ?[*:0]const u16,
             pwszInitializationString: ?[*:0]const u16,
             dwCreationDisposition: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11833,21 +11833,21 @@ pub const IDataSourceLocator = extern union {
         get_hWnd: *const fn(
             self: *const IDataSourceLocator,
             phwndParent: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_hWnd: *const fn(
             self: *const IDataSourceLocator,
             hwndParent: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PromptNew: *const fn(
             self: *const IDataSourceLocator,
             ppADOConnection: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PromptEdit: *const fn(
             self: *const IDataSourceLocator,
             ppADOConnection: ?*?*IDispatch,
             pbSuccess: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -11883,7 +11883,7 @@ pub const IRowsetChangeExtInfo = extern union {
             hReserved: usize,
             hRow: usize,
             phRowOriginal: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPendingColumns: *const fn(
             self: *const IRowsetChangeExtInfo,
             hReserved: usize,
@@ -11891,7 +11891,7 @@ pub const IRowsetChangeExtInfo = extern union {
             cColumnOrdinals: u32,
             rgiOrdinals: ?*const u32,
             rgColumnStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11924,7 +11924,7 @@ pub const ISQLRequestDiagFields = extern union {
             self: *const ISQLRequestDiagFields,
             cDiagFields: u32,
             rgDiagFields: [*]KAGREQDIAG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -11941,7 +11941,7 @@ pub const ISQLGetDiagField = extern union {
         GetDiagField: *const fn(
             self: *const ISQLGetDiagField,
             pDiagInfo: ?*KAGGETDIAG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12155,7 +12155,7 @@ pub const IRowsetNextRowset = extern union {
             pUnkOuter: ?*IUnknown,
             riid: ?*const Guid,
             ppNextRowset: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12177,7 +12177,7 @@ pub const IRowsetNewRowAfter = extern union {
             hAccessor: usize,
             pData: ?*u8,
             phRow: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12196,13 +12196,13 @@ pub const IRowsetWithParameters = extern union {
             pcParams: ?*usize,
             prgParamInfo: ?*?*DBPARAMINFO,
             ppNamesBuffer: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Requery: *const fn(
             self: *const IRowsetWithParameters,
             pParams: ?*DBPARAMS,
             pulErrorParam: ?*u32,
             phReserved: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12225,10 +12225,10 @@ pub const IRowsetAsynch = extern union {
             pulNumerator: ?*usize,
             pcRows: ?*usize,
             pfNewRows: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IRowsetAsynch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12249,7 +12249,7 @@ pub const IRowsetKeys = extern union {
             self: *const IRowsetKeys,
             pcColumns: ?*usize,
             prgColumns: ?*?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12265,13 +12265,13 @@ pub const IRowsetWatchAll = extern union {
         base: IUnknown.VTable,
         Acknowledge: *const fn(
             self: *const IRowsetWatchAll,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Start: *const fn(
             self: *const IRowsetWatchAll,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopWatching: *const fn(
             self: *const IRowsetWatchAll,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12304,7 +12304,7 @@ pub const IRowsetWatchNotify = extern union {
             self: *const IRowsetWatchNotify,
             pRowset: ?*IRowset,
             eChangeReason: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12345,16 +12345,16 @@ pub const IRowsetWatchRegion = extern union {
             self: *const IRowsetWatchRegion,
             dwWatchMode: u32,
             phRegion: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ChangeWatchMode: *const fn(
             self: *const IRowsetWatchRegion,
             hRegion: usize,
             dwWatchMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteWatchRegion: *const fn(
             self: *const IRowsetWatchRegion,
             hRegion: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWatchRegionInfo: *const fn(
             self: *const IRowsetWatchRegion,
             hRegion: usize,
@@ -12363,12 +12363,12 @@ pub const IRowsetWatchRegion = extern union {
             pcbBookmark: ?*usize,
             ppBookmark: ?*?*u8,
             pcRows: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IRowsetWatchRegion,
             pcChangesObtained: ?*usize,
             prgChanges: ?*?*tagDBROWWATCHRANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShrinkWatchRegion: *const fn(
             self: *const IRowsetWatchRegion,
             hRegion: usize,
@@ -12376,7 +12376,7 @@ pub const IRowsetWatchRegion = extern union {
             cbBookmark: usize,
             pBookmark: ?*u8,
             cRows: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IRowsetWatchAll: IRowsetWatchAll,
@@ -12409,7 +12409,7 @@ pub const IRowsetCopyRows = extern union {
         CloseSource: *const fn(
             self: *const IRowsetCopyRows,
             hSourceID: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyByHROWS: *const fn(
             self: *const IRowsetCopyRows,
             hSourceID: u16,
@@ -12417,7 +12417,7 @@ pub const IRowsetCopyRows = extern union {
             cRows: isize,
             rghRows: ?*const usize,
             bFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyRows: *const fn(
             self: *const IRowsetCopyRows,
             hSourceID: u16,
@@ -12425,7 +12425,7 @@ pub const IRowsetCopyRows = extern union {
             cRows: isize,
             bFlags: u32,
             pcRowsCopied: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DefineSource: *const fn(
             self: *const IRowsetCopyRows,
             pRowsetSource: ?*IRowset,
@@ -12433,7 +12433,7 @@ pub const IRowsetCopyRows = extern union {
             rgSourceColumns: ?*const isize,
             rgTargetColumns: ?*const isize,
             phSourceID: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12468,11 +12468,11 @@ pub const IReadData = extern union {
             ppFixedData: ?*?*u8,
             pcbVariableTotal: ?*usize,
             ppVariableData: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseChapter: *const fn(
             self: *const IReadData,
             hChapter: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12564,38 +12564,38 @@ pub const ICommandCost = extern union {
             pwszRowsetName: ?[*:0]const u16,
             pcCostLimits: ?*u32,
             prgCostLimits: ?*?*DBCOST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCostEstimate: *const fn(
             self: *const ICommandCost,
             pwszRowsetName: ?[*:0]const u16,
             pcCostEstimates: ?*u32,
             prgCostEstimates: ?*DBCOST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCostGoals: *const fn(
             self: *const ICommandCost,
             pwszRowsetName: ?[*:0]const u16,
             pcCostGoals: ?*u32,
             prgCostGoals: ?*DBCOST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCostLimits: *const fn(
             self: *const ICommandCost,
             pwszRowsetName: ?[*:0]const u16,
             pcCostLimits: ?*u32,
             prgCostLimits: ?*DBCOST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCostGoals: *const fn(
             self: *const ICommandCost,
             pwszRowsetName: ?[*:0]const u16,
             cCostGoals: u32,
             rgCostGoals: ?*const DBCOST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCostLimits: *const fn(
             self: *const ICommandCost,
             pwszRowsetName: ?[*:0]const u16,
             cCostLimits: u32,
             prgCostLimits: ?*DBCOST,
             dwExecutionFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12626,10 +12626,10 @@ pub const ICommandValidate = extern union {
         base: IUnknown.VTable,
         ValidateCompletely: *const fn(
             self: *const ICommandValidate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ValidateSyntax: *const fn(
             self: *const ICommandValidate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12651,14 +12651,14 @@ pub const ITableRename = extern union {
             pTableId: ?*DBID,
             pOldColumnId: ?*DBID,
             pNewColumnId: ?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RenameTable: *const fn(
             self: *const ITableRename,
             pOldTableId: ?*DBID,
             pOldIndexId: ?*DBID,
             pNewTableId: ?*DBID,
             pNewIndexId: ?*DBID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12680,12 +12680,12 @@ pub const IDBSchemaCommand = extern union {
             pUnkOuter: ?*IUnknown,
             rguidSchema: ?*const Guid,
             ppCommand: ?*?*ICommand,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSchemas: *const fn(
             self: *const IDBSchemaCommand,
             pcSchemas: ?*u32,
             prgSchemas: ?*?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12705,7 +12705,7 @@ pub const IProvideMoniker = extern union {
         GetMoniker: *const fn(
             self: *const IProvideMoniker,
             ppIMoniker: ?*?*IMoniker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12814,17 +12814,17 @@ pub const ISearchQueryHits = extern union {
             self: *const ISearchQueryHits,
             pflt: ?*IFilter,
             ulFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         NextHitMoniker: *const fn(
             self: *const ISearchQueryHits,
             pcMnk: ?*u32,
             papMnk: ?*?*?*IMoniker,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         NextHitOffset: *const fn(
             self: *const ISearchQueryHits,
             pcRegion: ?*u32,
             paRegion: ?*?*FILTERREGION,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12847,7 +12847,7 @@ pub const IRowsetQueryStatus = extern union {
         GetStatus: *const fn(
             self: *const IRowsetQueryStatus,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatusEx: *const fn(
             self: *const IRowsetQueryStatus,
             pdwStatus: ?*u32,
@@ -12859,7 +12859,7 @@ pub const IRowsetQueryStatus = extern union {
             pBmk: ?*const u8,
             piRowBmk: ?*usize,
             pcRowsTotal: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -12997,7 +12997,7 @@ pub const IUMSInitialize = extern union {
         Initialize: *const fn(
             self: *const IUMSInitialize,
             pUMS: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -13011,20 +13011,20 @@ pub const IUMS = extern union {
         SqlUmsSuspend: *const fn(
             self: *const IUMS,
             ticks: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SqlUmsYield: *const fn(
             self: *const IUMS,
             ticks: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SqlUmsSwitchPremptive: *const fn(
             self: *const IUMS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SqlUmsSwitchNonPremptive: *const fn(
             self: *const IUMS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SqlUmsFIsPremptive: *const fn(
             self: *const IUMS,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     pub fn SqlUmsSuspend(self: *const IUMS, ticks: u32) callconv(.Inline) void {
@@ -13063,7 +13063,7 @@ pub const ISQLServerErrorInfo = extern union {
             self: *const ISQLServerErrorInfo,
             ppErrorInfo: ?*?*tagSSErrorInfo,
             ppStringsBuffer: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -13081,11 +13081,11 @@ pub const IRowsetFastLoad = extern union {
             self: *const IRowsetFastLoad,
             hAccessor: usize,
             pData: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const IRowsetFastLoad,
             fDone: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -13117,11 +13117,11 @@ pub const ISchemaLock = extern union {
             lmMode: u32,
             phLockHandle: ?*?HANDLE,
             pTableVersion: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseSchemaLock: *const fn(
             self: *const ISchemaLock,
             hLockHandle: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -13136,7 +13136,7 @@ pub const ISchemaLock = extern union {
 pub const SQL_ASYNC_NOTIFICATION_CALLBACK = *const fn(
     pContext: ?*anyopaque,
     fLast: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 
 
@@ -13653,22 +13653,22 @@ pub const DBCOST = switch(@import("../zig.zig").arch) {
 pub extern "odbc32" fn SQLAllocConnect(
     EnvironmentHandle: ?*anyopaque,
     ConnectionHandle: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLAllocEnv(
     EnvironmentHandle: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLAllocHandle(
     HandleType: i16,
     InputHandle: ?*anyopaque,
     OutputHandle: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLAllocStmt(
     ConnectionHandle: ?*anyopaque,
     StatementHandle: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLBindCol = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -13680,7 +13680,7 @@ pub extern "odbc32" fn SQLBindCol(
     TargetValue: ?*anyopaque,
     BufferLength: i32,
     StrLen_or_Ind: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLBindCol,
 .X64, .Arm64 => (struct {
@@ -13692,7 +13692,7 @@ pub extern "odbc32" fn SQLBindCol(
     TargetValue: ?*anyopaque,
     BufferLength: i64,
     StrLen_or_Ind: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLBindCol,
 };
@@ -13709,7 +13709,7 @@ pub extern "odbc32" fn SQLBindParam(
     ParameterScale: i16,
     ParameterValue: ?*anyopaque,
     StrLen_or_Ind: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLBindParam,
 .X64, .Arm64 => (struct {
@@ -13723,23 +13723,23 @@ pub extern "odbc32" fn SQLBindParam(
     ParameterScale: i16,
     ParameterValue: ?*anyopaque,
     StrLen_or_Ind: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLBindParam,
 };
 
 pub extern "odbc32" fn SQLCancel(
     StatementHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLCancelHandle(
     HandleType: i16,
     InputHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLCloseCursor(
     StatementHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLColAttribute = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -13753,7 +13753,7 @@ pub extern "odbc32" fn SQLColAttribute(
     BufferLength: i16,
     StringLength: ?*i16,
     NumericAttribute: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLColAttribute,
 .X64, .Arm64 => (struct {
@@ -13767,7 +13767,7 @@ pub extern "odbc32" fn SQLColAttribute(
     BufferLength: i16,
     StringLength: ?*i16,
     NumericAttribute: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLColAttribute,
 };
@@ -13782,13 +13782,13 @@ pub extern "odbc32" fn SQLColumns(
     NameLength3: i16,
     ColumnName: ?[*:0]u8,
     NameLength4: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLCompleteAsync(
     HandleType: i16,
     Handle: ?*anyopaque,
     AsyncRetCodePtr: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLConnect(
     ConnectionHandle: ?*anyopaque,
@@ -13798,12 +13798,12 @@ pub extern "odbc32" fn SQLConnect(
     NameLength2: i16,
     Authentication: [*:0]u8,
     NameLength3: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLCopyDesc(
     SourceDescHandle: ?*anyopaque,
     TargetDescHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLDataSources(
     EnvironmentHandle: ?*anyopaque,
@@ -13814,7 +13814,7 @@ pub extern "odbc32" fn SQLDataSources(
     Description: ?[*:0]u8,
     BufferLength2: i16,
     NameLength2Ptr: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLDescribeCol = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -13829,7 +13829,7 @@ pub extern "odbc32" fn SQLDescribeCol(
     ColumnSize: ?*u32,
     DecimalDigits: ?*i16,
     Nullable: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLDescribeCol,
 .X64, .Arm64 => (struct {
@@ -13844,20 +13844,20 @@ pub extern "odbc32" fn SQLDescribeCol(
     ColumnSize: ?*u64,
     DecimalDigits: ?*i16,
     Nullable: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLDescribeCol,
 };
 
 pub extern "odbc32" fn SQLDisconnect(
     ConnectionHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLEndTran(
     HandleType: i16,
     Handle: ?*anyopaque,
     CompletionType: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLError(
     EnvironmentHandle: ?*anyopaque,
@@ -13868,21 +13868,21 @@ pub extern "odbc32" fn SQLError(
     MessageText: ?[*:0]u8,
     BufferLength: i16,
     TextLength: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLExecDirect(
     StatementHandle: ?*anyopaque,
     StatementText: ?[*:0]u8,
     TextLength: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLExecute(
     StatementHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLFetch(
     StatementHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLFetchScroll = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -13891,7 +13891,7 @@ pub extern "odbc32" fn SQLFetchScroll(
     StatementHandle: ?*anyopaque,
     FetchOrientation: i16,
     FetchOffset: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLFetchScroll,
 .X64, .Arm64 => (struct {
@@ -13900,28 +13900,28 @@ pub extern "odbc32" fn SQLFetchScroll(
     StatementHandle: ?*anyopaque,
     FetchOrientation: i16,
     FetchOffset: i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLFetchScroll,
 };
 
 pub extern "odbc32" fn SQLFreeConnect(
     ConnectionHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLFreeEnv(
     EnvironmentHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLFreeHandle(
     HandleType: i16,
     Handle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLFreeStmt(
     StatementHandle: ?*anyopaque,
     Option: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetConnectAttr(
     ConnectionHandle: ?*anyopaque,
@@ -13929,20 +13929,20 @@ pub extern "odbc32" fn SQLGetConnectAttr(
     Value: ?*anyopaque,
     BufferLength: i32,
     StringLengthPtr: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetConnectOption(
     ConnectionHandle: ?*anyopaque,
     Option: u16,
     Value: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetCursorName(
     StatementHandle: ?*anyopaque,
     CursorName: ?[*:0]u8,
     BufferLength: i16,
     NameLengthPtr: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLGetData = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -13954,7 +13954,7 @@ pub extern "odbc32" fn SQLGetData(
     TargetValue: ?*anyopaque,
     BufferLength: i32,
     StrLen_or_IndPtr: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLGetData,
 .X64, .Arm64 => (struct {
@@ -13966,7 +13966,7 @@ pub extern "odbc32" fn SQLGetData(
     TargetValue: ?*anyopaque,
     BufferLength: i64,
     StrLen_or_IndPtr: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLGetData,
 };
@@ -13978,7 +13978,7 @@ pub extern "odbc32" fn SQLGetDescField(
     Value: ?*anyopaque,
     BufferLength: i32,
     StringLength: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLGetDescRec = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -13995,7 +13995,7 @@ pub extern "odbc32" fn SQLGetDescRec(
     PrecisionPtr: ?*i16,
     ScalePtr: ?*i16,
     NullablePtr: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLGetDescRec,
 .X64, .Arm64 => (struct {
@@ -14012,7 +14012,7 @@ pub extern "odbc32" fn SQLGetDescRec(
     PrecisionPtr: ?*i16,
     ScalePtr: ?*i16,
     NullablePtr: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLGetDescRec,
 };
@@ -14025,7 +14025,7 @@ pub extern "odbc32" fn SQLGetDiagField(
     DiagInfo: ?*anyopaque,
     BufferLength: i16,
     StringLength: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetDiagRec(
     HandleType: i16,
@@ -14036,7 +14036,7 @@ pub extern "odbc32" fn SQLGetDiagRec(
     MessageText: ?[*:0]u8,
     BufferLength: i16,
     TextLength: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetEnvAttr(
     EnvironmentHandle: ?*anyopaque,
@@ -14044,13 +14044,13 @@ pub extern "odbc32" fn SQLGetEnvAttr(
     Value: ?*anyopaque,
     BufferLength: i32,
     StringLength: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetFunctions(
     ConnectionHandle: ?*anyopaque,
     FunctionId: u16,
     Supported: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetInfo(
     ConnectionHandle: ?*anyopaque,
@@ -14059,7 +14059,7 @@ pub extern "odbc32" fn SQLGetInfo(
     InfoValue: ?*anyopaque,
     BufferLength: i16,
     StringLengthPtr: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetStmtAttr(
     StatementHandle: ?*anyopaque,
@@ -14067,34 +14067,34 @@ pub extern "odbc32" fn SQLGetStmtAttr(
     Value: ?*anyopaque,
     BufferLength: i32,
     StringLength: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetStmtOption(
     StatementHandle: ?*anyopaque,
     Option: u16,
     Value: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetTypeInfo(
     StatementHandle: ?*anyopaque,
     DataType: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLNumResultCols(
     StatementHandle: ?*anyopaque,
     ColumnCount: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLParamData(
     StatementHandle: ?*anyopaque,
     Value: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLPrepare(
     StatementHandle: ?*anyopaque,
     StatementText: [*:0]u8,
     TextLength: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLPutData = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14103,7 +14103,7 @@ pub extern "odbc32" fn SQLPutData(
     StatementHandle: ?*anyopaque,
     Data: ?*anyopaque,
     StrLen_or_Ind: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLPutData,
 .X64, .Arm64 => (struct {
@@ -14112,7 +14112,7 @@ pub extern "odbc32" fn SQLPutData(
     StatementHandle: ?*anyopaque,
     Data: ?*anyopaque,
     StrLen_or_Ind: i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLPutData,
 };
@@ -14123,7 +14123,7 @@ pub const SQLRowCount = switch (@import("../zig.zig").arch) {
 pub extern "odbc32" fn SQLRowCount(
     StatementHandle: ?*anyopaque,
     RowCount: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLRowCount,
 .X64, .Arm64 => (struct {
@@ -14131,7 +14131,7 @@ pub extern "odbc32" fn SQLRowCount(
 pub extern "odbc32" fn SQLRowCount(
     StatementHandle: ?*anyopaque,
     RowCount: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLRowCount,
 };
@@ -14142,7 +14142,7 @@ pub extern "odbc32" fn SQLSetConnectAttr(
     // TODO: what to do with BytesParamIndex 3?
     Value: ?*anyopaque,
     StringLength: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLSetConnectOption = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14151,7 +14151,7 @@ pub extern "odbc32" fn SQLSetConnectOption(
     ConnectionHandle: ?*anyopaque,
     Option: u16,
     Value: u32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetConnectOption,
 .X64, .Arm64 => (struct {
@@ -14160,7 +14160,7 @@ pub extern "odbc32" fn SQLSetConnectOption(
     ConnectionHandle: ?*anyopaque,
     Option: u16,
     Value: u64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetConnectOption,
 };
@@ -14169,7 +14169,7 @@ pub extern "odbc32" fn SQLSetCursorName(
     StatementHandle: ?*anyopaque,
     CursorName: [*:0]u8,
     NameLength: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLSetDescField(
     DescriptorHandle: ?*anyopaque,
@@ -14177,7 +14177,7 @@ pub extern "odbc32" fn SQLSetDescField(
     FieldIdentifier: i16,
     Value: ?*anyopaque,
     BufferLength: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLSetDescRec = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14194,7 +14194,7 @@ pub extern "odbc32" fn SQLSetDescRec(
     Data: ?*anyopaque,
     StringLength: ?*i32,
     Indicator: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetDescRec,
 .X64, .Arm64 => (struct {
@@ -14211,7 +14211,7 @@ pub extern "odbc32" fn SQLSetDescRec(
     Data: ?*anyopaque,
     StringLength: ?*i64,
     Indicator: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetDescRec,
 };
@@ -14222,7 +14222,7 @@ pub extern "odbc32" fn SQLSetEnvAttr(
     // TODO: what to do with BytesParamIndex 3?
     Value: ?*anyopaque,
     StringLength: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLSetParam = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14236,7 +14236,7 @@ pub extern "odbc32" fn SQLSetParam(
     ParameterScale: i16,
     ParameterValue: ?*anyopaque,
     StrLen_or_Ind: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetParam,
 .X64, .Arm64 => (struct {
@@ -14250,7 +14250,7 @@ pub extern "odbc32" fn SQLSetParam(
     ParameterScale: i16,
     ParameterValue: ?*anyopaque,
     StrLen_or_Ind: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetParam,
 };
@@ -14260,7 +14260,7 @@ pub extern "odbc32" fn SQLSetStmtAttr(
     Attribute: i32,
     Value: ?*anyopaque,
     StringLength: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLSetStmtOption = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14269,7 +14269,7 @@ pub extern "odbc32" fn SQLSetStmtOption(
     StatementHandle: ?*anyopaque,
     Option: u16,
     Value: u32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetStmtOption,
 .X64, .Arm64 => (struct {
@@ -14278,7 +14278,7 @@ pub extern "odbc32" fn SQLSetStmtOption(
     StatementHandle: ?*anyopaque,
     Option: u16,
     Value: u64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetStmtOption,
 };
@@ -14294,7 +14294,7 @@ pub extern "odbc32" fn SQLSpecialColumns(
     NameLength3: i16,
     Scope: u16,
     Nullable: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLStatistics(
     StatementHandle: ?*anyopaque,
@@ -14306,7 +14306,7 @@ pub extern "odbc32" fn SQLStatistics(
     NameLength3: i16,
     Unique: u16,
     Reserved: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLTables(
     StatementHandle: ?*anyopaque,
@@ -14318,17 +14318,17 @@ pub extern "odbc32" fn SQLTables(
     NameLength3: i16,
     TableType: ?[*:0]u8,
     NameLength4: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLTransact(
     EnvironmentHandle: ?*anyopaque,
     ConnectionHandle: ?*anyopaque,
     CompletionType: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_batch(
     param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "odbcbcp" fn bcp_bind(
     param0: ?*anyopaque,
@@ -14339,7 +14339,7 @@ pub extern "odbcbcp" fn bcp_bind(
     param5: i32,
     param6: i32,
     param7: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_colfmt(
     param0: ?*anyopaque,
@@ -14350,39 +14350,39 @@ pub extern "odbcbcp" fn bcp_colfmt(
     param5: ?*u8,
     param6: i32,
     param7: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_collen(
     param0: ?*anyopaque,
     param1: i32,
     param2: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_colptr(
     param0: ?*anyopaque,
     param1: ?*u8,
     param2: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_columns(
     param0: ?*anyopaque,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_control(
     param0: ?*anyopaque,
     param1: i32,
     param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_done(
     param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "odbcbcp" fn bcp_exec(
     param0: ?*anyopaque,
     param1: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_getcolfmt(
     param0: ?*anyopaque,
@@ -14391,7 +14391,7 @@ pub extern "odbcbcp" fn bcp_getcolfmt(
     param3: ?*anyopaque,
     param4: i32,
     param5: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_initA(
     param0: ?*anyopaque,
@@ -14399,7 +14399,7 @@ pub extern "odbcbcp" fn bcp_initA(
     param2: ?[*:0]const u8,
     param3: ?[*:0]const u8,
     param4: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_initW(
     param0: ?*anyopaque,
@@ -14407,27 +14407,27 @@ pub extern "odbcbcp" fn bcp_initW(
     param2: ?[*:0]const u16,
     param3: ?[*:0]const u16,
     param4: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_moretext(
     param0: ?*anyopaque,
     param1: i32,
     param2: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_readfmtA(
     param0: ?*anyopaque,
     param1: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_readfmtW(
     param0: ?*anyopaque,
     param1: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_sendrow(
     param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_setcolfmt(
     param0: ?*anyopaque,
@@ -14435,56 +14435,56 @@ pub extern "odbcbcp" fn bcp_setcolfmt(
     param2: i32,
     param3: ?*anyopaque,
     param4: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_writefmtA(
     param0: ?*anyopaque,
     param1: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn bcp_writefmtW(
     param0: ?*anyopaque,
     param1: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn dbprtypeA(
     param0: i32,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 pub extern "odbcbcp" fn dbprtypeW(
     param0: i32,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 pub extern "odbcbcp" fn SQLLinkedServers(
     param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn SQLLinkedCatalogsA(
     param0: ?*anyopaque,
     param1: ?[*:0]const u8,
     param2: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn SQLLinkedCatalogsW(
     param0: ?*anyopaque,
     param1: ?[*:0]const u16,
     param2: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn SQLInitEnumServers(
     pwchServerName: ?PWSTR,
     pwchInstanceName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "odbcbcp" fn SQLGetNextEnumeration(
     hEnumHandle: ?HANDLE,
     prgEnumData: ?*u8,
     piEnumLength: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbcbcp" fn SQLCloseEnumServers(
     hEnumHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLDriverConnect(
     hdbc: ?*anyopaque,
@@ -14495,7 +14495,7 @@ pub extern "odbc32" fn SQLDriverConnect(
     cchConnStrOutMax: i16,
     pcchConnStrOut: ?*i16,
     fDriverCompletion: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLBrowseConnect(
     hdbc: ?*anyopaque,
@@ -14504,12 +14504,12 @@ pub extern "odbc32" fn SQLBrowseConnect(
     szConnStrOut: ?[*:0]u8,
     cchConnStrOutMax: i16,
     pcchConnStrOut: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLBulkOperations(
     StatementHandle: ?*anyopaque,
     Operation: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLColAttributes = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14522,7 +14522,7 @@ pub extern "odbc32" fn SQLColAttributes(
     cbDescMax: i16,
     pcbDesc: ?*i16,
     pfDesc: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLColAttributes,
 .X64, .Arm64 => (struct {
@@ -14535,7 +14535,7 @@ pub extern "odbc32" fn SQLColAttributes(
     cbDescMax: i16,
     pcbDesc: ?*i16,
     pfDesc: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLColAttributes,
 };
@@ -14550,7 +14550,7 @@ pub extern "odbc32" fn SQLColumnPrivileges(
     cchTableName: i16,
     szColumnName: ?[*:0]u8,
     cchColumnName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLDescribeParam = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14562,7 +14562,7 @@ pub extern "odbc32" fn SQLDescribeParam(
     pcbParamDef: ?*u32,
     pibScale: ?*i16,
     pfNullable: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLDescribeParam,
 .X64, .Arm64 => (struct {
@@ -14574,7 +14574,7 @@ pub extern "odbc32" fn SQLDescribeParam(
     pcbParamDef: ?*u64,
     pibScale: ?*i16,
     pfNullable: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLDescribeParam,
 };
@@ -14588,7 +14588,7 @@ pub extern "odbc32" fn SQLExtendedFetch(
     irow: i32,
     pcrow: ?*u32,
     rgfRowStatus: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLExtendedFetch,
 .X64, .Arm64 => (struct {
@@ -14599,7 +14599,7 @@ pub extern "odbc32" fn SQLExtendedFetch(
     irow: i64,
     pcrow: ?*u64,
     rgfRowStatus: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLExtendedFetch,
 };
@@ -14618,11 +14618,11 @@ pub extern "odbc32" fn SQLForeignKeys(
     cchFkSchemaName: i16,
     szFkTableName: ?[*:0]u8,
     cchFkTableName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLMoreResults(
     hstmt: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLNativeSql(
     hdbc: ?*anyopaque,
@@ -14631,12 +14631,12 @@ pub extern "odbc32" fn SQLNativeSql(
     szSqlStr: ?[*:0]u8,
     cchSqlStrMax: i32,
     pcbSqlStr: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLNumParams(
     hstmt: ?*anyopaque,
     pcpar: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLParamOptions = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14645,7 +14645,7 @@ pub extern "odbc32" fn SQLParamOptions(
     hstmt: ?*anyopaque,
     crow: u32,
     pirow: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLParamOptions,
 .X64, .Arm64 => (struct {
@@ -14654,7 +14654,7 @@ pub extern "odbc32" fn SQLParamOptions(
     hstmt: ?*anyopaque,
     crow: u64,
     pirow: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLParamOptions,
 };
@@ -14667,7 +14667,7 @@ pub extern "odbc32" fn SQLPrimaryKeys(
     cchSchemaName: i16,
     szTableName: ?[*:0]u8,
     cchTableName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLProcedureColumns(
     hstmt: ?*anyopaque,
@@ -14679,7 +14679,7 @@ pub extern "odbc32" fn SQLProcedureColumns(
     cchProcName: i16,
     szColumnName: ?[*:0]u8,
     cchColumnName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLProcedures(
     hstmt: ?*anyopaque,
@@ -14689,7 +14689,7 @@ pub extern "odbc32" fn SQLProcedures(
     cchSchemaName: i16,
     szProcName: ?[*:0]u8,
     cchProcName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLSetPos = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14699,7 +14699,7 @@ pub extern "odbc32" fn SQLSetPos(
     irow: u16,
     fOption: u16,
     fLock: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetPos,
 .X64, .Arm64 => (struct {
@@ -14709,7 +14709,7 @@ pub extern "odbc32" fn SQLSetPos(
     irow: u64,
     fOption: u16,
     fLock: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetPos,
 };
@@ -14722,7 +14722,7 @@ pub extern "odbc32" fn SQLTablePrivileges(
     cchSchemaName: i16,
     szTableName: ?[*:0]u8,
     cchTableName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLDrivers(
     henv: ?*anyopaque,
@@ -14733,7 +14733,7 @@ pub extern "odbc32" fn SQLDrivers(
     szDriverAttributes: ?[*:0]u8,
     cchDrvrAttrMax: i16,
     pcchDrvrAttr: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLBindParameter = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14749,7 +14749,7 @@ pub extern "odbc32" fn SQLBindParameter(
     rgbValue: ?*anyopaque,
     cbValueMax: i32,
     pcbValue: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLBindParameter,
 .X64, .Arm64 => (struct {
@@ -14765,7 +14765,7 @@ pub extern "odbc32" fn SQLBindParameter(
     rgbValue: ?*anyopaque,
     cbValueMax: i64,
     pcbValue: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLBindParameter,
 };
@@ -14774,7 +14774,7 @@ pub extern "odbc32" fn SQLAllocHandleStd(
     fHandleType: i16,
     hInput: ?*anyopaque,
     phOutput: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLSetScrollOptions = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14784,7 +14784,7 @@ pub extern "odbc32" fn SQLSetScrollOptions(
     fConcurrency: u16,
     crowKeyset: i32,
     crowRowset: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetScrollOptions,
 .X64, .Arm64 => (struct {
@@ -14794,17 +14794,17 @@ pub extern "odbc32" fn SQLSetScrollOptions(
     fConcurrency: u16,
     crowKeyset: i64,
     crowRowset: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetScrollOptions,
 };
 
 pub extern "odbc32" fn ODBCSetTryWaitValue(
     dwValue: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "odbc32" fn ODBCGetTryWaitValue(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const SQLColAttributeW = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14818,7 +14818,7 @@ pub extern "odbc32" fn SQLColAttributeW(
     cbDescMax: i16,
     pcbCharAttr: ?*i16,
     pNumAttr: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLColAttributeW,
 .X64, .Arm64 => (struct {
@@ -14832,7 +14832,7 @@ pub extern "odbc32" fn SQLColAttributeW(
     cbDescMax: i16,
     pcbCharAttr: ?*i16,
     pNumAttr: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLColAttributeW,
 };
@@ -14849,7 +14849,7 @@ pub extern "odbc32" fn SQLColAttributesW(
     cbDescMax: i16,
     pcbDesc: ?*i16,
     pfDesc: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLColAttributesW,
 .X64, .Arm64 => (struct {
@@ -14863,7 +14863,7 @@ pub extern "odbc32" fn SQLColAttributesW(
     cbDescMax: i16,
     pcbDesc: ?*i16,
     pfDesc: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLColAttributesW,
 };
@@ -14876,7 +14876,7 @@ pub extern "odbc32" fn SQLConnectW(
     cchUID: i16,
     szAuthStr: [*:0]u16,
     cchAuthStr: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLDescribeColW = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14891,7 +14891,7 @@ pub extern "odbc32" fn SQLDescribeColW(
     pcbColDef: ?*u32,
     pibScale: ?*i16,
     pfNullable: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLDescribeColW,
 .X64, .Arm64 => (struct {
@@ -14906,7 +14906,7 @@ pub extern "odbc32" fn SQLDescribeColW(
     pcbColDef: ?*u64,
     pibScale: ?*i16,
     pfNullable: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLDescribeColW,
 };
@@ -14920,13 +14920,13 @@ pub extern "odbc32" fn SQLErrorW(
     wszErrorMsg: ?[*:0]u16,
     cchErrorMsgMax: i16,
     pcchErrorMsg: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLExecDirectW(
     hstmt: ?*anyopaque,
     szSqlStr: ?[*:0]u16,
     TextLength: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetConnectAttrW(
     hdbc: ?*anyopaque,
@@ -14934,14 +14934,14 @@ pub extern "odbc32" fn SQLGetConnectAttrW(
     rgbValue: ?*anyopaque,
     cbValueMax: i32,
     pcbValue: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetCursorNameW(
     hstmt: ?*anyopaque,
     szCursor: ?[*:0]u16,
     cchCursorMax: i16,
     pcchCursor: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLSetDescFieldW(
     DescriptorHandle: ?*anyopaque,
@@ -14949,7 +14949,7 @@ pub extern "odbc32" fn SQLSetDescFieldW(
     FieldIdentifier: i16,
     Value: ?*anyopaque,
     BufferLength: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetDescFieldW(
     hdesc: ?*anyopaque,
@@ -14958,7 +14958,7 @@ pub extern "odbc32" fn SQLGetDescFieldW(
     rgbValue: ?*anyopaque,
     cbBufferLength: i32,
     StringLength: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLGetDescRecW = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -14975,7 +14975,7 @@ pub extern "odbc32" fn SQLGetDescRecW(
     pPrecision: ?*i16,
     pScale: ?*i16,
     pNullable: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLGetDescRecW,
 .X64, .Arm64 => (struct {
@@ -14992,7 +14992,7 @@ pub extern "odbc32" fn SQLGetDescRecW(
     pPrecision: ?*i16,
     pScale: ?*i16,
     pNullable: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLGetDescRecW,
 };
@@ -15005,7 +15005,7 @@ pub extern "odbc32" fn SQLGetDiagFieldW(
     rgbDiagInfo: ?*anyopaque,
     cbBufferLength: i16,
     pcbStringLength: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetDiagRecW(
     fHandleType: i16,
@@ -15016,13 +15016,13 @@ pub extern "odbc32" fn SQLGetDiagRecW(
     szErrorMsg: ?[*:0]u16,
     cchErrorMsgMax: i16,
     pcchErrorMsg: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLPrepareW(
     hstmt: ?*anyopaque,
     szSqlStr: [*:0]u16,
     cchSqlStr: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLSetConnectAttrW(
     hdbc: ?*anyopaque,
@@ -15030,13 +15030,13 @@ pub extern "odbc32" fn SQLSetConnectAttrW(
     // TODO: what to do with BytesParamIndex 3?
     rgbValue: ?*anyopaque,
     cbValue: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLSetCursorNameW(
     hstmt: ?*anyopaque,
     szCursor: [*:0]u16,
     cchCursor: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLColumnsW(
     hstmt: ?*anyopaque,
@@ -15048,13 +15048,13 @@ pub extern "odbc32" fn SQLColumnsW(
     cchTableName: i16,
     szColumnName: ?[*:0]u16,
     cchColumnName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetConnectOptionW(
     hdbc: ?*anyopaque,
     fOption: u16,
     pvParam: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetInfoW(
     hdbc: ?*anyopaque,
@@ -15063,12 +15063,12 @@ pub extern "odbc32" fn SQLGetInfoW(
     rgbInfoValue: ?*anyopaque,
     cbInfoValueMax: i16,
     pcbInfoValue: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetTypeInfoW(
     StatementHandle: ?*anyopaque,
     DataType: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLSetConnectOptionW = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -15077,7 +15077,7 @@ pub extern "odbc32" fn SQLSetConnectOptionW(
     hdbc: ?*anyopaque,
     fOption: u16,
     vParam: u32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetConnectOptionW,
 .X64, .Arm64 => (struct {
@@ -15086,7 +15086,7 @@ pub extern "odbc32" fn SQLSetConnectOptionW(
     hdbc: ?*anyopaque,
     fOption: u16,
     vParam: u64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetConnectOptionW,
 };
@@ -15102,7 +15102,7 @@ pub extern "odbc32" fn SQLSpecialColumnsW(
     cchTableName: i16,
     fScope: u16,
     fNullable: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLStatisticsW(
     hstmt: ?*anyopaque,
@@ -15114,7 +15114,7 @@ pub extern "odbc32" fn SQLStatisticsW(
     cchTableName: i16,
     fUnique: u16,
     fAccuracy: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLTablesW(
     hstmt: ?*anyopaque,
@@ -15126,7 +15126,7 @@ pub extern "odbc32" fn SQLTablesW(
     cchTableName: i16,
     szTableType: ?[*:0]u16,
     cchTableType: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLDataSourcesW(
     henv: ?*anyopaque,
@@ -15137,7 +15137,7 @@ pub extern "odbc32" fn SQLDataSourcesW(
     wszDescription: ?[*:0]u16,
     cchDescriptionMax: i16,
     pcchDescription: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLDriverConnectW(
     hdbc: ?*anyopaque,
@@ -15148,7 +15148,7 @@ pub extern "odbc32" fn SQLDriverConnectW(
     cchConnStrOutMax: i16,
     pcchConnStrOut: ?*i16,
     fDriverCompletion: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLBrowseConnectW(
     hdbc: ?*anyopaque,
@@ -15157,7 +15157,7 @@ pub extern "odbc32" fn SQLBrowseConnectW(
     szConnStrOut: ?[*:0]u16,
     cchConnStrOutMax: i16,
     pcchConnStrOut: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLColumnPrivilegesW(
     hstmt: ?*anyopaque,
@@ -15169,7 +15169,7 @@ pub extern "odbc32" fn SQLColumnPrivilegesW(
     cchTableName: i16,
     szColumnName: ?[*:0]u16,
     cchColumnName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetStmtAttrW(
     hstmt: ?*anyopaque,
@@ -15177,14 +15177,14 @@ pub extern "odbc32" fn SQLGetStmtAttrW(
     rgbValue: ?*anyopaque,
     cbValueMax: i32,
     pcbValue: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLSetStmtAttrW(
     hstmt: ?*anyopaque,
     fAttribute: i32,
     rgbValue: ?*anyopaque,
     cbValueMax: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLForeignKeysW(
     hstmt: ?*anyopaque,
@@ -15200,7 +15200,7 @@ pub extern "odbc32" fn SQLForeignKeysW(
     cchFkSchemaName: i16,
     szFkTableName: ?[*:0]u16,
     cchFkTableName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLNativeSqlW(
     hdbc: ?*anyopaque,
@@ -15209,7 +15209,7 @@ pub extern "odbc32" fn SQLNativeSqlW(
     szSqlStr: ?[*:0]u16,
     cchSqlStrMax: i32,
     pcchSqlStr: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLPrimaryKeysW(
     hstmt: ?*anyopaque,
@@ -15219,7 +15219,7 @@ pub extern "odbc32" fn SQLPrimaryKeysW(
     cchSchemaName: i16,
     szTableName: ?[*:0]u16,
     cchTableName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLProcedureColumnsW(
     hstmt: ?*anyopaque,
@@ -15231,7 +15231,7 @@ pub extern "odbc32" fn SQLProcedureColumnsW(
     cchProcName: i16,
     szColumnName: ?[*:0]u16,
     cchColumnName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLProceduresW(
     hstmt: ?*anyopaque,
@@ -15241,7 +15241,7 @@ pub extern "odbc32" fn SQLProceduresW(
     cchSchemaName: i16,
     szProcName: ?[*:0]u16,
     cchProcName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLTablePrivilegesW(
     hstmt: ?*anyopaque,
@@ -15251,7 +15251,7 @@ pub extern "odbc32" fn SQLTablePrivilegesW(
     cchSchemaName: i16,
     szTableName: ?[*:0]u16,
     cchTableName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLDriversW(
     henv: ?*anyopaque,
@@ -15262,7 +15262,7 @@ pub extern "odbc32" fn SQLDriversW(
     szDriverAttributes: ?[*:0]u16,
     cchDrvrAttrMax: i16,
     pcchDrvrAttr: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLColAttributeA = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -15276,7 +15276,7 @@ pub extern "odbc32" fn SQLColAttributeA(
     cbCharAttrMax: i16,
     pcbCharAttr: ?*i16,
     pNumAttr: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLColAttributeA,
 .X64, .Arm64 => (struct {
@@ -15290,7 +15290,7 @@ pub extern "odbc32" fn SQLColAttributeA(
     cbCharAttrMax: i16,
     pcbCharAttr: ?*i16,
     pNumAttr: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLColAttributeA,
 };
@@ -15307,7 +15307,7 @@ pub extern "odbc32" fn SQLColAttributesA(
     cbDescMax: i16,
     pcbDesc: ?*i16,
     pfDesc: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLColAttributesA,
 .X64, .Arm64 => (struct {
@@ -15321,7 +15321,7 @@ pub extern "odbc32" fn SQLColAttributesA(
     cbDescMax: i16,
     pcbDesc: ?*i16,
     pfDesc: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLColAttributesA,
 };
@@ -15334,7 +15334,7 @@ pub extern "odbc32" fn SQLConnectA(
     cbUID: i16,
     szAuthStr: [*:0]u8,
     cbAuthStr: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLDescribeColA = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -15349,7 +15349,7 @@ pub extern "odbc32" fn SQLDescribeColA(
     pcbColDef: ?*u32,
     pibScale: ?*i16,
     pfNullable: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLDescribeColA,
 .X64, .Arm64 => (struct {
@@ -15364,7 +15364,7 @@ pub extern "odbc32" fn SQLDescribeColA(
     pcbColDef: ?*u64,
     pibScale: ?*i16,
     pfNullable: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLDescribeColA,
 };
@@ -15378,13 +15378,13 @@ pub extern "odbc32" fn SQLErrorA(
     szErrorMsg: ?[*:0]u8,
     cbErrorMsgMax: i16,
     pcbErrorMsg: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLExecDirectA(
     hstmt: ?*anyopaque,
     szSqlStr: ?[*:0]u8,
     cbSqlStr: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetConnectAttrA(
     hdbc: ?*anyopaque,
@@ -15392,14 +15392,14 @@ pub extern "odbc32" fn SQLGetConnectAttrA(
     rgbValue: ?*anyopaque,
     cbValueMax: i32,
     pcbValue: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetCursorNameA(
     hstmt: ?*anyopaque,
     szCursor: ?[*:0]u8,
     cbCursorMax: i16,
     pcbCursor: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetDescFieldA(
     hdesc: ?*anyopaque,
@@ -15408,7 +15408,7 @@ pub extern "odbc32" fn SQLGetDescFieldA(
     rgbValue: ?*anyopaque,
     cbBufferLength: i32,
     StringLength: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLGetDescRecA = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -15425,7 +15425,7 @@ pub extern "odbc32" fn SQLGetDescRecA(
     pPrecision: ?*i16,
     pScale: ?*i16,
     pNullable: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLGetDescRecA,
 .X64, .Arm64 => (struct {
@@ -15442,7 +15442,7 @@ pub extern "odbc32" fn SQLGetDescRecA(
     pPrecision: ?*i16,
     pScale: ?*i16,
     pNullable: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLGetDescRecA,
 };
@@ -15455,7 +15455,7 @@ pub extern "odbc32" fn SQLGetDiagFieldA(
     rgbDiagInfo: ?*anyopaque,
     cbDiagInfoMax: i16,
     pcbDiagInfo: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetDiagRecA(
     fHandleType: i16,
@@ -15466,7 +15466,7 @@ pub extern "odbc32" fn SQLGetDiagRecA(
     szErrorMsg: ?[*:0]u8,
     cbErrorMsgMax: i16,
     pcbErrorMsg: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetStmtAttrA(
     hstmt: ?*anyopaque,
@@ -15474,18 +15474,18 @@ pub extern "odbc32" fn SQLGetStmtAttrA(
     rgbValue: ?*anyopaque,
     cbValueMax: i32,
     pcbValue: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetTypeInfoA(
     StatementHandle: ?*anyopaque,
     DataType: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLPrepareA(
     hstmt: ?*anyopaque,
     szSqlStr: [*:0]u8,
     cbSqlStr: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLSetConnectAttrA(
     hdbc: ?*anyopaque,
@@ -15493,13 +15493,13 @@ pub extern "odbc32" fn SQLSetConnectAttrA(
     // TODO: what to do with BytesParamIndex 3?
     rgbValue: ?*anyopaque,
     cbValue: i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLSetCursorNameA(
     hstmt: ?*anyopaque,
     szCursor: [*:0]u8,
     cbCursor: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLColumnsA(
     hstmt: ?*anyopaque,
@@ -15511,13 +15511,13 @@ pub extern "odbc32" fn SQLColumnsA(
     cbTableName: i16,
     szColumnName: ?[*:0]u8,
     cbColumnName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetConnectOptionA(
     hdbc: ?*anyopaque,
     fOption: u16,
     pvParam: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLGetInfoA(
     hdbc: ?*anyopaque,
@@ -15526,7 +15526,7 @@ pub extern "odbc32" fn SQLGetInfoA(
     rgbInfoValue: ?*anyopaque,
     cbInfoValueMax: i16,
     pcbInfoValue: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub const SQLSetConnectOptionA = switch (@import("../zig.zig").arch) {
 .X86 => (struct {
@@ -15535,7 +15535,7 @@ pub extern "odbc32" fn SQLSetConnectOptionA(
     hdbc: ?*anyopaque,
     fOption: u16,
     vParam: u32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetConnectOptionA,
 .X64, .Arm64 => (struct {
@@ -15544,7 +15544,7 @@ pub extern "odbc32" fn SQLSetConnectOptionA(
     hdbc: ?*anyopaque,
     fOption: u16,
     vParam: u64,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 }).SQLSetConnectOptionA,
 };
@@ -15560,7 +15560,7 @@ pub extern "odbc32" fn SQLSpecialColumnsA(
     cbTableName: i16,
     fScope: u16,
     fNullable: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLStatisticsA(
     hstmt: ?*anyopaque,
@@ -15572,7 +15572,7 @@ pub extern "odbc32" fn SQLStatisticsA(
     cbTableName: i16,
     fUnique: u16,
     fAccuracy: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLTablesA(
     hstmt: ?*anyopaque,
@@ -15584,7 +15584,7 @@ pub extern "odbc32" fn SQLTablesA(
     cbTableName: i16,
     szTableType: ?[*:0]u8,
     cbTableType: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLDataSourcesA(
     henv: ?*anyopaque,
@@ -15595,7 +15595,7 @@ pub extern "odbc32" fn SQLDataSourcesA(
     szDescription: ?[*:0]u8,
     cbDescriptionMax: i16,
     pcbDescription: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLDriverConnectA(
     hdbc: ?*anyopaque,
@@ -15606,7 +15606,7 @@ pub extern "odbc32" fn SQLDriverConnectA(
     cbConnStrOutMax: i16,
     pcbConnStrOut: ?*i16,
     fDriverCompletion: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLBrowseConnectA(
     hdbc: ?*anyopaque,
@@ -15615,7 +15615,7 @@ pub extern "odbc32" fn SQLBrowseConnectA(
     szConnStrOut: ?[*:0]u8,
     cbConnStrOutMax: i16,
     pcbConnStrOut: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLColumnPrivilegesA(
     hstmt: ?*anyopaque,
@@ -15627,7 +15627,7 @@ pub extern "odbc32" fn SQLColumnPrivilegesA(
     cbTableName: i16,
     szColumnName: ?[*:0]u8,
     cbColumnName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLForeignKeysA(
     hstmt: ?*anyopaque,
@@ -15643,7 +15643,7 @@ pub extern "odbc32" fn SQLForeignKeysA(
     cbFkSchemaName: i16,
     szFkTableName: ?[*:0]u8,
     cbFkTableName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLNativeSqlA(
     hdbc: ?*anyopaque,
@@ -15652,7 +15652,7 @@ pub extern "odbc32" fn SQLNativeSqlA(
     szSqlStr: ?[*:0]u8,
     cbSqlStrMax: i32,
     pcbSqlStr: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLPrimaryKeysA(
     hstmt: ?*anyopaque,
@@ -15662,7 +15662,7 @@ pub extern "odbc32" fn SQLPrimaryKeysA(
     cbSchemaName: i16,
     szTableName: ?[*:0]u8,
     cbTableName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLProcedureColumnsA(
     hstmt: ?*anyopaque,
@@ -15674,7 +15674,7 @@ pub extern "odbc32" fn SQLProcedureColumnsA(
     cbProcName: i16,
     szColumnName: ?[*:0]u8,
     cbColumnName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLProceduresA(
     hstmt: ?*anyopaque,
@@ -15684,7 +15684,7 @@ pub extern "odbc32" fn SQLProceduresA(
     cbSchemaName: i16,
     szProcName: ?[*:0]u8,
     cbProcName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLTablePrivilegesA(
     hstmt: ?*anyopaque,
@@ -15694,7 +15694,7 @@ pub extern "odbc32" fn SQLTablePrivilegesA(
     cbSchemaName: i16,
     szTableName: ?[*:0]u8,
     cbTableName: i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "odbc32" fn SQLDriversA(
     henv: ?*anyopaque,
@@ -15705,7 +15705,7 @@ pub extern "odbc32" fn SQLDriversA(
     szDriverAttributes: ?[*:0]u8,
     cbDrvrAttrMax: i16,
     pcbDrvrAttr: ?*i16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 
 //--------------------------------------------------------------------------------

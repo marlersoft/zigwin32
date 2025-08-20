@@ -89,52 +89,52 @@ pub const ICallFrame = extern union {
         GetInfo: *const fn(
             self: *const ICallFrame,
             pInfo: ?*CALLFRAMEINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIIDAndMethod: *const fn(
             self: *const ICallFrame,
             pIID: ?*Guid,
             piMethod: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNames: *const fn(
             self: *const ICallFrame,
             pwszInterface: ?*?PWSTR,
             pwszMethod: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStackLocation: *const fn(
             self: *const ICallFrame,
-        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+        ) callconv(.winapi) ?*anyopaque,
         SetStackLocation: *const fn(
             self: *const ICallFrame,
             pvStack: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetReturnValue: *const fn(
             self: *const ICallFrame,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetReturnValue: *const fn(
             self: *const ICallFrame,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParamInfo: *const fn(
             self: *const ICallFrame,
             iparam: u32,
             pInfo: ?*CALLFRAMEPARAMINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetParam: *const fn(
             self: *const ICallFrame,
             iparam: u32,
             pvar: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParam: *const fn(
             self: *const ICallFrame,
             iparam: u32,
             pvar: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Copy: *const fn(
             self: *const ICallFrame,
             copyControl: CALLFRAME_COPY,
             pWalker: ?*ICallFrameWalker,
             ppFrame: ?*?*ICallFrame,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Free: *const fn(
             self: *const ICallFrame,
             pframeArgsDest: ?*ICallFrame,
@@ -143,25 +143,25 @@ pub const ICallFrame = extern union {
             freeFlags: u32,
             pWalkerFree: ?*ICallFrameWalker,
             nullFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FreeParam: *const fn(
             self: *const ICallFrame,
             iparam: u32,
             freeFlags: u32,
             pWalkerFree: ?*ICallFrameWalker,
             nullFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WalkFrame: *const fn(
             self: *const ICallFrame,
             walkWhat: u32,
             pWalker: ?*ICallFrameWalker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMarshalSizeMax: *const fn(
             self: *const ICallFrame,
             pmshlContext: ?*CALLFRAME_MARSHALCONTEXT,
             mshlflags: MSHLFLAGS,
             pcbBufferNeeded: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Marshal: *const fn(
             self: *const ICallFrame,
             pmshlContext: ?*CALLFRAME_MARSHALCONTEXT,
@@ -171,7 +171,7 @@ pub const ICallFrame = extern union {
             pcbBufferUsed: ?*u32,
             pdataRep: ?*u32,
             prpcFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unmarshal: *const fn(
             self: *const ICallFrame,
             pBuffer: [*]u8,
@@ -179,7 +179,7 @@ pub const ICallFrame = extern union {
             dataRep: u32,
             pcontext: ?*CALLFRAME_MARSHALCONTEXT,
             pcbUnmarshalled: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseMarshalData: *const fn(
             self: *const ICallFrame,
             pBuffer: [*]u8,
@@ -187,11 +187,11 @@ pub const ICallFrame = extern union {
             ibFirstRelease: u32,
             dataRep: u32,
             pcontext: ?*CALLFRAME_MARSHALCONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Invoke: *const fn(
             self: *const ICallFrame,
             pvReceiver: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -266,25 +266,25 @@ pub const ICallIndirect = extern union {
             iMethod: u32,
             pvArgs: ?*anyopaque,
             cbArgs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMethodInfo: *const fn(
             self: *const ICallIndirect,
             iMethod: u32,
             pInfo: ?*CALLFRAMEINFO,
             pwszMethod: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStackSize: *const fn(
             self: *const ICallIndirect,
             iMethod: u32,
             cbArgs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIID: *const fn(
             self: *const ICallIndirect,
             piid: ?*Guid,
             pfDerivesFromIDispatch: ?*BOOL,
             pcMethod: ?*u32,
             pwszInterface: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -311,11 +311,11 @@ pub const ICallInterceptor = extern union {
         RegisterSink: *const fn(
             self: *const ICallInterceptor,
             psink: ?*ICallFrameEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegisteredSink: *const fn(
             self: *const ICallInterceptor,
             ppsink: ?*?*ICallFrameEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICallIndirect: ICallIndirect,
@@ -337,7 +337,7 @@ pub const ICallFrameEvents = extern union {
         OnCall: *const fn(
             self: *const ICallFrameEvents,
             pFrame: ?*ICallFrame,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -362,7 +362,7 @@ pub const ICallUnmarshal = extern union {
             pcontext: ?*CALLFRAME_MARSHALCONTEXT,
             pcbUnmarshalled: ?*u32,
             ppFrame: ?*?*ICallFrame,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseMarshalData: *const fn(
             self: *const ICallUnmarshal,
             iMethod: u32,
@@ -371,7 +371,7 @@ pub const ICallUnmarshal = extern union {
             ibFirstRelease: u32,
             dataRep: u32,
             pcontext: ?*CALLFRAME_MARSHALCONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -395,7 +395,7 @@ pub const ICallFrameWalker = extern union {
             ppvInterface: ?*?*anyopaque,
             fIn: BOOL,
             fOut: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -412,11 +412,11 @@ pub const IInterfaceRelated = extern union {
         SetIID: *const fn(
             self: *const IInterfaceRelated,
             iid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIID: *const fn(
             self: *const IInterfaceRelated,
             piid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -438,7 +438,7 @@ pub extern "ole32" fn CoGetInterceptor(
     punkOuter: ?*IUnknown,
     iid: ?*const Guid,
     ppv: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "ole32" fn CoGetInterceptorFromTypeInfo(
     iidIntercepted: ?*const Guid,
@@ -446,7 +446,7 @@ pub extern "ole32" fn CoGetInterceptorFromTypeInfo(
     typeInfo: ?*ITypeInfo,
     iid: ?*const Guid,
     ppv: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

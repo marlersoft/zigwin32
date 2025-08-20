@@ -447,19 +447,19 @@ pub const IFunctionDiscoveryNotification = extern union {
             enumQueryUpdateAction: QueryUpdateAction,
             fdqcQueryContext: u64,
             pIFunctionInstance: ?*IFunctionInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnError: *const fn(
             self: *const IFunctionDiscoveryNotification,
             hr: HRESULT,
             fdqcQueryContext: u64,
             pszProvider: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEvent: *const fn(
             self: *const IFunctionDiscoveryNotification,
             dwEventID: u32,
             fdqcQueryContext: u64,
             pszProvider: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -486,12 +486,12 @@ pub const IFunctionDiscovery = extern union {
             pszSubCategory: ?[*:0]const u16,
             fIncludeAllSubCategories: BOOL,
             ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInstance: *const fn(
             self: *const IFunctionDiscovery,
             pszFunctionInstanceIdentity: ?[*:0]const u16,
             ppIFunctionInstance: ?*?*IFunctionInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInstanceCollectionQuery: *const fn(
             self: *const IFunctionDiscovery,
             pszCategory: ?[*:0]const u16,
@@ -500,14 +500,14 @@ pub const IFunctionDiscovery = extern union {
             pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
             pfdqcQueryContext: ?*u64,
             ppIFunctionInstanceCollectionQuery: ?*?*IFunctionInstanceCollectionQuery,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInstanceQuery: *const fn(
             self: *const IFunctionDiscovery,
             pszFunctionInstanceIdentity: ?[*:0]const u16,
             pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
             pfdqcQueryContext: ?*u64,
             ppIFunctionInstanceQuery: ?*?*IFunctionInstanceQuery,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddInstance: *const fn(
             self: *const IFunctionDiscovery,
             enumSystemVisibility: SystemVisibilityFlags,
@@ -515,14 +515,14 @@ pub const IFunctionDiscovery = extern union {
             pszSubCategory: ?[*:0]const u16,
             pszCategoryIdentity: ?[*:0]const u16,
             ppIFunctionInstance: ?*?*IFunctionInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveInstance: *const fn(
             self: *const IFunctionDiscovery,
             enumSystemVisibility: SystemVisibilityFlags,
             pszCategory: ?[*:0]const u16,
             pszSubCategory: ?[*:0]const u16,
             pszCategoryIdentity: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -555,21 +555,21 @@ pub const IFunctionInstance = extern union {
         GetID: *const fn(
             self: *const IFunctionInstance,
             ppszCoMemIdentity: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProviderInstanceID: *const fn(
             self: *const IFunctionInstance,
             ppszCoMemProviderInstanceIdentity: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenPropertyStore: *const fn(
             self: *const IFunctionInstance,
             dwStgAccess: STGM,
             ppIPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCategory: *const fn(
             self: *const IFunctionInstance,
             ppszCoMemCategory: ?*?*u16,
             ppszCoMemSubCategory: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IServiceProvider: IServiceProvider,
@@ -597,34 +597,34 @@ pub const IFunctionInstanceCollection = extern union {
         GetCount: *const fn(
             self: *const IFunctionInstanceCollection,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Get: *const fn(
             self: *const IFunctionInstanceCollection,
             pszInstanceIdentity: ?[*:0]const u16,
             pdwIndex: ?*u32,
             ppIFunctionInstance: ?*?*IFunctionInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IFunctionInstanceCollection,
             dwIndex: u32,
             ppIFunctionInstance: ?*?*IFunctionInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IFunctionInstanceCollection,
             pIFunctionInstance: ?*IFunctionInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IFunctionInstanceCollection,
             dwIndex: u32,
             ppIFunctionInstance: ?*?*IFunctionInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IFunctionInstanceCollection,
             dwIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAll: *const fn(
             self: *const IFunctionInstanceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -659,34 +659,34 @@ pub const IPropertyStoreCollection = extern union {
         GetCount: *const fn(
             self: *const IPropertyStoreCollection,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Get: *const fn(
             self: *const IPropertyStoreCollection,
             pszInstanceIdentity: ?[*:0]const u16,
             pdwIndex: ?*u32,
             ppIPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IPropertyStoreCollection,
             dwIndex: u32,
             ppIPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IPropertyStoreCollection,
             pIPropertyStore: ?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IPropertyStoreCollection,
             dwIndex: u32,
             pIPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IPropertyStoreCollection,
             dwIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAll: *const fn(
             self: *const IPropertyStoreCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -722,7 +722,7 @@ pub const IFunctionInstanceQuery = extern union {
         Execute: *const fn(
             self: *const IFunctionInstanceQuery,
             ppIFunctionInstance: ?*?*IFunctionInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -741,17 +741,17 @@ pub const IFunctionInstanceCollectionQuery = extern union {
             self: *const IFunctionInstanceCollectionQuery,
             pszConstraintName: ?[*:0]const u16,
             pszConstraintValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyConstraint: *const fn(
             self: *const IFunctionInstanceCollectionQuery,
             Key: ?*const PROPERTYKEY,
             pv: ?*const PROPVARIANT,
             enumPropertyConstraint: PropertyConstraint,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Execute: *const fn(
             self: *const IFunctionInstanceCollectionQuery,
             ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -778,33 +778,33 @@ pub const IFunctionDiscoveryProvider = extern union {
             pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
             lcidUserDefault: u32,
             pdwStgAccessCapabilities: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Query: *const fn(
             self: *const IFunctionDiscoveryProvider,
             pIFunctionDiscoveryProviderQuery: ?*IFunctionDiscoveryProviderQuery,
             ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndQuery: *const fn(
             self: *const IFunctionDiscoveryProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstancePropertyStoreValidateAccess: *const fn(
             self: *const IFunctionDiscoveryProvider,
             pIFunctionInstance: ?*IFunctionInstance,
             iProviderInstanceContext: isize,
             dwStgAccess: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstancePropertyStoreOpen: *const fn(
             self: *const IFunctionDiscoveryProvider,
             pIFunctionInstance: ?*IFunctionInstance,
             iProviderInstanceContext: isize,
             dwStgAccess: u32,
             ppIPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstancePropertyStoreFlush: *const fn(
             self: *const IFunctionDiscoveryProvider,
             pIFunctionInstance: ?*IFunctionInstance,
             iProviderInstanceContext: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstanceQueryService: *const fn(
             self: *const IFunctionDiscoveryProvider,
             pIFunctionInstance: ?*IFunctionInstance,
@@ -812,12 +812,12 @@ pub const IFunctionDiscoveryProvider = extern union {
             guidService: ?*const Guid,
             riid: ?*const Guid,
             ppIUnknown: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstanceReleased: *const fn(
             self: *const IFunctionDiscoveryProvider,
             pIFunctionInstance: ?*IFunctionInstance,
             iProviderInstanceContext: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -858,28 +858,28 @@ pub const IProviderProperties = extern union {
             pIFunctionInstance: ?*IFunctionInstance,
             iProviderInstanceContext: isize,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IProviderProperties,
             pIFunctionInstance: ?*IFunctionInstance,
             iProviderInstanceContext: isize,
             dwIndex: u32,
             pKey: ?*PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const IProviderProperties,
             pIFunctionInstance: ?*IFunctionInstance,
             iProviderInstanceContext: isize,
             Key: ?*const PROPERTYKEY,
             ppropVar: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValue: *const fn(
             self: *const IProviderProperties,
             pIFunctionInstance: ?*IFunctionInstance,
             iProviderInstanceContext: isize,
             Key: ?*const PROPERTYKEY,
             ppropVar: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -909,13 +909,13 @@ pub const IProviderPublishing = extern union {
             pszSubCategory: ?[*:0]const u16,
             pszProviderInstanceIdentity: ?[*:0]const u16,
             ppIFunctionInstance: ?*?*IFunctionInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveInstance: *const fn(
             self: *const IProviderPublishing,
             enumVisibilityFlags: SystemVisibilityFlags,
             pszSubCategory: ?[*:0]const u16,
             pszProviderInstanceIdentity: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -936,7 +936,7 @@ pub const IFunctionDiscoveryProviderFactory = extern union {
         CreatePropertyStore: *const fn(
             self: *const IFunctionDiscoveryProviderFactory,
             ppIPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInstance: *const fn(
             self: *const IFunctionDiscoveryProviderFactory,
             pszSubCategory: ?[*:0]const u16,
@@ -945,11 +945,11 @@ pub const IFunctionDiscoveryProviderFactory = extern union {
             pIPropertyStore: ?*IPropertyStore,
             pIFunctionDiscoveryProvider: ?*IFunctionDiscoveryProvider,
             ppIFunctionInstance: ?*?*IFunctionInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFunctionInstanceCollection: *const fn(
             self: *const IFunctionDiscoveryProviderFactory,
             ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -974,20 +974,20 @@ pub const IFunctionDiscoveryProviderQuery = extern union {
             self: *const IFunctionDiscoveryProviderQuery,
             pisInstanceQuery: ?*BOOL,
             ppszConstraintValue: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSubcategoryQuery: *const fn(
             self: *const IFunctionDiscoveryProviderQuery,
             pisSubcategoryQuery: ?*BOOL,
             ppszConstraintValue: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetQueryConstraints: *const fn(
             self: *const IFunctionDiscoveryProviderQuery,
             ppIProviderQueryConstraints: ?*?*IProviderQueryConstraintCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyConstraints: *const fn(
             self: *const IFunctionDiscoveryProviderQuery,
             ppIProviderPropertyConstraints: ?*?*IProviderPropertyConstraintCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1014,29 +1014,29 @@ pub const IProviderQueryConstraintCollection = extern union {
         GetCount: *const fn(
             self: *const IProviderQueryConstraintCollection,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Get: *const fn(
             self: *const IProviderQueryConstraintCollection,
             pszConstraintName: ?[*:0]const u16,
             ppszConstraintValue: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IProviderQueryConstraintCollection,
             dwIndex: u32,
             ppszConstraintName: ?*?*u16,
             ppszConstraintValue: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IProviderQueryConstraintCollection,
             ppszConstraintName: ?*?*u16,
             ppszConstraintValue: ?*?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IProviderQueryConstraintCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IProviderQueryConstraintCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1069,32 +1069,32 @@ pub const IProviderPropertyConstraintCollection = extern union {
         GetCount: *const fn(
             self: *const IProviderPropertyConstraintCollection,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Get: *const fn(
             self: *const IProviderPropertyConstraintCollection,
             Key: ?*const PROPERTYKEY,
             pPropVar: ?*PROPVARIANT,
             pdwPropertyConstraint: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IProviderPropertyConstraintCollection,
             dwIndex: u32,
             pKey: ?*PROPERTYKEY,
             pPropVar: ?*PROPVARIANT,
             pdwPropertyConstraint: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IProviderPropertyConstraintCollection,
             pKey: ?*PROPERTYKEY,
             pPropVar: ?*PROPVARIANT,
             pdwPropertyConstraint: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IProviderPropertyConstraintCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IProviderPropertyConstraintCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1129,7 +1129,7 @@ pub const IFunctionDiscoveryServiceProvider = extern union {
             pIFunctionInstance: ?*IFunctionInstance,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1153,15 +1153,15 @@ pub const IPNPXAssociation = extern union {
         Associate: *const fn(
             self: *const IPNPXAssociation,
             pszSubcategory: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unassociate: *const fn(
             self: *const IPNPXAssociation,
             pszSubcategory: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IPNPXAssociation,
             pszSubcategory: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1186,17 +1186,17 @@ pub const IPNPXDeviceAssociation = extern union {
             self: *const IPNPXDeviceAssociation,
             pszSubCategory: ?[*:0]const u16,
             pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unassociate: *const fn(
             self: *const IPNPXDeviceAssociation,
             pszSubCategory: ?[*:0]const u16,
             pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IPNPXDeviceAssociation,
             pszSubcategory: ?[*:0]const u16,
             pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

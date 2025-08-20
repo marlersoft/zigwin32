@@ -859,7 +859,7 @@ pub const ID2D1Resource = extern union {
         GetFactory: *const fn(
             self: *const ID2D1Resource,
             factory: ?*?*ID2D1Factory,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -888,36 +888,36 @@ pub const ID2D1Bitmap = extern union {
         base: ID2D1Image.VTable,
         GetSize: *const fn(
             self: *const ID2D1Bitmap,
-        ) callconv(@import("std").os.windows.WINAPI) D2D_SIZE_F,
+        ) callconv(.winapi) D2D_SIZE_F,
         GetPixelSize: *const fn(
             self: *const ID2D1Bitmap,
-        ) callconv(@import("std").os.windows.WINAPI) D2D_SIZE_U,
+        ) callconv(.winapi) D2D_SIZE_U,
         GetPixelFormat: *const fn(
             self: *const ID2D1Bitmap,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_PIXEL_FORMAT,
+        ) callconv(.winapi) D2D1_PIXEL_FORMAT,
         GetDpi: *const fn(
             self: *const ID2D1Bitmap,
             dpiX: ?*f32,
             dpiY: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CopyFromBitmap: *const fn(
             self: *const ID2D1Bitmap,
             destPoint: ?*const D2D_POINT_2U,
             bitmap: ?*ID2D1Bitmap,
             srcRect: ?*const D2D_RECT_U,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyFromRenderTarget: *const fn(
             self: *const ID2D1Bitmap,
             destPoint: ?*const D2D_POINT_2U,
             renderTarget: ?*ID2D1RenderTarget,
             srcRect: ?*const D2D_RECT_U,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CopyFromMemory: *const fn(
             self: *const ID2D1Bitmap,
             dstRect: ?*const D2D_RECT_U,
             srcData: ?*const anyopaque,
             pitch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Image: ID2D1Image,
@@ -954,18 +954,18 @@ pub const ID2D1GradientStopCollection = extern union {
         base: ID2D1Resource.VTable,
         GetGradientStopCount: *const fn(
             self: *const ID2D1GradientStopCollection,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetGradientStops: *const fn(
             self: *const ID2D1GradientStopCollection,
             gradientStops: [*]D2D1_GRADIENT_STOP,
             gradientStopsCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetColorInterpolationGamma: *const fn(
             self: *const ID2D1GradientStopCollection,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_GAMMA,
+        ) callconv(.winapi) D2D1_GAMMA,
         GetExtendMode: *const fn(
             self: *const ID2D1GradientStopCollection,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_EXTEND_MODE,
+        ) callconv(.winapi) D2D1_EXTEND_MODE,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -993,18 +993,18 @@ pub const ID2D1Brush = extern union {
         SetOpacity: *const fn(
             self: *const ID2D1Brush,
             opacity: f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetTransform: *const fn(
             self: *const ID2D1Brush,
             transform: ?*const D2D_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetOpacity: *const fn(
             self: *const ID2D1Brush,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         GetTransform: *const fn(
             self: *const ID2D1Brush,
             transform: ?*D2D_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -1032,32 +1032,32 @@ pub const ID2D1BitmapBrush = extern union {
         SetExtendModeX: *const fn(
             self: *const ID2D1BitmapBrush,
             extendModeX: D2D1_EXTEND_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetExtendModeY: *const fn(
             self: *const ID2D1BitmapBrush,
             extendModeY: D2D1_EXTEND_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetInterpolationMode: *const fn(
             self: *const ID2D1BitmapBrush,
             interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetBitmap: *const fn(
             self: *const ID2D1BitmapBrush,
             bitmap: ?*ID2D1Bitmap,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetExtendModeX: *const fn(
             self: *const ID2D1BitmapBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_EXTEND_MODE,
+        ) callconv(.winapi) D2D1_EXTEND_MODE,
         GetExtendModeY: *const fn(
             self: *const ID2D1BitmapBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_EXTEND_MODE,
+        ) callconv(.winapi) D2D1_EXTEND_MODE,
         GetInterpolationMode: *const fn(
             self: *const ID2D1BitmapBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_BITMAP_INTERPOLATION_MODE,
+        ) callconv(.winapi) D2D1_BITMAP_INTERPOLATION_MODE,
         GetBitmap: *const fn(
             self: *const ID2D1BitmapBrush,
             bitmap: ?*?*ID2D1Bitmap,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Brush: ID2D1Brush,
@@ -1098,10 +1098,10 @@ pub const ID2D1SolidColorBrush = extern union {
         SetColor: *const fn(
             self: *const ID2D1SolidColorBrush,
             color: ?*const D2D_COLOR_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetColor: *const fn(
             self: *const ID2D1SolidColorBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D2D_COLOR_F,
+        ) callconv(.winapi) D2D_COLOR_F,
     };
     vtable: *const VTable,
     ID2D1Brush: ID2D1Brush,
@@ -1124,21 +1124,21 @@ pub const ID2D1LinearGradientBrush = extern union {
         SetStartPoint: *const fn(
             self: *const ID2D1LinearGradientBrush,
             startPoint: D2D_POINT_2F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetEndPoint: *const fn(
             self: *const ID2D1LinearGradientBrush,
             endPoint: D2D_POINT_2F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetStartPoint: *const fn(
             self: *const ID2D1LinearGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D2D_POINT_2F,
+        ) callconv(.winapi) D2D_POINT_2F,
         GetEndPoint: *const fn(
             self: *const ID2D1LinearGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D2D_POINT_2F,
+        ) callconv(.winapi) D2D_POINT_2F,
         GetGradientStopCollection: *const fn(
             self: *const ID2D1LinearGradientBrush,
             gradientStopCollection: ?*?*ID2D1GradientStopCollection,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Brush: ID2D1Brush,
@@ -1170,35 +1170,35 @@ pub const ID2D1RadialGradientBrush = extern union {
         SetCenter: *const fn(
             self: *const ID2D1RadialGradientBrush,
             center: D2D_POINT_2F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetGradientOriginOffset: *const fn(
             self: *const ID2D1RadialGradientBrush,
             gradientOriginOffset: D2D_POINT_2F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetRadiusX: *const fn(
             self: *const ID2D1RadialGradientBrush,
             radiusX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetRadiusY: *const fn(
             self: *const ID2D1RadialGradientBrush,
             radiusY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetCenter: *const fn(
             self: *const ID2D1RadialGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D2D_POINT_2F,
+        ) callconv(.winapi) D2D_POINT_2F,
         GetGradientOriginOffset: *const fn(
             self: *const ID2D1RadialGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D2D_POINT_2F,
+        ) callconv(.winapi) D2D_POINT_2F,
         GetRadiusX: *const fn(
             self: *const ID2D1RadialGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         GetRadiusY: *const fn(
             self: *const ID2D1RadialGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         GetGradientStopCollection: *const fn(
             self: *const ID2D1RadialGradientBrush,
             gradientStopCollection: ?*?*ID2D1GradientStopCollection,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Brush: ID2D1Brush,
@@ -1241,33 +1241,33 @@ pub const ID2D1StrokeStyle = extern union {
         base: ID2D1Resource.VTable,
         GetStartCap: *const fn(
             self: *const ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_CAP_STYLE,
+        ) callconv(.winapi) D2D1_CAP_STYLE,
         GetEndCap: *const fn(
             self: *const ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_CAP_STYLE,
+        ) callconv(.winapi) D2D1_CAP_STYLE,
         GetDashCap: *const fn(
             self: *const ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_CAP_STYLE,
+        ) callconv(.winapi) D2D1_CAP_STYLE,
         GetMiterLimit: *const fn(
             self: *const ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         GetLineJoin: *const fn(
             self: *const ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_LINE_JOIN,
+        ) callconv(.winapi) D2D1_LINE_JOIN,
         GetDashOffset: *const fn(
             self: *const ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) f32,
+        ) callconv(.winapi) f32,
         GetDashStyle: *const fn(
             self: *const ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_DASH_STYLE,
+        ) callconv(.winapi) D2D1_DASH_STYLE,
         GetDashesCount: *const fn(
             self: *const ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetDashes: *const fn(
             self: *const ID2D1StrokeStyle,
             dashes: [*]f32,
             dashesCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -1311,7 +1311,7 @@ pub const ID2D1Geometry = extern union {
             self: *const ID2D1Geometry,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             bounds: ?*D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWidenedBounds: *const fn(
             self: *const ID2D1Geometry,
             strokeWidth: f32,
@@ -1319,7 +1319,7 @@ pub const ID2D1Geometry = extern union {
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             bounds: ?*D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StrokeContainsPoint: *const fn(
             self: *const ID2D1Geometry,
             point: D2D_POINT_2F,
@@ -1328,34 +1328,34 @@ pub const ID2D1Geometry = extern union {
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             contains: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FillContainsPoint: *const fn(
             self: *const ID2D1Geometry,
             point: D2D_POINT_2F,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             contains: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CompareWithGeometry: *const fn(
             self: *const ID2D1Geometry,
             inputGeometry: ?*ID2D1Geometry,
             inputGeometryTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             relation: ?*D2D1_GEOMETRY_RELATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Simplify: *const fn(
             self: *const ID2D1Geometry,
             simplificationOption: D2D1_GEOMETRY_SIMPLIFICATION_OPTION,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             geometrySink: ?*ID2D1SimplifiedGeometrySink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Tessellate: *const fn(
             self: *const ID2D1Geometry,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             tessellationSink: ?*ID2D1TessellationSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CombineWithGeometry: *const fn(
             self: *const ID2D1Geometry,
             inputGeometry: ?*ID2D1Geometry,
@@ -1363,25 +1363,25 @@ pub const ID2D1Geometry = extern union {
             inputGeometryTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             geometrySink: ?*ID2D1SimplifiedGeometrySink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Outline: *const fn(
             self: *const ID2D1Geometry,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             geometrySink: ?*ID2D1SimplifiedGeometrySink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ComputeArea: *const fn(
             self: *const ID2D1Geometry,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             area: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ComputeLength: *const fn(
             self: *const ID2D1Geometry,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             length: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ComputePointAtLength: *const fn(
             self: *const ID2D1Geometry,
             length: f32,
@@ -1389,7 +1389,7 @@ pub const ID2D1Geometry = extern union {
             flatteningTolerance: f32,
             point: ?*D2D_POINT_2F,
             unitTangentVector: ?*D2D_POINT_2F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Widen: *const fn(
             self: *const ID2D1Geometry,
             strokeWidth: f32,
@@ -1397,7 +1397,7 @@ pub const ID2D1Geometry = extern union {
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             geometrySink: ?*ID2D1SimplifiedGeometrySink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -1452,7 +1452,7 @@ pub const ID2D1RectangleGeometry = extern union {
         GetRect: *const fn(
             self: *const ID2D1RectangleGeometry,
             rect: ?*D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Geometry: ID2D1Geometry,
@@ -1472,7 +1472,7 @@ pub const ID2D1RoundedRectangleGeometry = extern union {
         GetRoundedRect: *const fn(
             self: *const ID2D1RoundedRectangleGeometry,
             roundedRect: ?*D2D1_ROUNDED_RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Geometry: ID2D1Geometry,
@@ -1492,7 +1492,7 @@ pub const ID2D1EllipseGeometry = extern union {
         GetEllipse: *const fn(
             self: *const ID2D1EllipseGeometry,
             ellipse: ?*D2D1_ELLIPSE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Geometry: ID2D1Geometry,
@@ -1511,15 +1511,15 @@ pub const ID2D1GeometryGroup = extern union {
         base: ID2D1Geometry.VTable,
         GetFillMode: *const fn(
             self: *const ID2D1GeometryGroup,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_FILL_MODE,
+        ) callconv(.winapi) D2D1_FILL_MODE,
         GetSourceGeometryCount: *const fn(
             self: *const ID2D1GeometryGroup,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetSourceGeometries: *const fn(
             self: *const ID2D1GeometryGroup,
             geometries: [*]?*ID2D1Geometry,
             geometriesCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Geometry: ID2D1Geometry,
@@ -1545,11 +1545,11 @@ pub const ID2D1TransformedGeometry = extern union {
         GetSourceGeometry: *const fn(
             self: *const ID2D1TransformedGeometry,
             sourceGeometry: ?*?*ID2D1Geometry,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetTransform: *const fn(
             self: *const ID2D1TransformedGeometry,
             transform: ?*D2D_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Geometry: ID2D1Geometry,
@@ -1572,24 +1572,24 @@ pub const ID2D1GeometrySink = extern union {
         AddLine: *const fn(
             self: *const ID2D1GeometrySink,
             point: D2D_POINT_2F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         AddBezier: *const fn(
             self: *const ID2D1GeometrySink,
             bezier: ?*const D2D1_BEZIER_SEGMENT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         AddQuadraticBezier: *const fn(
             self: *const ID2D1GeometrySink,
             bezier: ?*const D2D1_QUADRATIC_BEZIER_SEGMENT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         AddQuadraticBeziers: *const fn(
             self: *const ID2D1GeometrySink,
             beziers: [*]const D2D1_QUADRATIC_BEZIER_SEGMENT,
             beziersCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         AddArc: *const fn(
             self: *const ID2D1GeometrySink,
             arc: ?*const D2D1_ARC_SEGMENT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1SimplifiedGeometrySink: ID2D1SimplifiedGeometrySink,
@@ -1621,10 +1621,10 @@ pub const ID2D1TessellationSink = extern union {
             self: *const ID2D1TessellationSink,
             triangles: [*]const D2D1_TRIANGLE,
             trianglesCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Close: *const fn(
             self: *const ID2D1TessellationSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1645,19 +1645,19 @@ pub const ID2D1PathGeometry = extern union {
         Open: *const fn(
             self: *const ID2D1PathGeometry,
             geometrySink: **ID2D1GeometrySink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stream: *const fn(
             self: *const ID2D1PathGeometry,
             geometrySink: ?*ID2D1GeometrySink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSegmentCount: *const fn(
             self: *const ID2D1PathGeometry,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFigureCount: *const fn(
             self: *const ID2D1PathGeometry,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Geometry: ID2D1Geometry,
@@ -1686,7 +1686,7 @@ pub const ID2D1Mesh = extern union {
         Open: *const fn(
             self: *const ID2D1Mesh,
             tessellationSink: **ID2D1TessellationSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -1704,7 +1704,7 @@ pub const ID2D1Layer = extern union {
         base: ID2D1Resource.VTable,
         GetSize: *const fn(
             self: *const ID2D1Layer,
-        ) callconv(@import("std").os.windows.WINAPI) D2D_SIZE_F,
+        ) callconv(.winapi) D2D_SIZE_F,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -1723,19 +1723,19 @@ pub const ID2D1DrawingStateBlock = extern union {
         GetDescription: *const fn(
             self: *const ID2D1DrawingStateBlock,
             stateDescription: ?*D2D1_DRAWING_STATE_DESCRIPTION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetDescription: *const fn(
             self: *const ID2D1DrawingStateBlock,
             stateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetTextRenderingParams: *const fn(
             self: *const ID2D1DrawingStateBlock,
             textRenderingParams: ?*IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetTextRenderingParams: *const fn(
             self: *const ID2D1DrawingStateBlock,
             textRenderingParams: ?*?*IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -1767,33 +1767,33 @@ pub const ID2D1RenderTarget = extern union {
             pitch: u32,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES,
             bitmap: **ID2D1Bitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapFromWicBitmap: *const fn(
             self: *const ID2D1RenderTarget,
             wicBitmapSource: ?*IWICBitmapSource,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES,
             bitmap: **ID2D1Bitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSharedBitmap: *const fn(
             self: *const ID2D1RenderTarget,
             riid: ?*const Guid,
             data: ?*anyopaque,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES,
             bitmap: **ID2D1Bitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapBrush: *const fn(
             self: *const ID2D1RenderTarget,
             bitmap: ?*ID2D1Bitmap,
             bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
             bitmapBrush: **ID2D1BitmapBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSolidColorBrush: *const fn(
             self: *const ID2D1RenderTarget,
             color: ?*const D2D_COLOR_F,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
             solidColorBrush: **ID2D1SolidColorBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGradientStopCollection: *const fn(
             self: *const ID2D1RenderTarget,
             gradientStops: [*]const D2D1_GRADIENT_STOP,
@@ -1801,21 +1801,21 @@ pub const ID2D1RenderTarget = extern union {
             colorInterpolationGamma: D2D1_GAMMA,
             extendMode: D2D1_EXTEND_MODE,
             gradientStopCollection: **ID2D1GradientStopCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateLinearGradientBrush: *const fn(
             self: *const ID2D1RenderTarget,
             linearGradientBrushProperties: ?*const D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
             gradientStopCollection: ?*ID2D1GradientStopCollection,
             linearGradientBrush: **ID2D1LinearGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRadialGradientBrush: *const fn(
             self: *const ID2D1RenderTarget,
             radialGradientBrushProperties: ?*const D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
             gradientStopCollection: ?*ID2D1GradientStopCollection,
             radialGradientBrush: **ID2D1RadialGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCompatibleRenderTarget: *const fn(
             self: *const ID2D1RenderTarget,
             desiredSize: ?*const D2D_SIZE_F,
@@ -1823,16 +1823,16 @@ pub const ID2D1RenderTarget = extern union {
             desiredFormat: ?*const D2D1_PIXEL_FORMAT,
             options: D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS,
             bitmapRenderTarget: **ID2D1BitmapRenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateLayer: *const fn(
             self: *const ID2D1RenderTarget,
             size: ?*const D2D_SIZE_F,
             layer: **ID2D1Layer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMesh: *const fn(
             self: *const ID2D1RenderTarget,
             mesh: **ID2D1Mesh,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawLine: *const fn(
             self: *const ID2D1RenderTarget,
             point0: D2D_POINT_2F,
@@ -1840,61 +1840,61 @@ pub const ID2D1RenderTarget = extern union {
             brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawRectangle: *const fn(
             self: *const ID2D1RenderTarget,
             rect: ?*const D2D_RECT_F,
             brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         FillRectangle: *const fn(
             self: *const ID2D1RenderTarget,
             rect: ?*const D2D_RECT_F,
             brush: ?*ID2D1Brush,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawRoundedRectangle: *const fn(
             self: *const ID2D1RenderTarget,
             roundedRect: ?*const D2D1_ROUNDED_RECT,
             brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         FillRoundedRectangle: *const fn(
             self: *const ID2D1RenderTarget,
             roundedRect: ?*const D2D1_ROUNDED_RECT,
             brush: ?*ID2D1Brush,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawEllipse: *const fn(
             self: *const ID2D1RenderTarget,
             ellipse: ?*const D2D1_ELLIPSE,
             brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         FillEllipse: *const fn(
             self: *const ID2D1RenderTarget,
             ellipse: ?*const D2D1_ELLIPSE,
             brush: ?*ID2D1Brush,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawGeometry: *const fn(
             self: *const ID2D1RenderTarget,
             geometry: ?*ID2D1Geometry,
             brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         FillGeometry: *const fn(
             self: *const ID2D1RenderTarget,
             geometry: ?*ID2D1Geometry,
             brush: ?*ID2D1Brush,
             opacityBrush: ?*ID2D1Brush,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         FillMesh: *const fn(
             self: *const ID2D1RenderTarget,
             mesh: ?*ID2D1Mesh,
             brush: ?*ID2D1Brush,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         FillOpacityMask: *const fn(
             self: *const ID2D1RenderTarget,
             opacityMask: ?*ID2D1Bitmap,
@@ -1902,7 +1902,7 @@ pub const ID2D1RenderTarget = extern union {
             content: D2D1_OPACITY_MASK_CONTENT,
             destinationRectangle: ?*const D2D_RECT_F,
             sourceRectangle: ?*const D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawBitmap: *const fn(
             self: *const ID2D1RenderTarget,
             bitmap: ?*ID2D1Bitmap,
@@ -1910,7 +1910,7 @@ pub const ID2D1RenderTarget = extern union {
             opacity: f32,
             interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE,
             sourceRectangle: ?*const D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawText: *const fn(
             self: *const ID2D1RenderTarget,
             string: [*:0]const u16,
@@ -1920,128 +1920,128 @@ pub const ID2D1RenderTarget = extern union {
             defaultFillBrush: ?*ID2D1Brush,
             options: D2D1_DRAW_TEXT_OPTIONS,
             measuringMode: DWRITE_MEASURING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawTextLayout: *const fn(
             self: *const ID2D1RenderTarget,
             origin: D2D_POINT_2F,
             textLayout: ?*IDWriteTextLayout,
             defaultFillBrush: ?*ID2D1Brush,
             options: D2D1_DRAW_TEXT_OPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawGlyphRun: *const fn(
             self: *const ID2D1RenderTarget,
             baselineOrigin: D2D_POINT_2F,
             glyphRun: ?*const DWRITE_GLYPH_RUN,
             foregroundBrush: ?*ID2D1Brush,
             measuringMode: DWRITE_MEASURING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetTransform: *const fn(
             self: *const ID2D1RenderTarget,
             transform: ?*const D2D_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetTransform: *const fn(
             self: *const ID2D1RenderTarget,
             transform: ?*D2D_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetAntialiasMode: *const fn(
             self: *const ID2D1RenderTarget,
             antialiasMode: D2D1_ANTIALIAS_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetAntialiasMode: *const fn(
             self: *const ID2D1RenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_ANTIALIAS_MODE,
+        ) callconv(.winapi) D2D1_ANTIALIAS_MODE,
         SetTextAntialiasMode: *const fn(
             self: *const ID2D1RenderTarget,
             textAntialiasMode: D2D1_TEXT_ANTIALIAS_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetTextAntialiasMode: *const fn(
             self: *const ID2D1RenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_TEXT_ANTIALIAS_MODE,
+        ) callconv(.winapi) D2D1_TEXT_ANTIALIAS_MODE,
         SetTextRenderingParams: *const fn(
             self: *const ID2D1RenderTarget,
             textRenderingParams: ?*IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetTextRenderingParams: *const fn(
             self: *const ID2D1RenderTarget,
             textRenderingParams: ?*?*IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetTags: *const fn(
             self: *const ID2D1RenderTarget,
             tag1: u64,
             tag2: u64,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetTags: *const fn(
             self: *const ID2D1RenderTarget,
             tag1: ?*u64,
             tag2: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PushLayer: *const fn(
             self: *const ID2D1RenderTarget,
             layerParameters: ?*const D2D1_LAYER_PARAMETERS,
             layer: ?*ID2D1Layer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PopLayer: *const fn(
             self: *const ID2D1RenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Flush: *const fn(
             self: *const ID2D1RenderTarget,
             tag1: ?*u64,
             tag2: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveDrawingState: *const fn(
             self: *const ID2D1RenderTarget,
             drawingStateBlock: ?*ID2D1DrawingStateBlock,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         RestoreDrawingState: *const fn(
             self: *const ID2D1RenderTarget,
             drawingStateBlock: ?*ID2D1DrawingStateBlock,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PushAxisAlignedClip: *const fn(
             self: *const ID2D1RenderTarget,
             clipRect: ?*const D2D_RECT_F,
             antialiasMode: D2D1_ANTIALIAS_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PopAxisAlignedClip: *const fn(
             self: *const ID2D1RenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Clear: *const fn(
             self: *const ID2D1RenderTarget,
             clearColor: ?*const D2D_COLOR_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         BeginDraw: *const fn(
             self: *const ID2D1RenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         EndDraw: *const fn(
             self: *const ID2D1RenderTarget,
             tag1: ?*u64,
             tag2: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelFormat: *const fn(
             self: *const ID2D1RenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_PIXEL_FORMAT,
+        ) callconv(.winapi) D2D1_PIXEL_FORMAT,
         SetDpi: *const fn(
             self: *const ID2D1RenderTarget,
             dpiX: f32,
             dpiY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetDpi: *const fn(
             self: *const ID2D1RenderTarget,
             dpiX: ?*f32,
             dpiY: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetSize: *const fn(
             self: *const ID2D1RenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) D2D_SIZE_F,
+        ) callconv(.winapi) D2D_SIZE_F,
         GetPixelSize: *const fn(
             self: *const ID2D1RenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) D2D_SIZE_U,
+        ) callconv(.winapi) D2D_SIZE_U,
         GetMaximumBitmapSize: *const fn(
             self: *const ID2D1RenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         IsSupported: *const fn(
             self: *const ID2D1RenderTarget,
             renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -2216,7 +2216,7 @@ pub const ID2D1BitmapRenderTarget = extern union {
         GetBitmap: *const fn(
             self: *const ID2D1BitmapRenderTarget,
             bitmap: **ID2D1Bitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1RenderTarget: ID2D1RenderTarget,
@@ -2235,14 +2235,14 @@ pub const ID2D1HwndRenderTarget = extern union {
         base: ID2D1RenderTarget.VTable,
         CheckWindowState: *const fn(
             self: *const ID2D1HwndRenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_WINDOW_STATE,
+        ) callconv(.winapi) D2D1_WINDOW_STATE,
         Resize: *const fn(
             self: *const ID2D1HwndRenderTarget,
             pixelSize: ?*const D2D_SIZE_U,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHwnd: *const fn(
             self: *const ID2D1HwndRenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) ?HWND,
+        ) callconv(.winapi) ?HWND,
     };
     vtable: *const VTable,
     ID2D1RenderTarget: ID2D1RenderTarget,
@@ -2269,11 +2269,11 @@ pub const ID2D1GdiInteropRenderTarget = extern union {
             self: *const ID2D1GdiInteropRenderTarget,
             mode: D2D1_DC_INITIALIZE_MODE,
             hdc: ?*?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseDC: *const fn(
             self: *const ID2D1GdiInteropRenderTarget,
             update: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2295,7 +2295,7 @@ pub const ID2D1DCRenderTarget = extern union {
             self: *const ID2D1DCRenderTarget,
             hDC: ?HDC,
             pSubRect: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1RenderTarget: ID2D1RenderTarget,
@@ -2314,80 +2314,80 @@ pub const ID2D1Factory = extern union {
         base: IUnknown.VTable,
         ReloadSystemMetrics: *const fn(
             self: *const ID2D1Factory,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDesktopDpi: *const fn(
             self: *const ID2D1Factory,
             dpiX: ?*f32,
             dpiY: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CreateRectangleGeometry: *const fn(
             self: *const ID2D1Factory,
             rectangle: ?*const D2D_RECT_F,
             rectangleGeometry: **ID2D1RectangleGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRoundedRectangleGeometry: *const fn(
             self: *const ID2D1Factory,
             roundedRectangle: ?*const D2D1_ROUNDED_RECT,
             roundedRectangleGeometry: **ID2D1RoundedRectangleGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEllipseGeometry: *const fn(
             self: *const ID2D1Factory,
             ellipse: ?*const D2D1_ELLIPSE,
             ellipseGeometry: **ID2D1EllipseGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGeometryGroup: *const fn(
             self: *const ID2D1Factory,
             fillMode: D2D1_FILL_MODE,
             geometries: [*]?*ID2D1Geometry,
             geometriesCount: u32,
             geometryGroup: **ID2D1GeometryGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTransformedGeometry: *const fn(
             self: *const ID2D1Factory,
             sourceGeometry: ?*ID2D1Geometry,
             transform: ?*const D2D_MATRIX_3X2_F,
             transformedGeometry: **ID2D1TransformedGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePathGeometry: *const fn(
             self: *const ID2D1Factory,
             pathGeometry: **ID2D1PathGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStrokeStyle: *const fn(
             self: *const ID2D1Factory,
             strokeStyleProperties: ?*const D2D1_STROKE_STYLE_PROPERTIES,
             dashes: ?[*]const f32,
             dashesCount: u32,
             strokeStyle: **ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDrawingStateBlock: *const fn(
             self: *const ID2D1Factory,
             drawingStateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION,
             textRenderingParams: ?*IDWriteRenderingParams,
             drawingStateBlock: **ID2D1DrawingStateBlock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateWicBitmapRenderTarget: *const fn(
             self: *const ID2D1Factory,
             target: ?*IWICBitmap,
             renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES,
             renderTarget: **ID2D1RenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateHwndRenderTarget: *const fn(
             self: *const ID2D1Factory,
             renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES,
             hwndRenderTargetProperties: ?*const D2D1_HWND_RENDER_TARGET_PROPERTIES,
             hwndRenderTarget: **ID2D1HwndRenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDxgiSurfaceRenderTarget: *const fn(
             self: *const ID2D1Factory,
             dxgiSurface: ?*IDXGISurface,
             renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES,
             renderTarget: **ID2D1RenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDCRenderTarget: *const fn(
             self: *const ID2D1Factory,
             renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES,
             dcRenderTarget: **ID2D1DCRenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3328,7 +3328,7 @@ pub const D2D1_OPACITYMETADATA_PROP_FORCE_DWORD = D2D1_OPACITYMETADATA_PROP.FORC
 
 pub const PD2D1_EFFECT_FACTORY = *const fn(
     effectImpl: ?*?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const D2D1_PROPERTY_TYPE = enum(u32) {
     UNKNOWN = 0,
@@ -3915,7 +3915,7 @@ pub const ID2D1GdiMetafileSink = extern union {
             recordType: u32,
             recordData: ?*const anyopaque,
             recordDataSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3933,11 +3933,11 @@ pub const ID2D1GdiMetafile = extern union {
         Stream: *const fn(
             self: *const ID2D1GdiMetafile,
             sink: ?*ID2D1GdiMetafileSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBounds: *const fn(
             self: *const ID2D1GdiMetafile,
             bounds: ?*D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -3958,43 +3958,43 @@ pub const ID2D1CommandSink = extern union {
         base: IUnknown.VTable,
         BeginDraw: *const fn(
             self: *const ID2D1CommandSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndDraw: *const fn(
             self: *const ID2D1CommandSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAntialiasMode: *const fn(
             self: *const ID2D1CommandSink,
             antialiasMode: D2D1_ANTIALIAS_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTags: *const fn(
             self: *const ID2D1CommandSink,
             tag1: u64,
             tag2: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTextAntialiasMode: *const fn(
             self: *const ID2D1CommandSink,
             textAntialiasMode: D2D1_TEXT_ANTIALIAS_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTextRenderingParams: *const fn(
             self: *const ID2D1CommandSink,
             textRenderingParams: ?*IDWriteRenderingParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransform: *const fn(
             self: *const ID2D1CommandSink,
             transform: ?*const D2D_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrimitiveBlend: *const fn(
             self: *const ID2D1CommandSink,
             primitiveBlend: D2D1_PRIMITIVE_BLEND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUnitMode: *const fn(
             self: *const ID2D1CommandSink,
             unitMode: D2D1_UNIT_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ID2D1CommandSink,
             color: ?*const D2D_COLOR_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawGlyphRun: *const fn(
             self: *const ID2D1CommandSink,
             baselineOrigin: D2D_POINT_2F,
@@ -4002,7 +4002,7 @@ pub const ID2D1CommandSink = extern union {
             glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
             foregroundBrush: ?*ID2D1Brush,
             measuringMode: DWRITE_MEASURING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawLine: *const fn(
             self: *const ID2D1CommandSink,
             point0: D2D_POINT_2F,
@@ -4010,21 +4010,21 @@ pub const ID2D1CommandSink = extern union {
             brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawGeometry: *const fn(
             self: *const ID2D1CommandSink,
             geometry: ?*ID2D1Geometry,
             brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawRectangle: *const fn(
             self: *const ID2D1CommandSink,
             rect: ?*const D2D_RECT_F,
             brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawBitmap: *const fn(
             self: *const ID2D1CommandSink,
             bitmap: ?*ID2D1Bitmap,
@@ -4033,7 +4033,7 @@ pub const ID2D1CommandSink = extern union {
             interpolationMode: D2D1_INTERPOLATION_MODE,
             sourceRectangle: ?*const D2D_RECT_F,
             perspectiveTransform: ?*const D2D_MATRIX_4X4_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawImage: *const fn(
             self: *const ID2D1CommandSink,
             image: ?*ID2D1Image,
@@ -4041,51 +4041,51 @@ pub const ID2D1CommandSink = extern union {
             imageRectangle: ?*const D2D_RECT_F,
             interpolationMode: D2D1_INTERPOLATION_MODE,
             compositeMode: D2D1_COMPOSITE_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawGdiMetafile: *const fn(
             self: *const ID2D1CommandSink,
             gdiMetafile: ?*ID2D1GdiMetafile,
             targetOffset: ?*const D2D_POINT_2F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FillMesh: *const fn(
             self: *const ID2D1CommandSink,
             mesh: ?*ID2D1Mesh,
             brush: ?*ID2D1Brush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FillOpacityMask: *const fn(
             self: *const ID2D1CommandSink,
             opacityMask: ?*ID2D1Bitmap,
             brush: ?*ID2D1Brush,
             destinationRectangle: ?*const D2D_RECT_F,
             sourceRectangle: ?*const D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FillGeometry: *const fn(
             self: *const ID2D1CommandSink,
             geometry: ?*ID2D1Geometry,
             brush: ?*ID2D1Brush,
             opacityBrush: ?*ID2D1Brush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FillRectangle: *const fn(
             self: *const ID2D1CommandSink,
             rect: ?*const D2D_RECT_F,
             brush: ?*ID2D1Brush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushAxisAlignedClip: *const fn(
             self: *const ID2D1CommandSink,
             clipRect: ?*const D2D_RECT_F,
             antialiasMode: D2D1_ANTIALIAS_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PushLayer: *const fn(
             self: *const ID2D1CommandSink,
             layerParameters1: ?*const D2D1_LAYER_PARAMETERS1,
             layer: ?*ID2D1Layer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PopAxisAlignedClip: *const fn(
             self: *const ID2D1CommandSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PopLayer: *const fn(
             self: *const ID2D1CommandSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4175,10 +4175,10 @@ pub const ID2D1CommandList = extern union {
         Stream: *const fn(
             self: *const ID2D1CommandList,
             sink: ?*ID2D1CommandSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const ID2D1CommandList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Image: ID2D1Image,
@@ -4205,10 +4205,10 @@ pub const ID2D1PrintControl = extern union {
             pagePrintTicketStream: ?*IStream,
             tag1: ?*u64,
             tag2: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const ID2D1PrintControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4229,40 +4229,40 @@ pub const ID2D1ImageBrush = extern union {
         SetImage: *const fn(
             self: *const ID2D1ImageBrush,
             image: ?*ID2D1Image,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetExtendModeX: *const fn(
             self: *const ID2D1ImageBrush,
             extendModeX: D2D1_EXTEND_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetExtendModeY: *const fn(
             self: *const ID2D1ImageBrush,
             extendModeY: D2D1_EXTEND_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetInterpolationMode: *const fn(
             self: *const ID2D1ImageBrush,
             interpolationMode: D2D1_INTERPOLATION_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetSourceRectangle: *const fn(
             self: *const ID2D1ImageBrush,
             sourceRectangle: ?*const D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetImage: *const fn(
             self: *const ID2D1ImageBrush,
             image: ?*?*ID2D1Image,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetExtendModeX: *const fn(
             self: *const ID2D1ImageBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_EXTEND_MODE,
+        ) callconv(.winapi) D2D1_EXTEND_MODE,
         GetExtendModeY: *const fn(
             self: *const ID2D1ImageBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_EXTEND_MODE,
+        ) callconv(.winapi) D2D1_EXTEND_MODE,
         GetInterpolationMode: *const fn(
             self: *const ID2D1ImageBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_INTERPOLATION_MODE,
+        ) callconv(.winapi) D2D1_INTERPOLATION_MODE,
         GetSourceRectangle: *const fn(
             self: *const ID2D1ImageBrush,
             sourceRectangle: ?*D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Brush: ID2D1Brush,
@@ -4309,10 +4309,10 @@ pub const ID2D1BitmapBrush1 = extern union {
         SetInterpolationMode1: *const fn(
             self: *const ID2D1BitmapBrush1,
             interpolationMode: D2D1_INTERPOLATION_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetInterpolationMode1: *const fn(
             self: *const ID2D1BitmapBrush1,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_INTERPOLATION_MODE,
+        ) callconv(.winapi) D2D1_INTERPOLATION_MODE,
     };
     vtable: *const VTable,
     ID2D1BitmapBrush: ID2D1BitmapBrush,
@@ -4335,7 +4335,7 @@ pub const ID2D1StrokeStyle1 = extern union {
         base: ID2D1StrokeStyle.VTable,
         GetStrokeTransformType: *const fn(
             self: *const ID2D1StrokeStyle1,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_STROKE_TRANSFORM_TYPE,
+        ) callconv(.winapi) D2D1_STROKE_TRANSFORM_TYPE,
     };
     vtable: *const VTable,
     ID2D1StrokeStyle: ID2D1StrokeStyle,
@@ -4359,7 +4359,7 @@ pub const ID2D1PathGeometry1 = extern union {
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             pointDescription: ?*D2D1_POINT_DESCRIPTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1PathGeometry: ID2D1PathGeometry,
@@ -4379,62 +4379,62 @@ pub const ID2D1Properties = extern union {
         base: IUnknown.VTable,
         GetPropertyCount: *const fn(
             self: *const ID2D1Properties,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetPropertyName: *const fn(
             self: *const ID2D1Properties,
             index: u32,
             name: [*:0]u16,
             nameCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyNameLength: *const fn(
             self: *const ID2D1Properties,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetType: *const fn(
             self: *const ID2D1Properties,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_PROPERTY_TYPE,
+        ) callconv(.winapi) D2D1_PROPERTY_TYPE,
         GetPropertyIndex: *const fn(
             self: *const ID2D1Properties,
             name: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         SetValueByName: *const fn(
             self: *const ID2D1Properties,
             name: ?[*:0]const u16,
             type: D2D1_PROPERTY_TYPE,
             data: [*:0]const u8,
             dataSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValue: *const fn(
             self: *const ID2D1Properties,
             index: u32,
             type: D2D1_PROPERTY_TYPE,
             data: [*:0]const u8,
             dataSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValueByName: *const fn(
             self: *const ID2D1Properties,
             name: ?[*:0]const u16,
             type: D2D1_PROPERTY_TYPE,
             data: [*:0]u8,
             dataSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const ID2D1Properties,
             index: u32,
             type: D2D1_PROPERTY_TYPE,
             data: [*:0]u8,
             dataSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValueSize: *const fn(
             self: *const ID2D1Properties,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetSubProperties: *const fn(
             self: *const ID2D1Properties,
             index: u32,
             subProperties: ?**ID2D1Properties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4484,23 +4484,23 @@ pub const ID2D1Effect = extern union {
             index: u32,
             input: ?*ID2D1Image,
             invalidate: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetInputCount: *const fn(
             self: *const ID2D1Effect,
             inputCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInput: *const fn(
             self: *const ID2D1Effect,
             index: u32,
             input: ?*?*ID2D1Image,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetInputCount: *const fn(
             self: *const ID2D1Effect,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetOutput: *const fn(
             self: *const ID2D1Effect,
             outputImage: ?*?*ID2D1Image,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Properties: ID2D1Properties,
@@ -4531,22 +4531,22 @@ pub const ID2D1Bitmap1 = extern union {
         GetColorContext: *const fn(
             self: *const ID2D1Bitmap1,
             colorContext: ?*?*ID2D1ColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetOptions: *const fn(
             self: *const ID2D1Bitmap1,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_BITMAP_OPTIONS,
+        ) callconv(.winapi) D2D1_BITMAP_OPTIONS,
         GetSurface: *const fn(
             self: *const ID2D1Bitmap1,
             dxgiSurface: ?**IDXGISurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Map: *const fn(
             self: *const ID2D1Bitmap1,
             options: D2D1_MAP_OPTIONS,
             mappedRect: ?*D2D1_MAPPED_RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unmap: *const fn(
             self: *const ID2D1Bitmap1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Bitmap: ID2D1Bitmap,
@@ -4578,15 +4578,15 @@ pub const ID2D1ColorContext = extern union {
         base: ID2D1Resource.VTable,
         GetColorSpace: *const fn(
             self: *const ID2D1ColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_COLOR_SPACE,
+        ) callconv(.winapi) D2D1_COLOR_SPACE,
         GetProfileSize: *const fn(
             self: *const ID2D1ColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetProfile: *const fn(
             self: *const ID2D1ColorContext,
             profile: [*:0]u8,
             profileSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -4612,19 +4612,19 @@ pub const ID2D1GradientStopCollection1 = extern union {
             self: *const ID2D1GradientStopCollection1,
             gradientStops: [*]D2D1_GRADIENT_STOP,
             gradientStopsCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetPreInterpolationSpace: *const fn(
             self: *const ID2D1GradientStopCollection1,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_COLOR_SPACE,
+        ) callconv(.winapi) D2D1_COLOR_SPACE,
         GetPostInterpolationSpace: *const fn(
             self: *const ID2D1GradientStopCollection1,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_COLOR_SPACE,
+        ) callconv(.winapi) D2D1_COLOR_SPACE,
         GetBufferPrecision: *const fn(
             self: *const ID2D1GradientStopCollection1,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_BUFFER_PRECISION,
+        ) callconv(.winapi) D2D1_BUFFER_PRECISION,
         GetColorInterpolationMode: *const fn(
             self: *const ID2D1GradientStopCollection1,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_COLOR_INTERPOLATION_MODE,
+        ) callconv(.winapi) D2D1_COLOR_INTERPOLATION_MODE,
     };
     vtable: *const VTable,
     ID2D1GradientStopCollection: ID2D1GradientStopCollection,
@@ -4656,11 +4656,11 @@ pub const ID2D1DrawingStateBlock1 = extern union {
         GetDescription: *const fn(
             self: *const ID2D1DrawingStateBlock1,
             stateDescription: ?*D2D1_DRAWING_STATE_DESCRIPTION1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetDescription: *const fn(
             self: *const ID2D1DrawingStateBlock1,
             stateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION1,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1DrawingStateBlock: ID2D1DrawingStateBlock,
@@ -4687,41 +4687,41 @@ pub const ID2D1DeviceContext = extern union {
             pitch: u32,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1,
             bitmap: **ID2D1Bitmap1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapFromWicBitmap: *const fn(
             self: *const ID2D1DeviceContext,
             wicBitmapSource: ?*IWICBitmapSource,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1,
             bitmap: **ID2D1Bitmap1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateColorContext: *const fn(
             self: *const ID2D1DeviceContext,
             space: D2D1_COLOR_SPACE,
             profile: ?[*:0]const u8,
             profileSize: u32,
             colorContext: **ID2D1ColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateColorContextFromFilename: *const fn(
             self: *const ID2D1DeviceContext,
             filename: ?[*:0]const u16,
             colorContext: **ID2D1ColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateColorContextFromWicColorContext: *const fn(
             self: *const ID2D1DeviceContext,
             wicColorContext: ?*IWICColorContext,
             colorContext: **ID2D1ColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapFromDxgiSurface: *const fn(
             self: *const ID2D1DeviceContext,
             surface: ?*IDXGISurface,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1,
             bitmap: **ID2D1Bitmap1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEffect: *const fn(
             self: *const ID2D1DeviceContext,
             effectId: ?*const Guid,
             effect: **ID2D1Effect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGradientStopCollection: *const fn(
             self: *const ID2D1DeviceContext,
             straightAlphaGradientStops: [*]const D2D1_GRADIENT_STOP,
@@ -4732,84 +4732,84 @@ pub const ID2D1DeviceContext = extern union {
             extendMode: D2D1_EXTEND_MODE,
             colorInterpolationMode: D2D1_COLOR_INTERPOLATION_MODE,
             gradientStopCollection1: **ID2D1GradientStopCollection1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateImageBrush: *const fn(
             self: *const ID2D1DeviceContext,
             image: ?*ID2D1Image,
             imageBrushProperties: ?*const D2D1_IMAGE_BRUSH_PROPERTIES,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
             imageBrush: **ID2D1ImageBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBitmapBrush: *const fn(
             self: *const ID2D1DeviceContext,
             bitmap: ?*ID2D1Bitmap,
             bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES1,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
             bitmapBrush: **ID2D1BitmapBrush1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCommandList: *const fn(
             self: *const ID2D1DeviceContext,
             commandList: **ID2D1CommandList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsDxgiFormatSupported: *const fn(
             self: *const ID2D1DeviceContext,
             format: DXGI_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         IsBufferPrecisionSupported: *const fn(
             self: *const ID2D1DeviceContext,
             bufferPrecision: D2D1_BUFFER_PRECISION,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetImageLocalBounds: *const fn(
             self: *const ID2D1DeviceContext,
             image: ?*ID2D1Image,
             localBounds: ?*D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImageWorldBounds: *const fn(
             self: *const ID2D1DeviceContext,
             image: ?*ID2D1Image,
             worldBounds: ?*D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphRunWorldBounds: *const fn(
             self: *const ID2D1DeviceContext,
             baselineOrigin: D2D_POINT_2F,
             glyphRun: ?*const DWRITE_GLYPH_RUN,
             measuringMode: DWRITE_MEASURING_MODE,
             bounds: ?*D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDevice: *const fn(
             self: *const ID2D1DeviceContext,
             device: ?*?*ID2D1Device,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetTarget: *const fn(
             self: *const ID2D1DeviceContext,
             image: ?*ID2D1Image,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetTarget: *const fn(
             self: *const ID2D1DeviceContext,
             image: ?*?*ID2D1Image,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetRenderingControls: *const fn(
             self: *const ID2D1DeviceContext,
             renderingControls: ?*const D2D1_RENDERING_CONTROLS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetRenderingControls: *const fn(
             self: *const ID2D1DeviceContext,
             renderingControls: ?*D2D1_RENDERING_CONTROLS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetPrimitiveBlend: *const fn(
             self: *const ID2D1DeviceContext,
             primitiveBlend: D2D1_PRIMITIVE_BLEND,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetPrimitiveBlend: *const fn(
             self: *const ID2D1DeviceContext,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_PRIMITIVE_BLEND,
+        ) callconv(.winapi) D2D1_PRIMITIVE_BLEND,
         SetUnitMode: *const fn(
             self: *const ID2D1DeviceContext,
             unitMode: D2D1_UNIT_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetUnitMode: *const fn(
             self: *const ID2D1DeviceContext,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_UNIT_MODE,
+        ) callconv(.winapi) D2D1_UNIT_MODE,
         DrawGlyphRun: *const fn(
             self: *const ID2D1DeviceContext,
             baselineOrigin: D2D_POINT_2F,
@@ -4817,7 +4817,7 @@ pub const ID2D1DeviceContext = extern union {
             glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
             foregroundBrush: ?*ID2D1Brush,
             measuringMode: DWRITE_MEASURING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawImage: *const fn(
             self: *const ID2D1DeviceContext,
             image: ?*ID2D1Image,
@@ -4825,12 +4825,12 @@ pub const ID2D1DeviceContext = extern union {
             imageRectangle: ?*const D2D_RECT_F,
             interpolationMode: D2D1_INTERPOLATION_MODE,
             compositeMode: D2D1_COMPOSITE_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawGdiMetafile: *const fn(
             self: *const ID2D1DeviceContext,
             gdiMetafile: ?*ID2D1GdiMetafile,
             targetOffset: ?*const D2D_POINT_2F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawBitmap: *const fn(
             self: *const ID2D1DeviceContext,
             bitmap: ?*ID2D1Bitmap,
@@ -4839,29 +4839,29 @@ pub const ID2D1DeviceContext = extern union {
             interpolationMode: D2D1_INTERPOLATION_MODE,
             sourceRectangle: ?*const D2D_RECT_F,
             perspectiveTransform: ?*const D2D_MATRIX_4X4_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         PushLayer: *const fn(
             self: *const ID2D1DeviceContext,
             layerParameters: ?*const D2D1_LAYER_PARAMETERS1,
             layer: ?*ID2D1Layer,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         InvalidateEffectInputRectangle: *const fn(
             self: *const ID2D1DeviceContext,
             effect: ?*ID2D1Effect,
             input: u32,
             inputRectangle: ?*const D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectInvalidRectangleCount: *const fn(
             self: *const ID2D1DeviceContext,
             effect: ?*ID2D1Effect,
             rectangleCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectInvalidRectangles: *const fn(
             self: *const ID2D1DeviceContext,
             effect: ?*ID2D1Effect,
             rectangles: [*]D2D_RECT_F,
             rectanglesCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectRequiredInputRectangles: *const fn(
             self: *const ID2D1DeviceContext,
             renderEffect: ?*ID2D1Effect,
@@ -4869,14 +4869,14 @@ pub const ID2D1DeviceContext = extern union {
             inputDescriptions: [*]const D2D1_EFFECT_INPUT_DESCRIPTION,
             requiredInputRects: [*]D2D_RECT_F,
             inputCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FillOpacityMask: *const fn(
             self: *const ID2D1DeviceContext,
             opacityMask: ?*ID2D1Bitmap,
             brush: ?*ID2D1Brush,
             destinationRectangle: ?*const D2D_RECT_F,
             sourceRectangle: ?*const D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1RenderTarget: ID2D1RenderTarget,
@@ -4999,25 +4999,25 @@ pub const ID2D1Device = extern union {
             self: *const ID2D1Device,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
             deviceContext: **ID2D1DeviceContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePrintControl: *const fn(
             self: *const ID2D1Device,
             wicFactory: ?*IWICImagingFactory,
             documentTarget: ?*IPrintDocumentPackageTarget,
             printControlProperties: ?*const D2D1_PRINT_CONTROL_PROPERTIES,
             printControl: **ID2D1PrintControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaximumTextureMemory: *const fn(
             self: *const ID2D1Device,
             maximumInBytes: u64,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetMaximumTextureMemory: *const fn(
             self: *const ID2D1Device,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
         ClearResources: *const fn(
             self: *const ID2D1Device,
             millisecondsSinceUse: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -5049,29 +5049,29 @@ pub const ID2D1Factory1 = extern union {
             self: *const ID2D1Factory1,
             dxgiDevice: ?*IDXGIDevice,
             d2dDevice: **ID2D1Device,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStrokeStyle: *const fn(
             self: *const ID2D1Factory1,
             strokeStyleProperties: ?*const D2D1_STROKE_STYLE_PROPERTIES1,
             dashes: ?[*]const f32,
             dashesCount: u32,
             strokeStyle: **ID2D1StrokeStyle1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePathGeometry: *const fn(
             self: *const ID2D1Factory1,
             pathGeometry: **ID2D1PathGeometry1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDrawingStateBlock: *const fn(
             self: *const ID2D1Factory1,
             drawingStateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION1,
             textRenderingParams: ?*IDWriteRenderingParams,
             drawingStateBlock: **ID2D1DrawingStateBlock1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGdiMetafile: *const fn(
             self: *const ID2D1Factory1,
             metafileStream: ?*IStream,
             metafile: **ID2D1GdiMetafile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterEffectFromStream: *const fn(
             self: *const ID2D1Factory1,
             classId: ?*const Guid,
@@ -5079,7 +5079,7 @@ pub const ID2D1Factory1 = extern union {
             bindings: ?[*]const D2D1_PROPERTY_BINDING,
             bindingsCount: u32,
             effectFactory: ?PD2D1_EFFECT_FACTORY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterEffectFromString: *const fn(
             self: *const ID2D1Factory1,
             classId: ?*const Guid,
@@ -5087,23 +5087,23 @@ pub const ID2D1Factory1 = extern union {
             bindings: ?[*]const D2D1_PROPERTY_BINDING,
             bindingsCount: u32,
             effectFactory: ?PD2D1_EFFECT_FACTORY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterEffect: *const fn(
             self: *const ID2D1Factory1,
             classId: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegisteredEffects: *const fn(
             self: *const ID2D1Factory1,
             effects: ?[*]Guid,
             effectsCount: u32,
             effectsReturned: ?*u32,
             effectsRegistered: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEffectProperties: *const fn(
             self: *const ID2D1Factory1,
             effectId: ?*const Guid,
             properties: **ID2D1Properties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Factory: ID2D1Factory,
@@ -5148,13 +5148,13 @@ pub const ID2D1Multithread = extern union {
         base: IUnknown.VTable,
         GetMultithreadProtected: *const fn(
             self: *const ID2D1Multithread,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         Enter: *const fn(
             self: *const ID2D1Multithread,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Leave: *const fn(
             self: *const ID2D1Multithread,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5185,14 +5185,14 @@ pub const PD2D1_PROPERTY_SET_FUNCTION = *const fn(
     effect: ?*IUnknown,
     data: [*:0]const u8,
     dataSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PD2D1_PROPERTY_GET_FUNCTION = *const fn(
     effect: ?*IUnknown,
     data: ?[*:0]u8,
     dataSize: u32,
     actualSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const D2D1_CHANGE_TYPE = packed struct(u32) {
     PROPERTIES: u1 = 0,
@@ -5588,10 +5588,10 @@ pub const ID2D1VertexBuffer = extern union {
             self: *const ID2D1VertexBuffer,
             data: ?*?*u8,
             bufferSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unmap: *const fn(
             self: *const ID2D1VertexBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5617,7 +5617,7 @@ pub const ID2D1ResourceTexture = extern union {
             dimensions: u32,
             data: [*:0]const u8,
             dataCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5636,20 +5636,20 @@ pub const ID2D1RenderInfo = extern union {
             self: *const ID2D1RenderInfo,
             inputIndex: u32,
             inputDescription: D2D1_INPUT_DESCRIPTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputBuffer: *const fn(
             self: *const ID2D1RenderInfo,
             bufferPrecision: D2D1_BUFFER_PRECISION,
             channelDepth: D2D1_CHANNEL_DEPTH,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCached: *const fn(
             self: *const ID2D1RenderInfo,
             isCached: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetInstructionCountHint: *const fn(
             self: *const ID2D1RenderInfo,
             instructionCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5677,22 +5677,22 @@ pub const ID2D1DrawInfo = extern union {
             self: *const ID2D1DrawInfo,
             buffer: [*:0]const u8,
             bufferCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetResourceTexture: *const fn(
             self: *const ID2D1DrawInfo,
             textureIndex: u32,
             resourceTexture: ?*ID2D1ResourceTexture,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVertexShaderConstantBuffer: *const fn(
             self: *const ID2D1DrawInfo,
             buffer: [*:0]const u8,
             bufferCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPixelShader: *const fn(
             self: *const ID2D1DrawInfo,
             shaderId: ?*const Guid,
             pixelOptions: D2D1_PIXEL_OPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVertexProcessing: *const fn(
             self: *const ID2D1DrawInfo,
             vertexBuffer: ?*ID2D1VertexBuffer,
@@ -5700,7 +5700,7 @@ pub const ID2D1DrawInfo = extern union {
             blendDescription: ?*const D2D1_BLEND_DESCRIPTION,
             vertexRange: ?*const D2D1_VERTEX_RANGE,
             vertexShader: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1RenderInfo: ID2D1RenderInfo,
@@ -5732,16 +5732,16 @@ pub const ID2D1ComputeInfo = extern union {
             self: *const ID2D1ComputeInfo,
             buffer: [*:0]const u8,
             bufferCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetComputeShader: *const fn(
             self: *const ID2D1ComputeInfo,
             shaderId: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetResourceTexture: *const fn(
             self: *const ID2D1ComputeInfo,
             textureIndex: u32,
             resourceTexture: ?*ID2D1ResourceTexture,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1RenderInfo: ID2D1RenderInfo,
@@ -5765,7 +5765,7 @@ pub const ID2D1TransformNode = extern union {
         base: IUnknown.VTable,
         GetInputCount: *const fn(
             self: *const ID2D1TransformNode,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5782,42 +5782,42 @@ pub const ID2D1TransformGraph = extern union {
         base: IUnknown.VTable,
         GetInputCount: *const fn(
             self: *const ID2D1TransformGraph,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         SetSingleTransformNode: *const fn(
             self: *const ID2D1TransformGraph,
             node: ?*ID2D1TransformNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddNode: *const fn(
             self: *const ID2D1TransformGraph,
             node: ?*ID2D1TransformNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveNode: *const fn(
             self: *const ID2D1TransformGraph,
             node: ?*ID2D1TransformNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputNode: *const fn(
             self: *const ID2D1TransformGraph,
             node: ?*ID2D1TransformNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConnectNode: *const fn(
             self: *const ID2D1TransformGraph,
             fromNode: ?*ID2D1TransformNode,
             toNode: ?*ID2D1TransformNode,
             toNodeInputIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConnectToEffectInput: *const fn(
             self: *const ID2D1TransformGraph,
             toEffectInputIndex: u32,
             node: ?*ID2D1TransformNode,
             toNodeInputIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ID2D1TransformGraph,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetPassthroughGraph: *const fn(
             self: *const ID2D1TransformGraph,
             effectInputIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5861,7 +5861,7 @@ pub const ID2D1Transform = extern union {
             outputRect: ?*const RECT,
             inputRects: [*]RECT,
             inputRectsCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MapInputRectsToOutputRect: *const fn(
             self: *const ID2D1Transform,
             inputRects: [*]const RECT,
@@ -5869,13 +5869,13 @@ pub const ID2D1Transform = extern union {
             inputRectCount: u32,
             outputRect: ?*RECT,
             outputOpaqueSubRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MapInvalidRect: *const fn(
             self: *const ID2D1Transform,
             inputIndex: u32,
             invalidInputRect: RECT,
             invalidOutputRect: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1TransformNode: ID2D1TransformNode,
@@ -5900,7 +5900,7 @@ pub const ID2D1DrawTransform = extern union {
         SetDrawInfo: *const fn(
             self: *const ID2D1DrawTransform,
             drawInfo: ?*ID2D1DrawInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Transform: ID2D1Transform,
@@ -5920,14 +5920,14 @@ pub const ID2D1ComputeTransform = extern union {
         SetComputeInfo: *const fn(
             self: *const ID2D1ComputeTransform,
             computeInfo: ?*ID2D1ComputeInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CalculateThreadgroups: *const fn(
             self: *const ID2D1ComputeTransform,
             outputRect: ?*const RECT,
             dimensionX: ?*u32,
             dimensionY: ?*u32,
             dimensionZ: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Transform: ID2D1Transform,
@@ -5951,7 +5951,7 @@ pub const ID2D1AnalysisTransform = extern union {
             self: *const ID2D1AnalysisTransform,
             analysisData: [*:0]const u8,
             analysisDataCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5969,13 +5969,13 @@ pub const ID2D1SourceTransform = extern union {
         SetRenderInfo: *const fn(
             self: *const ID2D1SourceTransform,
             renderInfo: ?*ID2D1RenderInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Draw: *const fn(
             self: *const ID2D1SourceTransform,
             target: ?*ID2D1Bitmap1,
             drawRect: ?*const RECT,
             targetOrigin: D2D_POINT_2U,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Transform: ID2D1Transform,
@@ -5999,11 +5999,11 @@ pub const ID2D1ConcreteTransform = extern union {
             self: *const ID2D1ConcreteTransform,
             bufferPrecision: D2D1_BUFFER_PRECISION,
             channelDepth: D2D1_CHANNEL_DEPTH,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCached: *const fn(
             self: *const ID2D1ConcreteTransform,
             isCached: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1TransformNode: ID2D1TransformNode,
@@ -6025,11 +6025,11 @@ pub const ID2D1BlendTransform = extern union {
         SetDescription: *const fn(
             self: *const ID2D1BlendTransform,
             description: ?*const D2D1_BLEND_DESCRIPTION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetDescription: *const fn(
             self: *const ID2D1BlendTransform,
             description: ?*D2D1_BLEND_DESCRIPTION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1ConcreteTransform: ID2D1ConcreteTransform,
@@ -6052,17 +6052,17 @@ pub const ID2D1BorderTransform = extern union {
         SetExtendModeX: *const fn(
             self: *const ID2D1BorderTransform,
             extendMode: D2D1_EXTEND_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetExtendModeY: *const fn(
             self: *const ID2D1BorderTransform,
             extendMode: D2D1_EXTEND_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetExtendModeX: *const fn(
             self: *const ID2D1BorderTransform,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_EXTEND_MODE,
+        ) callconv(.winapi) D2D1_EXTEND_MODE,
         GetExtendModeY: *const fn(
             self: *const ID2D1BorderTransform,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_EXTEND_MODE,
+        ) callconv(.winapi) D2D1_EXTEND_MODE,
     };
     vtable: *const VTable,
     ID2D1ConcreteTransform: ID2D1ConcreteTransform,
@@ -6091,10 +6091,10 @@ pub const ID2D1OffsetTransform = extern union {
         SetOffset: *const fn(
             self: *const ID2D1OffsetTransform,
             offset: POINT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetOffset: *const fn(
             self: *const ID2D1OffsetTransform,
-        ) callconv(@import("std").os.windows.WINAPI) POINT,
+        ) callconv(.winapi) POINT,
     };
     vtable: *const VTable,
     ID2D1TransformNode: ID2D1TransformNode,
@@ -6115,11 +6115,11 @@ pub const ID2D1BoundsAdjustmentTransform = extern union {
         SetOutputBounds: *const fn(
             self: *const ID2D1BoundsAdjustmentTransform,
             outputBounds: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetOutputBounds: *const fn(
             self: *const ID2D1BoundsAdjustmentTransform,
             outputBounds: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1TransformNode: ID2D1TransformNode,
@@ -6142,15 +6142,15 @@ pub const ID2D1EffectImpl = extern union {
             self: *const ID2D1EffectImpl,
             effectContext: ?*ID2D1EffectContext,
             transformGraph: ?*ID2D1TransformGraph,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PrepareForRender: *const fn(
             self: *const ID2D1EffectImpl,
             changeType: D2D1_CHANGE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGraph: *const fn(
             self: *const ID2D1EffectImpl,
             transformGraph: ?*ID2D1TransformGraph,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6175,67 +6175,67 @@ pub const ID2D1EffectContext = extern union {
             self: *const ID2D1EffectContext,
             dpiX: ?*f32,
             dpiY: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CreateEffect: *const fn(
             self: *const ID2D1EffectContext,
             effectId: ?*const Guid,
             effect: **ID2D1Effect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaximumSupportedFeatureLevel: *const fn(
             self: *const ID2D1EffectContext,
             featureLevels: [*]const D3D_FEATURE_LEVEL,
             featureLevelsCount: u32,
             maximumSupportedFeatureLevel: ?*D3D_FEATURE_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTransformNodeFromEffect: *const fn(
             self: *const ID2D1EffectContext,
             effect: ?*ID2D1Effect,
             transformNode: **ID2D1TransformNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBlendTransform: *const fn(
             self: *const ID2D1EffectContext,
             numInputs: u32,
             blendDescription: ?*const D2D1_BLEND_DESCRIPTION,
             transform: **ID2D1BlendTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBorderTransform: *const fn(
             self: *const ID2D1EffectContext,
             extendModeX: D2D1_EXTEND_MODE,
             extendModeY: D2D1_EXTEND_MODE,
             transform: **ID2D1BorderTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateOffsetTransform: *const fn(
             self: *const ID2D1EffectContext,
             offset: POINT,
             transform: **ID2D1OffsetTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBoundsAdjustmentTransform: *const fn(
             self: *const ID2D1EffectContext,
             outputRectangle: ?*const RECT,
             transform: **ID2D1BoundsAdjustmentTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadPixelShader: *const fn(
             self: *const ID2D1EffectContext,
             shaderId: ?*const Guid,
             shaderBuffer: [*:0]const u8,
             shaderBufferCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadVertexShader: *const fn(
             self: *const ID2D1EffectContext,
             resourceId: ?*const Guid,
             shaderBuffer: [*:0]const u8,
             shaderBufferCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadComputeShader: *const fn(
             self: *const ID2D1EffectContext,
             resourceId: ?*const Guid,
             shaderBuffer: [*:0]const u8,
             shaderBufferCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsShaderLoaded: *const fn(
             self: *const ID2D1EffectContext,
             shaderId: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         CreateResourceTexture: *const fn(
             self: *const ID2D1EffectContext,
             resourceId: ?*const Guid,
@@ -6244,52 +6244,52 @@ pub const ID2D1EffectContext = extern union {
             strides: ?*const u32,
             dataSize: u32,
             resourceTexture: **ID2D1ResourceTexture,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindResourceTexture: *const fn(
             self: *const ID2D1EffectContext,
             resourceId: ?*const Guid,
             resourceTexture: **ID2D1ResourceTexture,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVertexBuffer: *const fn(
             self: *const ID2D1EffectContext,
             vertexBufferProperties: ?*const D2D1_VERTEX_BUFFER_PROPERTIES,
             resourceId: ?*const Guid,
             customVertexBufferProperties: ?*const D2D1_CUSTOM_VERTEX_BUFFER_PROPERTIES,
             buffer: **ID2D1VertexBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindVertexBuffer: *const fn(
             self: *const ID2D1EffectContext,
             resourceId: ?*const Guid,
             buffer: **ID2D1VertexBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateColorContext: *const fn(
             self: *const ID2D1EffectContext,
             space: D2D1_COLOR_SPACE,
             profile: ?[*:0]const u8,
             profileSize: u32,
             colorContext: **ID2D1ColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateColorContextFromFilename: *const fn(
             self: *const ID2D1EffectContext,
             filename: ?[*:0]const u16,
             colorContext: **ID2D1ColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateColorContextFromWicColorContext: *const fn(
             self: *const ID2D1EffectContext,
             wicColorContext: ?*IWICColorContext,
             colorContext: **ID2D1ColorContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckFeatureSupport: *const fn(
             self: *const ID2D1EffectContext,
             feature: D2D1_FEATURE,
             // TODO: what to do with BytesParamIndex 2?
             featureSupportData: ?*anyopaque,
             featureSupportDataSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsBufferPrecisionSupported: *const fn(
             self: *const ID2D1EffectContext,
             bufferPrecision: D2D1_BUFFER_PRECISION,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -6687,7 +6687,7 @@ pub const ID2D1DeviceContext1 = extern union {
             geometry: ?*ID2D1Geometry,
             flatteningTolerance: f32,
             geometryRealization: **ID2D1GeometryRealization,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStrokedGeometryRealization: *const fn(
             self: *const ID2D1DeviceContext1,
             geometry: ?*ID2D1Geometry,
@@ -6695,12 +6695,12 @@ pub const ID2D1DeviceContext1 = extern union {
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
             geometryRealization: **ID2D1GeometryRealization,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawGeometryRealization: *const fn(
             self: *const ID2D1DeviceContext1,
             geometryRealization: ?*ID2D1GeometryRealization,
             brush: ?*ID2D1Brush,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1DeviceContext: ID2D1DeviceContext,
@@ -6726,16 +6726,16 @@ pub const ID2D1Device1 = extern union {
         base: ID2D1Device.VTable,
         GetRenderingPriority: *const fn(
             self: *const ID2D1Device1,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_RENDERING_PRIORITY,
+        ) callconv(.winapi) D2D1_RENDERING_PRIORITY,
         SetRenderingPriority: *const fn(
             self: *const ID2D1Device1,
             renderingPriority: D2D1_RENDERING_PRIORITY,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CreateDeviceContext: *const fn(
             self: *const ID2D1Device1,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
             deviceContext1: **ID2D1DeviceContext1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Device: ID2D1Device,
@@ -6762,7 +6762,7 @@ pub const ID2D1Factory2 = extern union {
             self: *const ID2D1Factory2,
             dxgiDevice: ?*IDXGIDevice,
             d2dDevice1: **ID2D1Device1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Factory1: ID2D1Factory1,
@@ -6782,7 +6782,7 @@ pub const ID2D1CommandSink1 = extern union {
         SetPrimitiveBlend1: *const fn(
             self: *const ID2D1CommandSink1,
             primitiveBlend: D2D1_PRIMITIVE_BLEND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1CommandSink: ID2D1CommandSink,
@@ -7023,11 +7023,11 @@ pub const ID2D1SvgAttribute = extern union {
         GetElement: *const fn(
             self: *const ID2D1SvgAttribute,
             element: ?*?*ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Clone: *const fn(
             self: *const ID2D1SvgAttribute,
             attribute: **ID2D1SvgAttribute,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -7048,30 +7048,30 @@ pub const ID2D1SvgPaint = extern union {
         SetPaintType: *const fn(
             self: *const ID2D1SvgPaint,
             paintType: D2D1_SVG_PAINT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPaintType: *const fn(
             self: *const ID2D1SvgPaint,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_SVG_PAINT_TYPE,
+        ) callconv(.winapi) D2D1_SVG_PAINT_TYPE,
         SetColor: *const fn(
             self: *const ID2D1SvgPaint,
             color: ?*const D2D_COLOR_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColor: *const fn(
             self: *const ID2D1SvgPaint,
             color: ?*D2D_COLOR_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetId: *const fn(
             self: *const ID2D1SvgPaint,
             id: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetId: *const fn(
             self: *const ID2D1SvgPaint,
             id: [*:0]u16,
             idCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIdLength: *const fn(
             self: *const ID2D1SvgPaint,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     ID2D1SvgAttribute: ID2D1SvgAttribute,
@@ -7108,34 +7108,34 @@ pub const ID2D1SvgStrokeDashArray = extern union {
         RemoveDashesAtEnd: *const fn(
             self: *const ID2D1SvgStrokeDashArray,
             dashesCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateDashesUnits: *const fn(
             self: *const ID2D1SvgStrokeDashArray,
             dashes: [*]const D2D1_SVG_LENGTH,
             dashesCount: u32,
             startIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateDashesFloats: *const fn(
             self: *const ID2D1SvgStrokeDashArray,
             dashes: [*]const f32,
             dashesCount: u32,
             startIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDashesUnits: *const fn(
             self: *const ID2D1SvgStrokeDashArray,
             dashes: [*]D2D1_SVG_LENGTH,
             dashesCount: u32,
             startIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDashesFloats: *const fn(
             self: *const ID2D1SvgStrokeDashArray,
             dashes: [*]f32,
             dashesCount: u32,
             startIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDashesCount: *const fn(
             self: *const ID2D1SvgStrokeDashArray,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     ID2D1SvgAttribute: ID2D1SvgAttribute,
@@ -7171,22 +7171,22 @@ pub const ID2D1SvgPointCollection = extern union {
         RemovePointsAtEnd: *const fn(
             self: *const ID2D1SvgPointCollection,
             pointsCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdatePoints: *const fn(
             self: *const ID2D1SvgPointCollection,
             points: [*]const D2D_POINT_2F,
             pointsCount: u32,
             startIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPoints: *const fn(
             self: *const ID2D1SvgPointCollection,
             points: [*]D2D_POINT_2F,
             pointsCount: u32,
             startIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPointsCount: *const fn(
             self: *const ID2D1SvgPointCollection,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     ID2D1SvgAttribute: ID2D1SvgAttribute,
@@ -7214,46 +7214,46 @@ pub const ID2D1SvgPathData = extern union {
         RemoveSegmentDataAtEnd: *const fn(
             self: *const ID2D1SvgPathData,
             dataCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateSegmentData: *const fn(
             self: *const ID2D1SvgPathData,
             data: [*]const f32,
             dataCount: u32,
             startIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSegmentData: *const fn(
             self: *const ID2D1SvgPathData,
             data: [*]f32,
             dataCount: u32,
             startIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSegmentDataCount: *const fn(
             self: *const ID2D1SvgPathData,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         RemoveCommandsAtEnd: *const fn(
             self: *const ID2D1SvgPathData,
             commandsCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateCommands: *const fn(
             self: *const ID2D1SvgPathData,
             commands: [*]const D2D1_SVG_PATH_COMMAND,
             commandsCount: u32,
             startIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCommands: *const fn(
             self: *const ID2D1SvgPathData,
             commands: [*]D2D1_SVG_PATH_COMMAND,
             commandsCount: u32,
             startIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCommandsCount: *const fn(
             self: *const ID2D1SvgPathData,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         CreatePathGeometry: *const fn(
             self: *const ID2D1SvgPathData,
             fillMode: D2D1_FILL_MODE,
             pathGeometry: **ID2D1PathGeometry1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1SvgAttribute: ID2D1SvgAttribute,
@@ -7296,109 +7296,109 @@ pub const ID2D1SvgElement = extern union {
         GetDocument: *const fn(
             self: *const ID2D1SvgElement,
             document: ?*?*ID2D1SvgDocument,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetTagName: *const fn(
             self: *const ID2D1SvgElement,
             name: [*:0]u16,
             nameCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTagNameLength: *const fn(
             self: *const ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         IsTextContent: *const fn(
             self: *const ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetParent: *const fn(
             self: *const ID2D1SvgElement,
             parent: ?*?*ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         HasChildren: *const fn(
             self: *const ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetFirstChild: *const fn(
             self: *const ID2D1SvgElement,
             child: ?*?*ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetLastChild: *const fn(
             self: *const ID2D1SvgElement,
             child: ?*?*ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetPreviousChild: *const fn(
             self: *const ID2D1SvgElement,
             referenceChild: ?*ID2D1SvgElement,
             previousChild: ?**ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextChild: *const fn(
             self: *const ID2D1SvgElement,
             referenceChild: ?*ID2D1SvgElement,
             nextChild: ?**ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertChildBefore: *const fn(
             self: *const ID2D1SvgElement,
             newChild: ?*ID2D1SvgElement,
             referenceChild: ?*ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AppendChild: *const fn(
             self: *const ID2D1SvgElement,
             newChild: ?*ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReplaceChild: *const fn(
             self: *const ID2D1SvgElement,
             newChild: ?*ID2D1SvgElement,
             oldChild: ?*ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveChild: *const fn(
             self: *const ID2D1SvgElement,
             oldChild: ?*ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateChild: *const fn(
             self: *const ID2D1SvgElement,
             tagName: ?[*:0]const u16,
             newChild: **ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsAttributeSpecified: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             inherited: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         GetSpecifiedAttributeCount: *const fn(
             self: *const ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetSpecifiedAttributeName: *const fn(
             self: *const ID2D1SvgElement,
             index: u32,
             name: [*:0]u16,
             nameCount: u32,
             inherited: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpecifiedAttributeNameLength: *const fn(
             self: *const ID2D1SvgElement,
             index: u32,
             nameLength: ?*u32,
             inherited: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAttribute: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTextValue: *const fn(
             self: *const ID2D1SvgElement,
             name: [*:0]const u16,
             nameCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextValue: *const fn(
             self: *const ID2D1SvgElement,
             name: [*:0]u16,
             nameCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTextValueLength: *const fn(
             self: *const ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         SetAttributeValueObj: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             value: ?*ID2D1SvgAttribute,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAttributeValuePod: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
@@ -7406,19 +7406,19 @@ pub const ID2D1SvgElement = extern union {
             // TODO: what to do with BytesParamIndex 3?
             value: ?*const anyopaque,
             valueSizeInBytes: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAttributeValueString: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_STRING_TYPE,
             value: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeValueObj: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             riid: ?*const Guid,
             value: ?**anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeValuePod: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
@@ -7426,20 +7426,20 @@ pub const ID2D1SvgElement = extern union {
             // TODO: what to do with BytesParamIndex 3?
             value: ?*anyopaque,
             valueSizeInBytes: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeValueString: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_STRING_TYPE,
             value: [*:0]u16,
             valueCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributeValueLength: *const fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_STRING_TYPE,
             valueLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -7546,52 +7546,52 @@ pub const ID2D1SvgDocument = extern union {
         SetViewportSize: *const fn(
             self: *const ID2D1SvgDocument,
             viewportSize: D2D_SIZE_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetViewportSize: *const fn(
             self: *const ID2D1SvgDocument,
-        ) callconv(@import("std").os.windows.WINAPI) D2D_SIZE_F,
+        ) callconv(.winapi) D2D_SIZE_F,
         SetRoot: *const fn(
             self: *const ID2D1SvgDocument,
             root: ?*ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRoot: *const fn(
             self: *const ID2D1SvgDocument,
             root: ?*?*ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         FindElementById: *const fn(
             self: *const ID2D1SvgDocument,
             id: ?[*:0]const u16,
             svgElement: ?**ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Serialize: *const fn(
             self: *const ID2D1SvgDocument,
             outputXmlStream: ?*IStream,
             subtree: ?*ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Deserialize: *const fn(
             self: *const ID2D1SvgDocument,
             inputXmlStream: ?*IStream,
             subtree: **ID2D1SvgElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePaint: *const fn(
             self: *const ID2D1SvgDocument,
             paintType: D2D1_SVG_PAINT_TYPE,
             color: ?*const D2D_COLOR_F,
             id: ?[*:0]const u16,
             paint: **ID2D1SvgPaint,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStrokeDashArray: *const fn(
             self: *const ID2D1SvgDocument,
             dashes: ?[*]const D2D1_SVG_LENGTH,
             dashesCount: u32,
             strokeDashArray: **ID2D1SvgStrokeDashArray,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePointCollection: *const fn(
             self: *const ID2D1SvgDocument,
             points: ?[*]const D2D_POINT_2F,
             pointsCount: u32,
             pointCollection: **ID2D1SvgPointCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePathData: *const fn(
             self: *const ID2D1SvgDocument,
             segmentData: ?[*]const f32,
@@ -7599,7 +7599,7 @@ pub const ID2D1SvgDocument = extern union {
             commands: ?[*]const D2D1_SVG_PATH_COMMAND,
             commandsCount: u32,
             pathData: **ID2D1SvgPathData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -8064,18 +8064,18 @@ pub const ID2D1InkStyle = extern union {
         SetNibTransform: *const fn(
             self: *const ID2D1InkStyle,
             transform: ?*const D2D_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetNibTransform: *const fn(
             self: *const ID2D1InkStyle,
             transform: ?*D2D_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetNibShape: *const fn(
             self: *const ID2D1InkStyle,
             nibShape: D2D1_INK_NIB_SHAPE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetNibShape: *const fn(
             self: *const ID2D1InkStyle,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_INK_NIB_SHAPE,
+        ) callconv(.winapi) D2D1_INK_NIB_SHAPE,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -8102,51 +8102,51 @@ pub const ID2D1Ink = extern union {
         SetStartPoint: *const fn(
             self: *const ID2D1Ink,
             startPoint: ?*const D2D1_INK_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetStartPoint: *const fn(
             self: *const ID2D1Ink,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_INK_POINT,
+        ) callconv(.winapi) D2D1_INK_POINT,
         AddSegments: *const fn(
             self: *const ID2D1Ink,
             segments: [*]const D2D1_INK_BEZIER_SEGMENT,
             segmentsCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveSegmentsAtEnd: *const fn(
             self: *const ID2D1Ink,
             segmentsCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSegments: *const fn(
             self: *const ID2D1Ink,
             startSegment: u32,
             segments: [*]const D2D1_INK_BEZIER_SEGMENT,
             segmentsCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSegmentAtEnd: *const fn(
             self: *const ID2D1Ink,
             segment: ?*const D2D1_INK_BEZIER_SEGMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSegmentCount: *const fn(
             self: *const ID2D1Ink,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetSegments: *const fn(
             self: *const ID2D1Ink,
             startSegment: u32,
             segments: [*]D2D1_INK_BEZIER_SEGMENT,
             segmentsCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StreamAsGeometry: *const fn(
             self: *const ID2D1Ink,
             inkStyle: ?*ID2D1InkStyle,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
             geometrySink: ?*ID2D1SimplifiedGeometrySink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBounds: *const fn(
             self: *const ID2D1Ink,
             inkStyle: ?*ID2D1InkStyle,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             bounds: ?*D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -8191,13 +8191,13 @@ pub const ID2D1GradientMesh = extern union {
         base: ID2D1Resource.VTable,
         GetPatchCount: *const fn(
             self: *const ID2D1GradientMesh,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetPatches: *const fn(
             self: *const ID2D1GradientMesh,
             startIndex: u32,
             patches: [*]D2D1_GRADIENT_MESH_PATCH,
             patchesCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -8218,11 +8218,11 @@ pub const ID2D1ImageSource = extern union {
         base: ID2D1Image.VTable,
         OfferResources: *const fn(
             self: *const ID2D1ImageSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TryReclaimResources: *const fn(
             self: *const ID2D1ImageSource,
             resourcesDiscarded: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Image: ID2D1Image,
@@ -8244,15 +8244,15 @@ pub const ID2D1ImageSourceFromWic = extern union {
         EnsureCached: *const fn(
             self: *const ID2D1ImageSourceFromWic,
             rectangleToFill: ?*const D2D_RECT_U,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TrimCache: *const fn(
             self: *const ID2D1ImageSourceFromWic,
             rectangleToPreserve: ?*const D2D_RECT_U,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSource: *const fn(
             self: *const ID2D1ImageSourceFromWic,
             wicBitmapSource: ?*?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1ImageSource: ID2D1ImageSource,
@@ -8278,11 +8278,11 @@ pub const ID2D1TransformedImageSource = extern union {
         GetSource: *const fn(
             self: *const ID2D1TransformedImageSource,
             imageSource: ?*?*ID2D1ImageSource,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetProperties: *const fn(
             self: *const ID2D1TransformedImageSource,
             properties: ?*D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Image: ID2D1Image,
@@ -8317,25 +8317,25 @@ pub const ID2D1DeviceContext2 = extern union {
             self: *const ID2D1DeviceContext2,
             startPoint: ?*const D2D1_INK_POINT,
             ink: **ID2D1Ink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInkStyle: *const fn(
             self: *const ID2D1DeviceContext2,
             inkStyleProperties: ?*const D2D1_INK_STYLE_PROPERTIES,
             inkStyle: **ID2D1InkStyle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGradientMesh: *const fn(
             self: *const ID2D1DeviceContext2,
             patches: [*]const D2D1_GRADIENT_MESH_PATCH,
             patchesCount: u32,
             gradientMesh: **ID2D1GradientMesh,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateImageSourceFromWic: *const fn(
             self: *const ID2D1DeviceContext2,
             wicBitmapSource: ?*IWICBitmapSource,
             loadingOptions: D2D1_IMAGE_SOURCE_LOADING_OPTIONS,
             alphaMode: D2D1_ALPHA_MODE,
             imageSource: **ID2D1ImageSourceFromWic,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateLookupTable3D: *const fn(
             self: *const ID2D1DeviceContext2,
             precision: D2D1_BUFFER_PRECISION,
@@ -8344,7 +8344,7 @@ pub const ID2D1DeviceContext2 = extern union {
             dataCount: u32,
             strides: *[2]u32,
             lookupTable: **ID2D1LookupTable3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateImageSourceFromDxgi: *const fn(
             self: *const ID2D1DeviceContext2,
             surfaces: [*]?*IDXGISurface,
@@ -8352,34 +8352,34 @@ pub const ID2D1DeviceContext2 = extern union {
             colorSpace: DXGI_COLOR_SPACE_TYPE,
             options: D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS,
             imageSource: **ID2D1ImageSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGradientMeshWorldBounds: *const fn(
             self: *const ID2D1DeviceContext2,
             gradientMesh: ?*ID2D1GradientMesh,
             pBounds: ?*D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawInk: *const fn(
             self: *const ID2D1DeviceContext2,
             ink: ?*ID2D1Ink,
             brush: ?*ID2D1Brush,
             inkStyle: ?*ID2D1InkStyle,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawGradientMesh: *const fn(
             self: *const ID2D1DeviceContext2,
             gradientMesh: ?*ID2D1GradientMesh,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawGdiMetafile: *const fn(
             self: *const ID2D1DeviceContext2,
             gdiMetafile: ?*ID2D1GdiMetafile,
             destinationRectangle: ?*const D2D_RECT_F,
             sourceRectangle: ?*const D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CreateTransformedImageSource: *const fn(
             self: *const ID2D1DeviceContext2,
             imageSource: ?*ID2D1ImageSource,
             properties: ?*const D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES,
             transformedImageSource: **ID2D1TransformedImageSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1DeviceContext1: ID2D1DeviceContext1,
@@ -8431,15 +8431,15 @@ pub const ID2D1Device2 = extern union {
             self: *const ID2D1Device2,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
             deviceContext2: **ID2D1DeviceContext2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FlushDeviceContexts: *const fn(
             self: *const ID2D1Device2,
             bitmap: ?*ID2D1Bitmap,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetDxgiDevice: *const fn(
             self: *const ID2D1Device2,
             dxgiDevice: **IDXGIDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Device1: ID2D1Device1,
@@ -8466,7 +8466,7 @@ pub const ID2D1Factory3 = extern union {
             self: *const ID2D1Factory3,
             dxgiDevice: ?*IDXGIDevice,
             d2dDevice2: **ID2D1Device2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Factory2: ID2D1Factory2,
@@ -8489,17 +8489,17 @@ pub const ID2D1CommandSink2 = extern union {
             ink: ?*ID2D1Ink,
             brush: ?*ID2D1Brush,
             inkStyle: ?*ID2D1InkStyle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawGradientMesh: *const fn(
             self: *const ID2D1CommandSink2,
             gradientMesh: ?*ID2D1GradientMesh,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawGdiMetafile: *const fn(
             self: *const ID2D1CommandSink2,
             gdiMetafile: ?*ID2D1GdiMetafile,
             destinationRectangle: ?*const D2D_RECT_F,
             sourceRectangle: ?*const D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1CommandSink1: ID2D1CommandSink1,
@@ -8526,11 +8526,11 @@ pub const ID2D1GdiMetafile1 = extern union {
             self: *const ID2D1GdiMetafile1,
             dpiX: ?*f32,
             dpiY: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceBounds: *const fn(
             self: *const ID2D1GdiMetafile1,
             bounds: ?*D2D_RECT_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1GdiMetafile: ID2D1GdiMetafile,
@@ -8556,7 +8556,7 @@ pub const ID2D1GdiMetafileSink1 = extern union {
             recordData: ?*const anyopaque,
             recordDataSize: u32,
             flags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1GdiMetafileSink: ID2D1GdiMetafileSink,
@@ -8582,7 +8582,7 @@ pub const ID2D1SpriteBatch = extern union {
             sourceRectanglesStride: u32,
             colorsStride: u32,
             transformsStride: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSprites: *const fn(
             self: *const ID2D1SpriteBatch,
             startIndex: u32,
@@ -8595,7 +8595,7 @@ pub const ID2D1SpriteBatch = extern union {
             sourceRectanglesStride: u32,
             colorsStride: u32,
             transformsStride: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSprites: *const fn(
             self: *const ID2D1SpriteBatch,
             startIndex: u32,
@@ -8604,13 +8604,13 @@ pub const ID2D1SpriteBatch = extern union {
             sourceRectangles: ?[*]D2D_RECT_U,
             colors: ?[*]D2D_COLOR_F,
             transforms: ?[*]D2D_MATRIX_3X2_F,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpriteCount: *const fn(
             self: *const ID2D1SpriteBatch,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         Clear: *const fn(
             self: *const ID2D1SpriteBatch,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -8640,7 +8640,7 @@ pub const ID2D1DeviceContext3 = extern union {
         CreateSpriteBatch: *const fn(
             self: *const ID2D1DeviceContext3,
             spriteBatch: **ID2D1SpriteBatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawSpriteBatch: *const fn(
             self: *const ID2D1DeviceContext3,
             spriteBatch: ?*ID2D1SpriteBatch,
@@ -8649,7 +8649,7 @@ pub const ID2D1DeviceContext3 = extern union {
             bitmap: ?*ID2D1Bitmap,
             interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE,
             spriteOptions: D2D1_SPRITE_OPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1DeviceContext2: ID2D1DeviceContext2,
@@ -8675,7 +8675,7 @@ pub const ID2D1Device3 = extern union {
             self: *const ID2D1Device3,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
             deviceContext3: **ID2D1DeviceContext3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Device2: ID2D1Device2,
@@ -8697,7 +8697,7 @@ pub const ID2D1Factory4 = extern union {
             self: *const ID2D1Factory4,
             dxgiDevice: ?*IDXGIDevice,
             d2dDevice3: **ID2D1Device3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Factory3: ID2D1Factory3,
@@ -8723,7 +8723,7 @@ pub const ID2D1CommandSink3 = extern union {
             bitmap: ?*ID2D1Bitmap,
             interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE,
             spriteOptions: D2D1_SPRITE_OPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1CommandSink2: ID2D1CommandSink2,
@@ -8743,11 +8743,11 @@ pub const ID2D1SvgGlyphStyle = extern union {
         SetFill: *const fn(
             self: *const ID2D1SvgGlyphStyle,
             brush: ?*ID2D1Brush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFill: *const fn(
             self: *const ID2D1SvgGlyphStyle,
             brush: ?*?*ID2D1Brush,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         SetStroke: *const fn(
             self: *const ID2D1SvgGlyphStyle,
             brush: ?*ID2D1Brush,
@@ -8755,10 +8755,10 @@ pub const ID2D1SvgGlyphStyle = extern union {
             dashes: ?[*]const f32,
             dashesCount: u32,
             dashOffset: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokeDashesCount: *const fn(
             self: *const ID2D1SvgGlyphStyle,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetStroke: *const fn(
             self: *const ID2D1SvgGlyphStyle,
             brush: ?*?*ID2D1Brush,
@@ -8766,7 +8766,7 @@ pub const ID2D1SvgGlyphStyle = extern union {
             dashes: ?[*]f32,
             dashesCount: u32,
             dashOffset: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1Resource: ID2D1Resource,
@@ -8796,7 +8796,7 @@ pub const ID2D1DeviceContext4 = extern union {
         CreateSvgGlyphStyle: *const fn(
             self: *const ID2D1DeviceContext4,
             svgGlyphStyle: **ID2D1SvgGlyphStyle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawText: *const fn(
             self: *const ID2D1DeviceContext4,
             string: [*:0]const u16,
@@ -8808,7 +8808,7 @@ pub const ID2D1DeviceContext4 = extern union {
             colorPaletteIndex: u32,
             options: D2D1_DRAW_TEXT_OPTIONS,
             measuringMode: DWRITE_MEASURING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawTextLayout: *const fn(
             self: *const ID2D1DeviceContext4,
             origin: D2D_POINT_2F,
@@ -8817,7 +8817,7 @@ pub const ID2D1DeviceContext4 = extern union {
             svgGlyphStyle: ?*ID2D1SvgGlyphStyle,
             colorPaletteIndex: u32,
             options: D2D1_DRAW_TEXT_OPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawColorBitmapGlyphRun: *const fn(
             self: *const ID2D1DeviceContext4,
             glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS,
@@ -8825,7 +8825,7 @@ pub const ID2D1DeviceContext4 = extern union {
             glyphRun: ?*const DWRITE_GLYPH_RUN,
             measuringMode: DWRITE_MEASURING_MODE,
             bitmapSnapOption: D2D1_COLOR_BITMAP_GLYPH_SNAP_OPTION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         DrawSvgGlyphRun: *const fn(
             self: *const ID2D1DeviceContext4,
             baselineOrigin: D2D_POINT_2F,
@@ -8834,7 +8834,7 @@ pub const ID2D1DeviceContext4 = extern union {
             svgGlyphStyle: ?*ID2D1SvgGlyphStyle,
             colorPaletteIndex: u32,
             measuringMode: DWRITE_MEASURING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetColorBitmapGlyphImage: *const fn(
             self: *const ID2D1DeviceContext4,
             glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS,
@@ -8848,7 +8848,7 @@ pub const ID2D1DeviceContext4 = extern union {
             dpiY: f32,
             glyphTransform: ?*D2D_MATRIX_3X2_F,
             glyphImage: **ID2D1Image,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSvgGlyphImage: *const fn(
             self: *const ID2D1DeviceContext4,
             glyphOrigin: D2D_POINT_2F,
@@ -8862,7 +8862,7 @@ pub const ID2D1DeviceContext4 = extern union {
             colorPaletteIndex: u32,
             glyphTransform: ?*D2D_MATRIX_3X2_F,
             glyphImage: **ID2D1CommandList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1DeviceContext3: ID2D1DeviceContext3,
@@ -8904,14 +8904,14 @@ pub const ID2D1Device4 = extern union {
             self: *const ID2D1Device4,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
             deviceContext4: **ID2D1DeviceContext4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaximumColorGlyphCacheMemory: *const fn(
             self: *const ID2D1Device4,
             maximumInBytes: u64,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         GetMaximumColorGlyphCacheMemory: *const fn(
             self: *const ID2D1Device4,
-        ) callconv(@import("std").os.windows.WINAPI) u64,
+        ) callconv(.winapi) u64,
     };
     vtable: *const VTable,
     ID2D1Device3: ID2D1Device3,
@@ -8940,7 +8940,7 @@ pub const ID2D1Factory5 = extern union {
             self: *const ID2D1Factory5,
             dxgiDevice: ?*IDXGIDevice,
             d2dDevice4: **ID2D1Device4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Factory4: ID2D1Factory4,
@@ -8962,7 +8962,7 @@ pub const ID2D1CommandSink4 = extern union {
         SetPrimitiveBlend2: *const fn(
             self: *const ID2D1CommandSink4,
             primitiveBlend: D2D1_PRIMITIVE_BLEND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1CommandSink3: ID2D1CommandSink3,
@@ -8982,14 +8982,14 @@ pub const ID2D1ColorContext1 = extern union {
         base: ID2D1ColorContext.VTable,
         GetColorContextType: *const fn(
             self: *const ID2D1ColorContext1,
-        ) callconv(@import("std").os.windows.WINAPI) D2D1_COLOR_CONTEXT_TYPE,
+        ) callconv(.winapi) D2D1_COLOR_CONTEXT_TYPE,
         GetDXGIColorSpace: *const fn(
             self: *const ID2D1ColorContext1,
-        ) callconv(@import("std").os.windows.WINAPI) DXGI_COLOR_SPACE_TYPE,
+        ) callconv(.winapi) DXGI_COLOR_SPACE_TYPE,
         GetSimpleColorProfile: *const fn(
             self: *const ID2D1ColorContext1,
             simpleProfile: ?*D2D1_SIMPLE_COLOR_PROFILE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1ColorContext: ID2D1ColorContext,
@@ -9016,21 +9016,21 @@ pub const ID2D1DeviceContext5 = extern union {
             inputXmlStream: ?*IStream,
             viewportSize: D2D_SIZE_F,
             svgDocument: **ID2D1SvgDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawSvgDocument: *const fn(
             self: *const ID2D1DeviceContext5,
             svgDocument: ?*ID2D1SvgDocument,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CreateColorContextFromDxgiColorSpace: *const fn(
             self: *const ID2D1DeviceContext5,
             colorSpace: DXGI_COLOR_SPACE_TYPE,
             colorContext: **ID2D1ColorContext1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateColorContextFromSimpleColorProfile: *const fn(
             self: *const ID2D1DeviceContext5,
             simpleProfile: ?*const D2D1_SIMPLE_COLOR_PROFILE,
             colorContext: **ID2D1ColorContext1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1DeviceContext4: ID2D1DeviceContext4,
@@ -9064,7 +9064,7 @@ pub const ID2D1Device5 = extern union {
             self: *const ID2D1Device5,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
             deviceContext5: **ID2D1DeviceContext5,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Device4: ID2D1Device4,
@@ -9088,7 +9088,7 @@ pub const ID2D1Factory6 = extern union {
             self: *const ID2D1Factory6,
             dxgiDevice: ?*IDXGIDevice,
             d2dDevice5: **ID2D1Device5,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Factory5: ID2D1Factory5,
@@ -9115,7 +9115,7 @@ pub const ID2D1CommandSink5 = extern union {
             targetOffset: ?*const D2D_POINT_2F,
             imageRectangle: ?*const D2D_RECT_F,
             interpolationMode: D2D1_INTERPOLATION_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1CommandSink4: ID2D1CommandSink4,
@@ -9141,7 +9141,7 @@ pub const ID2D1DeviceContext6 = extern union {
             targetOffset: ?*const D2D_POINT_2F,
             imageRectangle: ?*const D2D_RECT_F,
             interpolationMode: D2D1_INTERPOLATION_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     ID2D1DeviceContext5: ID2D1DeviceContext5,
@@ -9167,7 +9167,7 @@ pub const ID2D1Device6 = extern union {
             self: *const ID2D1Device6,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
             deviceContext6: **ID2D1DeviceContext6,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Device5: ID2D1Device5,
@@ -9192,7 +9192,7 @@ pub const ID2D1Factory7 = extern union {
             self: *const ID2D1Factory7,
             dxgiDevice: ?*IDXGIDevice,
             d2dDevice6: **ID2D1Device6,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1Factory6: ID2D1Factory6,
@@ -9221,7 +9221,7 @@ pub const ID2D1EffectContext1 = extern union {
             dataCount: u32,
             strides: *[2]u32,
             lookupTable: **ID2D1LookupTable3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1EffectContext: ID2D1EffectContext,
@@ -9240,12 +9240,12 @@ pub const ID2D1EffectContext2 = extern union {
             self: *const ID2D1EffectContext2,
             colorSpace: DXGI_COLOR_SPACE_TYPE,
             colorContext: **ID2D1ColorContext1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateColorContextFromSimpleColorProfile: *const fn(
             self: *const ID2D1EffectContext2,
             simpleProfile: ?*const D2D1_SIMPLE_COLOR_PROFILE,
             colorContext: **ID2D1ColorContext1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID2D1EffectContext1: ID2D1EffectContext1,
@@ -9269,14 +9269,14 @@ pub extern "d2d1" fn D2D1CreateFactory(
     riid: ?*const Guid,
     pFactoryOptions: ?*const D2D1_FACTORY_OPTIONS,
     ppIFactory: **anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "d2d1" fn D2D1MakeRotateMatrix(
     angle: f32,
     center: D2D_POINT_2F,
     matrix: ?*D2D_MATRIX_3X2_F,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "d2d1" fn D2D1MakeSkewMatrix(
@@ -9284,58 +9284,58 @@ pub extern "d2d1" fn D2D1MakeSkewMatrix(
     angleY: f32,
     center: D2D_POINT_2F,
     matrix: ?*D2D_MATRIX_3X2_F,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "d2d1" fn D2D1IsMatrixInvertible(
     matrix: ?*const D2D_MATRIX_3X2_F,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "d2d1" fn D2D1InvertMatrix(
     matrix: ?*D2D_MATRIX_3X2_F,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "d2d1" fn D2D1CreateDevice(
     dxgiDevice: ?*IDXGIDevice,
     creationProperties: ?*const D2D1_CREATION_PROPERTIES,
     d2dDevice: ?*?*ID2D1Device,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "d2d1" fn D2D1CreateDeviceContext(
     dxgiSurface: ?*IDXGISurface,
     creationProperties: ?*const D2D1_CREATION_PROPERTIES,
     d2dDeviceContext: ?*?*ID2D1DeviceContext,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d2d1" fn D2D1ConvertColorSpace(
     sourceColorSpace: D2D1_COLOR_SPACE,
     destinationColorSpace: D2D1_COLOR_SPACE,
     color: ?*const D2D_COLOR_F,
-) callconv(@import("std").os.windows.WINAPI) D2D_COLOR_F;
+) callconv(.winapi) D2D_COLOR_F;
 
 pub extern "d2d1" fn D2D1SinCos(
     angle: f32,
     s: ?*f32,
     c: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "d2d1" fn D2D1Tan(
     angle: f32,
-) callconv(@import("std").os.windows.WINAPI) f32;
+) callconv(.winapi) f32;
 
 pub extern "d2d1" fn D2D1Vec3Length(
     x: f32,
     y: f32,
     z: f32,
-) callconv(@import("std").os.windows.WINAPI) f32;
+) callconv(.winapi) f32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "d2d1" fn D2D1ComputeMaximumScaleFactor(
     matrix: ?*const D2D_MATRIX_3X2_F,
-) callconv(@import("std").os.windows.WINAPI) f32;
+) callconv(.winapi) f32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "d2d1" fn D2D1GetGradientMeshInteriorPointsFromCoonsPatch(
@@ -9355,7 +9355,7 @@ pub extern "d2d1" fn D2D1GetGradientMeshInteriorPointsFromCoonsPatch(
     pTensorPoint12: ?*D2D_POINT_2F,
     pTensorPoint21: ?*D2D_POINT_2F,
     pTensorPoint22: ?*D2D_POINT_2F,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 
 //--------------------------------------------------------------------------------

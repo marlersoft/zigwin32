@@ -1336,43 +1336,43 @@ pub const IEnumCERTVIEWCOLUMN = extern union {
         Next: *const fn(
             self: *const IEnumCERTVIEWCOLUMN,
             pIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IEnumCERTVIEWCOLUMN,
             pstrOut: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayName: *const fn(
             self: *const IEnumCERTVIEWCOLUMN,
             pstrOut: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const IEnumCERTVIEWCOLUMN,
             pType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsIndexed: *const fn(
             self: *const IEnumCERTVIEWCOLUMN,
             pIndexed: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxLength: *const fn(
             self: *const IEnumCERTVIEWCOLUMN,
             pMaxLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const IEnumCERTVIEWCOLUMN,
             Flags: ENUM_CERT_COLUMN_VALUE_FLAGS,
             pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumCERTVIEWCOLUMN,
             celt: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumCERTVIEWCOLUMN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumCERTVIEWCOLUMN,
             ppenum: ?*?*IEnumCERTVIEWCOLUMN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1418,26 +1418,26 @@ pub const IEnumCERTVIEWATTRIBUTE = extern union {
         Next: *const fn(
             self: *const IEnumCERTVIEWATTRIBUTE,
             pIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IEnumCERTVIEWATTRIBUTE,
             pstrOut: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const IEnumCERTVIEWATTRIBUTE,
             pstrOut: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumCERTVIEWATTRIBUTE,
             celt: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumCERTVIEWATTRIBUTE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumCERTVIEWATTRIBUTE,
             ppenum: ?*?*IEnumCERTVIEWATTRIBUTE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1471,32 +1471,32 @@ pub const IEnumCERTVIEWEXTENSION = extern union {
         Next: *const fn(
             self: *const IEnumCERTVIEWEXTENSION,
             pIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IEnumCERTVIEWEXTENSION,
             pstrOut: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlags: *const fn(
             self: *const IEnumCERTVIEWEXTENSION,
             pFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const IEnumCERTVIEWEXTENSION,
             Type: CERT_PROPERTY_TYPE,
             Flags: ENUM_CERT_COLUMN_VALUE_FLAGS,
             pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumCERTVIEWEXTENSION,
             celt: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumCERTVIEWEXTENSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumCERTVIEWEXTENSION,
             ppenum: ?*?*IEnumCERTVIEWEXTENSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1533,36 +1533,36 @@ pub const IEnumCERTVIEWROW = extern union {
         Next: *const fn(
             self: *const IEnumCERTVIEWROW,
             pIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumCertViewColumn: *const fn(
             self: *const IEnumCERTVIEWROW,
             ppenum: ?*?*IEnumCERTVIEWCOLUMN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumCertViewAttribute: *const fn(
             self: *const IEnumCERTVIEWROW,
             Flags: i32,
             ppenum: ?*?*IEnumCERTVIEWATTRIBUTE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumCertViewExtension: *const fn(
             self: *const IEnumCERTVIEWROW,
             Flags: i32,
             ppenum: ?*?*IEnumCERTVIEWEXTENSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumCERTVIEWROW,
             celt: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumCERTVIEWROW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumCERTVIEWROW,
             ppenum: ?*?*IEnumCERTVIEWROW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxIndex: *const fn(
             self: *const IEnumCERTVIEWROW,
             pIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1602,42 +1602,42 @@ pub const ICertView = extern union {
         OpenConnection: *const fn(
             self: *const ICertView,
             strConfig: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumCertViewColumn: *const fn(
             self: *const ICertView,
             fResultColumn: CVRC_COLUMN,
             ppenum: ?*?*IEnumCERTVIEWCOLUMN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColumnCount: *const fn(
             self: *const ICertView,
             fResultColumn: CVRC_COLUMN,
             pcColumn: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColumnIndex: *const fn(
             self: *const ICertView,
             fResultColumn: CVRC_COLUMN,
             strColumnName: ?BSTR,
             pColumnIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetResultColumnCount: *const fn(
             self: *const ICertView,
             cResultColumn: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetResultColumn: *const fn(
             self: *const ICertView,
             ColumnIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRestriction: *const fn(
             self: *const ICertView,
             ColumnIndex: CERT_VIEW_COLUMN_INDEX,
             SeekOperator: CERT_VIEW_SEEK_OPERATOR_FLAGS,
             SortOrder: i32,
             pvarValue: ?*const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenView: *const fn(
             self: *const ICertView,
             ppenum: ?*?*IEnumCERTVIEWROW,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1677,7 +1677,7 @@ pub const ICertView2 = extern union {
         SetTable: *const fn(
             self: *const ICertView2,
             Table: CVRC_TABLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertView: ICertView,
@@ -1699,24 +1699,24 @@ pub const ICertAdmin = extern union {
             strConfig: ?BSTR,
             strSerialNumber: ?BSTR,
             pDisposition: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRevocationReason: *const fn(
             self: *const ICertAdmin,
             pReason: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RevokeCertificate: *const fn(
             self: *const ICertAdmin,
             strConfig: ?BSTR,
             strSerialNumber: ?BSTR,
             Reason: i32,
             Date: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRequestAttributes: *const fn(
             self: *const ICertAdmin,
             strConfig: ?BSTR,
             RequestId: i32,
             strAttributes: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCertificateExtension: *const fn(
             self: *const ICertAdmin,
             strConfig: ?BSTR,
@@ -1725,36 +1725,36 @@ pub const ICertAdmin = extern union {
             Type: CERT_PROPERTY_TYPE,
             Flags: i32,
             pvarValue: ?*const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DenyRequest: *const fn(
             self: *const ICertAdmin,
             strConfig: ?BSTR,
             RequestId: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResubmitRequest: *const fn(
             self: *const ICertAdmin,
             strConfig: ?BSTR,
             RequestId: i32,
             pDisposition: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PublishCRL: *const fn(
             self: *const ICertAdmin,
             strConfig: ?BSTR,
             Date: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCRL: *const fn(
             self: *const ICertAdmin,
             strConfig: ?BSTR,
             Flags: i32,
             pstrCRL: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportCertificate: *const fn(
             self: *const ICertAdmin,
             strConfig: ?BSTR,
             strCertificate: ?BSTR,
             Flags: CERT_IMPORT_FLAGS,
             pRequestId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1802,7 +1802,7 @@ pub const ICertAdmin2 = extern union {
             strConfig: ?BSTR,
             Date: f64,
             CRLFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCAProperty: *const fn(
             self: *const ICertAdmin2,
             strConfig: ?BSTR,
@@ -1811,7 +1811,7 @@ pub const ICertAdmin2 = extern union {
             PropType: i32,
             Flags: i32,
             pvarPropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCAProperty: *const fn(
             self: *const ICertAdmin2,
             strConfig: ?BSTR,
@@ -1819,40 +1819,40 @@ pub const ICertAdmin2 = extern union {
             PropIndex: i32,
             PropType: CERT_PROPERTY_TYPE,
             pvarPropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCAPropertyFlags: *const fn(
             self: *const ICertAdmin2,
             strConfig: ?BSTR,
             PropId: i32,
             pPropFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCAPropertyDisplayName: *const fn(
             self: *const ICertAdmin2,
             strConfig: ?BSTR,
             PropId: i32,
             pstrDisplayName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetArchivedKey: *const fn(
             self: *const ICertAdmin2,
             strConfig: ?BSTR,
             RequestId: i32,
             Flags: i32,
             pstrArchivedKey: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConfigEntry: *const fn(
             self: *const ICertAdmin2,
             strConfig: ?BSTR,
             strNodePath: ?BSTR,
             strEntryName: ?BSTR,
             pvarEntry: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConfigEntry: *const fn(
             self: *const ICertAdmin2,
             strConfig: ?BSTR,
             strNodePath: ?BSTR,
             strEntryName: ?BSTR,
             pvarEntry: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ImportKey: *const fn(
             self: *const ICertAdmin2,
             strConfig: ?BSTR,
@@ -1860,12 +1860,12 @@ pub const ICertAdmin2 = extern union {
             strCertHash: ?BSTR,
             Flags: CERT_IMPORT_FLAGS,
             strKey: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMyRoles: *const fn(
             self: *const ICertAdmin2,
             strConfig: ?BSTR,
             pRoles: ?*CERTADMIN_GET_ROLES_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRow: *const fn(
             self: *const ICertAdmin2,
             strConfig: ?BSTR,
@@ -1874,7 +1874,7 @@ pub const ICertAdmin2 = extern union {
             Table: CVRC_TABLE,
             RowId: i32,
             pcDeleted: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertAdmin: ICertAdmin,
@@ -1925,22 +1925,22 @@ pub const IOCSPProperty = extern union {
         get_Name: *const fn(
             self: *const IOCSPProperty,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const IOCSPProperty,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const IOCSPProperty,
             newVal: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Modified: *const fn(
             self: *const IOCSPProperty,
             pVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1969,40 +1969,40 @@ pub const IOCSPPropertyCollection = extern union {
         get__NewEnum: *const fn(
             self: *const IOCSPPropertyCollection,
             ppVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IOCSPPropertyCollection,
             Index: i32,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IOCSPPropertyCollection,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ItemByName: *const fn(
             self: *const IOCSPPropertyCollection,
             bstrPropName: ?BSTR,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateProperty: *const fn(
             self: *const IOCSPPropertyCollection,
             bstrPropName: ?BSTR,
             pVarPropValue: ?*const VARIANT,
             ppVal: ?*?*IOCSPProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteProperty: *const fn(
             self: *const IOCSPPropertyCollection,
             bstrPropName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromProperties: *const fn(
             self: *const IOCSPPropertyCollection,
             pVarProperties: ?*const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllProperties: *const fn(
             self: *const IOCSPPropertyCollection,
             pVarProperties: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2043,122 +2043,122 @@ pub const IOCSPCAConfiguration = extern union {
         get_Identifier: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CACertificate: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgorithm: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgorithm: *const fn(
             self: *const IOCSPCAConfiguration,
             newVal: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SigningFlags: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SigningFlags: *const fn(
             self: *const IOCSPCAConfiguration,
             newVal: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SigningCertificate: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SigningCertificate: *const fn(
             self: *const IOCSPCAConfiguration,
             newVal: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReminderDuration: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReminderDuration: *const fn(
             self: *const IOCSPCAConfiguration,
             newVal: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ErrorCode: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CSPName: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeySpec: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderCLSID: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderCLSID: *const fn(
             self: *const IOCSPCAConfiguration,
             newVal: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderProperties: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderProperties: *const fn(
             self: *const IOCSPCAConfiguration,
             newVal: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Modified: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalRevocationInformation: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LocalRevocationInformation: *const fn(
             self: *const IOCSPCAConfiguration,
             newVal: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SigningCertificateTemplate: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SigningCertificateTemplate: *const fn(
             self: *const IOCSPCAConfiguration,
             newVal: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAConfig: *const fn(
             self: *const IOCSPCAConfiguration,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CAConfig: *const fn(
             self: *const IOCSPCAConfiguration,
             newVal: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2247,32 +2247,32 @@ pub const IOCSPCAConfigurationCollection = extern union {
         get__NewEnum: *const fn(
             self: *const IOCSPCAConfigurationCollection,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IOCSPCAConfigurationCollection,
             Index: i32,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IOCSPCAConfigurationCollection,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ItemByName: *const fn(
             self: *const IOCSPCAConfigurationCollection,
             bstrIdentifier: ?BSTR,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCAConfiguration: *const fn(
             self: *const IOCSPCAConfigurationCollection,
             bstrIdentifier: ?BSTR,
             varCACert: VARIANT,
             ppVal: ?*?*IOCSPCAConfiguration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteCAConfiguration: *const fn(
             self: *const IOCSPCAConfigurationCollection,
             bstrIdentifier: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2307,53 +2307,53 @@ pub const IOCSPAdmin = extern union {
         get_OCSPServiceProperties: *const fn(
             self: *const IOCSPAdmin,
             ppVal: ?*?*IOCSPPropertyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OCSPCAConfigurationCollection: *const fn(
             self: *const IOCSPAdmin,
             pVal: ?*?*IOCSPCAConfigurationCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConfiguration: *const fn(
             self: *const IOCSPAdmin,
             bstrServerName: ?BSTR,
             bForce: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConfiguration: *const fn(
             self: *const IOCSPAdmin,
             bstrServerName: ?BSTR,
             bForce: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMyRoles: *const fn(
             self: *const IOCSPAdmin,
             bstrServerName: ?BSTR,
             pRoles: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Ping: *const fn(
             self: *const IOCSPAdmin,
             bstrServerName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSecurity: *const fn(
             self: *const IOCSPAdmin,
             bstrServerName: ?BSTR,
             bstrVal: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSecurity: *const fn(
             self: *const IOCSPAdmin,
             bstrServerName: ?BSTR,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSigningCertificates: *const fn(
             self: *const IOCSPAdmin,
             bstrServerName: ?BSTR,
             pCACertVar: ?*const VARIANT,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHashAlgorithms: *const fn(
             self: *const IOCSPAdmin,
             bstrServerName: ?BSTR,
             bstrCAId: ?BSTR,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2426,74 +2426,74 @@ pub const CSEDB_RSTMAPW = extern struct {
 pub const FNCERTSRVISSERVERONLINEW = *const fn(
     pwszServerName: ?[*:0]const u16,
     pfServerOnline: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVBACKUPGETDYNAMICFILELISTW = *const fn(
     hbc: ?*anyopaque,
     ppwszzFileList: ?*?*u16,
     pcbSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVBACKUPPREPAREW = *const fn(
     pwszServerName: ?[*:0]const u16,
     grbitJet: u32,
     dwBackupFlags: u32,
     phbc: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVBACKUPGETDATABASENAMESW = *const fn(
     hbc: ?*anyopaque,
     ppwszzAttachmentInformation: ?*?*u16,
     pcbSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVBACKUPOPENFILEW = *const fn(
     hbc: ?*anyopaque,
     pwszAttachmentName: ?[*:0]const u16,
     cbReadHintSize: u32,
     pliFileSize: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVBACKUPREAD = *const fn(
     hbc: ?*anyopaque,
     pvBuffer: ?*anyopaque,
     cbBuffer: u32,
     pcbRead: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVBACKUPCLOSE = *const fn(
     hbc: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVBACKUPGETBACKUPLOGSW = *const fn(
     hbc: ?*anyopaque,
     ppwszzBackupLogFiles: ?*?*u16,
     pcbSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVBACKUPTRUNCATELOGS = *const fn(
     hbc: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVBACKUPEND = *const fn(
     hbc: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVBACKUPFREE = *const fn(
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const FNCERTSRVRESTOREGETDATABASELOCATIONSW = *const fn(
     hbc: ?*anyopaque,
     ppwszzDatabaseLocationList: ?*?*u16,
     pcbSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVRESTOREPREPAREW = *const fn(
     pwszServerName: ?[*:0]const u16,
     dwRestoreFlags: u32,
     phbc: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVRESTOREREGISTERW = *const fn(
     hbc: ?*anyopaque,
@@ -2504,23 +2504,23 @@ pub const FNCERTSRVRESTOREREGISTERW = *const fn(
     pwszBackupLogPath: ?[*:0]const u16,
     genLow: u32,
     genHigh: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVRESTOREREGISTERCOMPLETE = *const fn(
     hbc: ?*anyopaque,
     hrRestoreState: HRESULT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVRESTOREEND = *const fn(
     hbc: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNCERTSRVSERVERCONTROLW = *const fn(
     pwszServerName: ?[*:0]const u16,
     dwControlFlags: u32,
     pcbOut: ?*u32,
     ppbOut: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 const CLSID_CCertGetConfig_Value = Guid.initString("c6cc49b0-ce17-11d0-8833-00a0c903b83c");
 pub const CLSID_CCertGetConfig = &CLSID_CCertGetConfig_Value;
@@ -2546,69 +2546,69 @@ pub const ICertServerPolicy = extern union {
         SetContext: *const fn(
             self: *const ICertServerPolicy,
             Context: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestProperty: *const fn(
             self: *const ICertServerPolicy,
             strPropertyName: ?BSTR,
             PropertyType: i32,
             pvarPropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestAttribute: *const fn(
             self: *const ICertServerPolicy,
             strAttributeName: ?BSTR,
             pstrAttributeValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateProperty: *const fn(
             self: *const ICertServerPolicy,
             strPropertyName: ?BSTR,
             PropertyType: CERT_PROPERTY_TYPE,
             pvarPropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCertificateProperty: *const fn(
             self: *const ICertServerPolicy,
             strPropertyName: ?BSTR,
             PropertyType: i32,
             pvarPropertyValue: ?*const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateExtension: *const fn(
             self: *const ICertServerPolicy,
             strExtensionName: ?BSTR,
             Type: CERT_PROPERTY_TYPE,
             pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateExtensionFlags: *const fn(
             self: *const ICertServerPolicy,
             pExtFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCertificateExtension: *const fn(
             self: *const ICertServerPolicy,
             strExtensionName: ?BSTR,
             Type: i32,
             ExtFlags: i32,
             pvarValue: ?*const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateExtensionsSetup: *const fn(
             self: *const ICertServerPolicy,
             Flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateExtensions: *const fn(
             self: *const ICertServerPolicy,
             pstrExtensionName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateExtensionsClose: *const fn(
             self: *const ICertServerPolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateAttributesSetup: *const fn(
             self: *const ICertServerPolicy,
             Flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateAttributes: *const fn(
             self: *const ICertServerPolicy,
             pstrAttributeName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateAttributesClose: *const fn(
             self: *const ICertServerPolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2666,56 +2666,56 @@ pub const ICertServerExit = extern union {
         SetContext: *const fn(
             self: *const ICertServerExit,
             Context: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestProperty: *const fn(
             self: *const ICertServerExit,
             strPropertyName: ?BSTR,
             PropertyType: i32,
             pvarPropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestAttribute: *const fn(
             self: *const ICertServerExit,
             strAttributeName: ?BSTR,
             pstrAttributeValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateProperty: *const fn(
             self: *const ICertServerExit,
             strPropertyName: ?BSTR,
             PropertyType: i32,
             pvarPropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateExtension: *const fn(
             self: *const ICertServerExit,
             strExtensionName: ?BSTR,
             Type: i32,
             pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateExtensionFlags: *const fn(
             self: *const ICertServerExit,
             pExtFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateExtensionsSetup: *const fn(
             self: *const ICertServerExit,
             Flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateExtensions: *const fn(
             self: *const ICertServerExit,
             pstrExtensionName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateExtensionsClose: *const fn(
             self: *const ICertServerExit,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateAttributesSetup: *const fn(
             self: *const ICertServerExit,
             Flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateAttributes: *const fn(
             self: *const ICertServerExit,
             pstrAttributeName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateAttributesClose: *const fn(
             self: *const ICertServerExit,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2768,7 +2768,7 @@ pub const ICertGetConfig = extern union {
             self: *const ICertGetConfig,
             Flags: CERT_GET_CONFIG_FLAGS,
             pstrOut: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2788,21 +2788,21 @@ pub const ICertConfig = extern union {
             self: *const ICertConfig,
             Index: i32,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const ICertConfig,
             pIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetField: *const fn(
             self: *const ICertConfig,
             strFieldName: ?BSTR,
             pstrOut: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConfig: *const fn(
             self: *const ICertConfig,
             Flags: i32,
             pstrOut: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2830,7 +2830,7 @@ pub const ICertConfig2 = extern union {
         SetSharedFolder: *const fn(
             self: *const ICertConfig2,
             strSharedFolder: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertConfig: ICertConfig,
@@ -2854,37 +2854,37 @@ pub const ICertRequest = extern union {
             strAttributes: ?BSTR,
             strConfig: ?BSTR,
             pDisposition: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RetrievePending: *const fn(
             self: *const ICertRequest,
             RequestId: i32,
             strConfig: ?BSTR,
             pDisposition: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastStatus: *const fn(
             self: *const ICertRequest,
             pStatus: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestId: *const fn(
             self: *const ICertRequest,
             pRequestId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDispositionMessage: *const fn(
             self: *const ICertRequest,
             pstrDispositionMessage: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCACertificate: *const fn(
             self: *const ICertRequest,
             fExchangeCertificate: i32,
             strConfig: ?BSTR,
             Flags: i32,
             pstrCertificate: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificate: *const fn(
             self: *const ICertRequest,
             Flags: i32,
             pstrCertificate: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -2924,13 +2924,13 @@ pub const ICertRequest2 = extern union {
             RequestId: i32,
             strSerialNumber: ?BSTR,
             pDisposition: ?*CR_DISP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorMessageText: *const fn(
             self: *const ICertRequest2,
             hrMessage: i32,
             Flags: i32,
             pstrErrorMessageText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCAProperty: *const fn(
             self: *const ICertRequest2,
             strConfig: ?BSTR,
@@ -2939,19 +2939,19 @@ pub const ICertRequest2 = extern union {
             PropType: i32,
             Flags: i32,
             pvarPropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCAPropertyFlags: *const fn(
             self: *const ICertRequest2,
             strConfig: ?BSTR,
             PropId: i32,
             pPropFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCAPropertyDisplayName: *const fn(
             self: *const ICertRequest2,
             strConfig: ?BSTR,
             PropId: i32,
             pstrDisplayName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFullResponseProperty: *const fn(
             self: *const ICertRequest2,
             PropId: FULL_RESPONSE_PROPERTY_ID,
@@ -2959,7 +2959,7 @@ pub const ICertRequest2 = extern union {
             PropType: CERT_PROPERTY_TYPE,
             Flags: CERT_REQUEST_OUT_TYPE,
             pvarPropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertRequest: ICertRequest,
@@ -3010,22 +3010,22 @@ pub const ICertRequest3 = extern union {
             AuthType: X509EnrollmentAuthFlags,
             strCredential: ?BSTR,
             strPassword: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestIdString: *const fn(
             self: *const ICertRequest3,
             pstrRequestId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIssuedCertificate2: *const fn(
             self: *const ICertRequest3,
             strConfig: ?BSTR,
             strRequestId: ?BSTR,
             strSerialNumber: ?BSTR,
             pDisposition: ?*CR_DISP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRefreshPolicy: *const fn(
             self: *const ICertRequest3,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertRequest2: ICertRequest2,
@@ -3308,7 +3308,7 @@ pub const ICertManageModule = extern union {
             strPropertyName: ?BSTR,
             Flags: i32,
             pvarProperty: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const ICertManageModule,
             strConfig: ?BSTR,
@@ -3316,13 +3316,13 @@ pub const ICertManageModule = extern union {
             strPropertyName: ?BSTR,
             Flags: i32,
             pvarProperty: ?*const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Configure: *const fn(
             self: *const ICertManageModule,
             strConfig: ?BSTR,
             strStorageLocation: ?BSTR,
             Flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3360,7 +3360,7 @@ pub const ICertPolicy = extern union {
         Initialize: *const fn(
             self: *const ICertPolicy,
             strConfig: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         VerifyRequest: *const fn(
             self: *const ICertPolicy,
             strConfig: ?BSTR,
@@ -3368,14 +3368,14 @@ pub const ICertPolicy = extern union {
             bNewRequest: i32,
             Flags: i32,
             pDisposition: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const ICertPolicy,
             pstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShutDown: *const fn(
             self: *const ICertPolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -3403,7 +3403,7 @@ pub const ICertPolicy2 = extern union {
         GetManageModule: *const fn(
             self: *const ICertPolicy2,
             ppManageModule: ?*?*ICertManageModule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertPolicy: ICertPolicy,
@@ -3466,16 +3466,16 @@ pub const INDESPolicy = extern union {
         base: IUnknown.VTable,
         Initialize: *const fn(
             self: *const INDESPolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Uninitialize: *const fn(
             self: *const INDESPolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateChallenge: *const fn(
             self: *const INDESPolicy,
             pwszTemplate: ?[*:0]const u16,
             pwszParams: ?[*:0]const u16,
             ppwszResponse: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         VerifyRequest: *const fn(
             self: *const INDESPolicy,
             pctbRequest: ?*CERTTRANSBLOB,
@@ -3483,7 +3483,7 @@ pub const INDESPolicy = extern union {
             pwszTemplate: ?[*:0]const u16,
             pwszTransactionId: ?[*:0]const u16,
             pfVerified: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Notify: *const fn(
             self: *const INDESPolicy,
             pwszChallenge: ?[*:0]const u16,
@@ -3491,7 +3491,7 @@ pub const INDESPolicy = extern union {
             disposition: X509SCEPDisposition,
             lastHResult: i32,
             pctbIssuedCertEncoded: ?*CERTTRANSBLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4522,44 +4522,44 @@ pub const IObjectId = extern union {
         InitializeFromName: *const fn(
             self: *const IObjectId,
             Name: CERTENROLL_OBJECTID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromValue: *const fn(
             self: *const IObjectId,
             strValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromAlgorithmName: *const fn(
             self: *const IObjectId,
             GroupId: ObjectIdGroupId,
             KeyFlags: ObjectIdPublicKeyFlags,
             AlgFlags: AlgorithmFlags,
             strAlgorithmName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IObjectId,
             pValue: ?*CERTENROLL_OBJECTID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FriendlyName: *const fn(
             self: *const IObjectId,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FriendlyName: *const fn(
             self: *const IObjectId,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const IObjectId,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAlgorithmName: *const fn(
             self: *const IObjectId,
             GroupId: ObjectIdGroupId,
             KeyFlags: ObjectIdPublicKeyFlags,
             pstrAlgorithmName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4600,32 +4600,32 @@ pub const IObjectIds = extern union {
             self: *const IObjectIds,
             Index: i32,
             pVal: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IObjectIds,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IObjectIds,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IObjectIds,
             pVal: ?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IObjectIds,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IObjectIds,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRange: *const fn(
             self: *const IObjectIds,
             pValue: ?*IObjectIds,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4665,19 +4665,19 @@ pub const IBinaryConverter = extern union {
             EncodingIn: EncodingType,
             Encoding: EncodingType,
             pstrEncoded: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         VariantByteArrayToString: *const fn(
             self: *const IBinaryConverter,
             pvarByteArray: ?*VARIANT,
             Encoding: EncodingType,
             pstrEncoded: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StringToVariantByteArray: *const fn(
             self: *const IBinaryConverter,
             strEncoded: ?BSTR,
             Encoding: EncodingType,
             pvarByteArray: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4702,12 +4702,12 @@ pub const IBinaryConverter2 = extern union {
             self: *const IBinaryConverter2,
             pvarStringArray: ?*VARIANT,
             pvarVariantArray: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         VariantArrayToStringArray: *const fn(
             self: *const IBinaryConverter2,
             pvarVariantArray: ?*VARIANT,
             pvarStringArray: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IBinaryConverter: IBinaryConverter,
@@ -4775,22 +4775,22 @@ pub const IX500DistinguishedName = extern union {
             strEncodedName: ?BSTR,
             Encoding: EncodingType,
             NameFlags: X500NameFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Encode: *const fn(
             self: *const IX500DistinguishedName,
             strName: ?BSTR,
             NameFlags: X500NameFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IX500DistinguishedName,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_EncodedName: *const fn(
             self: *const IX500DistinguishedName,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -4860,62 +4860,62 @@ pub const IX509EnrollmentStatus = extern union {
         AppendText: *const fn(
             self: *const IX509EnrollmentStatus,
             strText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Text: *const fn(
             self: *const IX509EnrollmentStatus,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Text: *const fn(
             self: *const IX509EnrollmentStatus,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Selected: *const fn(
             self: *const IX509EnrollmentStatus,
             pValue: ?*EnrollmentSelectionStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Selected: *const fn(
             self: *const IX509EnrollmentStatus,
             Value: EnrollmentSelectionStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Display: *const fn(
             self: *const IX509EnrollmentStatus,
             pValue: ?*EnrollmentDisplayStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Display: *const fn(
             self: *const IX509EnrollmentStatus,
             Value: EnrollmentDisplayStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: *const fn(
             self: *const IX509EnrollmentStatus,
             pValue: ?*EnrollmentEnrollStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Status: *const fn(
             self: *const IX509EnrollmentStatus,
             Value: EnrollmentEnrollStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: *const fn(
             self: *const IX509EnrollmentStatus,
             pValue: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Error: *const fn(
             self: *const IX509EnrollmentStatus,
             Value: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ErrorText: *const fn(
             self: *const IX509EnrollmentStatus,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5058,52 +5058,52 @@ pub const ICspAlgorithm = extern union {
             Length: i32,
             AlgFlags: AlgorithmFlags,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultLength: *const fn(
             self: *const ICspAlgorithm,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IncrementLength: *const fn(
             self: *const ICspAlgorithm,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LongName: *const fn(
             self: *const ICspAlgorithm,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Valid: *const fn(
             self: *const ICspAlgorithm,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxLength: *const fn(
             self: *const ICspAlgorithm,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinLength: *const fn(
             self: *const ICspAlgorithm,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const ICspAlgorithm,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const ICspAlgorithm,
             pValue: ?*AlgorithmType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operations: *const fn(
             self: *const ICspAlgorithm,
             pValue: ?*AlgorithmOperationFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5150,38 +5150,38 @@ pub const ICspAlgorithms = extern union {
             self: *const ICspAlgorithms,
             Index: i32,
             pVal: ?*?*ICspAlgorithm,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ICspAlgorithms,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ICspAlgorithms,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ICspAlgorithms,
             pVal: ?*ICspAlgorithm,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ICspAlgorithms,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ICspAlgorithms,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ItemByName: *const fn(
             self: *const ICspAlgorithms,
             strName: ?BSTR,
             ppValue: ?*?*ICspAlgorithm,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_IndexByObjectId: *const fn(
             self: *const ICspAlgorithms,
             pObjectId: ?*IObjectId,
             pIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5230,89 +5230,89 @@ pub const ICspInformation = extern union {
         InitializeFromName: *const fn(
             self: *const ICspInformation,
             strName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromType: *const fn(
             self: *const ICspInformation,
             Type: X509ProviderType,
             pAlgorithm: ?*IObjectId,
             MachineContext: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CspAlgorithms: *const fn(
             self: *const ICspInformation,
             ppValue: ?*?*ICspAlgorithms,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HasHardwareRandomNumberGenerator: *const fn(
             self: *const ICspInformation,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsHardwareDevice: *const fn(
             self: *const ICspInformation,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRemovable: *const fn(
             self: *const ICspInformation,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSoftwareDevice: *const fn(
             self: *const ICspInformation,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Valid: *const fn(
             self: *const ICspInformation,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxKeyContainerNameLength: *const fn(
             self: *const ICspInformation,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const ICspInformation,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const ICspInformation,
             pValue: ?*X509ProviderType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
             self: *const ICspInformation,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeySpec: *const fn(
             self: *const ICspInformation,
             pValue: ?*X509KeySpec,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSmartCard: *const fn(
             self: *const ICspInformation,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultSecurityDescriptor: *const fn(
             self: *const ICspInformation,
             MachineContext: i16,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LegacyCsp: *const fn(
             self: *const ICspInformation,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCspStatusFromOperations: *const fn(
             self: *const ICspInformation,
             pAlgorithm: ?*IObjectId,
             Operations: AlgorithmOperationFlags,
             ppValue: ?*?*ICspStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5380,58 +5380,58 @@ pub const ICspInformations = extern union {
             self: *const ICspInformations,
             Index: i32,
             pVal: ?*?*ICspInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ICspInformations,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ICspInformations,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ICspInformations,
             pVal: ?*ICspInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ICspInformations,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ICspInformations,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAvailableCsps: *const fn(
             self: *const ICspInformations,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ItemByName: *const fn(
             self: *const ICspInformations,
             strName: ?BSTR,
             ppCspInformation: ?*?*ICspInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCspStatusFromProviderName: *const fn(
             self: *const ICspInformations,
             strProviderName: ?BSTR,
             LegacyKeySpec: X509KeySpec,
             ppValue: ?*?*ICspStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCspStatusesFromOperations: *const fn(
             self: *const ICspInformations,
             Operations: AlgorithmOperationFlags,
             pCspInformation: ?*ICspInformation,
             ppValue: ?*?*ICspStatuses,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEncryptionCspAlgorithms: *const fn(
             self: *const ICspInformations,
             pCspInformation: ?*ICspInformation,
             ppValue: ?*?*ICspAlgorithms,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHashAlgorithms: *const fn(
             self: *const ICspInformations,
             pCspInformation: ?*ICspInformation,
             ppValue: ?*?*IObjectIds,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5484,37 +5484,37 @@ pub const ICspStatus = extern union {
             self: *const ICspStatus,
             pCsp: ?*ICspInformation,
             pAlgorithm: ?*ICspAlgorithm,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ordinal: *const fn(
             self: *const ICspStatus,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Ordinal: *const fn(
             self: *const ICspStatus,
             Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CspAlgorithm: *const fn(
             self: *const ICspStatus,
             ppValue: ?*?*ICspAlgorithm,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CspInformation: *const fn(
             self: *const ICspStatus,
             ppValue: ?*?*ICspInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnrollmentStatus: *const fn(
             self: *const ICspStatus,
             ppValue: ?*?*IX509EnrollmentStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: *const fn(
             self: *const ICspStatus,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5552,51 +5552,51 @@ pub const ICspStatuses = extern union {
             self: *const ICspStatuses,
             Index: i32,
             pVal: ?*?*ICspStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ICspStatuses,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ICspStatuses,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ICspStatuses,
             pVal: ?*ICspStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ICspStatuses,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ICspStatuses,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ItemByName: *const fn(
             self: *const ICspStatuses,
             strCspName: ?BSTR,
             strAlgorithmName: ?BSTR,
             ppValue: ?*?*ICspStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ItemByOrdinal: *const fn(
             self: *const ICspStatuses,
             Ordinal: i32,
             ppValue: ?*?*ICspStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ItemByOperations: *const fn(
             self: *const ICspStatuses,
             strCspName: ?BSTR,
             strAlgorithmName: ?BSTR,
             Operations: AlgorithmOperationFlags,
             ppValue: ?*?*ICspStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ItemByProvider: *const fn(
             self: *const ICspStatuses,
             pCspStatus: ?*ICspStatus,
             ppValue: ?*?*ICspStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5658,38 +5658,38 @@ pub const IX509PublicKey = extern union {
             strEncodedKey: ?BSTR,
             strEncodedParameters: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromEncodedPublicKeyInfo: *const fn(
             self: *const IX509PublicKey,
             strEncodedPublicKeyInfo: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Algorithm: *const fn(
             self: *const IX509PublicKey,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Length: *const fn(
             self: *const IX509PublicKey,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_EncodedKey: *const fn(
             self: *const IX509PublicKey,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_EncodedParameters: *const fn(
             self: *const IX509PublicKey,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ComputeKeyIdentifier: *const fn(
             self: *const IX509PublicKey,
             Algorithm: KeyIdentifierHashAlgorithm,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -5779,286 +5779,286 @@ pub const IX509PrivateKey = extern union {
         base: IDispatch.VTable,
         Open: *const fn(
             self: *const IX509PrivateKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const IX509PrivateKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IX509PrivateKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IX509PrivateKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Verify: *const fn(
             self: *const IX509PrivateKey,
             VerifyType: X509PrivateKeyVerify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Import: *const fn(
             self: *const IX509PrivateKey,
             strExportType: ?BSTR,
             strEncodedKey: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Export: *const fn(
             self: *const IX509PrivateKey,
             strExportType: ?BSTR,
             Encoding: EncodingType,
             pstrEncodedKey: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExportPublicKey: *const fn(
             self: *const IX509PrivateKey,
             ppPublicKey: ?*?*IX509PublicKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContainerName: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ContainerName: *const fn(
             self: *const IX509PrivateKey,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContainerNamePrefix: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ContainerNamePrefix: *const fn(
             self: *const IX509PrivateKey,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReaderName: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReaderName: *const fn(
             self: *const IX509PrivateKey,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CspInformations: *const fn(
             self: *const IX509PrivateKey,
             ppValue: ?*?*ICspInformations,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CspInformations: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*ICspInformations,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CspStatus: *const fn(
             self: *const IX509PrivateKey,
             ppValue: ?*?*ICspStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CspStatus: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*ICspStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderName: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderName: *const fn(
             self: *const IX509PrivateKey,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderType: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*X509ProviderType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderType: *const fn(
             self: *const IX509PrivateKey,
             Value: X509ProviderType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LegacyCsp: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LegacyCsp: *const fn(
             self: *const IX509PrivateKey,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Algorithm: *const fn(
             self: *const IX509PrivateKey,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Algorithm: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeySpec: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*X509KeySpec,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_KeySpec: *const fn(
             self: *const IX509PrivateKey,
             Value: X509KeySpec,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Length: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Length: *const fn(
             self: *const IX509PrivateKey,
             Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExportPolicy: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*X509PrivateKeyExportFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExportPolicy: *const fn(
             self: *const IX509PrivateKey,
             Value: X509PrivateKeyExportFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeyUsage: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*X509PrivateKeyUsageFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_KeyUsage: *const fn(
             self: *const IX509PrivateKey,
             Value: X509PrivateKeyUsageFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeyProtection: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*X509PrivateKeyProtection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_KeyProtection: *const fn(
             self: *const IX509PrivateKey,
             Value: X509PrivateKeyProtection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MachineContext: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MachineContext: *const fn(
             self: *const IX509PrivateKey,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SecurityDescriptor: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SecurityDescriptor: *const fn(
             self: *const IX509PrivateKey,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Certificate: *const fn(
             self: *const IX509PrivateKey,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_Certificate: *const fn(
             self: *const IX509PrivateKey,
             Encoding: EncodingType,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UniqueContainerName: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Opened: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultContainer: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Existing: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Existing: *const fn(
             self: *const IX509PrivateKey,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Silent: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Silent: *const fn(
             self: *const IX509PrivateKey,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentWindow: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ParentWindow: *const fn(
             self: *const IX509PrivateKey,
             Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UIContextMessage: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UIContextMessage: *const fn(
             self: *const IX509PrivateKey,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Pin: *const fn(
             self: *const IX509PrivateKey,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FriendlyName: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FriendlyName: *const fn(
             self: *const IX509PrivateKey,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IX509PrivateKey,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IX509PrivateKey,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -6274,52 +6274,52 @@ pub const IX509PrivateKey2 = extern union {
         get_HardwareKeyUsage: *const fn(
             self: *const IX509PrivateKey2,
             pValue: ?*X509HardwareKeyUsageFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HardwareKeyUsage: *const fn(
             self: *const IX509PrivateKey2,
             Value: X509HardwareKeyUsageFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlternateStorageLocation: *const fn(
             self: *const IX509PrivateKey2,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AlternateStorageLocation: *const fn(
             self: *const IX509PrivateKey2,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlgorithmName: *const fn(
             self: *const IX509PrivateKey2,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AlgorithmName: *const fn(
             self: *const IX509PrivateKey2,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_AlgorithmParameters: *const fn(
             self: *const IX509PrivateKey2,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_AlgorithmParameters: *const fn(
             self: *const IX509PrivateKey2,
             Encoding: EncodingType,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParametersExportType: *const fn(
             self: *const IX509PrivateKey2,
             pValue: ?*X509KeyParametersExportType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ParametersExportType: *const fn(
             self: *const IX509PrivateKey2,
             Value: X509KeyParametersExportType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509PrivateKey: IX509PrivateKey,
@@ -6366,54 +6366,54 @@ pub const IX509EndorsementKey = extern union {
         get_ProviderName: *const fn(
             self: *const IX509EndorsementKey,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderName: *const fn(
             self: *const IX509EndorsementKey,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Length: *const fn(
             self: *const IX509EndorsementKey,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Opened: *const fn(
             self: *const IX509EndorsementKey,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddCertificate: *const fn(
             self: *const IX509EndorsementKey,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveCertificate: *const fn(
             self: *const IX509EndorsementKey,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateByIndex: *const fn(
             self: *const IX509EndorsementKey,
             ManufacturerOnly: i16,
             dwIndex: i32,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateCount: *const fn(
             self: *const IX509EndorsementKey,
             ManufacturerOnly: i16,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExportPublicKey: *const fn(
             self: *const IX509EndorsementKey,
             ppPublicKey: ?*?*IX509PublicKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Open: *const fn(
             self: *const IX509EndorsementKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IX509EndorsementKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -6464,27 +6464,27 @@ pub const IX509Extension = extern union {
             pObjectId: ?*IObjectId,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectId: *const fn(
             self: *const IX509Extension,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_RawData: *const fn(
             self: *const IX509Extension,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Critical: *const fn(
             self: *const IX509Extension,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Critical: *const fn(
             self: *const IX509Extension,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -6516,37 +6516,37 @@ pub const IX509Extensions = extern union {
             self: *const IX509Extensions,
             Index: i32,
             pVal: ?*?*IX509Extension,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IX509Extensions,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IX509Extensions,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IX509Extensions,
             pVal: ?*IX509Extension,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IX509Extensions,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IX509Extensions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_IndexByObjectId: *const fn(
             self: *const IX509Extensions,
             pObjectId: ?*IObjectId,
             pIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRange: *const fn(
             self: *const IX509Extensions,
             pValue: ?*IX509Extensions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -6611,17 +6611,17 @@ pub const IX509ExtensionKeyUsage = extern union {
         InitializeEncode: *const fn(
             self: *const IX509ExtensionKeyUsage,
             UsageFlags: X509KeyUsageFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509ExtensionKeyUsage,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeyUsage: *const fn(
             self: *const IX509ExtensionKeyUsage,
             pValue: ?*X509KeyUsageFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Extension: IX509Extension,
@@ -6647,17 +6647,17 @@ pub const IX509ExtensionEnhancedKeyUsage = extern union {
         InitializeEncode: *const fn(
             self: *const IX509ExtensionEnhancedKeyUsage,
             pValue: ?*IObjectIds,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509ExtensionEnhancedKeyUsage,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnhancedKeyUsage: *const fn(
             self: *const IX509ExtensionEnhancedKeyUsage,
             ppValue: ?*?*IObjectIds,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Extension: IX509Extension,
@@ -6683,17 +6683,17 @@ pub const IX509ExtensionTemplateName = extern union {
         InitializeEncode: *const fn(
             self: *const IX509ExtensionTemplateName,
             strTemplateName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509ExtensionTemplateName,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TemplateName: *const fn(
             self: *const IX509ExtensionTemplateName,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Extension: IX509Extension,
@@ -6721,27 +6721,27 @@ pub const IX509ExtensionTemplate = extern union {
             pTemplateOid: ?*IObjectId,
             MajorVersion: i32,
             MinorVersion: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509ExtensionTemplate,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TemplateOid: *const fn(
             self: *const IX509ExtensionTemplate,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MajorVersion: *const fn(
             self: *const IX509ExtensionTemplate,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinorVersion: *const fn(
             self: *const IX509ExtensionTemplate,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Extension: IX509Extension,
@@ -6801,40 +6801,40 @@ pub const IAlternativeName = extern union {
             self: *const IAlternativeName,
             Type: AlternativeNameType,
             strValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromRawData: *const fn(
             self: *const IAlternativeName,
             Type: AlternativeNameType,
             Encoding: EncodingType,
             strRawData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromOtherName: *const fn(
             self: *const IAlternativeName,
             pObjectId: ?*IObjectId,
             Encoding: EncodingType,
             strRawData: ?BSTR,
             ToBeWrapped: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const IAlternativeName,
             pValue: ?*AlternativeNameType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StrValue: *const fn(
             self: *const IAlternativeName,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectId: *const fn(
             self: *const IAlternativeName,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_RawData: *const fn(
             self: *const IAlternativeName,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -6872,28 +6872,28 @@ pub const IAlternativeNames = extern union {
             self: *const IAlternativeNames,
             Index: i32,
             pVal: ?*?*IAlternativeName,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAlternativeNames,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAlternativeNames,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IAlternativeNames,
             pVal: ?*IAlternativeName,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IAlternativeNames,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IAlternativeNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -6927,17 +6927,17 @@ pub const IX509ExtensionAlternativeNames = extern union {
         InitializeEncode: *const fn(
             self: *const IX509ExtensionAlternativeNames,
             pValue: ?*IAlternativeNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509ExtensionAlternativeNames,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlternativeNames: *const fn(
             self: *const IX509ExtensionAlternativeNames,
             ppValue: ?*?*IAlternativeNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Extension: IX509Extension,
@@ -6964,22 +6964,22 @@ pub const IX509ExtensionBasicConstraints = extern union {
             self: *const IX509ExtensionBasicConstraints,
             IsCA: i16,
             PathLenConstraint: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509ExtensionBasicConstraints,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsCA: *const fn(
             self: *const IX509ExtensionBasicConstraints,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PathLenConstraint: *const fn(
             self: *const IX509ExtensionBasicConstraints,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Extension: IX509Extension,
@@ -7009,17 +7009,17 @@ pub const IX509ExtensionSubjectKeyIdentifier = extern union {
             self: *const IX509ExtensionSubjectKeyIdentifier,
             Encoding: EncodingType,
             strKeyIdentifier: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509ExtensionSubjectKeyIdentifier,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_SubjectKeyIdentifier: *const fn(
             self: *const IX509ExtensionSubjectKeyIdentifier,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Extension: IX509Extension,
@@ -7046,17 +7046,17 @@ pub const IX509ExtensionAuthorityKeyIdentifier = extern union {
             self: *const IX509ExtensionAuthorityKeyIdentifier,
             Encoding: EncodingType,
             strKeyIdentifier: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509ExtensionAuthorityKeyIdentifier,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_AuthorityKeyIdentifier: *const fn(
             self: *const IX509ExtensionAuthorityKeyIdentifier,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Extension: IX509Extension,
@@ -7083,17 +7083,17 @@ pub const ISmimeCapability = extern union {
             self: *const ISmimeCapability,
             pObjectId: ?*IObjectId,
             BitCount: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectId: *const fn(
             self: *const ISmimeCapability,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BitCount: *const fn(
             self: *const ISmimeCapability,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -7119,36 +7119,36 @@ pub const ISmimeCapabilities = extern union {
             self: *const ISmimeCapabilities,
             Index: i32,
             pVal: ?*?*ISmimeCapability,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ISmimeCapabilities,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISmimeCapabilities,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ISmimeCapabilities,
             pVal: ?*ISmimeCapability,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ISmimeCapabilities,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ISmimeCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddFromCsp: *const fn(
             self: *const ISmimeCapabilities,
             pValue: ?*ICspInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAvailableSmimeCapabilities: *const fn(
             self: *const ISmimeCapabilities,
             MachineContext: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -7188,17 +7188,17 @@ pub const IX509ExtensionSmimeCapabilities = extern union {
         InitializeEncode: *const fn(
             self: *const IX509ExtensionSmimeCapabilities,
             pValue: ?*ISmimeCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509ExtensionSmimeCapabilities,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SmimeCapabilities: *const fn(
             self: *const IX509ExtensionSmimeCapabilities,
             ppValue: ?*?*ISmimeCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Extension: IX509Extension,
@@ -7236,27 +7236,27 @@ pub const IPolicyQualifier = extern union {
             self: *const IPolicyQualifier,
             strQualifier: ?BSTR,
             Type: PolicyQualifierType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectId: *const fn(
             self: *const IPolicyQualifier,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Qualifier: *const fn(
             self: *const IPolicyQualifier,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const IPolicyQualifier,
             pValue: ?*PolicyQualifierType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_RawData: *const fn(
             self: *const IPolicyQualifier,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -7288,28 +7288,28 @@ pub const IPolicyQualifiers = extern union {
             self: *const IPolicyQualifiers,
             Index: i32,
             pVal: ?*?*IPolicyQualifier,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IPolicyQualifiers,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IPolicyQualifiers,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IPolicyQualifiers,
             pVal: ?*IPolicyQualifier,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IPolicyQualifiers,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IPolicyQualifiers,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -7343,17 +7343,17 @@ pub const ICertificatePolicy = extern union {
         Initialize: *const fn(
             self: *const ICertificatePolicy,
             pValue: ?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectId: *const fn(
             self: *const ICertificatePolicy,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyQualifiers: *const fn(
             self: *const ICertificatePolicy,
             ppValue: ?*?*IPolicyQualifiers,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -7379,28 +7379,28 @@ pub const ICertificatePolicies = extern union {
             self: *const ICertificatePolicies,
             Index: i32,
             pVal: ?*?*ICertificatePolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ICertificatePolicies,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ICertificatePolicies,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ICertificatePolicies,
             pVal: ?*ICertificatePolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ICertificatePolicies,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ICertificatePolicies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -7434,17 +7434,17 @@ pub const IX509ExtensionCertificatePolicies = extern union {
         InitializeEncode: *const fn(
             self: *const IX509ExtensionCertificatePolicies,
             pValue: ?*ICertificatePolicies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509ExtensionCertificatePolicies,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Policies: *const fn(
             self: *const IX509ExtensionCertificatePolicies,
             ppValue: ?*?*ICertificatePolicies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Extension: IX509Extension,
@@ -7470,17 +7470,17 @@ pub const IX509ExtensionMSApplicationPolicies = extern union {
         InitializeEncode: *const fn(
             self: *const IX509ExtensionMSApplicationPolicies,
             pValue: ?*ICertificatePolicies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509ExtensionMSApplicationPolicies,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Policies: *const fn(
             self: *const IX509ExtensionMSApplicationPolicies,
             ppValue: ?*?*ICertificatePolicies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Extension: IX509Extension,
@@ -7508,17 +7508,17 @@ pub const IX509Attribute = extern union {
             pObjectId: ?*IObjectId,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectId: *const fn(
             self: *const IX509Attribute,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_RawData: *const fn(
             self: *const IX509Attribute,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -7544,28 +7544,28 @@ pub const IX509Attributes = extern union {
             self: *const IX509Attributes,
             Index: i32,
             pVal: ?*?*IX509Attribute,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IX509Attributes,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IX509Attributes,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IX509Attributes,
             pVal: ?*IX509Attribute,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IX509Attributes,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IX509Attributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -7599,17 +7599,17 @@ pub const IX509AttributeExtensions = extern union {
         InitializeEncode: *const fn(
             self: *const IX509AttributeExtensions,
             pExtensions: ?*IX509Extensions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509AttributeExtensions,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_X509Extensions: *const fn(
             self: *const IX509AttributeExtensions,
             ppValue: ?*?*IX509Extensions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Attribute: IX509Attribute,
@@ -7667,32 +7667,32 @@ pub const IX509AttributeClientId = extern union {
             strMachineDnsName: ?BSTR,
             strUserSamName: ?BSTR,
             strProcessName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509AttributeClientId,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientId: *const fn(
             self: *const IX509AttributeClientId,
             pValue: ?*RequestClientInfoClientId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MachineDnsName: *const fn(
             self: *const IX509AttributeClientId,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserSamName: *const fn(
             self: *const IX509AttributeClientId,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProcessName: *const fn(
             self: *const IX509AttributeClientId,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Attribute: IX509Attribute,
@@ -7728,17 +7728,17 @@ pub const IX509AttributeRenewalCertificate = extern union {
             self: *const IX509AttributeRenewalCertificate,
             Encoding: EncodingType,
             strCert: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509AttributeRenewalCertificate,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_RenewalCertificate: *const fn(
             self: *const IX509AttributeRenewalCertificate,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Attribute: IX509Attribute,
@@ -7768,27 +7768,27 @@ pub const IX509AttributeArchiveKey = extern union {
             strCAXCert: ?BSTR,
             pAlgorithm: ?*IObjectId,
             EncryptionStrength: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509AttributeArchiveKey,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_EncryptedKeyBlob: *const fn(
             self: *const IX509AttributeArchiveKey,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EncryptionAlgorithm: *const fn(
             self: *const IX509AttributeArchiveKey,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EncryptionStrength: *const fn(
             self: *const IX509AttributeArchiveKey,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Attribute: IX509Attribute,
@@ -7821,17 +7821,17 @@ pub const IX509AttributeArchiveKeyHash = extern union {
             self: *const IX509AttributeArchiveKeyHash,
             Encoding: EncodingType,
             strEncryptedKeyBlob: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509AttributeArchiveKeyHash,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_EncryptedKeyHashBlob: *const fn(
             self: *const IX509AttributeArchiveKeyHash,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Attribute: IX509Attribute,
@@ -7857,17 +7857,17 @@ pub const IX509AttributeOSVersion = extern union {
         InitializeEncode: *const fn(
             self: *const IX509AttributeOSVersion,
             strOSVersion: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509AttributeOSVersion,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OSVersion: *const fn(
             self: *const IX509AttributeOSVersion,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Attribute: IX509Attribute,
@@ -7896,27 +7896,27 @@ pub const IX509AttributeCspProvider = extern union {
             strProviderName: ?BSTR,
             Encoding: EncodingType,
             strSignature: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509AttributeCspProvider,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeySpec: *const fn(
             self: *const IX509AttributeCspProvider,
             pValue: ?*X509KeySpec,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderName: *const fn(
             self: *const IX509AttributeCspProvider,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Signature: *const fn(
             self: *const IX509AttributeCspProvider,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Attribute: IX509Attribute,
@@ -7948,21 +7948,21 @@ pub const ICryptAttribute = extern union {
         InitializeFromObjectId: *const fn(
             self: *const ICryptAttribute,
             pObjectId: ?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromValues: *const fn(
             self: *const ICryptAttribute,
             pAttributes: ?*IX509Attributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectId: *const fn(
             self: *const ICryptAttribute,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Values: *const fn(
             self: *const ICryptAttribute,
             ppValue: ?*?*IX509Attributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -7991,37 +7991,37 @@ pub const ICryptAttributes = extern union {
             self: *const ICryptAttributes,
             Index: i32,
             pVal: ?*?*ICryptAttribute,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ICryptAttributes,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ICryptAttributes,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ICryptAttributes,
             pVal: ?*ICryptAttribute,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ICryptAttributes,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ICryptAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_IndexByObjectId: *const fn(
             self: *const ICryptAttributes,
             pObjectId: ?*IObjectId,
             pIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRange: *const fn(
             self: *const ICryptAttributes,
             pValue: ?*ICryptAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -8266,39 +8266,39 @@ pub const ICertProperty = extern union {
             MachineContext: i16,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const ICertProperty,
             Encoding: EncodingType,
             strEncodedData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyId: *const fn(
             self: *const ICertProperty,
             pValue: ?*CERTENROLL_PROPERTYID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropertyId: *const fn(
             self: *const ICertProperty,
             Value: CERTENROLL_PROPERTYID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_RawData: *const fn(
             self: *const ICertProperty,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveFromCertificate: *const fn(
             self: *const ICertProperty,
             MachineContext: i16,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValueOnCertificate: *const fn(
             self: *const ICertProperty,
             MachineContext: i16,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -8336,34 +8336,34 @@ pub const ICertProperties = extern union {
             self: *const ICertProperties,
             Index: i32,
             pVal: ?*?*ICertProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ICertProperties,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ICertProperties,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ICertProperties,
             pVal: ?*ICertProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ICertProperties,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ICertProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromCertificate: *const fn(
             self: *const ICertProperties,
             MachineContext: i16,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -8400,12 +8400,12 @@ pub const ICertPropertyFriendlyName = extern union {
         Initialize: *const fn(
             self: *const ICertPropertyFriendlyName,
             strFriendlyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FriendlyName: *const fn(
             self: *const ICertPropertyFriendlyName,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
@@ -8428,12 +8428,12 @@ pub const ICertPropertyDescription = extern union {
         Initialize: *const fn(
             self: *const ICertPropertyDescription,
             strDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const ICertPropertyDescription,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
@@ -8456,12 +8456,12 @@ pub const ICertPropertyAutoEnroll = extern union {
         Initialize: *const fn(
             self: *const ICertPropertyAutoEnroll,
             strTemplateName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TemplateName: *const fn(
             self: *const ICertPropertyAutoEnroll,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
@@ -8484,15 +8484,15 @@ pub const ICertPropertyRequestOriginator = extern union {
         Initialize: *const fn(
             self: *const ICertPropertyRequestOriginator,
             strRequestOriginator: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromLocalRequestOriginator: *const fn(
             self: *const ICertPropertyRequestOriginator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestOriginator: *const fn(
             self: *const ICertPropertyRequestOriginator,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
@@ -8519,12 +8519,12 @@ pub const ICertPropertySHA1Hash = extern union {
             self: *const ICertPropertySHA1Hash,
             Encoding: EncodingType,
             strRenewalValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_SHA1Hash: *const fn(
             self: *const ICertPropertySHA1Hash,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
@@ -8547,12 +8547,12 @@ pub const ICertPropertyKeyProvInfo = extern union {
         Initialize: *const fn(
             self: *const ICertPropertyKeyProvInfo,
             pValue: ?*IX509PrivateKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateKey: *const fn(
             self: *const ICertPropertyKeyProvInfo,
             ppValue: ?*?*IX509PrivateKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
@@ -8575,12 +8575,12 @@ pub const ICertPropertyArchived = extern union {
         Initialize: *const fn(
             self: *const ICertPropertyArchived,
             ArchivedValue: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Archived: *const fn(
             self: *const ICertPropertyArchived,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
@@ -8603,22 +8603,22 @@ pub const ICertPropertyBackedUp = extern union {
         InitializeFromCurrentTime: *const fn(
             self: *const ICertPropertyBackedUp,
             BackedUpValue: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const ICertPropertyBackedUp,
             BackedUpValue: i16,
             Date: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackedUpValue: *const fn(
             self: *const ICertPropertyBackedUp,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackedUpTime: *const fn(
             self: *const ICertPropertyBackedUp,
             pDate: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
@@ -8650,27 +8650,27 @@ pub const ICertPropertyEnrollment = extern union {
             strCADnsName: ?BSTR,
             strCAName: ?BSTR,
             strFriendlyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestId: *const fn(
             self: *const ICertPropertyEnrollment,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CADnsName: *const fn(
             self: *const ICertPropertyEnrollment,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAName: *const fn(
             self: *const ICertPropertyEnrollment,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FriendlyName: *const fn(
             self: *const ICertPropertyEnrollment,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
@@ -8703,18 +8703,18 @@ pub const ICertPropertyRenewal = extern union {
             self: *const ICertPropertyRenewal,
             Encoding: EncodingType,
             strRenewalValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromCertificateHash: *const fn(
             self: *const ICertPropertyRenewal,
             MachineContext: i16,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Renewal: *const fn(
             self: *const ICertPropertyRenewal,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
@@ -8741,12 +8741,12 @@ pub const ICertPropertyArchivedKeyHash = extern union {
             self: *const ICertPropertyArchivedKeyHash,
             Encoding: EncodingType,
             strArchivedKeyHashValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ArchivedKeyHash: *const fn(
             self: *const ICertPropertyArchivedKeyHash,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
@@ -8798,39 +8798,39 @@ pub const ICertPropertyEnrollmentPolicyServer = extern union {
             strUrl: ?BSTR,
             strId: ?BSTR,
             strEnrollmentServerUrl: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPolicyServerUrl: *const fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPolicyServerId: *const fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnrollmentServerUrl: *const fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestIdString: *const fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyFlags: *const fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
             pValue: ?*EnrollmentPolicyServerPropertyFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUrlFlags: *const fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
             pValue: ?*PolicyServerUrlFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAuthentication: *const fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
             pValue: ?*X509EnrollmentAuthFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnrollmentServerAuthentication: *const fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
             pValue: ?*X509EnrollmentAuthFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
@@ -8875,66 +8875,66 @@ pub const IX509SignatureInformation = extern union {
         get_HashAlgorithm: *const fn(
             self: *const IX509SignatureInformation,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgorithm: *const fn(
             self: *const IX509SignatureInformation,
             pValue: ?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PublicKeyAlgorithm: *const fn(
             self: *const IX509SignatureInformation,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PublicKeyAlgorithm: *const fn(
             self: *const IX509SignatureInformation,
             pValue: ?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Parameters: *const fn(
             self: *const IX509SignatureInformation,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_Parameters: *const fn(
             self: *const IX509SignatureInformation,
             Encoding: EncodingType,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlternateSignatureAlgorithm: *const fn(
             self: *const IX509SignatureInformation,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AlternateSignatureAlgorithm: *const fn(
             self: *const IX509SignatureInformation,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlternateSignatureAlgorithmSet: *const fn(
             self: *const IX509SignatureInformation,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NullSigned: *const fn(
             self: *const IX509SignatureInformation,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NullSigned: *const fn(
             self: *const IX509SignatureInformation,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureAlgorithm: *const fn(
             self: *const IX509SignatureInformation,
             Pkcs7Signature: i16,
             SignatureKey: i16,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultValues: *const fn(
             self: *const IX509SignatureInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -8992,57 +8992,57 @@ pub const ISignerCertificate = extern union {
             VerifyType: X509PrivateKeyVerify,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Certificate: *const fn(
             self: *const ISignerCertificate,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateKey: *const fn(
             self: *const ISignerCertificate,
             ppValue: ?*?*IX509PrivateKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Silent: *const fn(
             self: *const ISignerCertificate,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Silent: *const fn(
             self: *const ISignerCertificate,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentWindow: *const fn(
             self: *const ISignerCertificate,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ParentWindow: *const fn(
             self: *const ISignerCertificate,
             Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UIContextMessage: *const fn(
             self: *const ISignerCertificate,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UIContextMessage: *const fn(
             self: *const ISignerCertificate,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Pin: *const fn(
             self: *const ISignerCertificate,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignatureInformation: *const fn(
             self: *const ISignerCertificate,
             ppValue: ?*?*IX509SignatureInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -9092,33 +9092,33 @@ pub const ISignerCertificates = extern union {
             self: *const ISignerCertificates,
             Index: i32,
             pVal: ?*?*ISignerCertificate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ISignerCertificates,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISignerCertificates,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ISignerCertificates,
             pVal: ?*ISignerCertificate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ISignerCertificates,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ISignerCertificates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Find: *const fn(
             self: *const ISignerCertificates,
             pSignerCert: ?*ISignerCertificate,
             piSignerCert: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -9156,17 +9156,17 @@ pub const IX509NameValuePair = extern union {
             self: *const IX509NameValuePair,
             strName: ?BSTR,
             strValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const IX509NameValuePair,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IX509NameValuePair,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -9192,28 +9192,28 @@ pub const IX509NameValuePairs = extern union {
             self: *const IX509NameValuePairs,
             Index: i32,
             pVal: ?*?*IX509NameValuePair,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IX509NameValuePairs,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IX509NameValuePairs,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IX509NameValuePairs,
             pVal: ?*IX509NameValuePair,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IX509NameValuePairs,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IX509NameValuePairs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -9313,7 +9313,7 @@ pub const IX509CertificateTemplate = extern union {
             self: *const IX509CertificateTemplate,
             property: EnrollmentTemplateProperty,
             pValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -9333,38 +9333,38 @@ pub const IX509CertificateTemplates = extern union {
             self: *const IX509CertificateTemplates,
             Index: i32,
             pVal: ?*?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IX509CertificateTemplates,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IX509CertificateTemplates,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IX509CertificateTemplates,
             pVal: ?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IX509CertificateTemplates,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IX509CertificateTemplates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ItemByName: *const fn(
             self: *const IX509CertificateTemplates,
             bstrName: ?BSTR,
             ppValue: ?*?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ItemByOid: *const fn(
             self: *const IX509CertificateTemplates,
             pOid: ?*IObjectId,
             ppValue: ?*?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -9415,27 +9415,27 @@ pub const IX509CertificateTemplateWritable = extern union {
         Initialize: *const fn(
             self: *const IX509CertificateTemplateWritable,
             pValue: ?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const IX509CertificateTemplateWritable,
             commitFlags: CommitTemplateFlags,
             strServerContext: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Property: *const fn(
             self: *const IX509CertificateTemplateWritable,
             property: EnrollmentTemplateProperty,
             pValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_Property: *const fn(
             self: *const IX509CertificateTemplateWritable,
             property: EnrollmentTemplateProperty,
             value: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Template: *const fn(
             self: *const IX509CertificateTemplateWritable,
             ppValue: ?*?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -9494,7 +9494,7 @@ pub const ICertificationAuthority = extern union {
             self: *const ICertificationAuthority,
             property: EnrollmentCAProperty,
             pValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -9514,36 +9514,36 @@ pub const ICertificationAuthorities = extern union {
             self: *const ICertificationAuthorities,
             Index: i32,
             pVal: ?*?*ICertificationAuthority,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const ICertificationAuthorities,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ICertificationAuthorities,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ICertificationAuthorities,
             pVal: ?*ICertificationAuthority,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ICertificationAuthorities,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ICertificationAuthorities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ComputeSiteCosts: *const fn(
             self: *const ICertificationAuthorities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ItemByName: *const fn(
             self: *const ICertificationAuthorities,
             strName: ?BSTR,
             ppValue: ?*?*ICertificationAuthority,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -9621,105 +9621,105 @@ pub const IX509EnrollmentPolicyServer = extern union {
             authFlags: X509EnrollmentAuthFlags,
             fIsUnTrusted: i16,
             context: X509CertificateEnrollmentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadPolicy: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             option: X509EnrollmentPolicyLoadOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTemplates: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pTemplates: ?*?*IX509CertificateTemplates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCAsForTemplate: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pTemplate: ?*IX509CertificateTemplate,
             ppCAs: ?*?*ICertificationAuthorities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCAs: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             ppCAs: ?*?*ICertificationAuthorities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Validate: *const fn(
             self: *const IX509EnrollmentPolicyServer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCustomOids: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             ppObjectIds: ?*?*IObjectIds,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextUpdateTime: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pDate: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastUpdateTime: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pDate: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPolicyServerUrl: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPolicyServerId: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFriendlyName: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIsDefaultCEP: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUseClientId: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllowUnTrustedCA: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCachePath: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCacheDir: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAuthFlags: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pValue: ?*X509EnrollmentAuthFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCredential: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             hWndParent: i32,
             flag: X509EnrollmentAuthFlags,
             strCredential: ?BSTR,
             strPassword: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryChanges: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeImport: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             val: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Export: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             exportFlags: X509EnrollmentPolicyExportFlags,
             pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cost: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             pValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Cost: *const fn(
             self: *const IX509EnrollmentPolicyServer,
             value: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -9807,75 +9807,75 @@ pub const IX509PolicyServerUrl = extern union {
         Initialize: *const fn(
             self: *const IX509PolicyServerUrl,
             context: X509CertificateEnrollmentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Url: *const fn(
             self: *const IX509PolicyServerUrl,
             ppValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Url: *const fn(
             self: *const IX509PolicyServerUrl,
             pValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Default: *const fn(
             self: *const IX509PolicyServerUrl,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Default: *const fn(
             self: *const IX509PolicyServerUrl,
             value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: *const fn(
             self: *const IX509PolicyServerUrl,
             pValue: ?*PolicyServerUrlFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Flags: *const fn(
             self: *const IX509PolicyServerUrl,
             Flags: PolicyServerUrlFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthFlags: *const fn(
             self: *const IX509PolicyServerUrl,
             pValue: ?*X509EnrollmentAuthFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthFlags: *const fn(
             self: *const IX509PolicyServerUrl,
             Flags: X509EnrollmentAuthFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cost: *const fn(
             self: *const IX509PolicyServerUrl,
             pValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Cost: *const fn(
             self: *const IX509PolicyServerUrl,
             value: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringProperty: *const fn(
             self: *const IX509PolicyServerUrl,
             propertyId: PolicyServerUrlPropertyID,
             ppValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStringProperty: *const fn(
             self: *const IX509PolicyServerUrl,
             propertyId: PolicyServerUrlPropertyID,
             pValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateRegistry: *const fn(
             self: *const IX509PolicyServerUrl,
             context: X509CertificateEnrollmentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveFromRegistry: *const fn(
             self: *const IX509PolicyServerUrl,
             context: X509CertificateEnrollmentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -9937,33 +9937,33 @@ pub const IX509PolicyServerListManager = extern union {
             self: *const IX509PolicyServerListManager,
             Index: i32,
             pVal: ?*?*IX509PolicyServerUrl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IX509PolicyServerListManager,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IX509PolicyServerListManager,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IX509PolicyServerListManager,
             pVal: ?*IX509PolicyServerUrl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IX509PolicyServerListManager,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IX509PolicyServerListManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IX509PolicyServerListManager,
             context: X509CertificateEnrollmentContext,
             Flags: PolicyServerUrlFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -10051,123 +10051,123 @@ pub const IX509CertificateRequest = extern union {
         Initialize: *const fn(
             self: *const IX509CertificateRequest,
             Context: X509CertificateEnrollmentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Encode: *const fn(
             self: *const IX509CertificateRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetForEncode: *const fn(
             self: *const IX509CertificateRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInnerRequest: *const fn(
             self: *const IX509CertificateRequest,
             Level: InnerRequestLevel,
             ppValue: ?*?*IX509CertificateRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const IX509CertificateRequest,
             pValue: ?*X509RequestType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnrollmentContext: *const fn(
             self: *const IX509CertificateRequest,
             pValue: ?*X509CertificateEnrollmentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Silent: *const fn(
             self: *const IX509CertificateRequest,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Silent: *const fn(
             self: *const IX509CertificateRequest,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentWindow: *const fn(
             self: *const IX509CertificateRequest,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ParentWindow: *const fn(
             self: *const IX509CertificateRequest,
             Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UIContextMessage: *const fn(
             self: *const IX509CertificateRequest,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UIContextMessage: *const fn(
             self: *const IX509CertificateRequest,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SuppressDefaults: *const fn(
             self: *const IX509CertificateRequest,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SuppressDefaults: *const fn(
             self: *const IX509CertificateRequest,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_RenewalCertificate: *const fn(
             self: *const IX509CertificateRequest,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_RenewalCertificate: *const fn(
             self: *const IX509CertificateRequest,
             Encoding: EncodingType,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientId: *const fn(
             self: *const IX509CertificateRequest,
             pValue: ?*RequestClientInfoClientId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClientId: *const fn(
             self: *const IX509CertificateRequest,
             Value: RequestClientInfoClientId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CspInformations: *const fn(
             self: *const IX509CertificateRequest,
             ppValue: ?*?*ICspInformations,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CspInformations: *const fn(
             self: *const IX509CertificateRequest,
             pValue: ?*ICspInformations,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgorithm: *const fn(
             self: *const IX509CertificateRequest,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgorithm: *const fn(
             self: *const IX509CertificateRequest,
             pValue: ?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlternateSignatureAlgorithm: *const fn(
             self: *const IX509CertificateRequest,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AlternateSignatureAlgorithm: *const fn(
             self: *const IX509CertificateRequest,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_RawData: *const fn(
             self: *const IX509CertificateRequest,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -10266,144 +10266,144 @@ pub const IX509CertificateRequestPkcs10 = extern union {
             self: *const IX509CertificateRequestPkcs10,
             Context: X509CertificateEnrollmentContext,
             strTemplateName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromPrivateKey: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             Context: X509CertificateEnrollmentContext,
             pPrivateKey: ?*IX509PrivateKey,
             strTemplateName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromPublicKey: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             Context: X509CertificateEnrollmentContext,
             pPublicKey: ?*IX509PublicKey,
             strTemplateName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromCertificate: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             Context: X509CertificateEnrollmentContext,
             strCertificate: ?BSTR,
             Encoding: EncodingType,
             InheritOptions: X509RequestInheritOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             strEncodedData: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckSignature: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             AllowedSignatureTypes: Pkcs10AllowedSignatureTypes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSmartCard: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TemplateObjectId: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PublicKey: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             ppValue: ?*?*IX509PublicKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateKey: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             ppValue: ?*?*IX509PrivateKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NullSigned: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReuseKey: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_OldCertificate: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Subject: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             ppValue: ?*?*IX500DistinguishedName,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Subject: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             pValue: ?*IX500DistinguishedName,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CspStatuses: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             ppValue: ?*?*ICspStatuses,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SmimeCapabilities: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SmimeCapabilities: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignatureInformation: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             ppValue: ?*?*IX509SignatureInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeyContainerNamePrefix: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_KeyContainerNamePrefix: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CryptAttributes: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             ppValue: ?*?*ICryptAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_X509Extensions: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             ppValue: ?*?*IX509Extensions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CriticalExtensions: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             ppValue: ?*?*IObjectIds,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SuppressOids: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             ppValue: ?*?*IObjectIds,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_RawDataToBeSigned: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Signature: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCspStatuses: *const fn(
             self: *const IX509CertificateRequestPkcs10,
             KeySpec: X509KeySpec,
             ppCspStatuses: ?*?*ICspStatuses,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509CertificateRequest: IX509CertificateRequest,
@@ -10506,31 +10506,31 @@ pub const IX509CertificateRequestPkcs10V2 = extern union {
             context: X509CertificateEnrollmentContext,
             pPolicyServer: ?*IX509EnrollmentPolicyServer,
             pTemplate: ?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromPrivateKeyTemplate: *const fn(
             self: *const IX509CertificateRequestPkcs10V2,
             Context: X509CertificateEnrollmentContext,
             pPrivateKey: ?*IX509PrivateKey,
             pPolicyServer: ?*IX509EnrollmentPolicyServer,
             pTemplate: ?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromPublicKeyTemplate: *const fn(
             self: *const IX509CertificateRequestPkcs10V2,
             Context: X509CertificateEnrollmentContext,
             pPublicKey: ?*IX509PublicKey,
             pPolicyServer: ?*IX509EnrollmentPolicyServer,
             pTemplate: ?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyServer: *const fn(
             self: *const IX509CertificateRequestPkcs10V2,
             ppPolicyServer: ?*?*IX509EnrollmentPolicyServer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Template: *const fn(
             self: *const IX509CertificateRequestPkcs10V2,
             ppTemplate: ?*?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509CertificateRequestPkcs10: IX509CertificateRequestPkcs10,
@@ -10563,57 +10563,57 @@ pub const IX509CertificateRequestPkcs10V3 = extern union {
         get_AttestPrivateKey: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttestPrivateKey: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_AttestationEncryptionCertificate: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_AttestationEncryptionCertificate: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
             Encoding: EncodingType,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EncryptionAlgorithm: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EncryptionAlgorithm: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
             pValue: ?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EncryptionStrength: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EncryptionStrength: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
             Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ChallengePassword: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ChallengePassword: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NameValuePairs: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
             ppValue: ?*?*IX509NameValuePairs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509CertificateRequestPkcs10V2: IX509CertificateRequestPkcs10V2,
@@ -10678,22 +10678,22 @@ pub const IX509CertificateRequestPkcs10V4 = extern union {
         get_ClaimType: *const fn(
             self: *const IX509CertificateRequestPkcs10V4,
             pValue: ?*KeyAttestationClaimType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClaimType: *const fn(
             self: *const IX509CertificateRequestPkcs10V4,
             Value: KeyAttestationClaimType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AttestPrivateKeyPreferred: *const fn(
             self: *const IX509CertificateRequestPkcs10V4,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttestPrivateKeyPreferred: *const fn(
             self: *const IX509CertificateRequestPkcs10V4,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509CertificateRequestPkcs10V3: IX509CertificateRequestPkcs10V3,
@@ -10725,57 +10725,57 @@ pub const IX509CertificateRequestCertificate = extern union {
         CheckPublicKeySignature: *const fn(
             self: *const IX509CertificateRequestCertificate,
             pPublicKey: ?*IX509PublicKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Issuer: *const fn(
             self: *const IX509CertificateRequestCertificate,
             ppValue: ?*?*IX500DistinguishedName,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Issuer: *const fn(
             self: *const IX509CertificateRequestCertificate,
             pValue: ?*IX500DistinguishedName,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NotBefore: *const fn(
             self: *const IX509CertificateRequestCertificate,
             pValue: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NotBefore: *const fn(
             self: *const IX509CertificateRequestCertificate,
             Value: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NotAfter: *const fn(
             self: *const IX509CertificateRequestCertificate,
             pValue: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NotAfter: *const fn(
             self: *const IX509CertificateRequestCertificate,
             Value: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_SerialNumber: *const fn(
             self: *const IX509CertificateRequestCertificate,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_SerialNumber: *const fn(
             self: *const IX509CertificateRequestCertificate,
             Encoding: EncodingType,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignerCertificate: *const fn(
             self: *const IX509CertificateRequestCertificate,
             ppValue: ?*?*ISignerCertificate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SignerCertificate: *const fn(
             self: *const IX509CertificateRequestCertificate,
             pValue: ?*ISignerCertificate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509CertificateRequestPkcs10: IX509CertificateRequestPkcs10,
@@ -10828,24 +10828,24 @@ pub const IX509CertificateRequestCertificate2 = extern union {
             context: X509CertificateEnrollmentContext,
             pPolicyServer: ?*IX509EnrollmentPolicyServer,
             pTemplate: ?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromPrivateKeyTemplate: *const fn(
             self: *const IX509CertificateRequestCertificate2,
             Context: X509CertificateEnrollmentContext,
             pPrivateKey: ?*IX509PrivateKey,
             pPolicyServer: ?*IX509EnrollmentPolicyServer,
             pTemplate: ?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyServer: *const fn(
             self: *const IX509CertificateRequestCertificate2,
             ppPolicyServer: ?*?*IX509EnrollmentPolicyServer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Template: *const fn(
             self: *const IX509CertificateRequestCertificate2,
             ppTemplate: ?*?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509CertificateRequestCertificate: IX509CertificateRequestCertificate,
@@ -10877,7 +10877,7 @@ pub const IX509CertificateRequestPkcs7 = extern union {
             self: *const IX509CertificateRequestPkcs7,
             Context: X509CertificateEnrollmentContext,
             strTemplateName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromCertificate: *const fn(
             self: *const IX509CertificateRequestPkcs7,
             Context: X509CertificateEnrollmentContext,
@@ -10885,36 +10885,36 @@ pub const IX509CertificateRequestPkcs7 = extern union {
             strCertificate: ?BSTR,
             Encoding: EncodingType,
             InheritOptions: X509RequestInheritOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromInnerRequest: *const fn(
             self: *const IX509CertificateRequestPkcs7,
             pInnerRequest: ?*IX509CertificateRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509CertificateRequestPkcs7,
             strEncodedData: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequesterName: *const fn(
             self: *const IX509CertificateRequestPkcs7,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RequesterName: *const fn(
             self: *const IX509CertificateRequestPkcs7,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignerCertificate: *const fn(
             self: *const IX509CertificateRequestPkcs7,
             ppValue: ?*?*ISignerCertificate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SignerCertificate: *const fn(
             self: *const IX509CertificateRequestPkcs7,
             pValue: ?*ISignerCertificate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509CertificateRequest: IX509CertificateRequest,
@@ -10957,21 +10957,21 @@ pub const IX509CertificateRequestPkcs7V2 = extern union {
             context: X509CertificateEnrollmentContext,
             pPolicyServer: ?*IX509EnrollmentPolicyServer,
             pTemplate: ?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyServer: *const fn(
             self: *const IX509CertificateRequestPkcs7V2,
             ppPolicyServer: ?*?*IX509EnrollmentPolicyServer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Template: *const fn(
             self: *const IX509CertificateRequestPkcs7V2,
             ppTemplate: ?*?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckCertificateSignature: *const fn(
             self: *const IX509CertificateRequestPkcs7V2,
             ValidateCertificateChain: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509CertificateRequestPkcs7: IX509CertificateRequestPkcs7,
@@ -11002,117 +11002,117 @@ pub const IX509CertificateRequestCmc = extern union {
             self: *const IX509CertificateRequestCmc,
             pInnerRequest: ?*IX509CertificateRequest,
             strTemplateName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TemplateObjectId: *const fn(
             self: *const IX509CertificateRequestCmc,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NullSigned: *const fn(
             self: *const IX509CertificateRequestCmc,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CryptAttributes: *const fn(
             self: *const IX509CertificateRequestCmc,
             ppValue: ?*?*ICryptAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NameValuePairs: *const fn(
             self: *const IX509CertificateRequestCmc,
             ppValue: ?*?*IX509NameValuePairs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_X509Extensions: *const fn(
             self: *const IX509CertificateRequestCmc,
             ppValue: ?*?*IX509Extensions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CriticalExtensions: *const fn(
             self: *const IX509CertificateRequestCmc,
             ppValue: ?*?*IObjectIds,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SuppressOids: *const fn(
             self: *const IX509CertificateRequestCmc,
             ppValue: ?*?*IObjectIds,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionId: *const fn(
             self: *const IX509CertificateRequestCmc,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TransactionId: *const fn(
             self: *const IX509CertificateRequestCmc,
             Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_SenderNonce: *const fn(
             self: *const IX509CertificateRequestCmc,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_SenderNonce: *const fn(
             self: *const IX509CertificateRequestCmc,
             Encoding: EncodingType,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignatureInformation: *const fn(
             self: *const IX509CertificateRequestCmc,
             ppValue: ?*?*IX509SignatureInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ArchivePrivateKey: *const fn(
             self: *const IX509CertificateRequestCmc,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ArchivePrivateKey: *const fn(
             self: *const IX509CertificateRequestCmc,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_KeyArchivalCertificate: *const fn(
             self: *const IX509CertificateRequestCmc,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_KeyArchivalCertificate: *const fn(
             self: *const IX509CertificateRequestCmc,
             Encoding: EncodingType,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EncryptionAlgorithm: *const fn(
             self: *const IX509CertificateRequestCmc,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EncryptionAlgorithm: *const fn(
             self: *const IX509CertificateRequestCmc,
             pValue: ?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EncryptionStrength: *const fn(
             self: *const IX509CertificateRequestCmc,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EncryptionStrength: *const fn(
             self: *const IX509CertificateRequestCmc,
             Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_EncryptedKeyHash: *const fn(
             self: *const IX509CertificateRequestCmc,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignerCertificates: *const fn(
             self: *const IX509CertificateRequestCmc,
             ppValue: ?*?*ISignerCertificates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509CertificateRequestPkcs7: IX509CertificateRequestPkcs7,
@@ -11201,32 +11201,32 @@ pub const IX509CertificateRequestCmc2 = extern union {
             context: X509CertificateEnrollmentContext,
             pPolicyServer: ?*IX509EnrollmentPolicyServer,
             pTemplate: ?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromInnerRequestTemplate: *const fn(
             self: *const IX509CertificateRequestCmc2,
             pInnerRequest: ?*IX509CertificateRequest,
             pPolicyServer: ?*IX509EnrollmentPolicyServer,
             pTemplate: ?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyServer: *const fn(
             self: *const IX509CertificateRequestCmc2,
             ppPolicyServer: ?*?*IX509EnrollmentPolicyServer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Template: *const fn(
             self: *const IX509CertificateRequestCmc2,
             ppTemplate: ?*?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckSignature: *const fn(
             self: *const IX509CertificateRequestCmc2,
             AllowedSignatureTypes: Pkcs10AllowedSignatureTypes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckCertificateSignature: *const fn(
             self: *const IX509CertificateRequestCmc2,
             pSignerCertificate: ?*ISignerCertificate,
             ValidateCertificateChain: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509CertificateRequestCmc: IX509CertificateRequestCmc,
@@ -11274,118 +11274,118 @@ pub const IX509Enrollment = extern union {
         Initialize: *const fn(
             self: *const IX509Enrollment,
             Context: X509CertificateEnrollmentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromTemplateName: *const fn(
             self: *const IX509Enrollment,
             Context: X509CertificateEnrollmentContext,
             strTemplateName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeFromRequest: *const fn(
             self: *const IX509Enrollment,
             pRequest: ?*IX509CertificateRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRequest: *const fn(
             self: *const IX509Enrollment,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enroll: *const fn(
             self: *const IX509Enrollment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallResponse: *const fn(
             self: *const IX509Enrollment,
             Restrictions: InstallResponseRestrictionFlags,
             strResponse: ?BSTR,
             Encoding: EncodingType,
             strPassword: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePFX: *const fn(
             self: *const IX509Enrollment,
             strPassword: ?BSTR,
             ExportOptions: PFXExportOptions,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Request: *const fn(
             self: *const IX509Enrollment,
             pValue: ?*?*IX509CertificateRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Silent: *const fn(
             self: *const IX509Enrollment,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Silent: *const fn(
             self: *const IX509Enrollment,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentWindow: *const fn(
             self: *const IX509Enrollment,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ParentWindow: *const fn(
             self: *const IX509Enrollment,
             Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NameValuePairs: *const fn(
             self: *const IX509Enrollment,
             ppValue: ?*?*IX509NameValuePairs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnrollmentContext: *const fn(
             self: *const IX509Enrollment,
             pValue: ?*X509CertificateEnrollmentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: *const fn(
             self: *const IX509Enrollment,
             ppValue: ?*?*IX509EnrollmentStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Certificate: *const fn(
             self: *const IX509Enrollment,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Response: *const fn(
             self: *const IX509Enrollment,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CertificateFriendlyName: *const fn(
             self: *const IX509Enrollment,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CertificateFriendlyName: *const fn(
             self: *const IX509Enrollment,
             strValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CertificateDescription: *const fn(
             self: *const IX509Enrollment,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CertificateDescription: *const fn(
             self: *const IX509Enrollment,
             strValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestId: *const fn(
             self: *const IX509Enrollment,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAConfigString: *const fn(
             self: *const IX509Enrollment,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -11472,7 +11472,7 @@ pub const IX509Enrollment2 = extern union {
             context: X509CertificateEnrollmentContext,
             pPolicyServer: ?*IX509EnrollmentPolicyServer,
             pTemplate: ?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallResponse2: *const fn(
             self: *const IX509Enrollment2,
             Restrictions: InstallResponseRestrictionFlags,
@@ -11483,22 +11483,22 @@ pub const IX509Enrollment2 = extern union {
             strEnrollmentPolicyServerID: ?BSTR,
             EnrollmentPolicyServerFlags: PolicyServerUrlFlags,
             authFlags: X509EnrollmentAuthFlags,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyServer: *const fn(
             self: *const IX509Enrollment2,
             ppPolicyServer: ?*?*IX509EnrollmentPolicyServer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Template: *const fn(
             self: *const IX509Enrollment2,
             ppTemplate: ?*?*IX509CertificateTemplate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestIdString: *const fn(
             self: *const IX509Enrollment2,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509Enrollment: IX509Enrollment,
@@ -11540,14 +11540,14 @@ pub const IX509EnrollmentHelper = extern union {
             authFlags: X509EnrollmentAuthFlags,
             strCredential: ?BSTR,
             strPassword: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddEnrollmentServer: *const fn(
             self: *const IX509EnrollmentHelper,
             strEnrollmentServerURI: ?BSTR,
             authFlags: X509EnrollmentAuthFlags,
             strCredential: ?BSTR,
             strPassword: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enroll: *const fn(
             self: *const IX509EnrollmentHelper,
             strEnrollmentPolicyServerURI: ?BSTR,
@@ -11555,11 +11555,11 @@ pub const IX509EnrollmentHelper = extern union {
             Encoding: EncodingType,
             enrollFlags: WebEnrollmentFlags,
             pstrCertificate: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IX509EnrollmentHelper,
             Context: X509CertificateEnrollmentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -11588,7 +11588,7 @@ pub const IX509EnrollmentWebClassFactory = extern union {
             self: *const IX509EnrollmentWebClassFactory,
             strProgID: ?BSTR,
             ppIUnknown: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -11608,7 +11608,7 @@ pub const IX509MachineEnrollmentFactory = extern union {
             self: *const IX509MachineEnrollmentFactory,
             strProgID: ?BSTR,
             ppIHelper: ?*?*IX509EnrollmentHelper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -11651,37 +11651,37 @@ pub const IX509CertificateRevocationListEntry = extern union {
             Encoding: EncodingType,
             SerialNumber: ?BSTR,
             RevocationDate: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_SerialNumber: *const fn(
             self: *const IX509CertificateRevocationListEntry,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RevocationDate: *const fn(
             self: *const IX509CertificateRevocationListEntry,
             pValue: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RevocationReason: *const fn(
             self: *const IX509CertificateRevocationListEntry,
             pValue: ?*CRLRevocationReason,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RevocationReason: *const fn(
             self: *const IX509CertificateRevocationListEntry,
             Value: CRLRevocationReason,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_X509Extensions: *const fn(
             self: *const IX509CertificateRevocationListEntry,
             ppValue: ?*?*IX509Extensions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CriticalExtensions: *const fn(
             self: *const IX509CertificateRevocationListEntry,
             ppValue: ?*?*IObjectIds,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -11718,38 +11718,38 @@ pub const IX509CertificateRevocationListEntries = extern union {
             self: *const IX509CertificateRevocationListEntries,
             Index: i32,
             pVal: ?*?*IX509CertificateRevocationListEntry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IX509CertificateRevocationListEntries,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IX509CertificateRevocationListEntries,
             pVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IX509CertificateRevocationListEntries,
             pVal: ?*IX509CertificateRevocationListEntry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IX509CertificateRevocationListEntries,
             Index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IX509CertificateRevocationListEntries,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_IndexBySerialNumber: *const fn(
             self: *const IX509CertificateRevocationListEntries,
             Encoding: EncodingType,
             SerialNumber: ?BSTR,
             pIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRange: *const fn(
             self: *const IX509CertificateRevocationListEntries,
             pValue: ?*IX509CertificateRevocationListEntries,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -11787,150 +11787,150 @@ pub const IX509CertificateRevocationList = extern union {
         base: IDispatch.VTable,
         Initialize: *const fn(
             self: *const IX509CertificateRevocationList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
             self: *const IX509CertificateRevocationList,
             strEncodedData: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Encode: *const fn(
             self: *const IX509CertificateRevocationList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetForEncode: *const fn(
             self: *const IX509CertificateRevocationList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckPublicKeySignature: *const fn(
             self: *const IX509CertificateRevocationList,
             pPublicKey: ?*IX509PublicKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckSignature: *const fn(
             self: *const IX509CertificateRevocationList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Issuer: *const fn(
             self: *const IX509CertificateRevocationList,
             ppValue: ?*?*IX500DistinguishedName,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Issuer: *const fn(
             self: *const IX509CertificateRevocationList,
             pValue: ?*IX500DistinguishedName,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ThisUpdate: *const fn(
             self: *const IX509CertificateRevocationList,
             pValue: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ThisUpdate: *const fn(
             self: *const IX509CertificateRevocationList,
             Value: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NextUpdate: *const fn(
             self: *const IX509CertificateRevocationList,
             pValue: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NextUpdate: *const fn(
             self: *const IX509CertificateRevocationList,
             Value: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_X509CRLEntries: *const fn(
             self: *const IX509CertificateRevocationList,
             ppValue: ?*?*IX509CertificateRevocationListEntries,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_X509Extensions: *const fn(
             self: *const IX509CertificateRevocationList,
             ppValue: ?*?*IX509Extensions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CriticalExtensions: *const fn(
             self: *const IX509CertificateRevocationList,
             ppValue: ?*?*IObjectIds,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignerCertificate: *const fn(
             self: *const IX509CertificateRevocationList,
             ppValue: ?*?*ISignerCertificate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SignerCertificate: *const fn(
             self: *const IX509CertificateRevocationList,
             pValue: ?*ISignerCertificate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_CRLNumber: *const fn(
             self: *const IX509CertificateRevocationList,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_CRLNumber: *const fn(
             self: *const IX509CertificateRevocationList,
             Encoding: EncodingType,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAVersion: *const fn(
             self: *const IX509CertificateRevocationList,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CAVersion: *const fn(
             self: *const IX509CertificateRevocationList,
             pValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BaseCRL: *const fn(
             self: *const IX509CertificateRevocationList,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NullSigned: *const fn(
             self: *const IX509CertificateRevocationList,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgorithm: *const fn(
             self: *const IX509CertificateRevocationList,
             ppValue: ?*?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgorithm: *const fn(
             self: *const IX509CertificateRevocationList,
             pValue: ?*IObjectId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlternateSignatureAlgorithm: *const fn(
             self: *const IX509CertificateRevocationList,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AlternateSignatureAlgorithm: *const fn(
             self: *const IX509CertificateRevocationList,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignatureInformation: *const fn(
             self: *const IX509CertificateRevocationList,
             ppValue: ?*?*IX509SignatureInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_RawData: *const fn(
             self: *const IX509CertificateRevocationList,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_RawDataToBeSigned: *const fn(
             self: *const IX509CertificateRevocationList,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Signature: *const fn(
             self: *const IX509CertificateRevocationList,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -12039,17 +12039,17 @@ pub const ICertificateAttestationChallenge = extern union {
             self: *const ICertificateAttestationChallenge,
             Encoding: EncodingType,
             strPendingFullCmcResponseWithChallenge: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DecryptChallenge: *const fn(
             self: *const ICertificateAttestationChallenge,
             Encoding: EncodingType,
             pstrEnvelopedPkcs7ReencryptedToCA: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestID: *const fn(
             self: *const ICertificateAttestationChallenge,
             pstrRequestID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -12074,12 +12074,12 @@ pub const ICertificateAttestationChallenge2 = extern union {
         put_KeyContainerName: *const fn(
             self: *const ICertificateAttestationChallenge2,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_KeyBlob: *const fn(
             self: *const ICertificateAttestationChallenge2,
             Encoding: EncodingType,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertificateAttestationChallenge: ICertificateAttestationChallenge,
@@ -12105,21 +12105,21 @@ pub const IX509SCEPEnrollment = extern union {
             ThumprintEncoding: EncodingType,
             strServerCertificates: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeForPending: *const fn(
             self: *const IX509SCEPEnrollment,
             Context: X509CertificateEnrollmentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRequestMessage: *const fn(
             self: *const IX509SCEPEnrollment,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRetrievePendingMessage: *const fn(
             self: *const IX509SCEPEnrollment,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRetrieveCertificateMessage: *const fn(
             self: *const IX509SCEPEnrollment,
             Context: X509CertificateEnrollmentContext,
@@ -12129,91 +12129,91 @@ pub const IX509SCEPEnrollment = extern union {
             SerialNumberEncoding: EncodingType,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessResponseMessage: *const fn(
             self: *const IX509SCEPEnrollment,
             strResponse: ?BSTR,
             Encoding: EncodingType,
             pDisposition: ?*X509SCEPDisposition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServerCapabilities: *const fn(
             self: *const IX509SCEPEnrollment,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FailInfo: *const fn(
             self: *const IX509SCEPEnrollment,
             pValue: ?*X509SCEPFailInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignerCertificate: *const fn(
             self: *const IX509SCEPEnrollment,
             ppValue: ?*?*ISignerCertificate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SignerCertificate: *const fn(
             self: *const IX509SCEPEnrollment,
             pValue: ?*ISignerCertificate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OldCertificate: *const fn(
             self: *const IX509SCEPEnrollment,
             ppValue: ?*?*ISignerCertificate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OldCertificate: *const fn(
             self: *const IX509SCEPEnrollment,
             pValue: ?*ISignerCertificate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_TransactionId: *const fn(
             self: *const IX509SCEPEnrollment,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_TransactionId: *const fn(
             self: *const IX509SCEPEnrollment,
             Encoding: EncodingType,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Request: *const fn(
             self: *const IX509SCEPEnrollment,
             ppValue: ?*?*IX509CertificateRequestPkcs10,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CertificateFriendlyName: *const fn(
             self: *const IX509SCEPEnrollment,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CertificateFriendlyName: *const fn(
             self: *const IX509SCEPEnrollment,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: *const fn(
             self: *const IX509SCEPEnrollment,
             ppValue: ?*?*IX509EnrollmentStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Certificate: *const fn(
             self: *const IX509SCEPEnrollment,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Silent: *const fn(
             self: *const IX509SCEPEnrollment,
             pValue: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Silent: *const fn(
             self: *const IX509SCEPEnrollment,
             Value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRequest: *const fn(
             self: *const IX509SCEPEnrollment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -12317,34 +12317,34 @@ pub const IX509SCEPEnrollment2 = extern union {
             self: *const IX509SCEPEnrollment2,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessResponseMessage2: *const fn(
             self: *const IX509SCEPEnrollment2,
             Flags: X509SCEPProcessMessageFlags,
             strResponse: ?BSTR,
             Encoding: EncodingType,
             pDisposition: ?*X509SCEPDisposition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResultMessageText: *const fn(
             self: *const IX509SCEPEnrollment2,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelayRetry: *const fn(
             self: *const IX509SCEPEnrollment2,
             pValue: ?*DelayRetryAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActivityId: *const fn(
             self: *const IX509SCEPEnrollment2,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ActivityId: *const fn(
             self: *const IX509SCEPEnrollment2,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IX509SCEPEnrollment: IX509SCEPEnrollment,
@@ -12381,34 +12381,34 @@ pub const IX509SCEPEnrollmentHelper = extern union {
             strRequestHeaders: ?BSTR,
             pRequest: ?*IX509CertificateRequestPkcs10,
             strCACertificateThumbprint: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeForPending: *const fn(
             self: *const IX509SCEPEnrollmentHelper,
             strServerUrl: ?BSTR,
             strRequestHeaders: ?BSTR,
             Context: X509CertificateEnrollmentContext,
             strTransactionId: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enroll: *const fn(
             self: *const IX509SCEPEnrollmentHelper,
             ProcessFlags: X509SCEPProcessMessageFlags,
             pDisposition: ?*X509SCEPDisposition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FetchPending: *const fn(
             self: *const IX509SCEPEnrollmentHelper,
             ProcessFlags: X509SCEPProcessMessageFlags,
             pDisposition: ?*X509SCEPDisposition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_X509SCEPEnrollment: *const fn(
             self: *const IX509SCEPEnrollmentHelper,
             ppValue: ?*?*IX509SCEPEnrollment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResultMessageText: *const fn(
             self: *const IX509SCEPEnrollmentHelper,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -12604,12 +12604,12 @@ pub const FNIMPORTPFXTOPROVIDER = *const fn(
     pwszFriendlyName: ?[*:0]const u16,
     pcCertOut: ?*u32,
     prgpCertOut: ?*?*?*CERT_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const FNIMPORTPFXTOPROVIDERFREEDATA = *const fn(
     cCert: u32,
     rgpCert: ?[*]?*CERT_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 const IID_ICertEncodeStringArray_Value = Guid.initString("12a88820-7494-11d0-8816-00a0c903b83c");
@@ -12620,34 +12620,34 @@ pub const ICertEncodeStringArray = extern union {
         Decode: *const fn(
             self: *const ICertEncodeStringArray,
             strBinary: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringType: *const fn(
             self: *const ICertEncodeStringArray,
             pStringType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const ICertEncodeStringArray,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const ICertEncodeStringArray,
             Index: i32,
             pstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ICertEncodeStringArray,
             Count: i32,
             StringType: CERT_RDN_ATTR_VALUE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValue: *const fn(
             self: *const ICertEncodeStringArray,
             Index: i32,
             str: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Encode: *const fn(
             self: *const ICertEncodeStringArray,
             pstrBinary: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -12684,12 +12684,12 @@ pub const ICertEncodeStringArray2 = extern union {
             self: *const ICertEncodeStringArray2,
             strEncodedData: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EncodeBlob: *const fn(
             self: *const ICertEncodeStringArray2,
             Encoding: EncodingType,
             pstrEncodedData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertEncodeStringArray: ICertEncodeStringArray,
@@ -12712,29 +12712,29 @@ pub const ICertEncodeLongArray = extern union {
         Decode: *const fn(
             self: *const ICertEncodeLongArray,
             strBinary: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const ICertEncodeLongArray,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const ICertEncodeLongArray,
             Index: i32,
             pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ICertEncodeLongArray,
             Count: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValue: *const fn(
             self: *const ICertEncodeLongArray,
             Index: i32,
             Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Encode: *const fn(
             self: *const ICertEncodeLongArray,
             pstrBinary: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -12768,12 +12768,12 @@ pub const ICertEncodeLongArray2 = extern union {
             self: *const ICertEncodeLongArray2,
             strEncodedData: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EncodeBlob: *const fn(
             self: *const ICertEncodeLongArray2,
             Encoding: EncodingType,
             pstrEncodedData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertEncodeLongArray: ICertEncodeLongArray,
@@ -12796,29 +12796,29 @@ pub const ICertEncodeDateArray = extern union {
         Decode: *const fn(
             self: *const ICertEncodeDateArray,
             strBinary: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const ICertEncodeDateArray,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const ICertEncodeDateArray,
             Index: i32,
             pValue: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ICertEncodeDateArray,
             Count: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetValue: *const fn(
             self: *const ICertEncodeDateArray,
             Index: i32,
             Value: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Encode: *const fn(
             self: *const ICertEncodeDateArray,
             pstrBinary: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -12852,12 +12852,12 @@ pub const ICertEncodeDateArray2 = extern union {
             self: *const ICertEncodeDateArray2,
             strEncodedData: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EncodeBlob: *const fn(
             self: *const ICertEncodeDateArray2,
             Encoding: EncodingType,
             pstrEncodedData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertEncodeDateArray: ICertEncodeDateArray,
@@ -12880,48 +12880,48 @@ pub const ICertEncodeCRLDistInfo = extern union {
         Decode: *const fn(
             self: *const ICertEncodeCRLDistInfo,
             strBinary: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDistPointCount: *const fn(
             self: *const ICertEncodeCRLDistInfo,
             pDistPointCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNameCount: *const fn(
             self: *const ICertEncodeCRLDistInfo,
             DistPointIndex: i32,
             pNameCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNameChoice: *const fn(
             self: *const ICertEncodeCRLDistInfo,
             DistPointIndex: i32,
             NameIndex: i32,
             pNameChoice: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const ICertEncodeCRLDistInfo,
             DistPointIndex: i32,
             NameIndex: i32,
             pstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ICertEncodeCRLDistInfo,
             DistPointCount: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNameCount: *const fn(
             self: *const ICertEncodeCRLDistInfo,
             DistPointIndex: i32,
             NameCount: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNameEntry: *const fn(
             self: *const ICertEncodeCRLDistInfo,
             DistPointIndex: i32,
             NameIndex: i32,
             NameChoice: CERT_ALT_NAME,
             strName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Encode: *const fn(
             self: *const ICertEncodeCRLDistInfo,
             pstrBinary: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -12964,12 +12964,12 @@ pub const ICertEncodeCRLDistInfo2 = extern union {
             self: *const ICertEncodeCRLDistInfo2,
             strEncodedData: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EncodeBlob: *const fn(
             self: *const ICertEncodeCRLDistInfo2,
             Encoding: EncodingType,
             pstrEncodedData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertEncodeCRLDistInfo: ICertEncodeCRLDistInfo,
@@ -12992,35 +12992,35 @@ pub const ICertEncodeAltName = extern union {
         Decode: *const fn(
             self: *const ICertEncodeAltName,
             strBinary: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNameCount: *const fn(
             self: *const ICertEncodeAltName,
             pNameCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNameChoice: *const fn(
             self: *const ICertEncodeAltName,
             NameIndex: i32,
             pNameChoice: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const ICertEncodeAltName,
             NameIndex: i32,
             pstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ICertEncodeAltName,
             NameCount: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNameEntry: *const fn(
             self: *const ICertEncodeAltName,
             NameIndex: i32,
             NameChoice: CERT_ALT_NAME,
             strName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Encode: *const fn(
             self: *const ICertEncodeAltName,
             pstrBinary: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -13057,25 +13057,25 @@ pub const ICertEncodeAltName2 = extern union {
             self: *const ICertEncodeAltName2,
             strEncodedData: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EncodeBlob: *const fn(
             self: *const ICertEncodeAltName2,
             Encoding: EncodingType,
             pstrEncodedData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNameBlob: *const fn(
             self: *const ICertEncodeAltName2,
             NameIndex: i32,
             Encoding: EncodingType,
             pstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNameEntryBlob: *const fn(
             self: *const ICertEncodeAltName2,
             NameIndex: i32,
             NameChoice: i32,
             strName: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertEncodeAltName: ICertEncodeAltName,
@@ -13104,21 +13104,21 @@ pub const ICertEncodeBitString = extern union {
         Decode: *const fn(
             self: *const ICertEncodeBitString,
             strBinary: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBitCount: *const fn(
             self: *const ICertEncodeBitString,
             pBitCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBitString: *const fn(
             self: *const ICertEncodeBitString,
             pstrBitString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Encode: *const fn(
             self: *const ICertEncodeBitString,
             BitCount: i32,
             strBitString: ?BSTR,
             pstrBinary: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -13146,7 +13146,7 @@ pub const ICertEncodeBitString2 = extern union {
             self: *const ICertEncodeBitString2,
             strEncodedData: ?BSTR,
             Encoding: EncodingType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EncodeBlob: *const fn(
             self: *const ICertEncodeBitString2,
             BitCount: i32,
@@ -13154,12 +13154,12 @@ pub const ICertEncodeBitString2 = extern union {
             EncodingIn: EncodingType,
             Encoding: EncodingType,
             pstrEncodedData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBitStringBlob: *const fn(
             self: *const ICertEncodeBitString2,
             Encoding: EncodingType,
             pstrBitString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertEncodeBitString: ICertEncodeBitString,
@@ -13186,16 +13186,16 @@ pub const ICertExit = extern union {
             self: *const ICertExit,
             strConfig: ?BSTR,
             pEventMask: ?*CERT_EXIT_EVENT_MASK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Notify: *const fn(
             self: *const ICertExit,
             ExitEvent: i32,
             Context: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const ICertExit,
             pstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -13220,7 +13220,7 @@ pub const ICertExit2 = extern union {
         GetManageModule: *const fn(
             self: *const ICertExit2,
             ppManageModule: ?*?*ICertManageModule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertExit: ICertExit,
@@ -13274,281 +13274,281 @@ pub const ICEnroll = extern union {
             DNName: ?BSTR,
             Usage: ?BSTR,
             wszPKCS10FileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         acceptFilePKCS7: *const fn(
             self: *const ICEnroll,
             wszPKCS7FileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createPKCS10: *const fn(
             self: *const ICEnroll,
             DNName: ?BSTR,
             Usage: ?BSTR,
             pPKCS10: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         acceptPKCS7: *const fn(
             self: *const ICEnroll,
             PKCS7: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getCertFromPKCS7: *const fn(
             self: *const ICEnroll,
             wszPKCS7: ?BSTR,
             pbstrCert: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         enumProviders: *const fn(
             self: *const ICEnroll,
             dwIndex: i32,
             dwFlags: i32,
             pbstrProvName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         enumContainers: *const fn(
             self: *const ICEnroll,
             dwIndex: i32,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         freeRequestInfo: *const fn(
             self: *const ICEnroll,
             PKCS7OrPKCS10: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MyStoreName: *const fn(
             self: *const ICEnroll,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MyStoreName: *const fn(
             self: *const ICEnroll,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MyStoreType: *const fn(
             self: *const ICEnroll,
             pbstrType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MyStoreType: *const fn(
             self: *const ICEnroll,
             bstrType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MyStoreFlags: *const fn(
             self: *const ICEnroll,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MyStoreFlags: *const fn(
             self: *const ICEnroll,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAStoreName: *const fn(
             self: *const ICEnroll,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CAStoreName: *const fn(
             self: *const ICEnroll,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAStoreType: *const fn(
             self: *const ICEnroll,
             pbstrType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CAStoreType: *const fn(
             self: *const ICEnroll,
             bstrType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAStoreFlags: *const fn(
             self: *const ICEnroll,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CAStoreFlags: *const fn(
             self: *const ICEnroll,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootStoreName: *const fn(
             self: *const ICEnroll,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RootStoreName: *const fn(
             self: *const ICEnroll,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootStoreType: *const fn(
             self: *const ICEnroll,
             pbstrType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RootStoreType: *const fn(
             self: *const ICEnroll,
             bstrType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootStoreFlags: *const fn(
             self: *const ICEnroll,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RootStoreFlags: *const fn(
             self: *const ICEnroll,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestStoreName: *const fn(
             self: *const ICEnroll,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RequestStoreName: *const fn(
             self: *const ICEnroll,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestStoreType: *const fn(
             self: *const ICEnroll,
             pbstrType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RequestStoreType: *const fn(
             self: *const ICEnroll,
             bstrType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestStoreFlags: *const fn(
             self: *const ICEnroll,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RequestStoreFlags: *const fn(
             self: *const ICEnroll,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContainerName: *const fn(
             self: *const ICEnroll,
             pbstrContainer: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ContainerName: *const fn(
             self: *const ICEnroll,
             bstrContainer: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderName: *const fn(
             self: *const ICEnroll,
             pbstrProvider: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderName: *const fn(
             self: *const ICEnroll,
             bstrProvider: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderType: *const fn(
             self: *const ICEnroll,
             pdwType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderType: *const fn(
             self: *const ICEnroll,
             dwType: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeySpec: *const fn(
             self: *const ICEnroll,
             pdw: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_KeySpec: *const fn(
             self: *const ICEnroll,
             dw: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderFlags: *const fn(
             self: *const ICEnroll,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderFlags: *const fn(
             self: *const ICEnroll,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseExistingKeySet: *const fn(
             self: *const ICEnroll,
             fUseExistingKeys: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseExistingKeySet: *const fn(
             self: *const ICEnroll,
             fUseExistingKeys: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GenKeyFlags: *const fn(
             self: *const ICEnroll,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GenKeyFlags: *const fn(
             self: *const ICEnroll,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeleteRequestCert: *const fn(
             self: *const ICEnroll,
             fDelete: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DeleteRequestCert: *const fn(
             self: *const ICEnroll,
             fDelete: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WriteCertToCSP: *const fn(
             self: *const ICEnroll,
             fBool: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WriteCertToCSP: *const fn(
             self: *const ICEnroll,
             fBool: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SPCFileName: *const fn(
             self: *const ICEnroll,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SPCFileName: *const fn(
             self: *const ICEnroll,
             bstr: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PVKFileName: *const fn(
             self: *const ICEnroll,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PVKFileName: *const fn(
             self: *const ICEnroll,
             bstr: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgorithm: *const fn(
             self: *const ICEnroll,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgorithm: *const fn(
             self: *const ICEnroll,
             bstr: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -13732,32 +13732,32 @@ pub const ICEnroll2 = extern union {
         addCertTypeToRequest: *const fn(
             self: *const ICEnroll2,
             CertType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addNameValuePairToSignature: *const fn(
             self: *const ICEnroll2,
             Name: ?BSTR,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WriteCertToUserDS: *const fn(
             self: *const ICEnroll2,
             fBool: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WriteCertToUserDS: *const fn(
             self: *const ICEnroll2,
             fBool: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableT61DNEncoding: *const fn(
             self: *const ICEnroll2,
             fBool: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableT61DNEncoding: *const fn(
             self: *const ICEnroll2,
             fBool: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICEnroll: ICEnroll,
@@ -13792,71 +13792,71 @@ pub const ICEnroll3 = extern union {
         InstallPKCS7: *const fn(
             self: *const ICEnroll3,
             PKCS7: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ICEnroll3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSupportedKeySpec: *const fn(
             self: *const ICEnroll3,
             pdwKeySpec: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKeyLen: *const fn(
             self: *const ICEnroll3,
             fMin: BOOL,
             fExchange: BOOL,
             pdwKeySize: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumAlgs: *const fn(
             self: *const ICEnroll3,
             dwIndex: i32,
             algClass: i32,
             pdwAlgID: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAlgName: *const fn(
             self: *const ICEnroll3,
             algID: i32,
             pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReuseHardwareKeyIfUnableToGenNew: *const fn(
             self: *const ICEnroll3,
             fReuseHardwareKeyIfUnableToGenNew: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReuseHardwareKeyIfUnableToGenNew: *const fn(
             self: *const ICEnroll3,
             fReuseHardwareKeyIfUnableToGenNew: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgID: *const fn(
             self: *const ICEnroll3,
             hashAlgID: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgID: *const fn(
             self: *const ICEnroll3,
             hashAlgID: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LimitExchangeKeyToEncipherment: *const fn(
             self: *const ICEnroll3,
             fLimitExchangeKeyToEncipherment: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LimitExchangeKeyToEncipherment: *const fn(
             self: *const ICEnroll3,
             fLimitExchangeKeyToEncipherment: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableSMIMECapabilities: *const fn(
             self: *const ICEnroll3,
             fEnableSMIMECapabilities: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableSMIMECapabilities: *const fn(
             self: *const ICEnroll3,
             fEnableSMIMECapabilities: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICEnroll2: ICEnroll2,
@@ -13917,128 +13917,128 @@ pub const ICEnroll4 = extern union {
         put_PrivateKeyArchiveCertificate: *const fn(
             self: *const ICEnroll4,
             bstrCert: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateKeyArchiveCertificate: *const fn(
             self: *const ICEnroll4,
             pbstrCert: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ThumbPrint: *const fn(
             self: *const ICEnroll4,
             bstrThumbPrint: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ThumbPrint: *const fn(
             self: *const ICEnroll4,
             pbstrThumbPrint: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         binaryToString: *const fn(
             self: *const ICEnroll4,
             Flags: i32,
             strBinary: ?BSTR,
             pstrEncoded: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         stringToBinary: *const fn(
             self: *const ICEnroll4,
             Flags: i32,
             strEncoded: ?BSTR,
             pstrBinary: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addExtensionToRequest: *const fn(
             self: *const ICEnroll4,
             Flags: i32,
             strName: ?BSTR,
             strValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addAttributeToRequest: *const fn(
             self: *const ICEnroll4,
             Flags: i32,
             strName: ?BSTR,
             strValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addNameValuePairToRequest: *const fn(
             self: *const ICEnroll4,
             Flags: i32,
             strName: ?BSTR,
             strValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         resetExtensions: *const fn(
             self: *const ICEnroll4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         resetAttributes: *const fn(
             self: *const ICEnroll4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createRequest: *const fn(
             self: *const ICEnroll4,
             Flags: CERT_CREATE_REQUEST_FLAGS,
             strDNName: ?BSTR,
             Usage: ?BSTR,
             pstrRequest: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createFileRequest: *const fn(
             self: *const ICEnroll4,
             Flags: CERT_CREATE_REQUEST_FLAGS,
             strDNName: ?BSTR,
             strUsage: ?BSTR,
             strRequestFileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         acceptResponse: *const fn(
             self: *const ICEnroll4,
             strResponse: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         acceptFileResponse: *const fn(
             self: *const ICEnroll4,
             strResponseFileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getCertFromResponse: *const fn(
             self: *const ICEnroll4,
             strResponse: ?BSTR,
             pstrCert: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getCertFromFileResponse: *const fn(
             self: *const ICEnroll4,
             strResponseFileName: ?BSTR,
             pstrCert: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createPFX: *const fn(
             self: *const ICEnroll4,
             strPassword: ?BSTR,
             pstrPFX: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createFilePFX: *const fn(
             self: *const ICEnroll4,
             strPassword: ?BSTR,
             strPFXFileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setPendingRequestInfo: *const fn(
             self: *const ICEnroll4,
             lRequestID: i32,
             strCADNS: ?BSTR,
             strCAName: ?BSTR,
             strFriendlyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         enumPendingRequest: *const fn(
             self: *const ICEnroll4,
             lIndex: i32,
             lDesiredProperty: PENDING_REQUEST_DESIRED_PROPERTY,
             pvarProperty: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removePendingRequest: *const fn(
             self: *const ICEnroll4,
             strThumbprint: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKeyLenEx: *const fn(
             self: *const ICEnroll4,
             lSizeSpec: XEKL_KEYSIZE,
             lKeySpec: XEKL_KEYSPEC,
             pdwKeySize: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallPKCS7Ex: *const fn(
             self: *const ICEnroll4,
             PKCS7: ?BSTR,
             plCertInstalled: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addCertTypeToRequestEx: *const fn(
             self: *const ICEnroll4,
             lType: ADDED_CERT_TYPE,
@@ -14046,46 +14046,46 @@ pub const ICEnroll4 = extern union {
             lMajorVersion: i32,
             fMinorVersion: BOOL,
             lMinorVersion: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getProviderType: *const fn(
             self: *const ICEnroll4,
             strProvName: ?BSTR,
             plProvType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SignerCertificate: *const fn(
             self: *const ICEnroll4,
             bstrCert: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClientId: *const fn(
             self: *const ICEnroll4,
             lClientId: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientId: *const fn(
             self: *const ICEnroll4,
             plClientId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addBlobPropertyToCertificate: *const fn(
             self: *const ICEnroll4,
             lPropertyId: i32,
             lReserved: i32,
             bstrProperty: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         resetBlobProperties: *const fn(
             self: *const ICEnroll4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IncludeSubjectKeyID: *const fn(
             self: *const ICEnroll4,
             fInclude: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IncludeSubjectKeyID: *const fn(
             self: *const ICEnroll4,
             pfInclude: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICEnroll3: ICEnroll3,
@@ -14205,342 +14205,342 @@ pub const IEnroll = extern union {
             DNName: ?[*:0]const u16,
             Usage: ?[*:0]const u16,
             wszPKCS10FileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         acceptFilePKCS7WStr: *const fn(
             self: *const IEnroll,
             wszPKCS7FileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createPKCS10WStr: *const fn(
             self: *const IEnroll,
             DNName: ?[*:0]const u16,
             Usage: ?[*:0]const u16,
             pPkcs10Blob: ?*CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         acceptPKCS7Blob: *const fn(
             self: *const IEnroll,
             pBlobPKCS7: ?*CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getCertContextFromPKCS7: *const fn(
             self: *const IEnroll,
             pBlobPKCS7: ?*CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT,
+        ) callconv(.winapi) ?*CERT_CONTEXT,
         getMyStore: *const fn(
             self: *const IEnroll,
-        ) callconv(@import("std").os.windows.WINAPI) ?HCERTSTORE,
+        ) callconv(.winapi) ?HCERTSTORE,
         getCAStore: *const fn(
             self: *const IEnroll,
-        ) callconv(@import("std").os.windows.WINAPI) ?HCERTSTORE,
+        ) callconv(.winapi) ?HCERTSTORE,
         getROOTHStore: *const fn(
             self: *const IEnroll,
-        ) callconv(@import("std").os.windows.WINAPI) ?HCERTSTORE,
+        ) callconv(.winapi) ?HCERTSTORE,
         enumProvidersWStr: *const fn(
             self: *const IEnroll,
             dwIndex: i32,
             dwFlags: i32,
             pbstrProvName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         enumContainersWStr: *const fn(
             self: *const IEnroll,
             dwIndex: i32,
             pbstr: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         freeRequestInfoBlob: *const fn(
             self: *const IEnroll,
             pkcs7OrPkcs10: CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MyStoreNameWStr: *const fn(
             self: *const IEnroll,
             szwName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MyStoreNameWStr: *const fn(
             self: *const IEnroll,
             szwName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MyStoreTypeWStr: *const fn(
             self: *const IEnroll,
             szwType: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MyStoreTypeWStr: *const fn(
             self: *const IEnroll,
             szwType: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MyStoreFlags: *const fn(
             self: *const IEnroll,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MyStoreFlags: *const fn(
             self: *const IEnroll,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAStoreNameWStr: *const fn(
             self: *const IEnroll,
             szwName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CAStoreNameWStr: *const fn(
             self: *const IEnroll,
             szwName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAStoreTypeWStr: *const fn(
             self: *const IEnroll,
             szwType: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CAStoreTypeWStr: *const fn(
             self: *const IEnroll,
             szwType: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAStoreFlags: *const fn(
             self: *const IEnroll,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CAStoreFlags: *const fn(
             self: *const IEnroll,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootStoreNameWStr: *const fn(
             self: *const IEnroll,
             szwName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RootStoreNameWStr: *const fn(
             self: *const IEnroll,
             szwName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootStoreTypeWStr: *const fn(
             self: *const IEnroll,
             szwType: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RootStoreTypeWStr: *const fn(
             self: *const IEnroll,
             szwType: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootStoreFlags: *const fn(
             self: *const IEnroll,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RootStoreFlags: *const fn(
             self: *const IEnroll,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestStoreNameWStr: *const fn(
             self: *const IEnroll,
             szwName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RequestStoreNameWStr: *const fn(
             self: *const IEnroll,
             szwName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestStoreTypeWStr: *const fn(
             self: *const IEnroll,
             szwType: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RequestStoreTypeWStr: *const fn(
             self: *const IEnroll,
             szwType: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestStoreFlags: *const fn(
             self: *const IEnroll,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RequestStoreFlags: *const fn(
             self: *const IEnroll,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContainerNameWStr: *const fn(
             self: *const IEnroll,
             szwContainer: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ContainerNameWStr: *const fn(
             self: *const IEnroll,
             szwContainer: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderNameWStr: *const fn(
             self: *const IEnroll,
             szwProvider: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderNameWStr: *const fn(
             self: *const IEnroll,
             szwProvider: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderType: *const fn(
             self: *const IEnroll,
             pdwType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderType: *const fn(
             self: *const IEnroll,
             dwType: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeySpec: *const fn(
             self: *const IEnroll,
             pdw: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_KeySpec: *const fn(
             self: *const IEnroll,
             dw: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderFlags: *const fn(
             self: *const IEnroll,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderFlags: *const fn(
             self: *const IEnroll,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseExistingKeySet: *const fn(
             self: *const IEnroll,
             fUseExistingKeys: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseExistingKeySet: *const fn(
             self: *const IEnroll,
             fUseExistingKeys: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GenKeyFlags: *const fn(
             self: *const IEnroll,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GenKeyFlags: *const fn(
             self: *const IEnroll,
             dwFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeleteRequestCert: *const fn(
             self: *const IEnroll,
             fDelete: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DeleteRequestCert: *const fn(
             self: *const IEnroll,
             fDelete: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WriteCertToUserDS: *const fn(
             self: *const IEnroll,
             fBool: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WriteCertToUserDS: *const fn(
             self: *const IEnroll,
             fBool: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableT61DNEncoding: *const fn(
             self: *const IEnroll,
             fBool: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableT61DNEncoding: *const fn(
             self: *const IEnroll,
             fBool: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WriteCertToCSP: *const fn(
             self: *const IEnroll,
             fBool: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WriteCertToCSP: *const fn(
             self: *const IEnroll,
             fBool: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SPCFileNameWStr: *const fn(
             self: *const IEnroll,
             szw: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SPCFileNameWStr: *const fn(
             self: *const IEnroll,
             szw: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PVKFileNameWStr: *const fn(
             self: *const IEnroll,
             szw: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PVKFileNameWStr: *const fn(
             self: *const IEnroll,
             szw: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgorithmWStr: *const fn(
             self: *const IEnroll,
             szw: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgorithmWStr: *const fn(
             self: *const IEnroll,
             szw: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RenewalCertificate: *const fn(
             self: *const IEnroll,
             ppCertContext: ?*?*CERT_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RenewalCertificate: *const fn(
             self: *const IEnroll,
             pCertContext: ?*const CERT_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddCertTypeToRequestWStr: *const fn(
             self: *const IEnroll,
             szw: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddNameValuePairToSignatureWStr: *const fn(
             self: *const IEnroll,
             Name: ?PWSTR,
             Value: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddExtensionsToRequest: *const fn(
             self: *const IEnroll,
             pCertExtensions: ?*CERT_EXTENSIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAuthenticatedAttributesToPKCS7Request: *const fn(
             self: *const IEnroll,
             pAttributes: ?*CRYPT_ATTRIBUTES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePKCS7RequestFromRequest: *const fn(
             self: *const IEnroll,
             pRequest: ?*CRYPTOAPI_BLOB,
             pSigningCertContext: ?*const CERT_CONTEXT,
             pPkcs7Blob: ?*CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -14765,87 +14765,87 @@ pub const IEnroll2 = extern union {
         InstallPKCS7Blob: *const fn(
             self: *const IEnroll2,
             pBlobPKCS7: ?*CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnroll2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSupportedKeySpec: *const fn(
             self: *const IEnroll2,
             pdwKeySpec: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKeyLen: *const fn(
             self: *const IEnroll2,
             fMin: BOOL,
             fExchange: BOOL,
             pdwKeySize: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumAlgs: *const fn(
             self: *const IEnroll2,
             dwIndex: i32,
             algClass: i32,
             pdwAlgID: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAlgNameWStr: *const fn(
             self: *const IEnroll2,
             algID: i32,
             ppwsz: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReuseHardwareKeyIfUnableToGenNew: *const fn(
             self: *const IEnroll2,
             fReuseHardwareKeyIfUnableToGenNew: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReuseHardwareKeyIfUnableToGenNew: *const fn(
             self: *const IEnroll2,
             fReuseHardwareKeyIfUnableToGenNew: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgID: *const fn(
             self: *const IEnroll2,
             hashAlgID: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgID: *const fn(
             self: *const IEnroll2,
             hashAlgID: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetHStoreMy: *const fn(
             self: *const IEnroll2,
             hStore: ?HCERTSTORE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetHStoreCA: *const fn(
             self: *const IEnroll2,
             hStore: ?HCERTSTORE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetHStoreROOT: *const fn(
             self: *const IEnroll2,
             hStore: ?HCERTSTORE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetHStoreRequest: *const fn(
             self: *const IEnroll2,
             hStore: ?HCERTSTORE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LimitExchangeKeyToEncipherment: *const fn(
             self: *const IEnroll2,
             fLimitExchangeKeyToEncipherment: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LimitExchangeKeyToEncipherment: *const fn(
             self: *const IEnroll2,
             fLimitExchangeKeyToEncipherment: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableSMIMECapabilities: *const fn(
             self: *const IEnroll2,
             fEnableSMIMECapabilities: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableSMIMECapabilities: *const fn(
             self: *const IEnroll2,
             fEnableSMIMECapabilities: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IEnroll: IEnroll,
@@ -14916,25 +14916,25 @@ pub const IEnroll4 = extern union {
         put_ThumbPrintWStr: *const fn(
             self: *const IEnroll4,
             thumbPrintBlob: CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ThumbPrintWStr: *const fn(
             self: *const IEnroll4,
             thumbPrintBlob: ?*CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateKeyArchiveCertificate: *const fn(
             self: *const IEnroll4,
             pPrivateKeyArchiveCert: ?*const CERT_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrivateKeyArchiveCertificate: *const fn(
             self: *const IEnroll4,
-        ) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT,
+        ) callconv(.winapi) ?*CERT_CONTEXT,
         binaryBlobToString: *const fn(
             self: *const IEnroll4,
             Flags: i32,
             pblobBinary: ?*CRYPTOAPI_BLOB,
             ppwszString: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         stringToBinaryBlob: *const fn(
             self: *const IEnroll4,
             Flags: i32,
@@ -14942,101 +14942,101 @@ pub const IEnroll4 = extern union {
             pblobBinary: ?*CRYPTOAPI_BLOB,
             pdwSkip: ?*i32,
             pdwFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addExtensionToRequestWStr: *const fn(
             self: *const IEnroll4,
             Flags: i32,
             pwszName: ?[*:0]const u16,
             pblobValue: ?*CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addAttributeToRequestWStr: *const fn(
             self: *const IEnroll4,
             Flags: i32,
             pwszName: ?[*:0]const u16,
             pblobValue: ?*CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addNameValuePairToRequestWStr: *const fn(
             self: *const IEnroll4,
             Flags: i32,
             pwszName: ?[*:0]const u16,
             pwszValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         resetExtensions: *const fn(
             self: *const IEnroll4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         resetAttributes: *const fn(
             self: *const IEnroll4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createRequestWStr: *const fn(
             self: *const IEnroll4,
             Flags: CERT_CREATE_REQUEST_FLAGS,
             pwszDNName: ?[*:0]const u16,
             pwszUsage: ?[*:0]const u16,
             pblobRequest: ?*CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createFileRequestWStr: *const fn(
             self: *const IEnroll4,
             Flags: CERT_CREATE_REQUEST_FLAGS,
             pwszDNName: ?[*:0]const u16,
             pwszUsage: ?[*:0]const u16,
             pwszRequestFileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         acceptResponseBlob: *const fn(
             self: *const IEnroll4,
             pblobResponse: ?*CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         acceptFileResponseWStr: *const fn(
             self: *const IEnroll4,
             pwszResponseFileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getCertContextFromResponseBlob: *const fn(
             self: *const IEnroll4,
             pblobResponse: ?*CRYPTOAPI_BLOB,
             ppCertContext: ?*?*CERT_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getCertContextFromFileResponseWStr: *const fn(
             self: *const IEnroll4,
             pwszResponseFileName: ?[*:0]const u16,
             ppCertContext: ?*?*CERT_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createPFXWStr: *const fn(
             self: *const IEnroll4,
             pwszPassword: ?[*:0]const u16,
             pblobPFX: ?*CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         createFilePFXWStr: *const fn(
             self: *const IEnroll4,
             pwszPassword: ?[*:0]const u16,
             pwszPFXFileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setPendingRequestInfoWStr: *const fn(
             self: *const IEnroll4,
             lRequestID: i32,
             pwszCADNS: ?[*:0]const u16,
             pwszCAName: ?[*:0]const u16,
             pwszFriendlyName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         enumPendingRequestWStr: *const fn(
             self: *const IEnroll4,
             lIndex: i32,
             lDesiredProperty: PENDING_REQUEST_DESIRED_PROPERTY,
             ppProperty: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         removePendingRequestWStr: *const fn(
             self: *const IEnroll4,
             thumbPrintBlob: CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKeyLenEx: *const fn(
             self: *const IEnroll4,
             lSizeSpec: XEKL_KEYSIZE,
             lKeySpec: XEKL_KEYSPEC,
             pdwKeySize: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallPKCS7BlobEx: *const fn(
             self: *const IEnroll4,
             pBlobPKCS7: ?*CRYPTOAPI_BLOB,
             plCertInstalled: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddCertTypeToRequestWStrEx: *const fn(
             self: *const IEnroll4,
             lType: ADDED_CERT_TYPE,
@@ -15044,42 +15044,42 @@ pub const IEnroll4 = extern union {
             lMajorVersion: i32,
             fMinorVersion: BOOL,
             lMinorVersion: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getProviderTypeWStr: *const fn(
             self: *const IEnroll4,
             pwszProvName: ?[*:0]const u16,
             plProvType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         addBlobPropertyToCertificateWStr: *const fn(
             self: *const IEnroll4,
             lPropertyId: i32,
             lReserved: i32,
             pBlobProperty: ?*CRYPTOAPI_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSignerCertificate: *const fn(
             self: *const IEnroll4,
             pSignerCert: ?*const CERT_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClientId: *const fn(
             self: *const IEnroll4,
             lClientId: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientId: *const fn(
             self: *const IEnroll4,
             plClientId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IncludeSubjectKeyID: *const fn(
             self: *const IEnroll4,
             fInclude: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IncludeSubjectKeyID: *const fn(
             self: *const IEnroll4,
             pfInclude: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IEnroll2: IEnroll2,
@@ -15199,17 +15199,17 @@ pub const ICertRequestD = extern union {
             pctbCertChain: ?*CERTTRANSBLOB,
             pctbEncodedCert: ?*CERTTRANSBLOB,
             pctbDispositionMessage: ?*CERTTRANSBLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCACert: *const fn(
             self: *const ICertRequestD,
             fchain: u32,
             pwszAuthority: ?[*:0]const u16,
             pctbOut: ?*CERTTRANSBLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Ping: *const fn(
             self: *const ICertRequestD,
             pwszAuthority: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -15241,7 +15241,7 @@ pub const ICertRequestD2 = extern union {
             pctbFullResponse: ?*CERTTRANSBLOB,
             pctbEncodedCert: ?*CERTTRANSBLOB,
             pctbDispositionMessage: ?*CERTTRANSBLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCAProperty: *const fn(
             self: *const ICertRequestD2,
             pwszAuthority: ?[*:0]const u16,
@@ -15249,17 +15249,17 @@ pub const ICertRequestD2 = extern union {
             PropIndex: i32,
             PropType: i32,
             pctbPropertyValue: ?*CERTTRANSBLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCAPropertyInfo: *const fn(
             self: *const ICertRequestD2,
             pwszAuthority: ?[*:0]const u16,
             pcProperty: ?*i32,
             pctbPropInfo: ?*CERTTRANSBLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Ping2: *const fn(
             self: *const ICertRequestD2,
             pwszAuthority: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertRequestD: ICertRequestD,
@@ -15286,14 +15286,14 @@ pub const ICertRequestD2 = extern union {
 pub extern "certadm" fn CertSrvIsServerOnlineW(
     pwszServerName: ?[*:0]const u16,
     pfServerOnline: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupGetDynamicFileListW(
     hbc: ?*anyopaque,
     ppwszzFileList: ?*?PWSTR,
     pcbSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupPrepareW(
@@ -15301,14 +15301,14 @@ pub extern "certadm" fn CertSrvBackupPrepareW(
     grbitJet: u32,
     dwBackupFlags: CSBACKUP_TYPE,
     phbc: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupGetDatabaseNamesW(
     hbc: ?*anyopaque,
     ppwszzAttachmentInformation: ?*?PWSTR,
     pcbSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupOpenFileW(
@@ -15316,7 +15316,7 @@ pub extern "certadm" fn CertSrvBackupOpenFileW(
     pwszAttachmentName: ?[*:0]const u16,
     cbReadHintSize: u32,
     pliFileSize: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupRead(
@@ -15324,48 +15324,48 @@ pub extern "certadm" fn CertSrvBackupRead(
     pvBuffer: ?*anyopaque,
     cbBuffer: u32,
     pcbRead: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupClose(
     hbc: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupGetBackupLogsW(
     hbc: ?*anyopaque,
     ppwszzBackupLogFiles: ?*?PWSTR,
     pcbSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupTruncateLogs(
     hbc: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupEnd(
     hbc: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupFree(
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvRestoreGetDatabaseLocationsW(
     hbc: ?*anyopaque,
     ppwszzDatabaseLocationList: ?*?PWSTR,
     pcbSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvRestorePrepareW(
     pwszServerName: ?[*:0]const u16,
     dwRestoreFlags: u32,
     phbc: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvRestoreRegisterW(
@@ -15377,7 +15377,7 @@ pub extern "certadm" fn CertSrvRestoreRegisterW(
     pwszBackupLogPath: ?[*:0]const u16,
     genLow: u32,
     genHigh: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvRestoreRegisterThroughFile(
@@ -15389,18 +15389,18 @@ pub extern "certadm" fn CertSrvRestoreRegisterThroughFile(
     pwszBackupLogPath: ?[*:0]const u16,
     genLow: u32,
     genHigh: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvRestoreRegisterComplete(
     hbc: ?*anyopaque,
     hrRestoreState: HRESULT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvRestoreEnd(
     hbc: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvServerControlW(
@@ -15408,7 +15408,7 @@ pub extern "certadm" fn CertSrvServerControlW(
     dwControlFlags: u32,
     pcbOut: ?*u32,
     ppbOut: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "certpoleng" fn PstGetTrustAnchors(
@@ -15416,7 +15416,7 @@ pub extern "certpoleng" fn PstGetTrustAnchors(
     cCriteria: u32,
     rgpCriteria: ?[*]CERT_SELECT_CRITERIA,
     ppTrustedIssuers: ?*?*SecPkgContext_IssuerListInfoEx,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "certpoleng" fn PstGetTrustAnchorsEx(
     pTargetName: ?*UNICODE_STRING,
@@ -15424,13 +15424,13 @@ pub extern "certpoleng" fn PstGetTrustAnchorsEx(
     rgpCriteria: ?[*]CERT_SELECT_CRITERIA,
     pCertContext: ?*const CERT_CONTEXT,
     ppTrustedIssuers: ?*?*SecPkgContext_IssuerListInfoEx,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "certpoleng" fn PstGetCertificateChain(
     pCert: ?*const CERT_CONTEXT,
     pTrustedIssuers: ?*SecPkgContext_IssuerListInfoEx,
     ppCertChainContext: ?*?*CERT_CHAIN_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "certpoleng" fn PstGetCertificates(
@@ -15440,12 +15440,12 @@ pub extern "certpoleng" fn PstGetCertificates(
     bIsClient: BOOL,
     pdwCertChainContextCount: ?*u32,
     ppCertChainContexts: ?*?*?*CERT_CHAIN_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "certpoleng" fn PstAcquirePrivateKey(
     pCert: ?*const CERT_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "certpoleng" fn PstValidate(
@@ -15455,20 +15455,20 @@ pub extern "certpoleng" fn PstValidate(
     phAdditionalCertStore: ?*?HCERTSTORE,
     pCert: ?*const CERT_CONTEXT,
     pProvGUID: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "certpoleng" fn PstMapCertificate(
     pCert: ?*const CERT_CONTEXT,
     pTokenInformationType: ?*LSA_TOKEN_INFORMATION_TYPE,
     ppTokenInformation: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "certpoleng" fn PstGetUserNameForCertificate(
     pCertContext: ?*const CERT_CONTEXT,
     UserName: ?*UNICODE_STRING,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 
 //--------------------------------------------------------------------------------

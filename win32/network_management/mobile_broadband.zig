@@ -581,35 +581,35 @@ pub const IMbnConnection = extern union {
         get_ConnectionID: *const fn(
             self: *const IMbnConnection,
             ConnectionID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InterfaceID: *const fn(
             self: *const IMbnConnection,
             InterfaceID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Connect: *const fn(
             self: *const IMbnConnection,
             connectionMode: MBN_CONNECTION_MODE,
             strProfile: ?[*:0]const u16,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const IMbnConnection,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConnectionState: *const fn(
             self: *const IMbnConnection,
             ConnectionState: ?*MBN_ACTIVATION_STATE,
             ProfileName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVoiceCallState: *const fn(
             self: *const IMbnConnection,
             voiceCallState: ?*MBN_VOICE_CALL_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActivationNetworkError: *const fn(
             self: *const IMbnConnection,
             networkError: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -647,21 +647,21 @@ pub const IMbnConnectionEvents = extern union {
             newConnection: ?*IMbnConnection,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDisconnectComplete: *const fn(
             self: *const IMbnConnectionEvents,
             newConnection: ?*IMbnConnection,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnConnectStateChange: *const fn(
             self: *const IMbnConnectionEvents,
             newConnection: ?*IMbnConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnVoiceCallStateChange: *const fn(
             self: *const IMbnConnectionEvents,
             newConnection: ?*IMbnConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -689,49 +689,49 @@ pub const IMbnInterface = extern union {
         get_InterfaceID: *const fn(
             self: *const IMbnInterface,
             InterfaceID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInterfaceCapability: *const fn(
             self: *const IMbnInterface,
             interfaceCaps: ?*MBN_INTERFACE_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubscriberInformation: *const fn(
             self: *const IMbnInterface,
             subscriberInformation: ?*?*IMbnSubscriberInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReadyState: *const fn(
             self: *const IMbnInterface,
             readyState: ?*MBN_READY_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InEmergencyMode: *const fn(
             self: *const IMbnInterface,
             emergencyMode: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHomeProvider: *const fn(
             self: *const IMbnInterface,
             homeProvider: ?*MBN_PROVIDER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreferredProviders: *const fn(
             self: *const IMbnInterface,
             preferredProviders: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPreferredProviders: *const fn(
             self: *const IMbnInterface,
             preferredProviders: ?*SAFEARRAY,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVisibleProviders: *const fn(
             self: *const IMbnInterface,
             age: ?*u32,
             visibleProviders: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScanNetwork: *const fn(
             self: *const IMbnInterface,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConnection: *const fn(
             self: *const IMbnInterface,
             mbnConnection: ?*?*IMbnConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -779,39 +779,39 @@ pub const IMbnInterfaceEvents = extern union {
         OnInterfaceCapabilityAvailable: *const fn(
             self: *const IMbnInterfaceEvents,
             newInterface: ?*IMbnInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSubscriberInformationChange: *const fn(
             self: *const IMbnInterfaceEvents,
             newInterface: ?*IMbnInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnReadyStateChange: *const fn(
             self: *const IMbnInterfaceEvents,
             newInterface: ?*IMbnInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEmergencyModeChange: *const fn(
             self: *const IMbnInterfaceEvents,
             newInterface: ?*IMbnInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnHomeProviderAvailable: *const fn(
             self: *const IMbnInterfaceEvents,
             newInterface: ?*IMbnInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnPreferredProvidersChange: *const fn(
             self: *const IMbnInterfaceEvents,
             newInterface: ?*IMbnInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSetPreferredProvidersComplete: *const fn(
             self: *const IMbnInterfaceEvents,
             newInterface: ?*IMbnInterface,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnScanNetworkComplete: *const fn(
             self: *const IMbnInterfaceEvents,
             newInterface: ?*IMbnInterface,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -851,11 +851,11 @@ pub const IMbnInterfaceManager = extern union {
             self: *const IMbnInterfaceManager,
             interfaceID: ?[*:0]const u16,
             mbnInterface: ?*?*IMbnInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInterfaces: *const fn(
             self: *const IMbnInterfaceManager,
             mbnInterfaces: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -876,11 +876,11 @@ pub const IMbnInterfaceManagerEvents = extern union {
         OnInterfaceArrival: *const fn(
             self: *const IMbnInterfaceManagerEvents,
             newInterface: ?*IMbnInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnInterfaceRemoval: *const fn(
             self: *const IMbnInterfaceManagerEvents,
             oldInterface: ?*IMbnInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -901,46 +901,46 @@ pub const IMbnRegistration = extern union {
         GetRegisterState: *const fn(
             self: *const IMbnRegistration,
             registerState: ?*MBN_REGISTER_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegisterMode: *const fn(
             self: *const IMbnRegistration,
             registerMode: ?*MBN_REGISTER_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProviderID: *const fn(
             self: *const IMbnRegistration,
             providerID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProviderName: *const fn(
             self: *const IMbnRegistration,
             providerName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRoamingText: *const fn(
             self: *const IMbnRegistration,
             roamingText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAvailableDataClasses: *const fn(
             self: *const IMbnRegistration,
             availableDataClasses: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentDataClass: *const fn(
             self: *const IMbnRegistration,
             currentDataClass: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegistrationNetworkError: *const fn(
             self: *const IMbnRegistration,
             registrationNetworkError: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPacketAttachNetworkError: *const fn(
             self: *const IMbnRegistration,
             packetAttachNetworkError: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRegisterMode: *const fn(
             self: *const IMbnRegistration,
             registerMode: MBN_REGISTER_MODE,
             providerID: ?[*:0]const u16,
             dataClass: u32,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -985,21 +985,21 @@ pub const IMbnRegistrationEvents = extern union {
         OnRegisterModeAvailable: *const fn(
             self: *const IMbnRegistrationEvents,
             newInterface: ?*IMbnRegistration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnRegisterStateChange: *const fn(
             self: *const IMbnRegistrationEvents,
             newInterface: ?*IMbnRegistration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnPacketServiceStateChange: *const fn(
             self: *const IMbnRegistrationEvents,
             newInterface: ?*IMbnRegistration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSetRegisterModeComplete: *const fn(
             self: *const IMbnRegistrationEvents,
             newInterface: ?*IMbnRegistration,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1027,11 +1027,11 @@ pub const IMbnConnectionManager = extern union {
             self: *const IMbnConnectionManager,
             connectionID: ?[*:0]const u16,
             mbnConnection: ?*?*IMbnConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConnections: *const fn(
             self: *const IMbnConnectionManager,
             mbnConnections: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1052,11 +1052,11 @@ pub const IMbnConnectionManagerEvents = extern union {
         OnConnectionArrival: *const fn(
             self: *const IMbnConnectionManagerEvents,
             newConnection: ?*IMbnConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnConnectionRemoval: *const fn(
             self: *const IMbnConnectionManagerEvents,
             oldConnection: ?*IMbnConnection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1077,16 +1077,16 @@ pub const IMbnPinManager = extern union {
         GetPinList: *const fn(
             self: *const IMbnPinManager,
             pinList: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPin: *const fn(
             self: *const IMbnPinManager,
             pinType: MBN_PIN_TYPE,
             pin: ?*?*IMbnPin,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPinState: *const fn(
             self: *const IMbnPinManager,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1110,14 +1110,14 @@ pub const IMbnPinManagerEvents = extern union {
         OnPinListAvailable: *const fn(
             self: *const IMbnPinManagerEvents,
             pinManager: ?*IMbnPinManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnGetPinStateComplete: *const fn(
             self: *const IMbnPinManagerEvents,
             pinManager: ?*IMbnPinManager,
             pinInfo: MBN_PIN_INFO,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1141,35 +1141,35 @@ pub const IMbnPinEvents = extern union {
             pinInfo: ?*MBN_PIN_INFO,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDisableComplete: *const fn(
             self: *const IMbnPinEvents,
             pin: ?*IMbnPin,
             pinInfo: ?*MBN_PIN_INFO,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEnterComplete: *const fn(
             self: *const IMbnPinEvents,
             Pin: ?*IMbnPin,
             pinInfo: ?*MBN_PIN_INFO,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnChangeComplete: *const fn(
             self: *const IMbnPinEvents,
             Pin: ?*IMbnPin,
             pinInfo: ?*MBN_PIN_INFO,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnUnblockComplete: *const fn(
             self: *const IMbnPinEvents,
             Pin: ?*IMbnPin,
             pinInfo: ?*MBN_PIN_INFO,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1200,17 +1200,17 @@ pub const IMbnSubscriberInformation = extern union {
         get_SubscriberID: *const fn(
             self: *const IMbnSubscriberInformation,
             SubscriberID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SimIccID: *const fn(
             self: *const IMbnSubscriberInformation,
             SimIccID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TelephoneNumbers: *const fn(
             self: *const IMbnSubscriberInformation,
             TelephoneNumbers: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1234,11 +1234,11 @@ pub const IMbnSignal = extern union {
         GetSignalStrength: *const fn(
             self: *const IMbnSignal,
             signalStrength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignalError: *const fn(
             self: *const IMbnSignal,
             signalError: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1259,7 +1259,7 @@ pub const IMbnSignalEvents = extern union {
         OnSignalStateChange: *const fn(
             self: *const IMbnSignalEvents,
             newInterface: ?*IMbnSignal,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1277,13 +1277,13 @@ pub const IMbnConnectionContext = extern union {
         GetProvisionedContexts: *const fn(
             self: *const IMbnConnectionContext,
             provisionedContexts: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProvisionedContext: *const fn(
             self: *const IMbnConnectionContext,
             provisionedContexts: MBN_CONTEXT,
             providerID: ?[*:0]const u16,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1304,13 +1304,13 @@ pub const IMbnConnectionContextEvents = extern union {
         OnProvisionedContextListChange: *const fn(
             self: *const IMbnConnectionContextEvents,
             newInterface: ?*IMbnConnectionContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSetProvisionedContextComplete: *const fn(
             self: *const IMbnConnectionContextEvents,
             newInterface: ?*IMbnConnectionContext,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1332,17 +1332,17 @@ pub const IMbnConnectionProfileManager = extern union {
             self: *const IMbnConnectionProfileManager,
             mbnInterface: ?*IMbnInterface,
             connectionProfiles: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConnectionProfile: *const fn(
             self: *const IMbnConnectionProfileManager,
             mbnInterface: ?*IMbnInterface,
             profileName: ?[*:0]const u16,
             connectionProfile: ?*?*IMbnConnectionProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateConnectionProfile: *const fn(
             self: *const IMbnConnectionProfileManager,
             xmlProfile: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1366,14 +1366,14 @@ pub const IMbnConnectionProfile = extern union {
         GetProfileXmlData: *const fn(
             self: *const IMbnConnectionProfile,
             profileData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateProfile: *const fn(
             self: *const IMbnConnectionProfile,
             strProfile: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IMbnConnectionProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1397,7 +1397,7 @@ pub const IMbnConnectionProfileEvents = extern union {
         OnProfileUpdate: *const fn(
             self: *const IMbnConnectionProfileEvents,
             newProfile: ?*IMbnConnectionProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1416,32 +1416,32 @@ pub const IMbnSmsConfiguration = extern union {
         get_ServiceCenterAddress: *const fn(
             self: *const IMbnSmsConfiguration,
             scAddress: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServiceCenterAddress: *const fn(
             self: *const IMbnSmsConfiguration,
             scAddress: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxMessageIndex: *const fn(
             self: *const IMbnSmsConfiguration,
             index: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CdmaShortMsgSize: *const fn(
             self: *const IMbnSmsConfiguration,
             shortMsgSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SmsFormat: *const fn(
             self: *const IMbnSmsConfiguration,
             smsFormat: ?*MBN_SMS_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SmsFormat: *const fn(
             self: *const IMbnSmsConfiguration,
             smsFormat: MBN_SMS_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1475,22 +1475,22 @@ pub const IMbnSmsReadMsgPdu = extern union {
         get_Index: *const fn(
             self: *const IMbnSmsReadMsgPdu,
             Index: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: *const fn(
             self: *const IMbnSmsReadMsgPdu,
             Status: ?*MBN_MSG_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PduData: *const fn(
             self: *const IMbnSmsReadMsgPdu,
             PduData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Message: *const fn(
             self: *const IMbnSmsReadMsgPdu,
             Message: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1518,42 +1518,42 @@ pub const IMbnSmsReadMsgTextCdma = extern union {
         get_Index: *const fn(
             self: *const IMbnSmsReadMsgTextCdma,
             Index: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: *const fn(
             self: *const IMbnSmsReadMsgTextCdma,
             Status: ?*MBN_MSG_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Address: *const fn(
             self: *const IMbnSmsReadMsgTextCdma,
             Address: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timestamp: *const fn(
             self: *const IMbnSmsReadMsgTextCdma,
             Timestamp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EncodingID: *const fn(
             self: *const IMbnSmsReadMsgTextCdma,
             EncodingID: ?*MBN_SMS_CDMA_ENCODING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LanguageID: *const fn(
             self: *const IMbnSmsReadMsgTextCdma,
             LanguageID: ?*MBN_SMS_CDMA_LANG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SizeInCharacters: *const fn(
             self: *const IMbnSmsReadMsgTextCdma,
             SizeInCharacters: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Message: *const fn(
             self: *const IMbnSmsReadMsgTextCdma,
             Message: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1592,18 +1592,18 @@ pub const IMbnSms = extern union {
         GetSmsConfiguration: *const fn(
             self: *const IMbnSms,
             smsConfiguration: ?*?*IMbnSmsConfiguration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSmsConfiguration: *const fn(
             self: *const IMbnSms,
             smsConfiguration: ?*IMbnSmsConfiguration,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SmsSendPdu: *const fn(
             self: *const IMbnSms,
             pduData: ?[*:0]const u16,
             size: u8,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SmsSendCdma: *const fn(
             self: *const IMbnSms,
             address: ?[*:0]const u16,
@@ -1612,27 +1612,27 @@ pub const IMbnSms = extern union {
             sizeInCharacters: u32,
             message: ?*SAFEARRAY,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SmsSendCdmaPdu: *const fn(
             self: *const IMbnSms,
             message: ?*SAFEARRAY,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SmsRead: *const fn(
             self: *const IMbnSms,
             smsFilter: ?*MBN_SMS_FILTER,
             smsFormat: MBN_SMS_FORMAT,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SmsDelete: *const fn(
             self: *const IMbnSms,
             smsFilter: ?*MBN_SMS_FILTER,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSmsStatus: *const fn(
             self: *const IMbnSms,
             smsStatusInfo: ?*MBN_SMS_STATUS_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1671,19 +1671,19 @@ pub const IMbnSmsEvents = extern union {
         OnSmsConfigurationChange: *const fn(
             self: *const IMbnSmsEvents,
             sms: ?*IMbnSms,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSetSmsConfigurationComplete: *const fn(
             self: *const IMbnSmsEvents,
             sms: ?*IMbnSms,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSmsSendComplete: *const fn(
             self: *const IMbnSmsEvents,
             sms: ?*IMbnSms,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSmsReadComplete: *const fn(
             self: *const IMbnSmsEvents,
             sms: ?*IMbnSms,
@@ -1692,23 +1692,23 @@ pub const IMbnSmsEvents = extern union {
             moreMsgs: i16,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSmsNewClass0Message: *const fn(
             self: *const IMbnSmsEvents,
             sms: ?*IMbnSms,
             smsFormat: MBN_SMS_FORMAT,
             readMsgs: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSmsDeleteComplete: *const fn(
             self: *const IMbnSmsEvents,
             sms: ?*IMbnSms,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSmsStatusChange: *const fn(
             self: *const IMbnSmsEvents,
             sms: ?*IMbnSms,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1745,7 +1745,7 @@ pub const IMbnServiceActivation = extern union {
             self: *const IMbnServiceActivation,
             vendorSpecificData: ?*SAFEARRAY,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1767,7 +1767,7 @@ pub const IMbnServiceActivationEvents = extern union {
             requestID: u32,
             status: HRESULT,
             networkError: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1786,7 +1786,7 @@ pub const IMbnVendorSpecificOperation = extern union {
             self: *const IMbnVendorSpecificOperation,
             vendorSpecificData: ?*SAFEARRAY,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1805,13 +1805,13 @@ pub const IMbnVendorSpecificEvents = extern union {
             self: *const IMbnVendorSpecificEvents,
             vendorOperation: ?*IMbnVendorSpecificOperation,
             vendorSpecificData: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSetVendorSpecificComplete: *const fn(
             self: *const IMbnVendorSpecificEvents,
             vendorOperation: ?*IMbnVendorSpecificOperation,
             vendorSpecificData: ?*SAFEARRAY,
             requestID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1832,11 +1832,11 @@ pub const IMbnConnectionProfileManagerEvents = extern union {
         OnConnectionProfileArrival: *const fn(
             self: *const IMbnConnectionProfileManagerEvents,
             newConnectionProfile: ?*IMbnConnectionProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnConnectionProfileRemoval: *const fn(
             self: *const IMbnConnectionProfileManagerEvents,
             oldConnectionProfile: ?*IMbnConnectionProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1858,17 +1858,17 @@ pub const IMbnRadio = extern union {
         get_SoftwareRadioState: *const fn(
             self: *const IMbnRadio,
             SoftwareRadioState: ?*MBN_RADIO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HardwareRadioState: *const fn(
             self: *const IMbnRadio,
             HardwareRadioState: ?*MBN_RADIO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSoftwareRadioState: *const fn(
             self: *const IMbnRadio,
             radioState: MBN_RADIO,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1892,13 +1892,13 @@ pub const IMbnRadioEvents = extern union {
         OnRadioStateChange: *const fn(
             self: *const IMbnRadioEvents,
             newInterface: ?*IMbnRadio,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSetSoftwareRadioStateComplete: *const fn(
             self: *const IMbnRadioEvents,
             newInterface: ?*IMbnRadio,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1920,28 +1920,28 @@ pub const IMbnMultiCarrier = extern union {
             self: *const IMbnMultiCarrier,
             homeProvider: ?*MBN_PROVIDER2,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreferredProviders: *const fn(
             self: *const IMbnMultiCarrier,
             preferredMulticarrierProviders: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVisibleProviders: *const fn(
             self: *const IMbnMultiCarrier,
             age: ?*u32,
             visibleProviders: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSupportedCellularClasses: *const fn(
             self: *const IMbnMultiCarrier,
             cellularClasses: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentCellularClass: *const fn(
             self: *const IMbnMultiCarrier,
             currentCellularClass: ?*MBN_CELLULAR_CLASS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScanNetwork: *const fn(
             self: *const IMbnMultiCarrier,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1976,25 +1976,25 @@ pub const IMbnMultiCarrierEvents = extern union {
             mbnInterface: ?*IMbnMultiCarrier,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCurrentCellularClassChange: *const fn(
             self: *const IMbnMultiCarrierEvents,
             mbnInterface: ?*IMbnMultiCarrier,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnPreferredProvidersChange: *const fn(
             self: *const IMbnMultiCarrierEvents,
             mbnInterface: ?*IMbnMultiCarrier,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnScanNetworkComplete: *const fn(
             self: *const IMbnMultiCarrierEvents,
             mbnInterface: ?*IMbnMultiCarrier,
             requestID: u32,
             status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnInterfaceCapabilityChange: *const fn(
             self: *const IMbnMultiCarrierEvents,
             mbnInterface: ?*IMbnMultiCarrier,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2024,7 +2024,7 @@ pub const IMbnDeviceServiceStateEvents = extern union {
             self: *const IMbnDeviceServiceStateEvents,
             interfaceID: ?BSTR,
             stateChange: MBN_DEVICE_SERVICE_SESSIONS_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2043,7 +2043,7 @@ pub const IMbnDeviceServicesManager = extern union {
             self: *const IMbnDeviceServicesManager,
             networkInterfaceID: ?BSTR,
             mbnDevicesContext: ?*?*IMbnDeviceServicesContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2061,22 +2061,22 @@ pub const IMbnDeviceServicesContext = extern union {
         EnumerateDeviceServices: *const fn(
             self: *const IMbnDeviceServicesContext,
             deviceServices: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceService: *const fn(
             self: *const IMbnDeviceServicesContext,
             deviceServiceID: ?BSTR,
             mbnDeviceService: ?*?*IMbnDeviceService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxCommandSize: *const fn(
             self: *const IMbnDeviceServicesContext,
             maxCommandSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxDataSize: *const fn(
             self: *const IMbnDeviceServicesContext,
             maxDataSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2106,19 +2106,19 @@ pub const IMbnDeviceServicesEvents = extern union {
             commandIDList: ?*SAFEARRAY,
             status: HRESULT,
             requestID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnOpenCommandSessionComplete: *const fn(
             self: *const IMbnDeviceServicesEvents,
             deviceService: ?*IMbnDeviceService,
             status: HRESULT,
             requestID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCloseCommandSessionComplete: *const fn(
             self: *const IMbnDeviceServicesEvents,
             deviceService: ?*IMbnDeviceService,
             status: HRESULT,
             requestID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnSetCommandComplete: *const fn(
             self: *const IMbnDeviceServicesEvents,
             deviceService: ?*IMbnDeviceService,
@@ -2126,7 +2126,7 @@ pub const IMbnDeviceServicesEvents = extern union {
             deviceServiceData: ?*SAFEARRAY,
             status: HRESULT,
             requestID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnQueryCommandComplete: *const fn(
             self: *const IMbnDeviceServicesEvents,
             deviceService: ?*IMbnDeviceService,
@@ -2134,41 +2134,41 @@ pub const IMbnDeviceServicesEvents = extern union {
             deviceServiceData: ?*SAFEARRAY,
             status: HRESULT,
             requestID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEventNotification: *const fn(
             self: *const IMbnDeviceServicesEvents,
             deviceService: ?*IMbnDeviceService,
             eventID: u32,
             deviceServiceData: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnOpenDataSessionComplete: *const fn(
             self: *const IMbnDeviceServicesEvents,
             deviceService: ?*IMbnDeviceService,
             status: HRESULT,
             requestID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnCloseDataSessionComplete: *const fn(
             self: *const IMbnDeviceServicesEvents,
             deviceService: ?*IMbnDeviceService,
             status: HRESULT,
             requestID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnWriteDataComplete: *const fn(
             self: *const IMbnDeviceServicesEvents,
             deviceService: ?*IMbnDeviceService,
             status: HRESULT,
             requestID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnReadData: *const fn(
             self: *const IMbnDeviceServicesEvents,
             deviceService: ?*IMbnDeviceService,
             deviceServiceData: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnInterfaceStateChange: *const fn(
             self: *const IMbnDeviceServicesEvents,
             interfaceID: ?BSTR,
             stateChange: MBN_DEVICE_SERVICES_INTERFACE_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2216,60 +2216,60 @@ pub const IMbnDeviceService = extern union {
         QuerySupportedCommands: *const fn(
             self: *const IMbnDeviceService,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenCommandSession: *const fn(
             self: *const IMbnDeviceService,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseCommandSession: *const fn(
             self: *const IMbnDeviceService,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCommand: *const fn(
             self: *const IMbnDeviceService,
             commandID: u32,
             deviceServiceData: ?*SAFEARRAY,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryCommand: *const fn(
             self: *const IMbnDeviceService,
             commandID: u32,
             deviceServiceData: ?*SAFEARRAY,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenDataSession: *const fn(
             self: *const IMbnDeviceService,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseDataSession: *const fn(
             self: *const IMbnDeviceService,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteData: *const fn(
             self: *const IMbnDeviceService,
             deviceServiceData: ?*SAFEARRAY,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InterfaceID: *const fn(
             self: *const IMbnDeviceService,
             InterfaceID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceServiceID: *const fn(
             self: *const IMbnDeviceService,
             DeviceServiceID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsCommandSessionOpen: *const fn(
             self: *const IMbnDeviceService,
             value: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsDataSessionOpen: *const fn(
             self: *const IMbnDeviceService,
             value: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2342,58 +2342,58 @@ pub const IMbnPin = extern union {
         get_PinType: *const fn(
             self: *const IMbnPin,
             PinType: ?*MBN_PIN_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PinFormat: *const fn(
             self: *const IMbnPin,
             PinFormat: ?*MBN_PIN_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PinLengthMin: *const fn(
             self: *const IMbnPin,
             PinLengthMin: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PinLengthMax: *const fn(
             self: *const IMbnPin,
             PinLengthMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PinMode: *const fn(
             self: *const IMbnPin,
             PinMode: ?*MBN_PIN_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enable: *const fn(
             self: *const IMbnPin,
             pin: ?[*:0]const u16,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disable: *const fn(
             self: *const IMbnPin,
             pin: ?[*:0]const u16,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enter: *const fn(
             self: *const IMbnPin,
             pin: ?[*:0]const u16,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Change: *const fn(
             self: *const IMbnPin,
             pin: ?[*:0]const u16,
             newPin: ?[*:0]const u16,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unblock: *const fn(
             self: *const IMbnPin,
             puk: ?[*:0]const u16,
             newPin: ?[*:0]const u16,
             requestID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPinManager: *const fn(
             self: *const IMbnPin,
             pinManager: ?*?*IMbnPinManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

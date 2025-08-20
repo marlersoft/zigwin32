@@ -60,37 +60,37 @@ pub const IWscProduct = extern union {
         get_ProductName: *const fn(
             self: *const IWscProduct,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProductState: *const fn(
             self: *const IWscProduct,
             pVal: ?*WSC_SECURITY_PRODUCT_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignatureStatus: *const fn(
             self: *const IWscProduct,
             pVal: ?*WSC_SECURITY_SIGNATURE_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemediationPath: *const fn(
             self: *const IWscProduct,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProductStateTimestamp: *const fn(
             self: *const IWscProduct,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProductGuid: *const fn(
             self: *const IWscProduct,
             pVal: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProductIsDefault: *const fn(
             self: *const IWscProduct,
             pVal: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -127,32 +127,32 @@ pub const IWscProduct2 = extern union {
         get_AntivirusScanSubstatus: *const fn(
             self: *const IWscProduct2,
             peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntivirusSettingsSubstatus: *const fn(
             self: *const IWscProduct2,
             peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntivirusProtectionUpdateSubstatus: *const fn(
             self: *const IWscProduct2,
             peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirewallDomainProfileSubstatus: *const fn(
             self: *const IWscProduct2,
             peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirewallPrivateProfileSubstatus: *const fn(
             self: *const IWscProduct2,
             peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirewallPublicProfileSubstatus: *const fn(
             self: *const IWscProduct2,
             peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWscProduct: IWscProduct,
@@ -187,7 +187,7 @@ pub const IWscProduct3 = extern union {
         get_AntivirusDaysUntilExpired: *const fn(
             self: *const IWscProduct3,
             pdwDays: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWscProduct2: IWscProduct2,
@@ -208,17 +208,17 @@ pub const IWSCProductList = extern union {
         Initialize: *const fn(
             self: *const IWSCProductList,
             provider: WSC_SECURITY_PROVIDER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IWSCProductList,
             pVal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IWSCProductList,
             index: u32,
             pVal: ?*?*IWscProduct,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -243,7 +243,7 @@ pub const IWSCDefaultProduct = extern union {
             self: *const IWSCDefaultProduct,
             eType: SECURITY_PRODUCT_TYPE,
             pGuid: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -295,28 +295,28 @@ pub extern "wscapi" fn WscRegisterForChanges(
     phCallbackRegistration: ?*?HANDLE,
     lpCallbackAddress: ?LPTHREAD_START_ROUTINE,
     pContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wscapi" fn WscUnRegisterChanges(
     hRegistrationHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "wscapi" fn WscRegisterForUserNotifications(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wscapi" fn WscGetSecurityProviderHealth(
     Providers: u32,
     pHealth: ?*WSC_SECURITY_PROVIDER_HEALTH,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "wscapi" fn WscQueryAntiMalwareUri(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "wscapi" fn WscGetAntiMalwareUri(
     ppszUri: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

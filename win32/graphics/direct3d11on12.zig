@@ -17,7 +17,7 @@ pub const PFN_D3D11ON12_CREATE_DEVICE = *const fn(
     param7: ?**ID3D11Device,
     param8: ?**ID3D11DeviceContext,
     param9: ?*D3D_FEATURE_LEVEL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const D3D11_RESOURCE_FLAGS = extern struct {
     BindFlags: u32,
@@ -40,17 +40,17 @@ pub const ID3D11On12Device = extern union {
             OutState: D3D12_RESOURCE_STATES,
             riid: ?*const Guid,
             ppResource11: ?**anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseWrappedResources: *const fn(
             self: *const ID3D11On12Device,
             ppResources: [*]?*ID3D11Resource,
             NumResources: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         AcquireWrappedResources: *const fn(
             self: *const ID3D11On12Device,
             ppResources: [*]?*ID3D11Resource,
             NumResources: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -76,7 +76,7 @@ pub const ID3D11On12Device1 = extern union {
             self: *const ID3D11On12Device1,
             riid: ?*const Guid,
             ppvDevice: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11On12Device: ID3D11On12Device,
@@ -99,14 +99,14 @@ pub const ID3D11On12Device2 = extern union {
             pCommandQueue: ?*ID3D12CommandQueue,
             riid: ?*const Guid,
             ppvResource12: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReturnUnderlyingResource: *const fn(
             self: *const ID3D11On12Device2,
             pResource11: ?*ID3D11Resource,
             NumSync: u32,
             pSignalValues: [*]u64,
             ppFences: [*]?*ID3D12Fence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D11On12Device1: ID3D11On12Device1,
@@ -135,7 +135,7 @@ pub extern "d3d11" fn D3D11On12CreateDevice(
     ppDevice: ?**ID3D11Device,
     ppImmediateContext: ?**ID3D11DeviceContext,
     pChosenFeatureLevel: ?*D3D_FEATURE_LEVEL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

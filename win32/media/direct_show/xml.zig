@@ -17,18 +17,18 @@ pub const IXMLGraphBuilder = extern union {
             self: *const IXMLGraphBuilder,
             pGraph: ?*IGraphBuilder,
             pxml: ?*IXMLElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveToXML: *const fn(
             self: *const IXMLGraphBuilder,
             pGraph: ?*IGraphBuilder,
             pbstrxml: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BuildFromXMLFile: *const fn(
             self: *const IXMLGraphBuilder,
             pGraph: ?*IGraphBuilder,
             wszFileName: ?[*:0]const u16,
             wszBaseURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

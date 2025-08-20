@@ -76,19 +76,19 @@ pub const IAudioMediaType = extern union {
         IsCompressedFormat: *const fn(
             self: *const IAudioMediaType,
             pfCompressed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEqual: *const fn(
             self: *const IAudioMediaType,
             pIAudioType: ?*IAudioMediaType,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAudioFormat: *const fn(
             self: *const IAudioMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) ?*WAVEFORMATEX,
+        ) callconv(.winapi) ?*WAVEFORMATEX,
         GetUncompressedAudioFormat: *const fn(
             self: *const IAudioMediaType,
             pUncompressedAudioFormat: ?*UNCOMPRESSEDAUDIOFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -213,15 +213,15 @@ pub const IAudioProcessingObjectRT = extern union {
             ppInputConnections: ?*?*APO_CONNECTION_PROPERTY,
             u32NumOutputConnections: u32,
             ppOutputConnections: ?*?*APO_CONNECTION_PROPERTY,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         CalcInputFrames: *const fn(
             self: *const IAudioProcessingObjectRT,
             u32OutputFrameCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         CalcOutputFrames: *const fn(
             self: *const IAudioProcessingObjectRT,
             u32InputFrameCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -245,12 +245,12 @@ pub const IAudioProcessingObjectVBR = extern union {
             self: *const IAudioProcessingObjectVBR,
             u32MaxOutputFrameCount: u32,
             pu32InputFrameCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CalcMaxOutputFrames: *const fn(
             self: *const IAudioProcessingObjectVBR,
             u32MaxInputFrameCount: u32,
             pu32OutputFrameCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -273,10 +273,10 @@ pub const IAudioProcessingObjectConfiguration = extern union {
             ppInputConnections: ?*?*APO_CONNECTION_DESCRIPTOR,
             u32NumOutputConnections: u32,
             ppOutputConnections: ?*?*APO_CONNECTION_DESCRIPTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnlockForProcess: *const fn(
             self: *const IAudioProcessingObjectConfiguration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -295,36 +295,36 @@ pub const IAudioProcessingObject = extern union {
         base: IUnknown.VTable,
         Reset: *const fn(
             self: *const IAudioProcessingObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLatency: *const fn(
             self: *const IAudioProcessingObject,
             pTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegistrationProperties: *const fn(
             self: *const IAudioProcessingObject,
             ppRegProps: ?*?*APO_REG_PROPERTIES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IAudioProcessingObject,
             cbDataSize: u32,
             pbyData: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsInputFormatSupported: *const fn(
             self: *const IAudioProcessingObject,
             pOppositeFormat: ?*IAudioMediaType,
             pRequestedInputFormat: ?*IAudioMediaType,
             ppSupportedInputFormat: ?*?*IAudioMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsOutputFormatSupported: *const fn(
             self: *const IAudioProcessingObject,
             pOppositeFormat: ?*IAudioMediaType,
             pRequestedOutputFormat: ?*IAudioMediaType,
             ppSupportedOutputFormat: ?*?*IAudioMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputChannelCount: *const fn(
             self: *const IAudioProcessingObject,
             pu32ChannelCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -359,7 +359,7 @@ pub const IAudioDeviceModulesClient = extern union {
         SetAudioDeviceModulesManager: *const fn(
             self: *const IAudioDeviceModulesClient,
             pAudioDeviceModulesManager: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -371,7 +371,7 @@ pub const IAudioDeviceModulesClient = extern union {
 pub const FNAPONOTIFICATIONCALLBACK = *const fn(
     pProperties: ?*APO_REG_PROPERTIES,
     pvRefData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 const IID_IAudioSystemEffects_Value = Guid.initString("5fa00f27-add6-499a-8a9d-6b98521fa75b");
 pub const IID_IAudioSystemEffects = &IID_IAudioSystemEffects_Value;
@@ -393,7 +393,7 @@ pub const IAudioSystemEffects2 = extern union {
             ppEffectsIds: ?*?*Guid,
             pcEffects: ?*u32,
             Event: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAudioSystemEffects: IAudioSystemEffects,
@@ -411,17 +411,17 @@ pub const IAudioSystemEffectsCustomFormats = extern union {
         GetFormatCount: *const fn(
             self: *const IAudioSystemEffectsCustomFormats,
             pcFormats: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const IAudioSystemEffectsCustomFormats,
             nFormat: u32,
             ppFormat: ?*?*IAudioMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormatRepresentation: *const fn(
             self: *const IAudioSystemEffectsCustomFormats,
             nFormat: u32,
             ppwstrFormatRep: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -447,16 +447,16 @@ pub const IApoAuxiliaryInputConfiguration = extern union {
             cbDataSize: u32,
             pbyData: [*:0]u8,
             pInputConnection: ?*APO_CONNECTION_DESCRIPTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAuxiliaryInput: *const fn(
             self: *const IApoAuxiliaryInputConfiguration,
             dwInputId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsInputFormatSupported: *const fn(
             self: *const IApoAuxiliaryInputConfiguration,
             pRequestedInputFormat: ?*IAudioMediaType,
             ppSupportedInputFormat: ?*?*IAudioMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -480,7 +480,7 @@ pub const IApoAuxiliaryInputRT = extern union {
             self: *const IApoAuxiliaryInputRT,
             dwInputId: u32,
             pInputConnection: ?*const APO_CONNECTION_PROPERTY,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -548,12 +548,12 @@ pub const IAudioSystemEffects3 = extern union {
             effects: ?*?*AUDIO_SYSTEMEFFECT,
             numEffects: ?*u32,
             event: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAudioSystemEffectState: *const fn(
             self: *const IAudioSystemEffects3,
             effectId: Guid,
             state: AUDIO_SYSTEMEFFECT_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAudioSystemEffects2: IAudioSystemEffects2,
@@ -586,7 +586,7 @@ pub const IAudioProcessingObjectRTQueueService = extern union {
         GetRealTimeWorkQueue: *const fn(
             self: *const IAudioProcessingObjectRTQueueService,
             workQueueId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -619,7 +619,7 @@ pub const IAudioProcessingObjectLoggingService = extern union {
             self: *const IAudioProcessingObjectLoggingService,
             level: APO_LOG_LEVEL,
             format: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -698,11 +698,11 @@ pub const IAudioProcessingObjectNotifications = extern union {
             self: *const IAudioProcessingObjectNotifications,
             apoNotifications: [*]?*APO_NOTIFICATION_DESCRIPTOR,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HandleNotification: *const fn(
             self: *const IAudioProcessingObjectNotifications,
             apoNotification: ?*APO_NOTIFICATION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

@@ -15,16 +15,16 @@ pub const ISurfaceImageSourceNative = extern union {
         SetDevice: *const fn(
             self: *const ISurfaceImageSourceNative,
             device: ?*IDXGIDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginDraw: *const fn(
             self: *const ISurfaceImageSourceNative,
             updateRect: RECT,
             surface: ?*?*IDXGISurface,
             offset: ?*POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndDraw: *const fn(
             self: *const ISurfaceImageSourceNative,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -46,7 +46,7 @@ pub const IVirtualSurfaceUpdatesCallbackNative = extern union {
         base: IUnknown.VTable,
         UpdatesNeeded: *const fn(
             self: *const IVirtualSurfaceUpdatesCallbackNative,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -63,29 +63,29 @@ pub const IVirtualSurfaceImageSourceNative = extern union {
         Invalidate: *const fn(
             self: *const IVirtualSurfaceImageSourceNative,
             updateRect: RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUpdateRectCount: *const fn(
             self: *const IVirtualSurfaceImageSourceNative,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUpdateRects: *const fn(
             self: *const IVirtualSurfaceImageSourceNative,
             updates: [*]RECT,
             count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVisibleBounds: *const fn(
             self: *const IVirtualSurfaceImageSourceNative,
             bounds: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterForUpdatesNeeded: *const fn(
             self: *const IVirtualSurfaceImageSourceNative,
             callback: ?*IVirtualSurfaceUpdatesCallbackNative,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resize: *const fn(
             self: *const IVirtualSurfaceImageSourceNative,
             newWidth: i32,
             newHeight: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISurfaceImageSourceNative: ISurfaceImageSourceNative,
@@ -118,7 +118,7 @@ pub const ISwapChainBackgroundPanelNative = extern union {
         SetSwapChain: *const fn(
             self: *const ISwapChainBackgroundPanelNative,
             swapChain: ?*IDXGISwapChain,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -135,7 +135,7 @@ pub const ISurfaceImageSourceManagerNative = extern union {
         FlushAllSurfacesWithDevice: *const fn(
             self: *const ISurfaceImageSourceManagerNative,
             device: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -152,23 +152,23 @@ pub const ISurfaceImageSourceNativeWithD2D = extern union {
         SetDevice: *const fn(
             self: *const ISurfaceImageSourceNativeWithD2D,
             device: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginDraw: *const fn(
             self: *const ISurfaceImageSourceNativeWithD2D,
             updateRect: ?*const RECT,
             iid: ?*const Guid,
             updateObject: **anyopaque,
             offset: ?*POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndDraw: *const fn(
             self: *const ISurfaceImageSourceNativeWithD2D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SuspendDraw: *const fn(
             self: *const ISurfaceImageSourceNativeWithD2D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResumeDraw: *const fn(
             self: *const ISurfaceImageSourceNativeWithD2D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -197,7 +197,7 @@ pub const ISwapChainPanelNative = extern union {
         SetSwapChain: *const fn(
             self: *const ISwapChainPanelNative,
             swapChain: ?*IDXGISwapChain,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -214,7 +214,7 @@ pub const ISwapChainPanelNative2 = extern union {
         SetSwapChainHandle: *const fn(
             self: *const ISwapChainPanelNative2,
             swapChainHandle: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISwapChainPanelNative: ISwapChainPanelNative,
@@ -232,12 +232,12 @@ pub const IDesktopWindowXamlSourceNative = extern union {
         AttachToWindow: *const fn(
             self: *const IDesktopWindowXamlSourceNative,
             parentWnd: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowHandle: *const fn(
             self: *const IDesktopWindowXamlSourceNative,
             hWnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -258,7 +258,7 @@ pub const IDesktopWindowXamlSourceNative2 = extern union {
             self: *const IDesktopWindowXamlSourceNative2,
             message: ?*const MSG,
             result: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDesktopWindowXamlSourceNative: IDesktopWindowXamlSourceNative,
@@ -275,16 +275,16 @@ pub const IReferenceTrackerTarget = extern union {
         base: IUnknown.VTable,
         AddRefFromReferenceTracker: *const fn(
             self: *const IReferenceTrackerTarget,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         ReleaseFromReferenceTracker: *const fn(
             self: *const IReferenceTrackerTarget,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         Peg: *const fn(
             self: *const IReferenceTrackerTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unpeg: *const fn(
             self: *const IReferenceTrackerTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -309,27 +309,27 @@ pub const IReferenceTracker = extern union {
         base: IUnknown.VTable,
         ConnectFromTrackerSource: *const fn(
             self: *const IReferenceTracker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisconnectFromTrackerSource: *const fn(
             self: *const IReferenceTracker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindTrackerTargets: *const fn(
             self: *const IReferenceTracker,
             callback: ?*IFindReferenceTargetsCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReferenceTrackerManager: *const fn(
             self: *const IReferenceTracker,
             value: ?*?*IReferenceTrackerManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRefFromTrackerSource: *const fn(
             self: *const IReferenceTracker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseFromTrackerSource: *const fn(
             self: *const IReferenceTracker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PegFromTrackerSource: *const fn(
             self: *const IReferenceTracker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -363,18 +363,18 @@ pub const IReferenceTrackerManager = extern union {
         base: IUnknown.VTable,
         ReferenceTrackingStarted: *const fn(
             self: *const IReferenceTrackerManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindTrackerTargetsCompleted: *const fn(
             self: *const IReferenceTrackerManager,
             findFailed: u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReferenceTrackingCompleted: *const fn(
             self: *const IReferenceTrackerManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetReferenceTrackerHost: *const fn(
             self: *const IReferenceTrackerManager,
             value: ?*IReferenceTrackerHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -400,7 +400,7 @@ pub const IFindReferenceTargetsCallback = extern union {
         FoundTrackerTarget: *const fn(
             self: *const IFindReferenceTargetsCallback,
             target: ?*IReferenceTrackerTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -424,26 +424,26 @@ pub const IReferenceTrackerHost = extern union {
         DisconnectUnusedReferenceSources: *const fn(
             self: *const IReferenceTrackerHost,
             options: XAML_REFERENCETRACKER_DISCONNECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseDisconnectedReferenceSources: *const fn(
             self: *const IReferenceTrackerHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyEndOfReferenceTrackingOnThread: *const fn(
             self: *const IReferenceTrackerHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTrackerTarget: *const fn(
             self: *const IReferenceTrackerHost,
             unknown: ?*IUnknown,
             newReference: ?*?*IReferenceTrackerTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMemoryPressure: *const fn(
             self: *const IReferenceTrackerHost,
             bytesAllocated: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveMemoryPressure: *const fn(
             self: *const IReferenceTrackerHost,
             bytesAllocated: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -489,21 +489,21 @@ pub const ITrackerOwner = extern union {
         CreateTrackerHandle: *const fn(
             self: *const ITrackerOwner,
             returnValue: ?*?*TrackerHandle__,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTrackerHandle: *const fn(
             self: *const ITrackerOwner,
             handle: ?*TrackerHandle__,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTrackerValue: *const fn(
             self: *const ITrackerOwner,
             handle: ?*TrackerHandle__,
             value: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TryGetSafeTrackerValue: *const fn(
             self: *const ITrackerOwner,
             handle: ?*TrackerHandle__,
             returnValue: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) u8,
+        ) callconv(.winapi) u8,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

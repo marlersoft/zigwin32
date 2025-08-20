@@ -156,7 +156,7 @@ pub const IVisualTreeServiceCallback = extern union {
             relation: ParentChildRelation,
             element: VisualElement,
             mutationType: VisualMutationType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -176,7 +176,7 @@ pub const IVisualTreeServiceCallback2 = extern union {
             element: u64,
             elementState: VisualElementState,
             context: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IVisualTreeServiceCallback: IVisualTreeServiceCallback,
@@ -194,22 +194,22 @@ pub const IVisualTreeService = extern union {
         AdviseVisualTreeChange: *const fn(
             self: *const IVisualTreeService,
             pCallback: ?*IVisualTreeServiceCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnadviseVisualTreeChange: *const fn(
             self: *const IVisualTreeService,
             pCallback: ?*IVisualTreeServiceCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnums: *const fn(
             self: *const IVisualTreeService,
             pCount: ?*u32,
             ppEnums: [*]?*EnumType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInstance: *const fn(
             self: *const IVisualTreeService,
             typeName: ?BSTR,
             value: ?BSTR,
             pInstanceHandle: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyValuesChain: *const fn(
             self: *const IVisualTreeService,
             instanceHandle: u64,
@@ -217,45 +217,45 @@ pub const IVisualTreeService = extern union {
             ppPropertySources: [*]?*PropertyChainSource,
             pPropertyCount: ?*u32,
             ppPropertyValues: [*]?*PropertyChainValue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IVisualTreeService,
             instanceHandle: u64,
             value: u64,
             propertyIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearProperty: *const fn(
             self: *const IVisualTreeService,
             instanceHandle: u64,
             propertyIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCollectionCount: *const fn(
             self: *const IVisualTreeService,
             instanceHandle: u64,
             pCollectionSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCollectionElements: *const fn(
             self: *const IVisualTreeService,
             instanceHandle: u64,
             startIndex: u32,
             pElementCount: ?*u32,
             ppElementValues: [*]?*CollectionElementValue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddChild: *const fn(
             self: *const IVisualTreeService,
             parent: u64,
             child: u64,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveChild: *const fn(
             self: *const IVisualTreeService,
             parent: u64,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearChildren: *const fn(
             self: *const IVisualTreeService,
             parent: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -306,40 +306,40 @@ pub const IXamlDiagnostics = extern union {
         GetDispatcher: *const fn(
             self: *const IXamlDiagnostics,
             ppDispatcher: ?*?*IInspectable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUiLayer: *const fn(
             self: *const IXamlDiagnostics,
             ppLayer: ?*?*IInspectable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetApplication: *const fn(
             self: *const IXamlDiagnostics,
             ppApplication: ?*?*IInspectable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIInspectableFromHandle: *const fn(
             self: *const IXamlDiagnostics,
             instanceHandle: u64,
             ppInstance: ?*?*IInspectable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHandleFromIInspectable: *const fn(
             self: *const IXamlDiagnostics,
             pInstance: ?*IInspectable,
             pHandle: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HitTest: *const fn(
             self: *const IXamlDiagnostics,
             rect: RECT,
             pCount: ?*u32,
             ppInstanceHandles: [*]?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterInstance: *const fn(
             self: *const IXamlDiagnostics,
             pInstance: ?*IInspectable,
             pInstanceHandle: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInitializationData: *const fn(
             self: *const IXamlDiagnostics,
             pInitializationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -381,19 +381,19 @@ pub const IBitmapData = extern union {
             maxBytesToCopy: u32,
             pvBytes: [*:0]u8,
             numberOfBytesCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStride: *const fn(
             self: *const IBitmapData,
             pStride: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBitmapDescription: *const fn(
             self: *const IBitmapData,
             pBitmapDescription: ?*BitmapDescription,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceBitmapDescription: *const fn(
             self: *const IBitmapData,
             pBitmapDescription: ?*BitmapDescription,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -422,19 +422,19 @@ pub const IVisualTreeService2 = extern union {
             object: u64,
             propertyName: ?[*:0]const u16,
             pPropertyIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IVisualTreeService2,
             object: u64,
             propertyIndex: u32,
             pValue: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReplaceResource: *const fn(
             self: *const IVisualTreeService2,
             resourceDictionary: u64,
             key: u64,
             newValue: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RenderTargetBitmap: *const fn(
             self: *const IVisualTreeService2,
             handle: u64,
@@ -442,7 +442,7 @@ pub const IVisualTreeService2 = extern union {
             maxPixelWidth: u32,
             maxPixelHeight: u32,
             ppBitmapData: ?*?*IBitmapData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IVisualTreeService: IVisualTreeService,
@@ -473,25 +473,25 @@ pub const IVisualTreeService3 = extern union {
             resourceName: ?[*:0]const u16,
             resourceType: ResourceType,
             propertyIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDictionaryItem: *const fn(
             self: *const IVisualTreeService3,
             dictionaryHandle: u64,
             resourceName: ?[*:0]const u16,
             resourceIsImplicitStyle: BOOL,
             resourceHandle: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDictionaryItem: *const fn(
             self: *const IVisualTreeService3,
             dictionaryHandle: u64,
             resourceKey: u64,
             resourceHandle: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveDictionaryItem: *const fn(
             self: *const IVisualTreeService3,
             dictionaryHandle: u64,
             resourceKey: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IVisualTreeService2: IVisualTreeService2,
@@ -521,7 +521,7 @@ pub extern "windows.ui.xaml" fn InitializeXamlDiagnostic(
     wszDllXamlDiagnostics: ?[*:0]const u16,
     wszTAPDllName: ?[*:0]const u16,
     tapClsid: Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "windows.ui.xaml" fn InitializeXamlDiagnosticsEx(
@@ -531,7 +531,7 @@ pub extern "windows.ui.xaml" fn InitializeXamlDiagnosticsEx(
     wszTAPDllName: ?[*:0]const u16,
     tapClsid: Guid,
     wszInitializationData: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

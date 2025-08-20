@@ -36,14 +36,14 @@ pub const IEmptyVolumeCacheCallBack = extern union {
             dwlSpaceUsed: u64,
             dwFlags: u32,
             pcwszStatus: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PurgeProgress: *const fn(
             self: *const IEmptyVolumeCacheCallBack,
             dwlSpaceFreed: u64,
             dwlSpaceToFree: u64,
             dwFlags: u32,
             pcwszStatus: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -68,25 +68,25 @@ pub const IEmptyVolumeCache = extern union {
             ppwszDisplayName: ?*?PWSTR,
             ppwszDescription: ?*?PWSTR,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpaceUsed: *const fn(
             self: *const IEmptyVolumeCache,
             pdwlSpaceUsed: ?*u64,
             picb: ?*IEmptyVolumeCacheCallBack,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Purge: *const fn(
             self: *const IEmptyVolumeCache,
             dwlSpaceToFree: u64,
             picb: ?*IEmptyVolumeCacheCallBack,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowProperties: *const fn(
             self: *const IEmptyVolumeCache,
             hwnd: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Deactivate: *const fn(
             self: *const IEmptyVolumeCache,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -122,7 +122,7 @@ pub const IEmptyVolumeCache2 = extern union {
             ppwszDescription: ?*?PWSTR,
             ppwszBtnText: ?*?PWSTR,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IEmptyVolumeCache: IEmptyVolumeCache,
@@ -141,12 +141,12 @@ pub const IReconcileInitiator = extern union {
         SetAbortCallback: *const fn(
             self: *const IReconcileInitiator,
             punkForAbort: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProgressFeedback: *const fn(
             self: *const IReconcileInitiator,
             ulProgress: u32,
             ulProgressMax: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -194,11 +194,11 @@ pub const IReconcilableObject = extern union {
             plOutIndex: ?*i32,
             pstgNewResidues: ?*IStorage,
             pvReserved: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProgressFeedbackMaxEstimate: *const fn(
             self: *const IReconcilableObject,
             pulProgressMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -218,7 +218,7 @@ pub const IBriefcaseInitiator = extern union {
         IsMonikerInBriefcase: *const fn(
             self: *const IBriefcaseInitiator,
             pmk: ?*IMoniker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -236,21 +236,21 @@ pub const IActiveDesktopP = extern union {
         SetSafeMode: *const fn(
             self: *const IActiveDesktopP,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnsureUpdateHTML: *const fn(
             self: *const IActiveDesktopP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetScheme: *const fn(
             self: *const IActiveDesktopP,
             pwszSchemeName: ?[*:0]const u16,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScheme: *const fn(
             self: *const IActiveDesktopP,
             pwszSchemeName: [*:0]u16,
             pdwcchBuffer: ?*u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -276,19 +276,19 @@ pub const IADesktopP2 = extern union {
         base: IUnknown.VTable,
         ReReadWallpaper: *const fn(
             self: *const IADesktopP2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetADObjectFlags: *const fn(
             self: *const IADesktopP2,
             pdwFlags: ?*u32,
             dwMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateAllDesktopSubscriptions: *const fn(
             self: *const IADesktopP2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MakeDynamicChanges: *const fn(
             self: *const IADesktopP2,
             pOleObj: ?*IOleObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

@@ -70,42 +70,42 @@ pub const IPhotoAcquireItem = extern union {
         GetItemName: *const fn(
             self: *const IPhotoAcquireItem,
             pbstrItemName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetThumbnail: *const fn(
             self: *const IPhotoAcquireItem,
             sizeThumbnail: SIZE,
             phbmpThumbnail: ?*?HBITMAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IPhotoAcquireItem,
             key: ?*const PROPERTYKEY,
             pv: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IPhotoAcquireItem,
             key: ?*const PROPERTYKEY,
             pv: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStream: *const fn(
             self: *const IPhotoAcquireItem,
             ppStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CanDelete: *const fn(
             self: *const IPhotoAcquireItem,
             pfCanDelete: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IPhotoAcquireItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubItemCount: *const fn(
             self: *const IPhotoAcquireItem,
             pnCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubItemAt: *const fn(
             self: *const IPhotoAcquireItem,
             nItemIndex: u32,
             ppPhotoAcquireItem: ?*?*IPhotoAcquireItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -153,46 +153,46 @@ pub const IUserInputString = extern union {
         GetSubmitButtonText: *const fn(
             self: *const IUserInputString,
             pbstrSubmitButtonText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrompt: *const fn(
             self: *const IUserInputString,
             pbstrPromptTitle: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringId: *const fn(
             self: *const IUserInputString,
             pbstrStringId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringType: *const fn(
             self: *const IUserInputString,
             pnStringType: ?*USER_INPUT_STRING_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTooltipText: *const fn(
             self: *const IUserInputString,
             pbstrTooltipText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxLength: *const fn(
             self: *const IUserInputString,
             pcchMaxLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefault: *const fn(
             self: *const IUserInputString,
             pbstrDefault: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMruCount: *const fn(
             self: *const IUserInputString,
             pnMruCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMruEntryAt: *const fn(
             self: *const IUserInputString,
             nIndex: u32,
             pbstrMruEntry: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImage: *const fn(
             self: *const IUserInputString,
             nSize: u32,
             phBitmap: ?*?HBITMAP,
             phIcon: ?*?HICON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -264,92 +264,92 @@ pub const IPhotoAcquireProgressCB = extern union {
         Cancelled: *const fn(
             self: *const IPhotoAcquireProgressCB,
             pfCancelled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartEnumeration: *const fn(
             self: *const IPhotoAcquireProgressCB,
             pPhotoAcquireSource: ?*IPhotoAcquireSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FoundItem: *const fn(
             self: *const IPhotoAcquireProgressCB,
             pPhotoAcquireItem: ?*IPhotoAcquireItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndEnumeration: *const fn(
             self: *const IPhotoAcquireProgressCB,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartTransfer: *const fn(
             self: *const IPhotoAcquireProgressCB,
             pPhotoAcquireSource: ?*IPhotoAcquireSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartItemTransfer: *const fn(
             self: *const IPhotoAcquireProgressCB,
             nItemIndex: u32,
             pPhotoAcquireItem: ?*IPhotoAcquireItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DirectoryCreated: *const fn(
             self: *const IPhotoAcquireProgressCB,
             pszDirectory: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateTransferPercent: *const fn(
             self: *const IPhotoAcquireProgressCB,
             fOverall: BOOL,
             nPercent: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndItemTransfer: *const fn(
             self: *const IPhotoAcquireProgressCB,
             nItemIndex: u32,
             pPhotoAcquireItem: ?*IPhotoAcquireItem,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndTransfer: *const fn(
             self: *const IPhotoAcquireProgressCB,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartDelete: *const fn(
             self: *const IPhotoAcquireProgressCB,
             pPhotoAcquireSource: ?*IPhotoAcquireSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartItemDelete: *const fn(
             self: *const IPhotoAcquireProgressCB,
             nItemIndex: u32,
             pPhotoAcquireItem: ?*IPhotoAcquireItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateDeletePercent: *const fn(
             self: *const IPhotoAcquireProgressCB,
             nPercent: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndItemDelete: *const fn(
             self: *const IPhotoAcquireProgressCB,
             nItemIndex: u32,
             pPhotoAcquireItem: ?*IPhotoAcquireItem,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndDelete: *const fn(
             self: *const IPhotoAcquireProgressCB,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndSession: *const fn(
             self: *const IPhotoAcquireProgressCB,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeleteAfterAcquire: *const fn(
             self: *const IPhotoAcquireProgressCB,
             pfDeleteAfterAcquire: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ErrorAdvise: *const fn(
             self: *const IPhotoAcquireProgressCB,
             hr: HRESULT,
             pszErrorMessage: ?[*:0]const u16,
             nMessageType: ERROR_ADVISE_MESSAGE_TYPE,
             pnErrorAdviseResult: ?*ERROR_ADVISE_RESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUserInput: *const fn(
             self: *const IPhotoAcquireProgressCB,
             riidType: ?*const Guid,
             pUnknown: ?*IUnknown,
             pPropVarResult: ?*PROPVARIANT,
             pPropVarDefault: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -420,7 +420,7 @@ pub const IPhotoProgressActionCB = extern union {
         DoAction: *const fn(
             self: *const IPhotoProgressActionCB,
             hWndParent: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -453,84 +453,84 @@ pub const IPhotoProgressDialog = extern union {
         Create: *const fn(
             self: *const IPhotoProgressDialog,
             hwndParent: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWindow: *const fn(
             self: *const IPhotoProgressDialog,
             phwndProgressDialog: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Destroy: *const fn(
             self: *const IPhotoProgressDialog,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTitle: *const fn(
             self: *const IPhotoProgressDialog,
             pszTitle: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowCheckbox: *const fn(
             self: *const IPhotoProgressDialog,
             nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID,
             fShow: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCheckboxText: *const fn(
             self: *const IPhotoProgressDialog,
             nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID,
             pszCheckboxText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCheckboxCheck: *const fn(
             self: *const IPhotoProgressDialog,
             nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID,
             fChecked: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCheckboxTooltip: *const fn(
             self: *const IPhotoProgressDialog,
             nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID,
             pszCheckboxTooltipText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsCheckboxChecked: *const fn(
             self: *const IPhotoProgressDialog,
             nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID,
             pfChecked: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCaption: *const fn(
             self: *const IPhotoProgressDialog,
             pszTitle: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetImage: *const fn(
             self: *const IPhotoProgressDialog,
             nImageType: PROGRESS_DIALOG_IMAGE_TYPE,
             hIcon: ?HICON,
             hBitmap: ?HBITMAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPercentComplete: *const fn(
             self: *const IPhotoProgressDialog,
             nPercent: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProgressText: *const fn(
             self: *const IPhotoProgressDialog,
             pszProgressText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetActionLinkCallback: *const fn(
             self: *const IPhotoProgressDialog,
             pPhotoProgressActionCB: ?*IPhotoProgressActionCB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetActionLinkText: *const fn(
             self: *const IPhotoProgressDialog,
             pszCaption: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShowActionLink: *const fn(
             self: *const IPhotoProgressDialog,
             fShow: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsCancelled: *const fn(
             self: *const IPhotoProgressDialog,
             pfCancelled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUserInput: *const fn(
             self: *const IPhotoProgressDialog,
             riidType: ?*const Guid,
             pUnknown: ?*IUnknown,
             pPropVarResult: ?*PROPVARIANT,
             pPropVarDefault: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -598,41 +598,41 @@ pub const IPhotoAcquireSource = extern union {
         GetFriendlyName: *const fn(
             self: *const IPhotoAcquireSource,
             pbstrFriendlyName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceIcons: *const fn(
             self: *const IPhotoAcquireSource,
             nSize: u32,
             phLargeIcon: ?*?HICON,
             phSmallIcon: ?*?HICON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeItemList: *const fn(
             self: *const IPhotoAcquireSource,
             fForceEnumeration: BOOL,
             pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
             pnItemCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemCount: *const fn(
             self: *const IPhotoAcquireSource,
             pnItemCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemAt: *const fn(
             self: *const IPhotoAcquireSource,
             nIndex: u32,
             ppPhotoAcquireItem: ?*?*IPhotoAcquireItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPhotoAcquireSettings: *const fn(
             self: *const IPhotoAcquireSource,
             ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceId: *const fn(
             self: *const IPhotoAcquireSource,
             pbstrDeviceId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindToObject: *const fn(
             self: *const IPhotoAcquireSource,
             riid: ?*const Guid,
             ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -671,7 +671,7 @@ pub const IPhotoAcquire = extern union {
             self: *const IPhotoAcquire,
             pszDevice: ?[*:0]const u16,
             ppPhotoAcquireSource: ?*?*IPhotoAcquireSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Acquire: *const fn(
             self: *const IPhotoAcquire,
             pPhotoAcquireSource: ?*IPhotoAcquireSource,
@@ -679,11 +679,11 @@ pub const IPhotoAcquire = extern union {
             hWndParent: ?HWND,
             pszApplicationName: ?[*:0]const u16,
             pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumResults: *const fn(
             self: *const IPhotoAcquire,
             ppEnumFilePaths: ?*?*IEnumString,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -706,55 +706,55 @@ pub const IPhotoAcquireSettings = extern union {
         InitializeFromRegistry: *const fn(
             self: *const IPhotoAcquireSettings,
             pszRegistryKey: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFlags: *const fn(
             self: *const IPhotoAcquireSettings,
             dwPhotoAcquireFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputFilenameTemplate: *const fn(
             self: *const IPhotoAcquireSettings,
             pszTemplate: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSequencePaddingWidth: *const fn(
             self: *const IPhotoAcquireSettings,
             dwWidth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSequenceZeroPadding: *const fn(
             self: *const IPhotoAcquireSettings,
             fZeroPad: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGroupTag: *const fn(
             self: *const IPhotoAcquireSettings,
             pszGroupTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAcquisitionTime: *const fn(
             self: *const IPhotoAcquireSettings,
             pftAcquisitionTime: ?*const FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlags: *const fn(
             self: *const IPhotoAcquireSettings,
             pdwPhotoAcquireFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputFilenameTemplate: *const fn(
             self: *const IPhotoAcquireSettings,
             pbstrTemplate: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSequencePaddingWidth: *const fn(
             self: *const IPhotoAcquireSettings,
             pdwWidth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSequenceZeroPadding: *const fn(
             self: *const IPhotoAcquireSettings,
             pfZeroPad: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGroupTag: *const fn(
             self: *const IPhotoAcquireSettings,
             pbstrGroupTag: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAcquisitionTime: *const fn(
             self: *const IPhotoAcquireSettings,
             pftAcquisitionTime: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -807,23 +807,23 @@ pub const IPhotoAcquireOptionsDialog = extern union {
         Initialize: *const fn(
             self: *const IPhotoAcquireOptionsDialog,
             pszRegistryRoot: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const IPhotoAcquireOptionsDialog,
             hWndParent: ?HWND,
             phWndDialog: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Destroy: *const fn(
             self: *const IPhotoAcquireOptionsDialog,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoModal: *const fn(
             self: *const IPhotoAcquireOptionsDialog,
             hWndParent: ?HWND,
             ppnReturnCode: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveData: *const fn(
             self: *const IPhotoAcquireOptionsDialog,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -869,18 +869,18 @@ pub const IPhotoAcquireDeviceSelectionDialog = extern union {
         SetTitle: *const fn(
             self: *const IPhotoAcquireDeviceSelectionDialog,
             pszTitle: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSubmitButtonText: *const fn(
             self: *const IPhotoAcquireDeviceSelectionDialog,
             pszSubmitButtonText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DoModal: *const fn(
             self: *const IPhotoAcquireDeviceSelectionDialog,
             hWndParent: ?HWND,
             dwDeviceFlags: u32,
             pbstrDeviceId: ?*?BSTR,
             pnDeviceType: ?*DEVICE_SELECTION_DEVICE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -904,7 +904,7 @@ pub const IPhotoAcquirePlugin = extern union {
             self: *const IPhotoAcquirePlugin,
             pPhotoAcquireSource: ?*IPhotoAcquireSource,
             pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessItem: *const fn(
             self: *const IPhotoAcquirePlugin,
             dwAcquireStage: u32,
@@ -912,15 +912,15 @@ pub const IPhotoAcquirePlugin = extern union {
             pOriginalItemStream: ?*IStream,
             pszFinalFilename: ?[*:0]const u16,
             pPropertyStore: ?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TransferComplete: *const fn(
             self: *const IPhotoAcquirePlugin,
             hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayConfigureDialog: *const fn(
             self: *const IPhotoAcquirePlugin,
             hWndParent: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

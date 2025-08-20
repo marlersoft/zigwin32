@@ -53,20 +53,20 @@ pub const IMILBitmapEffectConnectorInfo = extern union {
         GetIndex: *const fn(
             self: *const IMILBitmapEffectConnectorInfo,
             puiIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOptimalFormat: *const fn(
             self: *const IMILBitmapEffectConnectorInfo,
             pFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumberFormats: *const fn(
             self: *const IMILBitmapEffectConnectorInfo,
             pulNumberFormats: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const IMILBitmapEffectConnectorInfo,
             ulIndex: u32,
             pFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -93,21 +93,21 @@ pub const IMILBitmapEffectConnectionsInfo = extern union {
         GetNumberInputs: *const fn(
             self: *const IMILBitmapEffectConnectionsInfo,
             puiNumInputs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumberOutputs: *const fn(
             self: *const IMILBitmapEffectConnectionsInfo,
             puiNumOutputs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputConnectorInfo: *const fn(
             self: *const IMILBitmapEffectConnectionsInfo,
             uiIndex: u32,
             ppConnectorInfo: ?*?*IMILBitmapEffectConnectorInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputConnectorInfo: *const fn(
             self: *const IMILBitmapEffectConnectionsInfo,
             uiIndex: u32,
             ppConnectorInfo: ?*?*IMILBitmapEffectConnectorInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -135,12 +135,12 @@ pub const IMILBitmapEffectConnections = extern union {
             self: *const IMILBitmapEffectConnections,
             uiIndex: u32,
             ppConnector: ?*?*IMILBitmapEffectInputConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputConnector: *const fn(
             self: *const IMILBitmapEffectConnections,
             uiIndex: u32,
             ppConnector: ?*?*IMILBitmapEffectOutputConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -163,16 +163,16 @@ pub const IMILBitmapEffect = extern union {
             uiIndex: u32,
             pContext: ?*IMILBitmapEffectRenderContext,
             ppBitmapSource: ?*?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParentEffect: *const fn(
             self: *const IMILBitmapEffect,
             ppParentEffect: ?*?*IMILBitmapEffectGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInputSource: *const fn(
             self: *const IMILBitmapEffect,
             uiIndex: u32,
             pBitmapSource: ?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -197,39 +197,39 @@ pub const IMILBitmapEffectImpl = extern union {
             self: *const IMILBitmapEffectImpl,
             pOutputConnector: ?*IMILBitmapEffectOutputConnector,
             pfModifyInPlace: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetParentEffect: *const fn(
             self: *const IMILBitmapEffectImpl,
             pParentEffect: ?*IMILBitmapEffectGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputSource: *const fn(
             self: *const IMILBitmapEffectImpl,
             uiIndex: u32,
             ppBitmapSource: ?*?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputSourceBounds: *const fn(
             self: *const IMILBitmapEffectImpl,
             uiIndex: u32,
             pRect: ?*MilRectD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputBitmapSource: *const fn(
             self: *const IMILBitmapEffectImpl,
             uiIndex: u32,
             pRenderContext: ?*IMILBitmapEffectRenderContext,
             pfModifyInPlace: ?*i16,
             ppBitmapSource: ?*?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputBitmapSource: *const fn(
             self: *const IMILBitmapEffectImpl,
             uiIndex: u32,
             pRenderContext: ?*IMILBitmapEffectRenderContext,
             pfModifyInPlace: ?*i16,
             ppBitmapSource: ?*?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IMILBitmapEffectImpl,
             pInner: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -266,16 +266,16 @@ pub const IMILBitmapEffectGroup = extern union {
             self: *const IMILBitmapEffectGroup,
             uiIndex: u32,
             ppConnector: ?*?*IMILBitmapEffectOutputConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInteriorOutputConnector: *const fn(
             self: *const IMILBitmapEffectGroup,
             uiIndex: u32,
             ppConnector: ?*?*IMILBitmapEffectInputConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IMILBitmapEffectGroup,
             pEffect: ?*IMILBitmapEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -299,15 +299,15 @@ pub const IMILBitmapEffectGroupImpl = extern union {
         Preprocess: *const fn(
             self: *const IMILBitmapEffectGroupImpl,
             pContext: ?*IMILBitmapEffectRenderContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumberChildren: *const fn(
             self: *const IMILBitmapEffectGroupImpl,
             puiNumberChildren: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChildren: *const fn(
             self: *const IMILBitmapEffectGroupImpl,
             pChildren: ?*?*IMILBitmapEffects,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -331,37 +331,37 @@ pub const IMILBitmapEffectRenderContext = extern union {
         SetOutputPixelFormat: *const fn(
             self: *const IMILBitmapEffectRenderContext,
             format: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputPixelFormat: *const fn(
             self: *const IMILBitmapEffectRenderContext,
             pFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUseSoftwareRenderer: *const fn(
             self: *const IMILBitmapEffectRenderContext,
             fSoftware: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInitialTransform: *const fn(
             self: *const IMILBitmapEffectRenderContext,
             pMatrix: ?*MILMatrixF,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFinalTransform: *const fn(
             self: *const IMILBitmapEffectRenderContext,
             pMatrix: ?*MILMatrixF,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutputDPI: *const fn(
             self: *const IMILBitmapEffectRenderContext,
             dblDpiX: f64,
             dblDpiY: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputDPI: *const fn(
             self: *const IMILBitmapEffectRenderContext,
             pdblDpiX: ?*f64,
             pdblDpiY: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRegionOfInterest: *const fn(
             self: *const IMILBitmapEffectRenderContext,
             pRect: ?*MilRectD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -400,23 +400,23 @@ pub const IMILBitmapEffectRenderContextImpl = extern union {
         GetUseSoftwareRenderer: *const fn(
             self: *const IMILBitmapEffectRenderContextImpl,
             pfSoftware: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransform: *const fn(
             self: *const IMILBitmapEffectRenderContextImpl,
             pMatrix: ?*MILMatrixF,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateTransform: *const fn(
             self: *const IMILBitmapEffectRenderContextImpl,
             pMatrix: ?*MILMatrixF,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputBounds: *const fn(
             self: *const IMILBitmapEffectRenderContextImpl,
             pRect: ?*MilRectD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOutputBounds: *const fn(
             self: *const IMILBitmapEffectRenderContextImpl,
             pRect: ?*MilRectD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -447,15 +447,15 @@ pub const IMILBitmapEffectFactory = extern union {
             self: *const IMILBitmapEffectFactory,
             pguidEffect: ?*const Guid,
             ppEffect: ?*?*IMILBitmapEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateContext: *const fn(
             self: *const IMILBitmapEffectFactory,
             ppContext: ?*?*IMILBitmapEffectRenderContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEffectOuter: *const fn(
             self: *const IMILBitmapEffectFactory,
             ppEffect: ?*?*IMILBitmapEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -482,7 +482,7 @@ pub const IMILBitmapEffectPrimitive = extern union {
             pContext: ?*IMILBitmapEffectRenderContext,
             pfModifyInPlace: ?*i16,
             ppBitmapSource: ?*?*IWICBitmapSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TransformPoint: *const fn(
             self: *const IMILBitmapEffectPrimitive,
             uiIndex: u32,
@@ -490,29 +490,29 @@ pub const IMILBitmapEffectPrimitive = extern union {
             fForwardTransform: i16,
             pContext: ?*IMILBitmapEffectRenderContext,
             pfPointTransformed: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TransformRect: *const fn(
             self: *const IMILBitmapEffectPrimitive,
             uiIndex: u32,
             p: ?*MilRectD,
             fForwardTransform: i16,
             pContext: ?*IMILBitmapEffectRenderContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasAffineTransform: *const fn(
             self: *const IMILBitmapEffectPrimitive,
             uiIndex: u32,
             pfAffine: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasInverseTransform: *const fn(
             self: *const IMILBitmapEffectPrimitive,
             uiIndex: u32,
             pfHasInverse: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAffineMatrix: *const fn(
             self: *const IMILBitmapEffectPrimitive,
             uiIndex: u32,
             pMatrix: ?*MilMatrix3x2D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -546,12 +546,12 @@ pub const IMILBitmapEffectPrimitiveImpl = extern union {
             self: *const IMILBitmapEffectPrimitiveImpl,
             uiOutputIndex: u32,
             pfDirty: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsVolatile: *const fn(
             self: *const IMILBitmapEffectPrimitiveImpl,
             uiOutputIndex: u32,
             pfVolatile: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -572,22 +572,22 @@ pub const IMILBitmapEffects = extern union {
         _NewEnum: *const fn(
             self: *const IMILBitmapEffects,
             ppiuReturn: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: *const fn(
             self: *const IMILBitmapEffects,
             ppEffect: ?*?*IMILBitmapEffectGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IMILBitmapEffects,
             uindex: u32,
             ppEffect: ?*?*IMILBitmapEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IMILBitmapEffects,
             puiCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -614,11 +614,11 @@ pub const IMILBitmapEffectConnector = extern union {
         IsConnected: *const fn(
             self: *const IMILBitmapEffectConnector,
             pfConnected: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBitmapEffect: *const fn(
             self: *const IMILBitmapEffectConnector,
             ppEffect: ?*?*IMILBitmapEffect,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMILBitmapEffectConnectorInfo: IMILBitmapEffectConnectorInfo,
@@ -640,11 +640,11 @@ pub const IMILBitmapEffectInputConnector = extern union {
         ConnectTo: *const fn(
             self: *const IMILBitmapEffectInputConnector,
             pConnector: ?*IMILBitmapEffectOutputConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConnection: *const fn(
             self: *const IMILBitmapEffectInputConnector,
             ppConnector: ?*?*IMILBitmapEffectOutputConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMILBitmapEffectConnector: IMILBitmapEffectConnector,
@@ -667,12 +667,12 @@ pub const IMILBitmapEffectOutputConnector = extern union {
         GetNumberConnections: *const fn(
             self: *const IMILBitmapEffectOutputConnector,
             puiNumberConnections: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConnection: *const fn(
             self: *const IMILBitmapEffectOutputConnector,
             uiIndex: u32,
             ppConnection: ?*?*IMILBitmapEffectInputConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMILBitmapEffectConnector: IMILBitmapEffectConnector,
@@ -695,11 +695,11 @@ pub const IMILBitmapEffectOutputConnectorImpl = extern union {
         AddBackLink: *const fn(
             self: *const IMILBitmapEffectOutputConnectorImpl,
             pConnection: ?*IMILBitmapEffectInputConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveBackLink: *const fn(
             self: *const IMILBitmapEffectOutputConnectorImpl,
             pConnection: ?*IMILBitmapEffectInputConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -720,7 +720,7 @@ pub const IMILBitmapEffectInteriorInputConnector = extern union {
         GetInputConnector: *const fn(
             self: *const IMILBitmapEffectInteriorInputConnector,
             pInputConnector: ?*?*IMILBitmapEffectInputConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -738,7 +738,7 @@ pub const IMILBitmapEffectInteriorOutputConnector = extern union {
         GetOutputConnector: *const fn(
             self: *const IMILBitmapEffectInteriorOutputConnector,
             pOutputConnector: ?*?*IMILBitmapEffectOutputConnector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -757,12 +757,12 @@ pub const IMILBitmapEffectEvents = extern union {
             self: *const IMILBitmapEffectEvents,
             pEffect: ?*IMILBitmapEffect,
             bstrPropertyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DirtyRegion: *const fn(
             self: *const IMILBitmapEffectEvents,
             pEffect: ?*IMILBitmapEffect,
             pRect: ?*MilRectD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

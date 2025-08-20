@@ -4491,18 +4491,18 @@ pub const IEnumNetCfgBindingInterface = extern union {
             celt: u32,
             rgelt: [*]?*INetCfgBindingInterface,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumNetCfgBindingInterface,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumNetCfgBindingInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumNetCfgBindingInterface,
             ppenum: ?*?*IEnumNetCfgBindingInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4530,18 +4530,18 @@ pub const IEnumNetCfgBindingPath = extern union {
             celt: u32,
             rgelt: [*]?*INetCfgBindingPath,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumNetCfgBindingPath,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumNetCfgBindingPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumNetCfgBindingPath,
             ppenum: ?*?*IEnumNetCfgBindingPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4569,18 +4569,18 @@ pub const IEnumNetCfgComponent = extern union {
             celt: u32,
             rgelt: [*]?*INetCfgComponent,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumNetCfgComponent,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumNetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumNetCfgComponent,
             ppenum: ?*?*IEnumNetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4606,32 +4606,32 @@ pub const INetCfg = extern union {
         Initialize: *const fn(
             self: *const INetCfg,
             pvReserved: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Uninitialize: *const fn(
             self: *const INetCfg,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Apply: *const fn(
             self: *const INetCfg,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const INetCfg,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumComponents: *const fn(
             self: *const INetCfg,
             pguidClass: ?*const Guid,
             ppenumComponent: ?*?*IEnumNetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindComponent: *const fn(
             self: *const INetCfg,
             pszwInfId: ?[*:0]const u16,
             pComponent: ?*?*INetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryNetCfgClass: *const fn(
             self: *const INetCfg,
             pguidClass: ?*const Guid,
             riid: ?*const Guid,
             ppvObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4668,14 +4668,14 @@ pub const INetCfgLock = extern union {
             cmsTimeout: u32,
             pszwClientDescription: ?[*:0]const u16,
             ppszwClientDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseWriteLock: *const fn(
             self: *const INetCfgLock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsWriteLocked: *const fn(
             self: *const INetCfgLock,
             ppszwClientDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4698,15 +4698,15 @@ pub const INetCfgBindingInterface = extern union {
         GetName: *const fn(
             self: *const INetCfgBindingInterface,
             ppszwInterfaceName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUpperComponent: *const fn(
             self: *const INetCfgBindingInterface,
             ppnccItem: ?*?*INetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLowerComponent: *const fn(
             self: *const INetCfgBindingInterface,
             ppnccItem: ?*?*INetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4729,34 +4729,34 @@ pub const INetCfgBindingPath = extern union {
         IsSamePathAs: *const fn(
             self: *const INetCfgBindingPath,
             pPath: ?*INetCfgBindingPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSubPathOf: *const fn(
             self: *const INetCfgBindingPath,
             pPath: ?*INetCfgBindingPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEnabled: *const fn(
             self: *const INetCfgBindingPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enable: *const fn(
             self: *const INetCfgBindingPath,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPathToken: *const fn(
             self: *const INetCfgBindingPath,
             ppszwPathToken: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOwner: *const fn(
             self: *const INetCfgBindingPath,
             ppComponent: ?*?*INetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDepth: *const fn(
             self: *const INetCfgBindingPath,
             pcInterfaces: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumBindingInterfaces: *const fn(
             self: *const INetCfgBindingPath,
             ppenumInterface: ?*?*IEnumNetCfgBindingInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4795,11 +4795,11 @@ pub const INetCfgClass = extern union {
             self: *const INetCfgClass,
             pszwInfId: ?[*:0]const u16,
             ppnccItem: ?*?*INetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumComponents: *const fn(
             self: *const INetCfgClass,
             ppenumComponent: ?*?*IEnumNetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4839,7 +4839,7 @@ pub const INetCfgClassSetup = extern union {
             hwndParent: ?HWND,
             pOboToken: ?*OBO_TOKEN,
             ppnccItem: ?*?*INetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Install: *const fn(
             self: *const INetCfgClassSetup,
             pszwInfId: ?[*:0]const u16,
@@ -4849,13 +4849,13 @@ pub const INetCfgClassSetup = extern union {
             pszwAnswerFile: ?[*:0]const u16,
             pszwAnswerSections: ?[*:0]const u16,
             ppnccItem: ?*?*INetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeInstall: *const fn(
             self: *const INetCfgClassSetup,
             pComponent: ?*INetCfgComponent,
             pOboToken: ?*OBO_TOKEN,
             pmszwRefs: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4880,7 +4880,7 @@ pub const INetCfgClassSetup2 = extern union {
             pIComp: ?*INetCfgComponent,
             dwSetupFlags: u32,
             dwUpgradeFromBuildNo: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     INetCfgClassSetup: INetCfgClassSetup,
@@ -4938,53 +4938,53 @@ pub const INetCfgComponent = extern union {
         GetDisplayName: *const fn(
             self: *const INetCfgComponent,
             ppszwDisplayName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDisplayName: *const fn(
             self: *const INetCfgComponent,
             pszwDisplayName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHelpText: *const fn(
             self: *const INetCfgComponent,
             pszwHelpText: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetId: *const fn(
             self: *const INetCfgComponent,
             ppszwId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCharacteristics: *const fn(
             self: *const INetCfgComponent,
             pdwCharacteristics: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInstanceGuid: *const fn(
             self: *const INetCfgComponent,
             pGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPnpDevNodeId: *const fn(
             self: *const INetCfgComponent,
             ppszwDevNodeId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClassGuid: *const fn(
             self: *const INetCfgComponent,
             pGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBindName: *const fn(
             self: *const INetCfgComponent,
             ppszwBindName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceStatus: *const fn(
             self: *const INetCfgComponent,
             pulStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenParamKey: *const fn(
             self: *const INetCfgComponent,
             phkey: ?*?HKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RaisePropertyUi: *const fn(
             self: *const INetCfgComponent,
             hwndParent: ?HWND,
             dwFlags: u32,
             punkContext: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5048,39 +5048,39 @@ pub const INetCfgComponentBindings = extern union {
         BindTo: *const fn(
             self: *const INetCfgComponentBindings,
             pnccItem: ?*INetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnbindFrom: *const fn(
             self: *const INetCfgComponentBindings,
             pnccItem: ?*INetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SupportsBindingInterface: *const fn(
             self: *const INetCfgComponentBindings,
             dwFlags: u32,
             pszwInterfaceName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsBoundTo: *const fn(
             self: *const INetCfgComponentBindings,
             pnccItem: ?*INetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsBindableTo: *const fn(
             self: *const INetCfgComponentBindings,
             pnccItem: ?*INetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumBindingPaths: *const fn(
             self: *const INetCfgComponentBindings,
             dwFlags: u32,
             ppIEnum: ?*?*IEnumNetCfgBindingPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveBefore: *const fn(
             self: *const INetCfgComponentBindings,
             pncbItemSrc: ?*INetCfgBindingPath,
             pncbItemDest: ?*INetCfgBindingPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveAfter: *const fn(
             self: *const INetCfgComponentBindings,
             pncbItemSrc: ?*INetCfgBindingPath,
             pncbItemDest: ?*INetCfgBindingPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5120,25 +5120,25 @@ pub const INetCfgSysPrep = extern union {
             pwszSection: ?[*:0]const u16,
             pwszKey: ?[*:0]const u16,
             dwValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HrSetupSetFirstString: *const fn(
             self: *const INetCfgSysPrep,
             pwszSection: ?[*:0]const u16,
             pwszKey: ?[*:0]const u16,
             pwszValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HrSetupSetFirstStringAsBool: *const fn(
             self: *const INetCfgSysPrep,
             pwszSection: ?[*:0]const u16,
             pwszKey: ?[*:0]const u16,
             fValue: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HrSetupSetFirstMultiSzField: *const fn(
             self: *const INetCfgSysPrep,
             pwszSection: ?[*:0]const u16,
             pwszKey: ?[*:0]const u16,
             pmszValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5176,7 +5176,7 @@ pub const INetCfgPnpReconfigCallback = extern union {
             // TODO: what to do with BytesParamIndex 4?
             pvData: ?*anyopaque,
             dwSizeOfData: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5195,17 +5195,17 @@ pub const INetCfgComponentControl = extern union {
             pIComp: ?*INetCfgComponent,
             pINetCfg: ?*INetCfg,
             fInstalling: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ApplyRegistryChanges: *const fn(
             self: *const INetCfgComponentControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ApplyPnpChanges: *const fn(
             self: *const INetCfgComponentControl,
             pICallback: ?*INetCfgPnpReconfigCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelChanges: *const fn(
             self: *const INetCfgComponentControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5253,20 +5253,20 @@ pub const INetCfgComponentSetup = extern union {
         Install: *const fn(
             self: *const INetCfgComponentSetup,
             dwSetupFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Upgrade: *const fn(
             self: *const INetCfgComponentSetup,
             dwSetupFlags: u32,
             dwUpgradeFomBuildNo: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReadAnswerFile: *const fn(
             self: *const INetCfgComponentSetup,
             pszwAnswerFile: ?[*:0]const u16,
             pszwAnswerSections: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Removing: *const fn(
             self: *const INetCfgComponentSetup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5297,11 +5297,11 @@ pub const INetCfgComponentPropertyUi = extern union {
         QueryPropertyUi: *const fn(
             self: *const INetCfgComponentPropertyUi,
             pUnkReserved: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContext: *const fn(
             self: *const INetCfgComponentPropertyUi,
             pUnkReserved: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MergePropPages: *const fn(
             self: *const INetCfgComponentPropertyUi,
             pdwDefPages: ?*u32,
@@ -5309,17 +5309,17 @@ pub const INetCfgComponentPropertyUi = extern union {
             pcPages: ?*u32,
             hwndParent: ?HWND,
             pszStartPage: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ValidateProperties: *const fn(
             self: *const INetCfgComponentPropertyUi,
             hwndSheet: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ApplyProperties: *const fn(
             self: *const INetCfgComponentPropertyUi,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelProperties: *const fn(
             self: *const INetCfgComponentPropertyUi,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5377,12 +5377,12 @@ pub const INetCfgComponentNotifyBinding = extern union {
             self: *const INetCfgComponentNotifyBinding,
             dwChangeFlag: u32,
             pIPath: ?*INetCfgBindingPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyBindingPath: *const fn(
             self: *const INetCfgComponentNotifyBinding,
             dwChangeFlag: u32,
             pIPath: ?*INetCfgBindingPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5402,22 +5402,22 @@ pub const INetCfgComponentNotifyGlobal = extern union {
         GetSupportedNotifications: *const fn(
             self: *const INetCfgComponentNotifyGlobal,
             dwNotifications: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SysQueryBindingPath: *const fn(
             self: *const INetCfgComponentNotifyGlobal,
             dwChangeFlag: u32,
             pIPath: ?*INetCfgBindingPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SysNotifyBindingPath: *const fn(
             self: *const INetCfgComponentNotifyGlobal,
             dwChangeFlag: u32,
             pIPath: ?*INetCfgBindingPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SysNotifyComponent: *const fn(
             self: *const INetCfgComponentNotifyGlobal,
             dwChangeFlag: u32,
             pIComp: ?*INetCfgComponent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5445,18 +5445,18 @@ pub const INetCfgComponentUpperEdge = extern union {
             pAdapter: ?*INetCfgComponent,
             pdwNumInterfaces: ?*u32,
             ppguidInterfaceIds: ?[*]?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddInterfacesToAdapter: *const fn(
             self: *const INetCfgComponentUpperEdge,
             pAdapter: ?*INetCfgComponent,
             dwNumInterfaces: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveInterfacesFromAdapter: *const fn(
             self: *const INetCfgComponentUpperEdge,
             pAdapter: ?*INetCfgComponent,
             dwNumInterfaces: u32,
             pguidInterfaceIds: [*]const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5479,7 +5479,7 @@ pub const INetLanConnectionUiInfo = extern union {
         GetDeviceGuid: *const fn(
             self: *const INetLanConnectionUiInfo,
             pguid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5549,7 +5549,7 @@ pub const INetRasConnectionIpUiInfo = extern union {
         GetUiInfo: *const fn(
             self: *const INetRasConnectionIpUiInfo,
             pInfo: ?*RASCON_IPUI,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5568,13 +5568,13 @@ pub const INetCfgComponentSysPrep = extern union {
             pncsp: ?*INetCfgSysPrep,
             pszwAnswerSections: ?[*:0]const u16,
             pAdapterInstanceGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestoreAdapterParameters: *const fn(
             self: *const INetCfgComponentSysPrep,
             pszwAnswerFile: ?[*:0]const u16,
             pszwAnswerSection: ?[*:0]const u16,
             pAdapterInstanceGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5597,14 +5597,14 @@ pub const IProvisioningDomain = extern union {
         Add: *const fn(
             self: *const IProvisioningDomain,
             pszwPathToFolder: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Query: *const fn(
             self: *const IProvisioningDomain,
             pszwDomain: ?[*:0]const u16,
             pszwLanguage: ?[*:0]const u16,
             pszwXPathQuery: ?[*:0]const u16,
             Nodes: ?*?*IXMLDOMNodeList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5627,7 +5627,7 @@ pub const IProvisioningProfileWireless = extern union {
             bstrXMLConnectionConfigProfile: ?BSTR,
             pAdapterInstanceGuid: ?*Guid,
             pulStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5652,7 +5652,7 @@ pub const RTR_INFO_BLOCK_HEADER = extern struct {
 
 pub const WORKERFUNCTION = *const fn(
     param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const MPR_PROTOCOL_0 = extern struct {
     dwProtocolId: u32,
@@ -5670,7 +5670,7 @@ pub extern "netapi32" fn NetUserAdd(
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUserEnum(
@@ -5682,7 +5682,7 @@ pub extern "netapi32" fn NetUserEnum(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resume_handle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetUserGetInfo(
@@ -5690,7 +5690,7 @@ pub extern "netapi32" fn NetUserGetInfo(
     username: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUserSetInfo(
@@ -5699,13 +5699,13 @@ pub extern "netapi32" fn NetUserSetInfo(
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUserDel(
     servername: ?[*:0]const u16,
     username: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUserGetGroups(
@@ -5716,7 +5716,7 @@ pub extern "netapi32" fn NetUserGetGroups(
     prefmaxlen: u32,
     entriesread: ?*u32,
     totalentries: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUserSetGroups(
@@ -5725,7 +5725,7 @@ pub extern "netapi32" fn NetUserSetGroups(
     level: u32,
     buf: ?*u8,
     num_entries: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUserGetLocalGroups(
@@ -5737,14 +5737,14 @@ pub extern "netapi32" fn NetUserGetLocalGroups(
     prefmaxlen: u32,
     entriesread: ?*u32,
     totalentries: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUserModalsGet(
     servername: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUserModalsSet(
@@ -5752,7 +5752,7 @@ pub extern "netapi32" fn NetUserModalsSet(
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUserChangePassword(
@@ -5760,7 +5760,7 @@ pub extern "netapi32" fn NetUserChangePassword(
     username: ?[*:0]const u16,
     oldpassword: ?[*:0]const u16,
     newpassword: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGroupAdd(
@@ -5768,14 +5768,14 @@ pub extern "netapi32" fn NetGroupAdd(
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGroupAddUser(
     servername: ?[*:0]const u16,
     GroupName: ?[*:0]const u16,
     username: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGroupEnum(
@@ -5786,7 +5786,7 @@ pub extern "netapi32" fn NetGroupEnum(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resume_handle: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGroupGetInfo(
@@ -5794,7 +5794,7 @@ pub extern "netapi32" fn NetGroupGetInfo(
     groupname: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGroupSetInfo(
@@ -5803,20 +5803,20 @@ pub extern "netapi32" fn NetGroupSetInfo(
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGroupDel(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGroupDelUser(
     servername: ?[*:0]const u16,
     GroupName: ?[*:0]const u16,
     Username: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGroupGetUsers(
@@ -5828,7 +5828,7 @@ pub extern "netapi32" fn NetGroupGetUsers(
     entriesread: ?*u32,
     totalentries: ?*u32,
     ResumeHandle: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGroupSetUsers(
@@ -5837,7 +5837,7 @@ pub extern "netapi32" fn NetGroupSetUsers(
     level: u32,
     buf: ?*u8,
     totalentries: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetLocalGroupAdd(
@@ -5845,13 +5845,13 @@ pub extern "netapi32" fn NetLocalGroupAdd(
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetLocalGroupAddMember(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     membersid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetLocalGroupEnum(
@@ -5862,7 +5862,7 @@ pub extern "netapi32" fn NetLocalGroupEnum(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resumehandle: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetLocalGroupGetInfo(
@@ -5870,7 +5870,7 @@ pub extern "netapi32" fn NetLocalGroupGetInfo(
     groupname: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetLocalGroupSetInfo(
@@ -5879,19 +5879,19 @@ pub extern "netapi32" fn NetLocalGroupSetInfo(
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetLocalGroupDel(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetLocalGroupDelMember(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     membersid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetLocalGroupGetMembers(
@@ -5903,7 +5903,7 @@ pub extern "netapi32" fn NetLocalGroupGetMembers(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resumehandle: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetLocalGroupSetMembers(
@@ -5912,7 +5912,7 @@ pub extern "netapi32" fn NetLocalGroupSetMembers(
     level: u32,
     buf: ?*u8,
     totalentries: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetLocalGroupAddMembers(
@@ -5921,7 +5921,7 @@ pub extern "netapi32" fn NetLocalGroupAddMembers(
     level: u32,
     buf: ?*u8,
     totalentries: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetLocalGroupDelMembers(
@@ -5930,7 +5930,7 @@ pub extern "netapi32" fn NetLocalGroupDelMembers(
     level: u32,
     buf: ?*u8,
     totalentries: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetQueryDisplayInformation(
@@ -5941,7 +5941,7 @@ pub extern "netapi32" fn NetQueryDisplayInformation(
     PreferredMaximumLength: u32,
     ReturnedEntryCount: ?*u32,
     SortedBuffer: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGetDisplayInformationIndex(
@@ -5949,7 +5949,7 @@ pub extern "netapi32" fn NetGetDisplayInformationIndex(
     Level: u32,
     Prefix: ?[*:0]const u16,
     Index: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetAccessAdd(
@@ -5957,7 +5957,7 @@ pub extern "netapi32" fn NetAccessAdd(
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetAccessEnum(
@@ -5970,7 +5970,7 @@ pub extern "netapi32" fn NetAccessEnum(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resume_handle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetAccessGetInfo(
@@ -5978,7 +5978,7 @@ pub extern "netapi32" fn NetAccessGetInfo(
     resource: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetAccessSetInfo(
@@ -5987,13 +5987,13 @@ pub extern "netapi32" fn NetAccessSetInfo(
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetAccessDel(
     servername: ?[*:0]const u16,
     resource: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetAccessGetUserPerms(
@@ -6001,7 +6001,7 @@ pub extern "netapi32" fn NetAccessGetUserPerms(
     UGname: ?[*:0]const u16,
     resource: ?[*:0]const u16,
     Perms: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "netapi32" fn NetValidatePasswordPolicy(
@@ -6010,26 +6010,26 @@ pub extern "netapi32" fn NetValidatePasswordPolicy(
     ValidationType: NET_VALIDATE_PASSWORD_TYPE,
     InputArg: ?*anyopaque,
     OutputArg: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "netapi32" fn NetValidatePasswordPolicyFree(
     OutputArg: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGetDCName(
     ServerName: ?[*:0]const u16,
     DomainName: ?[*:0]const u16,
     Buffer: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGetAnyDCName(
     ServerName: ?[*:0]const u16,
     DomainName: ?[*:0]const u16,
     Buffer: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn I_NetLogonControl2(
     ServerName: ?[*:0]const u16,
@@ -6037,7 +6037,7 @@ pub extern "netapi32" fn I_NetLogonControl2(
     QueryLevel: u32,
     Data: ?*u8,
     Buffer: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetAddServiceAccount(
@@ -6045,14 +6045,14 @@ pub extern "netapi32" fn NetAddServiceAccount(
     AccountName: ?PWSTR,
     Password: ?PWSTR,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetRemoveServiceAccount(
     ServerName: ?PWSTR,
     AccountName: ?PWSTR,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetEnumerateServiceAccounts(
@@ -6060,14 +6060,14 @@ pub extern "netapi32" fn NetEnumerateServiceAccounts(
     Flags: u32,
     AccountsCount: ?*u32,
     Accounts: ?*?*?*u16,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetIsServiceAccount(
     ServerName: ?PWSTR,
     AccountName: ?PWSTR,
     IsService: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetQueryServiceAccount(
@@ -6075,14 +6075,14 @@ pub extern "netapi32" fn NetQueryServiceAccount(
     AccountName: ?PWSTR,
     InfoLevel: u32,
     Buffer: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetAlertRaise(
     AlertType: ?[*:0]const u16,
     Buffer: ?*anyopaque,
     BufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetAlertRaiseEx(
@@ -6090,13 +6090,13 @@ pub extern "netapi32" fn NetAlertRaiseEx(
     VariableInfo: ?*anyopaque,
     VariableInfoSize: u32,
     ServiceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetMessageNameAdd(
     servername: ?[*:0]const u16,
     msgname: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetMessageNameEnum(
@@ -6107,7 +6107,7 @@ pub extern "netapi32" fn NetMessageNameEnum(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resume_handle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetMessageNameGetInfo(
@@ -6115,13 +6115,13 @@ pub extern "netapi32" fn NetMessageNameGetInfo(
     msgname: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetMessageNameDel(
     servername: ?[*:0]const u16,
     msgname: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetMessageBufferSend(
@@ -6130,45 +6130,45 @@ pub extern "netapi32" fn NetMessageBufferSend(
     fromname: ?[*:0]const u16,
     buf: ?*u8,
     buflen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetRemoteTOD(
     UncServerName: ?[*:0]const u16,
     BufferPtr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetRemoteComputerSupports(
     UncServerName: ?[*:0]const u16,
     OptionsWanted: NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS,
     OptionsSupported: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplGetInfo(
     servername: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplSetInfo(
     servername: ?[*:0]const u16,
     level: u32,
     buf: ?*const u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplExportDirAdd(
     servername: ?[*:0]const u16,
     level: u32,
     buf: ?*const u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplExportDirDel(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplExportDirEnum(
     servername: ?[*:0]const u16,
@@ -6178,14 +6178,14 @@ pub extern "netapi32" fn NetReplExportDirEnum(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resumehandle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplExportDirGetInfo(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplExportDirSetInfo(
     servername: ?[*:0]const u16,
@@ -6193,30 +6193,30 @@ pub extern "netapi32" fn NetReplExportDirSetInfo(
     level: u32,
     buf: ?*const u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplExportDirLock(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplExportDirUnlock(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
     unlockforce: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplImportDirAdd(
     servername: ?[*:0]const u16,
     level: u32,
     buf: ?*const u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplImportDirDel(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplImportDirEnum(
     servername: ?[*:0]const u16,
@@ -6226,25 +6226,25 @@ pub extern "netapi32" fn NetReplImportDirEnum(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resumehandle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplImportDirGetInfo(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplImportDirLock(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplImportDirUnlock(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
     unlockforce: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerEnum(
@@ -6257,14 +6257,14 @@ pub extern "netapi32" fn NetServerEnum(
     servertype: NET_SERVER_TYPE,
     domain: ?[*:0]const u16,
     resume_handle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerGetInfo(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerSetInfo(
@@ -6272,7 +6272,7 @@ pub extern "netapi32" fn NetServerSetInfo(
     level: u32,
     buf: ?*u8,
     ParmError: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerDiskEnum(
@@ -6283,41 +6283,41 @@ pub extern "netapi32" fn NetServerDiskEnum(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resume_handle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerComputerNameAdd(
     ServerName: ?PWSTR,
     EmulatedDomainName: ?PWSTR,
     EmulatedServerName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerComputerNameDel(
     ServerName: ?PWSTR,
     EmulatedServerName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerTransportAdd(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerTransportAddEx(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerTransportDel(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerTransportEnum(
@@ -6328,7 +6328,7 @@ pub extern "netapi32" fn NetServerTransportEnum(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resume_handle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetServiceControl(
     servername: ?[*:0]const u16,
@@ -6336,7 +6336,7 @@ pub extern "netapi32" fn NetServiceControl(
     opcode: u32,
     arg: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetServiceEnum(
     servername: ?[*:0]const u16,
@@ -6346,14 +6346,14 @@ pub extern "netapi32" fn NetServiceEnum(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resume_handle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetServiceGetInfo(
     servername: ?[*:0]const u16,
     service: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetServiceInstall(
     servername: ?[*:0]const u16,
@@ -6361,7 +6361,7 @@ pub extern "netapi32" fn NetServiceInstall(
     argc: u32,
     argv: [*]?PWSTR,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUseAdd(
@@ -6369,14 +6369,14 @@ pub extern "netapi32" fn NetUseAdd(
     LevelFlags: u32,
     buf: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUseDel(
     UncServerName: ?PWSTR,
     UseName: ?PWSTR,
     ForceLevelFlags: FORCE_LEVEL_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUseEnum(
@@ -6387,7 +6387,7 @@ pub extern "netapi32" fn NetUseEnum(
     EntriesRead: ?*u32,
     TotalEntries: ?*u32,
     ResumeHandle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUseGetInfo(
@@ -6395,14 +6395,14 @@ pub extern "netapi32" fn NetUseGetInfo(
     UseName: ?PWSTR,
     LevelFlags: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetWkstaGetInfo(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetWkstaSetInfo(
@@ -6410,14 +6410,14 @@ pub extern "netapi32" fn NetWkstaSetInfo(
     level: u32,
     buffer: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetWkstaUserGetInfo(
     reserved: ?PWSTR,
     level: u32,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetWkstaUserSetInfo(
@@ -6425,7 +6425,7 @@ pub extern "netapi32" fn NetWkstaUserSetInfo(
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetWkstaUserEnum(
@@ -6436,20 +6436,20 @@ pub extern "netapi32" fn NetWkstaUserEnum(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resumehandle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetWkstaTransportAdd(
     servername: ?*i8,
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetWkstaTransportDel(
     servername: ?PWSTR,
     transportname: ?PWSTR,
     ucond: FORCE_LEVEL_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetWkstaTransportEnum(
@@ -6460,37 +6460,37 @@ pub extern "netapi32" fn NetWkstaTransportEnum(
     entriesread: ?*u32,
     totalentries: ?*u32,
     resume_handle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetApiBufferAllocate(
     ByteCount: u32,
     Buffer: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetApiBufferFree(
     Buffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetApiBufferReallocate(
     OldBuffer: ?*anyopaque,
     NewByteCount: u32,
     NewBuffer: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetApiBufferSize(
     Buffer: ?*anyopaque,
     ByteCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetErrorLogClear(
     UncServerName: ?[*:0]const u16,
     BackupFile: ?[*:0]const u16,
     Reserved: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetErrorLogRead(
     UncServerName: ?[*:0]const u16,
@@ -6504,7 +6504,7 @@ pub extern "netapi32" fn NetErrorLogRead(
     PrefMaxSize: u32,
     BytesRead: ?*u32,
     TotalAvailable: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetErrorLogWrite(
     Reserved1: ?*u8,
@@ -6515,20 +6515,20 @@ pub extern "netapi32" fn NetErrorLogWrite(
     MsgBuf: ?*u8,
     StrCount: u32,
     Reserved2: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetConfigGet(
     server: ?[*:0]const u16,
     component: ?[*:0]const u16,
     parameter: ?[*:0]const u16,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetConfigGetAll(
     server: ?[*:0]const u16,
     component: ?[*:0]const u16,
     bufptr: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetConfigSet(
     server: ?[*:0]const u16,
@@ -6538,13 +6538,13 @@ pub extern "netapi32" fn NetConfigSet(
     reserved2: u32,
     buf: ?*u8,
     reserved3: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetAuditClear(
     server: ?[*:0]const u16,
     backupfile: ?[*:0]const u16,
     service: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetAuditRead(
     server: ?[*:0]const u16,
@@ -6558,7 +6558,7 @@ pub extern "netapi32" fn NetAuditRead(
     prefmaxlen: u32,
     bytesread: ?*u32,
     totalavailable: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetAuditWrite(
     type: u32,
@@ -6566,7 +6566,7 @@ pub extern "netapi32" fn NetAuditWrite(
     numbytes: u32,
     service: ?[*:0]const u16,
     reserved: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetJoinDomain(
@@ -6576,7 +6576,7 @@ pub extern "netapi32" fn NetJoinDomain(
     lpAccount: ?[*:0]const u16,
     lpPassword: ?[*:0]const u16,
     fJoinOptions: NET_JOIN_DOMAIN_JOIN_OPTIONS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUnjoinDomain(
@@ -6584,7 +6584,7 @@ pub extern "netapi32" fn NetUnjoinDomain(
     lpAccount: ?[*:0]const u16,
     lpPassword: ?[*:0]const u16,
     fUnjoinOptions: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetRenameMachineInDomain(
@@ -6593,7 +6593,7 @@ pub extern "netapi32" fn NetRenameMachineInDomain(
     lpAccount: ?[*:0]const u16,
     lpPassword: ?[*:0]const u16,
     fRenameOptions: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetValidateName(
@@ -6602,7 +6602,7 @@ pub extern "netapi32" fn NetValidateName(
     lpAccount: ?[*:0]const u16,
     lpPassword: ?[*:0]const u16,
     NameType: NETSETUP_NAME_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGetJoinableOUs(
@@ -6612,7 +6612,7 @@ pub extern "netapi32" fn NetGetJoinableOUs(
     lpPassword: ?[*:0]const u16,
     OUCount: ?*u32,
     OUs: ?*?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetAddAlternateComputerName(
@@ -6621,7 +6621,7 @@ pub extern "netapi32" fn NetAddAlternateComputerName(
     DomainAccount: ?[*:0]const u16,
     DomainAccountPassword: ?[*:0]const u16,
     Reserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetRemoveAlternateComputerName(
@@ -6630,7 +6630,7 @@ pub extern "netapi32" fn NetRemoveAlternateComputerName(
     DomainAccount: ?[*:0]const u16,
     DomainAccountPassword: ?[*:0]const u16,
     Reserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetSetPrimaryComputerName(
@@ -6639,7 +6639,7 @@ pub extern "netapi32" fn NetSetPrimaryComputerName(
     DomainAccount: ?[*:0]const u16,
     DomainAccountPassword: ?[*:0]const u16,
     Reserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetEnumerateComputerNames(
@@ -6648,7 +6648,7 @@ pub extern "netapi32" fn NetEnumerateComputerNames(
     Reserved: u32,
     EntryCount: ?*u32,
     ComputerNames: ?*?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetProvisionComputerAccount(
@@ -6660,7 +6660,7 @@ pub extern "netapi32" fn NetProvisionComputerAccount(
     pProvisionBinData: ?*?*u8,
     pdwProvisionBinDataSize: ?*u32,
     pProvisionTextData: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetRequestOfflineDomainJoin(
@@ -6669,7 +6669,7 @@ pub extern "netapi32" fn NetRequestOfflineDomainJoin(
     cbProvisionBinDataSize: u32,
     dwOptions: NET_REQUEST_PROVISION_OPTIONS,
     lpWindowsPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "netapi32" fn NetCreateProvisioningPackage(
@@ -6677,7 +6677,7 @@ pub extern "netapi32" fn NetCreateProvisioningPackage(
     ppPackageBinData: ?*?*u8,
     pdwPackageBinDataSize: ?*u32,
     ppPackageTextData: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "netapi32" fn NetRequestProvisioningPackageInstall(
@@ -6687,53 +6687,53 @@ pub extern "netapi32" fn NetRequestProvisioningPackageInstall(
     dwProvisionOptions: NET_REQUEST_PROVISION_OPTIONS,
     lpWindowsPath: ?[*:0]const u16,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "netapi32" fn NetGetAadJoinInformation(
     pcszTenantId: ?[*:0]const u16,
     ppJoinInfo: ?*?*DSREG_JOIN_INFO,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "netapi32" fn NetFreeAadJoinInformation(
     pJoinInfo: ?*DSREG_JOIN_INFO,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGetJoinInformation(
     lpServer: ?[*:0]const u16,
     lpNameBuffer: ?*?PWSTR,
     BufferType: ?*NETSETUP_JOIN_STATUS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mstask" fn GetNetScheduleAccountInformation(
     pwszServerName: ?[*:0]const u16,
     ccAccount: u32,
     wszAccount: [*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mstask" fn SetNetScheduleAccountInformation(
     pwszServerName: ?[*:0]const u16,
     pwszAccount: ?[*:0]const u16,
     pwszPassword: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetScheduleJobAdd(
     Servername: ?[*:0]const u16,
     Buffer: ?*u8,
     JobId: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetScheduleJobDel(
     Servername: ?[*:0]const u16,
     MinJobId: u32,
     MaxJobId: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetScheduleJobEnum(
@@ -6743,57 +6743,57 @@ pub extern "netapi32" fn NetScheduleJobEnum(
     EntriesRead: ?*u32,
     TotalEntries: ?*u32,
     ResumeHandle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetScheduleJobGetInfo(
     Servername: ?[*:0]const u16,
     JobId: u32,
     PointerToBuffer: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TraceRegisterExA(
     lpszCallerName: ?[*:0]const u8,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TraceDeregisterA(
     dwTraceID: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TraceDeregisterExA(
     dwTraceID: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TraceGetConsoleA(
     dwTraceID: u32,
     lphConsole: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TracePrintfA(
     dwTraceID: u32,
     lpszFormat: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TracePrintfExA(
     dwTraceID: u32,
     dwFlags: u32,
     lpszFormat: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TraceVprintfExA(
     dwTraceID: u32,
     dwFlags: u32,
     lpszFormat: ?[*:0]const u8,
     arglist: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TracePutsExA(
     dwTraceID: u32,
     dwFlags: u32,
     lpszString: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TraceDumpExA(
     dwTraceID: u32,
@@ -6803,50 +6803,50 @@ pub extern "rtutils" fn TraceDumpExA(
     dwGroupSize: u32,
     bAddressPrefix: BOOL,
     lpszPrefix: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TraceRegisterExW(
     lpszCallerName: ?[*:0]const u16,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TraceDeregisterW(
     dwTraceID: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TraceDeregisterExW(
     dwTraceID: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TraceGetConsoleW(
     dwTraceID: u32,
     lphConsole: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TracePrintfW(
     dwTraceID: u32,
     lpszFormat: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TracePrintfExW(
     dwTraceID: u32,
     dwFlags: u32,
     lpszFormat: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TraceVprintfExW(
     dwTraceID: u32,
     dwFlags: u32,
     lpszFormat: ?[*:0]const u16,
     arglist: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TracePutsExW(
     dwTraceID: u32,
     dwFlags: u32,
     lpszString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn TraceDumpExW(
     dwTraceID: u32,
@@ -6856,43 +6856,43 @@ pub extern "rtutils" fn TraceDumpExW(
     dwGroupSize: u32,
     bAddressPrefix: BOOL,
     lpszPrefix: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn LogErrorA(
     dwMessageId: u32,
     cNumberOfSubStrings: u32,
     plpwsSubStrings: [*]?PSTR,
     dwErrorCode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn LogEventA(
     wEventType: u32,
     dwMessageId: u32,
     cNumberOfSubStrings: u32,
     plpwsSubStrings: [*]?PSTR,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn LogErrorW(
     dwMessageId: u32,
     cNumberOfSubStrings: u32,
     plpwsSubStrings: [*]?PWSTR,
     dwErrorCode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn LogEventW(
     wEventType: u32,
     dwMessageId: u32,
     cNumberOfSubStrings: u32,
     plpwsSubStrings: [*]?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogRegisterA(
     lpszSource: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "rtutils" fn RouterLogDeregisterA(
     hLogHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventA(
     hLogHandle: ?HANDLE,
@@ -6901,7 +6901,7 @@ pub extern "rtutils" fn RouterLogEventA(
     dwSubStringCount: u32,
     plpszSubStringArray: ?[*]?PSTR,
     dwErrorCode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventDataA(
     hLogHandle: ?HANDLE,
@@ -6911,7 +6911,7 @@ pub extern "rtutils" fn RouterLogEventDataA(
     plpszSubStringArray: ?[*]?PSTR,
     dwDataBytes: u32,
     lpDataBytes: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventStringA(
     hLogHandle: ?HANDLE,
@@ -6921,7 +6921,7 @@ pub extern "rtutils" fn RouterLogEventStringA(
     plpszSubStringArray: [*]?PSTR,
     dwErrorCode: u32,
     dwErrorIndex: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventExA(
     hLogHandle: ?HANDLE,
@@ -6929,7 +6929,7 @@ pub extern "rtutils" fn RouterLogEventExA(
     dwErrorCode: u32,
     dwMessageId: u32,
     ptszFormat: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventValistExA(
     hLogHandle: ?HANDLE,
@@ -6938,20 +6938,20 @@ pub extern "rtutils" fn RouterLogEventValistExA(
     dwMessageId: u32,
     ptszFormat: ?[*:0]const u8,
     arglist: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterGetErrorStringA(
     dwErrorCode: u32,
     lplpszErrorString: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn RouterLogRegisterW(
     lpszSource: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "rtutils" fn RouterLogDeregisterW(
     hLogHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventW(
     hLogHandle: ?HANDLE,
@@ -6960,7 +6960,7 @@ pub extern "rtutils" fn RouterLogEventW(
     dwSubStringCount: u32,
     plpszSubStringArray: ?[*]?PWSTR,
     dwErrorCode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventDataW(
     hLogHandle: ?HANDLE,
@@ -6970,7 +6970,7 @@ pub extern "rtutils" fn RouterLogEventDataW(
     plpszSubStringArray: ?[*]?PWSTR,
     dwDataBytes: u32,
     lpDataBytes: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventStringW(
     hLogHandle: ?HANDLE,
@@ -6980,7 +6980,7 @@ pub extern "rtutils" fn RouterLogEventStringW(
     plpszSubStringArray: [*]?PWSTR,
     dwErrorCode: u32,
     dwErrorIndex: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventExW(
     hLogHandle: ?HANDLE,
@@ -6988,7 +6988,7 @@ pub extern "rtutils" fn RouterLogEventExW(
     dwErrorCode: u32,
     dwMessageId: u32,
     ptszFormat: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventValistExW(
     hLogHandle: ?HANDLE,
@@ -6997,29 +6997,29 @@ pub extern "rtutils" fn RouterLogEventValistExW(
     dwMessageId: u32,
     ptszFormat: ?[*:0]const u16,
     arglist: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterGetErrorStringW(
     dwErrorCode: u32,
     lplpwszErrorString: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn RouterAssert(
     pszFailedAssertion: ?PSTR,
     pszFileName: ?PSTR,
     dwLineNumber: u32,
     pszMessage: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "rtutils" fn MprSetupProtocolEnum(
     dwTransportId: u32,
     lplpBuffer: ?*?*u8,
     lpdwEntriesRead: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn MprSetupProtocolFree(
     lpBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

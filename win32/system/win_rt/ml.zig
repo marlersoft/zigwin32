@@ -14,7 +14,7 @@ pub const ILearningModelOperatorProviderNative = extern union {
         GetRegistry: *const fn(
             self: *const ILearningModelOperatorProviderNative,
             ppOperatorRegistry: ?*?*IMLOperatorRegistry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -32,11 +32,11 @@ pub const ITensorNative = extern union {
             self: *const ITensorNative,
             value: [*]?*u8,
             capacity: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetD3D12Resource: *const fn(
             self: *const ITensorNative,
             result: ?*?*ID3D12Resource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -59,7 +59,7 @@ pub const ITensorStaticsNative = extern union {
             shape: ?*i64,
             shapeCount: i32,
             result: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -77,7 +77,7 @@ pub const ILearningModelDeviceFactoryNative = extern union {
             self: *const ILearningModelDeviceFactoryNative,
             value: ?*ID3D12CommandQueue,
             result: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -94,7 +94,7 @@ pub const ILearningModelSessionOptionsNative = extern union {
         SetIntraOpNumThreadsOverride: *const fn(
             self: *const ILearningModelSessionOptionsNative,
             intraOpNumThreads: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

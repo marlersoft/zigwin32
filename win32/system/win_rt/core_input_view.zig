@@ -16,7 +16,7 @@ pub const ICoreFrameworkInputViewInterop = extern union {
             appWindow: ?HWND,
             riid: ?*const Guid,
             coreFrameworkInputView: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,

@@ -36,34 +36,34 @@ pub const IEventSystem = extern union {
             queryCriteria: ?BSTR,
             errorIndex: ?*i32,
             ppInterface: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Store: *const fn(
             self: *const IEventSystem,
             ProgID: ?BSTR,
             pInterface: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IEventSystem,
             progID: ?BSTR,
             queryCriteria: ?BSTR,
             errorIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventObjectChangeEventClassID: *const fn(
             self: *const IEventSystem,
             pbstrEventClassID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryS: *const fn(
             self: *const IEventSystem,
             progID: ?BSTR,
             queryCriteria: ?BSTR,
             ppInterface: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveS: *const fn(
             self: *const IEventSystem,
             progID: ?BSTR,
             queryCriteria: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -98,70 +98,70 @@ pub const IEventPublisher = extern union {
         get_PublisherID: *const fn(
             self: *const IEventPublisher,
             pbstrPublisherID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PublisherID: *const fn(
             self: *const IEventPublisher,
             bstrPublisherID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PublisherName: *const fn(
             self: *const IEventPublisher,
             pbstrPublisherName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PublisherName: *const fn(
             self: *const IEventPublisher,
             bstrPublisherName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PublisherType: *const fn(
             self: *const IEventPublisher,
             pbstrPublisherType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PublisherType: *const fn(
             self: *const IEventPublisher,
             bstrPublisherType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OwnerSID: *const fn(
             self: *const IEventPublisher,
             pbstrOwnerSID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OwnerSID: *const fn(
             self: *const IEventPublisher,
             bstrOwnerSID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IEventPublisher,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IEventPublisher,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultProperty: *const fn(
             self: *const IEventPublisher,
             bstrPropertyName: ?BSTR,
             propertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PutDefaultProperty: *const fn(
             self: *const IEventPublisher,
             bstrPropertyName: ?BSTR,
             propertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveDefaultProperty: *const fn(
             self: *const IEventPublisher,
             bstrPropertyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultPropertyCollection: *const fn(
             self: *const IEventPublisher,
             collection: ?*?*IEventObjectCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -220,72 +220,72 @@ pub const IEventClass = extern union {
         get_EventClassID: *const fn(
             self: *const IEventClass,
             pbstrEventClassID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventClassID: *const fn(
             self: *const IEventClass,
             bstrEventClassID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventClassName: *const fn(
             self: *const IEventClass,
             pbstrEventClassName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventClassName: *const fn(
             self: *const IEventClass,
             bstrEventClassName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OwnerSID: *const fn(
             self: *const IEventClass,
             pbstrOwnerSID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OwnerSID: *const fn(
             self: *const IEventClass,
             bstrOwnerSID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FiringInterfaceID: *const fn(
             self: *const IEventClass,
             pbstrFiringInterfaceID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FiringInterfaceID: *const fn(
             self: *const IEventClass,
             bstrFiringInterfaceID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IEventClass,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IEventClass,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CustomConfigCLSID: *const fn(
             self: *const IEventClass,
             pbstrCustomConfigCLSID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CustomConfigCLSID: *const fn(
             self: *const IEventClass,
             bstrCustomConfigCLSID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TypeLib: *const fn(
             self: *const IEventClass,
             pbstrTypeLib: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TypeLib: *const fn(
             self: *const IEventClass,
             bstrTypeLib: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -344,42 +344,42 @@ pub const IEventClass2 = extern union {
         get_PublisherID: *const fn(
             self: *const IEventClass2,
             pbstrPublisherID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PublisherID: *const fn(
             self: *const IEventClass2,
             bstrPublisherID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MultiInterfacePublisherFilterCLSID: *const fn(
             self: *const IEventClass2,
             pbstrPubFilCLSID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MultiInterfacePublisherFilterCLSID: *const fn(
             self: *const IEventClass2,
             bstrPubFilCLSID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowInprocActivation: *const fn(
             self: *const IEventClass2,
             pfAllowInprocActivation: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowInprocActivation: *const fn(
             self: *const IEventClass2,
             fAllowInprocActivation: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FireInParallel: *const fn(
             self: *const IEventClass2,
             pfFireInParallel: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FireInParallel: *const fn(
             self: *const IEventClass2,
             fFireInParallel: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IEventClass: IEventClass,
@@ -421,168 +421,168 @@ pub const IEventSubscription = extern union {
         get_SubscriptionID: *const fn(
             self: *const IEventSubscription,
             pbstrSubscriptionID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SubscriptionID: *const fn(
             self: *const IEventSubscription,
             bstrSubscriptionID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SubscriptionName: *const fn(
             self: *const IEventSubscription,
             pbstrSubscriptionName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SubscriptionName: *const fn(
             self: *const IEventSubscription,
             bstrSubscriptionName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PublisherID: *const fn(
             self: *const IEventSubscription,
             pbstrPublisherID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PublisherID: *const fn(
             self: *const IEventSubscription,
             bstrPublisherID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventClassID: *const fn(
             self: *const IEventSubscription,
             pbstrEventClassID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventClassID: *const fn(
             self: *const IEventSubscription,
             bstrEventClassID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MethodName: *const fn(
             self: *const IEventSubscription,
             pbstrMethodName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MethodName: *const fn(
             self: *const IEventSubscription,
             bstrMethodName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SubscriberCLSID: *const fn(
             self: *const IEventSubscription,
             pbstrSubscriberCLSID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SubscriberCLSID: *const fn(
             self: *const IEventSubscription,
             bstrSubscriberCLSID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SubscriberInterface: *const fn(
             self: *const IEventSubscription,
             ppSubscriberInterface: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SubscriberInterface: *const fn(
             self: *const IEventSubscription,
             pSubscriberInterface: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PerUser: *const fn(
             self: *const IEventSubscription,
             pfPerUser: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PerUser: *const fn(
             self: *const IEventSubscription,
             fPerUser: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OwnerSID: *const fn(
             self: *const IEventSubscription,
             pbstrOwnerSID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OwnerSID: *const fn(
             self: *const IEventSubscription,
             bstrOwnerSID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IEventSubscription,
             pfEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IEventSubscription,
             fEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IEventSubscription,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IEventSubscription,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MachineName: *const fn(
             self: *const IEventSubscription,
             pbstrMachineName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MachineName: *const fn(
             self: *const IEventSubscription,
             bstrMachineName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPublisherProperty: *const fn(
             self: *const IEventSubscription,
             bstrPropertyName: ?BSTR,
             propertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PutPublisherProperty: *const fn(
             self: *const IEventSubscription,
             bstrPropertyName: ?BSTR,
             propertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemovePublisherProperty: *const fn(
             self: *const IEventSubscription,
             bstrPropertyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPublisherPropertyCollection: *const fn(
             self: *const IEventSubscription,
             collection: ?*?*IEventObjectCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubscriberProperty: *const fn(
             self: *const IEventSubscription,
             bstrPropertyName: ?BSTR,
             propertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PutSubscriberProperty: *const fn(
             self: *const IEventSubscription,
             bstrPropertyName: ?BSTR,
             propertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveSubscriberProperty: *const fn(
             self: *const IEventSubscription,
             bstrPropertyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubscriberPropertyCollection: *const fn(
             self: *const IEventSubscription,
             collection: ?*?*IEventObjectCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InterfaceID: *const fn(
             self: *const IEventSubscription,
             pbstrInterfaceID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InterfaceID: *const fn(
             self: *const IEventSubscription,
             bstrInterfaceID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -700,7 +700,7 @@ pub const IFiringControl = extern union {
         FireSubscription: *const fn(
             self: *const IFiringControl,
             subscription: ?*IEventSubscription,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -720,12 +720,12 @@ pub const IPublisherFilter = extern union {
             self: *const IPublisherFilter,
             methodName: ?BSTR,
             dispUserDefined: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PrepareToFire: *const fn(
             self: *const IPublisherFilter,
             methodName: ?BSTR,
             firingControl: ?*IFiringControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -746,13 +746,13 @@ pub const IMultiInterfacePublisherFilter = extern union {
         Initialize: *const fn(
             self: *const IMultiInterfacePublisherFilter,
             pEIC: ?*IMultiInterfaceEventControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PrepareToFire: *const fn(
             self: *const IMultiInterfacePublisherFilter,
             iid: ?*const Guid,
             methodName: ?BSTR,
             firingControl: ?*IFiringControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -783,17 +783,17 @@ pub const IEventObjectChange = extern union {
             self: *const IEventObjectChange,
             changeType: EOC_ChangeType,
             bstrSubscriptionID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ChangedEventClass: *const fn(
             self: *const IEventObjectChange,
             changeType: EOC_ChangeType,
             bstrEventClassID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ChangedPublisher: *const fn(
             self: *const IEventObjectChange,
             changeType: EOC_ChangeType,
             bstrPublisherID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -826,11 +826,11 @@ pub const IEventObjectChange2 = extern union {
         ChangedSubscription: *const fn(
             self: *const IEventObjectChange2,
             pInfo: ?*COMEVENTSYSCHANGEINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ChangedEventClass: *const fn(
             self: *const IEventObjectChange2,
             pInfo: ?*COMEVENTSYSCHANGEINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -851,20 +851,20 @@ pub const IEnumEventObject = extern union {
         Clone: *const fn(
             self: *const IEnumEventObject,
             ppInterface: ?*?*IEnumEventObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IEnumEventObject,
             cReqElem: u32,
             ppInterface: [*]?*IUnknown,
             cRetElem: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumEventObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumEventObject,
             cSkipElem: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -892,31 +892,31 @@ pub const IEventObjectCollection = extern union {
         get__NewEnum: *const fn(
             self: *const IEventObjectCollection,
             ppUnkEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IEventObjectCollection,
             objectID: ?BSTR,
             pItem: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NewEnum: *const fn(
             self: *const IEventObjectCollection,
             ppEnum: ?*?*IEnumEventObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IEventObjectCollection,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IEventObjectCollection,
             item: ?*VARIANT,
             objectID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IEventObjectCollection,
             objectID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -951,22 +951,22 @@ pub const IEventProperty = extern union {
         get_Name: *const fn(
             self: *const IEventProperty,
             propertyName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IEventProperty,
             propertyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const IEventProperty,
             propertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const IEventProperty,
             propertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -995,30 +995,30 @@ pub const IEventControl = extern union {
             self: *const IEventControl,
             methodName: ?BSTR,
             pPublisherFilter: ?*IPublisherFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowInprocActivation: *const fn(
             self: *const IEventControl,
             pfAllowInprocActivation: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowInprocActivation: *const fn(
             self: *const IEventControl,
             fAllowInprocActivation: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubscriptions: *const fn(
             self: *const IEventControl,
             methodName: ?BSTR,
             optionalCriteria: ?BSTR,
             optionalErrorIndex: ?*i32,
             ppCollection: ?*?*IEventObjectCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultQuery: *const fn(
             self: *const IEventControl,
             methodName: ?BSTR,
             criteria: ?BSTR,
             errorIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
@@ -1049,7 +1049,7 @@ pub const IMultiInterfaceEventControl = extern union {
         SetMultiInterfacePublisherFilter: *const fn(
             self: *const IMultiInterfaceEventControl,
             classFilter: ?*IMultiInterfacePublisherFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubscriptions: *const fn(
             self: *const IMultiInterfaceEventControl,
             eventIID: ?*const Guid,
@@ -1057,34 +1057,34 @@ pub const IMultiInterfaceEventControl = extern union {
             optionalCriteria: ?BSTR,
             optionalErrorIndex: ?*i32,
             ppCollection: ?*?*IEventObjectCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultQuery: *const fn(
             self: *const IMultiInterfaceEventControl,
             eventIID: ?*const Guid,
             bstrMethodName: ?BSTR,
             bstrCriteria: ?BSTR,
             errorIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowInprocActivation: *const fn(
             self: *const IMultiInterfaceEventControl,
             pfAllowInprocActivation: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowInprocActivation: *const fn(
             self: *const IMultiInterfaceEventControl,
             fAllowInprocActivation: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FireInParallel: *const fn(
             self: *const IMultiInterfaceEventControl,
             pfFireInParallel: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FireInParallel: *const fn(
             self: *const IMultiInterfaceEventControl,
             fFireInParallel: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,

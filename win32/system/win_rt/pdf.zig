@@ -9,7 +9,7 @@
 pub const PFN_PDF_CREATE_RENDERER = *const fn(
     param0: ?*IDXGIDevice,
     param1: ?*?*IPdfRendererNative,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PDF_RENDER_PARAMS = extern struct {
     SourceRect: D2D_RECT_F,
@@ -30,13 +30,13 @@ pub const IPdfRendererNative = extern union {
             pSurface: ?*IDXGISurface,
             offset: POINT,
             pRenderParams: ?*PDF_RENDER_PARAMS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RenderPageToDeviceContext: *const fn(
             self: *const IPdfRendererNative,
             pdfPage: ?*IUnknown,
             pD2DDeviceContext: ?*ID2D1DeviceContext,
             pRenderParams: ?*PDF_RENDER_PARAMS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -55,7 +55,7 @@ pub const IPdfRendererNative = extern union {
 pub extern "windows.data.pdf" fn PdfCreateRenderer(
     pDevice: ?*IDXGIDevice,
     ppRenderer: ?*?*IPdfRendererNative,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

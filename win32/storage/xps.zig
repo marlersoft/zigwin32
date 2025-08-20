@@ -346,7 +346,7 @@ pub const PSFEATURE_CUSTPAPER = extern struct {
 pub const ABORTPROC = *const fn(
     param0: ?HDC,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const DOCINFOA = extern struct {
     cbSize: i32,
@@ -625,11 +625,11 @@ pub const IXpsOMShareable = extern union {
         GetOwner: *const fn(
             self: *const IXpsOMShareable,
             owner: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const IXpsOMShareable,
             type: ?*XPS_OBJECT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -650,103 +650,103 @@ pub const IXpsOMVisual = extern union {
         GetTransform: *const fn(
             self: *const IXpsOMVisual,
             matrixTransform: ?*?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformLocal: *const fn(
             self: *const IXpsOMVisual,
             matrixTransform: ?*?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransformLocal: *const fn(
             self: *const IXpsOMVisual,
             matrixTransform: ?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformLookup: *const fn(
             self: *const IXpsOMVisual,
             key: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransformLookup: *const fn(
             self: *const IXpsOMVisual,
             key: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClipGeometry: *const fn(
             self: *const IXpsOMVisual,
             clipGeometry: ?*?*IXpsOMGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClipGeometryLocal: *const fn(
             self: *const IXpsOMVisual,
             clipGeometry: ?*?*IXpsOMGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClipGeometryLocal: *const fn(
             self: *const IXpsOMVisual,
             clipGeometry: ?*IXpsOMGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClipGeometryLookup: *const fn(
             self: *const IXpsOMVisual,
             key: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClipGeometryLookup: *const fn(
             self: *const IXpsOMVisual,
             key: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOpacity: *const fn(
             self: *const IXpsOMVisual,
             opacity: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOpacity: *const fn(
             self: *const IXpsOMVisual,
             opacity: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOpacityMaskBrush: *const fn(
             self: *const IXpsOMVisual,
             opacityMaskBrush: ?*?*IXpsOMBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOpacityMaskBrushLocal: *const fn(
             self: *const IXpsOMVisual,
             opacityMaskBrush: ?*?*IXpsOMBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOpacityMaskBrushLocal: *const fn(
             self: *const IXpsOMVisual,
             opacityMaskBrush: ?*IXpsOMBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOpacityMaskBrushLookup: *const fn(
             self: *const IXpsOMVisual,
             key: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOpacityMaskBrushLookup: *const fn(
             self: *const IXpsOMVisual,
             key: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IXpsOMVisual,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetName: *const fn(
             self: *const IXpsOMVisual,
             name: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIsHyperlinkTarget: *const fn(
             self: *const IXpsOMVisual,
             isHyperlink: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIsHyperlinkTarget: *const fn(
             self: *const IXpsOMVisual,
             isHyperlink: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHyperlinkNavigateUri: *const fn(
             self: *const IXpsOMVisual,
             hyperlinkUri: ?*?*IUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetHyperlinkNavigateUri: *const fn(
             self: *const IXpsOMVisual,
             hyperlinkUri: ?*IUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLanguage: *const fn(
             self: *const IXpsOMVisual,
             language: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLanguage: *const fn(
             self: *const IXpsOMVisual,
             language: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMShareable: IXpsOMShareable,
@@ -837,11 +837,11 @@ pub const IXpsOMPart = extern union {
         GetPartName: *const fn(
             self: *const IXpsOMPart,
             partUri: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPartName: *const fn(
             self: *const IXpsOMPart,
             partUri: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -861,81 +861,81 @@ pub const IXpsOMGlyphsEditor = extern union {
         base: IUnknown.VTable,
         ApplyEdits: *const fn(
             self: *const IXpsOMGlyphsEditor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUnicodeString: *const fn(
             self: *const IXpsOMGlyphsEditor,
             unicodeString: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUnicodeString: *const fn(
             self: *const IXpsOMGlyphsEditor,
             unicodeString: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphIndexCount: *const fn(
             self: *const IXpsOMGlyphsEditor,
             indexCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphIndices: *const fn(
             self: *const IXpsOMGlyphsEditor,
             indexCount: ?*u32,
             glyphIndices: ?*XPS_GLYPH_INDEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGlyphIndices: *const fn(
             self: *const IXpsOMGlyphsEditor,
             indexCount: u32,
             glyphIndices: ?*const XPS_GLYPH_INDEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphMappingCount: *const fn(
             self: *const IXpsOMGlyphsEditor,
             glyphMappingCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphMappings: *const fn(
             self: *const IXpsOMGlyphsEditor,
             glyphMappingCount: ?*u32,
             glyphMappings: ?*XPS_GLYPH_MAPPING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGlyphMappings: *const fn(
             self: *const IXpsOMGlyphsEditor,
             glyphMappingCount: u32,
             glyphMappings: ?*const XPS_GLYPH_MAPPING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProhibitedCaretStopCount: *const fn(
             self: *const IXpsOMGlyphsEditor,
             prohibitedCaretStopCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProhibitedCaretStops: *const fn(
             self: *const IXpsOMGlyphsEditor,
             count: ?*u32,
             prohibitedCaretStops: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProhibitedCaretStops: *const fn(
             self: *const IXpsOMGlyphsEditor,
             count: u32,
             prohibitedCaretStops: ?*const u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBidiLevel: *const fn(
             self: *const IXpsOMGlyphsEditor,
             bidiLevel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBidiLevel: *const fn(
             self: *const IXpsOMGlyphsEditor,
             bidiLevel: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIsSideways: *const fn(
             self: *const IXpsOMGlyphsEditor,
             isSideways: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIsSideways: *const fn(
             self: *const IXpsOMGlyphsEditor,
             isSideways: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceFontName: *const fn(
             self: *const IXpsOMGlyphsEditor,
             deviceFontName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDeviceFontName: *const fn(
             self: *const IXpsOMGlyphsEditor,
             deviceFontName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1004,114 +1004,114 @@ pub const IXpsOMGlyphs = extern union {
         GetUnicodeString: *const fn(
             self: *const IXpsOMGlyphs,
             unicodeString: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphIndexCount: *const fn(
             self: *const IXpsOMGlyphs,
             indexCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphIndices: *const fn(
             self: *const IXpsOMGlyphs,
             indexCount: ?*u32,
             glyphIndices: ?*XPS_GLYPH_INDEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphMappingCount: *const fn(
             self: *const IXpsOMGlyphs,
             glyphMappingCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphMappings: *const fn(
             self: *const IXpsOMGlyphs,
             glyphMappingCount: ?*u32,
             glyphMappings: ?*XPS_GLYPH_MAPPING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProhibitedCaretStopCount: *const fn(
             self: *const IXpsOMGlyphs,
             prohibitedCaretStopCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProhibitedCaretStops: *const fn(
             self: *const IXpsOMGlyphs,
             prohibitedCaretStopCount: ?*u32,
             prohibitedCaretStops: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBidiLevel: *const fn(
             self: *const IXpsOMGlyphs,
             bidiLevel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIsSideways: *const fn(
             self: *const IXpsOMGlyphs,
             isSideways: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceFontName: *const fn(
             self: *const IXpsOMGlyphs,
             deviceFontName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStyleSimulations: *const fn(
             self: *const IXpsOMGlyphs,
             styleSimulations: ?*XPS_STYLE_SIMULATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStyleSimulations: *const fn(
             self: *const IXpsOMGlyphs,
             styleSimulations: XPS_STYLE_SIMULATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOrigin: *const fn(
             self: *const IXpsOMGlyphs,
             origin: ?*XPS_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOrigin: *const fn(
             self: *const IXpsOMGlyphs,
             origin: ?*const XPS_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontRenderingEmSize: *const fn(
             self: *const IXpsOMGlyphs,
             fontRenderingEmSize: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFontRenderingEmSize: *const fn(
             self: *const IXpsOMGlyphs,
             fontRenderingEmSize: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontResource: *const fn(
             self: *const IXpsOMGlyphs,
             fontResource: ?*?*IXpsOMFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFontResource: *const fn(
             self: *const IXpsOMGlyphs,
             fontResource: ?*IXpsOMFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontFaceIndex: *const fn(
             self: *const IXpsOMGlyphs,
             fontFaceIndex: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFontFaceIndex: *const fn(
             self: *const IXpsOMGlyphs,
             fontFaceIndex: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFillBrush: *const fn(
             self: *const IXpsOMGlyphs,
             fillBrush: ?*?*IXpsOMBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFillBrushLocal: *const fn(
             self: *const IXpsOMGlyphs,
             fillBrush: ?*?*IXpsOMBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFillBrushLocal: *const fn(
             self: *const IXpsOMGlyphs,
             fillBrush: ?*IXpsOMBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFillBrushLookup: *const fn(
             self: *const IXpsOMGlyphs,
             key: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFillBrushLookup: *const fn(
             self: *const IXpsOMGlyphs,
             key: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlyphsEditor: *const fn(
             self: *const IXpsOMGlyphs,
             editor: ?*?*IXpsOMGlyphsEditor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMGlyphs,
             glyphs: ?*?*IXpsOMGlyphs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMVisual: IXpsOMVisual,
@@ -1209,30 +1209,30 @@ pub const IXpsOMDashCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMDashCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMDashCollection,
             index: u32,
             dash: ?*XPS_DASH,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMDashCollection,
             index: u32,
             dash: ?*const XPS_DASH,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMDashCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMDashCollection,
             index: u32,
             dash: ?*const XPS_DASH,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMDashCollection,
             dash: ?*const XPS_DASH,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1265,15 +1265,15 @@ pub const IXpsOMMatrixTransform = extern union {
         GetMatrix: *const fn(
             self: *const IXpsOMMatrixTransform,
             matrix: ?*XPS_MATRIX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMatrix: *const fn(
             self: *const IXpsOMMatrixTransform,
             matrix: ?*const XPS_MATRIX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMMatrixTransform,
             matrixTransform: ?*?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMShareable: IXpsOMShareable,
@@ -1298,39 +1298,39 @@ pub const IXpsOMGeometry = extern union {
         GetFigures: *const fn(
             self: *const IXpsOMGeometry,
             figures: ?*?*IXpsOMGeometryFigureCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFillRule: *const fn(
             self: *const IXpsOMGeometry,
             fillRule: ?*XPS_FILL_RULE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFillRule: *const fn(
             self: *const IXpsOMGeometry,
             fillRule: XPS_FILL_RULE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransform: *const fn(
             self: *const IXpsOMGeometry,
             transform: ?*?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformLocal: *const fn(
             self: *const IXpsOMGeometry,
             transform: ?*?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransformLocal: *const fn(
             self: *const IXpsOMGeometry,
             transform: ?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformLookup: *const fn(
             self: *const IXpsOMGeometry,
             lookup: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransformLookup: *const fn(
             self: *const IXpsOMGeometry,
             lookup: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMGeometry,
             geometry: ?*?*IXpsOMGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMShareable: IXpsOMShareable,
@@ -1373,22 +1373,22 @@ pub const IXpsOMGeometryFigure = extern union {
         GetOwner: *const fn(
             self: *const IXpsOMGeometryFigure,
             owner: ?*?*IXpsOMGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSegmentData: *const fn(
             self: *const IXpsOMGeometryFigure,
             dataCount: ?*u32,
             segmentData: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSegmentTypes: *const fn(
             self: *const IXpsOMGeometryFigure,
             segmentCount: ?*u32,
             segmentTypes: ?*XPS_SEGMENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSegmentStrokes: *const fn(
             self: *const IXpsOMGeometryFigure,
             segmentCount: ?*u32,
             segmentStrokes: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSegments: *const fn(
             self: *const IXpsOMGeometryFigure,
             segmentCount: u32,
@@ -1396,47 +1396,47 @@ pub const IXpsOMGeometryFigure = extern union {
             segmentTypes: ?*const XPS_SEGMENT_TYPE,
             segmentData: ?*const f32,
             segmentStrokes: ?*const BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStartPoint: *const fn(
             self: *const IXpsOMGeometryFigure,
             startPoint: ?*XPS_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStartPoint: *const fn(
             self: *const IXpsOMGeometryFigure,
             startPoint: ?*const XPS_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIsClosed: *const fn(
             self: *const IXpsOMGeometryFigure,
             isClosed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIsClosed: *const fn(
             self: *const IXpsOMGeometryFigure,
             isClosed: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIsFilled: *const fn(
             self: *const IXpsOMGeometryFigure,
             isFilled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIsFilled: *const fn(
             self: *const IXpsOMGeometryFigure,
             isFilled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSegmentCount: *const fn(
             self: *const IXpsOMGeometryFigure,
             segmentCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSegmentDataCount: *const fn(
             self: *const IXpsOMGeometryFigure,
             segmentDataCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSegmentStrokePattern: *const fn(
             self: *const IXpsOMGeometryFigure,
             segmentStrokePattern: ?*XPS_SEGMENT_STROKE_PATTERN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMGeometryFigure,
             geometryFigure: ?*?*IXpsOMGeometryFigure,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1496,30 +1496,30 @@ pub const IXpsOMGeometryFigureCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMGeometryFigureCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMGeometryFigureCollection,
             index: u32,
             geometryFigure: ?*?*IXpsOMGeometryFigure,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMGeometryFigureCollection,
             index: u32,
             geometryFigure: ?*IXpsOMGeometryFigure,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMGeometryFigureCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMGeometryFigureCollection,
             index: u32,
             geometryFigure: ?*IXpsOMGeometryFigure,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMGeometryFigureCollection,
             geometryFigure: ?*IXpsOMGeometryFigure,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1552,151 +1552,151 @@ pub const IXpsOMPath = extern union {
         GetGeometry: *const fn(
             self: *const IXpsOMPath,
             geometry: ?*?*IXpsOMGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGeometryLocal: *const fn(
             self: *const IXpsOMPath,
             geometry: ?*?*IXpsOMGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGeometryLocal: *const fn(
             self: *const IXpsOMPath,
             geometry: ?*IXpsOMGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGeometryLookup: *const fn(
             self: *const IXpsOMPath,
             lookup: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGeometryLookup: *const fn(
             self: *const IXpsOMPath,
             lookup: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAccessibilityShortDescription: *const fn(
             self: *const IXpsOMPath,
             shortDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAccessibilityShortDescription: *const fn(
             self: *const IXpsOMPath,
             shortDescription: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAccessibilityLongDescription: *const fn(
             self: *const IXpsOMPath,
             longDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAccessibilityLongDescription: *const fn(
             self: *const IXpsOMPath,
             longDescription: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSnapsToPixels: *const fn(
             self: *const IXpsOMPath,
             snapsToPixels: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSnapsToPixels: *const fn(
             self: *const IXpsOMPath,
             snapsToPixels: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokeBrush: *const fn(
             self: *const IXpsOMPath,
             brush: ?*?*IXpsOMBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokeBrushLocal: *const fn(
             self: *const IXpsOMPath,
             brush: ?*?*IXpsOMBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStrokeBrushLocal: *const fn(
             self: *const IXpsOMPath,
             brush: ?*IXpsOMBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokeBrushLookup: *const fn(
             self: *const IXpsOMPath,
             lookup: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStrokeBrushLookup: *const fn(
             self: *const IXpsOMPath,
             lookup: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokeDashes: *const fn(
             self: *const IXpsOMPath,
             strokeDashes: ?*?*IXpsOMDashCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokeDashCap: *const fn(
             self: *const IXpsOMPath,
             strokeDashCap: ?*XPS_DASH_CAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStrokeDashCap: *const fn(
             self: *const IXpsOMPath,
             strokeDashCap: XPS_DASH_CAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokeDashOffset: *const fn(
             self: *const IXpsOMPath,
             strokeDashOffset: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStrokeDashOffset: *const fn(
             self: *const IXpsOMPath,
             strokeDashOffset: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokeStartLineCap: *const fn(
             self: *const IXpsOMPath,
             strokeStartLineCap: ?*XPS_LINE_CAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStrokeStartLineCap: *const fn(
             self: *const IXpsOMPath,
             strokeStartLineCap: XPS_LINE_CAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokeEndLineCap: *const fn(
             self: *const IXpsOMPath,
             strokeEndLineCap: ?*XPS_LINE_CAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStrokeEndLineCap: *const fn(
             self: *const IXpsOMPath,
             strokeEndLineCap: XPS_LINE_CAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokeLineJoin: *const fn(
             self: *const IXpsOMPath,
             strokeLineJoin: ?*XPS_LINE_JOIN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStrokeLineJoin: *const fn(
             self: *const IXpsOMPath,
             strokeLineJoin: XPS_LINE_JOIN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokeMiterLimit: *const fn(
             self: *const IXpsOMPath,
             strokeMiterLimit: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStrokeMiterLimit: *const fn(
             self: *const IXpsOMPath,
             strokeMiterLimit: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStrokeThickness: *const fn(
             self: *const IXpsOMPath,
             strokeThickness: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStrokeThickness: *const fn(
             self: *const IXpsOMPath,
             strokeThickness: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFillBrush: *const fn(
             self: *const IXpsOMPath,
             brush: ?*?*IXpsOMBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFillBrushLocal: *const fn(
             self: *const IXpsOMPath,
             brush: ?*?*IXpsOMBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFillBrushLocal: *const fn(
             self: *const IXpsOMPath,
             brush: ?*IXpsOMBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFillBrushLookup: *const fn(
             self: *const IXpsOMPath,
             lookup: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFillBrushLookup: *const fn(
             self: *const IXpsOMPath,
             lookup: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMPath,
             path: ?*?*IXpsOMPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMVisual: IXpsOMVisual,
@@ -1824,11 +1824,11 @@ pub const IXpsOMBrush = extern union {
         GetOpacity: *const fn(
             self: *const IXpsOMBrush,
             opacity: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOpacity: *const fn(
             self: *const IXpsOMBrush,
             opacity: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMShareable: IXpsOMShareable,
@@ -1850,30 +1850,30 @@ pub const IXpsOMGradientStopCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMGradientStopCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMGradientStopCollection,
             index: u32,
             stop: ?*?*IXpsOMGradientStop,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMGradientStopCollection,
             index: u32,
             stop: ?*IXpsOMGradientStop,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMGradientStopCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMGradientStopCollection,
             index: u32,
             stop: ?*IXpsOMGradientStop,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMGradientStopCollection,
             stop: ?*IXpsOMGradientStop,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1907,16 +1907,16 @@ pub const IXpsOMSolidColorBrush = extern union {
             self: *const IXpsOMSolidColorBrush,
             color: ?*XPS_COLOR,
             colorProfile: ?*?*IXpsOMColorProfileResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColor: *const fn(
             self: *const IXpsOMSolidColorBrush,
             color: ?*const XPS_COLOR,
             colorProfile: ?*IXpsOMColorProfileResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMSolidColorBrush,
             solidColorBrush: ?*?*IXpsOMSolidColorBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMBrush: IXpsOMBrush,
@@ -1942,47 +1942,47 @@ pub const IXpsOMTileBrush = extern union {
         GetTransform: *const fn(
             self: *const IXpsOMTileBrush,
             transform: ?*?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformLocal: *const fn(
             self: *const IXpsOMTileBrush,
             transform: ?*?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransformLocal: *const fn(
             self: *const IXpsOMTileBrush,
             transform: ?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformLookup: *const fn(
             self: *const IXpsOMTileBrush,
             key: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransformLookup: *const fn(
             self: *const IXpsOMTileBrush,
             key: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetViewbox: *const fn(
             self: *const IXpsOMTileBrush,
             viewbox: ?*XPS_RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetViewbox: *const fn(
             self: *const IXpsOMTileBrush,
             viewbox: ?*const XPS_RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetViewport: *const fn(
             self: *const IXpsOMTileBrush,
             viewport: ?*XPS_RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetViewport: *const fn(
             self: *const IXpsOMTileBrush,
             viewport: ?*const XPS_RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTileMode: *const fn(
             self: *const IXpsOMTileBrush,
             tileMode: ?*XPS_TILE_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTileMode: *const fn(
             self: *const IXpsOMTileBrush,
             tileMode: XPS_TILE_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMBrush: IXpsOMBrush,
@@ -2032,27 +2032,27 @@ pub const IXpsOMVisualBrush = extern union {
         GetVisual: *const fn(
             self: *const IXpsOMVisualBrush,
             visual: ?*?*IXpsOMVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVisualLocal: *const fn(
             self: *const IXpsOMVisualBrush,
             visual: ?*?*IXpsOMVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVisualLocal: *const fn(
             self: *const IXpsOMVisualBrush,
             visual: ?*IXpsOMVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVisualLookup: *const fn(
             self: *const IXpsOMVisualBrush,
             lookup: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVisualLookup: *const fn(
             self: *const IXpsOMVisualBrush,
             lookup: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMVisualBrush,
             visualBrush: ?*?*IXpsOMVisualBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMTileBrush: IXpsOMTileBrush,
@@ -2088,23 +2088,23 @@ pub const IXpsOMImageBrush = extern union {
         GetImageResource: *const fn(
             self: *const IXpsOMImageBrush,
             imageResource: ?*?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetImageResource: *const fn(
             self: *const IXpsOMImageBrush,
             imageResource: ?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorProfileResource: *const fn(
             self: *const IXpsOMImageBrush,
             colorProfileResource: ?*?*IXpsOMColorProfileResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorProfileResource: *const fn(
             self: *const IXpsOMImageBrush,
             colorProfileResource: ?*IXpsOMColorProfileResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMImageBrush,
             imageBrush: ?*?*IXpsOMImageBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMTileBrush: IXpsOMTileBrush,
@@ -2137,29 +2137,29 @@ pub const IXpsOMGradientStop = extern union {
         GetOwner: *const fn(
             self: *const IXpsOMGradientStop,
             owner: ?*?*IXpsOMGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOffset: *const fn(
             self: *const IXpsOMGradientStop,
             offset: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOffset: *const fn(
             self: *const IXpsOMGradientStop,
             offset: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColor: *const fn(
             self: *const IXpsOMGradientStop,
             color: ?*XPS_COLOR,
             colorProfile: ?*?*IXpsOMColorProfileResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColor: *const fn(
             self: *const IXpsOMGradientStop,
             color: ?*const XPS_COLOR,
             colorProfile: ?*IXpsOMColorProfileResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMGradientStop,
             gradientStop: ?*?*IXpsOMGradientStop,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2192,43 +2192,43 @@ pub const IXpsOMGradientBrush = extern union {
         GetGradientStops: *const fn(
             self: *const IXpsOMGradientBrush,
             gradientStops: ?*?*IXpsOMGradientStopCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransform: *const fn(
             self: *const IXpsOMGradientBrush,
             transform: ?*?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformLocal: *const fn(
             self: *const IXpsOMGradientBrush,
             transform: ?*?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransformLocal: *const fn(
             self: *const IXpsOMGradientBrush,
             transform: ?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformLookup: *const fn(
             self: *const IXpsOMGradientBrush,
             key: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTransformLookup: *const fn(
             self: *const IXpsOMGradientBrush,
             key: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpreadMethod: *const fn(
             self: *const IXpsOMGradientBrush,
             spreadMethod: ?*XPS_SPREAD_METHOD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSpreadMethod: *const fn(
             self: *const IXpsOMGradientBrush,
             spreadMethod: XPS_SPREAD_METHOD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorInterpolationMode: *const fn(
             self: *const IXpsOMGradientBrush,
             colorInterpolationMode: ?*XPS_COLOR_INTERPOLATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorInterpolationMode: *const fn(
             self: *const IXpsOMGradientBrush,
             colorInterpolationMode: XPS_COLOR_INTERPOLATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMBrush: IXpsOMBrush,
@@ -2275,23 +2275,23 @@ pub const IXpsOMLinearGradientBrush = extern union {
         GetStartPoint: *const fn(
             self: *const IXpsOMLinearGradientBrush,
             startPoint: ?*XPS_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStartPoint: *const fn(
             self: *const IXpsOMLinearGradientBrush,
             startPoint: ?*const XPS_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEndPoint: *const fn(
             self: *const IXpsOMLinearGradientBrush,
             endPoint: ?*XPS_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEndPoint: *const fn(
             self: *const IXpsOMLinearGradientBrush,
             endPoint: ?*const XPS_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMLinearGradientBrush,
             linearGradientBrush: ?*?*IXpsOMLinearGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMGradientBrush: IXpsOMGradientBrush,
@@ -2324,31 +2324,31 @@ pub const IXpsOMRadialGradientBrush = extern union {
         GetCenter: *const fn(
             self: *const IXpsOMRadialGradientBrush,
             center: ?*XPS_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCenter: *const fn(
             self: *const IXpsOMRadialGradientBrush,
             center: ?*const XPS_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRadiiSizes: *const fn(
             self: *const IXpsOMRadialGradientBrush,
             radiiSizes: ?*XPS_SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRadiiSizes: *const fn(
             self: *const IXpsOMRadialGradientBrush,
             radiiSizes: ?*const XPS_SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGradientOrigin: *const fn(
             self: *const IXpsOMRadialGradientBrush,
             origin: ?*XPS_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGradientOrigin: *const fn(
             self: *const IXpsOMRadialGradientBrush,
             origin: ?*const XPS_POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMRadialGradientBrush,
             radialGradientBrush: ?*?*IXpsOMRadialGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMGradientBrush: IXpsOMGradientBrush,
@@ -2399,19 +2399,19 @@ pub const IXpsOMPartResources = extern union {
         GetFontResources: *const fn(
             self: *const IXpsOMPartResources,
             fontResources: ?*?*IXpsOMFontResourceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImageResources: *const fn(
             self: *const IXpsOMPartResources,
             imageResources: ?*?*IXpsOMImageResourceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorProfileResources: *const fn(
             self: *const IXpsOMPartResources,
             colorProfileResources: ?*?*IXpsOMColorProfileResourceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRemoteDictionaryResources: *const fn(
             self: *const IXpsOMPartResources,
             dictionaryResources: ?*?*IXpsOMRemoteDictionaryResourceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2438,53 +2438,53 @@ pub const IXpsOMDictionary = extern union {
         GetOwner: *const fn(
             self: *const IXpsOMDictionary,
             owner: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IXpsOMDictionary,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMDictionary,
             index: u32,
             key: ?*?PWSTR,
             entry: ?*?*IXpsOMShareable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetByKey: *const fn(
             self: *const IXpsOMDictionary,
             key: ?[*:0]const u16,
             beforeEntry: ?*IXpsOMShareable,
             entry: ?*?*IXpsOMShareable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIndex: *const fn(
             self: *const IXpsOMDictionary,
             entry: ?*IXpsOMShareable,
             index: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMDictionary,
             key: ?[*:0]const u16,
             entry: ?*IXpsOMShareable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMDictionary,
             index: u32,
             key: ?[*:0]const u16,
             entry: ?*IXpsOMShareable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMDictionary,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMDictionary,
             index: u32,
             key: ?[*:0]const u16,
             entry: ?*IXpsOMShareable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMDictionary,
             dictionary: ?*?*IXpsOMDictionary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2529,17 +2529,17 @@ pub const IXpsOMFontResource = extern union {
         GetStream: *const fn(
             self: *const IXpsOMFontResource,
             readerStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContent: *const fn(
             self: *const IXpsOMFontResource,
             sourceStream: ?*IStream,
             embeddingOption: XPS_FONT_EMBEDDING,
             partName: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEmbeddingOption: *const fn(
             self: *const IXpsOMFontResource,
             embeddingOption: ?*XPS_FONT_EMBEDDING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMResource: IXpsOMResource,
@@ -2565,35 +2565,35 @@ pub const IXpsOMFontResourceCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMFontResourceCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMFontResourceCollection,
             index: u32,
             value: ?*?*IXpsOMFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMFontResourceCollection,
             index: u32,
             value: ?*IXpsOMFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMFontResourceCollection,
             index: u32,
             value: ?*IXpsOMFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMFontResourceCollection,
             value: ?*IXpsOMFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMFontResourceCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetByPartName: *const fn(
             self: *const IXpsOMFontResourceCollection,
             partName: ?*IOpcPartUri,
             part: ?*?*IXpsOMFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2629,17 +2629,17 @@ pub const IXpsOMImageResource = extern union {
         GetStream: *const fn(
             self: *const IXpsOMImageResource,
             readerStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContent: *const fn(
             self: *const IXpsOMImageResource,
             sourceStream: ?*IStream,
             imageType: XPS_IMAGE_TYPE,
             partName: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetImageType: *const fn(
             self: *const IXpsOMImageResource,
             imageType: ?*XPS_IMAGE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMResource: IXpsOMResource,
@@ -2665,35 +2665,35 @@ pub const IXpsOMImageResourceCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMImageResourceCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMImageResourceCollection,
             index: u32,
             object: ?*?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMImageResourceCollection,
             index: u32,
             object: ?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMImageResourceCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMImageResourceCollection,
             index: u32,
             object: ?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMImageResourceCollection,
             object: ?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetByPartName: *const fn(
             self: *const IXpsOMImageResourceCollection,
             partName: ?*IOpcPartUri,
             part: ?*?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2729,12 +2729,12 @@ pub const IXpsOMColorProfileResource = extern union {
         GetStream: *const fn(
             self: *const IXpsOMColorProfileResource,
             stream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContent: *const fn(
             self: *const IXpsOMColorProfileResource,
             sourceStream: ?*IStream,
             partName: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMResource: IXpsOMResource,
@@ -2757,35 +2757,35 @@ pub const IXpsOMColorProfileResourceCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMColorProfileResourceCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMColorProfileResourceCollection,
             index: u32,
             object: ?*?*IXpsOMColorProfileResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMColorProfileResourceCollection,
             index: u32,
             object: ?*IXpsOMColorProfileResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMColorProfileResourceCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMColorProfileResourceCollection,
             index: u32,
             object: ?*IXpsOMColorProfileResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMColorProfileResourceCollection,
             object: ?*IXpsOMColorProfileResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetByPartName: *const fn(
             self: *const IXpsOMColorProfileResourceCollection,
             partName: ?*IOpcPartUri,
             part: ?*?*IXpsOMColorProfileResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2821,12 +2821,12 @@ pub const IXpsOMPrintTicketResource = extern union {
         GetStream: *const fn(
             self: *const IXpsOMPrintTicketResource,
             stream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContent: *const fn(
             self: *const IXpsOMPrintTicketResource,
             sourceStream: ?*IStream,
             partName: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMResource: IXpsOMResource,
@@ -2849,11 +2849,11 @@ pub const IXpsOMRemoteDictionaryResource = extern union {
         GetDictionary: *const fn(
             self: *const IXpsOMRemoteDictionaryResource,
             dictionary: ?*?*IXpsOMDictionary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDictionary: *const fn(
             self: *const IXpsOMRemoteDictionaryResource,
             dictionary: ?*IXpsOMDictionary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMResource: IXpsOMResource,
@@ -2876,35 +2876,35 @@ pub const IXpsOMRemoteDictionaryResourceCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMRemoteDictionaryResourceCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMRemoteDictionaryResourceCollection,
             index: u32,
             object: ?*?*IXpsOMRemoteDictionaryResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMRemoteDictionaryResourceCollection,
             index: u32,
             object: ?*IXpsOMRemoteDictionaryResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMRemoteDictionaryResourceCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMRemoteDictionaryResourceCollection,
             index: u32,
             object: ?*IXpsOMRemoteDictionaryResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMRemoteDictionaryResourceCollection,
             object: ?*IXpsOMRemoteDictionaryResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetByPartName: *const fn(
             self: *const IXpsOMRemoteDictionaryResourceCollection,
             partName: ?*IOpcPartUri,
             remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -2940,35 +2940,35 @@ pub const IXpsOMSignatureBlockResourceCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMSignatureBlockResourceCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMSignatureBlockResourceCollection,
             index: u32,
             signatureBlockResource: ?*?*IXpsOMSignatureBlockResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMSignatureBlockResourceCollection,
             index: u32,
             signatureBlockResource: ?*IXpsOMSignatureBlockResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMSignatureBlockResourceCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMSignatureBlockResourceCollection,
             index: u32,
             signatureBlockResource: ?*IXpsOMSignatureBlockResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMSignatureBlockResourceCollection,
             signatureBlockResource: ?*IXpsOMSignatureBlockResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetByPartName: *const fn(
             self: *const IXpsOMSignatureBlockResourceCollection,
             partName: ?*IOpcPartUri,
             signatureBlockResource: ?*?*IXpsOMSignatureBlockResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3004,16 +3004,16 @@ pub const IXpsOMDocumentStructureResource = extern union {
         GetOwner: *const fn(
             self: *const IXpsOMDocumentStructureResource,
             owner: ?*?*IXpsOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStream: *const fn(
             self: *const IXpsOMDocumentStructureResource,
             stream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContent: *const fn(
             self: *const IXpsOMDocumentStructureResource,
             sourceStream: ?*IStream,
             partName: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMResource: IXpsOMResource,
@@ -3039,16 +3039,16 @@ pub const IXpsOMStoryFragmentsResource = extern union {
         GetOwner: *const fn(
             self: *const IXpsOMStoryFragmentsResource,
             owner: ?*?*IXpsOMPageReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStream: *const fn(
             self: *const IXpsOMStoryFragmentsResource,
             stream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContent: *const fn(
             self: *const IXpsOMStoryFragmentsResource,
             sourceStream: ?*IStream,
             partName: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMResource: IXpsOMResource,
@@ -3074,16 +3074,16 @@ pub const IXpsOMSignatureBlockResource = extern union {
         GetOwner: *const fn(
             self: *const IXpsOMSignatureBlockResource,
             owner: ?*?*IXpsOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStream: *const fn(
             self: *const IXpsOMSignatureBlockResource,
             stream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContent: *const fn(
             self: *const IXpsOMSignatureBlockResource,
             sourceStream: ?*IStream,
             partName: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMResource: IXpsOMResource,
@@ -3109,30 +3109,30 @@ pub const IXpsOMVisualCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMVisualCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMVisualCollection,
             index: u32,
             object: ?*?*IXpsOMVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMVisualCollection,
             index: u32,
             object: ?*IXpsOMVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMVisualCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMVisualCollection,
             index: u32,
             object: ?*IXpsOMVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMVisualCollection,
             object: ?*IXpsOMVisual,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3165,55 +3165,55 @@ pub const IXpsOMCanvas = extern union {
         GetVisuals: *const fn(
             self: *const IXpsOMCanvas,
             visuals: ?*?*IXpsOMVisualCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUseAliasedEdgeMode: *const fn(
             self: *const IXpsOMCanvas,
             useAliasedEdgeMode: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUseAliasedEdgeMode: *const fn(
             self: *const IXpsOMCanvas,
             useAliasedEdgeMode: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAccessibilityShortDescription: *const fn(
             self: *const IXpsOMCanvas,
             shortDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAccessibilityShortDescription: *const fn(
             self: *const IXpsOMCanvas,
             shortDescription: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAccessibilityLongDescription: *const fn(
             self: *const IXpsOMCanvas,
             longDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAccessibilityLongDescription: *const fn(
             self: *const IXpsOMCanvas,
             longDescription: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDictionary: *const fn(
             self: *const IXpsOMCanvas,
             resourceDictionary: ?*?*IXpsOMDictionary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDictionaryLocal: *const fn(
             self: *const IXpsOMCanvas,
             resourceDictionary: ?*?*IXpsOMDictionary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDictionaryLocal: *const fn(
             self: *const IXpsOMCanvas,
             resourceDictionary: ?*IXpsOMDictionary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDictionaryResource: *const fn(
             self: *const IXpsOMCanvas,
             remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDictionaryResource: *const fn(
             self: *const IXpsOMCanvas,
             remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMCanvas,
             canvas: ?*?*IXpsOMCanvas,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMVisual: IXpsOMVisual,
@@ -3269,93 +3269,93 @@ pub const IXpsOMPage = extern union {
         GetOwner: *const fn(
             self: *const IXpsOMPage,
             pageReference: ?*?*IXpsOMPageReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVisuals: *const fn(
             self: *const IXpsOMPage,
             visuals: ?*?*IXpsOMVisualCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPageDimensions: *const fn(
             self: *const IXpsOMPage,
             pageDimensions: ?*XPS_SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPageDimensions: *const fn(
             self: *const IXpsOMPage,
             pageDimensions: ?*const XPS_SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContentBox: *const fn(
             self: *const IXpsOMPage,
             contentBox: ?*XPS_RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContentBox: *const fn(
             self: *const IXpsOMPage,
             contentBox: ?*const XPS_RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBleedBox: *const fn(
             self: *const IXpsOMPage,
             bleedBox: ?*XPS_RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBleedBox: *const fn(
             self: *const IXpsOMPage,
             bleedBox: ?*const XPS_RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLanguage: *const fn(
             self: *const IXpsOMPage,
             language: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLanguage: *const fn(
             self: *const IXpsOMPage,
             language: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IXpsOMPage,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetName: *const fn(
             self: *const IXpsOMPage,
             name: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIsHyperlinkTarget: *const fn(
             self: *const IXpsOMPage,
             isHyperlinkTarget: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIsHyperlinkTarget: *const fn(
             self: *const IXpsOMPage,
             isHyperlinkTarget: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDictionary: *const fn(
             self: *const IXpsOMPage,
             resourceDictionary: ?*?*IXpsOMDictionary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDictionaryLocal: *const fn(
             self: *const IXpsOMPage,
             resourceDictionary: ?*?*IXpsOMDictionary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDictionaryLocal: *const fn(
             self: *const IXpsOMPage,
             resourceDictionary: ?*IXpsOMDictionary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDictionaryResource: *const fn(
             self: *const IXpsOMPage,
             remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDictionaryResource: *const fn(
             self: *const IXpsOMPage,
             remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Write: *const fn(
             self: *const IXpsOMPage,
             stream: ?*ISequentialStream,
             optimizeMarkupSize: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateUnusedLookupKey: *const fn(
             self: *const IXpsOMPage,
             type: XPS_OBJECT_TYPE,
             key: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMPage,
             page: ?*?*IXpsOMPage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMPart: IXpsOMPart,
@@ -3437,70 +3437,70 @@ pub const IXpsOMPageReference = extern union {
         GetOwner: *const fn(
             self: *const IXpsOMPageReference,
             document: ?*?*IXpsOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPage: *const fn(
             self: *const IXpsOMPageReference,
             page: ?*?*IXpsOMPage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPage: *const fn(
             self: *const IXpsOMPageReference,
             page: ?*IXpsOMPage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DiscardPage: *const fn(
             self: *const IXpsOMPageReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPageLoaded: *const fn(
             self: *const IXpsOMPageReference,
             isPageLoaded: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAdvisoryPageDimensions: *const fn(
             self: *const IXpsOMPageReference,
             pageDimensions: ?*XPS_SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAdvisoryPageDimensions: *const fn(
             self: *const IXpsOMPageReference,
             pageDimensions: ?*const XPS_SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStoryFragmentsResource: *const fn(
             self: *const IXpsOMPageReference,
             storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStoryFragmentsResource: *const fn(
             self: *const IXpsOMPageReference,
             storyFragmentsResource: ?*IXpsOMStoryFragmentsResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrintTicketResource: *const fn(
             self: *const IXpsOMPageReference,
             printTicketResource: ?*?*IXpsOMPrintTicketResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrintTicketResource: *const fn(
             self: *const IXpsOMPageReference,
             printTicketResource: ?*IXpsOMPrintTicketResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetThumbnailResource: *const fn(
             self: *const IXpsOMPageReference,
             imageResource: ?*?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetThumbnailResource: *const fn(
             self: *const IXpsOMPageReference,
             imageResource: ?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CollectLinkTargets: *const fn(
             self: *const IXpsOMPageReference,
             linkTargets: ?*?*IXpsOMNameCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CollectPartResources: *const fn(
             self: *const IXpsOMPageReference,
             partResources: ?*?*IXpsOMPartResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasRestrictedFonts: *const fn(
             self: *const IXpsOMPageReference,
             restrictedFonts: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMPageReference,
             pageReference: ?*?*IXpsOMPageReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3566,30 +3566,30 @@ pub const IXpsOMPageReferenceCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMPageReferenceCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMPageReferenceCollection,
             index: u32,
             pageReference: ?*?*IXpsOMPageReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMPageReferenceCollection,
             index: u32,
             pageReference: ?*IXpsOMPageReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMPageReferenceCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMPageReferenceCollection,
             index: u32,
             pageReference: ?*IXpsOMPageReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMPageReferenceCollection,
             pageReference: ?*IXpsOMPageReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3622,35 +3622,35 @@ pub const IXpsOMDocument = extern union {
         GetOwner: *const fn(
             self: *const IXpsOMDocument,
             documentSequence: ?*?*IXpsOMDocumentSequence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPageReferences: *const fn(
             self: *const IXpsOMDocument,
             pageReferences: ?*?*IXpsOMPageReferenceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrintTicketResource: *const fn(
             self: *const IXpsOMDocument,
             printTicketResource: ?*?*IXpsOMPrintTicketResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrintTicketResource: *const fn(
             self: *const IXpsOMDocument,
             printTicketResource: ?*IXpsOMPrintTicketResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDocumentStructureResource: *const fn(
             self: *const IXpsOMDocument,
             documentStructureResource: ?*?*IXpsOMDocumentStructureResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDocumentStructureResource: *const fn(
             self: *const IXpsOMDocument,
             documentStructureResource: ?*IXpsOMDocumentStructureResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureBlockResources: *const fn(
             self: *const IXpsOMDocument,
             signatureBlockResources: ?*?*IXpsOMSignatureBlockResourceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMDocument,
             document: ?*?*IXpsOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMPart: IXpsOMPart,
@@ -3690,30 +3690,30 @@ pub const IXpsOMDocumentCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMDocumentCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMDocumentCollection,
             index: u32,
             document: ?*?*IXpsOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMDocumentCollection,
             index: u32,
             document: ?*IXpsOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMDocumentCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMDocumentCollection,
             index: u32,
             document: ?*IXpsOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMDocumentCollection,
             document: ?*IXpsOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -3746,19 +3746,19 @@ pub const IXpsOMDocumentSequence = extern union {
         GetOwner: *const fn(
             self: *const IXpsOMDocumentSequence,
             package: ?*?*IXpsOMPackage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDocuments: *const fn(
             self: *const IXpsOMDocumentSequence,
             documents: ?*?*IXpsOMDocumentCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrintTicketResource: *const fn(
             self: *const IXpsOMDocumentSequence,
             printTicketResource: ?*?*IXpsOMPrintTicketResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrintTicketResource: *const fn(
             self: *const IXpsOMDocumentSequence,
             printTicketResource: ?*IXpsOMPrintTicketResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMPart: IXpsOMPart,
@@ -3786,139 +3786,139 @@ pub const IXpsOMCoreProperties = extern union {
         GetOwner: *const fn(
             self: *const IXpsOMCoreProperties,
             package: ?*?*IXpsOMPackage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCategory: *const fn(
             self: *const IXpsOMCoreProperties,
             category: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCategory: *const fn(
             self: *const IXpsOMCoreProperties,
             category: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContentStatus: *const fn(
             self: *const IXpsOMCoreProperties,
             contentStatus: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContentStatus: *const fn(
             self: *const IXpsOMCoreProperties,
             contentStatus: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContentType: *const fn(
             self: *const IXpsOMCoreProperties,
             contentType: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContentType: *const fn(
             self: *const IXpsOMCoreProperties,
             contentType: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCreated: *const fn(
             self: *const IXpsOMCoreProperties,
             created: ?*SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCreated: *const fn(
             self: *const IXpsOMCoreProperties,
             created: ?*const SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCreator: *const fn(
             self: *const IXpsOMCoreProperties,
             creator: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCreator: *const fn(
             self: *const IXpsOMCoreProperties,
             creator: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const IXpsOMCoreProperties,
             description: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDescription: *const fn(
             self: *const IXpsOMCoreProperties,
             description: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIdentifier: *const fn(
             self: *const IXpsOMCoreProperties,
             identifier: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIdentifier: *const fn(
             self: *const IXpsOMCoreProperties,
             identifier: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKeywords: *const fn(
             self: *const IXpsOMCoreProperties,
             keywords: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetKeywords: *const fn(
             self: *const IXpsOMCoreProperties,
             keywords: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLanguage: *const fn(
             self: *const IXpsOMCoreProperties,
             language: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLanguage: *const fn(
             self: *const IXpsOMCoreProperties,
             language: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastModifiedBy: *const fn(
             self: *const IXpsOMCoreProperties,
             lastModifiedBy: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLastModifiedBy: *const fn(
             self: *const IXpsOMCoreProperties,
             lastModifiedBy: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastPrinted: *const fn(
             self: *const IXpsOMCoreProperties,
             lastPrinted: ?*SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLastPrinted: *const fn(
             self: *const IXpsOMCoreProperties,
             lastPrinted: ?*const SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetModified: *const fn(
             self: *const IXpsOMCoreProperties,
             modified: ?*SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetModified: *const fn(
             self: *const IXpsOMCoreProperties,
             modified: ?*const SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRevision: *const fn(
             self: *const IXpsOMCoreProperties,
             revision: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRevision: *const fn(
             self: *const IXpsOMCoreProperties,
             revision: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSubject: *const fn(
             self: *const IXpsOMCoreProperties,
             subject: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSubject: *const fn(
             self: *const IXpsOMCoreProperties,
             subject: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTitle: *const fn(
             self: *const IXpsOMCoreProperties,
             title: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTitle: *const fn(
             self: *const IXpsOMCoreProperties,
             title: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVersion: *const fn(
             self: *const IXpsOMCoreProperties,
             version: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVersion: *const fn(
             self: *const IXpsOMCoreProperties,
             version: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMCoreProperties,
             coreProperties: ?*?*IXpsOMCoreProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMPart: IXpsOMPart,
@@ -4036,47 +4036,47 @@ pub const IXpsOMPackage = extern union {
         GetDocumentSequence: *const fn(
             self: *const IXpsOMPackage,
             documentSequence: ?*?*IXpsOMDocumentSequence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDocumentSequence: *const fn(
             self: *const IXpsOMPackage,
             documentSequence: ?*IXpsOMDocumentSequence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCoreProperties: *const fn(
             self: *const IXpsOMPackage,
             coreProperties: ?*?*IXpsOMCoreProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCoreProperties: *const fn(
             self: *const IXpsOMPackage,
             coreProperties: ?*IXpsOMCoreProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDiscardControlPartName: *const fn(
             self: *const IXpsOMPackage,
             discardControlPartUri: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDiscardControlPartName: *const fn(
             self: *const IXpsOMPackage,
             discardControlPartUri: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetThumbnailResource: *const fn(
             self: *const IXpsOMPackage,
             imageResource: ?*?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetThumbnailResource: *const fn(
             self: *const IXpsOMPackage,
             imageResource: ?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteToFile: *const fn(
             self: *const IXpsOMPackage,
             fileName: ?[*:0]const u16,
             securityAttributes: ?*SECURITY_ATTRIBUTES,
             flagsAndAttributes: u32,
             optimizeMarkupSize: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteToStream: *const fn(
             self: *const IXpsOMPackage,
             stream: ?*ISequentialStream,
             optimizeMarkupSize: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4121,76 +4121,76 @@ pub const IXpsOMObjectFactory = extern union {
         CreatePackage: *const fn(
             self: *const IXpsOMObjectFactory,
             package: ?*?*IXpsOMPackage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePackageFromFile: *const fn(
             self: *const IXpsOMObjectFactory,
             filename: ?[*:0]const u16,
             reuseObjects: BOOL,
             package: ?*?*IXpsOMPackage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePackageFromStream: *const fn(
             self: *const IXpsOMObjectFactory,
             stream: ?*IStream,
             reuseObjects: BOOL,
             package: ?*?*IXpsOMPackage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStoryFragmentsResource: *const fn(
             self: *const IXpsOMObjectFactory,
             acquiredStream: ?*IStream,
             partUri: ?*IOpcPartUri,
             storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDocumentStructureResource: *const fn(
             self: *const IXpsOMObjectFactory,
             acquiredStream: ?*IStream,
             partUri: ?*IOpcPartUri,
             documentStructureResource: ?*?*IXpsOMDocumentStructureResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSignatureBlockResource: *const fn(
             self: *const IXpsOMObjectFactory,
             acquiredStream: ?*IStream,
             partUri: ?*IOpcPartUri,
             signatureBlockResource: ?*?*IXpsOMSignatureBlockResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRemoteDictionaryResource: *const fn(
             self: *const IXpsOMObjectFactory,
             dictionary: ?*IXpsOMDictionary,
             partUri: ?*IOpcPartUri,
             remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRemoteDictionaryResourceFromStream: *const fn(
             self: *const IXpsOMObjectFactory,
             dictionaryMarkupStream: ?*IStream,
             dictionaryPartUri: ?*IOpcPartUri,
             resources: ?*IXpsOMPartResources,
             dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePartResources: *const fn(
             self: *const IXpsOMObjectFactory,
             partResources: ?*?*IXpsOMPartResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDocumentSequence: *const fn(
             self: *const IXpsOMObjectFactory,
             partUri: ?*IOpcPartUri,
             documentSequence: ?*?*IXpsOMDocumentSequence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDocument: *const fn(
             self: *const IXpsOMObjectFactory,
             partUri: ?*IOpcPartUri,
             document: ?*?*IXpsOMDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePageReference: *const fn(
             self: *const IXpsOMObjectFactory,
             advisoryPageDimensions: ?*const XPS_SIZE,
             pageReference: ?*?*IXpsOMPageReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePage: *const fn(
             self: *const IXpsOMObjectFactory,
             pageDimensions: ?*const XPS_SIZE,
             language: ?[*:0]const u16,
             partUri: ?*IOpcPartUri,
             page: ?*?*IXpsOMPage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePageFromStream: *const fn(
             self: *const IXpsOMObjectFactory,
             pageMarkupStream: ?*IStream,
@@ -4198,72 +4198,72 @@ pub const IXpsOMObjectFactory = extern union {
             resources: ?*IXpsOMPartResources,
             reuseObjects: BOOL,
             page: ?*?*IXpsOMPage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCanvas: *const fn(
             self: *const IXpsOMObjectFactory,
             canvas: ?*?*IXpsOMCanvas,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGlyphs: *const fn(
             self: *const IXpsOMObjectFactory,
             fontResource: ?*IXpsOMFontResource,
             glyphs: ?*?*IXpsOMGlyphs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePath: *const fn(
             self: *const IXpsOMObjectFactory,
             path: ?*?*IXpsOMPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGeometry: *const fn(
             self: *const IXpsOMObjectFactory,
             geometry: ?*?*IXpsOMGeometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGeometryFigure: *const fn(
             self: *const IXpsOMObjectFactory,
             startPoint: ?*const XPS_POINT,
             figure: ?*?*IXpsOMGeometryFigure,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMatrixTransform: *const fn(
             self: *const IXpsOMObjectFactory,
             matrix: ?*const XPS_MATRIX,
             transform: ?*?*IXpsOMMatrixTransform,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSolidColorBrush: *const fn(
             self: *const IXpsOMObjectFactory,
             color: ?*const XPS_COLOR,
             colorProfile: ?*IXpsOMColorProfileResource,
             solidColorBrush: ?*?*IXpsOMSolidColorBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateColorProfileResource: *const fn(
             self: *const IXpsOMObjectFactory,
             acquiredStream: ?*IStream,
             partUri: ?*IOpcPartUri,
             colorProfileResource: ?*?*IXpsOMColorProfileResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateImageBrush: *const fn(
             self: *const IXpsOMObjectFactory,
             image: ?*IXpsOMImageResource,
             viewBox: ?*const XPS_RECT,
             viewPort: ?*const XPS_RECT,
             imageBrush: ?*?*IXpsOMImageBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateVisualBrush: *const fn(
             self: *const IXpsOMObjectFactory,
             viewBox: ?*const XPS_RECT,
             viewPort: ?*const XPS_RECT,
             visualBrush: ?*?*IXpsOMVisualBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateImageResource: *const fn(
             self: *const IXpsOMObjectFactory,
             acquiredStream: ?*IStream,
             contentType: XPS_IMAGE_TYPE,
             partUri: ?*IOpcPartUri,
             imageResource: ?*?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePrintTicketResource: *const fn(
             self: *const IXpsOMObjectFactory,
             acquiredStream: ?*IStream,
             partUri: ?*IOpcPartUri,
             printTicketResource: ?*?*IXpsOMPrintTicketResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFontResource: *const fn(
             self: *const IXpsOMObjectFactory,
             acquiredStream: ?*IStream,
@@ -4271,14 +4271,14 @@ pub const IXpsOMObjectFactory = extern union {
             partUri: ?*IOpcPartUri,
             isObfSourceStream: BOOL,
             fontResource: ?*?*IXpsOMFontResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGradientStop: *const fn(
             self: *const IXpsOMObjectFactory,
             color: ?*const XPS_COLOR,
             colorProfile: ?*IXpsOMColorProfileResource,
             offset: f32,
             gradientStop: ?*?*IXpsOMGradientStop,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateLinearGradientBrush: *const fn(
             self: *const IXpsOMObjectFactory,
             gradStop1: ?*IXpsOMGradientStop,
@@ -4286,7 +4286,7 @@ pub const IXpsOMObjectFactory = extern union {
             startPoint: ?*const XPS_POINT,
             endPoint: ?*const XPS_POINT,
             linearGradientBrush: ?*?*IXpsOMLinearGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRadialGradientBrush: *const fn(
             self: *const IXpsOMObjectFactory,
             gradStop1: ?*IXpsOMGradientStop,
@@ -4295,20 +4295,20 @@ pub const IXpsOMObjectFactory = extern union {
             gradientOrigin: ?*const XPS_POINT,
             radiiSizes: ?*const XPS_SIZE,
             radialGradientBrush: ?*?*IXpsOMRadialGradientBrush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateCoreProperties: *const fn(
             self: *const IXpsOMObjectFactory,
             partUri: ?*IOpcPartUri,
             coreProperties: ?*?*IXpsOMCoreProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDictionary: *const fn(
             self: *const IXpsOMObjectFactory,
             dictionary: ?*?*IXpsOMDictionary,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePartUriCollection: *const fn(
             self: *const IXpsOMObjectFactory,
             partUriCollection: ?*?*IXpsOMPartUriCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePackageWriterOnFile: *const fn(
             self: *const IXpsOMObjectFactory,
             fileName: ?[*:0]const u16,
@@ -4322,7 +4322,7 @@ pub const IXpsOMObjectFactory = extern union {
             documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
             discardControlPartName: ?*IOpcPartUri,
             packageWriter: ?*?*IXpsOMPackageWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePackageWriterOnStream: *const fn(
             self: *const IXpsOMObjectFactory,
             outputStream: ?*ISequentialStream,
@@ -4334,17 +4334,17 @@ pub const IXpsOMObjectFactory = extern union {
             documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
             discardControlPartName: ?*IOpcPartUri,
             packageWriter: ?*?*IXpsOMPackageWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePartUri: *const fn(
             self: *const IXpsOMObjectFactory,
             uri: ?[*:0]const u16,
             partUri: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateReadOnlyStreamOnFile: *const fn(
             self: *const IXpsOMObjectFactory,
             filename: ?[*:0]const u16,
             stream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4470,12 +4470,12 @@ pub const IXpsOMNameCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMNameCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMNameCollection,
             index: u32,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4496,30 +4496,30 @@ pub const IXpsOMPartUriCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsOMPartUriCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsOMPartUriCollection,
             index: u32,
             partUri: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertAt: *const fn(
             self: *const IXpsOMPartUriCollection,
             index: u32,
             partUri: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsOMPartUriCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAt: *const fn(
             self: *const IXpsOMPartUriCollection,
             index: u32,
             partUri: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IXpsOMPartUriCollection,
             partUri: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4556,7 +4556,7 @@ pub const IXpsOMPackageWriter = extern union {
             documentStructure: ?*IXpsOMDocumentStructureResource,
             signatureBlockResources: ?*IXpsOMSignatureBlockResourceCollection,
             restrictedFonts: ?*IXpsOMPartUriCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPage: *const fn(
             self: *const IXpsOMPackageWriter,
             page: ?*IXpsOMPage,
@@ -4565,18 +4565,18 @@ pub const IXpsOMPackageWriter = extern union {
             storyFragments: ?*IXpsOMStoryFragmentsResource,
             pagePrintTicket: ?*IXpsOMPrintTicketResource,
             pageThumbnail: ?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddResource: *const fn(
             self: *const IXpsOMPackageWriter,
             resource: ?*IXpsOMResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IXpsOMPackageWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsClosed: *const fn(
             self: *const IXpsOMPackageWriter,
             isClosed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4609,7 +4609,7 @@ pub const IXpsOMPackageTarget = extern union {
             documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
             discardControlPartName: ?*IOpcPartUri,
             packageWriter: ?*?*IXpsOMPackageWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4631,7 +4631,7 @@ pub const IXpsOMThumbnailGenerator = extern union {
             thumbnailSize: XPS_THUMBNAIL_SIZE,
             imageResourcePartName: ?*IOpcPartUri,
             imageResource: ?*?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4659,20 +4659,20 @@ pub const IXpsOMObjectFactory1 = extern union {
             self: *const IXpsOMObjectFactory1,
             filename: ?[*:0]const u16,
             documentType: ?*XPS_DOCUMENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDocumentTypeFromStream: *const fn(
             self: *const IXpsOMObjectFactory1,
             xpsDocumentStream: ?*IStream,
             documentType: ?*XPS_DOCUMENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertHDPhotoToJpegXR: *const fn(
             self: *const IXpsOMObjectFactory1,
             imageResource: ?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertJpegXRToHDPhoto: *const fn(
             self: *const IXpsOMObjectFactory1,
             imageResource: ?*IXpsOMImageResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePackageWriterOnFile1: *const fn(
             self: *const IXpsOMObjectFactory1,
             fileName: ?[*:0]const u16,
@@ -4687,7 +4687,7 @@ pub const IXpsOMObjectFactory1 = extern union {
             discardControlPartName: ?*IOpcPartUri,
             documentType: XPS_DOCUMENT_TYPE,
             packageWriter: ?*?*IXpsOMPackageWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePackageWriterOnStream1: *const fn(
             self: *const IXpsOMObjectFactory1,
             outputStream: ?*ISequentialStream,
@@ -4700,30 +4700,30 @@ pub const IXpsOMObjectFactory1 = extern union {
             discardControlPartName: ?*IOpcPartUri,
             documentType: XPS_DOCUMENT_TYPE,
             packageWriter: ?*?*IXpsOMPackageWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePackage1: *const fn(
             self: *const IXpsOMObjectFactory1,
             package: ?*?*IXpsOMPackage1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePackageFromStream1: *const fn(
             self: *const IXpsOMObjectFactory1,
             stream: ?*IStream,
             reuseObjects: BOOL,
             package: ?*?*IXpsOMPackage1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePackageFromFile1: *const fn(
             self: *const IXpsOMObjectFactory1,
             filename: ?[*:0]const u16,
             reuseObjects: BOOL,
             package: ?*?*IXpsOMPackage1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePage1: *const fn(
             self: *const IXpsOMObjectFactory1,
             pageDimensions: ?*const XPS_SIZE,
             language: ?[*:0]const u16,
             partUri: ?*IOpcPartUri,
             page: ?*?*IXpsOMPage1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePageFromStream1: *const fn(
             self: *const IXpsOMObjectFactory1,
             pageMarkupStream: ?*IStream,
@@ -4731,14 +4731,14 @@ pub const IXpsOMObjectFactory1 = extern union {
             resources: ?*IXpsOMPartResources,
             reuseObjects: BOOL,
             page: ?*?*IXpsOMPage1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRemoteDictionaryResourceFromStream1: *const fn(
             self: *const IXpsOMObjectFactory1,
             dictionaryMarkupStream: ?*IStream,
             partUri: ?*IOpcPartUri,
             resources: ?*IXpsOMPartResources,
             dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMObjectFactory: IXpsOMObjectFactory,
@@ -4790,7 +4790,7 @@ pub const IXpsOMPackage1 = extern union {
         GetDocumentType: *const fn(
             self: *const IXpsOMPackage1,
             documentType: ?*XPS_DOCUMENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteToFile1: *const fn(
             self: *const IXpsOMPackage1,
             fileName: ?[*:0]const u16,
@@ -4798,13 +4798,13 @@ pub const IXpsOMPackage1 = extern union {
             flagsAndAttributes: u32,
             optimizeMarkupSize: BOOL,
             documentType: XPS_DOCUMENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteToStream1: *const fn(
             self: *const IXpsOMPackage1,
             outputStream: ?*ISequentialStream,
             optimizeMarkupSize: BOOL,
             documentType: XPS_DOCUMENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMPackage: IXpsOMPackage,
@@ -4829,13 +4829,13 @@ pub const IXpsOMPage1 = extern union {
         GetDocumentType: *const fn(
             self: *const IXpsOMPage1,
             documentType: ?*XPS_DOCUMENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Write1: *const fn(
             self: *const IXpsOMPage1,
             stream: ?*ISequentialStream,
             optimizeMarkupSize: BOOL,
             documentType: XPS_DOCUMENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMPage: IXpsOMPage,
@@ -4860,15 +4860,15 @@ pub const IXpsDocumentPackageTarget = extern union {
             documentSequencePartName: ?*IOpcPartUri,
             discardControlPartName: ?*IOpcPartUri,
             packageWriter: ?*?*IXpsOMPackageWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXpsOMFactory: *const fn(
             self: *const IXpsDocumentPackageTarget,
             xpsFactory: ?*?*IXpsOMObjectFactory,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXpsType: *const fn(
             self: *const IXpsDocumentPackageTarget,
             documentType: ?*XPS_DOCUMENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -4892,12 +4892,12 @@ pub const IXpsOMRemoteDictionaryResource1 = extern union {
         GetDocumentType: *const fn(
             self: *const IXpsOMRemoteDictionaryResource1,
             documentType: ?*XPS_DOCUMENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Write1: *const fn(
             self: *const IXpsOMRemoteDictionaryResource1,
             stream: ?*ISequentialStream,
             documentType: XPS_DOCUMENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMRemoteDictionaryResource: IXpsOMRemoteDictionaryResource,
@@ -4922,12 +4922,12 @@ pub const IXpsOMPackageWriter3D = extern union {
             self: *const IXpsOMPackageWriter3D,
             texturePartName: ?*IOpcPartUri,
             textureData: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetModelPrintTicket: *const fn(
             self: *const IXpsOMPackageWriter3D,
             printTicketPartName: ?*IOpcPartUri,
             printTicketData: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IXpsOMPackageWriter: IXpsOMPackageWriter,
@@ -4953,11 +4953,11 @@ pub const IXpsDocumentPackageTarget3D = extern union {
             modelPartName: ?*IOpcPartUri,
             modelData: ?*IStream,
             packageWriter: ?*?*IXpsOMPackageWriter3D,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXpsOMFactory: *const fn(
             self: *const IXpsDocumentPackageTarget3D,
             xpsFactory: ?*?*IXpsOMObjectFactory,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5016,71 +5016,71 @@ pub const IXpsSigningOptions = extern union {
         GetSignatureId: *const fn(
             self: *const IXpsSigningOptions,
             signatureId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSignatureId: *const fn(
             self: *const IXpsSigningOptions,
             signatureId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureMethod: *const fn(
             self: *const IXpsSigningOptions,
             signatureMethod: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSignatureMethod: *const fn(
             self: *const IXpsSigningOptions,
             signatureMethod: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDigestMethod: *const fn(
             self: *const IXpsSigningOptions,
             digestMethod: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDigestMethod: *const fn(
             self: *const IXpsSigningOptions,
             digestMethod: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignaturePartName: *const fn(
             self: *const IXpsSigningOptions,
             signaturePartName: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSignaturePartName: *const fn(
             self: *const IXpsSigningOptions,
             signaturePartName: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPolicy: *const fn(
             self: *const IXpsSigningOptions,
             policy: ?*XPS_SIGN_POLICY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPolicy: *const fn(
             self: *const IXpsSigningOptions,
             policy: XPS_SIGN_POLICY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSigningTimeFormat: *const fn(
             self: *const IXpsSigningOptions,
             timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSigningTimeFormat: *const fn(
             self: *const IXpsSigningOptions,
             timeFormat: OPC_SIGNATURE_TIME_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCustomObjects: *const fn(
             self: *const IXpsSigningOptions,
             customObjectSet: ?*?*IOpcSignatureCustomObjectSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCustomReferences: *const fn(
             self: *const IXpsSigningOptions,
             customReferenceSet: ?*?*IOpcSignatureReferenceSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateSet: *const fn(
             self: *const IXpsSigningOptions,
             certificateSet: ?*?*IOpcCertificateSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlags: *const fn(
             self: *const IXpsSigningOptions,
             flags: ?*XPS_SIGN_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFlags: *const fn(
             self: *const IXpsSigningOptions,
             flags: XPS_SIGN_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5146,16 +5146,16 @@ pub const IXpsSignatureCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsSignatureCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsSignatureCollection,
             index: u32,
             signature: ?*?*IXpsSignature,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsSignatureCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5179,55 +5179,55 @@ pub const IXpsSignature = extern union {
         GetSignatureId: *const fn(
             self: *const IXpsSignature,
             sigId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureValue: *const fn(
             self: *const IXpsSignature,
             signatureHashValue: [*]?*u8,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateEnumerator: *const fn(
             self: *const IXpsSignature,
             certificateEnumerator: ?*?*IOpcCertificateEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSigningTime: *const fn(
             self: *const IXpsSignature,
             sigDateTimeString: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSigningTimeFormat: *const fn(
             self: *const IXpsSignature,
             timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignaturePartName: *const fn(
             self: *const IXpsSignature,
             signaturePartName: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Verify: *const fn(
             self: *const IXpsSignature,
             x509Certificate: ?*const CERT_CONTEXT,
             sigStatus: ?*XPS_SIGNATURE_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPolicy: *const fn(
             self: *const IXpsSignature,
             policy: ?*XPS_SIGN_POLICY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCustomObjectEnumerator: *const fn(
             self: *const IXpsSignature,
             customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCustomReferenceEnumerator: *const fn(
             self: *const IXpsSignature,
             customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureXml: *const fn(
             self: *const IXpsSignature,
             signatureXml: [*]?*u8,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSignatureXml: *const fn(
             self: *const IXpsSignature,
             signatureXml: [*:0]const u8,
             count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5278,16 +5278,16 @@ pub const IXpsSignatureBlockCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsSignatureBlockCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsSignatureBlockCollection,
             index: u32,
             signatureBlock: ?*?*IXpsSignatureBlock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsSignatureBlockCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5311,24 +5311,24 @@ pub const IXpsSignatureBlock = extern union {
         GetRequests: *const fn(
             self: *const IXpsSignatureBlock,
             requests: ?*?*IXpsSignatureRequestCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPartName: *const fn(
             self: *const IXpsSignatureBlock,
             partName: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDocumentIndex: *const fn(
             self: *const IXpsSignatureBlock,
             fixedDocumentIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDocumentName: *const fn(
             self: *const IXpsSignatureBlock,
             fixedDocumentName: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRequest: *const fn(
             self: *const IXpsSignatureBlock,
             requestId: ?[*:0]const u16,
             signatureRequest: ?*?*IXpsSignatureRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5358,16 +5358,16 @@ pub const IXpsSignatureRequestCollection = extern union {
         GetCount: *const fn(
             self: *const IXpsSignatureRequestCollection,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IXpsSignatureRequestCollection,
             index: u32,
             signatureRequest: ?*?*IXpsSignatureRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAt: *const fn(
             self: *const IXpsSignatureRequestCollection,
             index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5391,56 +5391,56 @@ pub const IXpsSignatureRequest = extern union {
         GetIntent: *const fn(
             self: *const IXpsSignatureRequest,
             intent: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIntent: *const fn(
             self: *const IXpsSignatureRequest,
             intent: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestedSigner: *const fn(
             self: *const IXpsSignatureRequest,
             signerName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRequestedSigner: *const fn(
             self: *const IXpsSignatureRequest,
             signerName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestSignByDate: *const fn(
             self: *const IXpsSignatureRequest,
             dateString: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRequestSignByDate: *const fn(
             self: *const IXpsSignatureRequest,
             dateString: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSigningLocale: *const fn(
             self: *const IXpsSignatureRequest,
             place: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSigningLocale: *const fn(
             self: *const IXpsSignatureRequest,
             place: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpotLocation: *const fn(
             self: *const IXpsSignatureRequest,
             pageIndex: ?*i32,
             pagePartName: ?*?*IOpcPartUri,
             x: ?*f32,
             y: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSpotLocation: *const fn(
             self: *const IXpsSignatureRequest,
             pageIndex: i32,
             x: f32,
             y: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestId: *const fn(
             self: *const IXpsSignatureRequest,
             requestId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignature: *const fn(
             self: *const IXpsSignatureRequest,
             signature: ?*?*IXpsSignature,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5491,53 +5491,53 @@ pub const IXpsSignatureManager = extern union {
         LoadPackageFile: *const fn(
             self: *const IXpsSignatureManager,
             fileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadPackageStream: *const fn(
             self: *const IXpsSignatureManager,
             stream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Sign: *const fn(
             self: *const IXpsSignatureManager,
             signOptions: ?*IXpsSigningOptions,
             x509Certificate: ?*const CERT_CONTEXT,
             signature: ?*?*IXpsSignature,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureOriginPartName: *const fn(
             self: *const IXpsSignatureManager,
             signatureOriginPartName: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSignatureOriginPartName: *const fn(
             self: *const IXpsSignatureManager,
             signatureOriginPartName: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatures: *const fn(
             self: *const IXpsSignatureManager,
             signatures: ?*?*IXpsSignatureCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddSignatureBlock: *const fn(
             self: *const IXpsSignatureManager,
             partName: ?*IOpcPartUri,
             fixedDocumentIndex: u32,
             signatureBlock: ?*?*IXpsSignatureBlock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureBlocks: *const fn(
             self: *const IXpsSignatureManager,
             signatureBlocks: ?*?*IXpsSignatureBlockCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSigningOptions: *const fn(
             self: *const IXpsSignatureManager,
             signingOptions: ?*?*IXpsSigningOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SavePackageToFile: *const fn(
             self: *const IXpsSignatureManager,
             fileName: ?[*:0]const u16,
             securityAttributes: ?*SECURITY_ATTRIBUTES,
             flagsAndAttributes: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SavePackageToStream: *const fn(
             self: *const IXpsSignatureManager,
             stream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -5587,7 +5587,7 @@ pub extern "winspool.drv" fn DeviceCapabilitiesA(
     fwCapability: DEVICE_CAPABILITIES,
     pOutput: ?PSTR,
     pDevMode: ?*const DEVMODEA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winspool.drv" fn DeviceCapabilitiesW(
@@ -5596,7 +5596,7 @@ pub extern "winspool.drv" fn DeviceCapabilitiesW(
     fwCapability: DEVICE_CAPABILITIES,
     pOutput: ?PWSTR,
     pDevMode: ?*const DEVMODEW,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn Escape(
@@ -5606,7 +5606,7 @@ pub extern "gdi32" fn Escape(
     // TODO: what to do with BytesParamIndex 2?
     pvIn: ?[*:0]const u8,
     pvOut: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn ExtEscape(
@@ -5618,52 +5618,52 @@ pub extern "gdi32" fn ExtEscape(
     cjOutput: i32,
     // TODO: what to do with BytesParamIndex 4?
     lpOutData: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn StartDocA(
     hdc: ?HDC,
     lpdi: ?*const DOCINFOA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn StartDocW(
     hdc: ?HDC,
     lpdi: ?*const DOCINFOW,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn EndDoc(
     hdc: ?HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn StartPage(
     hdc: ?HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn EndPage(
     hdc: ?HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn AbortDoc(
     hdc: ?HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn SetAbortProc(
     hdc: ?HDC,
     proc: ?ABORTPROC,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn PrintWindow(
     hwnd: ?HWND,
     hdcBlt: ?HDC,
     nFlags: PRINT_WINDOW_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

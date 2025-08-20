@@ -16,7 +16,7 @@ pub const ISoftwareBitmapNative = extern union {
             self: *const ISoftwareBitmapNative,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
@@ -37,7 +37,7 @@ pub const ISoftwareBitmapNativeFactory = extern union {
             forceReadOnly: BOOL,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFromMF2DBuffer2: *const fn(
             self: *const ISoftwareBitmapNativeFactory,
             data: ?*IMF2DBuffer2,
@@ -48,7 +48,7 @@ pub const ISoftwareBitmapNativeFactory = extern union {
             minDisplayAperture: ?*const MFVideoArea,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,

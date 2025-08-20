@@ -562,47 +562,47 @@ pub const IDirectMusic = extern union {
             self: *const IDirectMusic,
             dwIndex: u32,
             pPortCaps: ?*DMUS_PORTCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMusicBuffer: *const fn(
             self: *const IDirectMusic,
             pBufferDesc: ?*DMUS_BUFFERDESC,
             ppBuffer: ?*?*IDirectMusicBuffer,
             pUnkOuter: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePort: *const fn(
             self: *const IDirectMusic,
             rclsidPort: ?*const Guid,
             pPortParams: ?*DMUS_PORTPARAMS8,
             ppPort: ?*?*IDirectMusicPort,
             pUnkOuter: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumMasterClock: *const fn(
             self: *const IDirectMusic,
             dwIndex: u32,
             lpClockInfo: ?*DMUS_CLOCKINFO8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMasterClock: *const fn(
             self: *const IDirectMusic,
             pguidClock: ?*Guid,
             ppReferenceClock: ?*?*IReferenceClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMasterClock: *const fn(
             self: *const IDirectMusic,
             rguidClock: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Activate: *const fn(
             self: *const IDirectMusic,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultPort: *const fn(
             self: *const IDirectMusic,
             pguidPort: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDirectSound: *const fn(
             self: *const IDirectMusic,
             pDirectSound: ?*IDirectSound,
             hWnd: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -643,7 +643,7 @@ pub const IDirectMusic8 = extern union {
         SetExternalMasterClock: *const fn(
             self: *const IDirectMusic8,
             pClock: ?*IReferenceClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectMusic: IDirectMusic,
@@ -660,62 +660,62 @@ pub const IDirectMusicBuffer = extern union {
         base: IUnknown.VTable,
         Flush: *const fn(
             self: *const IDirectMusicBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TotalTime: *const fn(
             self: *const IDirectMusicBuffer,
             prtTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PackStructured: *const fn(
             self: *const IDirectMusicBuffer,
             rt: i64,
             dwChannelGroup: u32,
             dwChannelMessage: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PackUnstructured: *const fn(
             self: *const IDirectMusicBuffer,
             rt: i64,
             dwChannelGroup: u32,
             cb: u32,
             lpb: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetReadPtr: *const fn(
             self: *const IDirectMusicBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextEvent: *const fn(
             self: *const IDirectMusicBuffer,
             prt: ?*i64,
             pdwChannelGroup: ?*u32,
             pdwLength: ?*u32,
             ppData: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRawBufferPtr: *const fn(
             self: *const IDirectMusicBuffer,
             ppData: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStartTime: *const fn(
             self: *const IDirectMusicBuffer,
             prt: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUsedBytes: *const fn(
             self: *const IDirectMusicBuffer,
             pcb: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxBytes: *const fn(
             self: *const IDirectMusicBuffer,
             pcb: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferFormat: *const fn(
             self: *const IDirectMusicBuffer,
             pGuidFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStartTime: *const fn(
             self: *const IDirectMusicBuffer,
             rt: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUsedBytes: *const fn(
             self: *const IDirectMusicBuffer,
             cb: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -768,11 +768,11 @@ pub const IDirectMusicInstrument = extern union {
         GetPatch: *const fn(
             self: *const IDirectMusicInstrument,
             pdwPatch: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPatch: *const fn(
             self: *const IDirectMusicInstrument,
             dwPatch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -803,14 +803,14 @@ pub const IDirectMusicCollection = extern union {
             self: *const IDirectMusicCollection,
             dwPatch: u32,
             ppInstrument: ?*?*IDirectMusicInstrument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumInstrument: *const fn(
             self: *const IDirectMusicCollection,
             dwIndex: u32,
             pdwPatch: ?*u32,
             pwszName: ?PWSTR,
             dwNameLen: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -831,7 +831,7 @@ pub const IDirectMusicDownload = extern union {
             self: *const IDirectMusicDownload,
             ppvBuffer: ?*?*anyopaque,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -849,29 +849,29 @@ pub const IDirectMusicPortDownload = extern union {
             self: *const IDirectMusicPortDownload,
             dwDLId: u32,
             ppIDMDownload: ?*?*IDirectMusicDownload,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AllocateBuffer: *const fn(
             self: *const IDirectMusicPortDownload,
             dwSize: u32,
             ppIDMDownload: ?*?*IDirectMusicDownload,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDLId: *const fn(
             self: *const IDirectMusicPortDownload,
             pdwStartDLId: ?*u32,
             dwCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAppend: *const fn(
             self: *const IDirectMusicPortDownload,
             pdwAppend: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Download: *const fn(
             self: *const IDirectMusicPortDownload,
             pIDMDownload: ?*IDirectMusicDownload,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unload: *const fn(
             self: *const IDirectMusicPortDownload,
             pIDMDownload: ?*IDirectMusicDownload,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -903,41 +903,41 @@ pub const IDirectMusicPort = extern union {
         PlayBuffer: *const fn(
             self: *const IDirectMusicPort,
             pBuffer: ?*IDirectMusicBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetReadNotificationHandle: *const fn(
             self: *const IDirectMusicPort,
             hEvent: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Read: *const fn(
             self: *const IDirectMusicPort,
             pBuffer: ?*IDirectMusicBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DownloadInstrument: *const fn(
             self: *const IDirectMusicPort,
             pInstrument: ?*IDirectMusicInstrument,
             ppDownloadedInstrument: ?*?*IDirectMusicDownloadedInstrument,
             pNoteRanges: ?*DMUS_NOTERANGE,
             dwNumNoteRanges: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnloadInstrument: *const fn(
             self: *const IDirectMusicPort,
             pDownloadedInstrument: ?*IDirectMusicDownloadedInstrument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLatencyClock: *const fn(
             self: *const IDirectMusicPort,
             ppClock: ?*?*IReferenceClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRunningStats: *const fn(
             self: *const IDirectMusicPort,
             pStats: ?*DMUS_SYNTHSTATS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Compact: *const fn(
             self: *const IDirectMusicPort,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaps: *const fn(
             self: *const IDirectMusicPort,
             pPortCaps: ?*DMUS_PORTCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceIoControl: *const fn(
             self: *const IDirectMusicPort,
             dwIoControlCode: u32,
@@ -947,42 +947,42 @@ pub const IDirectMusicPort = extern union {
             nOutBufferSize: u32,
             lpBytesReturned: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNumChannelGroups: *const fn(
             self: *const IDirectMusicPort,
             dwChannelGroups: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNumChannelGroups: *const fn(
             self: *const IDirectMusicPort,
             pdwChannelGroups: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Activate: *const fn(
             self: *const IDirectMusicPort,
             fActive: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetChannelPriority: *const fn(
             self: *const IDirectMusicPort,
             dwChannelGroup: u32,
             dwChannel: u32,
             dwPriority: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelPriority: *const fn(
             self: *const IDirectMusicPort,
             dwChannelGroup: u32,
             dwChannel: u32,
             pdwPriority: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDirectSound: *const fn(
             self: *const IDirectMusicPort,
             pDirectSound: ?*IDirectSound,
             pDirectSoundBuffer: ?*IDirectSoundBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const IDirectMusicPort,
             pWaveFormatEx: ?*WAVEFORMATEX,
             pdwWaveFormatExSize: ?*u32,
             pdwBufferSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1051,7 +1051,7 @@ pub const IDirectMusicThru = extern union {
             dwDestinationChannelGroup: u32,
             dwDestinationChannel: u32,
             pDestinationPort: ?*IDirectMusicPort,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1073,83 +1073,83 @@ pub const IDirectMusicSynth = extern union {
         Open: *const fn(
             self: *const IDirectMusicSynth,
             pPortParams: ?*DMUS_PORTPARAMS8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IDirectMusicSynth,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNumChannelGroups: *const fn(
             self: *const IDirectMusicSynth,
             dwGroups: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Download: *const fn(
             self: *const IDirectMusicSynth,
             phDownload: ?*?HANDLE,
             pvData: ?*anyopaque,
             pbFree: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unload: *const fn(
             self: *const IDirectMusicSynth,
             hDownload: ?HANDLE,
             lpFreeHandle: isize,
             hUserData: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PlayBuffer: *const fn(
             self: *const IDirectMusicSynth,
             rt: i64,
             pbBuffer: ?*u8,
             cbBuffer: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRunningStats: *const fn(
             self: *const IDirectMusicSynth,
             pStats: ?*DMUS_SYNTHSTATS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPortCaps: *const fn(
             self: *const IDirectMusicSynth,
             pCaps: ?*DMUS_PORTCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMasterClock: *const fn(
             self: *const IDirectMusicSynth,
             pClock: ?*IReferenceClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLatencyClock: *const fn(
             self: *const IDirectMusicSynth,
             ppClock: ?*?*IReferenceClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Activate: *const fn(
             self: *const IDirectMusicSynth,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSynthSink: *const fn(
             self: *const IDirectMusicSynth,
             pSynthSink: ?*IDirectMusicSynthSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Render: *const fn(
             self: *const IDirectMusicSynth,
             pBuffer: ?*i16,
             dwLength: u32,
             llPosition: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetChannelPriority: *const fn(
             self: *const IDirectMusicSynth,
             dwChannelGroup: u32,
             dwChannel: u32,
             dwPriority: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelPriority: *const fn(
             self: *const IDirectMusicSynth,
             dwChannelGroup: u32,
             dwChannel: u32,
             pdwPriority: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const IDirectMusicSynth,
             pWaveFormatEx: ?*WAVEFORMATEX,
             pdwWaveFormatExSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAppend: *const fn(
             self: *const IDirectMusicSynth,
             pdwAppend: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1223,30 +1223,30 @@ pub const IDirectMusicSynth8 = extern union {
             stVoiceStart: u64,
             stLoopStart: u64,
             stLoopEnd: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopVoice: *const fn(
             self: *const IDirectMusicSynth8,
             rt: i64,
             dwVoiceId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVoiceState: *const fn(
             self: *const IDirectMusicSynth8,
             dwVoice: ?*u32,
             cbVoice: u32,
             dwVoiceState: ?*DMUS_VOICE_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IDirectMusicSynth8,
             dwDownloadID: u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AssignChannelToBuses: *const fn(
             self: *const IDirectMusicSynth8,
             dwChannelGroup: u32,
             dwChannel: u32,
             pdwBuses: ?*u32,
             cBuses: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectMusicSynth: IDirectMusicSynth,
@@ -1276,38 +1276,38 @@ pub const IDirectMusicSynthSink = extern union {
         Init: *const fn(
             self: *const IDirectMusicSynthSink,
             pSynth: ?*IDirectMusicSynth,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMasterClock: *const fn(
             self: *const IDirectMusicSynthSink,
             pClock: ?*IReferenceClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLatencyClock: *const fn(
             self: *const IDirectMusicSynthSink,
             ppClock: ?*?*IReferenceClock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Activate: *const fn(
             self: *const IDirectMusicSynthSink,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SampleToRefTime: *const fn(
             self: *const IDirectMusicSynthSink,
             llSampleTime: i64,
             prfTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RefTimeToSample: *const fn(
             self: *const IDirectMusicSynthSink,
             rfTime: i64,
             pllSampleTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDirectSound: *const fn(
             self: *const IDirectMusicSynthSink,
             pDirectSound: ?*IDirectSound,
             pDirectSoundBuffer: ?*IDirectSoundBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDesiredBufferSize: *const fn(
             self: *const IDirectMusicSynthSink,
             pdwBufferSizeInSamples: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -1419,17 +1419,17 @@ pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_W_DATA = extern struct {
 pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1 = *const fn(
     param0: ?*DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_1_DATA,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA = *const fn(
     param0: ?*DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_A_DATA,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW = *const fn(
     param0: ?*DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_W_DATA,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_1_DATA = extern struct {
     Callback: ?LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1,
